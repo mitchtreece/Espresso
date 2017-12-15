@@ -1,0 +1,6 @@
+framework module Pods_Espresso_Example {
+  umbrella header "Pods-Espresso_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

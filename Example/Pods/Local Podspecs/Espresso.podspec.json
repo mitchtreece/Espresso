@@ -1,0 +1,22 @@
+{
+  "name": "Espresso",
+  "version": "0.1.0",
+  "summary": "A short description of Espresso.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/mitchtreece/Espresso",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "mitchtreece": "mitchtreece@me.com"
+  },
+  "source": {
+    "git": "https://github.com/mitchtreece/Espresso.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Espresso/Classes/**/*"
+}

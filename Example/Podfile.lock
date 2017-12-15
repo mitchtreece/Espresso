@@ -1,0 +1,16 @@
+PODS:
+  - Espresso (0.1.0)
+
+DEPENDENCIES:
+  - Espresso (from `../`)
+
+EXTERNAL SOURCES:
+  Espresso:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Espresso: d334226ad03357cd550bdd84bfb2cfb9ce3fbf33
+
+PODFILE CHECKSUM: 05bac25e09ec2ad6b8b9dfbcef89df5c28743651
+
+COCOAPODS: 1.2.1
