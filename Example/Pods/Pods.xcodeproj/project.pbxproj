@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		26709FE91FE485E30052D883 /* UIDevice+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26709FE81FE485E30052D883 /* UIDevice+Espresso.swift */; };
 		26709FED1FE489950052D883 /* EnumIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26709FEC1FE489950052D883 /* EnumIterable.swift */; };
+		26709FF11FE4942F0052D883 /* UIDisplayFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26709FF01FE4942F0052D883 /* UIDisplayFeature.swift */; };
+		26E6B8471FE495E4003031BE /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8461FE495E4003031BE /* UIScreen+Espresso.swift */; };
+		26E6B84A1FE496A3003031BE /* UIEdgeInsets+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8491FE496A3003031BE /* UIEdgeInsets+Espresso.swift */; };
+		26E6B84D1FE49704003031BE /* UIStatusBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B84C1FE49704003031BE /* UIStatusBarAppearance.swift */; };
+		26E6B84F1FE49711003031BE /* UIApplication+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B84E1FE49711003031BE /* UIApplication+Espresso.swift */; };
+		26E6B8521FE497F1003031BE /* ErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8511FE497F1003031BE /* ErrorConvertible.swift */; };
+		26E6B8551FE4982B003031BE /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8541FE4982B003031BE /* BoolConvertible.swift */; };
+		26E6B8581FE498A0003031BE /* IndexPath+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8571FE498A0003031BE /* IndexPath+Espresso.swift */; };
 		38F6C6FC88B25434BF4882F05D0761A5 /* Espresso-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EF1F652902B1F9290C57911254334 /* Espresso-dummy.m */; };
 		5FAB68A1354734C8EE65A8B44C584D7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		66D47EE6F52C80F9BD42DD9D8EA72D30 /* Pods-Espresso_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF15B39803AC80B51A59E06ED68484C /* Pods-Espresso_Tests-dummy.m */; };
@@ -37,6 +45,14 @@
 		1C47E13AE4ECE290445655240B4DB449 /* Pods-Espresso_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Espresso_Example.modulemap"; sourceTree = "<group>"; };
 		26709FE81FE485E30052D883 /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
 		26709FEC1FE489950052D883 /* EnumIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumIterable.swift; sourceTree = "<group>"; };
+		26709FF01FE4942F0052D883 /* UIDisplayFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDisplayFeature.swift; sourceTree = "<group>"; };
+		26E6B8461FE495E4003031BE /* UIScreen+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Espresso.swift"; sourceTree = "<group>"; };
+		26E6B8491FE496A3003031BE /* UIEdgeInsets+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Espresso.swift"; sourceTree = "<group>"; };
+		26E6B84C1FE49704003031BE /* UIStatusBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarAppearance.swift; sourceTree = "<group>"; };
+		26E6B84E1FE49711003031BE /* UIApplication+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Espresso.swift"; sourceTree = "<group>"; };
+		26E6B8511FE497F1003031BE /* ErrorConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConvertible.swift; sourceTree = "<group>"; };
+		26E6B8541FE4982B003031BE /* BoolConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolConvertible.swift; sourceTree = "<group>"; };
+		26E6B8571FE498A0003031BE /* IndexPath+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+Espresso.swift"; sourceTree = "<group>"; };
 		309E2698B836BD42360DF15334DC77C0 /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		415B20917316813AE5915C1D04FD04A1 /* Pods-Espresso_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		42F15596F70AE730DAAC064E787FFC51 /* Pods-Espresso_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,20 +110,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26709FEA1FE485EB0052D883 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				26709FE81FE485E30052D883 /* UIDevice+Espresso.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		26709FEB1FE488C70052D883 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				26709FEC1FE489950052D883 /* EnumIterable.swift */,
+				26E6B8501FE497DC003031BE /* Convertibles */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		26709FEE1FE493F40052D883 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				26E6B84B1FE496ED003031BE /* UIApplication */,
+				26709FEF1FE4941E0052D883 /* UIScreen */,
+				26709FE81FE485E30052D883 /* UIDevice+Espresso.swift */,
+				26E6B8491FE496A3003031BE /* UIEdgeInsets+Espresso.swift */,
+				26E6B8571FE498A0003031BE /* IndexPath+Espresso.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		26709FEF1FE4941E0052D883 /* UIScreen */ = {
+			isa = PBXGroup;
+			children = (
+				26709FF01FE4942F0052D883 /* UIDisplayFeature.swift */,
+				26E6B8461FE495E4003031BE /* UIScreen+Espresso.swift */,
+			);
+			path = UIScreen;
+			sourceTree = "<group>";
+		};
+		26E6B84B1FE496ED003031BE /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				26E6B84C1FE49704003031BE /* UIStatusBarAppearance.swift */,
+				26E6B84E1FE49711003031BE /* UIApplication+Espresso.swift */,
+			);
+			path = UIApplication;
+			sourceTree = "<group>";
+		};
+		26E6B8501FE497DC003031BE /* Convertibles */ = {
+			isa = PBXGroup;
+			children = (
+				26E6B8511FE497F1003031BE /* ErrorConvertible.swift */,
+				26E6B8541FE4982B003031BE /* BoolConvertible.swift */,
+			);
+			path = Convertibles;
 			sourceTree = "<group>";
 		};
 		580873EC0FE58B7A582BFB6A9740C498 /* Pods-Espresso_Example */ = {
@@ -142,8 +190,8 @@
 		A1056B06B0D8AF934BC596F11A78571C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				26709FEE1FE493F40052D883 /* UIKit */,
 				26709FEB1FE488C70052D883 /* Protocols */,
-				26709FEA1FE485EB0052D883 /* Extensions */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -372,9 +420,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E6B84F1FE49711003031BE /* UIApplication+Espresso.swift in Sources */,
 				38F6C6FC88B25434BF4882F05D0761A5 /* Espresso-dummy.m in Sources */,
+				26709FF11FE4942F0052D883 /* UIDisplayFeature.swift in Sources */,
+				26E6B8581FE498A0003031BE /* IndexPath+Espresso.swift in Sources */,
 				26709FED1FE489950052D883 /* EnumIterable.swift in Sources */,
+				26E6B8471FE495E4003031BE /* UIScreen+Espresso.swift in Sources */,
+				26E6B84A1FE496A3003031BE /* UIEdgeInsets+Espresso.swift in Sources */,
+				26E6B8521FE497F1003031BE /* ErrorConvertible.swift in Sources */,
+				26E6B84D1FE49704003031BE /* UIStatusBarAppearance.swift in Sources */,
 				26709FE91FE485E30052D883 /* UIDevice+Espresso.swift in Sources */,
+				26E6B8551FE4982B003031BE /* BoolConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
