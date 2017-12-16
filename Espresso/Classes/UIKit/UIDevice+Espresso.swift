@@ -57,7 +57,14 @@ public extension UIDevice {
         case iPadPro10p5Inch
         case iPadPro12Inch
         
-        // Apple TV ?????
+        // Apple TV
+        
+        case appleTV
+        case appleTV4K
+        
+        // HomePod
+        
+        case homepod
         
         // Other
         
@@ -109,6 +116,11 @@ public extension UIDevice {
             case .iPadPro10p5Inch: return "iPad Pro 10.5 Inch"
             case .iPadPro12Inch: return "iPad Pro 12 Inch"
                 
+            case .appleTV: return "Apple TV"
+            case .appleTV4K: return "Apple TV 4K"
+                
+            case .homepod: return "HomePod"
+                
             case .simulator: return "Simulator"
             case .unknown: return "Unknown"
             }
@@ -157,7 +169,12 @@ public extension UIDevice {
             case .iPadPro9Inch: return ["iPad6,3", "iPad6,4"]
             case .iPadPro10p5Inch: return ["iPad7,3", "iPad7,4"]
             case .iPadPro12Inch: return ["iPad6,7", "iPad6,8", "iPad7,1", "iPad7,2"]
+               
+            case .appleTV: return ["AppleTV5,3"]
+            case .appleTV4K: return ["AppleTV6,2"]
                 
+            case .homepod: return ["AudioAccessory1,1"]
+            
             case .simulator: return ["i386", "x86_64"]
             case .unknown: return []
             }
@@ -174,6 +191,7 @@ public extension UIDevice {
             }
             
             self = .unknown
+            
         }
         
     }
@@ -217,6 +235,22 @@ public extension UIDevice {
     
     public var isSimulator: Bool {
         return (self.type(includeSimulator: true) == DeviceType.simulator)
+    }
+    
+    public var isPhone: Bool {
+        return self.type().displayName.contains("iPhone")
+    }
+    
+    public var isPad: Bool {
+        return self.type().displayName.contains("iPad")
+    }
+    
+    public var isPod: Bool {
+        return self.type().displayName.contains("iPod")
+    }
+    
+    public var isTV: Bool {
+        return self.type().displayName.contains("TV")
     }
     
 }

@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.summary          = 'Convenience library for Swift.'
 
     s.description      = <<-DESC
-      Espresso is a convenience library for Swift that
+      Espresso is a Swift convenience library that
       makes common tasks a lot easier. Everything is better
       with coffee.
       DESC

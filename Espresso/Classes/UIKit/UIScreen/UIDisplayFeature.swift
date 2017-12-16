@@ -20,13 +20,3 @@ public class UIDisplayFeature {
     }
     
 }
-
-public class UINotch: UIDisplayFeature {
-    
-    public private(set) var cornerRadius: CGFloat = 20
-    
-}
-
-public class UIHomeGrabber: UIDisplayFeature {
-    //
-}

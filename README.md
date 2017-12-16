@@ -1,29 +1,34 @@
-# Espresso
+![Espresso](Resources/banner.png)
 
-[![CI Status](http://img.shields.io/travis/mitchtreece/Espresso.svg?style=flat)](https://travis-ci.org/mitchtreece/Espresso)
 [![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
-[![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
+![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
+![iOS](https://img.shields.io/badge/iOS-10,%2011-blue.svg)
+[![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+## Overview
+Espresso is a Swift convenience library that makes common tasks a lot easier. Everything is better with coffee.
 
 ## Installation
+### CocoaPods
+Espresso is integrated with CocoaPods!
 
-Espresso is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
+1. Add the following to your `Podfile`:
+```
+use_frameworks!
 pod 'Espresso'
 ```
+2. In your project directory, run `pod install`
+3. Import the `Espresso` module wherever you need it
+4. Profit
 
-## Author
+### Manually
+You can also manually add the source files to your project.
 
-mitchtreece, mitchtreece@me.com
+1. Clone this git repo
+2. Add all the Swift files in the `Espresso/` subdirectory to your project
+3. Profit
 
-## License
+## Contributing
 
-Espresso is available under the MIT license. See the LICENSE file for more info.
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!

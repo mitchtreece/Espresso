@@ -9,7 +9,7 @@ import UIKit
 
 public extension IndexPath {
     
-    static var zero: IndexPath {
+    public static var zero: IndexPath {
         return IndexPath(row: 0, section: 0)
     }
     

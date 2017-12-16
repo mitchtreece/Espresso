@@ -25,11 +25,9 @@ extension EnumIterable {
             return AnyIterator {
                 
                 let current: Self = withUnsafePointer(to: &raw, { $0.withMemoryRebound(to: Self.self, capacity: 1, { $0.pointee }) })
-                
                 guard current.hashValue == raw else { return nil }
                 
                 raw += 1
-                
                 return current
                 
             }

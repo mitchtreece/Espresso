@@ -15,6 +15,10 @@ class ViewController: UIViewController {
 
         super.viewDidLoad()
         
+        let type = UIDevice.current.type()
+        let env = UIApplication.shared.environment
+        print("\(type.displayName) (\(env.rawValue))")
+        
     }
 
     override func didReceiveMemoryWarning() {
