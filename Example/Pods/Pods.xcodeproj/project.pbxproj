@@ -23,6 +23,9 @@
 		26E6B8651FE4A3FC003031BE /* UIView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8641FE4A3FC003031BE /* UIView+Espresso.swift */; };
 		26E6B8671FE5BE56003031BE /* UINotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8661FE5BE56003031BE /* UINotch.swift */; };
 		26E6B8691FE5BE69003031BE /* UIHomeGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8681FE5BE69003031BE /* UIHomeGrabber.swift */; };
+		26E6B86B1FE5C74D003031BE /* Collection+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B86A1FE5C74D003031BE /* Collection+Espresso.swift */; };
+		26E6B86F1FE5C91D003031BE /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B86E1FE5C91D003031BE /* JSONConvertible.swift */; };
+		26E6B8711FE5CBB5003031BE /* NotificationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B8701FE5CBB5003031BE /* NotificationObserver.swift */; };
 		38F6C6FC88B25434BF4882F05D0761A5 /* Espresso-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EF1F652902B1F9290C57911254334 /* Espresso-dummy.m */; };
 		5FAB68A1354734C8EE65A8B44C584D7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		66D47EE6F52C80F9BD42DD9D8EA72D30 /* Pods-Espresso_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF15B39803AC80B51A59E06ED68484C /* Pods-Espresso_Tests-dummy.m */; };
@@ -65,6 +68,9 @@
 		26E6B8641FE4A3FC003031BE /* UIView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Espresso.swift"; sourceTree = "<group>"; };
 		26E6B8661FE5BE56003031BE /* UINotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINotch.swift; sourceTree = "<group>"; };
 		26E6B8681FE5BE69003031BE /* UIHomeGrabber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHomeGrabber.swift; sourceTree = "<group>"; };
+		26E6B86A1FE5C74D003031BE /* Collection+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Espresso.swift"; sourceTree = "<group>"; };
+		26E6B86E1FE5C91D003031BE /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
+		26E6B8701FE5CBB5003031BE /* NotificationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserver.swift; sourceTree = "<group>"; };
 		309E2698B836BD42360DF15334DC77C0 /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		415B20917316813AE5915C1D04FD04A1 /* Pods-Espresso_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		42F15596F70AE730DAAC064E787FFC51 /* Pods-Espresso_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 			children = (
 				26E6B8511FE497F1003031BE /* ErrorConvertible.swift */,
 				26E6B8541FE4982B003031BE /* BoolConvertible.swift */,
+				26E6B86E1FE5C91D003031BE /* JSONConvertible.swift */,
 			);
 			path = Convertibles;
 			sourceTree = "<group>";
@@ -177,10 +184,19 @@
 		26E6B8591FE49BAA003031BE /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				26E6B8701FE5CBB5003031BE /* NotificationObserver.swift */,
 				26E6B85A1FE49BBF003031BE /* String+Espresso.swift */,
 				26E6B85C1FE49CFE003031BE /* Float+Espresso.swift */,
+				26E6B86A1FE5C74D003031BE /* Collection+Espresso.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		26E6B8721FE5CD2C003031BE /* SnapKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SnapKit;
 			sourceTree = "<group>";
 		};
 		580873EC0FE58B7A582BFB6A9740C498 /* Pods-Espresso_Example */ = {
@@ -217,6 +233,7 @@
 			children = (
 				26E6B8591FE49BAA003031BE /* Foundation */,
 				26709FEE1FE493F40052D883 /* UIKit */,
+				26E6B8721FE5CD2C003031BE /* SnapKit */,
 				26709FEB1FE488C70052D883 /* Protocols */,
 			);
 			path = Classes;
@@ -450,7 +467,9 @@
 				38F6C6FC88B25434BF4882F05D0761A5 /* Espresso-dummy.m in Sources */,
 				26E6B8671FE5BE56003031BE /* UINotch.swift in Sources */,
 				26E6B85B1FE49BBF003031BE /* String+Espresso.swift in Sources */,
+				26E6B8711FE5CBB5003031BE /* NotificationObserver.swift in Sources */,
 				26E6B8651FE4A3FC003031BE /* UIView+Espresso.swift in Sources */,
+				26E6B86F1FE5C91D003031BE /* JSONConvertible.swift in Sources */,
 				26709FF11FE4942F0052D883 /* UIDisplayFeature.swift in Sources */,
 				26E6B8691FE5BE69003031BE /* UIHomeGrabber.swift in Sources */,
 				26E6B8581FE498A0003031BE /* IndexPath+Espresso.swift in Sources */,
@@ -461,6 +480,7 @@
 				26E6B8631FE4A378003031BE /* UIImage+Espresso.swift in Sources */,
 				26E6B84D1FE49704003031BE /* UIStatusBarAppearance.swift in Sources */,
 				26E6B85D1FE49CFE003031BE /* Float+Espresso.swift in Sources */,
+				26E6B86B1FE5C74D003031BE /* Collection+Espresso.swift in Sources */,
 				26709FE91FE485E30052D883 /* UIDevice+Espresso.swift in Sources */,
 				26E6B8551FE4982B003031BE /* BoolConvertible.swift in Sources */,
 			);
