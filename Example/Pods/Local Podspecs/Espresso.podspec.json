@@ -1,22 +1,31 @@
 {
   "name": "Espresso",
-  "version": "0.1.0",
-  "summary": "A short description of Espresso.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.0",
+  "summary": "Convenience library for Swift.",
+  "description": "Espresso is a Swift convenience library that\nmakes common tasks a lot easier. Everything is better\nwith coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "mitchtreece": "mitchtreece@me.com"
+    "Mitch Treece": "mitchtreece@me.com"
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
+  "social_media_url": "https://twitter.com/MitchTreece",
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "Espresso/Classes/**/*"
+  "ios": {
+    "public_header_files": "Espresso/Classes/**/*.h"
+  },
+  "source_files": "Espresso/Classes/**/*",
+  "dependencies": {
+    "SnapKit": [
+      "~> 4.0.0"
+    ]
+  }
 }

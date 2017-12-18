@@ -1,4 +1,4 @@
-<!-- ![Espresso](Resources/banner.png) -->
+![Espresso](Resources/banner.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
 ![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
