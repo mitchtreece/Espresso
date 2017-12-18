@@ -8,7 +8,6 @@
 
 import UIKit
 import Espresso
-import SnapKit
 
 class ViewController: UIViewController {
 
@@ -21,12 +20,14 @@ class ViewController: UIViewController {
         print("\(type.displayName) (\(env.rawValue))")
         
         let v = UIView()
-        view.addSubview(v)
-        v.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(0)
-            // make.left.right.smartEqualTo(20)
-            make.left.right.smartEqualTo(20)
-        }
+        
+        let stack = Stack<UIView>()
+        stack.push(v)
+        stack.push(v)
+        stack.push(v)
+        stack.push(v)
+        stack.pop()
+        print(stack)
         
     }
 

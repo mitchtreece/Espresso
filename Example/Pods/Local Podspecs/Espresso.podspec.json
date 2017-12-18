@@ -22,10 +22,5 @@
   "ios": {
     "public_header_files": "Espresso/Classes/**/*.h"
   },
-  "source_files": "Espresso/Classes/**/*",
-  "dependencies": {
-    "SnapKit": [
-      "~> 4.0.0"
-    ]
-  }
+  "source_files": "Espresso/Classes/**/*"
 }

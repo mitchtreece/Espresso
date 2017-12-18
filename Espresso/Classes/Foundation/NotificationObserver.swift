@@ -10,16 +10,22 @@ import Foundation
 /**
  `NotificationObserver` is a simple block-based wrapper over `NotificationCenter` observation.
  */
-public class BroadcastObserver {
+public class NotificationObserver {
     
     private let observer: Any?
-    private let name: String
+    private let name: Notification.Name
     
-    public init(name: String, object: Any?, block: @escaping (Notification) -> ()) {
+    public init(name: Notification.Name, object: Any?, block: @escaping (Notification)->()) {
         
-        let notificationName = NSNotification.Name(rawValue: name)
-        self.observer = NotificationCenter.default.addObserver(forName: notificationName, object: object, queue: OperationQueue.main, using: block)
+        self.observer = NotificationCenter.default.addObserver(forName: name, object: object, queue: OperationQueue.main, using: block)
         self.name = name
+        
+    }
+    
+    public convenience init(name: String, object: Any?, block: @escaping (Notification)->()) {
+        
+        let _name = Notification.Name(name)
+        self.init(name: _name, object: object, block: block)
         
     }
     
