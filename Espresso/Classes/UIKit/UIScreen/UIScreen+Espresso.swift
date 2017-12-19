@@ -7,6 +7,26 @@
 
 import UIKit
 
+// MARK: Helpers
+
+public extension UIScreen {
+    
+    public var size: CGSize {
+        return bounds.size
+    }
+    
+    public var sizeOrientationIndependent: CGSize {
+        
+        let width = min(self.size.width, self.size.height)
+        let height = max(self.size.width, self.size.height)
+        return CGSize(width: width, height: height)
+        
+    }
+    
+}
+
+// MARK: Display Features
+
 public extension UIScreen {
     
     /**

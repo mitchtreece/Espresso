@@ -26,3 +26,33 @@ public extension String {
     }
     
 }
+
+// MARK: Tokens
+
+public extension String {
+    
+    public typealias Token = String
+    
+    public func replacing(token: Token, with string: String) -> String {
+        
+        let _token = (token.first == "<" && token.last == ">") ? token : "<\(token)>"
+        return self.replacingOccurrences(of: _token, with: string)
+        
+    }
+    
+    public func replacing(tokens: [Token: String]) -> String {
+        
+        var string = self
+        
+        for (key, value) in tokens {
+            
+            let token = (key.first == "<" && key.last == ">") ? key : "<\(key)>"
+            string = string.replacing(token: token, with: value)
+            
+        }
+        
+        return string
+        
+    }
+    
+}

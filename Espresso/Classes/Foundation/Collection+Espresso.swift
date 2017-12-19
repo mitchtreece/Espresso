@@ -11,7 +11,7 @@ import Foundation
 
 public extension Collection {
     
-    public subscript(safe index: Index) -> Iterator.Element? {
+    public subscript(safe index: Index) -> Element? {
         
         if distance(to: index) >= 0 && distance(from: index) > 0 {
             return self[index]

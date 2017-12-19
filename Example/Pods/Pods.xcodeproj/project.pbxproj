@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		15B1279E5CD96048F956DB652F20CF28 /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A8631731A60CFB3D2F459E95FEFD6A /* UIScreen+Espresso.swift */; };
 		263416FE1FE872C7000E7D40 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263416FD1FE872C7000E7D40 /* Stack.swift */; };
+		263417041FE8888A000E7D40 /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263417031FE8888A000E7D40 /* UIViewContainer.swift */; };
+		263417061FE8893C000E7D40 /* UIAnimatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263417051FE8893C000E7D40 /* UIAnimatingView.swift */; };
+		2648F8CC1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CB1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift */; };
+		2648F8CE1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */; };
+		2648F8D01FE8B6BB002D4119 /* UIStyledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CF1FE8B6BB002D4119 /* UIStyledViewController.swift */; };
+		2648F8D21FE8B88B002D4119 /* UIStyledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */; };
 		296B9AA472FB4EFB57B6AB4E18DC9600 /* UIImage+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */; };
 		2F335120EE18830C3F58B36C6D74F6AB /* UIKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */; };
 		35C13F3CCC006F43664BA4FD460B1F6B /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EC1DFE60577D81BE696F104C8C6C4 /* BoolConvertible.swift */; };
 		39446C4535584B9FD15889C4F66B8A3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		43BF9457F44CAB7AF3D931F229CA7116 /* UIStatusBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB12DA0721D7B9639B85F8BA325B56 /* UIStatusBarAppearance.swift */; };
 		4C80ECEAD8AAF7663A588B12C7CA505E /* Espresso-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DBFBF0273ADD6E523EDF2773FBBDA0EB /* Espresso-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FAB68A1354734C8EE65A8B44C584D7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		632754C4CBA8DFA06ED1D8472225914B /* UIEdgeInsets+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7FA51E861A785635FDDAF125506DA /* UIEdgeInsets+Espresso.swift */; };
@@ -62,6 +67,12 @@
 		23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKeyboardObserver.swift; sourceTree = "<group>"; };
 		255819FF09BD9653A1B42406628850F6 /* UIKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKeyboardManager.swift; sourceTree = "<group>"; };
 		263416FD1FE872C7000E7D40 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		263417031FE8888A000E7D40 /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
+		263417051FE8893C000E7D40 /* UIAnimatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimatingView.swift; sourceTree = "<group>"; };
+		2648F8CB1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarAppearanceProvider.swift; sourceTree = "<group>"; };
+		2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarAppearanceProvider.swift; sourceTree = "<group>"; };
+		2648F8CF1FE8B6BB002D4119 /* UIStyledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyledViewController.swift; sourceTree = "<group>"; };
+		2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyledNavigationController.swift; sourceTree = "<group>"; };
 		309E2698B836BD42360DF15334DC77C0 /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		36F139FBE1E430AFC6638B1BE7B24A71 /* NotificationObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationObserver.swift; sourceTree = "<group>"; };
 		3E55E974A4CD788DDC18E25127B21EB3 /* JSONConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
@@ -94,7 +105,6 @@
 		B6B78D8F6D9BD665860ECE382FD24A3E /* Pods-Espresso_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Espresso_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BFCDDD3A4761851F02DC5ECBE8D99394 /* Espresso.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Espresso.modulemap; sourceTree = "<group>"; };
 		CAE7FA51E861A785635FDDAF125506DA /* UIEdgeInsets+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Espresso.swift"; sourceTree = "<group>"; };
-		CDBB12DA0721D7B9639B85F8BA325B56 /* UIStatusBarAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIStatusBarAppearance.swift; sourceTree = "<group>"; };
 		D26EF1F652902B1F9290C57911254334 /* Espresso-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Espresso-dummy.m"; sourceTree = "<group>"; };
 		D58A7F3C532C583C397AAEC23BBE5E3B /* Espresso-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Espresso-prefix.pch"; sourceTree = "<group>"; };
 		DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
@@ -146,6 +156,17 @@
 			path = UIKeyboard;
 			sourceTree = "<group>";
 		};
+		2648F8CA1FE8B2D3002D4119 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2648F8CB1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift */,
+				2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */,
+				2648F8CF1FE8B6BB002D4119 /* UIStyledViewController.swift */,
+				2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		580873EC0FE58B7A582BFB6A9740C498 /* Pods-Espresso_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,15 +213,6 @@
 				D17A4F590556D0A8451045BC54D8506E /* Classes */,
 			);
 			path = Espresso;
-			sourceTree = "<group>";
-		};
-		A667AC6E1B625602308C55A3283E0F26 /* UIApplication */ = {
-			isa = PBXGroup;
-			children = (
-				2124540749424B572C21E491AAC26D0E /* UIApplication+Espresso.swift */,
-				CDBB12DA0721D7B9639B85F8BA325B56 /* UIStatusBarAppearance.swift */,
-			);
-			path = UIApplication;
 			sourceTree = "<group>";
 		};
 		A90EA2E442695E224BF64557A0B1156D /* Foundation */ = {
@@ -332,14 +344,17 @@
 		F9F1686BFC9FFE529FDCF3D3A350B086 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				263417051FE8893C000E7D40 /* UIAnimatingView.swift */,
+				263417031FE8888A000E7D40 /* UIViewContainer.swift */,
+				2124540749424B572C21E491AAC26D0E /* UIApplication+Espresso.swift */,
 				6677CF931FCEDB4565C08F72DA52AE11 /* IndexPath+Espresso.swift */,
 				DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */,
 				CAE7FA51E861A785635FDDAF125506DA /* UIEdgeInsets+Espresso.swift */,
 				166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */,
 				7405FC1AFCE25FB0EDFD981E7EC8B42C /* UIView+Espresso.swift */,
-				A667AC6E1B625602308C55A3283E0F26 /* UIApplication */,
 				23BFB096EC4D2F0FD1D67DF626D61367 /* UIKeyboard */,
 				7F89762DBCC3641267BACF8B626D1392 /* UIScreen */,
+				2648F8CA1FE8B2D3002D4119 /* UIViewController */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -476,16 +491,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C13F3CCC006F43664BA4FD460B1F6B /* BoolConvertible.swift in Sources */,
+				2648F8D21FE8B88B002D4119 /* UIStyledNavigationController.swift in Sources */,
+				263417041FE8888A000E7D40 /* UIViewContainer.swift in Sources */,
 				BD9E460BAAAF48125EC273AF8CF4931C /* Collection+Espresso.swift in Sources */,
 				FD5084B18F50570BF4BA107FA7EE047C /* EnumIterable.swift in Sources */,
 				9E035244CD865F05D0DDEAB2C98CA942 /* ErrorConvertible.swift in Sources */,
 				263416FE1FE872C7000E7D40 /* Stack.swift in Sources */,
 				B054C481C3ECDDED63BE0ABF947D3AE7 /* Espresso-dummy.m in Sources */,
+				263417061FE8893C000E7D40 /* UIAnimatingView.swift in Sources */,
 				901E44894D113F75319DD10FEB1E0557 /* Float+Espresso.swift in Sources */,
 				87697B668EF4A42632F9D644AFCCAAEF /* IndexPath+Espresso.swift in Sources */,
 				CC760A10834AACBF3CA3C081E7136548 /* JSONConvertible.swift in Sources */,
 				73876336779FF57A02DC288DC174AE48 /* NotificationObserver.swift in Sources */,
+				2648F8CC1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift in Sources */,
+				2648F8D01FE8B6BB002D4119 /* UIStyledViewController.swift in Sources */,
 				BA9F4E40DD931FF43504F6AF05EF30AB /* String+Espresso.swift in Sources */,
+				2648F8CE1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift in Sources */,
 				B21B10A7217879BA2844551316A2AB8A /* UIApplication+Espresso.swift in Sources */,
 				FF44741B81F8EA370685ECCA25332B02 /* UIDevice+Espresso.swift in Sources */,
 				805CA8569D19605B7E78F4BC2723D250 /* UIDisplayFeature.swift in Sources */,
@@ -497,7 +518,6 @@
 				AF372678F4959AC289F4CB484F839127 /* UIKeyboardObservingView.swift in Sources */,
 				B1AADE35082F853C78BEEBC54637136A /* UINotch.swift in Sources */,
 				15B1279E5CD96048F956DB652F20CF28 /* UIScreen+Espresso.swift in Sources */,
-				43BF9457F44CAB7AF3D931F229CA7116 /* UIStatusBarAppearance.swift in Sources */,
 				67AC0848C692BC1FB640B97775E1F27A /* UIView+Espresso.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

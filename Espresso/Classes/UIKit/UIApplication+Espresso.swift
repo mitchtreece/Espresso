@@ -13,24 +13,26 @@ public extension UIApplication {
     
     public var statusBarAppearance: UIStatusBarAppearance {
         
-        guard let rootVC = keyWindow?.rootViewController else { return (.default, false) }
+        guard let rootVC = keyWindow?.rootViewController else { return (.default, false, .fade) }
         
         if let nav = rootVC as? UINavigationController {
             
             let style = nav.topViewController?.preferredStatusBarStyle ?? .default
             let hidden = nav.topViewController?.prefersStatusBarHidden ?? false
-            return (style, hidden)
+            let animation = nav.topViewController?.preferredStatusBarUpdateAnimation ?? .fade
+            return (style, hidden, animation)
             
         }
         else if let tab = rootVC as? UITabBarController {
             
             let style = tab.selectedViewController?.preferredStatusBarStyle ?? .default
             let hidden = tab.selectedViewController?.prefersStatusBarHidden ?? false
-            return (style, hidden)
+            let animation = tab.selectedViewController?.preferredStatusBarUpdateAnimation ?? .fade
+            return (style, hidden, animation)
             
         }
         
-        return (rootVC.preferredStatusBarStyle, rootVC.prefersStatusBarHidden)
+        return (rootVC.preferredStatusBarStyle, rootVC.prefersStatusBarHidden, rootVC.preferredStatusBarUpdateAnimation)
         
     }
     

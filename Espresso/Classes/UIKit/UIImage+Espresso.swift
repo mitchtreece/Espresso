@@ -43,4 +43,13 @@ public extension UIImage {
         
     }
     
+    public func scaled(by factor: CGFloat) -> UIImage? {
+        
+        let width = (self.size.width * factor)
+        let height = (self.size.height * factor)
+        let size = CGSize(width: width, height: height)
+        return scaled(to: size)
+        
+    }
+    
 }

@@ -7,6 +7,44 @@
 
 import UIKit
 
+// MARK: Motion Effects
+
+public extension UIView {
+    
+    func addParallaxMotionEffect(vertical: CGFloat, horizontal: CGFloat) {
+        
+        var effects = [UIInterpolatingMotionEffect]()
+        var verticalEffect: UIInterpolatingMotionEffect?
+        var horizontalEffect: UIInterpolatingMotionEffect?
+
+        if vertical > 0 {
+            
+            verticalEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+            verticalEffect!.minimumRelativeValue = -vertical
+            verticalEffect!.maximumRelativeValue = vertical
+            effects.append(verticalEffect!)
+            
+        }
+        
+        if horizontal > 0 {
+            
+            horizontalEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+            horizontalEffect!.minimumRelativeValue = -horizontal
+            horizontalEffect!.maximumRelativeValue = horizontal
+            effects.append(horizontalEffect!)
+            
+        }
+        
+        guard effects.count > 0 else { return }
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = effects
+        self.addMotionEffect(group)
+        
+    }
+    
+}
+
 // MARK: Nib
 
 public extension UIView {
