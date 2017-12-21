@@ -7,34 +7,77 @@
 
 import UIKit
 
-public protocol UINavigationBarAppearanceProvider {
+public struct UINavigationBarAppearance {
     
-    // Bar style
+    public var color: UIColor?
+    public var itemColor: UIColor?
+    public var title: String?
+    public var titleFont: UIFont?
+    public var titleColor: UIColor?
+    public var hidden: Bool?
+    public var transparent: Bool?
     
-    var preferredNavigationBarColor: UIColor { get }
-    var preferredNavigationBarItemColor: UIColor { get }
-    var preferredNavigationBarTitle: String? { get }
-    var preferredNavigationBarTitleFont: UIFont { get }
-    var preferredNavigationBarTitleColor: UIColor { get }
-    var prefersNavigationBarHidden: Bool { get }
-    var prefersNavigationBarTransparent: Bool { get }
+    // @available(iOS 11, *) ///////////
+    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode?
+    public var largeTitleFont: UIFont?
+    public var largeTitleColor: UIColor?
+    ////////////////////////////////////
     
-    // Large bar style
+    public var backButtonHidden: Bool?
+    public var backButtonImage: UIImage?
+    public var backButtonTitle: String?
     
-    @available(iOS 11, *) var preferredNavigationBarLargeTitleFont: UIFont { get }
-    @available(iOS 11, *) var preferredNavigationBarLargeTitleColor: UIColor { get }
+    public init() {
+        //
+    }
     
-    // Back button style
+    public init(color: UIColor?,
+                itemColor: UIColor?,
+                title: String?,
+                titleFont: UIFont?,
+                titleColor: UIColor?,
+                hidden: Bool,
+                transparent: Bool) {
+        
+        self.init()
+        self.color = color
+        self.itemColor = itemColor
+        self.title = title
+        self.titleFont = titleFont
+        self.titleColor = titleColor
+        self.hidden = hidden
+        self.transparent = transparent
+        
+    }
     
-    var preferredNavigationBarBackButtonImage: UIImage? { get }
-    var preferredNavigationBarBackButtonTitle: String? { get }
+    public static var `default`: UINavigationBarAppearance {
+        
+        var appearance = UINavigationBarAppearance()
+        
+        appearance.color = UIColor.white
+        appearance.itemColor = UIColor.black
+        appearance.title = nil
+        appearance.titleFont = UIFont.preferredFont(forTextStyle: .headline)
+        appearance.titleColor = UIColor.black
+        appearance.hidden = false
+        appearance.transparent = false
+        
+        if #available(iOS 11, *) {
+            appearance.largeTitleDisplayMode = .automatic
+            appearance.largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
+            appearance.largeTitleColor = appearance.titleColor
+        }
+        
+        appearance.backButtonHidden = false
+        appearance.backButtonImage = nil
+        appearance.backButtonTitle = nil
+        
+        return appearance
+        
+    }
     
 }
 
-public extension UINavigationBarAppearanceProvider {
-    
-    var childViewControllerForNavigationBarAppearanceProviding: UIViewController? {
-        return nil
-    }
-    
+public protocol UINavigationBarAppearanceProvider {
+    var preferredNavigationBarAppearance: UINavigationBarAppearance? { get }
 }

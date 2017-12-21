@@ -13,16 +13,23 @@ class RootViewController: UIStyledViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    override var preferredStatusBarAppearance: UIStatusBarAppearance {
-        return UIStatusBarAppearance(style: .lightContent, hidden: false, animation: .fade)
+    override var preferredStatusBarAppearance: UIStatusBarAppearance? {
+        return UIStatusBarAppearance.default.style(.lightContent)
     }
     
-    override var preferredNavigationBarColor: UIColor {
-        return #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-    }
-    
-    override var preferredNavigationBarTitleColor: UIColor {
-        return UIColor.white
+    override var preferredNavigationBarAppearance: UINavigationBarAppearance? {
+        
+        var appearance = UINavigationBarAppearance()
+        appearance.color = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+        appearance.titleColor = UIColor.white
+        appearance.itemColor = UIColor.white
+        
+        if #available(iOS 11, *) {
+            appearance.largeTitleDisplayMode = .always
+        }
+        
+        return appearance
+        
     }
 
     override func viewDidLoad() {
@@ -75,7 +82,19 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let row = Row(rawValue: indexPath.row) else { return }
+        
+        switch row {
+        case .keyboard:
+            
+            let vc = KeyboardViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
     }
     
 }

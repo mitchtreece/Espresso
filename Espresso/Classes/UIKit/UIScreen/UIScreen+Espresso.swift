@@ -36,7 +36,7 @@ public extension UIScreen {
         
         let statusBar = UIApplication.shared.statusBarFrame.height
         
-        guard UIDevice.current.type() == .iPhoneX else {
+        guard UIDevice.current.isPhoneX else {
             return UIEdgeInsets(top: statusBar, left: 0, bottom: 0, right: 0)
         }
         
@@ -50,7 +50,7 @@ public extension UIScreen {
      */
     public var cornerRadius: CGFloat {
         
-        guard UIDevice.current.type() == .iPhoneX else { return 0 }
+        guard UIDevice.current.isPhoneX else { return 0 }
         return 44
         
     }
@@ -60,7 +60,7 @@ public extension UIScreen {
      */
     public var notch: UINotch? {
         
-        guard UIDevice.current.type() == .iPhoneX else { return nil }
+        guard UIDevice.current.isPhoneX else { return nil }
         let size = CGSize(width: 209, height: 31)
         let frame = CGRect(x: ((UIScreen.main.bounds.width - size.width) / 2), y: 0, width: size.width, height: size.height)
         let notch = UINotch(frame: frame)
@@ -73,7 +73,7 @@ public extension UIScreen {
      */
     public var homeGrabber: UIHomeGrabber? {
         
-        guard UIDevice.current.type() == .iPhoneX else { return nil }
+        guard UIDevice.current.isPhoneX else { return nil }
         let size = CGSize(width: UIScreen.main.bounds.width, height: 23)
         let frame = CGRect(x: 0, y: (UIScreen.main.bounds.height - size.height), width: size.width, height: size.height)
         let grabber = UIHomeGrabber(frame: frame)

@@ -241,6 +241,10 @@ public extension UIDevice {
         return self.type().displayName.contains("iPhone")
     }
     
+    public var isPhoneX: Bool {
+        return (self.type() == .iPhoneX)
+    }
+    
     public var isPad: Bool {
         return self.type().displayName.contains("iPad")
     }

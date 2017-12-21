@@ -9,78 +9,32 @@ import UIKit
 
 open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvider, UINavigationBarAppearanceProvider {
     
-    // MARK: UIStatusBarAppearanceProvider
+    // MARK: UIStatusBar
     
-    open var preferredStatusBarAppearance: UIStatusBarAppearance {
-        return UIStatusBarAppearance(style: .default, hidden: false, animation: .fade)
+    open var preferredStatusBarAppearance: UIStatusBarAppearance? {
+        return nil
     }
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return preferredStatusBarAppearance.style
+        return preferredStatusBarAppearance?.style ?? UIStatusBarAppearance.default.style!
     }
     
     open override var prefersStatusBarHidden: Bool {
-        return preferredStatusBarAppearance.hidden
+        return preferredStatusBarAppearance?.hidden ?? UIStatusBarAppearance.default.hidden!
     }
     
     open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return preferredStatusBarAppearance.animation
+        return preferredStatusBarAppearance?.animation ?? UIStatusBarAppearance.default.animation!
     }
     
-    // MARK: UINavigationBarAppearanceProvider
-    
-    open var preferredNavigationBarColor: UIColor {
-        return UIColor.white
-    }
-    
-    open var preferredNavigationBarItemColor: UIColor {
-        return UIColor.black
-    }
-    
-    open var preferredNavigationBarTitle: String? {
+    open var preferredNavigationBarAppearance: UINavigationBarAppearance? {
         return nil
     }
-    
-    open var preferredNavigationBarTitleFont: UIFont {
-        return UIFont.preferredFont(forTextStyle: .headline)
-    }
-    
-    open var preferredNavigationBarTitleColor: UIColor {
-        return UIColor.black
-    }
-    
-    open var prefersNavigationBarHidden: Bool {
-        return false
-    }
-    
-    open var prefersNavigationBarTransparent: Bool {
-        return false
-    }
-    
-    open var preferredNavigationBarBackButtonImage: UIImage? {
-        return nil
-    }
-    
-    open var preferredNavigationBarBackButtonTitle: String? {
-        return nil
-    }
-    
-    @available(iOS 11, *)
-    open var preferredNavigationBarLargeTitleFont: UIFont {
-        return UIFont.preferredFont(forTextStyle: .largeTitle)
-    }
-    
-    @available(iOS 11, *)
-    open var preferredNavigationBarLargeTitleColor: UIColor {
-        return preferredNavigationBarTitleColor
-    }
-    
-    // MARK: Common
     
     open override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = preferredNavigationBarTitle
+        self.title = preferredNavigationBarAppearance?.title
         
     }
     

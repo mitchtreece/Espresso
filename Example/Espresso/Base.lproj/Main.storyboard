@@ -13,8 +13,8 @@
         <scene sceneID="5Ji-Yf-bOd">
             <objects>
                 <navigationController id="Mtt-jD-p62" customClass="UIStyledNavigationController" customModule="Espresso" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tK4-J4-liY">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tK4-J4-liY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.81176470590000005" green="0.5450980392" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
