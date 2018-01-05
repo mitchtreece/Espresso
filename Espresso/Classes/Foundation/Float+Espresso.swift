@@ -37,12 +37,12 @@ public extension CGFloat {
 
 extension Float {
     
-    var aspectRatioWidth: Float {
+    var standardAspectRatioWidth: Float {
         guard self > 0 else { return 0 }
         return self * 16/9
     }
     
-    var aspectRatioHeight: Float {
+    var standardAspectRatioHeight: Float {
         guard self > 0 else { return 0 }
         return self * 9/16
     }
@@ -51,12 +51,12 @@ extension Float {
 
 extension CGFloat {
     
-    var aspectRatioWidth: CGFloat {
-        return CGFloat(Float(self).aspectRatioWidth)
+    var standardAspectRatioWidth: CGFloat {
+        return CGFloat(Float(self).standardAspectRatioWidth)
     }
     
-    var aspectRatioHeight: CGFloat {
-        return CGFloat(Float(self).aspectRatioHeight)
+    var standardAspectRatioHeight: CGFloat {
+        return CGFloat(Float(self).standardAspectRatioHeight)
     }
     
 }

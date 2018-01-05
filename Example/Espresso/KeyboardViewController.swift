@@ -13,6 +13,7 @@ class KeyboardViewController: UIStyledViewController {
     
     override var preferredStatusBarAppearance: UIStatusBarAppearance {
         
+        // TODO:
         // Being able to infer this from the current context would
         // be ideal instead of creating a new appearance object per vc
         
@@ -22,6 +23,7 @@ class KeyboardViewController: UIStyledViewController {
     
     override var preferredNavigationBarAppearance: UINavigationBarAppearance {
         
+        // TODO:
         // Being able to infer this from the current context would
         // be ideal instead of creating a new appearance object per vc
         

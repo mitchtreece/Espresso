@@ -15,6 +15,7 @@
 		2648F8CE1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */; };
 		2648F8D01FE8B6BB002D4119 /* UIStyledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CF1FE8B6BB002D4119 /* UIStyledViewController.swift */; };
 		2648F8D21FE8B88B002D4119 /* UIStyledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */; };
+		26C342742000103B005EC906 /* UIColor+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C342732000103B005EC906 /* UIColor+Espresso.swift */; };
 		296B9AA472FB4EFB57B6AB4E18DC9600 /* UIImage+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */; };
 		2F335120EE18830C3F58B36C6D74F6AB /* UIKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */; };
 		35C13F3CCC006F43664BA4FD460B1F6B /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EC1DFE60577D81BE696F104C8C6C4 /* BoolConvertible.swift */; };
@@ -73,6 +74,7 @@
 		2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarAppearanceProvider.swift; sourceTree = "<group>"; };
 		2648F8CF1FE8B6BB002D4119 /* UIStyledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyledViewController.swift; sourceTree = "<group>"; };
 		2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStyledNavigationController.swift; sourceTree = "<group>"; };
+		26C342732000103B005EC906 /* UIColor+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Espresso.swift"; sourceTree = "<group>"; };
 		309E2698B836BD42360DF15334DC77C0 /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		36F139FBE1E430AFC6638B1BE7B24A71 /* NotificationObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationObserver.swift; sourceTree = "<group>"; };
 		3E55E974A4CD788DDC18E25127B21EB3 /* JSONConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */,
 				CAE7FA51E861A785635FDDAF125506DA /* UIEdgeInsets+Espresso.swift */,
 				166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */,
+				26C342732000103B005EC906 /* UIColor+Espresso.swift */,
 				7405FC1AFCE25FB0EDFD981E7EC8B42C /* UIView+Espresso.swift */,
 				23BFB096EC4D2F0FD1D67DF626D61367 /* UIKeyboard */,
 				7F89762DBCC3641267BACF8B626D1392 /* UIScreen */,
@@ -515,6 +518,7 @@
 				296B9AA472FB4EFB57B6AB4E18DC9600 /* UIImage+Espresso.swift in Sources */,
 				D705E5EECCBB6DD201DCEF7C76119063 /* UIKeyboardManager.swift in Sources */,
 				2F335120EE18830C3F58B36C6D74F6AB /* UIKeyboardObserver.swift in Sources */,
+				26C342742000103B005EC906 /* UIColor+Espresso.swift in Sources */,
 				AF372678F4959AC289F4CB484F839127 /* UIKeyboardObservingView.swift in Sources */,
 				B1AADE35082F853C78BEEBC54637136A /* UINotch.swift in Sources */,
 				15B1279E5CD96048F956DB652F20CF28 /* UIScreen+Espresso.swift in Sources */,
