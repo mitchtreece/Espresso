@@ -13,26 +13,28 @@ public extension UIApplication {
     
     public var statusBarAppearance: UIStatusBarAppearance {
         
-        guard let rootVC = keyWindow?.rootViewController else { return UIStatusBarAppearance.default }
+        guard let rootVC = keyWindow?.rootViewController else { return UIStatusBarAppearance() }
+        
+        let appearance = UIStatusBarAppearance()
         
         if let nav = rootVC as? UINavigationController {
             
-            let style = nav.topViewController?.preferredStatusBarStyle ?? .default
-            let hidden = nav.topViewController?.prefersStatusBarHidden ?? false
-            let animation = nav.topViewController?.preferredStatusBarUpdateAnimation ?? .fade
+            let style = nav.topViewController?.preferredStatusBarStyle ?? appearance.style
+            let hidden = nav.topViewController?.prefersStatusBarHidden ?? appearance.hidden
+            let animation = nav.topViewController?.preferredStatusBarUpdateAnimation ?? appearance.animation
             return UIStatusBarAppearance(style: style, hidden: hidden, animation: animation)
             
         }
         else if let tab = rootVC as? UITabBarController {
             
-            let style = tab.selectedViewController?.preferredStatusBarStyle ?? .default
-            let hidden = tab.selectedViewController?.prefersStatusBarHidden ?? false
-            let animation = tab.selectedViewController?.preferredStatusBarUpdateAnimation ?? .fade
+            let style = tab.selectedViewController?.preferredStatusBarStyle ?? appearance.style
+            let hidden = tab.selectedViewController?.prefersStatusBarHidden ?? appearance.hidden
+            let animation = tab.selectedViewController?.preferredStatusBarUpdateAnimation ?? appearance.animation
             return UIStatusBarAppearance(style: style, hidden: hidden, animation: animation)
             
         }
         
-        return UIStatusBarAppearance.forViewController(rootVC)
+        return appearance
         
     }
     

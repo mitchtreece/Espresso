@@ -9,32 +9,34 @@ import UIKit
 
 open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvider, UINavigationBarAppearanceProvider {
     
-    // MARK: UIStatusBar
+    // MARK: UIStatusBarAppearance
     
-    open var preferredStatusBarAppearance: UIStatusBarAppearance? {
-        return nil
+    open var preferredStatusBarAppearance: UIStatusBarAppearance {
+        return UIStatusBarAppearance()
     }
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return preferredStatusBarAppearance?.style ?? UIStatusBarAppearance.default.style!
+        return preferredStatusBarAppearance.style
     }
     
     open override var prefersStatusBarHidden: Bool {
-        return preferredStatusBarAppearance?.hidden ?? UIStatusBarAppearance.default.hidden!
+        return preferredStatusBarAppearance.hidden
     }
     
     open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return preferredStatusBarAppearance?.animation ?? UIStatusBarAppearance.default.animation!
+        return preferredStatusBarAppearance.animation
     }
     
-    open var preferredNavigationBarAppearance: UINavigationBarAppearance? {
-        return nil
+    // MARK: UINavigationBarAppearance
+    
+    open var preferredNavigationBarAppearance: UINavigationBarAppearance {
+        return UINavigationBarAppearance()
     }
     
     open override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = preferredNavigationBarAppearance?.title
+        self.title = preferredNavigationBarAppearance.title
         
     }
     

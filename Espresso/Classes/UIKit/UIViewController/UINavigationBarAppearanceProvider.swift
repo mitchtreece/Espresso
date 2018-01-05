@@ -7,40 +7,45 @@
 
 import UIKit
 
-public struct UINavigationBarAppearance {
+public class UINavigationBarAppearance {
     
-    public var color: UIColor?
-    public var itemColor: UIColor?
+    public var barColor: UIColor = UIColor.white
+    public var itemColor: UIColor = UIColor.black
     public var title: String?
-    public var titleFont: UIFont?
-    public var titleColor: UIColor?
-    public var hidden: Bool?
-    public var transparent: Bool?
+    public var titleFont: UIFont = UIFont.preferredFont(forTextStyle: .headline)
+    public var titleColor: UIColor = UIColor.black
+    public var hidden: Bool = false
+    public var transparent: Bool = false
     
     // @available(iOS 11, *) ///////////
-    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode?
-    public var largeTitleFont: UIFont?
-    public var largeTitleColor: UIColor?
+    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode!
+    public var largeTitleFont: UIFont!
+    public var largeTitleColor: UIColor = UIColor.black
     ////////////////////////////////////
     
-    public var backButtonHidden: Bool?
+    public var backButtonHidden: Bool = false
     public var backButtonImage: UIImage?
     public var backButtonTitle: String?
     
     public init() {
-        //
+        
+        if #available(iOS 11, *) {
+            largeTitleDisplayMode = .never
+            largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
+        }
+        
     }
     
-    public init(color: UIColor?,
-                itemColor: UIColor?,
-                title: String?,
-                titleFont: UIFont?,
-                titleColor: UIColor?,
-                hidden: Bool,
-                transparent: Bool) {
+    public convenience init(barColor: UIColor,
+                            itemColor: UIColor,
+                            title: String?,
+                            titleFont: UIFont,
+                            titleColor: UIColor,
+                            hidden: Bool,
+                            transparent: Bool) {
         
         self.init()
-        self.color = color
+        self.barColor = barColor
         self.itemColor = itemColor
         self.title = title
         self.titleFont = titleFont
@@ -50,34 +55,8 @@ public struct UINavigationBarAppearance {
         
     }
     
-    public static var `default`: UINavigationBarAppearance {
-        
-        var appearance = UINavigationBarAppearance()
-        
-        appearance.color = UIColor.white
-        appearance.itemColor = UIColor.black
-        appearance.title = nil
-        appearance.titleFont = UIFont.preferredFont(forTextStyle: .headline)
-        appearance.titleColor = UIColor.black
-        appearance.hidden = false
-        appearance.transparent = false
-        
-        if #available(iOS 11, *) {
-            appearance.largeTitleDisplayMode = .automatic
-            appearance.largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
-            appearance.largeTitleColor = appearance.titleColor
-        }
-        
-        appearance.backButtonHidden = false
-        appearance.backButtonImage = nil
-        appearance.backButtonTitle = nil
-        
-        return appearance
-        
-    }
-    
 }
 
 public protocol UINavigationBarAppearanceProvider {
-    var preferredNavigationBarAppearance: UINavigationBarAppearance? { get }
+    var preferredNavigationBarAppearance: UINavigationBarAppearance { get }
 }

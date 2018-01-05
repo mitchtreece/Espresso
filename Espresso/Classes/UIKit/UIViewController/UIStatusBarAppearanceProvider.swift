@@ -9,49 +9,25 @@ import UIKit
 
 public class UIStatusBarAppearance {
     
-    public var style: UIStatusBarStyle?
-    public var hidden: Bool?
-    public var animation: UIStatusBarAnimation?
+    public var style: UIStatusBarStyle = .default
+    public var hidden: Bool = false
+    public var animation: UIStatusBarAnimation = .fade
     
-    public static var `default`: UIStatusBarAppearance {
-        return UIStatusBarAppearance(style: .default, hidden: false, animation: .fade)
+    public init() {
+        //
     }
     
-    public static func forViewController(_ vc: UIViewController) -> UIStatusBarAppearance {
+    public convenience init(style: UIStatusBarStyle, hidden: Bool, animation: UIStatusBarAnimation) {
         
-        return UIStatusBarAppearance(style: vc.preferredStatusBarStyle,
-                                     hidden: vc.prefersStatusBarHidden,
-                                     animation: vc.preferredStatusBarUpdateAnimation)
-        
-    }
-    
-    public init(style: UIStatusBarStyle?, hidden: Bool?, animation: UIStatusBarAnimation?) {
-        
+        self.init()
         self.style = style
         self.hidden = hidden
         self.animation = animation
         
-    }
-    
-    // Helpers
-    
-    public func style(_ style: UIStatusBarStyle?) -> Self {
-        self.style = style
-        return self
-    }
-    
-    public func hidden(_ hidden: Bool?) -> Self {
-        self.hidden = hidden
-        return self
-    }
-    
-    public func animation(_ animation: UIStatusBarAnimation?) -> Self {
-        self.animation = animation
-        return self
     }
     
 }
 
 public protocol UIStatusBarAppearanceProvider {
-    var preferredStatusBarAppearance: UIStatusBarAppearance? { get }
+    var preferredStatusBarAppearance: UIStatusBarAppearance { get }
 }

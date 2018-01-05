@@ -13,19 +13,24 @@ class RootViewController: UIStyledViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    override var preferredStatusBarAppearance: UIStatusBarAppearance? {
-        return UIStatusBarAppearance.default.style(.lightContent)
+    override var preferredStatusBarAppearance: UIStatusBarAppearance {
+        
+        let appearance = UIStatusBarAppearance()
+        appearance.style = .lightContent
+        return appearance
+        
     }
     
-    override var preferredNavigationBarAppearance: UINavigationBarAppearance? {
+    override var preferredNavigationBarAppearance: UINavigationBarAppearance {
         
-        var appearance = UINavigationBarAppearance()
-        appearance.color = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+        let appearance = UINavigationBarAppearance()
+        appearance.barColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
         appearance.titleColor = UIColor.white
         appearance.itemColor = UIColor.white
         
         if #available(iOS 11, *) {
             appearance.largeTitleDisplayMode = .always
+            appearance.largeTitleColor = UIColor.white
         }
         
         return appearance
