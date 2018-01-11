@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class UIKeyboardObservingView: UIView, UIKeyboardObserver {
+open class UIKeyboardObservingView: UIView, UIKeyboardObserver {
     
     private var _keyboardObserverId: String?
     public var keyboardObserverId: String {
@@ -20,6 +20,20 @@ public class UIKeyboardObservingView: UIView, UIKeyboardObserver {
         _keyboardObserverId = id
         return id
         
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        registerForKeyboardEvents()
     }
     
     public func keyboardWillShow(with context: UIKeyboardAnimationContext) {

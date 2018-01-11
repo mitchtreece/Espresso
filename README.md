@@ -29,6 +29,18 @@ You can also manually add the source files to your project.
 2. Add all the Swift files in the `Espresso/` subdirectory to your project
 3. Profit
 
+## Espresso
+
+Espresso adds a bunch of useful features and additions to both the **Foundation** & **UIKit** Swift modules.
+There are too many different additions to cover in this *readme*. However, the code is well documented and fairly self-explanatory.
+
+Some of the more interesting additions include:
+- `UIViewController` & `UINavigationController` styling flow
+- Display features + `UIScreen` extensions (easy safe area inset handling)
+- Device identification
+- Keyboard management
+- Common type convertible extensions
+
 ## Contributing
 
 Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!

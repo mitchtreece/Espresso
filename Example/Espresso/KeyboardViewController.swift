@@ -50,3 +50,19 @@ class KeyboardViewController: UIStyledViewController {
     }
     
 }
+
+extension KeyboardViewController: UIKeyboardObserver {
+    
+    var keyboardObserverId: String {
+        <#code#>
+    }
+    
+    func keyboardWillShow(with context: UIKeyboardAnimationContext) {
+        print("will show")
+    }
+    
+    func keyboardWillHide(with context: UIKeyboardAnimationContext) {
+        print("will hide")
+    }
+    
+}
