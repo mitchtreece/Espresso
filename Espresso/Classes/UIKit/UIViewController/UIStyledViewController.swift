@@ -12,7 +12,13 @@ open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvid
     // MARK: UIStatusBarAppearance
     
     open var preferredStatusBarAppearance: UIStatusBarAppearance {
-        return UIStatusBarAppearance()
+        
+        // TODO: Grab appearance from current context by default
+        
+        return UIStatusBarAppearance.fromCurrentContext()
+        
+        // return UIStatusBarAppearance()
+        
     }
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -30,7 +36,11 @@ open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvid
     // MARK: UINavigationBarAppearance
     
     open var preferredNavigationBarAppearance: UINavigationBarAppearance {
+        
+        // TODO: Grab appearance from current context by default
+
         return UINavigationBarAppearance()
+        
     }
     
     open override func viewDidLoad() {

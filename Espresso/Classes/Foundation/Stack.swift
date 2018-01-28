@@ -9,7 +9,6 @@ import Foundation
 
 public class Stack<T> {
     
-    private var size: UInt?
     private var objects = [T]()
     
     public var count: Int {
@@ -20,30 +19,27 @@ public class Stack<T> {
         return objects.isEmpty
     }
     
-    public var isFull: Bool {
-        
-        guard let size = size else { return false }
-        return (objects.count == size)
-        
-    }
-    
     public var topItem: T? {
         return objects.last
     }
     
-    public init(size: UInt?) {
-        self.size = size
+    public init() {
+        //
     }
     
-    public convenience init() {
-        self.init(size: nil)
+    public convenience init(items: [T]) {
+        
+        self.init()
+        self.objects.append(contentsOf: items)
+        
     }
     
     public func push(_ object: T) {
-        
-        guard !isFull else { return }
         objects.append(object)
-        
+    }
+    
+    public func peek() -> T? {
+        return topItem
     }
     
     @discardableResult
@@ -52,10 +48,6 @@ public class Stack<T> {
         guard !isEmpty else { return nil }
         return objects.removeLast()
         
-    }
-    
-    public func peek() -> T? {
-        return topItem
     }
     
 }
@@ -67,8 +59,9 @@ extension Stack: CustomStringConvertible, CustomDebugStringConvertible {
         let className = String(describing: T.self)
         var string = "<Stack(\(className))> ["
         
-        for object in objects.reversed() {
-            string += "\n\t\(object),"
+        for i in 0..<objects.count {
+            let obj = objects.reversed()[i]
+            string += "\n\t\(i): \(obj),"
         }
         
         string.removeLast()

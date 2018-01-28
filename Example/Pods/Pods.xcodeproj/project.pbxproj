@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		15B1279E5CD96048F956DB652F20CF28 /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A8631731A60CFB3D2F459E95FEFD6A /* UIScreen+Espresso.swift */; };
+		26089540201D38940056CA41 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608953F201D38940056CA41 /* Identifiable.swift */; };
 		263416FE1FE872C7000E7D40 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263416FD1FE872C7000E7D40 /* Stack.swift */; };
-		263417041FE8888A000E7D40 /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263417031FE8888A000E7D40 /* UIViewContainer.swift */; };
+		263417041FE8888A000E7D40 /* UIContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263417031FE8888A000E7D40 /* UIContainerView.swift */; };
 		263417061FE8893C000E7D40 /* UIAnimatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263417051FE8893C000E7D40 /* UIAnimatingView.swift */; };
 		2648F8CC1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CB1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift */; };
 		2648F8CE1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */; };
@@ -17,7 +18,6 @@
 		2648F8D21FE8B88B002D4119 /* UIStyledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648F8D11FE8B88B002D4119 /* UIStyledNavigationController.swift */; };
 		26C342742000103B005EC906 /* UIColor+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C342732000103B005EC906 /* UIColor+Espresso.swift */; };
 		296B9AA472FB4EFB57B6AB4E18DC9600 /* UIImage+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */; };
-		2F335120EE18830C3F58B36C6D74F6AB /* UIKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */; };
 		35C13F3CCC006F43664BA4FD460B1F6B /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EC1DFE60577D81BE696F104C8C6C4 /* BoolConvertible.swift */; };
 		39446C4535584B9FD15889C4F66B8A3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		4C80ECEAD8AAF7663A588B12C7CA505E /* Espresso-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DBFBF0273ADD6E523EDF2773FBBDA0EB /* Espresso-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,14 +34,12 @@
 		901E44894D113F75319DD10FEB1E0557 /* Float+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47553E22C9903276F154E45A1A45AA63 /* Float+Espresso.swift */; };
 		9E035244CD865F05D0DDEAB2C98CA942 /* ErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988345F7B4543E08A52F02BB1B75833 /* ErrorConvertible.swift */; };
 		AC1E98BA04AF6530C972BE8E8EB80FD9 /* Pods-Espresso_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D06AF0E18A1CB77BCEB48EDA9EB1955 /* Pods-Espresso_Example-dummy.m */; };
-		AF372678F4959AC289F4CB484F839127 /* UIKeyboardObservingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480F9DDD5AA5408B9E24E9EC9E80877 /* UIKeyboardObservingView.swift */; };
 		B054C481C3ECDDED63BE0ABF947D3AE7 /* Espresso-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EF1F652902B1F9290C57911254334 /* Espresso-dummy.m */; };
 		B1AADE35082F853C78BEEBC54637136A /* UINotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DEC50B45D7A50BDE85D57F630410D7 /* UINotch.swift */; };
 		B21B10A7217879BA2844551316A2AB8A /* UIApplication+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124540749424B572C21E491AAC26D0E /* UIApplication+Espresso.swift */; };
 		BA9F4E40DD931FF43504F6AF05EF30AB /* String+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47A46DBFA1761992AF6DF4733C861AE /* String+Espresso.swift */; };
 		BD9E460BAAAF48125EC273AF8CF4931C /* Collection+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2C72897DF305D68DD584A7B61B2D1 /* Collection+Espresso.swift */; };
 		CC760A10834AACBF3CA3C081E7136548 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E55E974A4CD788DDC18E25127B21EB3 /* JSONConvertible.swift */; };
-		D705E5EECCBB6DD201DCEF7C76119063 /* UIKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255819FF09BD9653A1B42406628850F6 /* UIKeyboardManager.swift */; };
 		F12CFCE8932231E5C2BBE43126E1E0A7 /* Pods-Espresso_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 139D4B6A74AC2A46D57922B1E4432213 /* Pods-Espresso_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD5084B18F50570BF4BA107FA7EE047C /* EnumIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080CCBEE471B3236CF364A76FDDBDD6F /* EnumIterable.swift */; };
 		FF44741B81F8EA370685ECCA25332B02 /* UIDevice+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */; };
@@ -65,10 +63,9 @@
 		166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Espresso.swift"; sourceTree = "<group>"; };
 		1C47E13AE4ECE290445655240B4DB449 /* Pods-Espresso_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Espresso_Example.modulemap"; sourceTree = "<group>"; };
 		2124540749424B572C21E491AAC26D0E /* UIApplication+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIApplication+Espresso.swift"; sourceTree = "<group>"; };
-		23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKeyboardObserver.swift; sourceTree = "<group>"; };
-		255819FF09BD9653A1B42406628850F6 /* UIKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKeyboardManager.swift; sourceTree = "<group>"; };
+		2608953F201D38940056CA41 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		263416FD1FE872C7000E7D40 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		263417031FE8888A000E7D40 /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
+		263417031FE8888A000E7D40 /* UIContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContainerView.swift; sourceTree = "<group>"; };
 		263417051FE8893C000E7D40 /* UIAnimatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimatingView.swift; sourceTree = "<group>"; };
 		2648F8CB1FE8B35B002D4119 /* UIStatusBarAppearanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarAppearanceProvider.swift; sourceTree = "<group>"; };
 		2648F8CD1FE8B48B002D4119 /* UINavigationBarAppearanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarAppearanceProvider.swift; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
 		DBFBF0273ADD6E523EDF2773FBBDA0EB /* Espresso-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Espresso-umbrella.h"; sourceTree = "<group>"; };
 		DDEA28EAED8AB65502FCFA6E05C7B7AB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E480F9DDD5AA5408B9E24E9EC9E80877 /* UIKeyboardObservingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKeyboardObservingView.swift; sourceTree = "<group>"; };
 		E7A8631731A60CFB3D2F459E95FEFD6A /* UIScreen+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScreen+Espresso.swift"; sourceTree = "<group>"; };
 		EDD471B71DAEFA973C4DA612B73C5430 /* Espresso.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Espresso.xcconfig; sourceTree = "<group>"; };
 		F7D03E58F8D0EB93FC250F3A38A83A9F /* UIHomeGrabber.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIHomeGrabber.swift; sourceTree = "<group>"; };
@@ -148,16 +144,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23BFB096EC4D2F0FD1D67DF626D61367 /* UIKeyboard */ = {
-			isa = PBXGroup;
-			children = (
-				255819FF09BD9653A1B42406628850F6 /* UIKeyboardManager.swift */,
-				23F27FD871769367AC4CD2F7CC082F10 /* UIKeyboardObserver.swift */,
-				E480F9DDD5AA5408B9E24E9EC9E80877 /* UIKeyboardObservingView.swift */,
-			);
-			path = UIKeyboard;
-			sourceTree = "<group>";
-		};
 		2648F8CA1FE8B2D3002D4119 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +248,7 @@
 		C4607028C7D35EB6C40E103CCA229EB9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				2608953F201D38940056CA41 /* Identifiable.swift */,
 				080CCBEE471B3236CF364A76FDDBDD6F /* EnumIterable.swift */,
 				E535C89D5408404217433341A75EEACA /* Convertibles */,
 			);
@@ -347,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				263417051FE8893C000E7D40 /* UIAnimatingView.swift */,
-				263417031FE8888A000E7D40 /* UIViewContainer.swift */,
+				263417031FE8888A000E7D40 /* UIContainerView.swift */,
 				2124540749424B572C21E491AAC26D0E /* UIApplication+Espresso.swift */,
 				6677CF931FCEDB4565C08F72DA52AE11 /* IndexPath+Espresso.swift */,
 				DB59C050A476341F4B4DB07E91FE72AA /* UIDevice+Espresso.swift */,
@@ -355,7 +342,6 @@
 				166E2CB38ED3ACE7DE41FBD895DF790E /* UIImage+Espresso.swift */,
 				26C342732000103B005EC906 /* UIColor+Espresso.swift */,
 				7405FC1AFCE25FB0EDFD981E7EC8B42C /* UIView+Espresso.swift */,
-				23BFB096EC4D2F0FD1D67DF626D61367 /* UIKeyboard */,
 				7F89762DBCC3641267BACF8B626D1392 /* UIScreen */,
 				2648F8CA1FE8B2D3002D4119 /* UIViewController */,
 			);
@@ -495,7 +481,7 @@
 			files = (
 				35C13F3CCC006F43664BA4FD460B1F6B /* BoolConvertible.swift in Sources */,
 				2648F8D21FE8B88B002D4119 /* UIStyledNavigationController.swift in Sources */,
-				263417041FE8888A000E7D40 /* UIViewContainer.swift in Sources */,
+				263417041FE8888A000E7D40 /* UIContainerView.swift in Sources */,
 				BD9E460BAAAF48125EC273AF8CF4931C /* Collection+Espresso.swift in Sources */,
 				FD5084B18F50570BF4BA107FA7EE047C /* EnumIterable.swift in Sources */,
 				9E035244CD865F05D0DDEAB2C98CA942 /* ErrorConvertible.swift in Sources */,
@@ -516,11 +502,9 @@
 				632754C4CBA8DFA06ED1D8472225914B /* UIEdgeInsets+Espresso.swift in Sources */,
 				867FDF2C156B77B209252C77121CA2D8 /* UIHomeGrabber.swift in Sources */,
 				296B9AA472FB4EFB57B6AB4E18DC9600 /* UIImage+Espresso.swift in Sources */,
-				D705E5EECCBB6DD201DCEF7C76119063 /* UIKeyboardManager.swift in Sources */,
-				2F335120EE18830C3F58B36C6D74F6AB /* UIKeyboardObserver.swift in Sources */,
 				26C342742000103B005EC906 /* UIColor+Espresso.swift in Sources */,
-				AF372678F4959AC289F4CB484F839127 /* UIKeyboardObservingView.swift in Sources */,
 				B1AADE35082F853C78BEEBC54637136A /* UINotch.swift in Sources */,
+				26089540201D38940056CA41 /* Identifiable.swift in Sources */,
 				15B1279E5CD96048F956DB652F20CF28 /* UIScreen+Espresso.swift in Sources */,
 				67AC0848C692BC1FB640B97775E1F27A /* UIView+Espresso.swift in Sources */,
 			);

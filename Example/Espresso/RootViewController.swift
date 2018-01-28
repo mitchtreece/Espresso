@@ -14,27 +14,28 @@ class RootViewController: UIStyledViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override var preferredStatusBarAppearance: UIStatusBarAppearance {
-        
+
         let appearance = UIStatusBarAppearance()
         appearance.style = .lightContent
         return appearance
-        
+
     }
     
     override var preferredNavigationBarAppearance: UINavigationBarAppearance {
-        
+
         let appearance = UINavigationBarAppearance()
+        appearance.title = "Espresso"
         appearance.barColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
         appearance.titleColor = UIColor.white
         appearance.itemColor = UIColor.white
-        
+
         if #available(iOS 11, *) {
             appearance.largeTitleDisplayMode = .always
             appearance.largeTitleColor = UIColor.white
         }
-        
+
         return appearance
-        
+
     }
 
     override func viewDidLoad() {
@@ -44,6 +45,8 @@ class RootViewController: UIStyledViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RootCell")
         tableView.backgroundColor = UIColor.groupTableViewBackground
         tableView.tableFooterView = UIView()
+                
+        print("done")
         
     }
     
@@ -53,8 +56,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum Row: Int {
         
-        case keyboard
-        
+        case test
         static var count: Int = 1
         
     }
@@ -62,7 +64,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private func title(for row: Row) -> String {
         
         switch row {
-        case .keyboard: return "UIKeyboard"
+        case .test: return "Test"
         }
         
     }
@@ -93,9 +95,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let row = Row(rawValue: indexPath.row) else { return }
         
         switch row {
-        case .keyboard:
+        case .test:
             
-            let vc = KeyboardViewController()
+            let vc = TestViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

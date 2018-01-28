@@ -21,7 +21,7 @@ public protocol BoolConvertible {
      A boolean integer representation (0 _or_ 1).
      */
     var boolInt: Int? { get }
-    
+
     /**
      A boolean string representation ("true" _or_ "false").
      */
@@ -59,7 +59,7 @@ extension Int: BoolConvertible {
     }
     
     public var boolString: String? {
-        return (self <= 0) ? "false" : "true"
+        return (self <= 0) ? Bool.falseString : Bool.trueString
     }
     
 }
@@ -68,9 +68,9 @@ extension String: BoolConvertible {
     
     public var bool: Bool? {
         
-        guard let intValue = self.boolInt else { return nil }
+        guard let value = self.boolInt else { return nil }
         
-        switch intValue {
+        switch value {
         case 0: return false
         case 1: return true
         default: return nil
@@ -80,9 +80,9 @@ extension String: BoolConvertible {
     
     public var boolInt: Int? {
         
-        guard let stringValue = self.boolString else { return nil }
+        guard let value = self.boolString else { return nil }
         
-        switch stringValue {
+        switch value {
         case Bool.trueString: return 1
         case Bool.falseString: return 0
         default: return nil

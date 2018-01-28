@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ `UIAnimatingView` is a `UIView` subclass that helps keep animations running during various application states.
+ */
 public class UIAnimatingView: UIView {
     
     fileprivate var observer: NotificationObserver!
@@ -19,8 +22,10 @@ public class UIAnimatingView: UIView {
     }
     
     public required init?(coder aDecoder: NSCoder) {
+        
         super.init(coder: aDecoder)
         registerForNotifications()
+        
     }
     
     private func registerForNotifications() {

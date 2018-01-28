@@ -11,26 +11,26 @@ import UIKit
 
 public extension UIView {
     
-    func addParallaxMotionEffect(vertical: CGFloat, horizontal: CGFloat) {
+    public func addParallaxMotionEffect(horizontalMovement: CGFloat, verticalMovement: CGFloat) {
         
         var effects = [UIInterpolatingMotionEffect]()
         var verticalEffect: UIInterpolatingMotionEffect?
         var horizontalEffect: UIInterpolatingMotionEffect?
 
-        if vertical > 0 {
+        if verticalMovement > 0 {
             
             verticalEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
-            verticalEffect!.minimumRelativeValue = -vertical
-            verticalEffect!.maximumRelativeValue = vertical
+            verticalEffect!.minimumRelativeValue = -verticalMovement
+            verticalEffect!.maximumRelativeValue = verticalMovement
             effects.append(verticalEffect!)
             
         }
         
-        if horizontal > 0 {
+        if horizontalMovement > 0 {
             
             horizontalEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
-            horizontalEffect!.minimumRelativeValue = -horizontal
-            horizontalEffect!.maximumRelativeValue = horizontal
+            horizontalEffect!.minimumRelativeValue = -horizontalMovement
+            horizontalEffect!.maximumRelativeValue = horizontalMovement
             effects.append(horizontalEffect!)
             
         }
@@ -107,28 +107,28 @@ public extension UIView {
             
             let containerView = views.firstObject as! UIView
             
-            assert(containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)),"UIView - The container view in nib \(name) should be a UIView instead of \(containerView.className).")
+            assert(containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)), "UIView - The container view in nib \(name) should be a UIView instead of \(containerView.className).")
             
             containerView.translatesAutoresizingMaskIntoConstraints = false
             
             if self.bounds.equalTo(CGRect.zero) {
-                //`self` has no size : use the containerView's size, from the nib file
+                // `self` has no size : use the containerView's size, from the nib file
                 self.bounds = containerView.bounds
             }
             else {
-                //`self` has a specific size : resize the containerView to this size, so that the subviews are autoresized.
+                // `self` has a specific size : resize the containerView to this size, so that the subviews are autoresized.
                 containerView.bounds = self.bounds
             }
             
-            //save constraints for later
+            // Save constraints for later
             let constraints = containerView.constraints
             
-            //reparent the subviews from the nib file
+            // Reparent the subviews from the nib file
             for view in containerView.subviews {
                 self.addSubview(view)
             }
             
-            //re-add constraints, replace containerView with self
+            // Re-add constraints, replace containerView with self
             for constraint in constraints {
                 
                 var firstItem: Any = constraint.firstItem!
@@ -142,7 +142,7 @@ public extension UIView {
                     secondItem = self
                 }
                 
-                //re-add
+                // Re-add
                 let _constraint = NSLayoutConstraint(item: firstItem,
                                                      attribute: constraint.firstAttribute,
                                                      relatedBy: constraint.relation,
@@ -154,6 +154,7 @@ public extension UIView {
                 self.addConstraint(_constraint)
                 
             }
+            
         }
         else {
             assert(nib != nil, "UIView - Can't load nib: \(name)")

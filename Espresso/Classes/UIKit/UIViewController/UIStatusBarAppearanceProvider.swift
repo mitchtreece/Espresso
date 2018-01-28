@@ -17,6 +17,14 @@ public class UIStatusBarAppearance {
         //
     }
     
+    static func fromCurrentContext() -> UIStatusBarAppearance {
+        
+        // TODO: Figure this out
+        
+        return UIStatusBarAppearance()
+        
+    }
+    
     public convenience init(style: UIStatusBarStyle, hidden: Bool, animation: UIStatusBarAnimation) {
         
         self.init()
@@ -29,5 +37,7 @@ public class UIStatusBarAppearance {
 }
 
 public protocol UIStatusBarAppearanceProvider {
+    
     var preferredStatusBarAppearance: UIStatusBarAppearance { get }
+    
 }
