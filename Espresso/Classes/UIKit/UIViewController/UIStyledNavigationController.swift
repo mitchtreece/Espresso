@@ -61,8 +61,6 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
         statusBarHidden = statusBarAppearance?.hidden ?? lastStatusBarAppearance?.hidden ?? defaultStatusBarAppearance.hidden
         statusBarAnimation = statusBarAppearance?.animation ?? lastStatusBarAppearance?.animation ?? defaultStatusBarAppearance.animation
         setNeedsStatusBarAppearanceUpdate()
-
-        /////////////////////
         
         let navAppearance = (vc as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance
         let lastNavAppearance = (sourceVC as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance

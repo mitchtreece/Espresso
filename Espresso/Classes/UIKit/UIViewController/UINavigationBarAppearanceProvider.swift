@@ -22,15 +22,14 @@ public class UINavigationBarAppearance {
     public var hidden: Bool = false
     public var transparent: Bool = false
     
-    // @available(iOS 11, *) ///////////
-    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode!
-    public var largeTitleFont: UIFont!
-    public var largeTitleColor: UIColor = UIColor.black
-    ////////////////////////////////////
-    
     public var backButtonHidden: Bool = false
     public var backButtonImage: UIImage?
     public var backButtonTitle: String?
+    
+    // #available(iOS 11, *)
+    public var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode!
+    public var largeTitleFont: UIFont!
+    public var largeTitleColor: UIColor = UIColor.black
     
     public static func inferred(from viewController: UIViewController) -> UINavigationBarAppearance? {
         

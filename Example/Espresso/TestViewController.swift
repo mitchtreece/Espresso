@@ -11,22 +11,6 @@ import Espresso
 
 class TestViewController: UIStyledViewController {
     
-//    override var preferredStatusBarAppearance: UIStatusBarAppearance {
-//
-//        let appearance = UIStatusBarAppearance()
-//        appearance.style = .default
-//        return appearance
-//
-//    }
-//
-//    override var preferredNavigationBarAppearance: UINavigationBarAppearance {
-//
-//        let appearance = UINavigationBarAppearance.inferred(from: self)
-//        appearance?.barColor = UIColor.green
-//        return appearance ?? UINavigationBarAppearance()
-//
-//    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
