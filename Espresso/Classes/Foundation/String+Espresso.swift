@@ -14,10 +14,11 @@ public extension String {
     func height(forWidth width: CGFloat, attributes: [NSAttributedStringKey: Any]?) -> CGFloat {
         
         let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        
         return (self as NSString).boundingRect(with: size,
-                                                    options: [.usesLineFragmentOrigin],
-                                                    attributes: attributes,
-                                                    context: nil).size.height
+                                               options: [.usesLineFragmentOrigin],
+                                               attributes: attributes,
+                                               context: nil).size.height
         
     }
     

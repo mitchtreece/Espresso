@@ -24,7 +24,6 @@ class RootViewController: UIStyledViewController {
     override var preferredNavigationBarAppearance: UINavigationBarAppearance {
 
         let appearance = UINavigationBarAppearance()
-        appearance.title = "Espresso"
         appearance.barColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
         appearance.titleColor = UIColor.white
         appearance.itemColor = UIColor.white
@@ -41,12 +40,11 @@ class RootViewController: UIStyledViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.title = "Espresso"
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RootCell")
         tableView.backgroundColor = UIColor.groupTableViewBackground
         tableView.tableFooterView = UIView()
-                
-        print("done")
         
     }
     

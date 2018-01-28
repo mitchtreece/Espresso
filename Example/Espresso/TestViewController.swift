@@ -21,24 +21,16 @@ class TestViewController: UIStyledViewController {
 //
 //    override var preferredNavigationBarAppearance: UINavigationBarAppearance {
 //
-//        let appearance = UINavigationBarAppearance()
-//        appearance.title = "Test"
-//        appearance.barColor = UIColor.white
-//        appearance.titleColor = UIColor.black
-//        appearance.itemColor = UIColor.black
-//
-//        if #available(iOS 11, *) {
-//            appearance.largeTitleDisplayMode = .always
-//            appearance.largeTitleColor = UIColor.black
-//        }
-//
-//        return appearance
+//        let appearance = UINavigationBarAppearance.inferred(from: self)
+//        appearance?.barColor = UIColor.green
+//        return appearance ?? UINavigationBarAppearance()
 //
 //    }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.title = "Test"
         self.view.backgroundColor = UIColor.groupTableViewBackground
         
     }
