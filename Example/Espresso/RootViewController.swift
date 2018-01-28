@@ -40,9 +40,9 @@ class RootViewController: UIStyledViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = "Espresso"
+        self.title = "Espresso ☕️"
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RootCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
         tableView.backgroundColor = UIColor.groupTableViewBackground
         tableView.tableFooterView = UIView()
         
@@ -79,7 +79,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let row = Row(rawValue: indexPath.row) else { return UITableViewCell() }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RootCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier)
         cell?.textLabel?.text = title(for: row)
         cell?.accessoryType = .disclosureIndicator
         return cell ?? UITableViewCell()
