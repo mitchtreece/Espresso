@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIDevice {
     
-    public enum DeviceType: String, EnumIterable {
+    public enum DeviceInfo: String, EnumIterable {
         
         // iPhone
         
@@ -180,9 +180,45 @@ public extension UIDevice {
             }
         }
         
+        public var systemVersion: String {
+            return UIDevice.current.systemVersion
+        }
+        
+        public var isJailbroken: Bool {
+            
+            guard !UIDevice.current.isSimulator else { return false }
+            
+            // 1: Check for common jailbroken files
+            
+            let fm = FileManager.default
+            
+            if fm.fileExists(atPath: "/Applications/Cydia.app") ||
+                fm.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+                fm.fileExists(atPath: "/bin/bash") ||
+                fm.fileExists(atPath: "/usr/sbin/sshd") ||
+                fm.fileExists(atPath: "/etc/apt") ||
+                fm.fileExists(atPath: "/private/var/lib/apt/") ||
+                UIApplication.shared.canOpenURL(URL(string: "cydia://package/com.example.package")!) {
+                
+                    return true
+                
+            }
+            
+            // 2: Check for sandbox violation
+            
+            do {
+                try "jailbroken".write(toFile: "/private/jailbroken.txt", atomically: true, encoding: .utf8)
+                return true
+            }
+            catch {
+                return false
+            }
+            
+        }
+        
         internal init(identifier: String) {
             
-            for type in DeviceType.all {
+            for type in DeviceInfo.all {
                 for id in type.identifiers {
                     guard identifier == id else { continue }
                     self = type
@@ -196,7 +232,7 @@ public extension UIDevice {
         
     }
     
-    public func type(includeSimulator: Bool = false) -> DeviceType {
+    public func info(includeSimulator: Bool = false) -> DeviceInfo {
         
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             let isSimulator = true
@@ -229,32 +265,32 @@ public extension UIDevice {
             
         }
         
-        return DeviceType(identifier: machineIdentifier)
+        return DeviceInfo(identifier: machineIdentifier)
         
     }
     
     public var isSimulator: Bool {
-        return (self.type(includeSimulator: true) == DeviceType.simulator)
+        return (self.info(includeSimulator: true) == DeviceInfo.simulator)
     }
     
     public var isPhone: Bool {
-        return self.type().displayName.contains("iPhone")
+        return self.info().displayName.contains("iPhone")
     }
     
     public var isPhoneX: Bool {
-        return (self.type() == .iPhoneX)
+        return (self.info() == .iPhoneX)
     }
     
     public var isPad: Bool {
-        return self.type().displayName.contains("iPad")
+        return self.info().displayName.contains("iPad")
     }
     
     public var isPod: Bool {
-        return self.type().displayName.contains("iPod")
+        return self.info().displayName.contains("iPod")
     }
     
     public var isTV: Bool {
-        return self.type().displayName.contains("TV")
+        return self.info().displayName.contains("TV")
     }
     
 }
