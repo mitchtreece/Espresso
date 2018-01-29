@@ -53,7 +53,14 @@ class RootViewController: UIStyledViewController {
 
 extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
-    private enum Row: Int {
+    private enum Section: Int {
+        
+        case uiKit
+        static var count: Int = 1
+        
+    }
+    
+    private enum UIKit_Row: Int {
         
         case deviceInfo
         case displayFeatureInsets
@@ -61,30 +68,49 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private func title(for row: Row) -> String {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        switch row {
-        case .deviceInfo: return "Device Info"
-        case .displayFeatureInsets: return "Display Feature Insets"
+        guard let _section = Section(rawValue: section) else { return nil }
+        
+        switch _section {
+        case .uiKit: return "UIKit"
         }
         
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Row.count
+        
+        guard let _section = Section(rawValue: section) else { return 0 }
+        
+        switch _section {
+        case .uiKit: return UIKit_Row.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let row = Row(rawValue: indexPath.row) else { return UITableViewCell() }
+        guard let _section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier)
-        cell?.textLabel?.text = title(for: row)
         cell?.accessoryType = .disclosureIndicator
+
+        switch _section {
+        case .uiKit:
+            
+            guard let row = UIKit_Row(rawValue: indexPath.row) else { return UITableViewCell() }
+            
+            switch row {
+            case .deviceInfo: cell?.textLabel?.text = "Device Info"
+            case .displayFeatureInsets: cell?.textLabel?.text = "Display Feature Insets"
+            }
+            
+        }
+        
         return cell ?? UITableViewCell()
         
     }
@@ -93,58 +119,65 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let row = Row(rawValue: indexPath.row) else { return }
+        guard let _section = Section(rawValue: indexPath.section) else { return }
         
-        switch row {
-        case .deviceInfo:
+        switch _section {
+        case .uiKit:
             
-            let info = UIDevice.current.info()
-            let isSimulator = UIDevice.current.isSimulator
+            guard let row = UIKit_Row(rawValue: indexPath.row) else { return }
             
-            let title = isSimulator ? "\(info.displayName) (Simulator)" : info.displayName
-            let message = "System Version: \(info.systemVersion)\nJailbroken: \(info.isJailbroken)"
-            
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        
-        case .displayFeatureInsets:
-            
-            let v = UIView()
-            v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            self.navigationController?.view.addSubview(v)
-            v.snp.makeConstraints { (make) in
+            switch row {
+            case .deviceInfo:
                 
-                let insets = UIScreen.main.displayFeatureInsets
+                let info = UIDevice.current.info()
+                let isSimulator = UIDevice.current.isSimulator
                 
-                make.top.equalTo(0).offset(insets.top)
-                make.left.equalTo(0).offset(insets.left)
-                make.right.equalTo(0).offset(-insets.right)
-                make.bottom.equalTo(0).offset(-insets.bottom)
+                let title = isSimulator ? "\(info.displayName) (Simulator)" : info.displayName
+                let message = "System Version: \(info.systemVersion)\nJailbroken: \(info.isJailbroken)"
+                
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            case .displayFeatureInsets:
+                
+                let v = UIView()
+                v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+                self.navigationController?.view.addSubview(v)
+                v.snp.makeConstraints { (make) in
+                    
+                    let insets = UIScreen.main.displayFeatureInsets
+                    
+                    make.top.equalTo(0).offset(insets.top)
+                    make.left.equalTo(0).offset(insets.left)
+                    make.right.equalTo(0).offset(-insets.right)
+                    make.bottom.equalTo(0).offset(-insets.bottom)
+                    
+                }
+                
+                let label = UILabel()
+                label.backgroundColor = UIColor.clear
+                label.textColor = UIColor.white
+                label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+                label.text = "This overlay view is constrained to your device's display feature insets.\n\nThis takes into account things like: status bars, home grabbers, etc...\n\nTap to dismiss 😊"
+                label.textAlignment = .center
+                label.numberOfLines = 0
+                label.isUserInteractionEnabled = true
+                v.addSubview(label)
+                label.snp.makeConstraints { (make) in
+                    make.top.equalTo(14)
+                    make.bottom.equalTo(-14)
+                    make.left.equalTo(44)
+                    make.right.equalTo(-44)
+                }
+                
+                let tap = UITapGestureRecognizer(action: { (recognizer) in
+                    v.removeFromSuperview()
+                })
+                
+                label.addGestureRecognizer(tap)
                 
             }
-            
-            let label = UILabel()
-            label.backgroundColor = UIColor.clear
-            label.textColor = UIColor.white
-            label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            label.text = "This overlay view is constrained to your device's display feature insets.\n\nThis takes into account things like: status bars, home grabbers, etc...\n\nTap to dismiss 😊"
-            label.textAlignment = .center
-            label.numberOfLines = 0
-            label.isUserInteractionEnabled = true
-            v.addSubview(label)
-            label.snp.makeConstraints { (make) in
-                make.top.equalTo(14)
-                make.bottom.equalTo(-14)
-                make.left.equalTo(44)
-                make.right.equalTo(-44)
-            }
-            
-            let tap = UITapGestureRecognizer(action: { (recognizer) in
-                v.removeFromSuperview()
-            })
-            
-            label.addGestureRecognizer(tap)
             
         }
         
