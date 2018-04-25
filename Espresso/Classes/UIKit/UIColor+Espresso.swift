@@ -7,6 +7,16 @@
 
 import UIKit
 
+// MARK: Random
+
+public extension UIColor {
+    
+    public static func random(alpha: CGFloat = 1) -> UIColor {
+        return UIColor(red: .random, green: .random, blue: .random, alpha: 1.0)
+    }
+    
+}
+
 // MARK: Hex
 
 public extension UIColor {

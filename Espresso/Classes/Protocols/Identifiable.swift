@@ -5,12 +5,10 @@
 //  Created by Mitch Treece on 1/27/18.
 //
 
-import Foundation
+import UIKit
 
 public protocol Identifiable {
-    
-    var identifier: String { get }
-    
+    static var identifier: String { get }
 }
 
 public extension Identifiable {
@@ -21,31 +19,5 @@ public extension Identifiable {
     
 }
 
-extension UIView: Identifiable {
-    
-    private struct AssociatedKeys {
-        static var identifier: UInt8 = 0
-    }
-    
-    public var identifier: String {
-        
-        get {
-            
-            guard let value = objc_getAssociatedObject(self, &AssociatedKeys.identifier) as? String else {
-                
-                let uuid = UUID().uuidString
-                self.identifier = uuid
-                return uuid
-                
-            }
-            
-            return value
-            
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, &AssociatedKeys.identifier, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        
-    }
-    
-}
+extension UIView: Identifiable {}
+extension UIViewController: Identifiable {}

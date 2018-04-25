@@ -20,6 +20,8 @@
 		1B8EB1AB28674AFA48B3E0AD7810E8C9 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1DB609074E8839F89CFE69E50DE9B6 /* Identifiable.swift */; };
 		1CC67D5C1D0E1A749B5B7F8103929C63 /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B058F739089B32F3323418933731ADFB /* ConstraintViewDSL.swift */; };
 		1CFDA90FB47C668108476CCB6F18D16A /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC67A9344FB011AC6B0CB0B1706C1C /* ConstraintLayoutSupportDSL.swift */; };
+		264DA7C0208FF90D00210035 /* UITableViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */; };
+		264DA7C2208FFB2D00210035 /* UICollectionViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DA7C1208FFB2D00210035 /* UICollectionViewCell+Espresso.swift */; };
 		26C2EB37201E976800594D72 /* UIGestureRecognizer+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2EB36201E976800594D72 /* UIGestureRecognizer+Espresso.swift */; };
 		292C29F4189B1E32B90FA1D62E9922C6 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1FE61DC3251BBA5CD452BE8564C8E7 /* ConstraintMaker.swift */; };
 		2A52057E4F5C485BA4DCFFA59FCD6E70 /* UIColor+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AD84925DF98422C393CD71DDDAAA3 /* UIColor+Espresso.swift */; };
@@ -120,6 +122,8 @@
 		22D198AA8895D27B125816302F07DCEC /* UIAnimatingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimatingView.swift; sourceTree = "<group>"; };
 		23C4EE941C99C2F663494C43944D63FD /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		26107E4399DBFA9590F3E4F24F88CF31 /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
+		264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
+		264DA7C1208FFB2D00210035 /* UICollectionViewCell+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Espresso.swift"; sourceTree = "<group>"; };
 		26C2EB36201E976800594D72 /* UIGestureRecognizer+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Espresso.swift"; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		30243908D8F97F09823E994F2AB2CB71 /* Collection+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+Espresso.swift"; sourceTree = "<group>"; };
@@ -247,19 +251,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		264DA7C3208FFBEB00210035 /* UIDevice */ = {
+			isa = PBXGroup;
+			children = (
+				26107E4399DBFA9590F3E4F24F88CF31 /* UIDevice+Espresso.swift */,
+			);
+			path = UIDevice;
+			sourceTree = "<group>";
+		};
 		3E11B9C83AC4FA12EDACA9D1A0BDB517 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A52871E623A6FE786F3BB2A14569AA61 /* IndexPath+Espresso.swift */,
 				22D198AA8895D27B125816302F07DCEC /* UIAnimatingView.swift */,
 				EA028D651625653AB95E72B1B6DBDC81 /* UIApplication+Espresso.swift */,
 				639AD84925DF98422C393CD71DDDAAA3 /* UIColor+Espresso.swift */,
 				336C1DBC98D564766BFFB1489832462E /* UIContainerView.swift */,
-				26107E4399DBFA9590F3E4F24F88CF31 /* UIDevice+Espresso.swift */,
 				735F7C0D4ADDC1AADA01977C1D3665F3 /* UIEdgeInsets+Espresso.swift */,
 				5C62908DF961FC294818A305757F5B53 /* UIImage+Espresso.swift */,
 				392D84620A25996D90DCE980770CFF37 /* UIView+Espresso.swift */,
 				26C2EB36201E976800594D72 /* UIGestureRecognizer+Espresso.swift */,
+				264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */,
+				264DA7C1208FFB2D00210035 /* UICollectionViewCell+Espresso.swift */,
+				264DA7C3208FFBEB00210035 /* UIDevice */,
 				5DD65E2D14134CED7E407674C9ABBD88 /* UIScreen */,
 				FE269BE3E8AEE63ECBC5BDC6069283B3 /* UIViewController */,
 			);
@@ -306,6 +319,7 @@
 				22652ED07A9FA3FD82FBA66CA55C488D /* NotificationObserver.swift */,
 				543C680FB9511F7FC07592B2C2690167 /* Stack.swift */,
 				0407A5B09A548D78BF36438EE564E287 /* String+Espresso.swift */,
+				A52871E623A6FE786F3BB2A14569AA61 /* IndexPath+Espresso.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -711,6 +725,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E296C038E09BC24C35F7F5F1295942C /* BoolConvertible.swift in Sources */,
+				264DA7C0208FF90D00210035 /* UITableViewCell+Espresso.swift in Sources */,
 				47C7DA9D6075A7FEA35DF0879D273B52 /* Collection+Espresso.swift in Sources */,
 				408B6C78C6BE40EABDE53BA74DE61630 /* EnumIterable.swift in Sources */,
 				5F49C22D387BA191854186844BB0790E /* ErrorConvertible.swift in Sources */,
@@ -738,6 +753,7 @@
 				B789F7AA666B9812F09A9B6FE5A4C64E /* UIStyledNavigationController.swift in Sources */,
 				4DB5BD50D15557A2A8D3EC4E0095EA8B /* UIStyledViewController.swift in Sources */,
 				26C2EB37201E976800594D72 /* UIGestureRecognizer+Espresso.swift in Sources */,
+				264DA7C2208FFB2D00210035 /* UICollectionViewCell+Espresso.swift in Sources */,
 				49B69E2FCF2D12146A5F814E71A08E2D /* UIView+Espresso.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
