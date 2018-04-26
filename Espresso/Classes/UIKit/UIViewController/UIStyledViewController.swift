@@ -12,7 +12,7 @@ open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvid
     // MARK: UIStatusBarAppearance
     
     open var preferredStatusBarAppearance: UIStatusBarAppearance {
-        return UIStatusBarAppearance.inferred(from: self) ?? UIStatusBarAppearance()
+        return UIStatusBarAppearance.inferred(for: self) ?? UIStatusBarAppearance()
     }
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -30,7 +30,14 @@ open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvid
     // MARK: UINavigationBarAppearance
     
     open var preferredNavigationBarAppearance: UINavigationBarAppearance {
-        return UINavigationBarAppearance.inferred(from: self) ?? UINavigationBarAppearance()
+        return UINavigationBarAppearance.inferred(for: self) ?? UINavigationBarAppearance()
+    }
+    
+    open override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        
     }
     
     open override func viewWillAppear(_ animated: Bool) {

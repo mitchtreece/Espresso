@@ -43,9 +43,10 @@ class RootViewController: UIStyledViewController {
         super.viewDidLoad()
         self.title = "Espresso ☕️"
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
         tableView.backgroundColor = UIColor.groupTableViewBackground
         tableView.tableFooterView = UIView()
+        
+        UITableViewCell.register(in: tableView)
         
     }
     
@@ -55,12 +56,23 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int {
         
-        case uiKit
-        static var count: Int = 1
+        case appearance
+        case helpers
+        static var count: Int = 2
         
     }
     
-    private enum UIKit_Row: Int {
+    private enum AppearanceRow: Int {
+        
+        case `default`
+        case inferred
+        case custom
+        case modal
+        static var count = 4
+        
+    }
+    
+    private enum HelpersRow: Int {
         
         case deviceInfo
         case displayFeatureInsets
@@ -77,7 +89,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
-        case .uiKit: return "UIKit"
+        case .appearance: return "Appearance"
+        case .helpers: return "Helpers"
         }
         
     }
@@ -87,7 +100,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
-        case .uiKit: return UIKit_Row.count
+        case .appearance: return AppearanceRow.count
+        case .helpers: return HelpersRow.count
         }
         
     }
@@ -96,22 +110,33 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let _section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier)
-        cell?.accessoryType = .disclosureIndicator
+        let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
 
         switch _section {
-        case .uiKit:
+        case .appearance:
             
-            guard let row = UIKit_Row(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = AppearanceRow(rawValue: indexPath.row) else { return UITableViewCell() }
             
             switch row {
-            case .deviceInfo: cell?.textLabel?.text = "Device Info"
-            case .displayFeatureInsets: cell?.textLabel?.text = "Display Feature Insets"
+            case .default: cell.textLabel?.text = "Default"
+            case .inferred: cell.textLabel?.text = "Inferred"
+            case .custom: cell.textLabel?.text = "Custom"
+            case .modal: cell.textLabel?.text = "Modal"
+            }
+            
+        case .helpers:
+            
+            guard let row = HelpersRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            
+            switch row {
+            case .deviceInfo: cell.textLabel?.text = "Device Info"
+            case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
             }
             
         }
         
-        return cell ?? UITableViewCell()
+        cell.accessoryType = .disclosureIndicator
+        return cell
         
     }
     
@@ -122,9 +147,70 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
         switch _section {
-        case .uiKit:
+        case .appearance:
             
-            guard let row = UIKit_Row(rawValue: indexPath.row) else { return }
+            guard let row = AppearanceRow(rawValue: indexPath.row) else { return }
+            
+            let vc = AppearanceViewController()
+            
+            switch row {
+            case .default:
+                
+                vc.title = "Default"
+                vc.statusBarAppearance = UIStatusBarAppearance()
+                vc.navBarAppearance = UINavigationBarAppearance()
+                
+            case .inferred:
+                
+                vc.title = "Inferred"
+                vc.statusBarAppearance = UIStatusBarAppearance.inferred(for: vc)
+                vc.navBarAppearance = UINavigationBarAppearance.inferred(for: vc)
+            
+            case .custom:
+                
+                let status = UIStatusBarAppearance()
+                status.style = .lightContent
+                
+                let nav = UINavigationBarAppearance()
+                nav.barColor = UIColor(white: 0.1, alpha: 1)
+                nav.titleColor = UIColor.white
+                nav.itemColor = UIColor.white
+                
+                if #available(iOS 11, *) {
+                    nav.largeTitleDisplayMode = .always
+                    nav.largeTitleColor = UIColor.white
+                    nav.largeTitleFont = UIFont.systemFont(ofSize: 40, weight: .black)
+                }
+                
+                vc.title = "Custom"
+                vc.statusBarAppearance = status
+                vc.navBarAppearance = nav
+            
+            case .modal:
+                
+                let navBar = UINavigationBarAppearance()
+                navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+                navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .black)
+                navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+                navBar.transparent = true
+                
+                vc.title = "Modal"
+                vc.showsDismissButton = true
+                vc.statusBarAppearance = UIStatusBarAppearance()
+                vc.navBarAppearance = navBar
+                
+                let nav = UIStyledNavigationController(rootViewController: vc)
+                self.present(nav, animated: true, completion: nil)
+                
+                return
+                
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        case .helpers:
+            
+            guard let row = HelpersRow(rawValue: indexPath.row) else { return }
             
             switch row {
             case .deviceInfo:

@@ -39,6 +39,10 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
         
     }
     
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     public override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -53,49 +57,49 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
     
     private func update(with vc: UIViewController, sourceVC: UIViewController?, animated: Bool) {
         
-        let statusBarAppearance = (vc as? UIStatusBarAppearanceProvider)?.preferredStatusBarAppearance
-        let lastStatusBarAppearance = (sourceVC as? UIStatusBarAppearanceProvider)?.preferredStatusBarAppearance
-        let defaultStatusBarAppearance = UIStatusBarAppearance()
+        let sbAppearance = (vc as? UIStatusBarAppearanceProvider)?.preferredStatusBarAppearance
+        let lastSbAppearance = (sourceVC as? UIStatusBarAppearanceProvider)?.preferredStatusBarAppearance
+        let defaultSbAppearance = UIStatusBarAppearance()
         
-        statusBarStyle = statusBarAppearance?.style ?? lastStatusBarAppearance?.style ?? defaultStatusBarAppearance.style
-        statusBarHidden = statusBarAppearance?.hidden ?? lastStatusBarAppearance?.hidden ?? defaultStatusBarAppearance.hidden
-        statusBarAnimation = statusBarAppearance?.animation ?? lastStatusBarAppearance?.animation ?? defaultStatusBarAppearance.animation
+        statusBarStyle = sbAppearance?.style ?? lastSbAppearance?.style ?? defaultSbAppearance.style
+        statusBarHidden = sbAppearance?.hidden ?? lastSbAppearance?.hidden ?? defaultSbAppearance.hidden
+        statusBarAnimation = sbAppearance?.animation ?? lastSbAppearance?.animation ?? defaultSbAppearance.animation
         setNeedsStatusBarAppearanceUpdate()
         
-        let navAppearance = (vc as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance
-        let lastNavAppearance = (sourceVC as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance
-        let defaultNavAppearance = UINavigationBarAppearance()
+        let nbAppearance = (vc as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance
+        let lastNbAppearance = (sourceVC as? UINavigationBarAppearanceProvider)?.preferredNavigationBarAppearance
+        let defaultNbAppearance = UINavigationBarAppearance()
         
-        navigationBar.barTintColor = navAppearance?.barColor ?? lastNavAppearance?.barColor ?? defaultNavAppearance.barColor
-        navigationBar.tintColor = navAppearance?.itemColor ?? lastNavAppearance?.itemColor ?? defaultNavAppearance.itemColor
+        navigationBar.barTintColor = nbAppearance?.barColor ?? lastNbAppearance?.barColor ?? defaultNbAppearance.barColor
+        navigationBar.tintColor = nbAppearance?.itemColor ?? lastNbAppearance?.itemColor ?? defaultNbAppearance.itemColor
         navigationBar.titleTextAttributes = [
-            .font: navAppearance?.titleFont ?? lastNavAppearance?.titleFont ?? defaultNavAppearance.titleFont,
-            .foregroundColor: navAppearance?.titleColor ?? lastNavAppearance?.titleColor ?? defaultNavAppearance.titleColor
+            .font: nbAppearance?.titleFont ?? lastNbAppearance?.titleFont ?? defaultNbAppearance.titleFont,
+            .foregroundColor: nbAppearance?.titleColor ?? lastNbAppearance?.titleColor ?? defaultNbAppearance.titleColor
         ]
         
         if #available(iOS 11, *) {
             
-            let displayMode = navAppearance?.largeTitleDisplayMode ?? lastNavAppearance?.largeTitleDisplayMode ?? .automatic
+            let displayMode = nbAppearance?.largeTitleDisplayMode ?? lastNbAppearance?.largeTitleDisplayMode ?? .automatic
             vc.navigationItem.largeTitleDisplayMode = displayMode
             navigationBar.prefersLargeTitles = (displayMode != .never)
             
-            let titleColor = navAppearance?.largeTitleColor ??
-                lastNavAppearance?.largeTitleColor ??
-                navAppearance?.titleColor ??
-                lastNavAppearance?.titleColor ??
-                defaultNavAppearance.largeTitleColor
+            let titleColor = nbAppearance?.largeTitleColor ??
+                lastNbAppearance?.largeTitleColor ??
+                nbAppearance?.titleColor ??
+                lastNbAppearance?.titleColor ??
+                defaultNbAppearance.largeTitleColor
             
             navigationBar.largeTitleTextAttributes = [
-                .font: (navAppearance?.largeTitleFont ?? lastNavAppearance?.largeTitleFont ?? defaultNavAppearance.largeTitleFont) as Any,
+                .font: (nbAppearance?.largeTitleFont ?? lastNbAppearance?.largeTitleFont ?? defaultNbAppearance.largeTitleFont) as Any,
                 .foregroundColor: titleColor
             ]
             
         }
         
-        let hidden = (navAppearance?.hidden ?? lastNavAppearance?.hidden ?? defaultNavAppearance.hidden)
+        let hidden = (nbAppearance?.hidden ?? lastNbAppearance?.hidden ?? defaultNbAppearance.hidden)
         setNavigationBarHidden(hidden, animated: animated)
         
-        if navAppearance?.transparent ?? lastNavAppearance?.transparent ?? false {
+        if nbAppearance?.transparent ?? lastNbAppearance?.transparent ?? false {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
         }
@@ -104,7 +108,7 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
             navigationBar.shadowImage = nil
         }
         
-        if navAppearance?.backButtonHidden ?? defaultNavAppearance.backButtonHidden {
+        if nbAppearance?.backButtonHidden ?? defaultNbAppearance.backButtonHidden {
             
             navigationBar.backIndicatorImage = UIImage()
             navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -116,13 +120,13 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
         }
         else {
             
-            if var image = navAppearance?.backButtonImage ?? lastNavAppearance?.backButtonImage {
+            if var image = nbAppearance?.backButtonImage ?? lastNbAppearance?.backButtonImage {
                 image = image.withRenderingMode(.alwaysTemplate)
                 navigationBar.backIndicatorImage = image
                 navigationBar.backIndicatorTransitionMaskImage = image
             }
             
-            if let title = navAppearance?.backButtonTitle {
+            if let title = nbAppearance?.backButtonTitle {
                 let backItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
                 vc.navigationItem.backBarButtonItem = backItem
                 sourceVC?.navigationItem.backBarButtonItem = backItem

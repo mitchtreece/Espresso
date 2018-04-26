@@ -8,9 +8,7 @@
 import UIKit
 
 public protocol UIStatusBarAppearanceProvider {
-    
     var preferredStatusBarAppearance: UIStatusBarAppearance { get }
-    
 }
 
 public class UIStatusBarAppearance {
@@ -19,27 +17,27 @@ public class UIStatusBarAppearance {
     public var hidden: Bool = false
     public var animation: UIStatusBarAnimation = .fade
     
-    static func inferred(from viewController: UIViewController) -> UIStatusBarAppearance? {
+    public static func inferred(for viewController: UIViewController) -> UIStatusBarAppearance? {
         
-        guard var vc = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+        guard var currentVC = UIApplication.shared.keyWindow?.rootViewController else { return nil }
         
-        if let nav = vc as? UINavigationController, let topVC = nav.topViewController {
-            vc = topVC
+        if let nav = currentVC as? UINavigationController, let topVC = nav.topViewController {
+            currentVC = topVC
         }
-        else if let tab = vc as? UITabBarController, let selectedVC = tab.selectedViewController {
-            vc = selectedVC
+        else if let tab = currentVC as? UITabBarController, let selectedVC = tab.selectedViewController {
+            currentVC = selectedVC
         }
         
-        // If comparing to the inferring vc, stop.
-        guard vc != viewController else { return nil }
+        // If comparing to the inferring vc, stop. (going back)
+        guard currentVC != viewController else { return nil }
         
-        if let provider = vc as? UIStatusBarAppearanceProvider {
+        if let provider = currentVC as? UIStatusBarAppearanceProvider {
             return provider.preferredStatusBarAppearance
         }
         
-        let style = vc.preferredStatusBarStyle
-        let hidden = vc.prefersStatusBarHidden
-        let animation = vc.preferredStatusBarUpdateAnimation
+        let style = currentVC.preferredStatusBarStyle
+        let hidden = currentVC.prefersStatusBarHidden
+        let animation = currentVC.preferredStatusBarUpdateAnimation
         return UIStatusBarAppearance(style: style, hidden: hidden, animation: animation)
         
     }

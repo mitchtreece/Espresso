@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
+		263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E799120924E6C003BAD76 /* AppearanceViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		263E799120924E6C003BAD76 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
+				263E799120924E6C003BAD76 /* AppearanceViewController.swift */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Espresso";
@@ -364,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
+				263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

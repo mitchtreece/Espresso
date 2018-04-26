@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIDevice {
     
-    public enum DeviceInfo: String, EnumIterable {
+    public enum DeviceInfo: String, CaseIterable {
         
         // iPhone
         
@@ -228,7 +228,7 @@ public extension UIDevice {
         
         internal init(identifier: String) {
             
-            for type in DeviceInfo.all {
+            for type in DeviceInfo.allCases {
                 for id in type.identifiers {
                     guard identifier == id else { continue }
                     self = type

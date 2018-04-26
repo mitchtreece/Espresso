@@ -12,7 +12,7 @@ import UIKit
 public extension UIColor {
     
     public static func random(alpha: CGFloat = 1) -> UIColor {
-        return UIColor(red: .random, green: .random, blue: .random, alpha: 1.0)
+        return UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1.0)
     }
     
 }

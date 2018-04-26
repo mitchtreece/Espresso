@@ -41,11 +41,11 @@ public extension Collection {
         
     }
     
-    private func distance(from startIndex: Index) -> IndexDistance {
+    private func distance(from startIndex: Index) -> Int {
         return distance(from: startIndex, to: self.endIndex)
     }
     
-    private func distance(to endIndex: Index) -> IndexDistance {
+    private func distance(to endIndex: Index) -> Int {
         return distance(from: self.startIndex, to: endIndex)
     }
     

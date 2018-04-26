@@ -31,7 +31,7 @@ public class UINavigationBarAppearance {
     public var largeTitleFont: UIFont!
     public var largeTitleColor: UIColor = UIColor.black
     
-    public static func inferred(from viewController: UIViewController) -> UINavigationBarAppearance? {
+    public static func inferred(for viewController: UIViewController) -> UINavigationBarAppearance? {
         
         guard let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return nil }
         guard let topVC = nav.topViewController, topVC != viewController else { return nil } // If comparing to the inferring vc, stop.
