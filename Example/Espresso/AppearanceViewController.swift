@@ -32,8 +32,10 @@ class AppearanceViewController: UIStyledViewController {
         
         super.viewWillAppear(animated)
         
-        let dismissItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDismiss(_:)))
-        self.navigationItem.rightBarButtonItem = dismissItem
+        if showsDismissButton {
+            let dismissItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDismiss(_:)))
+            self.navigationItem.rightBarButtonItem = dismissItem
+        }
         
     }
     

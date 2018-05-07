@@ -245,7 +245,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 label.backgroundColor = UIColor.clear
                 label.textColor = UIColor.white
                 label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                label.text = "This overlay view is constrained to your device's display feature insets.\n\nThis takes into account things like: status bars, home grabbers, etc...\n\nTap to dismiss 😊"
+                label.text = """
+                This overlay view is constrained to your device's display feature insets.\n\nThis takes into account things like: status bars, home grabbers, etc...\n\nTap to dismiss 😊
+                """
                 label.textAlignment = .center
                 label.numberOfLines = 0
                 label.isUserInteractionEnabled = true
