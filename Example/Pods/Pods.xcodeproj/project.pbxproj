@@ -20,6 +20,12 @@
 		1B8EB1AB28674AFA48B3E0AD7810E8C9 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1DB609074E8839F89CFE69E50DE9B6 /* Identifiable.swift */; };
 		1CC67D5C1D0E1A749B5B7F8103929C63 /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B058F739089B32F3323418933731ADFB /* ConstraintViewDSL.swift */; };
 		1CFDA90FB47C668108476CCB6F18D16A /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC67A9344FB011AC6B0CB0B1706C1C /* ConstraintLayoutSupportDSL.swift */; };
+		2631967020E2AF3C00AE1B56 /* UITransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631966F20E2AF3C00AE1B56 /* UITransition.swift */; };
+		2631967220E2AF7600AE1B56 /* UITransitionInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967120E2AF7600AE1B56 /* UITransitionInteractionController.swift */; };
+		2631967420E2AFA300AE1B56 /* UIViewController+UITransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967320E2AFA300AE1B56 /* UIViewController+UITransition.swift */; };
+		2631967620E2AFBC00AE1B56 /* UINavigationController+UITransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967520E2AFBC00AE1B56 /* UINavigationController+UITransition.swift */; };
+		2631967920E2B11800AE1B56 /* UIPushBackTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967820E2B11800AE1B56 /* UIPushBackTransition.swift */; };
+		2631967D20E2BB8E00AE1B56 /* UIFadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967C20E2BB8E00AE1B56 /* UIFadeTransition.swift */; };
 		263E7994209254FB003BAD76 /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E7993209254FB003BAD76 /* CaseIterable.swift */; };
 		263E7996209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E7995209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift */; };
 		264DA7C0208FF90D00210035 /* UITableViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */; };
@@ -118,6 +124,12 @@
 		22652ED07A9FA3FD82FBA66CA55C488D /* NotificationObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationObserver.swift; sourceTree = "<group>"; };
 		23C4EE941C99C2F663494C43944D63FD /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		26107E4399DBFA9590F3E4F24F88CF31 /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
+		2631966F20E2AF3C00AE1B56 /* UITransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransition.swift; sourceTree = "<group>"; };
+		2631967120E2AF7600AE1B56 /* UITransitionInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionInteractionController.swift; sourceTree = "<group>"; };
+		2631967320E2AFA300AE1B56 /* UIViewController+UITransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UITransition.swift"; sourceTree = "<group>"; };
+		2631967520E2AFBC00AE1B56 /* UINavigationController+UITransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UITransition.swift"; sourceTree = "<group>"; };
+		2631967820E2B11800AE1B56 /* UIPushBackTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPushBackTransition.swift; sourceTree = "<group>"; };
+		2631967C20E2BB8E00AE1B56 /* UIFadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFadeTransition.swift; sourceTree = "<group>"; };
 		263E7993209254FB003BAD76 /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseIterable.swift; sourceTree = "<group>"; };
 		263E7995209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Espresso.swift"; sourceTree = "<group>"; };
 		264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
@@ -245,6 +257,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2631966E20E2AF0E00AE1B56 /* UITransition */ = {
+			isa = PBXGroup;
+			children = (
+				2631966F20E2AF3C00AE1B56 /* UITransition.swift */,
+				2631967120E2AF7600AE1B56 /* UITransitionInteractionController.swift */,
+				2631967320E2AFA300AE1B56 /* UIViewController+UITransition.swift */,
+				2631967520E2AFBC00AE1B56 /* UINavigationController+UITransition.swift */,
+				2631967720E2B0EE00AE1B56 /* Transitions */,
+			);
+			path = UITransition;
+			sourceTree = "<group>";
+		};
+		2631967720E2B0EE00AE1B56 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				2631967C20E2BB8E00AE1B56 /* UIFadeTransition.swift */,
+				2631967820E2B11800AE1B56 /* UIPushBackTransition.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
 		264DA7C3208FFBEB00210035 /* UIDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +300,7 @@
 				264DA7C3208FFBEB00210035 /* UIDevice */,
 				5DD65E2D14134CED7E407674C9ABBD88 /* UIScreen */,
 				FE269BE3E8AEE63ECBC5BDC6069283B3 /* UIViewController */,
+				2631966E20E2AF0E00AE1B56 /* UITransition */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -725,8 +759,10 @@
 				F49189C9C7936EB3793CBA2D6E85E3F1 /* IndexPath+Espresso.swift in Sources */,
 				BA657B98FDC2C61C6688B0739512949A /* JSONConvertible.swift in Sources */,
 				8DEFC5F0356F5D51AA56641B5932CC58 /* NotificationObserver.swift in Sources */,
+				2631967620E2AFBC00AE1B56 /* UINavigationController+UITransition.swift in Sources */,
 				F52C7B002F9A49AEA4D6D9C58C9647E4 /* String+Espresso.swift in Sources */,
 				44ED82FFD8B450EC1A58B929932C07B3 /* UIApplication+Espresso.swift in Sources */,
+				2631967920E2B11800AE1B56 /* UIPushBackTransition.swift in Sources */,
 				263E7994209254FB003BAD76 /* CaseIterable.swift in Sources */,
 				263E7996209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift in Sources */,
 				2A52057E4F5C485BA4DCFFA59FCD6E70 /* UIColor+Espresso.swift in Sources */,
@@ -736,13 +772,17 @@
 				A5D925B8E8BD9929EFAC87A2F9389378 /* UIHomeGrabber.swift in Sources */,
 				B3334D3655A0DD842A8FAA41E6D223A8 /* UIImage+Espresso.swift in Sources */,
 				04CC355DA5DE6D729C234B34F32EF32B /* UINavigationBarAppearanceProvider.swift in Sources */,
+				2631967020E2AF3C00AE1B56 /* UITransition.swift in Sources */,
 				B885EF9B7F4683D26FE8ADC74822148F /* UINotch.swift in Sources */,
 				365EBAA0950945890D906E8D83CFBDA6 /* UIScreen+Espresso.swift in Sources */,
 				08562FD9CD1AE98E5E6F9E5D8F129AF1 /* UIStatusBarAppearanceProvider.swift in Sources */,
 				B789F7AA666B9812F09A9B6FE5A4C64E /* UIStyledNavigationController.swift in Sources */,
 				4DB5BD50D15557A2A8D3EC4E0095EA8B /* UIStyledViewController.swift in Sources */,
+				2631967420E2AFA300AE1B56 /* UIViewController+UITransition.swift in Sources */,
 				264DA7C2208FFB2D00210035 /* UICollectionViewCell+Espresso.swift in Sources */,
 				49B69E2FCF2D12146A5F814E71A08E2D /* UIView+Espresso.swift in Sources */,
+				2631967220E2AF7600AE1B56 /* UITransitionInteractionController.swift in Sources */,
+				2631967D20E2BB8E00AE1B56 /* UIFadeTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

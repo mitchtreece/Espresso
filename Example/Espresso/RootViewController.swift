@@ -57,8 +57,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum Section: Int {
         
         case appearance
+        case transition
         case helpers
-        static var count: Int = 2
+        static var count: Int = 3
         
     }
     
@@ -69,6 +70,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case custom
         case modal
         static var count = 4
+        
+    }
+    
+    private enum TransitionRow: Int {
+        
+        case fade
+        case pushBack
+        static var count = 2
         
     }
     
@@ -90,6 +99,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .appearance: return "Appearance"
+        case .transition: return "Transitions"
         case .helpers: return "Helpers"
         }
         
@@ -101,6 +111,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .appearance: return AppearanceRow.count
+        case .transition: return TransitionRow.count
         case .helpers: return HelpersRow.count
         }
         
@@ -122,6 +133,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .inferred: cell.textLabel?.text = "Inferred"
             case .custom: cell.textLabel?.text = "Custom"
             case .modal: cell.textLabel?.text = "Modal"
+            }
+         
+        case .transition:
+            
+            guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            
+            switch row {
+            case .fade: cell.textLabel?.text = "UIFadeTransition"
+            case .pushBack: cell.textLabel?.text = "UIPushBackTransition"
             }
             
         case .helpers:
@@ -207,6 +227,36 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             self.navigationController?.pushViewController(vc, animated: true)
+        
+        case .transition:
+            
+            guard let row = TransitionRow(rawValue: indexPath.row) else { return }
+
+            let transition: UITransition!
+            let vc = TransitionViewController()
+
+            switch row {
+            case .fade:
+                
+                vc.title = "UIFadeTransition"
+                transition = UIFadeTransition()
+                
+            case .pushBack:
+                
+                vc.title = "UIPushBackTransition"
+                transition = UIPushBackTransition()
+                
+            }
+            
+            let navBar = UINavigationBarAppearance()
+            navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+            navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .medium)
+            navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
+            navBar.transparent = true
+            vc.navBarAppearance = navBar
+            
+            let nav = UIStyledNavigationController(rootViewController: vc)
+            self.present(nav, with: transition, completion: nil)
             
         case .helpers:
             
