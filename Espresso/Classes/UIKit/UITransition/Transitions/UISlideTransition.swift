@@ -1,5 +1,5 @@
 //
-//  UIFadeTransition.swift
+//  UISlideTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -7,14 +7,19 @@
 
 import UIKit
 
-public class UIFadeTransition: UITransition {
-
-    public enum FadeType {
-        case over
-        case cross
-    }
+public class UISlideTransition: UITransition {
     
-    public var fadeType: FadeType = .over
+    public override init() {
+        
+        super.init()
+        
+        self.presentation.duration = 0.3
+        self.presentation.direction = .left
+        
+        self.dismissal.duration = 0.3
+        self.dismissal.direction = self.presentation.direction.reversed()
+        
+    }
     
     public override func presentationAnimation(inContainer container: UIView,
                                                fromVC: UIViewController,
@@ -40,21 +45,20 @@ public class UIFadeTransition: UITransition {
                           ctx: UIViewControllerContextTransitioning,
                           presentationContext: PresentationContext) {
         
-        toVC.view.alpha = 0
+        let direction = self.settings(for: presentationContext).direction
+        
         toVC.view.frame = ctx.finalFrame(for: toVC)
+        toVC.view.transform = self.boundsTransform(in: container, direction: direction.reversed())
         container.addSubview(toVC.view)
         
-        UIView.animate(withDuration: self.settings(for: presentationContext).duration, delay: 0, options: [.curveEaseOut], animations: {
-            
-            if self.fadeType == .cross {
-                fromVC.view.alpha = 0
-            }
-            
-            toVC.view.alpha = 1
+        UIView.animate(withDuration: self.dismissal.duration, delay: 0, options: [.curveEaseInOut], animations: {
+
+            fromVC.view.transform = self.boundsTransform(in: container, direction: direction)
+            toVC.view.transform = .identity
             
         }) { (finished) in
             
-            fromVC.view.alpha = 1
+            fromVC.view.transform = .identity
             ctx.completeTransition(!ctx.transitionWasCancelled)
             
         }

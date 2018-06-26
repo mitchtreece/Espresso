@@ -30,6 +30,8 @@
 		263E7996209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E7995209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift */; };
 		264DA7C0208FF90D00210035 /* UITableViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */; };
 		264DA7C2208FFB2D00210035 /* UICollectionViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DA7C1208FFB2D00210035 /* UICollectionViewCell+Espresso.swift */; };
+		268019F720E2EF4A002B91C3 /* UISlideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268019F620E2EF4A002B91C3 /* UISlideTransition.swift */; };
+		268019F920E2FCA7002B91C3 /* UICoverTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268019F820E2FCA7002B91C3 /* UICoverTransition.swift */; };
 		292C29F4189B1E32B90FA1D62E9922C6 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1FE61DC3251BBA5CD452BE8564C8E7 /* ConstraintMaker.swift */; };
 		2A52057E4F5C485BA4DCFFA59FCD6E70 /* UIColor+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AD84925DF98422C393CD71DDDAAA3 /* UIColor+Espresso.swift */; };
 		2B601B1C5A1F5046ACEA932E3A700A93 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C04C391051D0F007E876600190446365 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -134,6 +136,8 @@
 		263E7995209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Espresso.swift"; sourceTree = "<group>"; };
 		264DA7BF208FF90D00210035 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
 		264DA7C1208FFB2D00210035 /* UICollectionViewCell+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Espresso.swift"; sourceTree = "<group>"; };
+		268019F620E2EF4A002B91C3 /* UISlideTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlideTransition.swift; sourceTree = "<group>"; };
+		268019F820E2FCA7002B91C3 /* UICoverTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICoverTransition.swift; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		30243908D8F97F09823E994F2AB2CB71 /* Collection+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+Espresso.swift"; sourceTree = "<group>"; };
 		309E2698B836BD42360DF15334DC77C0 /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				2631967C20E2BB8E00AE1B56 /* UIFadeTransition.swift */,
+				268019F620E2EF4A002B91C3 /* UISlideTransition.swift */,
+				268019F820E2FCA7002B91C3 /* UICoverTransition.swift */,
 				2631967820E2B11800AE1B56 /* UIPushBackTransition.swift */,
 			);
 			path = Transitions;
@@ -763,8 +769,10 @@
 				F52C7B002F9A49AEA4D6D9C58C9647E4 /* String+Espresso.swift in Sources */,
 				44ED82FFD8B450EC1A58B929932C07B3 /* UIApplication+Espresso.swift in Sources */,
 				2631967920E2B11800AE1B56 /* UIPushBackTransition.swift in Sources */,
+				268019F920E2FCA7002B91C3 /* UICoverTransition.swift in Sources */,
 				263E7994209254FB003BAD76 /* CaseIterable.swift in Sources */,
 				263E7996209255BC003BAD76 /* UIGestureRecognizer+Espresso.swift in Sources */,
+				268019F720E2EF4A002B91C3 /* UISlideTransition.swift in Sources */,
 				2A52057E4F5C485BA4DCFFA59FCD6E70 /* UIColor+Espresso.swift in Sources */,
 				38CFE1FBE3B3E1A232A76F7CEA938C4D /* UIContainerView.swift in Sources */,
 				3809FEF1B72F167F7756686275E59476 /* UIDevice+Espresso.swift in Sources */,

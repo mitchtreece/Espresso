@@ -76,8 +76,10 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum TransitionRow: Int {
         
         case fade
+        case slide
+        case cover
         case pushBack
-        static var count = 2
+        static var count = 4
         
     }
     
@@ -141,6 +143,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             switch row {
             case .fade: cell.textLabel?.text = "UIFadeTransition"
+            case .slide: cell.textLabel?.text = "UISlideTransition"
+            case .cover: cell.textLabel?.text = "UICoverTransition"
             case .pushBack: cell.textLabel?.text = "UIPushBackTransition"
             }
             
@@ -240,6 +244,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 vc.title = "UIFadeTransition"
                 transition = UIFadeTransition()
+                
+            case .slide:
+                
+                vc.title = "UISlideTransition"
+                transition = UISlideTransition()
+                
+            case .cover:
+                
+                vc.title = "UICoverTransition"
+                transition = UICoverTransition()
                 
             case .pushBack:
                 

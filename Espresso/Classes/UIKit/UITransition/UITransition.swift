@@ -9,19 +9,58 @@ import UIKit
 
 @objc public class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
-    public enum Context {
+    public enum PresentationContext {
         case presentation
         case dismissal
     }
+    
+    public enum Direction {
+        
+        case none
+        case up
+        case down
+        case left
+        case right
+        
+        func reversed() -> Direction {
+            
+            switch self {
+            case .none: return .none
+            case .up: return .down
+            case .down: return .up
+            case .left: return .right
+            case .right: return .left
+            }
+            
+        }
+        
+    }
+    
+    public enum ViewControllerContext {
+        case source
+        case destination
+    }
+    
+    public struct Settings {
+        
+        public var duration: TimeInterval = 0.5
+        public var direction: Direction = .none
+        
+    }
+    
+    // MARK: Settings
+    
+    public var presentation = Settings()
+    public var dismissal = Settings()
+    
+    public func settings(for context: PresentationContext) -> Settings {
+        return (context == .presentation) ? presentation : dismissal
+    }
+    
+    // MARK: Interactive
 
     public var isInteractive: Bool = true
     private var interactor: UITransitionInteractionController?
-    
-    // MARK: Duration
-    
-    public func animationDuration(for context: Context) -> TimeInterval {
-        return 0.5
-    }
     
     // MARK: Modal
     
@@ -98,6 +137,20 @@ import UIKit
         // Override me
     }
     
+    // MARK: Helpers
+    
+    internal func boundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+        
+        switch direction {
+        case .up: return CGAffineTransform(translationX: 0, y: -container.bounds.height)
+        case .down: return CGAffineTransform(translationX: 0, y: container.bounds.height)
+        case .left: return CGAffineTransform(translationX: -container.bounds.width, y: 0)
+        case .right: return CGAffineTransform(translationX: container.bounds.width, y: 0)
+        case .none: return .identity
+        }
+        
+    }
+    
 }
 
 fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
@@ -113,8 +166,8 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         
-        let presentationDuration = transition?.animationDuration(for: .presentation) ?? 0
-        let dismissalDuration = transition?.animationDuration(for: .dismissal) ?? 0
+        let presentationDuration = transition?.presentation.duration ?? 0
+        let dismissalDuration = transition?.dismissal.duration ?? 0
         return isPresentation ? presentationDuration : dismissalDuration
         
     }
