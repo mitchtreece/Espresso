@@ -28,55 +28,35 @@ public class UIFadeTransition: UITransition {
         
     }
     
-    public override func presentationAnimation(inContainer container: UIView,
-                                               fromVC: UIViewController,
-                                               toVC: UIViewController,
-                                               ctx: UIViewControllerContextTransitioning) {
-        
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .presentation)
-        
+    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+        return _animate(with: info, settings: self.settings(for: transitionType))
     }
     
-    public override func dismissalAnimation(inContainer container: UIView,
-                                            fromVC: UIViewController,
-                                            toVC: UIViewController,
-                                            ctx: UIViewControllerContextTransitioning) {
+    private func _animate(with info: Info, settings: Settings) -> UITransitionController {
         
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .dismissal)
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
         
-    }
-    
-    private func _animate(inContainer container: UIView,
-                          fromVC: UIViewController,
-                          toVC: UIViewController,
-                          ctx: UIViewControllerContextTransitioning,
-                          presentationContext: PresentationContext) {
+        destinationVC.view.alpha = 0
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        container.addSubview(destinationVC.view)
         
-        let settings = self.settings(for: presentationContext)
-        
-        toVC.view.alpha = 0
-        toVC.view.frame = ctx.finalFrame(for: toVC)
-        container.addSubview(toVC.view)
-        
-        UIView.animate(withDuration: settings.duration,
-                       delay: settings.delay,
-                       usingSpringWithDamping: settings.springDamping,
-                       initialSpringVelocity: settings.springVelocity,
-                       options: settings.animationOptions,
-                       animations: {
-                   
-                        if self.fadeType == .cross {
-                            fromVC.view.alpha = 0
-                        }
-                        
-                        toVC.view.alpha = 1
-                        
-        }) { (finished) in
+        return UITransitionController(animations: {
             
-            fromVC.view.alpha = 1
-            ctx.completeTransition(!ctx.transitionWasCancelled)
+            if self.fadeType == .cross {
+                sourceVC.view.alpha = 0
+            }
             
-        }
+            destinationVC.view.alpha = 1
+            
+        }, completion: {
+            
+            sourceVC.view.alpha = 1
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
         
     }
     

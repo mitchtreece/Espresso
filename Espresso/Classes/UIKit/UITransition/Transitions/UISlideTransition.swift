@@ -17,52 +17,32 @@ public class UISlideTransition: UITransition {
         
     }
     
-    public override func presentationAnimation(inContainer container: UIView,
-                                               fromVC: UIViewController,
-                                               toVC: UIViewController,
-                                               ctx: UIViewControllerContextTransitioning) {
-        
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .presentation)
-        
+    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+        return _animate(with: info, settings: self.settings(for: transitionType))
     }
     
-    public override func dismissalAnimation(inContainer container: UIView,
-                                            fromVC: UIViewController,
-                                            toVC: UIViewController,
-                                            ctx: UIViewControllerContextTransitioning) {
+    private func _animate(with info: Info, settings: Settings) -> UITransitionController {
         
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .dismissal)
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
         
-    }
-    
-    private func _animate(inContainer container: UIView,
-                          fromVC: UIViewController,
-                          toVC: UIViewController,
-                          ctx: UIViewControllerContextTransitioning,
-                          presentationContext: PresentationContext) {
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
+        container.addSubview(destinationVC.view)
         
-        let settings = self.settings(for: presentationContext)
-        
-        toVC.view.frame = ctx.finalFrame(for: toVC)
-        toVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
-        container.addSubview(toVC.view)
-        
-        UIView.animate(withDuration: settings.duration,
-                       delay: settings.delay,
-                       usingSpringWithDamping: settings.springDamping,
-                       initialSpringVelocity: settings.springVelocity,
-                       options: settings.animationOptions,
-                       animations: {
+        return UITransitionController(animations: {
             
-                        fromVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
-                        toVC.view.transform = .identity
-                        
-        }) { (finished) in
+            sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+            destinationVC.view.transform = .identity
             
-            fromVC.view.transform = .identity
-            ctx.completeTransition(!ctx.transitionWasCancelled)
+        }, completion: {
             
-        }
+            sourceVC.view.transform = .identity
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
         
     }
     

@@ -7,9 +7,21 @@
 
 import UIKit
 
-@objc public class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+@objc open class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
-    public enum PresentationContext {
+    public typealias VoidBlock = ()->()
+    public typealias UITransitionController = (animations: VoidBlock, completion: VoidBlock)
+    
+    public struct Info {
+        
+        public private(set) var transitionContainerView: UIView
+        public private(set) var sourceViewController: UIViewController
+        public private(set) var destinationViewController: UIViewController
+        public private(set) var context: UIViewControllerContextTransitioning
+        
+    }
+    
+    public enum TransitionType {
         case presentation
         case dismissal
     }
@@ -34,7 +46,7 @@ import UIKit
         
     }
     
-    public enum ViewControllerContext {
+    public enum ViewControllerType {
         case source
         case destination
     }
@@ -48,9 +60,9 @@ import UIKit
         public var springVelocity: CGFloat
         public var animationOptions: UIViewAnimationOptions
         
-        static func `default`(for context: PresentationContext) -> Settings {
+        public static func `default`(for transitionType: TransitionType) -> Settings {
             
-            let isPresentation = (context == .presentation)
+            let isPresentation = (transitionType == .presentation)
             
             return Settings(duration: 0.6,
                             direction: isPresentation ? .left : .right,
@@ -68,8 +80,8 @@ import UIKit
     public var presentation = Settings.default(for: .presentation)
     public var dismissal = Settings.default(for: .dismissal)
     
-    public func settings(for context: PresentationContext) -> Settings {
-        return (context == .presentation) ? presentation : dismissal
+    public func settings(for transitionType: TransitionType) -> Settings {
+        return (transitionType == .presentation) ? presentation : dismissal
     }
     
     // MARK: Interactive
@@ -138,18 +150,25 @@ import UIKit
     
     // MARK: Public
     
-    public func presentationAnimation(inContainer container: UIView,
-                                      fromVC: UIViewController,
-                                      toVC: UIViewController,
-                                      ctx: UIViewControllerContextTransitioning) {
+    open func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+        
         // Override me
-    }
-    
-    public func dismissalAnimation(inContainer container: UIView,
-                                   fromVC: UIViewController,
-                                   toVC: UIViewController,
-                                   ctx: UIViewControllerContextTransitioning) {
-        // Override me
+        
+        let container = info.transitionContainerView
+        let destinationVC = info.destinationViewController
+        let finalFrame = info.context.finalFrame(for: destinationVC)
+        
+        return UITransitionController(animations: {
+            
+            container.addSubview(destinationVC.view)
+            destinationVC.view.frame = finalFrame
+            
+        }, completion: {
+            
+            info.context.completeTransition(!info.context.transitionWasCancelled)
+            
+        })
+        
     }
     
     // MARK: Helpers
@@ -188,34 +207,34 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
+        guard let transition = transition else { return transitionContext.completeTransition(true) }
         guard let fromVC = transitionContext.viewController(forKey: .from) else { return }
         guard let toVC = transitionContext.viewController(forKey: .to) else { return }
         let container = transitionContext.containerView
         
-        if isPresentation {
-            presentationAnimation(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: transitionContext)
+        let transitionType: UITransition.TransitionType = isPresentation ? .presentation : .dismissal
+        let info = UITransition.Info(transitionContainerView: container,
+                                     sourceViewController: fromVC,
+                                     destinationViewController: toVC,
+                                     context: transitionContext)
+        
+        let controller = transition.transitionController(for: transitionType, info: info)
+        let settings = transition.settings(for: transitionType)
+        
+        UIView.animate(withDuration: settings.duration,
+                       delay: settings.delay,
+                       usingSpringWithDamping: settings.springDamping,
+                       initialSpringVelocity: settings.springVelocity,
+                       options: settings.animationOptions,
+                       animations: {
+                        
+                        controller.animations()
+                        
+        }) { (finished) in
+            
+            controller.completion()
+            
         }
-        else {
-            dismissalAnimation(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: transitionContext)
-        }
-        
-    }
-    
-    private func presentationAnimation(inContainer container: UIView,
-                                       fromVC: UIViewController,
-                                       toVC: UIViewController,
-                                       ctx: UIViewControllerContextTransitioning) {
-        
-        transition?.presentationAnimation(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx)
-        
-    }
-    
-    private func dismissalAnimation(inContainer container: UIView,
-                                    fromVC: UIViewController,
-                                    toVC: UIViewController,
-                                    ctx: UIViewControllerContextTransitioning) {
-        
-        transition?.dismissalAnimation(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx)
         
     }
     

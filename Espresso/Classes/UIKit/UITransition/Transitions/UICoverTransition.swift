@@ -11,74 +11,63 @@ public class UICoverTransition: UITransition {
     
     public var coverAlpha: CGFloat = 0.7
     
-    public override func presentationAnimation(inContainer container: UIView,
-                                               fromVC: UIViewController,
-                                               toVC: UIViewController,
-                                               ctx: UIViewControllerContextTransitioning) {
+    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
         
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .presentation)
-        
-    }
-    
-    public override func dismissalAnimation(inContainer container: UIView,
-                                            fromVC: UIViewController,
-                                            toVC: UIViewController,
-                                            ctx: UIViewControllerContextTransitioning) {
-        
-        _animate(inContainer: container, fromVC: fromVC, toVC: toVC, ctx: ctx, presentationContext: .dismissal)
+        let isPresentation = (transitionType == .presentation)
+        let settings = self.settings(for: transitionType)
+        return isPresentation ? _present(with: info, settings: settings) : _dismiss(with: info, settings: settings)
         
     }
     
-    private func _animate(inContainer container: UIView,
-                          fromVC: UIViewController,
-                          toVC: UIViewController,
-                          ctx: UIViewControllerContextTransitioning,
-                          presentationContext: PresentationContext) {
+    private func _present(with info: Info, settings: Settings) -> UITransitionController {
         
-        let settings = self.settings(for: presentationContext)
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
         
-        if presentationContext == .presentation {
-            
-            toVC.view.frame = ctx.finalFrame(for: toVC)
-            toVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
-            container.addSubview(toVC.view)
-            
-        }
-        else {
-            
-            toVC.view.frame = ctx.finalFrame(for: toVC)
-            toVC.view.alpha = coverAlpha
-            container.insertSubview(toVC.view, belowSubview: fromVC.view)
-            
-        }
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
+        container.addSubview(destinationVC.view)
         
-        UIView.animate(withDuration: settings.duration,
-                       delay: settings.delay,
-                       usingSpringWithDamping: settings.springDamping,
-                       initialSpringVelocity: settings.springVelocity,
-                       options: settings.animationOptions,
-                       animations: {
-                        
-                        if presentationContext == .presentation {
-                            
-                            fromVC.view.alpha = self.coverAlpha
-                            toVC.view.transform = .identity
-                            
-                        }
-                        else {
-                            
-                            fromVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
-                            toVC.view.alpha = 1
-                            
-                        }
-                        
-        }) { (finished) in
+        return UITransitionController(animations: {
             
-            fromVC.view.alpha = 1
-            fromVC.view.transform = .identity
-            ctx.completeTransition(!ctx.transitionWasCancelled)
+            sourceVC.view.alpha = self.coverAlpha
+            destinationVC.view.transform = .identity
             
-        }
+        }, completion: {
+            
+            sourceVC.view.alpha = 1
+            sourceVC.view.transform = .identity
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
+        
+    }
+    
+    private func _dismiss(with info: Info, settings: Settings) -> UITransitionController {
+        
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
+        
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        destinationVC.view.alpha = coverAlpha
+        container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+        
+        return UITransitionController(animations: {
+            
+            sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+            destinationVC.view.alpha = 1
+            
+        }, completion: {
+            
+            sourceVC.view.alpha = 1
+            sourceVC.view.transform = .identity
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
         
     }
     

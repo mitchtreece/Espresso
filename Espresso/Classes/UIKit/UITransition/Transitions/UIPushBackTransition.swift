@@ -21,79 +21,79 @@ public class UIPushBackTransition: UITransition {
         
     }
     
-    public override func presentationAnimation(inContainer container: UIView,
-                                               fromVC: UIViewController,
-                                               toVC: UIViewController,
-                                               ctx: UIViewControllerContextTransitioning) {
+    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
         
-        toVC.view.frame = ctx.finalFrame(for: toVC)
-        container.addSubview(toVC.view)
-        toVC.view.transform = self.boundsTransform(in: container, direction: self.presentation.direction.reversed())
-        
-        let previousClipsToBound = fromVC.view.clipsToBounds
-        let previousCornerRadius = fromVC.view.layer.cornerRadius
-        fromVC.view.clipsToBounds = true
-        
-        UIView.animate(withDuration: self.presentation.duration,
-                       delay: self.presentation.delay,
-                       usingSpringWithDamping: self.presentation.springDamping,
-                       initialSpringVelocity: self.presentation.springVelocity,
-                       options: self.presentation.animationOptions,
-                       animations: {
-                      
-                        fromVC.view.layer.cornerRadius = self.roundedCornerRadius
-                        fromVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
-                        fromVC.view.alpha = self.pushBackAlpha
-                        
-                        toVC.view.transform = .identity
-                        
-        }) { (finished) in
-            
-            fromVC.view.clipsToBounds = previousClipsToBound
-            fromVC.view.layer.cornerRadius = previousCornerRadius
-            fromVC.view.transform = .identity
-            fromVC.view.alpha = 1
-            
-            ctx.completeTransition(!ctx.transitionWasCancelled)
-            
-        }
+        let isPresentation = (transitionType == .presentation)
+        let settings = self.settings(for: transitionType)
+        return isPresentation ? _present(with: info, settings: settings) : _dismiss(with: info, settings: settings)
         
     }
     
-    public override func dismissalAnimation(inContainer container: UIView,
-                                            fromVC: UIViewController,
-                                            toVC: UIViewController,
-                                            ctx: UIViewControllerContextTransitioning) {
+    private func _present(with info: Info, settings: Settings) -> UITransitionController {
         
-        toVC.view.alpha = pushBackAlpha
-        toVC.view.frame = ctx.finalFrame(for: toVC)
-        container.insertSubview(toVC.view, belowSubview: fromVC.view)
-        toVC.view.transform = CGAffineTransform(scaleX: pushBackScale, y: pushBackScale)
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
         
-        let previousClipsToBound = toVC.view.clipsToBounds
-        let previousCornerRadius = toVC.view.layer.cornerRadius
-        toVC.view.layer.cornerRadius = roundedCornerRadius
-        toVC.view.clipsToBounds = true
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        container.addSubview(destinationVC.view)
+        destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
         
-        UIView.animate(withDuration: self.dismissal.duration,
-                       delay: self.dismissal.delay,
-                       usingSpringWithDamping: self.dismissal.springDamping,
-                       initialSpringVelocity: self.dismissal.springVelocity,
-                       options: self.dismissal.animationOptions,
-                       animations: {
+        let previousClipsToBound = sourceVC.view.clipsToBounds
+        let previousCornerRadius = sourceVC.view.layer.cornerRadius
+        sourceVC.view.clipsToBounds = true
+        
+        return UITransitionController(animations: {
             
-                        fromVC.view.transform = self.boundsTransform(in: container, direction: self.dismissal.direction)
-                        
-                        toVC.view.layer.cornerRadius = previousCornerRadius
-                        toVC.view.transform = .identity
-                        toVC.view.alpha = 1
-                        
-        }) { (finished) in
+            sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
+            sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
+            sourceVC.view.alpha = self.pushBackAlpha
+            destinationVC.view.transform = .identity
             
-            toVC.view.clipsToBounds = previousClipsToBound
-            ctx.completeTransition(!ctx.transitionWasCancelled)
+        }, completion: {
             
-        }
+            sourceVC.view.clipsToBounds = previousClipsToBound
+            sourceVC.view.layer.cornerRadius = previousCornerRadius
+            sourceVC.view.transform = .identity
+            sourceVC.view.alpha = 1
+            
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
+        
+    }
+    
+    private func _dismiss(with info: Info, settings: Settings) -> UITransitionController {
+        
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
+        
+        destinationVC.view.alpha = pushBackAlpha
+        destinationVC.view.frame = context.finalFrame(for: destinationVC)
+        container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+        destinationVC.view.transform = CGAffineTransform(scaleX: pushBackScale, y: pushBackScale)
+        
+        let previousClipsToBound = destinationVC.view.clipsToBounds
+        let previousCornerRadius = destinationVC.view.layer.cornerRadius
+        destinationVC.view.layer.cornerRadius = roundedCornerRadius
+        destinationVC.view.clipsToBounds = true
+        
+        return UITransitionController(animations: {
+            
+            sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+            destinationVC.view.layer.cornerRadius = previousCornerRadius
+            destinationVC.view.transform = .identity
+            destinationVC.view.alpha = 1
+            
+        }, completion: {
+            
+            destinationVC.view.clipsToBounds = previousClipsToBound
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
         
     }
     

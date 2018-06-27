@@ -79,7 +79,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case slide
         case cover
         case pushBack
-        static var count = 4
+        case custom
+        static var count = 5
         
     }
     
@@ -146,6 +147,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .slide: cell.textLabel?.text = "UISlideTransition"
             case .cover: cell.textLabel?.text = "UICoverTransition"
             case .pushBack: cell.textLabel?.text = "UIPushBackTransition"
+            case .custom: cell.textLabel?.text = "Custom"
             }
             
         case .helpers:
@@ -259,6 +261,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 vc.title = "UIPushBackTransition"
                 transition = UIPushBackTransition()
+            
+            case .custom:
+                
+                vc.title = "Custom"
+                transition = CustomTransition()
                 
             }
             
