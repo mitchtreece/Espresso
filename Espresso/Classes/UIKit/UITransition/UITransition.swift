@@ -16,7 +16,6 @@ import UIKit
     
     public enum Direction {
         
-        case none
         case up
         case down
         case left
@@ -25,7 +24,6 @@ import UIKit
         func reversed() -> Direction {
             
             switch self {
-            case .none: return .none
             case .up: return .down
             case .down: return .up
             case .left: return .right
@@ -43,15 +41,32 @@ import UIKit
     
     public struct Settings {
         
-        public var duration: TimeInterval = 0.5
-        public var direction: Direction = .none
+        public var duration: TimeInterval
+        public var direction: Direction
+        public var delay: TimeInterval
+        public var springDamping: CGFloat
+        public var springVelocity: CGFloat
+        public var animationOptions: UIViewAnimationOptions
+        
+        static func `default`(for context: PresentationContext) -> Settings {
+            
+            let isPresentation = (context == .presentation)
+            
+            return Settings(duration: 0.6,
+                            direction: isPresentation ? .left : .right,
+                            delay: 0,
+                            springDamping: 0.9,
+                            springVelocity: 0.25,
+                            animationOptions: [.curveEaseInOut])
+            
+        }
         
     }
     
     // MARK: Settings
     
-    public var presentation = Settings()
-    public var dismissal = Settings()
+    public var presentation = Settings.default(for: .presentation)
+    public var dismissal = Settings.default(for: .dismissal)
     
     public func settings(for context: PresentationContext) -> Settings {
         return (context == .presentation) ? presentation : dismissal
@@ -59,7 +74,7 @@ import UIKit
     
     // MARK: Interactive
 
-    public var isInteractive: Bool = true
+    public var isInteractive: Bool = false
     private var interactor: UITransitionInteractionController?
     
     // MARK: Modal
@@ -146,7 +161,6 @@ import UIKit
         case .down: return CGAffineTransform(translationX: 0, y: container.bounds.height)
         case .left: return CGAffineTransform(translationX: -container.bounds.width, y: 0)
         case .right: return CGAffineTransform(translationX: container.bounds.width, y: 0)
-        case .none: return .identity
         }
         
     }

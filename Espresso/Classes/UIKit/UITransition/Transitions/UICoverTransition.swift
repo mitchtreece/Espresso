@@ -11,18 +11,6 @@ public class UICoverTransition: UITransition {
     
     public var coverAlpha: CGFloat = 0.7
     
-    public override init() {
-        
-        super.init()
-        
-        self.presentation.duration = 0.3
-        self.presentation.direction = .left
-        
-        self.dismissal.duration = 0.3
-        self.dismissal.direction = self.presentation.direction.reversed()
-        
-    }
-    
     public override func presentationAnimation(inContainer container: UIView,
                                                fromVC: UIViewController,
                                                toVC: UIViewController,
@@ -47,12 +35,12 @@ public class UICoverTransition: UITransition {
                           ctx: UIViewControllerContextTransitioning,
                           presentationContext: PresentationContext) {
         
-        let direction = self.settings(for: presentationContext).direction
+        let settings = self.settings(for: presentationContext)
         
         if presentationContext == .presentation {
             
             toVC.view.frame = ctx.finalFrame(for: toVC)
-            toVC.view.transform = self.boundsTransform(in: container, direction: direction.reversed())
+            toVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
             container.addSubview(toVC.view)
             
         }
@@ -64,21 +52,26 @@ public class UICoverTransition: UITransition {
             
         }
         
-        UIView.animate(withDuration: self.dismissal.duration, delay: 0, options: [.curveEaseInOut], animations: {
-            
-            if presentationContext == .presentation {
-                
-                fromVC.view.alpha = self.coverAlpha
-                toVC.view.transform = .identity
-                
-            }
-            else {
-                
-                fromVC.view.transform = self.boundsTransform(in: container, direction: direction)
-                toVC.view.alpha = 1
-                
-            }
-            
+        UIView.animate(withDuration: settings.duration,
+                       delay: settings.delay,
+                       usingSpringWithDamping: settings.springDamping,
+                       initialSpringVelocity: settings.springVelocity,
+                       options: settings.animationOptions,
+                       animations: {
+                        
+                        if presentationContext == .presentation {
+                            
+                            fromVC.view.alpha = self.coverAlpha
+                            toVC.view.transform = .identity
+                            
+                        }
+                        else {
+                            
+                            fromVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+                            toVC.view.alpha = 1
+                            
+                        }
+                        
         }) { (finished) in
             
             fromVC.view.alpha = 1
