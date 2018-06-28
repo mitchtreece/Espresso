@@ -11,37 +11,27 @@ import Espresso
 
 class CustomTransition: UITransition {
     
-    override init() {
-        
-        super.init()
-        self.presentation.duration = 0.7
-        self.dismissal.duration = 0.7
-        
-    }
-    
-    override func transitionController(for transitionType: UITransition.TransitionType, info: UITransition.Info) -> UITransition.UITransitionController {
+    override func transitionController(for transitionType: UITransition.TransitionType, info: UITransition.Info) -> UITransitionController {
         
         let destinationVC = info.destinationViewController
         let container = info.transitionContainerView
         let context = info.context
         
-        // Setup
+        return UITransitionController(setup: {
+            
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            destinationVC.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            destinationVC.view.alpha = 0
+            container.addSubview(destinationVC.view)
+            
+        }, animations: [
         
-        destinationVC.view.frame = context.finalFrame(for: destinationVC)
-        destinationVC.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        destinationVC.view.alpha = 0
-        container.addSubview(destinationVC.view)
-        
-        return UITransitionController(animations: {
+            UITransitionAnimation {
+                destinationVC.view.transform = .identity
+                destinationVC.view.alpha = 1
+            }
             
-            // Animations
-            
-            destinationVC.view.transform = .identity
-            destinationVC.view.alpha = 1
-            
-        }, completion: {
-            
-            // Completion
+        ], completion: {
             
             context.completeTransition(!context.transitionWasCancelled)
             

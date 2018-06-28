@@ -36,22 +36,27 @@ public class UIPushBackTransition: UITransition {
         let container = info.transitionContainerView
         let context = info.context
         
-        destinationVC.view.frame = context.finalFrame(for: destinationVC)
-        container.addSubview(destinationVC.view)
-        destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
-        
         let previousClipsToBound = sourceVC.view.clipsToBounds
         let previousCornerRadius = sourceVC.view.layer.cornerRadius
-        sourceVC.view.clipsToBounds = true
         
-        return UITransitionController(animations: {
+        return UITransitionController(setup: {
             
-            sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
-            sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
-            sourceVC.view.alpha = self.pushBackAlpha
-            destinationVC.view.transform = .identity
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            container.addSubview(destinationVC.view)
+            destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
             
-        }, completion: {
+            sourceVC.view.clipsToBounds = true
+            
+        }, animations: [
+            
+            UITransitionAnimation {
+                sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
+                sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
+                sourceVC.view.alpha = self.pushBackAlpha
+                destinationVC.view.transform = .identity
+            }
+            
+        ], completion: {
             
             sourceVC.view.clipsToBounds = previousClipsToBound
             sourceVC.view.layer.cornerRadius = previousCornerRadius
@@ -71,28 +76,33 @@ public class UIPushBackTransition: UITransition {
         let container = info.transitionContainerView
         let context = info.context
         
-        destinationVC.view.alpha = pushBackAlpha
-        destinationVC.view.frame = context.finalFrame(for: destinationVC)
-        container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
-        destinationVC.view.transform = CGAffineTransform(scaleX: pushBackScale, y: pushBackScale)
-        
         let previousClipsToBound = destinationVC.view.clipsToBounds
         let previousCornerRadius = destinationVC.view.layer.cornerRadius
-        destinationVC.view.layer.cornerRadius = roundedCornerRadius
-        destinationVC.view.clipsToBounds = true
         
-        return UITransitionController(animations: {
+        return UITransitionController(setup: {
             
-            sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
-            destinationVC.view.layer.cornerRadius = previousCornerRadius
-            destinationVC.view.transform = .identity
-            destinationVC.view.alpha = 1
+            destinationVC.view.alpha = self.pushBackAlpha
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+            destinationVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
             
-        }, completion: {
+            destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
+            destinationVC.view.clipsToBounds = true
             
+        }, animations: [
+            
+            UITransitionAnimation {
+                sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+                destinationVC.view.layer.cornerRadius = previousCornerRadius
+                destinationVC.view.transform = .identity
+                destinationVC.view.alpha = 1
+            }
+            
+        ], completion: {
+                
             destinationVC.view.clipsToBounds = previousClipsToBound
             context.completeTransition(!context.transitionWasCancelled)
-            
+                
         })
         
     }

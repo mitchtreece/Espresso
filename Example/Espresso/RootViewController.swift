@@ -78,9 +78,36 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case fade
         case slide
         case cover
+        case swap
         case pushBack
         case custom
         static var count = 5
+        
+        var transition: UITransition {
+            
+            switch self {
+            case .fade: return UIFadeTransition()
+            case .slide: return UISlideTransition()
+            case .cover: return UICoverTransition()
+            case .swap: return UISwapTransition()
+            case .pushBack: return UIPushBackTransition()
+            case .custom: return CustomTransition()
+            }
+            
+        }
+        
+        var title: String {
+            
+            switch self {
+            case .fade: return "UIFadeTransition"
+            case .slide: return "UISlideTransition"
+            case .cover: return "UICoverTransition"
+            case .swap: return "UISwapTransition"
+            case .pushBack: return "UIPushBackTransition"
+            case .custom: return "Custom"
+            }
+            
+        }
         
     }
     
@@ -141,14 +168,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            
-            switch row {
-            case .fade: cell.textLabel?.text = "UIFadeTransition"
-            case .slide: cell.textLabel?.text = "UISlideTransition"
-            case .cover: cell.textLabel?.text = "UICoverTransition"
-            case .pushBack: cell.textLabel?.text = "UIPushBackTransition"
-            case .custom: cell.textLabel?.text = "Custom"
-            }
+            cell.textLabel?.text = row.title
             
         case .helpers:
             
@@ -238,36 +258,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
 
-            let transition: UITransition!
             let vc = TransitionViewController()
-
-            switch row {
-            case .fade:
-                
-                vc.title = "UIFadeTransition"
-                transition = UIFadeTransition()
-                
-            case .slide:
-                
-                vc.title = "UISlideTransition"
-                transition = UISlideTransition()
-                
-            case .cover:
-                
-                vc.title = "UICoverTransition"
-                transition = UICoverTransition()
-                
-            case .pushBack:
-                
-                vc.title = "UIPushBackTransition"
-                transition = UIPushBackTransition()
-            
-            case .custom:
-                
-                vc.title = "Custom"
-                transition = CustomTransition()
-                
-            }
+            vc.title = row.title
             
             let navBar = UINavigationBarAppearance()
             navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
@@ -277,7 +269,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             vc.navBarAppearance = navBar
             
             let nav = UIStyledNavigationController(rootViewController: vc)
-            self.present(nav, with: transition, completion: nil)
+            self.present(nav, with: row.transition, completion: nil)
             
         case .helpers:
             

@@ -26,16 +26,20 @@ public class UICoverTransition: UITransition {
         let container = info.transitionContainerView
         let context = info.context
         
-        destinationVC.view.frame = context.finalFrame(for: destinationVC)
-        destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
-        container.addSubview(destinationVC.view)
-        
-        return UITransitionController(animations: {
+        return UITransitionController(setup: {
             
-            sourceVC.view.alpha = self.coverAlpha
-            destinationVC.view.transform = .identity
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
+            container.addSubview(destinationVC.view)
             
-        }, completion: {
+        }, animations: [
+            
+            UITransitionAnimation {
+                sourceVC.view.alpha = self.coverAlpha
+                destinationVC.view.transform = .identity
+            }
+            
+        ], completion: {
             
             sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity
@@ -52,21 +56,25 @@ public class UICoverTransition: UITransition {
         let container = info.transitionContainerView
         let context = info.context
         
-        destinationVC.view.frame = context.finalFrame(for: destinationVC)
-        destinationVC.view.alpha = coverAlpha
-        container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
-        
-        return UITransitionController(animations: {
+        return UITransitionController(setup: {
             
-            sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
-            destinationVC.view.alpha = 1
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            destinationVC.view.alpha = self.coverAlpha
+            container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
             
-        }, completion: {
+        }, animations: [
             
+            UITransitionAnimation {
+                sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
+                destinationVC.view.alpha = 1
+            }
+            
+        ], completion: {
+                
             sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity
             context.completeTransition(!context.transitionWasCancelled)
-            
+                
         })
         
     }

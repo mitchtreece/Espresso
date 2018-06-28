@@ -10,7 +10,6 @@ import UIKit
 @objc open class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
     public typealias VoidBlock = ()->()
-    public typealias UITransitionController = (animations: VoidBlock, completion: VoidBlock)
     
     public struct Info {
         
@@ -53,23 +52,12 @@ import UIKit
     
     public struct Settings {
         
-        public var duration: TimeInterval
         public var direction: Direction
-        public var delay: TimeInterval
-        public var springDamping: CGFloat
-        public var springVelocity: CGFloat
-        public var animationOptions: UIViewAnimationOptions
         
         public static func `default`(for transitionType: TransitionType) -> Settings {
             
             let isPresentation = (transitionType == .presentation)
-            
-            return Settings(duration: 0.6,
-                            direction: isPresentation ? .left : .right,
-                            delay: 0,
-                            springDamping: 0.9,
-                            springVelocity: 0.25,
-                            animationOptions: [.curveEaseInOut])
+            return Settings(direction: isPresentation ? .left : .right)
             
         }
         
@@ -158,12 +146,18 @@ import UIKit
         let destinationVC = info.destinationViewController
         let finalFrame = info.context.finalFrame(for: destinationVC)
         
-        return UITransitionController(animations: {
+        return UITransitionController(setup: {
             
-            container.addSubview(destinationVC.view)
-            destinationVC.view.frame = finalFrame
+            // None
             
-        }, completion: {
+        }, animations: [
+            
+            UITransitionAnimation({
+                container.addSubview(destinationVC.view)
+                destinationVC.view.frame = finalFrame
+            })
+            
+        ], completion: {
             
             info.context.completeTransition(!info.context.transitionWasCancelled)
             
@@ -184,6 +178,13 @@ import UIKit
         
     }
     
+    internal func halfBoundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+        
+        let transform = boundsTransform(in: container, direction: direction)
+        return CGAffineTransform(translationX: (transform.tx / 2), y: (transform.ty / 2))
+        
+    }
+    
 }
 
 fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
@@ -192,49 +193,65 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
     private(set) var isPresentation = true
     
     init(transition: UITransition, presentation: Bool) {
+        
         self.transition = transition
         self.isPresentation = presentation
         super.init()
+        
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         
-        let presentationDuration = transition?.presentation.duration ?? 0
-        let dismissalDuration = transition?.dismissal.duration ?? 0
-        return isPresentation ? presentationDuration : dismissalDuration
+        guard let transition = transition else { return 0 }
+        guard let context = transitionContext else { return 0 }
+        guard let info = self.info(from: context) else { return 0 }
+        
+        return transition.transitionController(for: isPresentation ? .presentation : .dismissal,
+                                               info: info).animationDuration
         
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         guard let transition = transition else { return transitionContext.completeTransition(true) }
-        guard let fromVC = transitionContext.viewController(forKey: .from) else { return }
-        guard let toVC = transitionContext.viewController(forKey: .to) else { return }
-        let container = transitionContext.containerView
+        guard let info = self.info(from: transitionContext) else { return transitionContext.completeTransition(true) }
         
         let transitionType: UITransition.TransitionType = isPresentation ? .presentation : .dismissal
-        let info = UITransition.Info(transitionContainerView: container,
-                                     sourceViewController: fromVC,
-                                     destinationViewController: toVC,
-                                     context: transitionContext)
-        
         let controller = transition.transitionController(for: transitionType, info: info)
-        let settings = transition.settings(for: transitionType)
         
-        UIView.animate(withDuration: settings.duration,
-                       delay: settings.delay,
-                       usingSpringWithDamping: settings.springDamping,
-                       initialSpringVelocity: settings.springVelocity,
-                       options: settings.animationOptions,
-                       animations: {
-                        
-                        controller.animations()
-                        
-        }) { (finished) in
-            
-            controller.completion()
+        UIView.performWithoutAnimation {
+            controller.setup()
+        }
+        
+        let queue = UITransitionAnimationQueue()
+        
+        for i in 0..<controller.animations.count {
+
+            let animation = controller.animations[i]
+            let operation = UITransitionAnimationOperation(animation: animation, index: i)
+            queue.addOperation(operation)
             
         }
+        
+        queue.operations.completion {
+            
+            DispatchQueue.main.async {
+                controller.completion()
+            }
+            
+        }
+        
+    }
+    
+    func info(from context: UIViewControllerContextTransitioning) -> UITransition.Info? {
+        
+        guard let fromVC = context.viewController(forKey: .from) else { return nil }
+        guard let toVC = context.viewController(forKey: .to) else { return nil }
+        
+        return UITransition.Info(transitionContainerView: context.containerView,
+                                 sourceViewController: fromVC,
+                                 destinationViewController: toVC,
+                                 context: context)
         
     }
     
