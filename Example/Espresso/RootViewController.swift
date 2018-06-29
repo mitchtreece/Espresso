@@ -115,7 +115,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case deviceInfo
         case displayFeatureInsets
-        case animations
         static var count: Int = 2
         
     }
@@ -178,7 +177,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             switch row {
             case .deviceInfo: cell.textLabel?.text = "Device Info"
             case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
-            case .animations: cell.textLabel?.text = "Animations"
             }
             
         }
@@ -329,12 +327,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 })
                 
                 label.addGestureRecognizer(tap)
-            
-            case .animations:
-                
-                UISpringAnimation {
-                    
-                }.run()
                 
             }
             

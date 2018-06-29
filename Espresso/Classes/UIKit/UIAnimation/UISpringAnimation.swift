@@ -9,32 +9,24 @@ import UIKit
 
 public class UISpringAnimation: UIAnimation {
     
-    public var damping: CGFloat = 0.9
-    public var initialVelcoty: CGFloat = 0.25
+    public var damping: CGFloat
     
     public init(duration: TimeInterval = 0.6,
                 delay: TimeInterval = 0,
                 damping: CGFloat = 0.9,
-                initialVelocity: CGFloat = 0.25,
-                options: UIViewAnimationOptions = [.curveEaseInOut],
                 _ animations: @escaping UIAnimationBlock) {
         
-        super.init(duration: duration, delay: delay, options: options, animations)
         self.damping = damping
+        super.init(duration: duration, delay: delay, animations)
         
     }
     
     override public func run(completion: UIAnimationCompletion? = nil) {
         
-        UIView.animate(withDuration: self.duration,
-                       delay: self.delay,
-                       usingSpringWithDamping: damping,
-                       initialSpringVelocity: initialVelcoty,
-                       options: self.options,
-                       animations: self.animations) { (finished) in
-                        
-                        completion?()
-                        
+        let animator = UIViewPropertyAnimator(duration: self.duration, dampingRatio: damping, animations: self.animations)
+        animator.startAnimation(afterDelay: delay)
+        animator.addCompletion { (position) in
+            completion?()
         }
         
     }

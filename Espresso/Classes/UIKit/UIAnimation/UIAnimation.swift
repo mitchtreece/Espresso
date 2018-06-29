@@ -12,26 +12,28 @@ public typealias UIAnimationCompletion = ()->()
 
 public class UIAnimation {
     
-    public var duration: TimeInterval = 0.6
+    public var duration: TimeInterval
     public var delay: TimeInterval = 0
-    public var options: UIViewAnimationOptions = [.curveEaseInOut]
+    public var curve: UIViewAnimationCurve
     public var animations: UIAnimationBlock
     
     public init(duration: TimeInterval = 0.6,
                 delay: TimeInterval = 0,
-                options: UIViewAnimationOptions = [.curveEaseInOut],
+                curve: UIViewAnimationCurve = .easeInOut,
                 _ animations: @escaping UIAnimationBlock) {
         
         self.duration = duration
         self.delay = delay
-        self.options = options
+        self.curve = curve
         self.animations = animations
         
     }
     
     public func run(completion: UIAnimationCompletion? = nil) {
         
-        UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations) { (finished) in
+        let animator = UIViewPropertyAnimator(duration: duration, curve: curve, animations: animations)
+        animator.startAnimation(afterDelay: delay)
+        animator.addCompletion { (position) in
             completion?()
         }
         
