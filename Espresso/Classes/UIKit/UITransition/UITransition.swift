@@ -218,22 +218,8 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
             controller.setup?()
         }
         
-        let queue = UITransitionAnimationQueue()
-        
-        for i in 0..<controller.animations.count {
-
-            let animation = controller.animations[i]
-            let operation = UITransitionAnimationOperation(animation: animation, index: i)
-            queue.addOperation(operation)
-            
-        }
-        
-        queue.operations.completion {
-            
-            DispatchQueue.main.async {
-                controller.completion()
-            }
-            
+        controller.animations.run {
+            controller.completion()
         }
         
     }

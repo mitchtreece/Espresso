@@ -7,10 +7,10 @@
 
 import UIKit
 
+public typealias UIAnimationBlock = ()->()
+public typealias UIAnimationCompletion = ()->()
+
 public class UIAnimation {
-    
-    public typealias UIAnimationBlock = ()->()
-    public typealias UIAnimationCompletion = ()->()
     
     public var duration: TimeInterval = 0.6
     public var delay: TimeInterval = 0

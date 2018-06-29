@@ -1,5 +1,5 @@
 //
-//  UITransitionAnimationQueue.swift
+//  UIAnimationQueue.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/28/18.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class UITransitionAnimationQueue: OperationQueue {
+internal class UIAnimationQueue: OperationQueue {
     
     override init() {
         

@@ -24,7 +24,7 @@ public class UISpringAnimation: UIAnimation {
         
     }
     
-    override public func run(completion: UIAnimationCompletion?) {
+    override public func run(completion: UIAnimationCompletion? = nil) {
         
         UIView.animate(withDuration: self.duration,
                        delay: self.delay,

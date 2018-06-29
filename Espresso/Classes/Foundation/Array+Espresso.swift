@@ -9,7 +9,7 @@ import Foundation
 
 public extension Array where Element: Operation {
     
-    func completion(block: @escaping ()->()) {
+    public func completion(block: @escaping ()->()) {
         
         let operation = BlockOperation(block: block)
         self.forEach { [unowned operation] in operation.addDependency($0) }

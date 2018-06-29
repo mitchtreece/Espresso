@@ -33,12 +33,13 @@
 		266292B220E6B370003986C0 /* UIBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266292B120E6B370003986C0 /* UIBasicAnimation.swift */; };
 		266292B420E6B37B003986C0 /* UISpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266292B320E6B37B003986C0 /* UISpringAnimation.swift */; };
 		266292B720E6B516003986C0 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266292B620E6B516003986C0 /* AsyncOperation.swift */; };
+		266292B920E6B650003986C0 /* Array+UIAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266292B820E6B650003986C0 /* Array+UIAnimation.swift */; };
 		268019F720E2EF4A002B91C3 /* UISlideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268019F620E2EF4A002B91C3 /* UISlideTransition.swift */; };
 		268019F920E2FCA7002B91C3 /* UICoverTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268019F820E2FCA7002B91C3 /* UICoverTransition.swift */; };
 		26AD85EA20E55D6B00AEB973 /* UIAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85E920E55D6B00AEB973 /* UIAnimation.swift */; };
 		26AD85EC20E55D9400AEB973 /* UITransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85EB20E55D9400AEB973 /* UITransitionController.swift */; };
-		26AD85EE20E55EDD00AEB973 /* UITransitionAnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85ED20E55EDD00AEB973 /* UITransitionAnimationQueue.swift */; };
-		26AD85F020E5636F00AEB973 /* UITransitionAnimationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85EF20E5636F00AEB973 /* UITransitionAnimationOperation.swift */; };
+		26AD85EE20E55EDD00AEB973 /* UIAnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85ED20E55EDD00AEB973 /* UIAnimationQueue.swift */; };
+		26AD85F020E5636F00AEB973 /* UIAnimationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85EF20E5636F00AEB973 /* UIAnimationOperation.swift */; };
 		26AD85F220E5646E00AEB973 /* Array+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD85F120E5646E00AEB973 /* Array+Espresso.swift */; };
 		26F38FC920E494C30035F37A /* UISwapTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F38FC820E494C30035F37A /* UISwapTransition.swift */; };
 		292C29F4189B1E32B90FA1D62E9922C6 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1FE61DC3251BBA5CD452BE8564C8E7 /* ConstraintMaker.swift */; };
@@ -148,12 +149,13 @@
 		266292B120E6B370003986C0 /* UIBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBasicAnimation.swift; sourceTree = "<group>"; };
 		266292B320E6B37B003986C0 /* UISpringAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISpringAnimation.swift; sourceTree = "<group>"; };
 		266292B620E6B516003986C0 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		266292B820E6B650003986C0 /* Array+UIAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UIAnimation.swift"; sourceTree = "<group>"; };
 		268019F620E2EF4A002B91C3 /* UISlideTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlideTransition.swift; sourceTree = "<group>"; };
 		268019F820E2FCA7002B91C3 /* UICoverTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICoverTransition.swift; sourceTree = "<group>"; };
 		26AD85E920E55D6B00AEB973 /* UIAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimation.swift; sourceTree = "<group>"; };
 		26AD85EB20E55D9400AEB973 /* UITransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionController.swift; sourceTree = "<group>"; };
-		26AD85ED20E55EDD00AEB973 /* UITransitionAnimationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionAnimationQueue.swift; sourceTree = "<group>"; };
-		26AD85EF20E5636F00AEB973 /* UITransitionAnimationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionAnimationOperation.swift; sourceTree = "<group>"; };
+		26AD85ED20E55EDD00AEB973 /* UIAnimationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimationQueue.swift; sourceTree = "<group>"; };
+		26AD85EF20E5636F00AEB973 /* UIAnimationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimationOperation.swift; sourceTree = "<group>"; };
 		26AD85F120E5646E00AEB973 /* Array+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Espresso.swift"; sourceTree = "<group>"; };
 		26F38FC820E494C30035F37A /* UISwapTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISwapTransition.swift; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
@@ -285,9 +287,6 @@
 				2631966F20E2AF3C00AE1B56 /* UITransition.swift */,
 				26AD85EB20E55D9400AEB973 /* UITransitionController.swift */,
 				2631967120E2AF7600AE1B56 /* UITransitionInteractionController.swift */,
-				26AD85ED20E55EDD00AEB973 /* UITransitionAnimationQueue.swift */,
-				26AD85EF20E5636F00AEB973 /* UITransitionAnimationOperation.swift */,
-				266292B020E6B359003986C0 /* Animations */,
 				2631967720E2B0EE00AE1B56 /* Transitions */,
 				266292B520E6B4EC003986C0 /* Helpers */,
 			);
@@ -314,24 +313,35 @@
 			path = UIDevice;
 			sourceTree = "<group>";
 		};
-		266292B020E6B359003986C0 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				26AD85E920E55D6B00AEB973 /* UIAnimation.swift */,
-				266292B120E6B370003986C0 /* UIBasicAnimation.swift */,
-				266292B320E6B37B003986C0 /* UISpringAnimation.swift */,
-			);
-			path = Animations;
-			sourceTree = "<group>";
-		};
 		266292B520E6B4EC003986C0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				266292B620E6B516003986C0 /* AsyncOperation.swift */,
 				2631967320E2AFA300AE1B56 /* UIViewController+UITransition.swift */,
 				2631967520E2AFBC00AE1B56 /* UINavigationController+UITransition.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		266292BA20E6B7F1003986C0 /* UIAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				26AD85E920E55D6B00AEB973 /* UIAnimation.swift */,
+				26AD85ED20E55EDD00AEB973 /* UIAnimationQueue.swift */,
+				26AD85EF20E5636F00AEB973 /* UIAnimationOperation.swift */,
+				266292B120E6B370003986C0 /* UIBasicAnimation.swift */,
+				266292B320E6B37B003986C0 /* UISpringAnimation.swift */,
+				266292BB20E6B810003986C0 /* Helpers */,
+			);
+			path = UIAnimation;
+			sourceTree = "<group>";
+		};
+		266292BB20E6B810003986C0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				266292B820E6B650003986C0 /* Array+UIAnimation.swift */,
+			);
+			name = Helpers;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		3E11B9C83AC4FA12EDACA9D1A0BDB517 /* UIKit */ = {
@@ -348,6 +358,7 @@
 				264DA7C3208FFBEB00210035 /* UIDevice */,
 				5DD65E2D14134CED7E407674C9ABBD88 /* UIScreen */,
 				FE269BE3E8AEE63ECBC5BDC6069283B3 /* UIViewController */,
+				266292BA20E6B7F1003986C0 /* UIAnimation */,
 				2631966E20E2AF0E00AE1B56 /* UITransition */,
 			);
 			path = UIKit;
@@ -394,6 +405,7 @@
 				0407A5B09A548D78BF36438EE564E287 /* String+Espresso.swift */,
 				A52871E623A6FE786F3BB2A14569AA61 /* IndexPath+Espresso.swift */,
 				26AD85F120E5646E00AEB973 /* Array+Espresso.swift */,
+				266292B620E6B516003986C0 /* AsyncOperation.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -826,9 +838,10 @@
 				2CF7B471FAB76FDC55BD450E5564637D /* UIDisplayFeature.swift in Sources */,
 				A5D925B8E8BD9929EFAC87A2F9389378 /* UIHomeGrabber.swift in Sources */,
 				266292B420E6B37B003986C0 /* UISpringAnimation.swift in Sources */,
+				266292B920E6B650003986C0 /* Array+UIAnimation.swift in Sources */,
 				B3334D3655A0DD842A8FAA41E6D223A8 /* UIImage+Espresso.swift in Sources */,
 				266292B220E6B370003986C0 /* UIBasicAnimation.swift in Sources */,
-				26AD85F020E5636F00AEB973 /* UITransitionAnimationOperation.swift in Sources */,
+				26AD85F020E5636F00AEB973 /* UIAnimationOperation.swift in Sources */,
 				04CC355DA5DE6D729C234B34F32EF32B /* UINavigationBarAppearanceProvider.swift in Sources */,
 				2631967020E2AF3C00AE1B56 /* UITransition.swift in Sources */,
 				B885EF9B7F4683D26FE8ADC74822148F /* UINotch.swift in Sources */,
@@ -836,7 +849,7 @@
 				08562FD9CD1AE98E5E6F9E5D8F129AF1 /* UIStatusBarAppearanceProvider.swift in Sources */,
 				B789F7AA666B9812F09A9B6FE5A4C64E /* UIStyledNavigationController.swift in Sources */,
 				4DB5BD50D15557A2A8D3EC4E0095EA8B /* UIStyledViewController.swift in Sources */,
-				26AD85EE20E55EDD00AEB973 /* UITransitionAnimationQueue.swift in Sources */,
+				26AD85EE20E55EDD00AEB973 /* UIAnimationQueue.swift in Sources */,
 				2631967420E2AFA300AE1B56 /* UIViewController+UITransition.swift in Sources */,
 				264DA7C2208FFB2D00210035 /* UICollectionViewCell+Espresso.swift in Sources */,
 				49B69E2FCF2D12146A5F814E71A08E2D /* UIView+Espresso.swift in Sources */,
