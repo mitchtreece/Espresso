@@ -29,7 +29,6 @@ public class UISwapTransition: UITransition {
         let context = info.context
         
         let settings = self.settings(for: transitionType)
-        let options = UITransitionAnimationOptions.default(duration: 0.45, options: [.curveEaseInOut])
         
         let previousSourceClipsToBound = sourceVC.view.clipsToBounds
         let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
@@ -47,21 +46,20 @@ public class UISwapTransition: UITransition {
             
         }, animations: [
             
-            UITransitionAnimation({
+            UISpringAnimation(duration: 0.45, {
                 
                 let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
-                //sourceVC.view.alpha = self.swapAlpha
                 
                 let destinationTransform = self.halfBoundsTransform(in: container, direction: settings.direction.reversed())
                 destinationVC.view.transform = destinationTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1
                 
-            }, options: options),
+            }),
             
-            UITransitionAnimation({
+            UISpringAnimation(duration: 0.45, {
                 
                 container.bringSubview(toFront: destinationVC.view)
                 
@@ -72,7 +70,7 @@ public class UISwapTransition: UITransition {
                 destinationVC.view.transform = .identity
                 destinationVC.view.layer.cornerRadius = previousDestinationCornerRadius
                 
-            }, options: options)
+            }),
             
         ], completion: {
             

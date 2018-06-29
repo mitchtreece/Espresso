@@ -9,21 +9,24 @@ import UIKit
 
 public struct UITransitionController {
     
-    public var setup: UITransition.VoidBlock
-    public var animations: [UITransitionAnimation]
-    public var completion: UITransition.VoidBlock
+    public typealias SetupBlock = ()->()
+    public typealias Completion = ()->()
+    
+    public var setup: SetupBlock?
+    public var animations: [UIAnimation]
+    public var completion: Completion
     
     internal var animationDuration: TimeInterval {
         
-        let totalDelayDuration = animations.compactMap({ $0.options.delay }).reduce(0, +)
-        let totalAnimationDuration = animations.compactMap({ $0.options.duration }).reduce(0, +)
+        let totalDelayDuration = animations.compactMap({ $0.delay }).reduce(0, +)
+        let totalAnimationDuration = animations.compactMap({ $0.duration }).reduce(0, +)
         return (totalDelayDuration + totalAnimationDuration)
 
     }
     
-    public init(setup: @escaping UITransition.VoidBlock,
-                animations: [UITransitionAnimation],
-                completion: @escaping UITransition.VoidBlock) {
+    public init(setup: SetupBlock?,
+                animations: [UIAnimation],
+                completion: @escaping Completion) {
         
         self.setup = setup
         self.animations = animations

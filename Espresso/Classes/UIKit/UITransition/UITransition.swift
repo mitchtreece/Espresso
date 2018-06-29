@@ -9,8 +9,6 @@ import UIKit
 
 @objc open class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
-    public typealias VoidBlock = ()->()
-    
     public struct Info {
         
         public private(set) var transitionContainerView: UIView
@@ -146,20 +144,17 @@ import UIKit
         let destinationVC = info.destinationViewController
         let finalFrame = info.context.finalFrame(for: destinationVC)
         
-        return UITransitionController(setup: {
+        return UITransitionController(setup: nil, animations: [
             
-            // None
-            
-        }, animations: [
-            
-            UITransitionAnimation({
+            UISpringAnimation {
                 container.addSubview(destinationVC.view)
                 destinationVC.view.frame = finalFrame
-            })
+            }
             
         ], completion: {
             
             info.context.completeTransition(!info.context.transitionWasCancelled)
+
             
         })
         
@@ -220,7 +215,7 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
         let controller = transition.transitionController(for: transitionType, info: info)
         
         UIView.performWithoutAnimation {
-            controller.setup()
+            controller.setup?()
         }
         
         let queue = UITransitionAnimationQueue()

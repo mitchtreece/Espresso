@@ -34,7 +34,7 @@ public class UICoverTransition: UITransition {
             
         }, animations: [
             
-            UITransitionAnimation {
+            UISpringAnimation {
                 sourceVC.view.alpha = self.coverAlpha
                 destinationVC.view.transform = .identity
             }
@@ -64,7 +64,7 @@ public class UICoverTransition: UITransition {
             
         }, animations: [
             
-            UITransitionAnimation {
+            UISpringAnimation {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.alpha = 1
             }

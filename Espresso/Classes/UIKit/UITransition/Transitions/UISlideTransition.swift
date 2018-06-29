@@ -26,7 +26,7 @@ public class UISlideTransition: UITransition {
             
         }, animations: [
             
-            UITransitionAnimation {
+            UISpringAnimation {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.transform = .identity
             }

@@ -26,7 +26,7 @@ class CustomTransition: UITransition {
             
         }, animations: [
         
-            UITransitionAnimation {
+            UISpringAnimation {
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
             }
