@@ -36,10 +36,11 @@ There are too many different additions to cover in this *readme*. However, the c
 
 Some of the more interesting additions include:
 - `UIViewController` & `UINavigationController` styling flow
-- Display features + `UIScreen` extensions (easy safe area inset handling)
-- Device identification
-- Keyboard management
-- Common type convertible extensions
+- `UIAnimation` wrapper classes & queueing system
+- `UITransition` system for custom step-based `UIViewController` transitions
+- Display features & `UIScreen` extensions (safe area handling)
+- Device information
+- Type conversion extensions
 
 ## Contributing
 
