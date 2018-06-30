@@ -24,14 +24,14 @@ class CustomTransition: UITransition {
             destinationVC.view.alpha = 0
             container.addSubview(destinationVC.view)
             
-        }, animations: [
+        }, animations: {
         
-            UISpringAnimation {
+            UIAnimation.spring {
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
             }
             
-        ], completion: {
+        }, completion: {
             
             context.completeTransition(!context.transitionWasCancelled)
             

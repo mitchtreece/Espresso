@@ -7,6 +7,9 @@
 
 import UIKit
 
-public class UIBasicAnimation: UIAnimation {
-    // NOTE: Only implemented for syntax reasons
+internal class UIBasicAnimation: UIAnimation {
+    
+    // Same as base `UIAnimation`,
+    // Only here for syntax reasons
+    
 }

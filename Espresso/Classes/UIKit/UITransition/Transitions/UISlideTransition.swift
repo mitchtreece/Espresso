@@ -24,14 +24,14 @@ public class UISlideTransition: UITransition {
             destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
             container.addSubview(destinationVC.view)
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.transform = .identity
             }
             
-        ], completion: {
+        }, completion: {
                 
             sourceVC.view.transform = .identity
             context.completeTransition(!context.transitionWasCancelled)

@@ -7,23 +7,23 @@
 
 import UIKit
 
-public class UISpringAnimation: UIAnimation {
+internal class UISpringAnimation: UIAnimation {
     
-    public var damping: CGFloat
+    internal var damping: CGFloat
     
-    public init(duration: TimeInterval = 0.6,
-                delay: TimeInterval = 0,
-                damping: CGFloat = 0.9,
-                _ animations: @escaping UIAnimationBlock) {
+    internal init(duration: TimeInterval,
+                  delay: TimeInterval,
+                  damping: CGFloat,
+                  _ animations: @escaping UIAnimationBlock) {
         
         self.damping = damping
-        super.init(duration: duration, delay: delay, animations)
+        super.init(duration: duration, delay: delay, curve: .linear, animations)
         
     }
     
-    override public func run(completion: UIAnimationCompletion? = nil) {
+    override internal func run(completion: UIAnimationCompletion? = nil) {
         
-        let animator = UIViewPropertyAnimator(duration: self.duration, dampingRatio: damping, animations: self.animations)
+        let animator = UIViewPropertyAnimator(duration: self.duration, dampingRatio: damping, animations: self.animationBlock)
         animator.startAnimation(afterDelay: delay)
         animator.addCompletion { (position) in
             completion?()

@@ -32,14 +32,14 @@ public class UICoverTransition: UITransition {
             destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
             container.addSubview(destinationVC.view)
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 sourceVC.view.alpha = self.coverAlpha
                 destinationVC.view.transform = .identity
             }
             
-        ], completion: {
+        }, completion: {
             
             sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity
@@ -62,14 +62,14 @@ public class UICoverTransition: UITransition {
             destinationVC.view.alpha = self.coverAlpha
             container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.alpha = 1
             }
             
-        ], completion: {
+        }, completion: {
                 
             sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity

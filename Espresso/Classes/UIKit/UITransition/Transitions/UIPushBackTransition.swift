@@ -47,16 +47,16 @@ public class UIPushBackTransition: UITransition {
             
             sourceVC.view.clipsToBounds = true
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
                 sourceVC.view.alpha = self.pushBackAlpha
                 destinationVC.view.transform = .identity
             }
             
-        ], completion: {
+        }, completion: {
             
             sourceVC.view.clipsToBounds = previousClipsToBound
             sourceVC.view.layer.cornerRadius = previousCornerRadius
@@ -89,16 +89,16 @@ public class UIPushBackTransition: UITransition {
             destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
             destinationVC.view.clipsToBounds = true
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.layer.cornerRadius = previousCornerRadius
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
             }
             
-        ], completion: {
+        }, completion: {
                 
             destinationVC.view.clipsToBounds = previousClipsToBound
             context.completeTransition(!context.transitionWasCancelled)

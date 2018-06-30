@@ -29,9 +29,9 @@ public class UIFadeTransition: UITransition {
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             container.addSubview(destinationVC.view)
             
-        }, animations: [
+        }, animations: {
             
-            UIBasicAnimation {
+            UIAnimation.basic {
                 
                 if self.fadeType == .cross {
                     sourceVC.view.alpha = 0
@@ -41,7 +41,7 @@ public class UIFadeTransition: UITransition {
                 
             }
             
-        ], completion: {
+        }, completion: {
                 
             sourceVC.view.alpha = 1
             context.completeTransition(!context.transitionWasCancelled)

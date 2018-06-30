@@ -7,11 +7,11 @@
 
 import Foundation
 
-public extension Array where Element: UIAnimation {
-    
-    public func run(completion: UIAnimationCompletion? = nil) {
+internal extension Array where Element: UIAnimation {
+
+    internal func run(completion: UIAnimationCompletion? = nil) {
         
-        let queue = UIAnimationQueue()
+        let queue = UIAnimationOperationQueue()
         
         for i in 0..<self.count {
             

@@ -144,17 +144,16 @@ import UIKit
         let destinationVC = info.destinationViewController
         let finalFrame = info.context.finalFrame(for: destinationVC)
         
-        return UITransitionController(setup: nil, animations: [
+        return UITransitionController(setup: nil, animations: {
             
-            UISpringAnimation {
+            UIAnimation.spring {
                 container.addSubview(destinationVC.view)
                 destinationVC.view.frame = finalFrame
             }
             
-        ], completion: {
+        }, completion: {
             
             info.context.completeTransition(!info.context.transitionWasCancelled)
-
             
         })
         
@@ -218,7 +217,7 @@ fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransi
             controller.setup?()
         }
         
-        controller.animations.run {
+        controller.group.run {
             controller.completion()
         }
         

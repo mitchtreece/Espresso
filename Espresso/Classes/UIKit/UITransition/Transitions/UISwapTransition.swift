@@ -44,9 +44,9 @@ public class UISwapTransition: UITransition {
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
             
-        }, animations: [
+        }, animations: {
             
-            UISpringAnimation(duration: 0.45, {
+            UIAnimation.spring(duration: 0.45, {
                 
                 let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
@@ -57,9 +57,7 @@ public class UISwapTransition: UITransition {
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1
                 
-            }),
-            
-            UISpringAnimation(duration: 0.45, {
+            }).thenSpring(duration: 0.45, {
                 
                 container.bringSubview(toFront: destinationVC.view)
                 
@@ -70,9 +68,9 @@ public class UISwapTransition: UITransition {
                 destinationVC.view.transform = .identity
                 destinationVC.view.layer.cornerRadius = previousDestinationCornerRadius
                 
-            }),
+            })
             
-        ], completion: {
+        }, completion: {
             
             sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity
