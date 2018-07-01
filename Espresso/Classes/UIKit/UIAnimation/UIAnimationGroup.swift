@@ -8,9 +8,9 @@
 import UIKit
 
 /**
- `UIAnimationGroup` is a container for a set of animations.
+ `UIAnimationGroup` is a container over a set of animations.
  
- Animations can be _chained_ to a group by using it's respective `then` functions.
+ Animations can be _chained_ to a group by using the `then()` function.
  
  ```
  let view = UIView()
@@ -18,7 +18,7 @@ import UIKit
  view.alpha = 0
  ...
  
- UIAnimation.basic {
+ UIAnimation {
     view.alpha = 1
  }.then {
     view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -36,20 +36,18 @@ public class UIAnimationGroup {
     /**
      Chains a new animation to the group with the specified parameters.
      
-     - Parameter type: The animation's type; _defaults to basic_.
+     - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
      - Parameter duration: The animation's duration; _defaults to 0.6_.
      - Parameter delay: The animation's start delay; _defaults to 0_.
-     - Parameter curve: The animation's timing curve; _default to .easeInOut_.
-     - Parameter animation: The animation block.
+     - Parameter animations: The animation block.
      - Returns: A `UIAnimationGroup` by appending the new animation.
      */
-    public func then(_ type: UIAnimation.AnimationType = .basic,
+    public func then(_ timingCurve: UIAnimation.TimingCurve = .simple(.easeInOut),
                      duration: TimeInterval = 0.6,
                      delay: TimeInterval = 0,
-                     curve: UIViewAnimationCurve = .easeInOut,
                      _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
         
-        let animation = UIAnimation(type, duration: duration, delay: delay, curve: curve, animations)
+        let animation = UIAnimation(timingCurve, duration: duration, delay: delay, animations)
         self._animations.append(animation)
         return self
         

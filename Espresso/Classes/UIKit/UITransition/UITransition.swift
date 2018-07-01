@@ -146,7 +146,7 @@ import UIKit
         
         return UITransitionController(setup: nil, animations: {
             
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 container.addSubview(destinationVC.view)
                 destinationVC.view.frame = finalFrame
             })

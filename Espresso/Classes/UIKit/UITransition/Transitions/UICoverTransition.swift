@@ -34,7 +34,7 @@ public class UICoverTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 sourceVC.view.alpha = self.coverAlpha
                 destinationVC.view.transform = .identity
             })
@@ -64,7 +64,7 @@ public class UICoverTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.alpha = 1
             })

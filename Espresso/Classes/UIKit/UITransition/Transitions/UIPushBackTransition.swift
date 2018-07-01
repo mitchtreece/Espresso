@@ -49,7 +49,7 @@ public class UIPushBackTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
                 sourceVC.view.alpha = self.pushBackAlpha
@@ -91,7 +91,7 @@ public class UIPushBackTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.layer.cornerRadius = previousCornerRadius
                 destinationVC.view.transform = .identity

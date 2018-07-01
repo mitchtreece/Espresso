@@ -17,28 +17,6 @@ class CustomTransition: UITransition {
         let container = info.transitionContainerView
         let context = info.context
         
-        //        // UIAnimation examples:
-        //
-        //        UIAnimation {
-        //            // animations
-        //        }.run()
-        //
-        //        UIAnimation(.spring(damping: 0.6), duration: 0.5, delay: 0, curve: .easeOut) {
-        //            // animations
-        //        }.run()
-        //
-        //        let animOne = UIAnimation {}
-        //        let animTwo = UIAnimation {}
-        //        [animOne, animTwo].run()
-        //
-        //        UIAnimation {
-        //            // animation 1
-        //        }.then {
-        //            // animation 2
-        //        }.run {
-        //            // completion
-        //        }
-        
         return UITransitionController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
@@ -48,7 +26,7 @@ class CustomTransition: UITransition {
             
         }, animations: {
         
-            UIAnimation(.spring(damping: 0.9), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
             })

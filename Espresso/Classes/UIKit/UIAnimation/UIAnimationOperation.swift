@@ -12,7 +12,7 @@ internal class UIAnimationOperation: AsyncOperation {
     private var animation: UIAnimation
     private var index: Int
     
-    init(animation: UIAnimation, index: Int) {
+    internal init(animation: UIAnimation, index: Int) {
         self.animation = animation
         self.index = index
     }
