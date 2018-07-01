@@ -49,12 +49,12 @@ public class UIPushBackTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation.spring {
+            UIAnimation(.spring(damping: 0.9), {
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
                 sourceVC.view.alpha = self.pushBackAlpha
                 destinationVC.view.transform = .identity
-            }
+            })
             
         }, completion: {
             
@@ -91,12 +91,12 @@ public class UIPushBackTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation.spring {
+            UIAnimation(.spring(damping: 0.9), {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.layer.cornerRadius = previousCornerRadius
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
-            }
+            })
             
         }, completion: {
                 

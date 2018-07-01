@@ -31,7 +31,7 @@ public class UIFadeTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation.basic {
+            UIAnimation {
                 
                 if self.fadeType == .cross {
                     sourceVC.view.alpha = 0

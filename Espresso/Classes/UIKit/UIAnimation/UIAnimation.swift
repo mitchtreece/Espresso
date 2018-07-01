@@ -39,6 +39,24 @@ public typealias UIAnimationCompletion = ()->()
 public class UIAnimation {
     
     /**
+     Representation of the various animation types.
+     */
+    public enum AnimationType {
+        
+        /// A basic animation.
+        case basic
+
+        /// A spring animation using a specified damping value.
+        case spring(damping: CGFloat)
+        
+    }
+    
+    /**
+     The animation's type.
+     */
+    public private(set) var type: AnimationType
+    
+    /**
      The animation's duration.
      */
     public private(set) var duration: TimeInterval
@@ -58,11 +76,23 @@ public class UIAnimation {
      */
     public private(set) var animationBlock: UIAnimationBlock
     
-    internal init(duration: TimeInterval,
-                 delay: TimeInterval,
-                 curve: UIViewAnimationCurve,
-                 _ animations: @escaping UIAnimationBlock) {
+    /**
+     Initializes a new animation with the specified parameters.
+
+     - Parameter type: The animation's type; _defaults to basic_.
+     - Parameter duration: The animation's duration; _defaults to 0.6_.
+     - Parameter delay: The animation's start delay; _defaults to 0_.
+     - Parameter curve: The animation's timing curve; _default to .easeInOut_.
+     - Parameter animation: The animation block.
+     - Returns: A new `UIAnimation` instance.
+     */
+    public init(_ type: AnimationType = .basic,
+                duration: TimeInterval = 0.6,
+                delay: TimeInterval = 0,
+                curve: UIViewAnimationCurve = .easeInOut,
+                _ animations: @escaping UIAnimationBlock) {
         
+        self.type = type
         self.duration = duration
         self.delay = delay
         self.curve = curve
@@ -70,57 +100,44 @@ public class UIAnimation {
         
     }
     
-    // MARK: Animation building
-    
     /**
-     Creates a new basic animation with the specified parameters.
+     Creates a new animation group containing the current animation,
+     then chains a new animation with the specified parameters.
      
+     - Parameter type: The animation's type; _defaults to basic_.
      - Parameter duration: The animation's duration; _defaults to 0.6_.
      - Parameter delay: The animation's start delay; _defaults to 0_.
      - Parameter curve: The animation's timing curve; _default to .easeInOut_.
-     - Parameter animation: The animation block.
-     - Returns: A `UIAnimationGroup` containing the new animation.
+     - Parameter animations: The animation block.
+     - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
      */
-    public static func basic(duration: TimeInterval = 0.6,
-                             delay: TimeInterval = 0,
-                             curve: UIViewAnimationCurve = .easeInOut,
-                             _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
+    public func then(_ type: UIAnimation.AnimationType = .basic,
+                     duration: TimeInterval = 0.6,
+                     delay: TimeInterval = 0,
+                     curve: UIViewAnimationCurve = .easeInOut,
+                     _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
         
-        let animation = UIBasicAnimation(duration: duration, delay: delay, curve: curve, animations)
-        return UIAnimationGroup(animation: animation)
+        let nextAnimation = UIAnimation(type, duration: duration, delay: delay, curve: curve, animations)
+        return UIAnimationGroup(animations: [self, nextAnimation])
         
     }
-    
+
     /**
-     Creates a new spring animation with the specified parameters.
+     Starts the animation.
      
-     - Parameter duration: The animation's duration; _defaults to 0.6_.
-     - Parameter delay: The animation's start delay; _defaults to 0_.
-     - Parameter damping: The animation's spring damping; _default to 0.9_.
-     - Parameter animation: The animation block.
-     - Returns: A `UIAnimationGroup` containing the new animation.
+     - Parameter completion: An optional completion handler; _defaults to nil_.
      */
-    public static func spring(duration: TimeInterval = 0.6,
-                              delay: TimeInterval = 0,
-                              damping: CGFloat = 0.9,
-                              _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
+    public func run(completion: UIAnimationCompletion? = nil) {
         
-        let animation = UISpringAnimation(duration: duration, delay: delay, damping: damping, animations)
-        return UIAnimationGroup(animation: animation)
+        let animator: UIViewPropertyAnimator
         
-    }
-    
-    // MARK: Execution
-    
-    // This function doesn't need to be public as it's called only internally.
-    // The public builder functions return `UIAnimationGroup` instances.
-    // `run()` should be called on them, not directly on `UIAnimation`.
-    
-    internal func run(completion: UIAnimationCompletion? = nil) {
+        switch type {
+        case .basic: animator = UIViewPropertyAnimator(duration: duration, curve: curve, animations: animationBlock)
+        case .spring(let damping): animator = UIViewPropertyAnimator(duration: duration, dampingRatio: damping, animations: animationBlock)
+        }
         
-        let animator = UIViewPropertyAnimator(duration: duration, curve: curve, animations: animationBlock)
         animator.startAnimation(afterDelay: delay)
-        animator.addCompletion { (position) in
+        animator.addCompletion { _ in
             completion?()
         }
         

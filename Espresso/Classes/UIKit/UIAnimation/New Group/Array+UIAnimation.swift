@@ -7,9 +7,14 @@
 
 import Foundation
 
-internal extension Array where Element: UIAnimation {
+public extension Array where Element: UIAnimation {
 
-    internal func run(completion: UIAnimationCompletion? = nil) {
+    /**
+     Starts the array's animations.
+     
+     - Parameter completion: An optional completion handler; _defaults to nil_.
+     */
+    public func run(completion: UIAnimationCompletion? = nil) {
         
         let queue = UIAnimationOperationQueue()
         

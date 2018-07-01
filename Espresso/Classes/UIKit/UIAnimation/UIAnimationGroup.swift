@@ -26,56 +26,34 @@ import UIKit
  ```
  */
 public class UIAnimationGroup {
-    
-    internal var _animations: [UIAnimation]
-    
-    internal init(animation: UIAnimation) {
-        self._animations = [animation]
+        
+    internal private(set) var _animations: [UIAnimation]
+
+    internal init(animations: [UIAnimation]) {
+        self._animations = animations
     }
     
-    // MARK: Animation chaining
-    
     /**
-     Chains a new basic animation to the group with the specified parameters.
+     Chains a new animation to the group with the specified parameters.
      
+     - Parameter type: The animation's type; _defaults to basic_.
      - Parameter duration: The animation's duration; _defaults to 0.6_.
      - Parameter delay: The animation's start delay; _defaults to 0_.
      - Parameter curve: The animation's timing curve; _default to .easeInOut_.
      - Parameter animation: The animation block.
      - Returns: A `UIAnimationGroup` by appending the new animation.
      */
-    public func then(duration: TimeInterval = 0.6,
+    public func then(_ type: UIAnimation.AnimationType = .basic,
+                     duration: TimeInterval = 0.6,
                      delay: TimeInterval = 0,
                      curve: UIViewAnimationCurve = .easeInOut,
                      _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
         
-        let animation = UIBasicAnimation(duration: duration, delay: delay, curve: curve, animations)
+        let animation = UIAnimation(type, duration: duration, delay: delay, curve: curve, animations)
         self._animations.append(animation)
         return self
         
     }
-    
-    /**
-     Chains a new spring animation to the group with the specified parameters.
-     
-     - Parameter duration: The animation's duration; _defaults to 0.6_.
-     - Parameter delay: The animation's start delay; _defaults to 0_.
-     - Parameter damping: The animation's spring damping; _default to 0.9_.
-     - Parameter animation: The animation block.
-     - Returns: A `UIAnimationGroup` by appending the new animation.
-     */
-    public func thenSpring(duration: TimeInterval = 0.6,
-                           delay: TimeInterval = 0,
-                           damping: CGFloat = 0.9,
-                           _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
-        
-        let animation = UISpringAnimation(duration: duration, delay: delay, damping: damping, animations)
-        self._animations.append(animation)
-        return self
-        
-    }
-        
-    // MARK: Execution
     
     /**
      Starts the group's animations.

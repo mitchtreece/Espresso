@@ -31,7 +31,7 @@ extension UIAnimation: UIAnimationGroupConvertible {
     }
     
     public var animationGroup: UIAnimationGroup {
-        return UIAnimationGroup(animation: self)
+        return UIAnimationGroup(animations: [self])
     }
     
 }

@@ -146,10 +146,10 @@ import UIKit
         
         return UITransitionController(setup: nil, animations: {
             
-            UIAnimation.spring {
+            UIAnimation(.spring(damping: 0.9), {
                 container.addSubview(destinationVC.view)
                 destinationVC.view.frame = finalFrame
-            }
+            })
             
         }, completion: {
             

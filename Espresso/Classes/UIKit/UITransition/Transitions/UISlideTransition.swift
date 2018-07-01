@@ -26,10 +26,10 @@ public class UISlideTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation.spring {
+            UIAnimation(.spring(damping: 0.9), {
                 sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.transform = .identity
-            }
+            })
             
         }, completion: {
                 

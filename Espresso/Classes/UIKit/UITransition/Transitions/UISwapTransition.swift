@@ -9,8 +9,8 @@ import Foundation
 
 public class UISwapTransition: UITransition {
     
-    public var swapScale: CGFloat = 0.9
-    public var swapAlpha: CGFloat = 0.7
+    public var swapScale: CGFloat = 1
+    public var swapAlpha: CGFloat = 0.6
     public var roundedCornerRadius: CGFloat = 10
     
     public override init() {
@@ -46,7 +46,7 @@ public class UISwapTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation.spring(duration: 0.45, {
+            UIAnimation(.basic, duration: 0.3, {
                 
                 let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
@@ -57,7 +57,7 @@ public class UISwapTransition: UITransition {
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1
                 
-            }).thenSpring(duration: 0.45, {
+            }).then(.spring(damping: 0.9), duration: 0.4, {
                 
                 container.bringSubview(toFront: destinationVC.view)
                 
