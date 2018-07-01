@@ -7,29 +7,75 @@
 
 import UIKit
 
+/**
+ `UITransition` is a base class for custom view controller transitions.
+ */
 @objc open class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
+    /**
+     Struct containing the various properties of a view controller transition.
+     */
     public struct Info {
         
+        /**
+         The transition's container view.
+         */
         public private(set) var transitionContainerView: UIView
+        
+        /**
+         The transition's source (from) view controller.
+         */
         public private(set) var sourceViewController: UIViewController
+        
+        /**
+         The transition's destination (to) view controller.
+         */
         public private(set) var destinationViewController: UIViewController
+        
+        /**
+         The transitioning context.
+         */
         public private(set) var context: UIViewControllerContextTransitioning
         
     }
     
+    /**
+     Representation of the different transition types.
+     */
     public enum TransitionType {
+        
+        /// A presentation transition type.
         case presentation
+        
+        /// A dismissal transition type.
         case dismissal
+        
     }
     
+    /**
+     Representation of the different 2D directions.
+     */
     public enum Direction {
         
+        /// The upwards direction
         case up
+        
+        /// The downwards direction
         case down
+        
+        /// The left direction
         case left
+        
+        /// The right direction
         case right
         
+        /**
+         Helper function that returns the current direction's opposite.
+         
+         `up <-> down`
+         
+         `left <-> right`
+         */
         func reversed() -> Direction {
             
             switch self {
@@ -43,15 +89,35 @@ import UIKit
         
     }
     
+    /**
+     Representation of the different view controller types.
+     */
     public enum ViewControllerType {
+        
+        /// The source (from) view controller type.
         case source
+        
+        /// The destination (to) view controller type.
         case destination
+        
     }
     
+    /**
+     Struct containing the various configuration options for a view controller transition.
+     */
     public struct Settings {
         
+        /**
+         The transitional direction.
+         */
         public var direction: Direction
         
+        /**
+         Helper function that returns the default transition settings for a specified type.
+         
+         - Parameter transitionType: The desired transition type.
+         - Returns: Default transition settings for a specified transition type.
+         */
         public static func `default`(for transitionType: TransitionType) -> Settings {
             
             let isPresentation = (transitionType == .presentation)
@@ -63,15 +129,30 @@ import UIKit
     
     // MARK: Settings
     
+    /**
+     The transition's presentation settings.
+     */
     public var presentation = Settings.default(for: .presentation)
+    
+    /**
+     The transition's dismissal settings.
+     */
     public var dismissal = Settings.default(for: .dismissal)
     
+    /**
+     Helper function that returns the transition's settings for a specified type.
+     
+     - Returns: Transition settings for a specified transition type.
+     */
     public func settings(for transitionType: TransitionType) -> Settings {
         return (transitionType == .presentation) ? presentation : dismissal
     }
     
     // MARK: Interactive
 
+    /**
+     Flag indicating whether the transition should be performed interactively.
+     */
     public var isInteractive: Bool = false
     private var interactor: UITransitionInteractionController?
     
@@ -136,6 +217,15 @@ import UIKit
     
     // MARK: Public
     
+    /**
+     Asks the transition for a `UITransitionController` containing one or more animations to run while transitioning.
+     
+     **This should not be called directly**. Instead, override this function within a `UITransition` subclass and provide custom animations.
+     
+     - Parameter transitionType: The transition's type.
+     - Parameter info: The transition's info.
+     - Returns: A `UITransitionController` containing animations to run while transitioning between source & destination view controllers.
+     */
     open func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
         
         // Override me
@@ -161,7 +251,7 @@ import UIKit
     
     // MARK: Helpers
     
-    internal func boundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+    internal static func boundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
         
         switch direction {
         case .up: return CGAffineTransform(translationX: 0, y: -container.bounds.height)
@@ -172,7 +262,7 @@ import UIKit
         
     }
     
-    internal func halfBoundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+    internal static func halfBoundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
         
         let transform = boundsTransform(in: container, direction: direction)
         return CGAffineTransform(translationX: (transform.tx / 2), y: (transform.ty / 2))
@@ -181,7 +271,7 @@ import UIKit
     
 }
 
-fileprivate class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+private class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private weak var transition: UITransition?
     private(set) var isPresentation = true

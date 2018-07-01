@@ -7,13 +7,26 @@
 
 import UIKit
 
+/**
+ A fading view controller transition.
+ */
 public class UIFadeTransition: UITransition {
 
+    /**
+     Representation of different fading methods.
+     */
     public enum FadeType {
+        
+        /// Fade over the source view controller
         case over
+        
+        /// Crossfade between the source & destination view controllers
         case cross
     }
     
+    /**
+     The transition's fade type; _defaults to over_.
+     */
     public var fadeType: FadeType = .over
     
     override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {

@@ -7,10 +7,24 @@
 
 import Foundation
 
+/**
+ A swapping view controller transition.
+ */
 public class UISwapTransition: UITransition {
     
+    /**
+     The source & destination view controller's scale; _defaults to 1_.
+     */
     public var swapScale: CGFloat = 1
+    
+    /**
+     The covered view controller's alpha; _defaults to 0.6_.
+     */
     public var swapAlpha: CGFloat = 0.6
+    
+    /**
+     The source & destination view controller's corner radius; _defaults to 10_.
+     */
     public var roundedCornerRadius: CGFloat = 10
     
     public override init() {
@@ -48,11 +62,11 @@ public class UISwapTransition: UITransition {
             
             UIAnimation(duration: 0.3, {
                 
-                let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
+                let sourceTransform = UITransition.halfBoundsTransform(in: container, direction: settings.direction)
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 
-                let destinationTransform = self.halfBoundsTransform(in: container, direction: settings.direction.reversed())
+                let destinationTransform = UITransition.halfBoundsTransform(in: container, direction: settings.direction.reversed())
                 destinationVC.view.transform = destinationTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1

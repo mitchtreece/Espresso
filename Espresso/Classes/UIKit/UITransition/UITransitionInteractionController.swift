@@ -13,7 +13,7 @@ internal class UITransitionInteractionController: UIPercentDrivenInteractiveTran
     private var navigationController: UINavigationController?
     private(set) var transitionInProgress = false
     
-    init(viewController: UIViewController, navigationController: UINavigationController?) {
+    internal init(viewController: UIViewController, navigationController: UINavigationController?) {
         
         self.viewController = viewController
         self.navigationController = navigationController
@@ -26,7 +26,6 @@ internal class UITransitionInteractionController: UIPercentDrivenInteractiveTran
         
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(_:)))
         edgePan.edges = .left
-        
         viewController.view.addGestureRecognizer(edgePan)
         
     }
