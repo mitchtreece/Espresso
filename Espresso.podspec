@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
     s.ios.public_header_files = 'Espresso/Classes/**/*.h'
     s.source_files = 'Espresso/Classes/**/*'
 
-    # s.dependency 'SnapKit', '~> 4.0.0'
+    s.dependency 'SnapKit', '~> 4.0.0'
 
 end
