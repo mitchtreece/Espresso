@@ -340,8 +340,7 @@
 				269FE38120E8327700CBE961 /* UIAnimationGroupConvertible.swift */,
 				266292B820E6B650003986C0 /* Array+UIAnimation.swift */,
 			);
-			name = Helpers;
-			path = "New Group";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3E11B9C83AC4FA12EDACA9D1A0BDB517 /* UIKit */ = {
