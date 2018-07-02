@@ -1,10 +1,10 @@
 ![Espresso](Resources/banner.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
-![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
-[![Platform](https://img.shields.io/cocoapods/p/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
-![iOS](https://img.shields.io/badge/iOS-10,%2011-blue.svg)
-[![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=flat)](http://cocoapods.org/pods/Espresso)
+[![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
+![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=for-the-badge)
+[![Platform](https://img.shields.io/cocoapods/p/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
+![iOS](https://img.shields.io/badge/iOS-10,%2011-blue.svg?style=for-the-badge)
+[![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 ## Overview
 Espresso is a Swift convenience library that makes common tasks a lot easier. Everything is better with coffee.
@@ -35,12 +35,154 @@ Espresso adds a bunch of useful features and additions to both the **Foundation*
 There are too many different additions to cover in this *readme*. However, the code is well documented and fairly self-explanatory.
 
 Some of the more interesting additions include:
-- `UIViewController` & `UINavigationController` styling flow
-- `UIAnimation` wrapper classes & queueing system
-- `UITransition` system for custom step-based `UIViewController` transitions
-- Display features & `UIScreen` extensions (safe area handling)
-- Device information
-- Type conversion extensions
+- `UIAnimation` wrapper classes & promise-like chaining system
+- `UITransition` system for custom `UIViewController` transitions
+- `UIViewController` & `UINavigationController` styling system
+- `UIScreen` extensions + display features
+- Device identification & info
+- Type conversion helpers
+- And much more!
+
+### UIAnimation
+Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation block.
+
+```
+let view = UIView()
+view.alpha = 0
+
+// Simple curve (default timing + default values)
+
+UIAnimation {
+    view.alpha = 1
+}.run()
+
+// Simple curve (default timing + custom values)
+
+UIAnimation(duration: 0.5, delay: 0, {
+    view.alpha = 1
+}).run()
+
+// Simple curve (custom)
+
+UIAnimation(.simple(.easeOut), duration: 0.4, {
+    view.alpha = 1
+}).run()
+
+// Spring curve
+
+UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+    view.alpha = 1
+}).run(completion: {
+    print("The animation is done!")
+})
+
+...
+```
+
+The following timing curves are currently supported:
+
+- simple
+- cubicBezier
+- spring
+- custom
+
+`UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation).
+
+```
+let view = UIView()
+view.backgroundColor = UIColor.white
+view.alpha = 0
+
+UIAnimation(duration: 0.3, {
+    view.alpha = 1
+}).then {
+    view.backgroundColor = UIColor.red
+}.run()
+
+```
+
+All parameters of a regular `UIAnimation` are available to you while chaining:
+
+```
+...
+
+UIAnimation(duration: 0.3, {
+    view.alpha = 1
+}).then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
+    view.backgroundColor = UIColor.red
+}).run()
+```
+
+Animations can also be created and executed at a later time! You can also run your animations directly from an array _without_ chaining them.
+
+```
+...
+
+let a1 = UIAnimation {
+    view.alpha = 1
+}
+
+let a2 = UIAnimation(.simple(.easeIn), duration: 0.5, {
+    view.backgroundColor = UIColor.red
+})
+
+[a1, a2].run(completion: {
+    print("The animations are done!")
+})
+```
+
+### UITransition
+Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A typical custom transition subclass looks something like this:
+
+```
+class FadeTransition: UITransition {
+
+    override func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+
+        let sourceVC = info.sourceViewController
+        let destinationVC = info.destinationViewController
+        let container = info.transitionContainerView
+        let context = info.context
+
+        return UITransitionController(setup: {
+
+            destinationVC.view.alpha = 0
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            container.addSubview(destinationVC.view)
+
+        }, animations: {
+
+            UIAnimation {
+                destinationVC.view.alpha = 1
+            }
+
+        }, completion: {
+
+            context.completeTransition(!context.transitionWasCancelled)
+
+        })
+
+    }
+
+}
+```
+
+There's only one function that _needs_ to be overridden from a transition subclass, `transitionController(transitionType:info:)`. This function provides you with information about the transition, and expects you to return a `UITransitionController` containing setup, animation, & completion blocks.
+
+To present your view controller using a transition, helper functions on `UIViewController` & `UINavigationController` have been added:
+
+```
+let transition = FadeTransition()
+self.present(myViewController, with: transition, completion: nil)
+self.navigationController?.push(myViewController, with: transition)
+```
+
+The following transitions are included with Espresso:
+- `UIFadeTransition`
+- `UISlideTransition`
+- `UICoverTransition`
+- `UISwapTransition`
+- `UIPushBackTransition`
 
 ## Contributing
 
