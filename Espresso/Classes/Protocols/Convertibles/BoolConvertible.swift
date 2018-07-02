@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- `BoolConvertible` is a protocol describing the conversion to various `Bool` representations.
+ Protocol describing the conversion to various `Bool` representations.
  */
 public protocol BoolConvertible {
     
@@ -18,12 +18,12 @@ public protocol BoolConvertible {
     var bool: Bool? { get }
     
     /**
-     A boolean integer representation (0 _or_ 1).
+     A boolean integer representation; _0 or 1_.
      */
     var boolInt: Int? { get }
 
     /**
-     A boolean string representation ("true" _or_ "false").
+     A boolean string representation _"true" or "false"_.
      */
     var boolString: String? { get }
     

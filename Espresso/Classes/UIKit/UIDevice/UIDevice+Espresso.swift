@@ -230,9 +230,11 @@ public extension UIDevice {
             
             for type in DeviceInfo.allCases {
                 for id in type.identifiers {
+                    
                     guard identifier == id else { continue }
                     self = type
                     return
+                    
                 }
             }
             

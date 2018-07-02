@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- `ErrorConvertible` is a protocol describing the conversion to various `Error` representations.
+ Protocol describing the conversion to various `Error` representations.
  */
 public protocol ErrorConvertible {
     
