@@ -7,12 +7,16 @@
 
 import UIKit
 
-// MARK: Register
-
-public extension UITableViewCell {
+public extension UITableViewCell /* Register */ {
     
     // NOTE: `UITableViewCell` conforms to `Identifiable`
     
+    /**
+     Registers a cell's nib in a table view with a specified name. If no name is provided, the cell's class name will be used.
+     
+     - Parameter tableView: The table view to register the cell in.
+     - Parameter nibName: The cell's nib name.
+     */
     static func registerNib(in tableView: UITableView, nibName: String? = nil) {
         
         let name = nibName ?? self.identifier
@@ -21,14 +25,33 @@ public extension UITableViewCell {
         
     }
     
+    /**
+     Registers a cell in a specified table view.
+     
+     - Parameter tableView: The table view to register the cell in.
+     */
     static func register(in tableView: UITableView) {
         tableView.register(self, forCellReuseIdentifier: self.identifier)
     }
     
+    /**
+     Dequeue's a cell for a specified table view & index path.
+     
+     - Parameter tableView: The table view.
+     - Parameter indexPath: The index path.
+     - Returns: A typed cell.
+     */
     static func dequeue(for tableView: UITableView, at indexPath: IndexPath) -> Self {
         return _cell(dequeuedFor: tableView, indexPath: indexPath)
     }
     
+    /**
+     Dequeue's _or_ creates a cell for a specified table view & nib name. If no name is provided, the cell's class name will be used.
+     
+     - Parameter tableView: The table view.
+     - Parameter nibName: The cell's nib name.
+     - Returns: A typed cell.
+     */
     static func cell(for tableView: UITableView, nibName: String? = nil) -> Self {
         return _cell(for: tableView, nibName: nibName)
     }

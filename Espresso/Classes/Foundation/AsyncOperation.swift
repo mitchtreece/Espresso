@@ -33,7 +33,7 @@ public class AsyncOperation: Operation {
     /**
      The async operation's current state.
      */
-    public private(set) var state: State = .ready {
+    public var state: State = .ready {
         
         willSet {
             willChangeValue(forKey: state.keyPath)

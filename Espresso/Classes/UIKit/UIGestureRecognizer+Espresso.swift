@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIGestureRecognizer {
+public extension UIGestureRecognizer /* Action */ {
     
     public typealias Action = (UIGestureRecognizer)->()
     
@@ -27,6 +27,11 @@ public extension UIGestureRecognizer {
         
     }
     
+    /**
+     Initializes a new gesture recognizer with an action handler.
+     
+     - Parameter action: The gesture recognizer's action handler.
+     */
     public convenience init(action: @escaping Action) {
         
         self.init()

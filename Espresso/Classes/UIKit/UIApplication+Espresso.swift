@@ -9,8 +9,11 @@ import Foundation
 
 // MARK: UIStatusBar
 
-public extension UIApplication {
+public extension UIApplication /* UIStatusBarAppearance */ {
     
+    /**
+     The application's current status bar appearance.
+     */
     public var statusBarAppearance: UIStatusBarAppearance {
         
         guard let rootVC = keyWindow?.rootViewController else { return UIStatusBarAppearance() }
@@ -40,29 +43,35 @@ public extension UIApplication {
     
 }
 
-// MARK: Keyboard
-
-public extension UIApplication {
+public extension UIApplication /* Keyboard Window */ {
     
+    /**
+     The application's active keyboard window.
+     */
     public var keyboardWindow: UIWindow? {
         return UIApplication.shared.windows.first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
     }
     
 }
 
-// MARK: Environment
-
-public extension UIApplication {
+public extension UIApplication /* Environment */ {
     
     private struct AssociatedKeys {
         static var environmentOverride: UInt8 = 0
     }
     
+    /**
+     Representation of the various application environments.
+     */
     public enum Environment: String {
         case development
         case production
     }
     
+    /**
+     The application's environment override.
+     Setting this will lock the application to a specific environment regardless of what it's environment actually is.
+     */
     public var environmentOverride: Environment? {
         get {
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.environmentOverride) as? Environment else { return nil }
@@ -73,6 +82,9 @@ public extension UIApplication {
         }
     }
     
+    /**
+     The application's current environment.
+     */
     public var environment: Environment {
         
         if let override = environmentOverride {
@@ -89,14 +101,18 @@ public extension UIApplication {
     
 }
 
-// MARK: Version
-
-public extension UIApplication {
+public extension UIApplication /* Version */ {
     
+    /**
+     The application's version string _(CFBundleShortVersionString)_.
+     */
     public var version: String? {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
     
+    /**
+     The application's build number string _(CFBundleVersion)_.
+     */
     public var build: String? {
         return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     }

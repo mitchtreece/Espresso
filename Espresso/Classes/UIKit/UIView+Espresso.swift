@@ -7,30 +7,31 @@
 
 import UIKit
 
-// MARK: Motion Effects
-
-public extension UIView {
+public extension UIView /* Motion Effects */ {
     
-    public func addParallaxMotionEffect(horizontalMovement: CGFloat, verticalMovement: CGFloat) {
+    /**
+     Adds parallax motion to the recieving view with a specified movement vector.
+     */
+    public func addParallaxMotionEffect(_ vector: CGVector) {
         
         var effects = [UIInterpolatingMotionEffect]()
         var verticalEffect: UIInterpolatingMotionEffect?
         var horizontalEffect: UIInterpolatingMotionEffect?
 
-        if verticalMovement > 0 {
+        if vector.dy > 0 {
             
             verticalEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
-            verticalEffect!.minimumRelativeValue = -verticalMovement
-            verticalEffect!.maximumRelativeValue = verticalMovement
+            verticalEffect!.minimumRelativeValue = -vector.dy
+            verticalEffect!.maximumRelativeValue = vector.dy
             effects.append(verticalEffect!)
             
         }
         
-        if horizontalMovement > 0 {
+        if vector.dx > 0 {
             
             horizontalEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
-            horizontalEffect!.minimumRelativeValue = -horizontalMovement
-            horizontalEffect!.maximumRelativeValue = horizontalMovement
+            horizontalEffect!.minimumRelativeValue = -vector.dx
+            horizontalEffect!.maximumRelativeValue = vector.dx
             effects.append(horizontalEffect!)
             
         }
@@ -45,14 +46,18 @@ public extension UIView {
     
 }
 
-// MARK: Nib
-
-public extension UIView {
+public extension UIView /* Nib Loading */ {
     
     private struct AssociatedKeys {
         static var nibs: UInt8 = 0
     }
     
+    /**
+     Load's a view from a nib with a specified name. If no name is provided, the class name will be used.
+     
+     - Parameter name: The nib's name.
+     - Returns: A typed nib-loaded view instance.
+     */
     static func loadFromNib(name: String? = nil) -> Self {
         return _loadFromNib(name: name)
     }
@@ -64,11 +69,11 @@ public extension UIView {
         
     }
     
-    fileprivate var className: String {
+    private var className: String {
         return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
     
-    fileprivate static func _nibLoadingAssociatedNibWithName(_ name: String) -> UINib? {
+    private static func _nibLoadingAssociatedNibWithName(_ name: String) -> UINib? {
         
         let nibs = objc_getAssociatedObject(self, &AssociatedKeys.nibs) as? NSDictionary
         var nib: UINib? = nibs?.object(forKey: name) as? UINib
@@ -92,22 +97,23 @@ public extension UIView {
         
     }
     
-    public func loadContentsFromNib() {
-        loadContentsFromNib(name: self.className)
-    }
-    
-    public func loadContentsFromNib(name: String) {
+    /**
+     Load's a view's contents from a nib with a specified name. If no name is provided, the class name will be used.
+     
+     - Parameter name: The nib's name.
+     */
+    public func loadContentsFromNib(name: String? = nil) {
         
-        let nib = type(of: self)._nibLoadingAssociatedNibWithName(name)
+        let _name = name ?? self.className
         
-        if let nib = nib {
+        if let nib = type(of: self)._nibLoadingAssociatedNibWithName(_name) {
             
             let views = nib.instantiate(withOwner: self, options: nil) as NSArray
-            assert(views.count == 1, "There must be exactly one root container view in \(name)")
+            assert(views.count == 1, "There must be exactly one root container view in \(_name)")
             
             let containerView = views.firstObject as! UIView
             
-            assert(containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)), "UIView - The container view in nib \(name) should be a UIView instead of \(containerView.className).")
+            assert(containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)), "UIView - The container view in nib \(_name) should be a UIView instead of \(containerView.className).")
             
             containerView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -157,7 +163,7 @@ public extension UIView {
             
         }
         else {
-            assert(nib != nil, "UIView - Can't load nib: \(name)")
+            assert(false, "UIView: error loading nib: \(_name)")
         }
         
     }

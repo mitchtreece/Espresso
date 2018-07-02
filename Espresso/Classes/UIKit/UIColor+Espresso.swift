@@ -7,20 +7,27 @@
 
 import UIKit
 
-// MARK: Random
-
-public extension UIColor {
+public extension UIColor /* Random */ {
     
+    /**
+     Creates a new color with random r, g, b values & a specified alpha.
+     
+     - Parameter alpha: The color's alpha value; _defaults to 1_.
+     - Returns: A random color.
+     */
     public static func random(alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1.0)
     }
     
 }
 
-// MARK: Hex
-
-public extension UIColor {
+public extension UIColor /* Hex */ {
     
+    /**
+     Initializes a new color from a hex code.
+     
+     - Parameter hexString: The hex code string.
+     */
     public convenience init(hexString: String) {
         
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

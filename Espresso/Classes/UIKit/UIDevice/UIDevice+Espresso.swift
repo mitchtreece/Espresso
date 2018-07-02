@@ -7,8 +7,11 @@
 
 import UIKit
 
-public extension UIDevice {
+public extension UIDevice /* Info*/ {
     
+    /**
+     Representation of the various iOS device types. Also provides information about the current device's system & state.
+     */
     public enum DeviceInfo: String, CaseIterable {
         
         // iPhone
@@ -74,8 +77,9 @@ public extension UIDevice {
         case simulator
         case unknown
         
-        // Functions
-        
+        /**
+         The device's display name.
+         */
         public var displayName: String {
             
             switch self {
@@ -190,10 +194,17 @@ public extension UIDevice {
             
         }
         
+        /**
+         The device's system version string.
+         */
         public var systemVersion: String {
             return UIDevice.current.systemVersion
         }
         
+        /**
+         Flag indicating whether the current device is jailbroken or not.
+         This is **not** guaranteed to be 100% accurate.
+         */
         public var isJailbroken: Bool {
             
             guard !UIDevice.current.isSimulator else { return false }
@@ -244,6 +255,13 @@ public extension UIDevice {
         
     }
     
+    /**
+     Creates a new device info object, optionally overlooking the simulator if desired.
+     
+     - Parameter includeSimulator: Flag indicating whether the `simulator` device type should be reported or not.
+     If the current device is a simulator and this is set to _false_, the emulated device will be returned instead.
+     - Returns: A new device info object.
+     */
     public func info(includeSimulator: Bool = false) -> DeviceInfo {
         
         #if targetEnvironment(simulator)
@@ -281,26 +299,44 @@ public extension UIDevice {
         
     }
     
+    /**
+     Flag indicating whether the current device is a simulator.
+     */
     public var isSimulator: Bool {
         return (self.info(includeSimulator: true) == DeviceInfo.simulator)
     }
     
+    /**
+     Flag indicating whether the current device is a phone.
+     */
     public var isPhone: Bool {
         return self.info().displayName.contains("iPhone")
     }
     
+    /**
+     Flag indicating whether the current device is an iPhone X.
+     */
     public var isPhoneX: Bool {
         return (self.info() == .iPhoneX)
     }
     
+    /**
+     Flag indicating whether the current device is an iPad.
+     */
     public var isPad: Bool {
         return self.info().displayName.contains("iPad")
     }
     
+    /**
+     Flag indicating whether the current device is an iPod.
+     */
     public var isPod: Bool {
         return self.info().displayName.contains("iPod")
     }
     
+    /**
+     Flag indicating whether the current device is a TV.
+     */
     public var isTV: Bool {
         return self.info().displayName.contains("TV")
     }
