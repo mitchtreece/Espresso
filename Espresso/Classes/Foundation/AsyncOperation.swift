@@ -7,19 +7,33 @@
 
 import Foundation
 
-internal class AsyncOperation: Operation {
+/**
+ An `Operation` subclass for simple async tasks.
+ */
+public class AsyncOperation: Operation {
     
-    enum State: String {
+    /**
+     Representation of the various async operation states.
+     */
+    public enum State: String {
         
+        /// A ready state.
         case ready = "Ready"
+        
+        /// An executing state.
         case executing = "Executing"
+        
+        /// A finished state.
         case finished = "Finished"
         
         fileprivate var keyPath: String { return "is" + self.rawValue }
         
     }
     
-    var state: State = .ready {
+    /**
+     The async operation's current state.
+     */
+    public private(set) var state: State = .ready {
         
         willSet {
             willChangeValue(forKey: state.keyPath)
@@ -32,19 +46,19 @@ internal class AsyncOperation: Operation {
         
     }
     
-    override var isAsynchronous: Bool {
+    public override var isAsynchronous: Bool {
         return true
     }
     
-    override var isExecuting: Bool {
+    public override var isExecuting: Bool {
         return state == .executing
     }
     
-    override var isFinished: Bool {
+    public override var isFinished: Bool {
         return state == .finished
     }
     
-    override func start() {
+    public override func start() {
         
         if self.isCancelled {
             state = .finished
@@ -56,7 +70,7 @@ internal class AsyncOperation: Operation {
         
     }
     
-    override func main() {
+    public override func main() {
         
         if self.isCancelled {
             state = .finished

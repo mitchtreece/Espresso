@@ -1,5 +1,5 @@
 //
-//  Array+Espresso.swift
+//  Collection+Espresso.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 12/16/17.
@@ -7,10 +7,14 @@
 
 import Foundation
 
-// MARK: Safety
-
-public extension Collection {
+public extension Collection /* Safety */ {
     
+    /**
+     Safely returns an element at a given index.
+     
+     - Parameter index: The element's index.
+     - Returns: An optional element.
+     */
     public subscript(safe index: Index) -> Element? {
         
         if distance(to: index) >= 0 && distance(from: index) > 0 {
@@ -21,6 +25,12 @@ public extension Collection {
         
     }
     
+    /**
+     Safely returns a sub-sequence of elements.
+     
+     - Parameter bounds: The element range.
+     - Returns: An optional array  `SubSequence`.
+     */
     public subscript(safe bounds: Range<Index>) -> SubSequence? {
         
         if distance(to: bounds.lowerBound) >= 0 && distance(from: bounds.upperBound) >= 0 {
@@ -31,6 +41,12 @@ public extension Collection {
         
     }
     
+    /**
+     Safely returns a sub-sequence of elements.
+     
+     - Parameter bounds: The element range.
+     - Returns: An optional array  `SubSequence`.
+     */
     public subscript(safe bounds: ClosedRange<Index>) -> SubSequence? {
         
         if distance(to: bounds.lowerBound) >= 0 && distance(from: bounds.upperBound) > 0 {

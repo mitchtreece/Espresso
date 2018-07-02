@@ -9,6 +9,11 @@ import Foundation
 
 public extension Array where Element: Operation {
     
+    /**
+     Adds a completion handler to an array of `Operation`'s.
+     
+     - Parameter block: The completion handler.
+     */
     public func completion(block: @escaping ()->()) {
         
         let operation = BlockOperation(block: block)

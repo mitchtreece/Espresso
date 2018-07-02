@@ -7,10 +7,15 @@
 
 import Foundation
 
-// MARK: Height
-
-public extension String {
+public extension String /* Height */ {
     
+    /**
+     Calculates the display height for the string using a constrained width & attributes.
+     
+     - Parameter width: The constrained width.
+     - Parameter attributes: The string attributes to use while calculating the height.
+     - Returns: The string's display height.
+     */
     func height(forWidth width: CGFloat, attributes: [NSAttributedStringKey: Any]?) -> CGFloat {
         
         let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
@@ -22,18 +27,30 @@ public extension String {
         
     }
     
+    /**
+     Calculates the display height for the string using a constrained width & font.
+     
+     - Parameter width: The constrained width.
+     - Parameter font: The font to use while calculating the height.
+     - Returns: The string's display height.
+     */
     func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
         return height(forWidth: width, attributes: [.font: font])
     }
     
 }
 
-// MARK: Tokens
-
-public extension String {
+public extension String /* Tokens */ {
     
     public typealias Token = String
     
+    /**
+     Creates a new string by replacing all occurrences of a **\<token\>** with another string.
+     
+     - Parameter token: The token to replace.
+     - Parameter string: The replacement string.
+     - Returns: A new string with all token occurrences replaced.
+     */
     public func replacing(token: Token, with string: String) -> String {
         
         let _token = (token.first == "<" && token.last == ">") ? token : "<\(token)>"
@@ -41,6 +58,12 @@ public extension String {
         
     }
     
+    /**
+     Creates a new string by replacing all occurrences of **\<token\>'s** with their corresponding replacements.
+     
+     - Parameter tokens: A dictionary map of \<token\>'s to replacement strings.
+     - Returns: A new string with all token occurrences replaced.
+     */
     public func replacing(tokens: [Token: String]) -> String {
         
         var string = self
