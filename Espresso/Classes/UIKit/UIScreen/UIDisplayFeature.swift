@@ -7,15 +7,24 @@
 
 import UIKit
 
+/**
+ Class describing the physical characteristics of a display feature.
+ */
 public class UIDisplayFeature {
     
-    public var frame: CGRect = CGRect.zero
+    /**
+     The display feature's frame.
+     */
+    public private(set) var frame: CGRect = CGRect.zero
     
+    /**
+     The display feature's frame size.
+     */
     public var size: CGSize {
         return frame.size
     }
     
-    public init(frame: CGRect) {
+    internal init(frame: CGRect) {
         self.frame = frame
     }
     

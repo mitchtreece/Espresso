@@ -7,14 +7,18 @@
 
 import UIKit
 
-// MARK: Helpers
-
-public extension UIScreen {
+public extension UIScreen /* Size */ {
     
+    /**
+     The screen's bounds size.
+     */
     public var size: CGSize {
         return bounds.size
     }
     
+    /**
+     The screen's orientation independent (potrait-locked) size.
+     */
     public var sizeOrientationIndependent: CGSize {
         
         let width = min(self.size.width, self.size.height)
@@ -25,9 +29,7 @@ public extension UIScreen {
     
 }
 
-// MARK: Display Features
-
-public extension UIScreen {
+public extension UIScreen /* Display Features */ {
     
     /**
      The screen's display feature insets. These take into account features like: status-bars, notches, home-grabbers, etc.
@@ -58,7 +60,7 @@ public extension UIScreen {
     /**
      The screen's top notch.
      */
-    public var notch: UINotch? {
+    public var topNotch: UINotch? {
         
         guard UIDevice.current.isPhoneX else { return nil }
         let size = CGSize(width: 209, height: 31)

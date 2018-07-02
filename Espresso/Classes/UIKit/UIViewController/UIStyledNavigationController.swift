@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ A `UINavigationController` subclass that implements common appearance properties.
+ */
 public class UIStyledNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     private var statusBarStyle: UIStatusBarStyle = .default
@@ -136,7 +139,10 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
         
     }
     
-    func setNeedsNavigationBarAppearanceUpdate() {
+    /**
+     Tells the navigation controller to re-draw it's navigation bar.
+     */
+    public func setNeedsNavigationBarAppearanceUpdate() {
         
         guard let vc = self.topViewController else { return }
         

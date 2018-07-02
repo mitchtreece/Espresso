@@ -7,9 +7,10 @@
 
 import UIKit
 
+/**
+ A `UIViewController` subclass that implements common appearance properties.
+ */
 open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvider, UINavigationBarAppearanceProvider {
-    
-    // MARK: UIStatusBarAppearance
     
     open var preferredStatusBarAppearance: UIStatusBarAppearance {
         return UIStatusBarAppearance.inferred(for: self) ?? UIStatusBarAppearance()
@@ -27,8 +28,9 @@ open class UIStyledViewController: UIViewController, UIStatusBarAppearanceProvid
         return preferredStatusBarAppearance.animation
     }
     
-    // MARK: UINavigationBarAppearance
-    
+    /**
+     The view controller's preferred navigation bar appearance.
+     */
     open var preferredNavigationBarAppearance: UINavigationBarAppearance {
         return UINavigationBarAppearance.inferred(for: self) ?? UINavigationBarAppearance()
     }

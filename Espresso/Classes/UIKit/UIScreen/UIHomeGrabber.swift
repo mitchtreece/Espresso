@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ Class describing the physical characteristics of the iPhone X's bottom home grabber.
+ */
 public class UIHomeGrabber: UIDisplayFeature {
-    
+    // Same as `UIDisplayFeature`.
 }
