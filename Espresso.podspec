@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.social_media_url      = 'https://twitter.com/mitchtreece'
 
     s.ios.deployment_target = '10.0'
-    s.ios.public_header_files = 'Espresso/Classes/**/*.h'
+    # s.ios.public_header_files = 'Espresso/Classes/**/*.h' # No public header files in project currently
     s.source_files = 'Espresso/Classes/**/*'
 
     s.dependency 'SnapKit', '~> 4.0.0'

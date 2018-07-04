@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="8Qs-PB-d0G">
-                    <rect key="frame" x="165" y="165" width="150" height="150"/>
+                    <rect key="frame" x="173" y="165" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="gnh-7y-Ph7"/>
                         <constraint firstAttribute="height" constant="150" id="yHa-LA-k1g"/>
@@ -26,7 +26,7 @@
             <color key="backgroundColor" red="1" green="0.82745098039999998" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="8Qs-PB-d0G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2ZV-e9-3Z4"/>
-                <constraint firstItem="8Qs-PB-d0G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CrF-4h-Erx"/>
+                <constraint firstItem="8Qs-PB-d0G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="8" id="CrF-4h-Erx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
