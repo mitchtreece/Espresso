@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 ## Overview
-Espresso is a Swift convenience library that makes common tasks a lot easier. Everything is better with coffee.
+Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
 
 ## Installation
 ### CocoaPods
@@ -31,19 +31,19 @@ You can also manually add the source files to your project.
 
 ## Espresso
 
-Espresso adds a bunch of useful features and additions to both the **Foundation** & **UIKit** Swift modules.
-There are too many different additions to cover in this *readme*. However, the code is well documented and fairly self-explanatory.
+Espresso adds a bunch of useful features and additions to both the **Foundation** & **UIKit** layers used during iOS application development.
+Too many components have been added to cover in this *readme*. However, the code is well documented and easy to understand.
 
-Some of the more interesting additions include:
+Some of the more interesting things include:
 - `UIAnimation` wrapper classes & promise-like chaining system
-- `UITransition` system for custom `UIViewController` transitions
+- `UITransition` system for easy custom `UIViewController` transitions
 - `UIViewController` & `UINavigationController` styling system
 - `UIScreen` extensions + display features
 - Device identification & info
 - Type conversion helpers
-- And much more!
+- _+ much more!_
 
-### UIAnimation
+#### UIAnimation
 Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation block.
 
 ```
@@ -75,8 +75,6 @@ UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
 }).run(completion: {
     print("The animation is done!")
 })
-
-...
 ```
 
 The following timing curves are currently supported:
@@ -86,26 +84,19 @@ The following timing curves are currently supported:
 - spring
 - custom
 
-`UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation).
+`UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
 
 ```
-let view = UIView()
-view.backgroundColor = UIColor.white
-view.alpha = 0
-
 UIAnimation(duration: 0.3, {
     view.alpha = 1
 }).then {
     view.backgroundColor = UIColor.red
 }.run()
-
 ```
 
 All parameters of a regular `UIAnimation` are available to you while chaining:
 
 ```
-...
-
 UIAnimation(duration: 0.3, {
     view.alpha = 1
 }).then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
@@ -113,11 +104,9 @@ UIAnimation(duration: 0.3, {
 }).run()
 ```
 
-Animations can also be created and executed at a later time! You can also run your animations directly from an array _without_ chaining them.
+Animations can be created and executed at a later time! Running your animations directly from an array _without_ chaining them is also supported.
 
 ```
-...
-
 let a1 = UIAnimation {
     view.alpha = 1
 }
@@ -131,8 +120,8 @@ let a2 = UIAnimation(.simple(.easeIn), duration: 0.5, {
 })
 ```
 
-### UITransition
-Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A typical custom transition subclass looks something like this:
+#### UITransition
+Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A typical `UITransition` subclass looks something like this:
 
 ```
 class FadeTransition: UITransition {
