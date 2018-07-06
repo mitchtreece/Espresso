@@ -58,8 +58,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case appearance
         case transition
+        case taptics
         case helpers
-        static var count: Int = 3
+        static var count: Int = 4
         
     }
     
@@ -111,6 +112,47 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    private enum TapticRow: Int {
+        
+        case selection
+        case impactLight
+        case impactMedium
+        case impactHeavy
+        case notificationSuccess
+        case notificationWarning
+        case notificationError
+        static var count = 7
+        
+        var title: String {
+            
+            switch self {
+            case .selection: return "Selection"
+            case .impactLight: return "Impact (light)"
+            case .impactMedium: return "Impact (medium)"
+            case .impactHeavy: return "Impact (heavy)"
+            case .notificationSuccess: return "Notification (success)"
+            case .notificationWarning: return "Notification (warning)"
+            case .notificationError: return "Notification (error)"
+            }
+            
+        }
+        
+        var taptic: UITaptic {
+            
+            switch self {
+            case .selection: return UITaptic(style: .selection)
+            case .impactLight: return UITaptic(style: .impact(.light))
+            case .impactMedium: return UITaptic(style: .impact(.medium))
+            case .impactHeavy: return UITaptic(style: .impact(.heavy))
+            case .notificationSuccess: return UITaptic(style: .notification(.success))
+            case .notificationWarning: return UITaptic(style: .notification(.warning))
+            case .notificationError: return UITaptic(style: .notification(.error))
+            }
+            
+        }
+        
+    }
+    
     private enum HelpersRow: Int {
         
         case deviceInfo
@@ -130,6 +172,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         switch _section {
         case .appearance: return "Appearance"
         case .transition: return "Transitions"
+        case .taptics: return "Taptics"
         case .helpers: return "Helpers"
         }
         
@@ -142,6 +185,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         switch _section {
         case .appearance: return AppearanceRow.count
         case .transition: return TransitionRow.count
+        case .taptics: return TapticRow.count
         case .helpers: return HelpersRow.count
         }
         
@@ -168,6 +212,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+        
+        case .taptics:
+            
+            guard let row = TapticRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
         case .helpers:
@@ -270,6 +319,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             let nav = UIStyledNavigationController(rootViewController: vc)
             self.present(nav, with: row.transition, completion: nil)
+        
+        case .taptics:
+            
+            guard let row = TapticRow(rawValue: indexPath.row) else { return }
+            row.taptic.trigger()
             
         case .helpers:
             
