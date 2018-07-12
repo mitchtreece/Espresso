@@ -25,6 +25,7 @@
 		2376CB167493FE756AECBC3BD4A4DBBB /* UISwapTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B66CC14659A858CD6709D0BDFA1FC2 /* UISwapTransition.swift */; };
 		260E49C120F4142C0013C040 /* Date+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E49C020F4142C0013C040 /* Date+Espresso.swift */; };
 		267E8A4D20F80482006E27EF /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E8A4C20F80482006E27EF /* UIGradientView.swift */; };
+		267E8A4F20F80C6F006E27EF /* UITokenLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E8A4E20F80C6F006E27EF /* UITokenLabel.swift */; };
 		2685E84D20EF272D00EE06C6 /* UINibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685E84C20EF272D00EE06C6 /* UINibView.swift */; };
 		2685E84F20EF28C000EE06C6 /* UITaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685E84E20EF28C000EE06C6 /* UITaptic.swift */; };
 		282B070CC97409CDA051F580DAF94D25 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C8BFD80A7988D3B139768116EE2A7 /* ConstraintMakerRelatable.swift */; };
@@ -160,6 +161,7 @@
 		23EFA47F4422B71AFAC96E86992E2880 /* Pods-Espresso_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Espresso_Example-frameworks.sh"; sourceTree = "<group>"; };
 		260E49C020F4142C0013C040 /* Date+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Espresso.swift"; sourceTree = "<group>"; };
 		267E8A4C20F80482006E27EF /* UIGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
+		267E8A4E20F80C6F006E27EF /* UITokenLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITokenLabel.swift; sourceTree = "<group>"; };
 		2685E84C20EF272D00EE06C6 /* UINibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibView.swift; sourceTree = "<group>"; };
 		2685E84E20EF28C000EE06C6 /* UITaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITaptic.swift; sourceTree = "<group>"; };
 		26B52985E78634D542BB977AD81761A0 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
@@ -347,18 +349,19 @@
 		2BDEFA2CE8A9CF437ECC4E3485366FC8 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				B4CE734A3AE9BC19CF9FEF3506AA86DD /* UIApplication+Espresso.swift */,
 				D0337842FBA03CBC9CB1D912434B31AE /* UIBlurView.swift */,
 				267E8A4C20F80482006E27EF /* UIGradientView.swift */,
-				855451D7774614474CB9C8BB3C29594A /* UICollectionViewCell+Espresso.swift */,
-				A1F5F01AB0E4053012B6AD61C4AEF0B1 /* UIColor+Espresso.swift */,
+				267E8A4E20F80C6F006E27EF /* UITokenLabel.swift */,
 				2685E84C20EF272D00EE06C6 /* UINibView.swift */,
 				B9563364AFB7D76053D4876DB83A7091 /* UIContainerView.swift */,
+				2685E84E20EF28C000EE06C6 /* UITaptic.swift */,
+				B4CE734A3AE9BC19CF9FEF3506AA86DD /* UIApplication+Espresso.swift */,
+				855451D7774614474CB9C8BB3C29594A /* UICollectionViewCell+Espresso.swift */,
+				A1F5F01AB0E4053012B6AD61C4AEF0B1 /* UIColor+Espresso.swift */,
 				6092E1C0D8ECFACA19ACA89FD8D092A5 /* UIGestureRecognizer+Espresso.swift */,
 				99F2D393FE756C410B56FCFFEA4786AE /* UIImage+Espresso.swift */,
 				26B52985E78634D542BB977AD81761A0 /* UITableViewCell+Espresso.swift */,
 				B2296858FE52FCFFAFDDD9237FB8A218 /* UIView+Espresso.swift */,
-				2685E84E20EF28C000EE06C6 /* UITaptic.swift */,
 				A57F6B622D1E17E2FBD46ED2402773B7 /* UIAnimation */,
 				A7CF07DA3B7C7833FBE4DE1DEBD46180 /* UIDevice */,
 				5DFB40A104851DF312A7748C1A94A8AE /* UIScreen */,
@@ -799,6 +802,7 @@
 				726C370F2D15730ACEF01EF2941E3C77 /* Array+UIAnimation.swift in Sources */,
 				FE6466AC676699C68E2E8E5D65FD4A45 /* AsyncOperation.swift in Sources */,
 				2685E84F20EF28C000EE06C6 /* UITaptic.swift in Sources */,
+				267E8A4F20F80C6F006E27EF /* UITokenLabel.swift in Sources */,
 				70C6C3DBAACB429A5017C0CC4D4646E4 /* BoolConvertible.swift in Sources */,
 				4C4248DCEA869C018E0DB0EBE000DE5E /* CaseIterable.swift in Sources */,
 				147DF0AA13DB82C2ACD9A4083E47E4CF /* Collection+Espresso.swift in Sources */,
