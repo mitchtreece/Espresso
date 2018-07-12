@@ -32,11 +32,12 @@ public class UIBlurView: UIView {
     /**
      Initializes a new `UIBlurView` with a specified blur style.
      
+     - Parameter frame: The view's frame.
      - Parameter style: The blur style.
      */
-    public init(style: UIBlurEffectStyle) {
+    public init(frame: CGRect, style: UIBlurEffectStyle) {
         
-        super.init(frame: CGRect.zero)
+        super.init(frame: frame)
         self.blurStyle = style
         setup()
         

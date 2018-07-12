@@ -24,6 +24,7 @@
 		2307D71BDB10E741FEA364DD52EB765A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512147FDA1939417BB42A1771EA830F9 /* Foundation.framework */; };
 		2376CB167493FE756AECBC3BD4A4DBBB /* UISwapTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B66CC14659A858CD6709D0BDFA1FC2 /* UISwapTransition.swift */; };
 		260E49C120F4142C0013C040 /* Date+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E49C020F4142C0013C040 /* Date+Espresso.swift */; };
+		267E8A4D20F80482006E27EF /* UIGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267E8A4C20F80482006E27EF /* UIGradientView.swift */; };
 		2685E84D20EF272D00EE06C6 /* UINibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685E84C20EF272D00EE06C6 /* UINibView.swift */; };
 		2685E84F20EF28C000EE06C6 /* UITaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685E84E20EF28C000EE06C6 /* UITaptic.swift */; };
 		282B070CC97409CDA051F580DAF94D25 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C8BFD80A7988D3B139768116EE2A7 /* ConstraintMakerRelatable.swift */; };
@@ -158,6 +159,7 @@
 		23C4EE941C99C2F663494C43944D63FD /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		23EFA47F4422B71AFAC96E86992E2880 /* Pods-Espresso_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Espresso_Example-frameworks.sh"; sourceTree = "<group>"; };
 		260E49C020F4142C0013C040 /* Date+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Espresso.swift"; sourceTree = "<group>"; };
+		267E8A4C20F80482006E27EF /* UIGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGradientView.swift; sourceTree = "<group>"; };
 		2685E84C20EF272D00EE06C6 /* UINibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibView.swift; sourceTree = "<group>"; };
 		2685E84E20EF28C000EE06C6 /* UITaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITaptic.swift; sourceTree = "<group>"; };
 		26B52985E78634D542BB977AD81761A0 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			children = (
 				B4CE734A3AE9BC19CF9FEF3506AA86DD /* UIApplication+Espresso.swift */,
 				D0337842FBA03CBC9CB1D912434B31AE /* UIBlurView.swift */,
+				267E8A4C20F80482006E27EF /* UIGradientView.swift */,
 				855451D7774614474CB9C8BB3C29594A /* UICollectionViewCell+Espresso.swift */,
 				A1F5F01AB0E4053012B6AD61C4AEF0B1 /* UIColor+Espresso.swift */,
 				2685E84C20EF272D00EE06C6 /* UINibView.swift */,
@@ -802,6 +805,7 @@
 				72C259008F9314DD02E361C37039BCB3 /* ErrorConvertible.swift in Sources */,
 				A42156C4E6E019BACD644DF974C4BDC8 /* Espresso-dummy.m in Sources */,
 				C45F57F292F3E2100C24F1748ED81A06 /* Float+Espresso.swift in Sources */,
+				267E8A4D20F80482006E27EF /* UIGradientView.swift in Sources */,
 				6612CEEC4399133E34EF525C983C3583 /* Identifiable.swift in Sources */,
 				61C68BEDC21AECBEDB2DFD7CA16C1953 /* IndexPath+Espresso.swift in Sources */,
 				19256A5543649FC02515B8FE97BACF45 /* JSONConvertible.swift in Sources */,
