@@ -10,7 +10,7 @@ import Foundation
 /**
  `UIView` subclass that emulates a `UILabel` within a styled view.
  */
-public class UITokenLabel: UIView {
+open class UITokenLabel: UIView {
     
     /**
      Flag indicating whether the token should be filled or not; _defaults to false_.
@@ -141,7 +141,7 @@ public class UITokenLabel: UIView {
         
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         
         super.layoutSubviews()
         

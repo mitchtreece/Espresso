@@ -11,7 +11,7 @@ import SnapKit
 /**
  Blurred `UIView` subclass that responds to tint color changes.
  */
-public class UIBlurView: UIView {
+open class UIBlurView: UIView {
     
     private var blurView: UIVisualEffectView!
     private var blurStyle = UIBlurEffectStyle.light
@@ -25,7 +25,7 @@ public class UIBlurView: UIView {
         return blurView.contentView
     }
     
-    public override func tintColorDidChange() {
+    open override func tintColorDidChange() {
         self.backgroundColor = self.tintColor
     }
     

@@ -10,7 +10,7 @@ import UIKit
 /**
  `UIView` subclass that draws a gradient for it's contents.
  */
-public class UIGradientView: UIView {
+open class UIGradientView: UIView {
     
     /**
      Representation of the various gradient directions.
@@ -53,7 +53,7 @@ public class UIGradientView: UIView {
         }
     }
     
-    override public class var layerClass: AnyClass {
+    override open class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     

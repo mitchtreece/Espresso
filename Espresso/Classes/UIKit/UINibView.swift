@@ -10,7 +10,7 @@ import UIKit
 /**
  `UIView` subclass that loads it's contents from a nib.
  */
-public class UINibView: UIView {
+open class UINibView: UIView {
     
     /**
      Initializes a new instance of the view from a nib. If no name is provided, the class name will be used.
