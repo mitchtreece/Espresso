@@ -27,6 +27,9 @@ public extension Identifiable {
     
 }
 
+extension UIView: Identifiable {}
+extension UIViewController: Identifiable {}
+
 extension Identifiable where Self: UIViewController {
     
     /**
@@ -43,6 +46,3 @@ extension Identifiable where Self: UIViewController {
     }
     
 }
-
-extension UIView: Identifiable {}
-extension UIViewController: Identifiable {}
