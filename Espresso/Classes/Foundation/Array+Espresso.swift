@@ -7,6 +7,32 @@
 
 import Foundation
 
+public extension Array /* Prepend */ {
+    
+    /**
+     Prepends an element to the array.
+     
+     - Parameter newElement: The element to prepend.
+     */
+    public mutating func prepend(_ newElement: Array.Element) {
+        self.insert(newElement, at: 0)
+    }
+    
+    /**
+     Prepends a sequence of elements to the array.
+     
+     - Parameter newElements: The elements to prepend.
+     */
+    public mutating func prepend<S>(contentsOf newElements: S) where Element == S.Element, S: Sequence {
+        
+        newElements.reversed().forEach { (element) in
+            self.insert(element, at: 0)
+        }
+        
+    }
+    
+}
+
 public extension Array where Element: Operation {
     
     /**

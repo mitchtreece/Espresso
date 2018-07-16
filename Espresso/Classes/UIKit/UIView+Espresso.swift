@@ -7,6 +7,33 @@
 
 import UIKit
 
+public extension UIView /* Shadow */ {
+    
+    /**
+     Draws a shadow on the view's layer with specified parameters.
+     
+     - Parameter color: The shadow color; _defaults to black_.
+     - Parameter radius: The shadow radius; _defaults to 6_.
+     - Parameter opacity: The shadow opacity; _defaults to 0.2_.
+     - Parameter offset: The shadow offset; _defaults to zero_.
+     - Parameter path: The optional shadow path.
+     */
+    public func drawShadow(color: UIColor = .black,
+                           radius: CGFloat = 6,
+                           opacity: CGFloat = 0.2,
+                           offset: CGSize = .zero,
+                           path: CGPath? = nil) {
+        
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowRadius = radius
+        self.layer.shadowOpacity = Float(opacity)
+        self.layer.shadowOffset = offset
+        self.layer.shadowPath = path
+        
+    }
+    
+}
+
 public extension UIView /* Motion Effects */ {
     
     /**
