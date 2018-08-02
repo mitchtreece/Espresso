@@ -7,9 +7,8 @@
 
 import Foundation
 
-// NOTE: This is built into the standard library as of Swift 4.2
-
 #if swift(>=4.2)
+    // Built into the standard library as of Swift 4.2
 #else
 
 /**
