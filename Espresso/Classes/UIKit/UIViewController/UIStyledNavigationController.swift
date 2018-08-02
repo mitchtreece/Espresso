@@ -116,7 +116,7 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
             navigationBar.backIndicatorImage = UIImage()
             navigationBar.backIndicatorTransitionMaskImage = UIImage()
             
-            let backItem = UIBarButtonItem(title: nil, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+            let backItem = UIBarButtonItem(title: nil, style: UIBarButtonItem.Style.plain, target: nil, action: nil)
             vc.navigationItem.backBarButtonItem = backItem
             sourceVC?.navigationItem.backBarButtonItem = backItem
             
@@ -130,7 +130,7 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
             }
             
             if let title = nbAppearance?.backButtonTitle {
-                let backItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+                let backItem = UIBarButtonItem(title: title, style: UIBarButtonItem.Style.plain, target: nil, action: nil)
                 vc.navigationItem.backBarButtonItem = backItem
                 sourceVC?.navigationItem.backBarButtonItem = backItem
             }

@@ -16,7 +16,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the size.
      - Returns: The string's display size.
      */
-    public func size(constrainedTo size: CGSize, attributes: [NSAttributedStringKey: Any]?) -> CGSize {
+    public func size(constrainedTo size: CGSize, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
         
         return (self as NSString).boundingRect(with: size,
                                                options: [.usesLineFragmentOrigin],
@@ -32,7 +32,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the width.
      - Returns: The string's display width.
      */
-    public func width(forHeight height: CGFloat, attributes: [NSAttributedStringKey: Any]?) -> CGFloat {
+    public func width(forHeight height: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
         let constraint = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
         return size(constrainedTo: constraint, attributes: attributes).width
@@ -57,7 +57,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the height.
      - Returns: The string's display height.
      */
-    public func height(forWidth width: CGFloat, attributes: [NSAttributedStringKey: Any]?) -> CGFloat {
+    public func height(forWidth width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
         let constraint = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         return size(constrainedTo: constraint, attributes: attributes).height

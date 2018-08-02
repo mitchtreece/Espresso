@@ -39,7 +39,7 @@ open class UITokenLabel: UIView {
     /**
      The token label's background blur style. This overrides the `isFilled` property if set.
      */
-    public var blurStyle: UIBlurEffectStyle? {
+    public var blurStyle: UIBlurEffect.Style? {
         didSet {
             layoutSubviews()
         }

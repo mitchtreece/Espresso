@@ -39,7 +39,7 @@ public class UIAnimation {
     public enum TimingCurve {
         
         /// A simple timing curve using one of the built-in `UIViewAnimationCurve` types.
-        case simple(UIViewAnimationCurve)
+        case simple(UIView.AnimationCurve)
         
         /// A cubic bezier timing curve using two control points.
         case cubicBezier(cp1: CGPoint, cp2: CGPoint)
@@ -154,7 +154,7 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         
-        var curveString: String!
+        var curveString: String
         
         switch timingCurve {
         case .simple(let curve):
