@@ -34,6 +34,9 @@ public extension UIDevice /* Info*/ {
         case iPhone8
         case iPhone8Plus
         case iPhoneX
+        case iPhoneXR
+        case iPhoneXS
+        case iPhoneXSMax
         
         // iPod Touch
         
@@ -101,6 +104,9 @@ public extension UIDevice /* Info*/ {
             case .iPhone8: return "iPhone 8"
             case .iPhone8Plus: return "iPhone 8 Plus"
             case .iPhoneX: return "iPhone X"
+            case .iPhoneXR: return "iPhone XR"
+            case .iPhoneXS: return "iPhone XS"
+            case .iPhoneXSMax: return "iPhone XS Max"
                 
             case .iPodTouch: return "iPod touch"
             case .iPodTouch2G: return "iPod touch 2G"
@@ -158,6 +164,9 @@ public extension UIDevice /* Info*/ {
             case .iPhone8: return ["iPhone10,1", "iPhone10,4"]
             case .iPhone8Plus: return ["iPhone10,2", "iPhone10,5"]
             case .iPhoneX: return ["iPhone10,3", "iPhone10,6"]
+            case .iPhoneXR: return ["iPhone11,8"]
+            case .iPhoneXS: return ["iPhone11,2"]
+            case .iPhoneXSMax: return ["iPhone11,4", "iPhone11,6"]
                 
             case .iPodTouch: return ["iPod1,1"]
             case .iPodTouch2G: return ["iPod2,1"]
@@ -186,7 +195,7 @@ public extension UIDevice /* Info*/ {
             case .appleTV: return ["AppleTV5,3"]
             case .appleTV4K: return ["AppleTV6,2"]
                 
-            case .homepod: return ["AudioAccessory1,1"]
+            case .homepod: return ["AudioAccessory1,1", "AudioAccessory1,2"]
             
             case .simulator: return ["i386", "x86_64"]
             case .unknown: return []
