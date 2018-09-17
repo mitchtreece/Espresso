@@ -1,8 +1,8 @@
 {
   "name": "Espresso",
-  "version": "1.0.0",
-  "summary": "Convenience library for Swift.",
-  "description": "Espresso is a Swift convenience library that\nmakes common tasks a lot easier. Everything is better\nwith coffee.",
+  "version": "1.0.2",
+  "summary": "Swift convenience library for iOS.",
+  "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
   "license": {
     "type": "MIT",
@@ -13,14 +13,11 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "1.0.0"
+    "tag": "1.0.2"
   },
-  "social_media_url": "https://twitter.com/MitchTreece",
+  "social_media_url": "https://twitter.com/mitchtreece",
   "platforms": {
     "ios": "10.0"
-  },
-  "ios": {
-    "public_header_files": "Espresso/Classes/**/*.h"
   },
   "source_files": "Espresso/Classes/**/*",
   "dependencies": {
