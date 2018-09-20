@@ -1,7 +1,7 @@
 PODS:
-  - Espresso (1.0.0):
+  - Espresso (1.0.2):
     - SnapKit (~> 4.0.0)
-  - SnapKit (4.0.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - Espresso (from `../`)
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 6bcd391aa0aa37893512610d015cbeb7558a8a95
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Espresso: cafd097c774aa106d7d3acbad35e304feec4ef33
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
 PODFILE CHECKSUM: 5f7974b85675c752f9d9718eead47249df209659
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

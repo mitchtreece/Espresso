@@ -14,7 +14,7 @@ import SnapKit
 open class UIBlurView: UIView {
     
     private var blurView: UIVisualEffectView!
-    private var blurStyle = UIBlurEffectStyle.light
+    private var blurStyle = UIBlurEffect.Style.light
     
     /**
      A `UIView` object that can have a visual effect view added to it.
@@ -35,7 +35,7 @@ open class UIBlurView: UIView {
      - Parameter frame: The view's frame.
      - Parameter style: The blur style.
      */
-    public init(frame: CGRect, style: UIBlurEffectStyle) {
+    public init(frame: CGRect, style: UIBlurEffect.Style) {
         
         super.init(frame: frame)
         self.blurStyle = style

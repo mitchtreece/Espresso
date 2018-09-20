@@ -22,10 +22,10 @@ public class UITaptic {
         case selection
         
         /// An impact feedback style
-        case impact(UIImpactFeedbackStyle)
+        case impact(UIImpactFeedbackGenerator.FeedbackStyle)
         
         /// A notification feedback style
-        case notification(UINotificationFeedbackType)
+        case notification(UINotificationFeedbackGenerator.FeedbackType)
         
     }
     

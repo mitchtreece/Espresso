@@ -73,7 +73,7 @@ public class UISwapTransition: UITransition {
                 
             }).then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
                 
-                container.bringSubview(toFront: destinationVC.view)
+                container.bringSubviewToFront(destinationVC.view)
                 
                 sourceVC.view.alpha = self.swapAlpha
                 sourceVC.view.transform = .identity

@@ -326,7 +326,10 @@ public extension UIDevice /* Info*/ {
      Flag indicating whether the current device is an iPhone X.
      */
     public var isPhoneX: Bool {
-        return (self.info() == .iPhoneX)
+        
+        let info = self.info()
+        return (info == .iPhoneX || info == .iPhoneXR || info == .iPhoneXS || info == .iPhoneXSMax)
+        
     }
     
     /**
