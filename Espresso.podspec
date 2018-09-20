@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = 'Espresso'
-    s.version          = '1.0.2'
+    s.version          = '1.1.0'
     s.summary          = 'Swift convenience library for iOS.'
 
     s.description      = <<-DESC
