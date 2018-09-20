@@ -2,8 +2,7 @@
 
 [![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 ![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=for-the-badge)
-[![Platform](https://img.shields.io/cocoapods/p/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
-![iOS](https://img.shields.io/badge/iOS-10,%2011-blue.svg?style=for-the-badge)
+![iOS](https://img.shields.io/badge/iOS-10--12-green.svg?style=for-the-badge)
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 ## Overview

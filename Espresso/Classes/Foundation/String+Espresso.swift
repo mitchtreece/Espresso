@@ -7,7 +7,48 @@
 
 import Foundation
 
-public extension String /* Height */ {
+public extension String /* Size */ {
+    
+    /**
+     Calculates the display size for the string using a constraint & attributes.
+     
+     - Parameter size: The constrained size.
+     - Parameter attributes: The string attributes to use while calculating the size.
+     - Returns: The string's display size.
+     */
+    public func size(constrainedTo size: CGSize, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
+        
+        return (self as NSString).boundingRect(with: size,
+                                               options: [.usesLineFragmentOrigin],
+                                               attributes: attributes,
+                                               context: nil).size
+        
+    }
+    
+    /**
+     Calculates the display width for the string using a constrained height & attributes.
+     
+     - Parameter height: The constrained height.
+     - Parameter attributes: The string attributes to use while calculating the width.
+     - Returns: The string's display width.
+     */
+    public func width(forHeight height: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
+        
+        let constraint = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
+        return size(constrainedTo: constraint, attributes: attributes).width
+        
+    }
+    
+    /**
+     Calculates the display width for the string using a constrained height & font.
+     
+     - Parameter height: The constrained height.
+     - Parameter font: The font to use while calculating the width.
+     - Returns: The string's display width.
+     */
+    public func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
+        return width(forHeight: height, attributes: [.font: font])
+    }
     
     /**
      Calculates the display height for the string using a constrained width & attributes.
@@ -16,14 +57,10 @@ public extension String /* Height */ {
      - Parameter attributes: The string attributes to use while calculating the height.
      - Returns: The string's display height.
      */
-    func height(forWidth width: CGFloat, attributes: [NSAttributedStringKey: Any]?) -> CGFloat {
+    public func height(forWidth width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
-        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        
-        return (self as NSString).boundingRect(with: size,
-                                               options: [.usesLineFragmentOrigin],
-                                               attributes: attributes,
-                                               context: nil).size.height
+        let constraint = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        return size(constrainedTo: constraint, attributes: attributes).height
         
     }
     
@@ -34,7 +71,7 @@ public extension String /* Height */ {
      - Parameter font: The font to use while calculating the height.
      - Returns: The string's display height.
      */
-    func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
+    public func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
         return height(forWidth: width, attributes: [.font: font])
     }
     
