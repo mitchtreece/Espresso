@@ -1,6 +1,6 @@
 {
   "name": "Espresso",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "summary": "Swift convenience library for iOS.",
   "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
@@ -13,17 +13,64 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "1.0.2"
+    "tag": "1.1.0"
   },
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_version": "4.2",
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "Espresso/Classes/**/*",
   "dependencies": {
     "SnapKit": [
       "~> 4.0.0"
     ]
-  }
+  },
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Espresso/Classes/Core/**/*"
+    },
+    {
+      "name": "MVVM",
+      "source_files": "Espresso/Classes/MVVM/**/*",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Rx",
+      "source_files": "Espresso/Classes/Rx/**/*",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ],
+        "RxSwift": [
+          "~> 4.0"
+        ],
+        "RxCocoa": [
+          "~> 4.0"
+        ],
+        "RxDataSources": [
+          "~> 3.0"
+        ]
+      }
+    },
+    {
+      "name": "All",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ],
+        "Espresso/MVVM": [
+
+        ],
+        "Espresso/Rx": [
+
+        ]
+      }
+    }
+  ]
 }
