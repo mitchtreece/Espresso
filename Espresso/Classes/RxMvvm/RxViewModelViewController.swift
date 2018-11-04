@@ -9,14 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public class RxViewModelViewController<T: ViewModel>: UIViewModelViewController<T> {
+open class RxViewModelViewController<T: ViewModel>: UIViewModelViewController<T> {
     
     public private(set) var modelDisposeBag: DisposeBag!
     public private(set) var componentDisposeBag: DisposeBag!
     
     private var isBinded: Bool = false
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         
@@ -30,14 +30,14 @@ public class RxViewModelViewController<T: ViewModel>: UIViewModelViewController<
         
     }
     
-    public func bindComponents() {
+    open func bindComponents() {
         
         // Override me
         self.componentDisposeBag = DisposeBag()
         
     }
     
-    public func bindModel() {
+    open func bindModel() {
         
         // Override me
         self.modelDisposeBag = DisposeBag()

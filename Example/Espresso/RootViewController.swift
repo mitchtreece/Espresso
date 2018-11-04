@@ -58,6 +58,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case appearance
         case transition
+        case rxMvvm
         case taptics
         case helpers
         static var count: Int = 4
@@ -106,6 +107,23 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .swap: return "UISwapTransition"
             case .pushBack: return "UIPushBackTransition"
             case .custom: return "Custom"
+            }
+            
+        }
+        
+    }
+    
+    private enum RxMvvmRow: Int {
+        
+        case viewController
+        case tableView
+        static var count: Int = 2
+        
+        var title: String {
+            
+            switch self {
+            case .viewController: return "UIViewController"
+            case .tableView: return "UITableView"
             }
             
         }
@@ -172,6 +190,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         switch _section {
         case .appearance: return "Appearance"
         case .transition: return "Transitions"
+        case .rxMvvm: return "Rx / MVVM"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
         }
@@ -185,6 +204,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         switch _section {
         case .appearance: return AppearanceRow.count
         case .transition: return TransitionRow.count
+        case .rxMvvm: return RxMvvmRow.count
         case .taptics: return TapticRow.count
         case .helpers: return HelpersRow.count
         }
@@ -214,6 +234,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
         
+        case .rxMvvm:
+            
+            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+            
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -320,6 +345,22 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             let nav = UIStyledNavigationController(rootViewController: vc)
             self.present(nav, with: row.transition, completion: nil)
         
+        case .rxMvvm:
+            
+            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }
+
+            switch row {
+            case .viewController:
+                
+                let vc = RxViewController(viewModel: RxViewModel())
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            case .tableView: break
+            }
+            
+            // TODO
+            break
+            
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return }

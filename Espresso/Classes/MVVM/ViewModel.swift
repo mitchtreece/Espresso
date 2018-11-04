@@ -7,6 +7,18 @@
 
 import Foundation
 
-public protocol ViewModel {
+public protocol ViewModelProtocol: Equatable {
     //
+}
+
+open class ViewModel: ViewModelProtocol {
+    
+    public init() {
+        //
+    }
+    
+    public static func == (lhs: ViewModel, rhs: ViewModel) -> Bool {
+        return lhs === rhs
+    }
+    
 }

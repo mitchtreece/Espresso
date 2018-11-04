@@ -9,12 +9,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public class RxTableViewCell<T: RxCellViewModel>: UIViewModelTableViewCell<T> {
+open class RxTableViewCell<T: RxCellViewModel>: UIViewModelTableViewCell<T> {
     
     public private(set) var modelDisposeBag: DisposeBag!
     public private(set) var componentDisposeBag: DisposeBag!
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         
         super.awakeFromNib()
         bindComponents()
@@ -29,14 +29,14 @@ public class RxTableViewCell<T: RxCellViewModel>: UIViewModelTableViewCell<T> {
         
     }
     
-    public func bindComponents() {
+    open func bindComponents() {
         
         // Override me
         self.componentDisposeBag = DisposeBag()
         
     }
     
-    public func bindModel() {
+    open func bindModel() {
         
         // Override me
         self.modelDisposeBag = DisposeBag()

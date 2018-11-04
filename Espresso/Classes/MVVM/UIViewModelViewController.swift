@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class UIViewModelViewController<T: ViewModel>: UIViewController {
+open class UIViewModelViewController<T: ViewModel>: UIViewController {
     
     public private(set) var viewModel: T!
     
@@ -18,7 +18,7 @@ public class UIViewModelViewController<T: ViewModel>: UIViewController {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -10,6 +10,8 @@
 		2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967A20E2B57000AE1B56 /* TransitionViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
 		263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E799120924E6C003BAD76 /* AppearanceViewController.swift */; };
+		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
+		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 		2631967A20E2B57000AE1B56 /* TransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		263E799120924E6C003BAD76 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
+		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
+		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26854DD7218E73E600B3ABBB /* Rx / MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				26854DDA218E748D00B3ABBB /* RxViewModel.swift */,
+				26854DD8218E746C00B3ABBB /* RxViewController.swift */,
+			);
+			name = "Rx / MVVM";
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +117,7 @@
 				263E799120924E6C003BAD76 /* AppearanceViewController.swift */,
 				2631967A20E2B57000AE1B56 /* TransitionViewController.swift */,
 				26CDD00220E442E800BE58A1 /* CustomTransition.swift */,
+				26854DD7218E73E600B3ABBB /* Rx / MVVM */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Espresso";
@@ -345,7 +359,9 @@
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
 				263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */,
+				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
+				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */,
 			);

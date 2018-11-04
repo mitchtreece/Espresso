@@ -7,16 +7,20 @@
 
 import RxDataSources
 
-public typealias RxCellViewModelProtocol = (ViewModel & IdentifiableType & Equatable)
-
-public class RxCellViewModel: RxCellViewModelProtocol, Identifiable {
+open class RxCellViewModel: ViewModel, IdentifiableType, Identifiable {
     
     public typealias Identity = String
     
     public private(set) var identity: String = ""
     
     public init(identity: String? = nil) {
-        self.identity = identity ?? type(of: self).identifier
+        
+        if let identity = identity {
+            self.identity = identity
+        }
+        
+        self.identity = type(of: self).identifier
+        
     }
     
     public static func == (lhs: RxCellViewModel, rhs: RxCellViewModel) -> Bool {
