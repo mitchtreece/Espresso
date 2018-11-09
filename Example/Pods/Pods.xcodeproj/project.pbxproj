@@ -70,6 +70,9 @@
 		26854DD2218E65CE00B3ABBB /* RxCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD1218E65CE00B3ABBB /* RxCellViewModel.swift */; };
 		26854DD4218E66C500B3ABBB /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD3218E66C500B3ABBB /* RxTableViewCell.swift */; };
 		26854DD6218E67EB00B3ABBB /* UIViewModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD5218E67EB00B3ABBB /* UIViewModelTableViewCell.swift */; };
+		26854DDF218F9FC200B3ABBB /* RxVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDE218F9FC200B3ABBB /* RxVariable.swift */; };
+		26854DE1218FA24000B3ABBB /* UIViewModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DE0218FA24000B3ABBB /* UIViewModelCollectionViewCell.swift */; };
+		26854DE3218FA27000B3ABBB /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DE2218FA27000B3ABBB /* RxCollectionViewCell.swift */; };
 		269083B9D32AB5F8D16047F86B7ABDBC /* ImmediateSchedulerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91D82E275281D81AFE7E115ED8EE96C /* ImmediateSchedulerType.swift */; };
 		26D42761443EECFEDE68BBDADB068B22 /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613C6F987FD29068D5248E98CCF659F0 /* Deprecated.swift */; };
 		2795C24324ADB95D5F0C6049E2240437 /* KeyPathBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858630AFF5F82222F7F5FC8EB16FBE3 /* KeyPathBinder.swift */; };
@@ -618,6 +621,9 @@
 		26854DD1218E65CE00B3ABBB /* RxCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCellViewModel.swift; sourceTree = "<group>"; };
 		26854DD3218E66C500B3ABBB /* RxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
 		26854DD5218E67EB00B3ABBB /* UIViewModelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewModelTableViewCell.swift; sourceTree = "<group>"; };
+		26854DDE218F9FC200B3ABBB /* RxVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxVariable.swift; sourceTree = "<group>"; };
+		26854DE0218FA24000B3ABBB /* UIViewModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewModelCollectionViewCell.swift; sourceTree = "<group>"; };
+		26854DE2218FA27000B3ABBB /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
 		272D45F6B17A0FC7FF32DD3304D6EF91 /* SynchronizedDisposeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedDisposeType.swift; path = RxSwift/Concurrency/SynchronizedDisposeType.swift; sourceTree = "<group>"; };
 		286942036340995FEFE1D663360D2498 /* DistinctUntilChanged.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DistinctUntilChanged.swift; path = RxSwift/Observables/DistinctUntilChanged.swift; sourceTree = "<group>"; };
 		2909C6ABD7A878D1D4F96CA61B2ADC1A /* RxPickerViewAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxPickerViewAdapter.swift; path = RxCocoa/iOS/DataSources/RxPickerViewAdapter.swift; sourceTree = "<group>"; };
@@ -1255,18 +1261,20 @@
 				26854DCC218E621400B3ABBB /* RxViewModelViewController.swift */,
 				26854DD1218E65CE00B3ABBB /* RxCellViewModel.swift */,
 				26854DD3218E66C500B3ABBB /* RxTableViewCell.swift */,
-				26854DCE218E635700B3ABBB /* Extensions */,
+				26854DE2218FA27000B3ABBB /* RxCollectionViewCell.swift */,
+				26854DCE218E635700B3ABBB /* Helpers */,
 			);
 			name = RxMvvm;
 			path = Espresso/Classes/RxMvvm;
 			sourceTree = "<group>";
 		};
-		26854DCE218E635700B3ABBB /* Extensions */ = {
+		26854DCE218E635700B3ABBB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				26854DCF218E638300B3ABBB /* ObservableType+Espresso.swift */,
+				26854DDE218F9FC200B3ABBB /* RxVariable.swift */,
 			);
-			path = Extensions;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		2B78A4491E069ADF5034D68D758F8B36 /* RxSwift */ = {
@@ -1788,6 +1796,7 @@
 				1DA6358AD99CA673C2C9E706B32FA26C /* ViewModel.swift */,
 				A2B6DBA44BBB500E195F2BDCA806BB66 /* UIViewModelViewController.swift */,
 				26854DD5218E67EB00B3ABBB /* UIViewModelTableViewCell.swift */,
+				26854DE0218FA24000B3ABBB /* UIViewModelCollectionViewCell.swift */,
 			);
 			name = Mvvm;
 			sourceTree = "<group>";
@@ -2144,6 +2153,7 @@
 				15CC6254B8F8E0D0A41DC6E769F05E9F /* CaseIterable.swift in Sources */,
 				F930B14E00FDAB985964BF5F968B8E21 /* Collection+Espresso.swift in Sources */,
 				26854DD0218E638300B3ABBB /* ObservableType+Espresso.swift in Sources */,
+				26854DDF218F9FC200B3ABBB /* RxVariable.swift in Sources */,
 				853A37FDC4B306050D0797486CC622E9 /* Date+Espresso.swift in Sources */,
 				3FCB67244EDEA42CDD9573691CA29E0B /* ErrorConvertible.swift in Sources */,
 				26854DD2218E65CE00B3ABBB /* RxCellViewModel.swift in Sources */,
@@ -2173,6 +2183,7 @@
 				EDC84EED1F7921A89A232A9F25103CAD /* UIGradientView.swift in Sources */,
 				8E7D189F2042B83EFDD513FBC8F82B37 /* UIHomeGrabber.swift in Sources */,
 				3BD98B752FB0AB428A2D01556842FB47 /* UIImage+Espresso.swift in Sources */,
+				26854DE3218FA27000B3ABBB /* RxCollectionViewCell.swift in Sources */,
 				8657F1110E47581FCDD142DDBC79AA05 /* UINavigationBarAppearanceProvider.swift in Sources */,
 				5EB6DDD1034BDC3DAD8F7130D6245377 /* UINavigationController+UITransition.swift in Sources */,
 				C73C2DD7EFDF58DE25F8BD1BBBFA5D37 /* UINibView.swift in Sources */,
@@ -2181,6 +2192,7 @@
 				26854DCD218E621400B3ABBB /* RxViewModelViewController.swift in Sources */,
 				DCA1717091B7E0092EEB0AFCFD627A68 /* UIScreen+Espresso.swift in Sources */,
 				3EB909180EEAAA708101D3369BBA024F /* UISlideTransition.swift in Sources */,
+				26854DE1218FA24000B3ABBB /* UIViewModelCollectionViewCell.swift in Sources */,
 				8F3AF57AD1F0701723CEF3DCF630974C /* UIStatusBarAppearanceProvider.swift in Sources */,
 				83A910DC7801FBB7F0D7A451EC011237 /* UIStyledNavigationController.swift in Sources */,
 				E99AD8A06F58BA2ECFA0EF1F8138AC32 /* UIStyledViewController.swift in Sources */,

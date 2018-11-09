@@ -117,13 +117,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case viewController
         case tableView
-        static var count: Int = 2
+        case collectionView
+        static var count: Int = 3
         
         var title: String {
             
             switch self {
             case .viewController: return "UIViewController"
             case .tableView: return "UITableView"
+            case .collectionView: return "UICollectionView"
             }
             
         }
@@ -356,10 +358,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             case .tableView: break
+            case .collectionView: break
             }
-            
-            // TODO
-            break
             
         case .taptics:
             

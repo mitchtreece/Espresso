@@ -15,12 +15,17 @@ class RxViewModel: ViewModel {
     private(set) var title = "Rx / MVVM"
     private(set) var barButtonTitle = "Tap Me!"
     
-    private(set) var labelText = BehaviorRelay<String>(value: "RxViewModel says:\n0")
+    private(set) var labelText: RxReadOnlyVariable<String>!
+    private var _labelText = RxVariable<String>(value: "RxViewModel says:\n0")
+
+    override init() {
+        self.labelText = RxReadOnlyVariable<String>(self._labelText)
+    }
     
     func updateText() {
         
         let num = Int.random(in: 0...100)
-        self.labelText.accept("RxViewModel says:\n\(num)")
+        self._labelText.accept("RxViewModel says:\n\(num)")
         
     }
     
