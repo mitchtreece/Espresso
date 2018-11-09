@@ -7,11 +7,11 @@
 
 import UIKit
 
-open class UIViewModelCollectionViewCell<T: ViewModel>: UICollectionViewCell {
+open class UIViewModelCollectionViewCell<V: ViewModel>: UICollectionViewCell {
     
-    public private(set) var viewModel: T!
+    public private(set) var viewModel: V!
     
-    public func setup(viewModel: T) -> Self {
+    public func setup(viewModel: V) -> Self {
         
         guard self.viewModel !== viewModel else { return self }
         self.viewModel = viewModel

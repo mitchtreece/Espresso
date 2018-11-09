@@ -1258,10 +1258,10 @@
 		26854DCB218E61C600B3ABBB /* RxMvvm */ = {
 			isa = PBXGroup;
 			children = (
-				26854DCC218E621400B3ABBB /* RxViewModelViewController.swift */,
 				26854DD1218E65CE00B3ABBB /* RxCellViewModel.swift */,
 				26854DD3218E66C500B3ABBB /* RxTableViewCell.swift */,
 				26854DE2218FA27000B3ABBB /* RxCollectionViewCell.swift */,
+				26854DCC218E621400B3ABBB /* RxViewModelViewController.swift */,
 				26854DCE218E635700B3ABBB /* Helpers */,
 			);
 			name = RxMvvm;

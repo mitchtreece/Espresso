@@ -7,11 +7,11 @@
 
 import UIKit
 
-open class UIViewModelTableViewCell<T: ViewModel>: UITableViewCell {
+open class UIViewModelTableViewCell<V: ViewModel>: UITableViewCell {
     
-    public private(set) var viewModel: T!
+    public private(set) var viewModel: V!
     
-    public func setup(viewModel: T) -> Self {
+    public func setup(viewModel: V) -> Self {
 
         guard self.viewModel !== viewModel else { return self }
         self.viewModel = viewModel

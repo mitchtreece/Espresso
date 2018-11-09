@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-open class RxViewModelViewController<T: ViewModel>: UIViewModelViewController<T> {
+open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
     public private(set) var modelDisposeBag: DisposeBag!
     public private(set) var componentDisposeBag: DisposeBag!

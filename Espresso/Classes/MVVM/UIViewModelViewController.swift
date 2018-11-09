@@ -7,11 +7,11 @@
 
 import UIKit
 
-open class UIViewModelViewController<T: ViewModel>: UIViewController {
+open class UIViewModelViewController<V: ViewModel>: UIViewController {
     
-    public private(set) var viewModel: T!
+    public private(set) var viewModel: V!
     
-    public init(viewModel: T) {
+    public init(viewModel: V) {
         
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -22,7 +22,7 @@ open class UIViewModelViewController<T: ViewModel>: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    public func setup(viewModel: T) {
+    public func setup(viewModel: V) {
         self.viewModel = viewModel
     }
     

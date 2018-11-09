@@ -12,8 +12,8 @@ import RxCocoa
 
 class RxViewModel: ViewModel {
     
-    private(set) var title = "Rx / MVVM"
-    private(set) var barButtonTitle = "Tap Me!"
+    let title = "Rx / MVVM"
+    let barButtonTitle = "Tap Me!"
     
     private(set) var labelText: RxReadOnlyVariable<String>!
     private var _labelText = RxVariable<String>(value: "RxViewModel says:\n0")

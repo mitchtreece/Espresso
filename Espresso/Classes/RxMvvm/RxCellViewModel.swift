@@ -23,8 +23,4 @@ open class RxCellViewModel: ViewModel, IdentifiableType, Identifiable {
         
     }
     
-    public static func == (lhs: RxCellViewModel, rhs: RxCellViewModel) -> Bool {
-        return lhs === rhs
-    }
-    
 }

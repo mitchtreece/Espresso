@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-open class RxTableViewCell<T: RxCellViewModel>: UIViewModelTableViewCell<T> {
+open class RxTableViewCell<V: RxCellViewModel>: UIViewModelTableViewCell<V> {
     
     public private(set) var modelDisposeBag: DisposeBag!
     public private(set) var componentDisposeBag: DisposeBag!
@@ -21,7 +21,7 @@ open class RxTableViewCell<T: RxCellViewModel>: UIViewModelTableViewCell<T> {
         
     }
     
-    public override func setup(viewModel: T) -> Self {
+    public override func setup(viewModel: V) -> Self {
         
         _ = super.setup(viewModel: viewModel)
         bindModel()
