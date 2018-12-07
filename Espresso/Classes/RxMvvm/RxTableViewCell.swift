@@ -9,9 +9,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/**
+ An Rx-based `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
+ */
 open class RxTableViewCell<V: RxCellViewModel>: UIViewModelTableViewCell<V> {
     
+    /// The cell's model dispose bag.
     public private(set) var modelDisposeBag: DisposeBag!
+    
+    // The cell's component dispose bag.
     public private(set) var componentDisposeBag: DisposeBag!
     
     open override func awakeFromNib() {
@@ -29,6 +35,12 @@ open class RxTableViewCell<V: RxCellViewModel>: UIViewModelTableViewCell<V> {
         
     }
     
+    /**
+     Binding function called in `awakeFromNib()`. Override this to setup custom component bindings.
+     
+     The cell's `componentDisposeBag` is created when this is called.
+     Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
+     */
     open func bindComponents() {
         
         // Override me
@@ -36,6 +48,12 @@ open class RxTableViewCell<V: RxCellViewModel>: UIViewModelTableViewCell<V> {
         
     }
     
+    /**
+     Binding function called in `setup(viewModel:)`. Override this to setup custom model bindings.
+     
+     The cell's `modelDisposeBag` is created when this is called.
+     Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelDisposeBag`.
+     */
     open func bindModel() {
         
         // Override me

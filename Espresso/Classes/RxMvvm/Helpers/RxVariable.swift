@@ -11,16 +11,24 @@ import RxCocoa
 
 public typealias RxVariable<Element> = BehaviorRelay<Element>
 
+/**
+ A read-only Rx variable.
+ */
 public final class RxReadOnlyVariable<Element>: ObservableType {
     
     public typealias E = Element
     
     private let variable: RxVariable<Element>
     
+    /// The variable's value.
     public var value: Element {
         return self.variable.value
     }
     
+    /**
+     Initializes a `RxReadOnlyVariable` with a read-write variable.
+     - Parameter variable: The underlying read-write variable.
+     */
     public init(_ variable: RxVariable<Element>) {
         self.variable = variable
     }

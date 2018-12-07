@@ -9,14 +9,31 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+/**
+ An observable value box over a type.
+ */
 public struct ObservableValueBox<T> {
+    
+    /// The box's underlying value.
     var value: T
+    
 }
 
 public extension ObservableType {
     
-    public func subscribe(onValueChange: @escaping (ObservableValueBox<Self.E>, ObservableValueBox<Self.E>)->(),
-                          onError: ((Error)->())? = nil,
+    /**
+     Subscribes observer to receive events for this sequence by providing the old and new values.
+     - Parameter onValueChange: The value changed handler.
+     - Parameter oldValue: The stream's old (previous) value.
+     - Parameter newValue: The streams new value.
+     - Parameter onError: The error handler; _defaults to nil_.
+     - Parameter error: The error.
+     - Parameter onCompleted: The completion handler; _defaults to nil_.
+     - Parameter onDisposed: The dispose handler; _defaults to nil_.
+     - Returns: A disposable.
+     */
+    public func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.E>, _ newValue: ObservableValueBox<Self.E>)->(),
+                          onError: ((_ error: Error)->())? = nil,
                           onCompleted: (()->())? = nil,
                           onDisposed: (()->())? = nil) -> Disposable {
         

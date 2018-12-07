@@ -86,6 +86,7 @@
 				26854DD8218E746C00B3ABBB /* RxViewController.swift */,
 			);
 			name = "Rx / MVVM";
+			path = "Rx : MVVM";
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
