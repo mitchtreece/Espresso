@@ -25,6 +25,14 @@
 		1D29BEC51D36DF4472183D851E705943 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E795A4705B4FB474FF417682335F1 /* ConstraintMakerExtendable.swift */; };
 		25B0EF2EADA50A123D35F3341028E122 /* UITransitionInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5112958FD00A11B0CA96C0DC8B24885 /* UITransitionInteractionController.swift */; };
 		25EC9B6C987E514225DE78BF89206C6E /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B5691AC9AEF210F01B1AC02546F94 /* BoolConvertible.swift */; };
+		260EB64521BAEF32008E3F7C /* BaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64421BAEF32008E3F7C /* BaseCoordinatorProtocol.swift */; };
+		260EB64721BAEF8E008E3F7C /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64621BAEF8E008E3F7C /* AppCoordinatorProtocol.swift */; };
+		260EB64921BAEFAA008E3F7C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64821BAEFAA008E3F7C /* CoordinatorProtocol.swift */; };
+		260EB64B21BAEFCB008E3F7C /* AppCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64A21BAEFCB008E3F7C /* AppCoordinated.swift */; };
+		260EB64D21BAEFE5008E3F7C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64C21BAEFE4008E3F7C /* AppCoordinator.swift */; };
+		260EB64F21BAEFEE008E3F7C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB64E21BAEFEE008E3F7C /* Coordinator.swift */; };
+		260EB65121BAF000008E3F7C /* CoordinatedNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB65021BAF000008E3F7C /* CoordinatedNavigationDelegate.swift */; };
+		260EB65321BAF00E008E3F7C /* UIViewControllerCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB65221BAF00E008E3F7C /* UIViewControllerCoordinating.swift */; };
 		269C92872186887B004E3CC3 /* UITableView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C92862186887B004E3CC3 /* UITableView+Espresso.swift */; };
 		269C928921868E6D004E3CC3 /* UICollectionView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */; };
 		278ABBED3CE3896F0FC3FF7EB3485627 /* UISwapTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B9138CAB8AF1A30359C71E041A5F1 /* UISwapTransition.swift */; };
@@ -162,6 +170,14 @@
 		23EFA47F4422B71AFAC96E86992E2880 /* Pods-Espresso_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Espresso_Example-frameworks.sh"; sourceTree = "<group>"; };
 		2550C00A88DC07A3548B149D85D984CA /* CaseIterable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CaseIterable.swift; sourceTree = "<group>"; };
 		2601B98960ABE28A4AF0A039A2C8E409 /* Espresso.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = Espresso.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		260EB64421BAEF32008E3F7C /* BaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB64621BAEF8E008E3F7C /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB64821BAEFAA008E3F7C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB64A21BAEFCB008E3F7C /* AppCoordinated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinated.swift; sourceTree = "<group>"; };
+		260EB64C21BAEFE4008E3F7C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		260EB64E21BAEFEE008E3F7C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		260EB65021BAF000008E3F7C /* CoordinatedNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedNavigationDelegate.swift; sourceTree = "<group>"; };
+		260EB65221BAF00E008E3F7C /* UIViewControllerCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerCoordinating.swift; sourceTree = "<group>"; };
 		269C92862186887B004E3CC3 /* UITableView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Espresso.swift"; sourceTree = "<group>"; };
 		269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Espresso.swift"; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
@@ -345,6 +361,29 @@
 			path = UIDevice;
 			sourceTree = "<group>";
 		};
+		260EB64221BAEF04008E3F7C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				260EB64321BAEF1A008E3F7C /* Protocols */,
+				260EB64C21BAEFE4008E3F7C /* AppCoordinator.swift */,
+				260EB64E21BAEFEE008E3F7C /* Coordinator.swift */,
+				260EB65021BAF000008E3F7C /* CoordinatedNavigationDelegate.swift */,
+				260EB65221BAF00E008E3F7C /* UIViewControllerCoordinating.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		260EB64321BAEF1A008E3F7C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				260EB64421BAEF32008E3F7C /* BaseCoordinatorProtocol.swift */,
+				260EB64621BAEF8E008E3F7C /* AppCoordinatorProtocol.swift */,
+				260EB64821BAEFAA008E3F7C /* CoordinatorProtocol.swift */,
+				260EB64A21BAEFCB008E3F7C /* AppCoordinated.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		3326CB70CEBAD1FE4FF4D3E236AC150A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +471,7 @@
 				FC4BDB40575B2A5C66C8DC4F5919151F /* UIView+Espresso.swift */,
 				269C92862186887B004E3CC3 /* UITableView+Espresso.swift */,
 				269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */,
+				260EB64221BAEF04008E3F7C /* Coordinator */,
 				944044D6C2B3699100F5FF90A31B848F /* UIAnimation */,
 				15C8F3916031380C653EDD417C429ABD /* UIDevice */,
 				FB4384458C93EC3A469556E58F0D70CB /* UIScreen */,
@@ -854,12 +894,16 @@
 				B1E231645A3A1BC737E031C48D0AB174 /* Collection+Espresso.swift in Sources */,
 				336199EC8C005E09B28EA694B776BBE1 /* Date+Espresso.swift in Sources */,
 				B3A0A6B90B52E8E0C84165305F329FE2 /* ErrorConvertible.swift in Sources */,
+				260EB64521BAEF32008E3F7C /* BaseCoordinatorProtocol.swift in Sources */,
 				C252FFCB1794674B6875830CD06A1764 /* Espresso-dummy.m in Sources */,
+				260EB64D21BAEFE5008E3F7C /* AppCoordinator.swift in Sources */,
 				9876CAD744B4907E6AFC9650CDCA2815 /* Float+Espresso.swift in Sources */,
 				A3FB5CFF69D45CD0576D8702A6A794CC /* Identifiable.swift in Sources */,
 				799281078D840580715E37EB8062A28F /* IndexPath+Espresso.swift in Sources */,
 				5CA7E777E7ABE56D1CBEA6AE9AF0FBF2 /* JSONConvertible.swift in Sources */,
+				260EB64721BAEF8E008E3F7C /* AppCoordinatorProtocol.swift in Sources */,
 				FAF9CA7B2A15D38954F3F59476CE06E3 /* NotificationObserver.swift in Sources */,
+				260EB64B21BAEFCB008E3F7C /* AppCoordinated.swift in Sources */,
 				4B23E002F06AD6BBA4292BC933D3E7E2 /* String+Espresso.swift in Sources */,
 				3995D0FCC0D18E6260BC7030F3422D51 /* UIAnimation.swift in Sources */,
 				9D8A155B4BE445C12C7D8DF792E8ACEA /* UIAnimationGroup.swift in Sources */,
@@ -874,13 +918,17 @@
 				7A3FEF37656D863F628FF49C6076CCCD /* UICoverTransition.swift in Sources */,
 				1A2F599E8968D339E84D988C0BE270AB /* UIDevice+Espresso.swift in Sources */,
 				106D11C5899D07FAA38674BF1F0A7251 /* UIDisplayFeature.swift in Sources */,
+				260EB64F21BAEFEE008E3F7C /* Coordinator.swift in Sources */,
 				99658E9DB6B07475143ADF12E242AA5A /* UIFadeTransition.swift in Sources */,
 				37815F6E66C65D91E124939B718E8BD9 /* UIGestureRecognizer+Espresso.swift in Sources */,
+				260EB64921BAEFAA008E3F7C /* CoordinatorProtocol.swift in Sources */,
 				F5DC723BFEA79AA32D7469D67006CEFC /* UIGradientView.swift in Sources */,
 				676752A8E03785AA091A3EEBC31B6B56 /* UIHomeGrabber.swift in Sources */,
 				03AD7AB74454D48BFA1D42E2B0924A7A /* UIImage+Espresso.swift in Sources */,
 				73D64F667D3ECAC009BF68866681A177 /* UINavigationBarAppearanceProvider.swift in Sources */,
 				179AB2E8BC44F0F162720CD68E524F50 /* UINavigationController+UITransition.swift in Sources */,
+				260EB65321BAF00E008E3F7C /* UIViewControllerCoordinating.swift in Sources */,
+				260EB65121BAF000008E3F7C /* CoordinatedNavigationDelegate.swift in Sources */,
 				29B22C989B9418CA468BA74841B02779 /* UINibView.swift in Sources */,
 				B63FF9AF4E86E6AE457ED0941B7B821A /* UINotch.swift in Sources */,
 				5459A016139A63542C8BC9DAC5FFA573 /* UIPushBackTransition.swift in Sources */,
