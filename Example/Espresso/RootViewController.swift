@@ -157,7 +157,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case deviceInfo
         case displayFeatureInsets
-        static var count: Int = 2
+        case authentication
+        static var count: Int = 3
         
     }
     
@@ -226,6 +227,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             switch row {
             case .deviceInfo: cell.textLabel?.text = "Device Info"
             case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
+            case .authentication: cell.textLabel?.text = "Authentication"
             }
             
         }
@@ -381,6 +383,12 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 })
                 
                 label.addGestureRecognizer(tap)
+                
+            case .authentication:
+                
+                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { (success, error) in
+                    print("")
+                }
                 
             }
             
