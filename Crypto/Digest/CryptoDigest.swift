@@ -8,40 +8,38 @@
 import Foundation
 import CommonCrypto
 
-//internal protocol Digest {
-//    func generate(for bytes: [UInt8]) -> [UInt8]
-//}
-//
-//public struct CryptoDigest {
-//
-////    case md5
-////    case sha1
-////    case sha224
-////    case sha256
-////    case sha384
-////    case sha512
-////    case sha3
-//
-//    public static func md5(_ bytes: [UInt8]) -> [UInt8] {
-//        return []
-//    }
-//
-//}
-
+/**
+ Representation of the various digest hashing methods.
+ */
 public enum CryptoDigest {
     
+    /**
+     Representation of the various digest hash formats.
+     */
     public enum OutputFormat {
         case hex
         case base64
     }
     
+    /// An MD5 hashing method
     case md5
+    
+    /// A SHA1 hashing method
     case sha1
+    
+    /// A SHA224 hashing method
     case sha224
+    
+    /// A SHA256 hashing method
     case sha256
+    
+    /// A SHA384 hashing method
     case sha384
+    
+    /// A SHA512 hashing method
     case sha512
     
+    /// The hashing method's digest length in bytes.
     var length: Int32 {
         
         switch self {
