@@ -157,7 +157,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case deviceInfo
         case displayFeatureInsets
-        static var count: Int = 2
+        case authentication
+        static var count: Int = 3
         
     }
     
@@ -226,6 +227,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             switch row {
             case .deviceInfo: cell.textLabel?.text = "Device Info"
             case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
+            case .authentication: cell.textLabel?.text = "Authentication"
             }
             
         }
@@ -381,6 +383,24 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 })
                 
                 label.addGestureRecognizer(tap)
+                
+            case .authentication:
+                
+                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { [weak self] (success, error) in
+                    
+                    let alert = UIAlertController(
+                        title: success ? "Success 😎" : "Failure 😢",
+                        message: success ? "You've been authenticated!" : "You couldn't be authenticated.",
+                        preferredStyle: .alert
+                    )
+                    
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
                 
             }
             

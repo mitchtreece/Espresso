@@ -28,6 +28,7 @@
 		260EB65621BAF3ED008E3F7C /* CryptoDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB65521BAF3EC008E3F7C /* CryptoDigest.swift */; };
 		260EB65B21BAF790008E3F7C /* String+Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB65A21BAF790008E3F7C /* String+Digest.swift */; };
 		260EB65D21BAF85D008E3F7C /* Data+Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB65C21BAF85D008E3F7C /* Data+Digest.swift */; };
+		260EB67121BEEA4A008E3F7C /* UserAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */; };
 		269C92872186887B004E3CC3 /* UITableView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C92862186887B004E3CC3 /* UITableView+Espresso.swift */; };
 		269C928921868E6D004E3CC3 /* UICollectionView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */; };
 		278ABBED3CE3896F0FC3FF7EB3485627 /* UISwapTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B9138CAB8AF1A30359C71E041A5F1 /* UISwapTransition.swift */; };
@@ -168,6 +169,7 @@
 		260EB65521BAF3EC008E3F7C /* CryptoDigest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDigest.swift; sourceTree = "<group>"; };
 		260EB65A21BAF790008E3F7C /* String+Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Digest.swift"; sourceTree = "<group>"; };
 		260EB65C21BAF85D008E3F7C /* Data+Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Digest.swift"; sourceTree = "<group>"; };
+		260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthenticator.swift; path = ../Espresso/Classes/Authentication/UserAuthenticator.swift; sourceTree = "<group>"; };
 		269C92862186887B004E3CC3 /* UITableView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Espresso.swift"; sourceTree = "<group>"; };
 		269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Espresso.swift"; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
@@ -369,6 +371,14 @@
 			path = Digest;
 			sourceTree = "<group>";
 		};
+		260EB66F21BEEA32008E3F7C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		3326CB70CEBAD1FE4FF4D3E236AC150A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				F9414CE52C76D6ACD2DA916584462E16 /* Foundation */,
+				260EB66F21BEEA32008E3F7C /* Authentication */,
 				260EB65421BAF33E008E3F7C /* Crypto */,
 				047EC04F02AECB1D27618428E314D187 /* Pod */,
 				3326CB70CEBAD1FE4FF4D3E236AC150A /* Protocols */,
@@ -871,6 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				260EB67121BEEA4A008E3F7C /* UserAuthenticator.swift in Sources */,
 				3EEEED971392893E9BB30A209E4DEF8C /* Array+Espresso.swift in Sources */,
 				64CFFE936474568AE3B91ECEB6CA086F /* Array+UIAnimation.swift in Sources */,
 				2F00A27A42BB9695BE49810103A1C2AE /* AsyncOperation.swift in Sources */,
