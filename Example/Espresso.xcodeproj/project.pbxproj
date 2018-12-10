@@ -245,7 +245,6 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = KKSYLRXR4A;
 						LastSwiftMigration = 1000;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -526,7 +525,7 @@
 			baseConfigurationReference = E3883CD188C6843ED5F2EE71 /* Pods-Espresso_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KKSYLRXR4A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Espresso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -542,7 +541,7 @@
 			baseConfigurationReference = 31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KKSYLRXR4A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Espresso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
