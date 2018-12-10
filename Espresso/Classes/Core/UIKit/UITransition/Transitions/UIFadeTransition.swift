@@ -27,7 +27,15 @@ public class UIFadeTransition: UITransition {
     /**
      The transition's fade type; _defaults to over_.
      */
-    public var fadeType: FadeType = .over
+    public var fadeType: FadeType
+    
+    /**
+     Initializes the transition with parameters.
+     - Parameter fadeType: The transition's fade type; _defaults to over_.
+     */
+    public init(fadeType: FadeType = .over) {
+        self.fadeType = fadeType
+    }
     
     override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
         

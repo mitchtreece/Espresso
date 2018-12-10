@@ -116,16 +116,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum RxMvvmRow: Int {
         
         case viewController
-        case tableView
-        case collectionView
-        static var count: Int = 3
+        case tableCollection
+        static var count: Int = 2
         
         var title: String {
             
             switch self {
             case .viewController: return "UIViewController"
-            case .tableView: return "UITableView"
-            case .collectionView: return "UICollectionView"
+            case .tableCollection: return "Table / Collection"
             }
             
         }
@@ -357,8 +355,25 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 let vc = RxViewController(viewModel: RxViewModel())
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            case .tableView: break
-            case .collectionView: break
+                
+            case .tableCollection:
+                
+                let viewModel = RxExampleViewModel()
+                
+                let tableVC = RxExampleTableViewController(viewModel: viewModel)
+                let tableNav = UINavigationController(rootViewController: tableVC)
+                
+                let collectionVC = RxExampleCollectionViewController(viewModel: viewModel)
+                let collectionNav = UINavigationController(rootViewController: collectionVC)
+                
+                let tabController = UITabBarController()
+                tabController.viewControllers = [tableNav, collectionNav]
+
+                let transition = UICoverTransition()
+                transition.coveredViewParallaxAmount = 100
+                
+                self.present(tabController, with: transition, completion: nil)
+                
             }
             
         case .taptics:

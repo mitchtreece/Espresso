@@ -251,21 +251,56 @@ import UIKit
     
     // MARK: Helpers
     
-    internal static func boundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+    /**
+     Calculates a bounds translation-transform in a given view.
+     - Parameter container: The view.
+     - Parameter direction: The direction of the transform.
+     - Parameter offset: An optional offset to apply to the translation; _defaults to 0_.
+     - Returns: A bounds translated `CGAffineTransform`.
+     */
+    public func boundsTransform(in container: UIView,
+                                direction: Direction,
+                                offsetBy offset: CGFloat = 0) -> CGAffineTransform {
         
         switch direction {
-        case .up: return CGAffineTransform(translationX: 0, y: -container.bounds.height)
-        case .down: return CGAffineTransform(translationX: 0, y: container.bounds.height)
-        case .left: return CGAffineTransform(translationX: -container.bounds.width, y: 0)
-        case .right: return CGAffineTransform(translationX: container.bounds.width, y: 0)
+        case .up: return CGAffineTransform(translationX: 0, y: -container.bounds.height + offset)
+        case .down: return CGAffineTransform(translationX: 0, y: container.bounds.height + offset)
+        case .left: return CGAffineTransform(translationX: -container.bounds.width + offset, y: 0)
+        case .right: return CGAffineTransform(translationX: container.bounds.width + offset, y: 0)
         }
         
     }
     
-    internal static func halfBoundsTransform(in container: UIView, direction: Direction) -> CGAffineTransform {
+    /**
+     Calculates a half-bounds translation-transform in a given view.
+     - Parameter container: The view.
+     - Parameter direction: The direction of the transform.
+     - Parameter offset: An optional offset to apply to the translation; _defaults to 0_.
+     - Returns: A half-bounds translated `CGAffineTransform`.
+     */
+    public func halfBoundsTransform(in container: UIView,
+                                    direction: Direction,
+                                    offsetBy offset: CGFloat = 0) -> CGAffineTransform {
         
-        let transform = boundsTransform(in: container, direction: direction)
+        let transform = boundsTransform(in: container, direction: direction, offsetBy: offset)
         return CGAffineTransform(translationX: (transform.tx / 2), y: (transform.ty / 2))
+        
+    }
+    
+    /**
+     Calculates a bounds translation-transform in a given view.
+     - Parameter amount: The translation amount.
+     - Parameter direction: The direction of the transform.
+     - Returns: A translation `CGAffineTransform`.
+     */
+    public func translation(_ amount: CGFloat, direction: Direction) -> CGAffineTransform {
+        
+        switch direction {
+        case .up: return CGAffineTransform(translationX: 0, y: -amount)
+        case .down: return CGAffineTransform(translationX: 0, y: amount)
+        case .left: return CGAffineTransform(translationX: -amount, y: 0)
+        case .right: return CGAffineTransform(translationX: amount, y: 0)
+        }
         
     }
     

@@ -15,21 +15,32 @@ public class UISwapTransition: UITransition {
     /**
      The source & destination view controller's scale; _defaults to 1_.
      */
-    public var swapScale: CGFloat = 1
+    public var swapScale: CGFloat
     
     /**
      The covered view controller's alpha; _defaults to 0.6_.
      */
-    public var swapAlpha: CGFloat = 0.6
+    public var swapAlpha: CGFloat
     
     /**
      The source & destination view controller's corner radius; _defaults to 10_.
      */
-    public var roundedCornerRadius: CGFloat = 10
+    public var roundedCornerRadius: CGFloat
     
-    public override init() {
+    /**
+     Initializes the transition with parameters.
+     - Parameter swapScale: The source & destination view controller's scale; _defaults to 1_.
+     - Parameter swapAlpha: The covered view controller's alpha; _defaults to 0.6_.
+     - Parameter roundedCornerRadius: The source & destination view controller's corner radius; _defaults to 10_.
+     */
+    public init(swapScale: CGFloat = 1, swapAlpha: CGFloat = 0.6, roundedCornerRadius: CGFloat = 10) {
+        
+        self.swapScale = swapScale
+        self.swapAlpha = swapAlpha
+        self.roundedCornerRadius = roundedCornerRadius
         
         super.init()
+        
         self.presentation.direction = .left
         self.dismissal.direction = .left
         
@@ -62,11 +73,11 @@ public class UISwapTransition: UITransition {
             
             UIAnimation(duration: 0.3, {
                 
-                let sourceTransform = UITransition.halfBoundsTransform(in: container, direction: settings.direction)
+                let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 
-                let destinationTransform = UITransition.halfBoundsTransform(in: container, direction: settings.direction.reversed())
+                let destinationTransform = self.halfBoundsTransform(in: container, direction: settings.direction.reversed())
                 destinationVC.view.transform = destinationTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1

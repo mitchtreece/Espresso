@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260EB66A21BB4770008E3F7C /* RxExampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */; };
+		260EB66C21BB47B9008E3F7C /* RxExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66B21BB47B9008E3F7C /* RxExampleViewModel.swift */; };
+		260EB66E21BB483F008E3F7C /* RxExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */; };
 		2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967A20E2B57000AE1B56 /* TransitionViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
 		263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E799120924E6C003BAD76 /* AppearanceViewController.swift */; };
@@ -34,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleTableViewController.swift; sourceTree = "<group>"; };
+		260EB66B21BB47B9008E3F7C /* RxExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleViewModel.swift; sourceTree = "<group>"; };
+		260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleCollectionViewController.swift; sourceTree = "<group>"; };
 		2631967A20E2B57000AE1B56 /* TransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		263E799120924E6C003BAD76 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 			children = (
 				26854DDA218E748D00B3ABBB /* RxViewModel.swift */,
 				26854DD8218E746C00B3ABBB /* RxViewController.swift */,
+				260EB66B21BB47B9008E3F7C /* RxExampleViewModel.swift */,
+				260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */,
+				260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */,
 			);
 			name = "Rx / MVVM";
 			path = "Rx : MVVM";
@@ -360,11 +369,14 @@
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
 				263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */,
+				260EB66A21BB4770008E3F7C /* RxExampleTableViewController.swift in Sources */,
+				260EB66E21BB483F008E3F7C /* RxExampleCollectionViewController.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */,
+				260EB66C21BB47B9008E3F7C /* RxExampleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

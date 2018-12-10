@@ -1622,8 +1622,8 @@
 				82F7593B77DC93E5433D0AB7B7FC3691 /* UITransition.swift */,
 				7FA7C56A52DD9ED3CD73083843CE1325 /* UITransitionController.swift */,
 				FD7D4C03C09309BFBAA2C419830A0DAF /* UITransitionInteractionController.swift */,
-				8BDFE39B441A6DDE08766B66392B1700 /* Helpers */,
 				15F3215972AA9A0ACDAC291CDDDA5AB8 /* Transitions */,
+				8BDFE39B441A6DDE08766B66392B1700 /* Helpers */,
 			);
 			path = UITransition;
 			sourceTree = "<group>";

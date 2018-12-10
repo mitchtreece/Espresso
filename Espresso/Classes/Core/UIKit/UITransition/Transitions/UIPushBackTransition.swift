@@ -15,21 +15,32 @@ public class UIPushBackTransition: UITransition {
     /**
      The covered view controller's scale; _defaults to 0.8_.
      */
-    public var pushBackScale: CGFloat = 0.8
+    public var pushBackScale: CGFloat
     
     /**
      The covered view controller's alpha; _defaults to 0.3_.
      */
-    public var pushBackAlpha: CGFloat = 0.3
+    public var pushBackAlpha: CGFloat
     
     /**
      The covered view controller's corner radius; _defaults to 20_.
      */
-    public var roundedCornerRadius: CGFloat = 20
+    public var roundedCornerRadius: CGFloat
     
-    public override init() {
+    /**
+     Initializes the transition with parameters.
+     - Parameter pushBackScale: The covered view controller's scale; _defaults to 0.8_.
+     - Parameter pushBackAlpha: The covered view controller's alpha; _defaults to 0.3_.
+     - Parameter roundedCornerRadius: The covered view controller's corner radius; _defaults to 20_.
+     */
+    public init(pushBackScale: CGFloat = 0.8, pushBackAlpha: CGFloat = 0.3, roundedCornerRadius: CGFloat = 20) {
+        
+        self.pushBackScale = pushBackScale
+        self.pushBackAlpha = pushBackAlpha
+        self.roundedCornerRadius = roundedCornerRadius
         
         super.init()
+        
         self.presentation.direction = .up
         self.dismissal.direction = .down
         
@@ -57,7 +68,7 @@ public class UIPushBackTransition: UITransition {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             container.addSubview(destinationVC.view)
-            destinationVC.view.transform = UITransition.boundsTransform(in: container, direction: settings.direction.reversed())
+            destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
             
             sourceVC.view.clipsToBounds = true
             
@@ -106,7 +117,7 @@ public class UIPushBackTransition: UITransition {
         }, animations: {
             
             UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
-                sourceVC.view.transform = UITransition.boundsTransform(in: container, direction: settings.direction)
+                sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
                 destinationVC.view.layer.cornerRadius = previousCornerRadius
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
