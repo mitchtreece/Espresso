@@ -73,6 +73,17 @@ public extension UIView /* Motion Effects */ {
     
 }
 
+public extension UIView /* Subviews */ {
+    
+    /**
+     Removes all subviews from the recieving view.
+     */
+    public func removeAllSubviews() {
+        self.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+}
+
 public extension UIView /* Nib Loading */ {
     
     private struct AssociatedKeys {
