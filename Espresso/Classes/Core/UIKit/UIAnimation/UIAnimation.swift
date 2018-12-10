@@ -121,7 +121,7 @@ public class UIAnimation {
     public func run(completion: UIAnimationCompletion? = nil) {
 
         let animator: UIViewPropertyAnimator
-        var parameters: UITimingCurveProvider
+        var provider: UITimingCurveProvider
         
         switch timingCurve {
         case .simple(let curve):
@@ -134,12 +134,12 @@ public class UIAnimation {
             
             return
             
-        case .cubicBezier(let cp1, let cp2): parameters = UICubicTimingParameters(controlPoint1: cp1, controlPoint2: cp2)
-        case .spring(let damping, let velocity): parameters = UISpringTimingParameters(dampingRatio: damping, initialVelocity: velocity)
-        case .custom(let provider): parameters = provider
+        case .cubicBezier(let cp1, let cp2): provider = UICubicTimingParameters(controlPoint1: cp1, controlPoint2: cp2)
+        case .spring(let damping, let velocity): provider = UISpringTimingParameters(dampingRatio: damping, initialVelocity: velocity)
+        case .custom(let _provider): provider = _provider
         }
         
-        animator = UIViewPropertyAnimator(duration: duration, timingParameters: parameters)
+        animator = UIViewPropertyAnimator(duration: duration, timingParameters: provider)
         animator.addAnimations(animationBlock)
         animator.startAnimation(afterDelay: delay)
         animator.addCompletion { _ in
