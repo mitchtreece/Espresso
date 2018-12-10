@@ -386,8 +386,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 
             case .authentication:
                 
-                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { (success, error) in
-                    print("")
+                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { [weak self] (success, error) in
+                    
+                    let alert = UIAlertController(
+                        title: success ? "Success 😎" : "Failure 😢",
+                        message: success ? "You've been authenticated!" : "You couldn't be authenticated.",
+                        preferredStyle: .alert
+                    )
+                    
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+                    
                 }
                 
             }
