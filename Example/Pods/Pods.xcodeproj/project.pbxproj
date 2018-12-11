@@ -83,6 +83,14 @@
 		260EB70921BEEE7A008E3F7C /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB70221BEEE7A008E3F7C /* RxTableViewCell.swift */; };
 		260EB70A21BEEE7A008E3F7C /* ObservableType+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB70421BEEE7A008E3F7C /* ObservableType+Espresso.swift */; };
 		260EB70B21BEEE7A008E3F7C /* RxVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB70521BEEE7A008E3F7C /* RxVariable.swift */; };
+		260EB79B21C07485008E3F7C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79221C07485008E3F7C /* AppCoordinator.swift */; };
+		260EB79C21C07485008E3F7C /* CoordinatedNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79321C07485008E3F7C /* CoordinatedNavigationDelegate.swift */; };
+		260EB79D21C07485008E3F7C /* UIViewControllerCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79421C07485008E3F7C /* UIViewControllerCoordinating.swift */; };
+		260EB79E21C07485008E3F7C /* BaseCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79621C07485008E3F7C /* BaseCoordinatorProtocol.swift */; };
+		260EB79F21C07485008E3F7C /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79721C07485008E3F7C /* AppCoordinatorProtocol.swift */; };
+		260EB7A021C07485008E3F7C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79821C07485008E3F7C /* CoordinatorProtocol.swift */; };
+		260EB7A121C07485008E3F7C /* AppCoordinated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79921C07485008E3F7C /* AppCoordinated.swift */; };
+		260EB7A221C07485008E3F7C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB79A21C07485008E3F7C /* Coordinator.swift */; };
 		28D2554F5BD8DAC16317C5D72B3DD827 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B0F68F55650AB9DA3EB802B75CFE0 /* ConstraintConstantTarget.swift */; };
 		2A0ED0C0E82673DFBDA6079B87166618 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE14A5BE5AA8350526F042EBC920BAA /* ConstraintLayoutSupport.swift */; };
 		338720D12D124B7A1AD3383D0C12216A /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068A4C41AD3E035EFFE7E7F568CE1EF9 /* ConstraintLayoutGuideDSL.swift */; };
@@ -234,6 +242,14 @@
 		260EB70221BEEE7A008E3F7C /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
 		260EB70421BEEE7A008E3F7C /* ObservableType+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+Espresso.swift"; sourceTree = "<group>"; };
 		260EB70521BEEE7A008E3F7C /* RxVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxVariable.swift; sourceTree = "<group>"; };
+		260EB79221C07485008E3F7C /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		260EB79321C07485008E3F7C /* CoordinatedNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatedNavigationDelegate.swift; sourceTree = "<group>"; };
+		260EB79421C07485008E3F7C /* UIViewControllerCoordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerCoordinating.swift; sourceTree = "<group>"; };
+		260EB79621C07485008E3F7C /* BaseCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB79721C07485008E3F7C /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB79821C07485008E3F7C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		260EB79921C07485008E3F7C /* AppCoordinated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinated.swift; sourceTree = "<group>"; };
+		260EB79A21C07485008E3F7C /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		35A91D0ACFB6CF1883A820AA2607BCA8 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
 		3A2F9834500C30A8132311F7FFAB7577 /* Pods-Espresso_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -358,8 +374,9 @@
 		260EB67221BEED95008E3F7C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				260EB6EC21BEEE45008E3F7C /* Crypto */,
 				260EB6E921BEEDF8008E3F7C /* Authentication */,
+				260EB79121C07485008E3F7C /* Coordinator */,
+				260EB6EC21BEEE45008E3F7C /* Crypto */,
 				260EB67321BEEDCF008E3F7C /* Foundation */,
 				260EB6AD21BEEDCF008E3F7C /* Protocols */,
 				260EB67C21BEEDCF008E3F7C /* UIKit */,
@@ -540,16 +557,16 @@
 			path = Digest;
 			sourceTree = "<group>";
 		};
-		260EB6F521BEEE70008E3F7C /* MVVM */ = {
+		260EB6F521BEEE70008E3F7C /* Mvvm */ = {
 			isa = PBXGroup;
 			children = (
-				260EB6F621BEEE70008E3F7C /* UIViewModelViewController.swift */,
 				260EB6F721BEEE70008E3F7C /* ViewModel.swift */,
+				260EB6F621BEEE70008E3F7C /* UIViewModelViewController.swift */,
 				260EB6F821BEEE70008E3F7C /* UIViewModelCollectionViewCell.swift */,
 				260EB6F921BEEE70008E3F7C /* UIViewModelTableViewCell.swift */,
 			);
-			name = MVVM;
-			path = Espresso/Classes/MVVM;
+			name = Mvvm;
+			path = Espresso/Classes/Mvvm;
 			sourceTree = "<group>";
 		};
 		260EB6FE21BEEE7A008E3F7C /* RxMvvm */ = {
@@ -572,6 +589,29 @@
 				260EB70521BEEE7A008E3F7C /* RxVariable.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		260EB79121C07485008E3F7C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				260EB79521C07485008E3F7C /* Protocols */,
+				260EB79221C07485008E3F7C /* AppCoordinator.swift */,
+				260EB79321C07485008E3F7C /* CoordinatedNavigationDelegate.swift */,
+				260EB79421C07485008E3F7C /* UIViewControllerCoordinating.swift */,
+				260EB79A21C07485008E3F7C /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		260EB79521C07485008E3F7C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				260EB79621C07485008E3F7C /* BaseCoordinatorProtocol.swift */,
+				260EB79721C07485008E3F7C /* AppCoordinatorProtocol.swift */,
+				260EB79821C07485008E3F7C /* CoordinatorProtocol.swift */,
+				260EB79921C07485008E3F7C /* AppCoordinated.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		432313F4618A6E0D54282078B6A48A1B /* Support Files */ = {
@@ -614,7 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				260EB67221BEED95008E3F7C /* Core */,
-				260EB6F521BEEE70008E3F7C /* MVVM */,
+				260EB6F521BEEE70008E3F7C /* Mvvm */,
 				260EB6FE21BEEE7A008E3F7C /* RxMvvm */,
 				047EC04F02AECB1D27618428E314D187 /* Pod */,
 				574B3445B65C8334EAC520AE48B548A2 /* Support Files */,
@@ -950,6 +990,7 @@
 				260EB70B21BEEE7A008E3F7C /* RxVariable.swift in Sources */,
 				260EB6D121BEEDCF008E3F7C /* UITableViewCell+Espresso.swift in Sources */,
 				260EB6B721BEEDCF008E3F7C /* IndexPath+Espresso.swift in Sources */,
+				260EB79B21C07485008E3F7C /* AppCoordinator.swift in Sources */,
 				260EB6BF21BEEDCF008E3F7C /* UISwapTransition.swift in Sources */,
 				260EB6BB21BEEDCF008E3F7C /* AsyncOperation.swift in Sources */,
 				260EB6B921BEEDCF008E3F7C /* String+Espresso.swift in Sources */,
@@ -958,16 +999,19 @@
 				260EB6C221BEEDCF008E3F7C /* UITransitionController.swift in Sources */,
 				260EB6E521BEEDCF008E3F7C /* Identifiable.swift in Sources */,
 				260EB6FB21BEEE71008E3F7C /* ViewModel.swift in Sources */,
+				260EB79D21C07485008E3F7C /* UIViewControllerCoordinating.swift in Sources */,
 				260EB6D921BEEDCF008E3F7C /* UIStyledViewController.swift in Sources */,
 				260EB6C121BEEDCF008E3F7C /* UISlideTransition.swift in Sources */,
 				260EB6F321BEEE45008E3F7C /* Data+Digest.swift in Sources */,
 				260EB70721BEEE7A008E3F7C /* RxViewModelViewController.swift in Sources */,
 				260EB6DE21BEEDCF008E3F7C /* UIAnimation.swift in Sources */,
 				260EB6CC21BEEDCF008E3F7C /* UINotch.swift in Sources */,
+				260EB7A121C07485008E3F7C /* AppCoordinated.swift in Sources */,
 				260EB6C821BEEDCF008E3F7C /* UICollectionViewCell+Espresso.swift in Sources */,
 				260EB6D321BEEDCF008E3F7C /* UIDevice+Espresso.swift in Sources */,
 				260EB6DB21BEEDCF008E3F7C /* UIGradientView.swift in Sources */,
 				260EB6D621BEEDCF008E3F7C /* UIStyledNavigationController.swift in Sources */,
+				260EB79C21C07485008E3F7C /* CoordinatedNavigationDelegate.swift in Sources */,
 				260EB6FC21BEEE71008E3F7C /* UIViewModelCollectionViewCell.swift in Sources */,
 				260EB6CD21BEEDCF008E3F7C /* UIView+Espresso.swift in Sources */,
 				260EB6CB21BEEDCF008E3F7C /* UIDisplayFeature.swift in Sources */,
@@ -977,12 +1021,14 @@
 				260EB6D821BEEDCF008E3F7C /* UIStatusBarAppearanceProvider.swift in Sources */,
 				260EB6E021BEEDCF008E3F7C /* Array+UIAnimation.swift in Sources */,
 				260EB6BC21BEEDCF008E3F7C /* UITransition.swift in Sources */,
+				260EB79F21C07485008E3F7C /* AppCoordinatorProtocol.swift in Sources */,
 				C252FFCB1794674B6875830CD06A1764 /* Espresso-dummy.m in Sources */,
 				260EB6CF21BEEDCF008E3F7C /* UIGestureRecognizer+Espresso.swift in Sources */,
 				260EB6B821BEEDCF008E3F7C /* Collection+Espresso.swift in Sources */,
 				260EB6B521BEEDCF008E3F7C /* Array+Espresso.swift in Sources */,
 				260EB6C721BEEDCF008E3F7C /* UIContainerView.swift in Sources */,
 				260EB6C321BEEDCF008E3F7C /* UINavigationController+UITransition.swift in Sources */,
+				260EB7A221C07485008E3F7C /* Coordinator.swift in Sources */,
 				260EB6E821BEEDCF008E3F7C /* BoolConvertible.swift in Sources */,
 				260EB6D221BEEDCF008E3F7C /* UIBlurView.swift in Sources */,
 				260EB6FD21BEEE71008E3F7C /* UIViewModelTableViewCell.swift in Sources */,
@@ -1000,12 +1046,14 @@
 				260EB6E721BEEDCF008E3F7C /* JSONConvertible.swift in Sources */,
 				260EB6DC21BEEDCF008E3F7C /* UITaptic.swift in Sources */,
 				260EB6DF21BEEDCF008E3F7C /* UIAnimationGroup.swift in Sources */,
+				260EB7A021C07485008E3F7C /* CoordinatorProtocol.swift in Sources */,
 				260EB6C421BEEDCF008E3F7C /* UIViewController+UITransition.swift in Sources */,
 				260EB6C921BEEDCF008E3F7C /* UIScreen+Espresso.swift in Sources */,
 				260EB6F221BEEE45008E3F7C /* CryptoDigest.swift in Sources */,
 				260EB6E121BEEDCF008E3F7C /* UIAnimationGroupConvertible.swift in Sources */,
 				260EB6DA21BEEDCF008E3F7C /* UINibView.swift in Sources */,
 				260EB6CA21BEEDCF008E3F7C /* UIHomeGrabber.swift in Sources */,
+				260EB79E21C07485008E3F7C /* BaseCoordinatorProtocol.swift in Sources */,
 				260EB6E221BEEDCF008E3F7C /* UIAnimationOperation.swift in Sources */,
 				260EB6D721BEEDCF008E3F7C /* UINavigationBarAppearanceProvider.swift in Sources */,
 				260EB6DD21BEEDCF008E3F7C /* UICollectionView+Espresso.swift in Sources */,

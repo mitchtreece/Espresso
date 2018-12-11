@@ -85,7 +85,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26854DD7218E73E600B3ABBB /* Rx / MVVM */ = {
+		26854DD7218E73E600B3ABBB /* Rx / Mvvm */ = {
 			isa = PBXGroup;
 			children = (
 				26854DDA218E748D00B3ABBB /* RxViewModel.swift */,
@@ -94,8 +94,8 @@
 				260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */,
 				260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */,
 			);
-			name = "Rx / MVVM";
-			path = "Rx : MVVM";
+			name = "Rx / Mvvm";
+			path = "Rx : Mvvm";
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -127,7 +127,7 @@
 				263E799120924E6C003BAD76 /* AppearanceViewController.swift */,
 				2631967A20E2B57000AE1B56 /* TransitionViewController.swift */,
 				26CDD00220E442E800BE58A1 /* CustomTransition.swift */,
-				26854DD7218E73E600B3ABBB /* Rx / MVVM */,
+				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Espresso";
