@@ -65,6 +65,8 @@ public extension UIDevice /* Info*/ {
         case iPadPro10
         case iPadPro12
         case iPadPro12_2G
+        case iPadPro11
+        case iPadPro12_3G
         
         // Apple TV
         
@@ -131,6 +133,8 @@ public extension UIDevice /* Info*/ {
             case .iPadPro10: return "iPad Pro (10.5-inch)"
             case .iPadPro12: return "iPad Pro (12.9-inch)"
             case .iPadPro12_2G: return "iPad Pro (12.9-inch) 2G"
+            case .iPadPro11: return "iPad Pro (11-inch)"
+            case .iPadPro12_3G: return "iPad Pro (12.9-inch) 3G"
                 
             case .appleTV: return "Apple TV"
             case .appleTV4K: return "Apple TV 4K"
@@ -191,7 +195,9 @@ public extension UIDevice /* Info*/ {
             case .iPadPro10: return ["iPad7,3", "iPad7,4"]
             case .iPadPro12: return ["iPad6,7", "iPad6,8"]
             case .iPadPro12_2G: return ["iPad7,1", "iPad7,2"]
-               
+            case .iPadPro11: return ["iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4"]
+            case .iPadPro12_3G: return ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"]
+                
             case .appleTV: return ["AppleTV5,3"]
             case .appleTV4K: return ["AppleTV6,2"]
                 
