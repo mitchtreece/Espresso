@@ -40,7 +40,7 @@ public enum CryptoDigest {
     case sha512
     
     /// The hashing method's digest length in bytes.
-    var length: Int32 {
+    public var length: Int32 {
         
         switch self {
         case .md5: return CC_MD5_DIGEST_LENGTH

@@ -169,7 +169,7 @@
 		260EB65521BAF3EC008E3F7C /* CryptoDigest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDigest.swift; sourceTree = "<group>"; };
 		260EB65A21BAF790008E3F7C /* String+Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Digest.swift"; sourceTree = "<group>"; };
 		260EB65C21BAF85D008E3F7C /* Data+Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Digest.swift"; sourceTree = "<group>"; };
-		260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthenticator.swift; path = ../Espresso/Classes/Authentication/UserAuthenticator.swift; sourceTree = "<group>"; };
+		260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticator.swift; sourceTree = "<group>"; };
 		269C92862186887B004E3CC3 /* UITableView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Espresso.swift"; sourceTree = "<group>"; };
 		269C928821868E6D004E3CC3 /* UICollectionView+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Espresso.swift"; sourceTree = "<group>"; };
 		2798FAD1ED522B9041959ED19ED6B3DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
@@ -358,7 +358,8 @@
 			children = (
 				260EB65721BAF59C008E3F7C /* Digest */,
 			);
-			path = Crypto;
+			name = Crypto;
+			path = Espresso/Classes/Crypto;
 			sourceTree = "<group>";
 		};
 		260EB65721BAF59C008E3F7C /* Digest */ = {
@@ -376,7 +377,8 @@
 			children = (
 				260EB67021BEEA4A008E3F7C /* UserAuthenticator.swift */,
 			);
-			path = Authentication;
+			name = Authentication;
+			path = Espresso/Classes/Authentication;
 			sourceTree = "<group>";
 		};
 		3326CB70CEBAD1FE4FF4D3E236AC150A /* Protocols */ = {

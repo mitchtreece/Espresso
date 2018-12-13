@@ -35,7 +35,7 @@ public final class UserAuthenticator {
          
          This value will be `nil` if the user-authentication type is `none`.
          */
-        var displayName: String? {
+        public var displayName: String? {
             
             switch self {
             case .password: return "Password"
@@ -56,6 +56,7 @@ public final class UserAuthenticator {
         
     }
     
+    /// The device's preferred user-authentication type.
     public static var authenticationType: AuthenticationType {
         get {
             
@@ -96,6 +97,9 @@ public final class UserAuthenticator {
      - Parameter completion: The authentication completion handler.
      - Parameter success: Flag indicating if the authentication was successful.
      - Parameter error: An optional error returned from the authentication attempt.
+     
+     If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
+     be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
      */
     public static func authenticate(withReason reason: String, completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
@@ -105,7 +109,7 @@ public final class UserAuthenticator {
         }
         
         context.evaluatePolicy(
-            LAPolicy.deviceOwnerAuthentication,
+            .deviceOwnerAuthentication,
             localizedReason: reason,
             reply: { (success: Bool, error: Error?) -> Void in
                 completion(success, error)
