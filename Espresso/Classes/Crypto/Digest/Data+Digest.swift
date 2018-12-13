@@ -16,7 +16,7 @@ public extension Data {
      - Parameter format: The digest hash output format; _defaults to hex_.
      - Returns: A hashed string containing an RSA-2048 ASN.1 header.
      */
-    public func hashWithRSA2048ASN1Header(digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
+    public func hashUsingRSA2048ASN1Header(digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
         
         let header: [UInt8] = [
             0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,
@@ -26,7 +26,7 @@ public extension Data {
         var headerData = Data(bytes: header)
         headerData.append(self)
         
-        return hashed(with: digest, format: format)
+        return hashed(using: digest, format: format)
         
     }
     
@@ -36,7 +36,7 @@ public extension Data {
      - Parameter format: The digest hash output format; _defaults to hex_.
      - Returns: A hashed string.
      */
-    public func hashed(with digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
+    public func hashed(using digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
         
         var data = Data(count: Int(digest.length))
         
