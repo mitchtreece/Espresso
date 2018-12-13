@@ -20,19 +20,19 @@
   "platforms": {
     "ios": "10.0"
   },
-  "dependencies": {
-    "SnapKit": [
-      "~> 4.0.0"
-    ]
-  },
   "default_subspecs": "Core",
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Espresso/Classes/Core/**/*"
+      "source_files": "Espresso/Classes/Core/**/*",
+      "dependencies": {
+        "SnapKit": [
+          "~> 4.0.0"
+        ]
+      }
     },
     {
-      "name": "MVVM",
+      "name": "Mvvm",
       "source_files": "Espresso/Classes/MVVM/**/*",
       "dependencies": {
         "Espresso/Core": [
@@ -41,10 +41,10 @@
       }
     },
     {
-      "name": "Rx",
-      "source_files": "Espresso/Classes/Rx/**/*",
+      "name": "RxMvvm",
+      "source_files": "Espresso/Classes/RxMvvm/**/*",
       "dependencies": {
-        "Espresso/Core": [
+        "Espresso/Mvvm": [
 
         ],
         "RxSwift": [
@@ -64,10 +64,10 @@
         "Espresso/Core": [
 
         ],
-        "Espresso/MVVM": [
+        "Espresso/Mvvm": [
 
         ],
-        "Espresso/Rx": [
+        "Espresso/RxMvvm": [
 
         ]
       }
