@@ -1,11 +1,11 @@
 use_frameworks!
 
 target 'Espresso_Example' do
-    
-  pod 'Espresso', :path => '../'
+
+  pod 'Espresso/All', :path => '../'
 
   target 'Espresso_Tests' do
     inherit! :search_paths
   end
-  
+
 end
