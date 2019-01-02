@@ -12,7 +12,7 @@ import RxCocoa
 /**
  An Rx-based `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
  */
-open class RxTableViewCell<V: RxCellViewModel>: UIViewModelTableViewCell<V> {
+open class RxTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     
     /// The cell's model dispose bag.
     public private(set) var modelDisposeBag: DisposeBag!

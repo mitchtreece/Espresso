@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'Mvvm' do |mvvm|
 
-        mvvm.source_files       = 'Espresso/Classes/MVVM/**/*'
+        mvvm.source_files       = 'Espresso/Classes/Mvvm/**/*'
         mvvm.dependency         'Espresso/Core'
 
     end
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
         rx.dependency           'Espresso/Mvvm'
         rx.dependency           'RxSwift', '~> 4.0'
         rx.dependency           'RxCocoa', '~> 4.0'
-        rx.dependency           'RxDataSources', '~> 3.0'
+        # rx.dependency           'RxDataSources', '~> 3.0'
 
     end
 
