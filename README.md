@@ -42,6 +42,8 @@ Some of the more interesting things include:
 - `MVVM` & `Rx` classes + helpers
 - Device identification & info
 - Type conversion helpers
+- User authentication helpers
+- Digest hash helpers
 - _+ much more!_
 
 #### UIAnimation
@@ -80,10 +82,10 @@ UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
 
 The following timing curves are currently supported:
 
-- simple
-- cubicBezier
-- spring
-- custom
+- `simple`
+- `cubicBezier`
+- `spring`
+- `custom`
 
 `UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
 
@@ -173,6 +175,40 @@ The following transitions are included with Espresso:
 - `UICoverTransition`
 - `UISwapTransition`
 - `UIPushBackTransition`
+
+#### User Authentication
+
+The `UserAuthenticator` class helps with authenticating a user via Touch ID, Face ID, or a password.
+An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID.
+Devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, password authentication will be used.
+
+```
+UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.") { (success, error) in
+    print("Authenticated: \(success)")
+}
+```
+
+**NOTE:** `NSFaceIDUsageDescription` key _must_ be added to your **Info.plist** if you intend to to authenticate via Face ID.
+
+#### Digest Hash
+
+Hashing extensions are available on both `Data` & `String`:
+
+```
+let data = Data()
+let hashedData = data.hashed(using: .md5)
+
+let string = "Hello, world!"
+let hashedString = string.hashed(using: .md5)
+```
+
+The following hash types are included with Espresso:
+- `md5`
+- `sha1`
+- `sha224`
+- `sha256`
+- `sha384`
+- `sha512`
 
 ## Contributing
 
