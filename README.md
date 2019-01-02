@@ -38,6 +38,8 @@ Some of the more interesting things include:
 - `UITransition` system for easy custom `UIViewController` transitions
 - `UIViewController` & `UINavigationController` styling system
 - `UIScreen` extensions + display features
+- `Coordinator` navigation implementation
+- `MVVM` & `Rx` classes + helpers
 - Device identification & info
 - Type conversion helpers
 - _+ much more!_
