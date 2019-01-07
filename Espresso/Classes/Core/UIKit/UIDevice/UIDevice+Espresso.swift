@@ -329,16 +329,6 @@ public extension UIDevice /* Info*/ {
     }
     
     /**
-     Flag indicating whether the current device is an iPhone X.
-     */
-    public var isPhoneX: Bool {
-        
-        let info = self.info()
-        return (info == .iPhoneX || info == .iPhoneXR || info == .iPhoneXS || info == .iPhoneXSMax)
-        
-    }
-    
-    /**
      Flag indicating whether the current device is an iPad.
      */
     public var isPad: Bool {
@@ -357,6 +347,43 @@ public extension UIDevice /* Info*/ {
      */
     public var isTV: Bool {
         return self.info().displayName.contains("TV")
+    }
+    
+    /**
+     Flag indicating whether the current device is a modern phone (iPhone X form-factor).
+     */
+    public var isModernPhone: Bool {
+        
+        let info = self.info()
+        
+        return (
+            info == .iPhoneX ||
+            info == .iPhoneXR ||
+            info == .iPhoneXS ||
+            info == .iPhoneXSMax
+        )
+        
+    }
+    
+    /**
+     Flag indicating whether the current device is a modern pad (2018 iPad Pro form-factor).
+     */
+    public var isModernPad: Bool {
+        
+        let info = self.info()
+        
+        return (
+            info == .iPadPro11 ||
+            info == .iPadPro12_3G
+        )
+        
+    }
+    
+    /**
+     Flag indicating whether the current device is modern (edge-to-edge screen without a home button).
+     */
+    public var isDeviceModern: Bool {
+        return (self.isModernPhone || self.isModernPad)
     }
     
 }
