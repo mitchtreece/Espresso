@@ -74,6 +74,9 @@ open class Coordinator: CoordinatorProtocol, Equatable {
      */
     public enum PresentationStyle {
         
+        /// A presentation style representing no presentation
+        case none
+        
         /// A modal presentation style
         case modal
         

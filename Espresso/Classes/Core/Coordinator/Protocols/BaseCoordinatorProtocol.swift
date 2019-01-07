@@ -79,18 +79,20 @@ extension BaseCoordinatorProtocol /* Child Management */ {
      - Parameter options: An optional start options dictionary.
      - parameter style: The style to present the child coordinator with; _defaults to push_.
      - parameter animated: Flag indicating if the child coordinator should start animated; _defaults to true_.
+     - Returns: The child coordinator's configured view controller.
      */
+    @discardableResult
     public func add(child coordinator: Coordinator,
                     options: [String: Any]? = nil,
                     style: Coordinator.PresentationStyle = .push,
-                    animated: Bool = true) {
+                    animated: Bool = true) -> UIViewController {
         
         if let options = options {
             
             if options.count > 1 {
                 
                 debugLog("\(self.typeString) --> adding child --> \(coordinator.typeString), options: [")
-                
+
                 for (key, value) in options {
                     print("\t\"\(key)\": \(value),")
                 }
@@ -116,7 +118,12 @@ extension BaseCoordinatorProtocol /* Child Management */ {
         setCoordinatorIfNeeded(coordinator, on: childViewController)
         
         self.children.append(coordinator)
-        self.present(viewController: viewControllerToPresent, style: style, animated: animated)
+        
+        if style != .none {
+            self.present(viewController: viewControllerToPresent, style: style, animated: animated)
+        }
+        
+        return viewControllerToPresent
         
     }
     
@@ -124,7 +131,7 @@ extension BaseCoordinatorProtocol /* Child Management */ {
         
         guard let index = self.children.firstIndex(where: { $0 === coordinator }) else { return }
         
-        debugLog("\(self.typeString) --> removing child --> \(coordinator.typeString)")
+        debugLog("\(self.typeString) --> removing child --> \(coordinator.typeString), style: \(coordinator.presentationStyle!)")
         
         self.children.remove(at: index)
         
@@ -135,6 +142,7 @@ extension BaseCoordinatorProtocol /* Child Management */ {
         guard dismiss else { return }
         
         switch coordinator.presentationStyle! {
+        case .none: break
         case .modal: coordinator.initialViewController.dismiss(animated: true, completion: nil)
         case .push:
             
