@@ -38,7 +38,7 @@ public extension UIScreen /* Display Features */ {
         
         let statusBar = UIApplication.shared.statusBarFrame.height
         
-        guard UIDevice.current.isPhoneX else {
+        guard UIDevice.current.isDeviceModern else {
             return UIEdgeInsets(top: statusBar, left: 0, bottom: 0, right: 0)
         }
         
@@ -52,8 +52,18 @@ public extension UIScreen /* Display Features */ {
      */
     public var cornerRadius: CGFloat {
         
-        guard UIDevice.current.isPhoneX else { return 0 }
-        return 44
+        guard UIDevice.current.isDeviceModern else { return 0 }
+        
+        if UIDevice.current.isModernPhone || UIDevice.current.isModernPad {
+            
+            // NOTE: I'm not sure if iPhone & iPad have the same corner radii.
+            // I should double check this.
+            
+            return 44
+            
+        }
+        
+        return 0
         
     }
     
@@ -62,7 +72,7 @@ public extension UIScreen /* Display Features */ {
      */
     public var topNotch: UINotch? {
         
-        guard UIDevice.current.isPhoneX else { return nil }
+        guard UIDevice.current.isModernPhone else { return nil }
         let size = CGSize(width: 209, height: 31)
         let frame = CGRect(x: ((UIScreen.main.bounds.width - size.width) / 2), y: 0, width: size.width, height: size.height)
         let notch = UINotch(frame: frame)
@@ -75,7 +85,7 @@ public extension UIScreen /* Display Features */ {
      */
     public var homeGrabber: UIHomeGrabber? {
         
-        guard UIDevice.current.isPhoneX else { return nil }
+        guard UIDevice.current.isDeviceModern else { return nil }
         let size = CGSize(width: UIScreen.main.bounds.width, height: 23)
         let frame = CGRect(x: 0, y: (UIScreen.main.bounds.height - size.height), width: size.width, height: size.height)
         let grabber = UIHomeGrabber(frame: frame)
