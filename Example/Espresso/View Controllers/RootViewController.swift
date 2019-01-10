@@ -10,9 +10,30 @@ import UIKit
 import Espresso
 import SnapKit
 
+protocol RootViewControllerDelegate: class {
+    
+    func rootViewController(_ vc: RootViewController, didSelectAppearanceRow row: RootViewController.AppearanceRow)
+    func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
+    func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
+    func rootViewControllerWantsToPresentRxExampleViewController(_ vc: RootViewController)
+    
+}
+
 class RootViewController: UIStyledViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    private var tableView: UITableView!
+    private weak var delegate: RootViewControllerDelegate?
+    
+    init(delegate: RootViewControllerDelegate) {
+        
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override var preferredStatusBarAppearance: UIStatusBarAppearance {
 
@@ -43,8 +64,15 @@ class RootViewController: UIStyledViewController {
         super.viewDidLoad()
         self.title = "Espresso ☕️"
         
-        tableView.backgroundColor = UIColor.groupTableViewBackground
-        tableView.tableFooterView = UIView()
+        self.tableView = UITableView(frame: .zero, style: .grouped)
+        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.tableFooterView = UIView()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { make in
+            make.edges.equalTo(0)
+        }
         
         UITableViewCell.register(in: tableView)
         
@@ -65,7 +93,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private enum AppearanceRow: Int {
+    enum AppearanceRow: Int {
         
         case `default`
         case inferred
@@ -73,9 +101,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case modal
         static var count = 4
         
+        var title: String {
+            
+            switch self {
+            case .default: return "Default"
+            case .inferred: return "Inferred"
+            case .custom: return "Custom"
+            case .modal: return "Modal"
+            }
+            
+        }
+        
     }
     
-    private enum TransitionRow: Int {
+    enum TransitionRow: Int {
         
         case fade
         case slide
@@ -272,110 +311,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .appearance:
             
             guard let row = AppearanceRow(rawValue: indexPath.row) else { return }
-            
-            let vc = AppearanceViewController()
-            
-            switch row {
-            case .default:
-                
-                vc.title = "Default"
-                vc.statusBarAppearance = UIStatusBarAppearance()
-                vc.navBarAppearance = UINavigationBarAppearance()
-                
-            case .inferred:
-                
-                vc.title = "Inferred"
-                vc.statusBarAppearance = UIStatusBarAppearance.inferred(for: vc)
-                vc.navBarAppearance = UINavigationBarAppearance.inferred(for: vc)
-            
-            case .custom:
-                
-                let status = UIStatusBarAppearance()
-                status.style = .lightContent
-                
-                let nav = UINavigationBarAppearance()
-                nav.barColor = UIColor(white: 0.1, alpha: 1)
-                nav.titleColor = UIColor.white
-                nav.itemColor = UIColor.white
-                
-                if #available(iOS 11, *) {
-                    nav.largeTitleDisplayMode = .always
-                    nav.largeTitleColor = UIColor.white
-                    nav.largeTitleFont = UIFont.systemFont(ofSize: 40, weight: .black)
-                }
-                
-                vc.title = "Custom"
-                vc.statusBarAppearance = status
-                vc.navBarAppearance = nav
-            
-            case .modal:
-                
-                let navBar = UINavigationBarAppearance()
-                navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-                navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .black)
-                navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-                navBar.transparent = true
-                
-                vc.title = "Modal"
-                vc.showsDismissButton = true
-                vc.statusBarAppearance = UIStatusBarAppearance()
-                vc.navBarAppearance = navBar
-                
-                let nav = UIStyledNavigationController(rootViewController: vc)
-                self.present(nav, animated: true, completion: nil)
-                
-                return
-                
-            }
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.delegate?.rootViewController(self, didSelectAppearanceRow: row)
         
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
-
-            let vc = TransitionViewController()
-            vc.title = row.title
+            self.delegate?.rootViewController(self, didSelectTransitionRow: row)
             
-            let navBar = UINavigationBarAppearance()
-            navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-            navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .medium)
-            navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-            navBar.transparent = true
-            vc.navBarAppearance = navBar
-            
-            let nav = UIStyledNavigationController(rootViewController: vc)
-            self.present(nav, with: row.transition, completion: nil)
-        
         case .rxMvvm:
             
             guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }
 
             switch row {
-            case .viewController:
-                
-                let vc = RxViewController(viewModel: RxViewModel())
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-                
-            case .tableCollection:
-                
-                let viewModel = RxExampleViewModel()
-                
-                let tableVC = RxExampleTableViewController(viewModel: viewModel)
-                let tableNav = UINavigationController(rootViewController: tableVC)
-                
-                let collectionVC = RxExampleCollectionViewController(viewModel: viewModel)
-                let collectionNav = UINavigationController(rootViewController: collectionVC)
-                
-                let tabController = UITabBarController()
-                tabController.viewControllers = [tableNav, collectionNav]
-
-                let transition = UICoverTransition()
-                transition.coveredViewParallaxAmount = 100
-                
-                self.present(tabController, with: transition, completion: nil)
-                
+            case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
+            case .tableCollection: self.delegate?.rootViewControllerWantsToPresentRxExampleViewController(self)
             }
             
         case .taptics:

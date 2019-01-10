@@ -10,15 +10,15 @@
 		260EB66A21BB4770008E3F7C /* RxExampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */; };
 		260EB66C21BB47B9008E3F7C /* RxExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66B21BB47B9008E3F7C /* RxExampleViewModel.swift */; };
 		260EB66E21BB483F008E3F7C /* RxExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */; };
-		2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2631967A20E2B57000AE1B56 /* TransitionViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
 		263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E799120924E6C003BAD76 /* AppearanceViewController.swift */; };
 		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
 		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
+		26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */; };
+		26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
@@ -40,17 +40,17 @@
 		260EB66921BB4770008E3F7C /* RxExampleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleTableViewController.swift; sourceTree = "<group>"; };
 		260EB66B21BB47B9008E3F7C /* RxExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleViewModel.swift; sourceTree = "<group>"; };
 		260EB66D21BB483F008E3F7C /* RxExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleCollectionViewController.swift; sourceTree = "<group>"; };
-		2631967A20E2B57000AE1B56 /* TransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		263E799120924E6C003BAD76 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
+		26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspressoAppCoordinator.swift; sourceTree = "<group>"; };
+		26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Espresso_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Espresso_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +98,24 @@
 			path = "Rx : Mvvm";
 			sourceTree = "<group>";
 		};
+		26CC8AE521E52F5200AE6F94 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */,
+				26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		26CC8AE621E52F6C00AE6F94 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
+				263E799120924E6C003BAD76 /* AppearanceViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -123,10 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
-				263E799120924E6C003BAD76 /* AppearanceViewController.swift */,
-				2631967A20E2B57000AE1B56 /* TransitionViewController.swift */,
 				26CDD00220E442E800BE58A1 /* CustomTransition.swift */,
+				26CC8AE521E52F5200AE6F94 /* Coordinators */,
+				26CC8AE621E52F6C00AE6F94 /* View Controllers */,
 				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -137,7 +154,6 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
@@ -245,7 +261,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = KKSYLRXR4A;
+						DevelopmentTeam = 58RQQ6ZL4W;
 						LastSwiftMigration = 1000;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -280,7 +296,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -339,21 +354,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -373,11 +384,12 @@
 				263E799220924E6C003BAD76 /* AppearanceViewController.swift in Sources */,
 				260EB66A21BB4770008E3F7C /* RxExampleTableViewController.swift in Sources */,
 				260EB66E21BB483F008E3F7C /* RxExampleCollectionViewController.swift in Sources */,
+				26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */,
+				26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				2631967B20E2B57000AE1B56 /* TransitionViewController.swift in Sources */,
 				260EB66C21BB47B9008E3F7C /* RxExampleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,14 +413,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -528,7 +532,7 @@
 			baseConfigurationReference = E3883CD188C6843ED5F2EE71 /* Pods-Espresso_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KKSYLRXR4A;
+				DEVELOPMENT_TEAM = 58RQQ6ZL4W;
 				INFOPLIST_FILE = Espresso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -544,7 +548,7 @@
 			baseConfigurationReference = 31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KKSYLRXR4A;
+				DEVELOPMENT_TEAM = 58RQQ6ZL4W;
 				INFOPLIST_FILE = Espresso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
