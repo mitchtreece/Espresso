@@ -17,3 +17,11 @@ public protocol AnyCoordinatorBase: class {
     var navigationController: UINavigationController { get }
     
 }
+
+extension AnyCoordinatorBase /* Debug */ {
+    
+    internal var typeString: String {
+        return String(describing: type(of: self))
+    }
+    
+}

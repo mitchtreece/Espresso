@@ -74,15 +74,21 @@ open class AppCoordinator: AppCoordinatorBase {
     }
 
     public func start() -> Self {
-
+        
         self.rootCoordinator = load()
-        let rootViewController = self.rootCoordinator.load()
+        
+        if self.isDebugEnabled {
+            print("🎬 \(self.typeString) =(add)=> \(self.rootCoordinator.typeString)")
+        }
+        
+        let rootViewController = self.rootCoordinator.loadForAppCoordinator()
         
         guard !(rootViewController is UINavigationController) else {
             fatalError("An AppCoordinator's root view controller cannot be a UINavigationController")
         }
         
         self.navigationController.setViewControllers([rootViewController], animated: false)
+        self.rootCoordinator.didStart()
         
         return self
 

@@ -116,6 +116,13 @@ open class Coordinator: CoordinatorBase, Equatable {
         fatalError("Coordinator must return a root view controller")
     }
     
+    internal func loadForAppCoordinator() -> UIViewController {
+        
+        self.rootViewController = load()
+        return self.rootViewController
+        
+    }
+    
     public func start(child coordinator: Coordinator) {
         
         let rootViewController = coordinator.load()

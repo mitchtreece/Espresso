@@ -9,10 +9,6 @@
 import UIKit
 
 extension Coordinator /* Debug */ {
-
-    internal var typeString: String {
-        return String(describing: type(of: self))
-    }
     
     internal func debugPrint(_ message: String) {
         
