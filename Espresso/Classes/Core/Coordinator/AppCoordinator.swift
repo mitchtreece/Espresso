@@ -2,10 +2,9 @@
 //  AppCoordinator.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 12/7/18.
+//  Created by Mitch Treece on 1/8/19.
+//  Copyright © 2019 Mitch Treece. All rights reserved.
 //
-
-import UIKit
 
 import UIKit
 
@@ -44,50 +43,55 @@ import UIKit
  }
  ```
  */
-open class AppCoordinator: AppCoordinatorProtocol {
+open class AppCoordinator: AppCoordinatorBase {    
     
     public private(set) var window: UIWindow
+    
+    /// Flag indicating if debug logging is enabled.
     public private(set) var isDebugEnabled: Bool
+
+    private var rootCoordinator: Coordinator!
     
-    // MARK: BaseCoordinatorProtocol
-    
-    public var rootViewController: UIViewController {
+    public var navigationController: UINavigationController {
         
-        guard let rootViewController = self.window.rootViewController else {
-            fatalError("AppCoordinator's window contains no root view controller")
+        guard let nav = self.window.rootViewController as? UINavigationController else {
+            fatalError("AppCoordinator managed window must contain a root navigation controller")
         }
         
-        return rootViewController
+        return nav
         
     }
-    
-    // This should always be nil ////////////////////////////////
-    public private(set) weak var parent: BaseCoordinatorProtocol?
-    /////////////////////////////////////////////////////////////
-    
-    // MARK: Public
     
     required public init(window: UIWindow, debug: Bool) {
-        
+
         self.window = window
         self.isDebugEnabled = debug
-        
+
     }
-    
-    open func initialCoordinator() -> Coordinator {
-        fatalError("AppCoordinator's must return an initial child coordinator")
+
+    open func load() -> Coordinator {
+        fatalError("AppCoordinator must return a root coordinator")
     }
-    
+
     public func start() -> Self {
         
-        self.add(
-            child: initialCoordinator(),
-            style: .modal,
-            animated: false
-        )
+        self.rootCoordinator = load()
+        
+        if self.isDebugEnabled {
+            print("🎬 \(self.typeString) =(add)=> \(self.rootCoordinator.typeString)")
+        }
+        
+        let rootViewController = self.rootCoordinator.loadForAppCoordinator()
+        
+        guard !(rootViewController is UINavigationController) else {
+            fatalError("An AppCoordinator's root view controller cannot be a UINavigationController")
+        }
+        
+        self.navigationController.setViewControllers([rootViewController], animated: false)
+        self.rootCoordinator.didStart()
         
         return self
-        
+
     }
     
 }

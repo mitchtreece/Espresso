@@ -9,6 +9,10 @@
 import UIKit
 import Espresso
 
+protocol AppearanceViewControllerDelegate: class {
+    func appearanceViewControllerDidTapDone(_ vc: AppearanceViewController)
+}
+
 class AppearanceViewController: UIStyledViewController {
     
     override var preferredStatusBarAppearance: UIStatusBarAppearance {
@@ -21,8 +25,9 @@ class AppearanceViewController: UIStyledViewController {
     
     var statusBarAppearance: UIStatusBarAppearance?
     var navBarAppearance: UINavigationBarAppearance?
-    
     var showsDismissButton: Bool = false
+    
+    weak var delegate: AppearanceViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +45,7 @@ class AppearanceViewController: UIStyledViewController {
     }
     
     @objc private func didTapDismiss(_ sender: UIBarButtonItem) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        self.delegate?.appearanceViewControllerDidTapDone(self)
     }
     
 }

@@ -1,24 +1,18 @@
 PODS:
-  - Differentiator (3.1.0)
-  - Espresso/All (1.1.0):
+  - Espresso/All (1.2.0):
     - Espresso/Core
     - Espresso/Mvvm
     - Espresso/RxMvvm
-  - Espresso/Core (1.1.0):
+  - Espresso/Core (1.2.0):
     - SnapKit (~> 4.0.0)
-  - Espresso/Mvvm (1.1.0):
+  - Espresso/Mvvm (1.2.0):
     - Espresso/Core
-  - Espresso/RxMvvm (1.1.0):
+  - Espresso/RxMvvm (1.2.0):
     - Espresso/Mvvm
     - RxCocoa (~> 4.0)
-    - RxDataSources (~> 3.0)
     - RxSwift (~> 4.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxDataSources (3.1.0):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
@@ -29,10 +23,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Differentiator
     - RxAtomic
     - RxCocoa
-    - RxDataSources
     - RxSwift
     - SnapKit
 
@@ -41,11 +33,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  Espresso: 4806887ecc6ed29fa56874526e6f31d05a8ad672
+  Espresso: 7fd8104e9895964fbf15a75ead64b56aaa9fb69e
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 

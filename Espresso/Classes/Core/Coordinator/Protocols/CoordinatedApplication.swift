@@ -1,8 +1,9 @@
 //
-//  AppCoordinated.swift
+//  CoordinatedApplication.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 12/7/18.
+//  Created by Mitch Treece on 1/8/19.
+//  Copyright © 2019 Mitch Treece. All rights reserved.
 //
 
 import UIKit
@@ -10,24 +11,20 @@ import UIKit
 /**
  Protocol describing the attributes of a coordinated application.
  */
-public protocol AppCoordinated: class {
+public protocol CoordinatedApplication: class {
     
     /// The application's window.
     var window: UIWindow? { get set }
     
 }
 
-extension AppCoordinated {
-    
-    var isCoordinatorDebuggingEnabled: Bool {
-        return false
-    }
+extension CoordinatedApplication {
     
     /**
      Fetches & configures an app coordinator.
      - Parameter coordinator: The `AppCoordinator` type to use.
-     - Parameter initialViewController: An optional initial view controller to embed into the application's window.
-     If no value is supplied, a new `UIViewController` instance will be used; _defaults to nil_.
+     - Parameter navigationController: An optional initial navigation controller to embed into the application's window.
+     If no value is supplied, a new `UINavigationController` instance will be used; _defaults to nil_.
      - Parameter debug: Flag indicating if coordinator debug loggin is enabled; _defaults to false_.
      
      ```
@@ -39,13 +36,15 @@ extension AppCoordinated {
      ).start()
      ```
      */
-    public func coordinated<A: AppCoordinator>(by coordinator: A.Type, initialViewController: UIViewController? = nil, debug: Bool = false) -> A {
+    public func coordinated<A: AppCoordinator>(by coordinator: A.Type,
+                                               navigationController: UINavigationController? = nil,
+                                               debug: Bool = false) -> A {
         
         if self.window == nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
         }
         
-        self.window!.rootViewController = initialViewController ?? UIViewController()
+        self.window!.rootViewController = navigationController ?? UINavigationController()
         self.window!.makeKeyAndVisible()
         
         return A(window: self.window!, debug: debug)

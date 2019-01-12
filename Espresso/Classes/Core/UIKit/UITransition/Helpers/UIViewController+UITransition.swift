@@ -13,7 +13,10 @@ public extension UIViewController {
         static var transition = "UIViewController.transition"
     }
     
-    @objc internal(set) var transition: UITransition? {
+    /**
+     The view controller's transition object.
+     */
+    @objc public var transition: UITransition? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKey.transition) as? UITransition
         }
