@@ -82,24 +82,22 @@ class RootViewController: UIStyledViewController {
 
 extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
-    private enum Section: Int {
+    private enum Section: Int, CaseIterable {
         
         case appearance
         case transition
         case rxMvvm
         case taptics
         case helpers
-        static var count: Int = 4
         
     }
     
-    enum AppearanceRow: Int {
+    enum AppearanceRow: Int, CaseIterable {
         
         case `default`
         case inferred
         case custom
         case modal
-        static var count = 4
         
         var title: String {
             
@@ -114,7 +112,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    enum TransitionRow: Int {
+    enum TransitionRow: Int, CaseIterable {
         
         case fade
         case slide
@@ -122,7 +120,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case swap
         case pushBack
         case custom
-        static var count = 5
         
         var transition: UITransition {
             
@@ -152,11 +149,10 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private enum RxMvvmRow: Int {
+    private enum RxMvvmRow: Int, CaseIterable {
         
         case viewController
         case tableCollection
-        static var count: Int = 2
         
         var title: String {
             
@@ -169,7 +165,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private enum TapticRow: Int {
+    private enum TapticRow: Int, CaseIterable {
         
         case selection
         case impactLight
@@ -178,7 +174,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case notificationSuccess
         case notificationWarning
         case notificationError
-        static var count = 7
         
         var title: String {
             
@@ -210,17 +205,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private enum HelpersRow: Int {
+    private enum HelpersRow: Int, CaseIterable {
         
         case deviceInfo
         case displayFeatureInsets
         case authentication
-        static var count: Int = 3
         
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.count
+        return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -242,11 +236,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
-        case .appearance: return AppearanceRow.count
-        case .transition: return TransitionRow.count
-        case .rxMvvm: return RxMvvmRow.count
-        case .taptics: return TapticRow.count
-        case .helpers: return HelpersRow.count
+        case .appearance: return AppearanceRow.allCases.count
+        case .transition: return TransitionRow.allCases.count
+        case .rxMvvm: return RxMvvmRow.allCases.count
+        case .taptics: return TapticRow.allCases.count
+        case .helpers: return HelpersRow.allCases.count
         }
         
     }
