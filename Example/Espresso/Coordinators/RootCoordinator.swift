@@ -105,27 +105,6 @@ extension RootCoordinator: RootViewControllerDelegate {
         
     }
     
-    func rootViewControllerWantsToPresentRxExampleViewController(_ vc: RootViewController) {
-        
-        let viewModel = RxExampleViewModel()
-
-        let tableVC = RxExampleTableViewController(viewModel: viewModel)
-        let tableNav = UINavigationController(rootViewController: tableVC)
-
-        let collectionVC = RxExampleCollectionViewController(viewModel: viewModel)
-        let collectionNav = UINavigationController(rootViewController: collectionVC)
-
-        let tabController = UITabBarController()
-        tabController.viewControllers = [tableNav, collectionNav]
-
-        let transition = UICoverTransition()
-        transition.coveredViewParallaxAmount = 100
-
-        tabController.transition = transition
-        self.presentModal(viewController: tabController)
-        
-    }
-    
 }
 
 extension RootCoordinator: AppearanceViewControllerDelegate {

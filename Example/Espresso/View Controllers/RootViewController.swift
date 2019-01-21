@@ -15,7 +15,6 @@ protocol RootViewControllerDelegate: class {
     func rootViewController(_ vc: RootViewController, didSelectAppearanceRow row: RootViewController.AppearanceRow)
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
-    func rootViewControllerWantsToPresentRxExampleViewController(_ vc: RootViewController)
     
 }
 
@@ -152,13 +151,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum RxMvvmRow: Int, CaseIterable {
         
         case viewController
-        case tableCollection
         
         var title: String {
             
             switch self {
             case .viewController: return "UIViewController"
-            case .tableCollection: return "Table / Collection"
             }
             
         }
@@ -318,7 +315,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
             switch row {
             case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
-            case .tableCollection: self.delegate?.rootViewControllerWantsToPresentRxExampleViewController(self)
             }
             
         case .taptics:
