@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import Espresso
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CoordinatedApplication {
 
     var window: UIWindow?
-
+    private var coordinator: EspressoAppCordinator!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        self.coordinator = self.coordinated(
+            by: EspressoAppCordinator.self,
+            navigationController: UIStyledNavigationController(rootViewController: UIViewController()),
+            debug: true
+        ).start()
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -40,6 +49,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

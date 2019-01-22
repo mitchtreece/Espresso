@@ -15,11 +15,17 @@ Espresso is integrated with CocoaPods!
 1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Espresso'
+pod 'Espresso/Core' # Available specs: Core, Mvvm, RxMvvm, All
 ```
 2. In your project directory, run `pod install`
 3. Import the `Espresso` module wherever you need it
 4. Profit
+
+Espresso is broken down into several sub-specs:
+- `Core`: The default spec. Includes common `Foundation` & `UIKit` classes / helpers.
+- `Mvvm`: MVVM-architecture related classes + helpers. Includes the `Core` spec.
+- `RxMvvm`: MVVM / Rx classes + helpers. Includes the `Mvvm` & `Core` specs.
+- `All`: All of the above specs.
 
 ### Manually
 You can also manually add the source files to your project.
@@ -38,6 +44,8 @@ Some of the more interesting things include:
 - `UITransition` system for easy custom `UIViewController` transitions
 - `UIViewController` & `UINavigationController` styling system
 - `UIScreen` extensions + display features
+- `Coordinator` navigation implementation
+- `MVVM` & `Rx` classes + helpers
 - Device identification & info
 - Type conversion helpers
 - User authentication helpers
@@ -186,7 +194,7 @@ UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.")
 }
 ```
 
-**NOTE:** `NSFaceIDUsageDescription` key _must_ be added to your **Info.plist** if you intend to to authenticate via Face ID.
+**NOTE:** `NSFaceIDUsageDescription` key _must_ be added to your **Info.plist** if you intend to authenticate via Face ID.
 
 #### Digest Hash
 
