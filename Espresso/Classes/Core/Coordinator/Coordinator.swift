@@ -110,6 +110,8 @@ open class Coordinator: CoordinatorBase, Equatable {
         self.navigationDelegate = CoordinatorNavigationDelegate(coordinator: self)
         self.navigationController.delegate = self.navigationDelegate
         
+        self.isEmbedded = embedded
+        
     }
     
     open func load() -> UIViewController {
