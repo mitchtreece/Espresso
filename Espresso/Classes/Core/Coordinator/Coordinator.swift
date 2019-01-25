@@ -93,19 +93,19 @@ open class Coordinator: CoordinatorBase, Equatable {
         
         // Don't call `debugPrint(_ message:)` here as it relies on `parentCoordinator`.
         // The `parentCoordinator` property will be `nil` when `deinit` is called.
-        
-        print("🎬 \(self.typeString) destroyed <--- DISABLE THIS PRINT BEFORE RELEASE")
+        // print("🎬 \(self.typeString) destroyed <--- DISABLE THIS PRINT BEFORE RELEASE")
         
     }
     
     /**
      Initializes a new coordinator in a parent coordinator.
-     - Parameter parentCoordinator: The coordinator's parent coordinator.
+     - Parameter parent: The coordinator's parent coordinator.
+     - Parameter embedded: Flag indicating if the coordinator is going to be manually embedded in it's parent; _defaults to false_.
      */
-    public required init(parentCoordinator: AnyCoordinatorBase) {
+    public required init(in parent: AnyCoordinatorBase, embedded: Bool = false) {
         
-        self.parentCoordinator = parentCoordinator
-        self.navigationController = parentCoordinator.navigationController
+        self.parentCoordinator = parent
+        self.navigationController = parent.navigationController
         
         self.navigationDelegate = CoordinatorNavigationDelegate(coordinator: self)
         self.navigationController.delegate = self.navigationDelegate
