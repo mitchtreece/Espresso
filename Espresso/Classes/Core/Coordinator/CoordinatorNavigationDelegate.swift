@@ -31,7 +31,8 @@ internal class CoordinatorNavigationDelegate: NSObject, UINavigationControllerDe
         
         // Remove self from parent without attempting to dismiss the view controller
         
-        (coordinator.parentCoordinator as? Coordinator)?.remove(child: coordinator, dismiss: false)
+        (coordinator.parentCoordinator as? Coordinator)?
+            .remove(child: coordinator, dismiss: false)
         
     }
     

@@ -61,6 +61,7 @@
 		248A66A3AFA1BC85162ED3803A2642B1 /* Using.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD221C004B85203D05B718730E33718 /* Using.swift */; };
 		2568636775E4626D1BBF8CCCC7B983DC /* UIViewControllerCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FE21D5422E6DD52EA6573F33335C7 /* UIViewControllerCoordinating.swift */; };
 		263F1F22DABA7FB82CB4AD511F49DB11 /* InfiniteSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626966F1151C45D10C834806C59344 /* InfiniteSequence.swift */; };
+		268D2BD32219073D00C44C8C /* UIViewController+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D2BD22219073D00C44C8C /* UIViewController+Espresso.swift */; };
 		26B5727D4060ED957A7B916C98E46F11 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822CD7CF8D3F50F539F94E25796DB6C /* JSONConvertible.swift */; };
 		26E85C08BDE489F3BDF7B7C0C6B42D17 /* Date+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6392CC0EC16F320FDB1D9652425A01C1 /* Date+Espresso.swift */; };
 		271391E5FEA5D39D7B1F76FF37776C08 /* RxNavigationControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C8D033FD5EB1699545880446E4C39 /* RxNavigationControllerDelegateProxy.swift */; };
@@ -579,6 +580,7 @@
 		245CAC83B531A7F58115184BBF3F11B2 /* BehaviorRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BehaviorRelay.swift; path = RxCocoa/Traits/BehaviorRelay.swift; sourceTree = "<group>"; };
 		252DE4B134DC8EE4EC2EBE773B5CB875 /* Optional.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Optional.swift; path = RxSwift/Observables/Optional.swift; sourceTree = "<group>"; };
 		258DF6CB39B60D24F4836B950D2AD005 /* AppCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		268D2BD22219073D00C44C8C /* UIViewController+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Espresso.swift"; sourceTree = "<group>"; };
 		269DAA9372836ADA5EDC6128BE52358A /* RxAtomic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RxAtomic.h; path = RxAtomic/include/RxAtomic.h; sourceTree = "<group>"; };
 		27EFAB2FB83B685516E2E4C08BCB600C /* ObservableConvertibleType+SharedSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+SharedSequence.swift"; path = "RxCocoa/Traits/SharedSequence/ObservableConvertibleType+SharedSequence.swift"; sourceTree = "<group>"; };
 		2822CD7CF8D3F50F539F94E25796DB6C /* JSONConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
@@ -1051,6 +1053,7 @@
 			isa = PBXGroup;
 			children = (
 				AAD3F0D0AD324F5E0AA6ACEEE13C3819 /* UIApplication+Espresso.swift */,
+				268D2BD22219073D00C44C8C /* UIViewController+Espresso.swift */,
 				300B7A2B405C4B80D2452396AF10E9FD /* UIBlurView.swift */,
 				1155D62593F49C86CB2D8E5DC6741FB1 /* UICollectionView+Espresso.swift */,
 				BB2754C3066BF42C90A216E51ACECE1E /* UICollectionViewCell+Espresso.swift */,
@@ -2237,6 +2240,7 @@
 				6B44A85F9FE26A0041DEA87A13A696FE /* UIHomeGrabber.swift in Sources */,
 				12827DF548660E30E826096AEE513084 /* UIImage+Espresso.swift in Sources */,
 				4952F772BE023A297389ACD87BEDC935 /* UINavigationBarAppearanceProvider.swift in Sources */,
+				268D2BD32219073D00C44C8C /* UIViewController+Espresso.swift in Sources */,
 				65D7ED42A1AE98783FB16FD3090BA9C8 /* UINavigationController+UITransition.swift in Sources */,
 				3DB8F4FA3297FEBF8368E958685ACCA8 /* UINibView.swift in Sources */,
 				C1D1B468EA380AAA4A0EA1F839F0B667 /* UINotch.swift in Sources */,

@@ -35,6 +35,14 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
     func start(child coordinator: Coordinator)
     
     /**
+     Replaces the current coordinator with another in the same parent.
+     
+     - Parameter coordinator: The replacement coordinator.
+     - Parameter animated: Flag indicating if this should be done with an animation or not.
+     */
+    func replace(with coordinator: Coordinator, animated: Bool)
+    
+    /**
      Tells the coordinator's parent that it's finished.
      This will remove the child from the parent's coordinator stack & dismiss it if needed.
      

@@ -71,7 +71,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     }
     
     /// The coordinator's parent coordinator.
-    internal private(set) weak var parentCoordinator: AnyCoordinatorBase?
+    internal weak var parentCoordinator: AnyCoordinatorBase?
     
     public private(set) var navigationController: UINavigationController
     
@@ -87,15 +87,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     /// Embedded coordinators must manage their own presentation & dismissal.
     public var isEmbedded: Bool = false
     
-    private var children = [Coordinator]()
-    
-    deinit {
-        
-        // Don't call `debugPrint(_ message:)` here as it relies on `parentCoordinator`.
-        // The `parentCoordinator` property will be `nil` when `deinit` is called.
-        // print("🎬 \(self.typeString) destroyed <--- DISABLE THIS PRINT BEFORE RELEASE")
-        
-    }
+    internal private(set) var children = [Coordinator]()
     
     /**
      Initializes a new coordinator in a parent coordinator.
@@ -115,7 +107,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     }
     
     open func load() -> UIViewController {
-        fatalError("Coordinator must return a root view controller")
+        fatalError("\(self.typeString) must return a root view controller")
     }
     
     internal func loadForAppCoordinator() -> UIViewController {
@@ -173,8 +165,45 @@ open class Coordinator: CoordinatorBase, Equatable {
         // Override me
     }
     
+    /**
+     Called after the coordinator has finished & removed from it's parent.
+     Override this function to perform additional cleanup logic before the coordinator gets deallocated.
+     */
+    open func didFinish() {
+        // Override me
+    }
+    
+    public func replace(with coordinator: Coordinator, animated: Bool = true) {
+        
+        if let appCoordinator = self.parentCoordinator as? AppCoordinator {
+            appCoordinator.replaceRootCoordinator(with: coordinator, animated: animated)
+        }
+        else {
+            
+            // TODO: Need to handle animations
+            
+            let parent = self.parentCoordinator as! Coordinator
+            coordinator.parentCoordinator = parent
+            parent.start(child: coordinator)
+            
+            finish()
+            
+        }
+        
+    }
+    
     public func finish() {
-        (self.parentCoordinator as? Coordinator)?.remove(child: self)
+        
+        if let _ = self.parentCoordinator as? AppCoordinator {
+            self.debugPrint("Attempting to call finish on the application's root coordinator (\(self.typeString)). Skipping.")
+            return
+        }
+        
+        (self.parentCoordinator as! Coordinator)
+            .remove(child: self)
+        
+        self.didFinish()
+        
     }
     
     private func add(child: Coordinator) {
