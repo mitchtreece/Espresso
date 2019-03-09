@@ -29,6 +29,14 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'DI' do |di|
+
+        di.source_files         = 'Espresso/Classes/DI/**/*'
+        di.dependency           'Espresso/Core'
+        di.dependency           'Swinject', '~> 2.6.0'
+
+    end
+
     s.subspec 'Mvvm' do |mvvm|
 
         mvvm.source_files       = 'Espresso/Classes/Mvvm/**/*'
@@ -42,13 +50,13 @@ Pod::Spec.new do |s|
         rx.dependency           'Espresso/Mvvm'
         rx.dependency           'RxSwift', '~> 4.0'
         rx.dependency           'RxCocoa', '~> 4.0'
-        # rx.dependency           'RxDataSources', '~> 3.0'
 
     end
 
     s.subspec 'All' do |all|
 
         all.dependency          'Espresso/Core'
+        all.dependency          'Espresso/DI'
         all.dependency          'Espresso/Mvvm'
         all.dependency          'Espresso/RxMvvm'
 
