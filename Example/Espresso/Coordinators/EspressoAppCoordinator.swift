@@ -11,7 +11,7 @@ import Espresso
 class EspressoAppCordinator: AppCoordinator {
     
     override func load() -> Coordinator {
-        return RootCoordinator(in: self)
+        return RootCoordinator()
     }
     
 }

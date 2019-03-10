@@ -56,7 +56,7 @@ open class AppCoordinator: AppCoordinatorBase {
         return self.rootCoordinator.children.last ?? self.rootCoordinator
     }
     
-    public var navigationController: UINavigationController {
+    public var navigationController: UINavigationController! {
         
         guard let nav = self.window.rootViewController as? UINavigationController else {
             fatalError("\(self.typeString)'s managed window must contain a root navigation controller")
@@ -80,7 +80,8 @@ open class AppCoordinator: AppCoordinatorBase {
     public func start() -> Self {
         
         self.rootCoordinator = load()
-        
+        self.rootCoordinator.parentCoordinator = self
+
         if self.isDebugEnabled {
             print("🎬 \(self.typeString) =(add)=> \(self.rootCoordinator.typeString)")
         }
@@ -90,6 +91,8 @@ open class AppCoordinator: AppCoordinatorBase {
         }
         
         self.navigationController.setViewControllers([rootViewController], animated: false)
+        self.rootCoordinator.navigationController = self.navigationController
+        self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
         self.rootCoordinator.didStart()
         
         return self

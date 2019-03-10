@@ -73,7 +73,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     /// The coordinator's parent coordinator.
     internal weak var parentCoordinator: AnyCoordinatorBase?
     
-    public private(set) var navigationController: UINavigationController
+    public internal(set) var navigationController: UINavigationController!
     
     /// The coordinator's root view controller.
     /// This is set during the startup process _after_ `load()` is called.
@@ -85,25 +85,15 @@ open class Coordinator: CoordinatorBase, Equatable {
     ///
     /// If this is `true`, the coordinator **will not** be automatically presented / dismissed.
     /// Embedded coordinators must manage their own presentation & dismissal.
-    public var isEmbedded: Bool = false
+    public private(set) var isEmbedded: Bool = false
     
     internal private(set) var children = [Coordinator]()
     
     /**
-     Initializes a new coordinator in a parent coordinator.
-     - Parameter parent: The coordinator's parent coordinator.
-     - Parameter embedded: Flag indicating if the coordinator is going to be manually embedded in it's parent; _defaults to false_.
+     Initializes a coordinator.
      */
-    public required init(in parent: AnyCoordinatorBase, embedded: Bool = false) {
-        
-        self.parentCoordinator = parent
-        self.navigationController = parent.navigationController
-        
+    public required init() {
         self.navigationDelegate = CoordinatorNavigationDelegate(coordinator: self)
-        self.navigationController.delegate = self.navigationDelegate
-        
-        self.isEmbedded = embedded
-        
     }
     
     open func load() -> UIViewController {
@@ -117,10 +107,21 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    public func start(child coordinator: Coordinator) {
+    public func start(child coordinator: Coordinator, embedded: Bool = false) {
+        
+        // Set properties from parent -> child
+        
+        coordinator.parentCoordinator = self
+        coordinator.navigationController = self.navigationController
+        coordinator.navigationController.delegate = coordinator.navigationDelegate
+        coordinator.isEmbedded = embedded
+        
+        // Set child's root view controller
         
         let rootViewController = coordinator.load()
         coordinator.rootViewController = rootViewController
+        
+        // Determine child's navigation controller
         
         if let nav = rootViewController as? UINavigationController, coordinator.isEmbedded {
             
@@ -134,20 +135,26 @@ open class Coordinator: CoordinatorBase, Equatable {
         add(child: coordinator)
         
         guard !coordinator.isEmbedded else {
+            
+            // If embedded, we should skip presentation logic.
+            // Just call didStart(), and return
+            
             coordinator.didStart()
             return
+            
         }
         
         if let childNav = rootViewController as? UINavigationController {
             
-            // Coordinator is always created with parent's nav controller
-            // If coordinator's rootVC is a nav controller, then we're
+            // Child coordinator is always created with parent's nav controller
+            // If the child's root view controller is a nav controller, then we're
             // presenting modally and it's nav controller is it's own
             
             coordinator.navigationController = childNav
             presentModal(viewController: childNav)
             
-        } else {
+        }
+        else {
             
             self.navigationController.pushViewController(rootViewController, animated: true)
             
@@ -180,7 +187,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         }
         else {
             
-            // TODO: Need to handle animations
+            // TODO: Animations?
             
             let parent = self.parentCoordinator as! Coordinator
             coordinator.parentCoordinator = parent
