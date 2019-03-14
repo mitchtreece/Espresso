@@ -18,7 +18,7 @@ public protocol DataSourceDelegate: class {
 
 public extension DataSourceDelegate /* Optional */ {
     
-    func dataSourceWillFetchData<T>(_ dataSource: DataSource<T>) { }
+    func dataSourceWillFetchData<T>(_ dataSource: DataSource<T>) {}
     func dataSource<T>(_ dataSource: DataSource<T>, didFetchData newData: [T]) {}
     func dataSourceWillReloadData<T>(_ dataSource: DataSource<T>) {}
     func dataSourceDidReloadData<T>(_ dataSource: DataSource<T>) {}

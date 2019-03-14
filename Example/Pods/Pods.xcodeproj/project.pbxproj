@@ -72,6 +72,8 @@
 		24A3A455B755D521B982F48F7985E8C0 /* DelaySubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C401E09C076C756D3E2421E6DEBA15C /* DelaySubscription.swift */; };
 		25AC232F99774D83F9367ACFC9FF9D1B /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3031C1EAF94D3068235EAED9F36A0B47 /* ConstraintMakerEditable.swift */; };
 		25C3AEF38CB1FEEEBCFB5D0BD4A28742 /* BooleanDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAF3B1A7A7FF3FC260CB3EAF153BA5B /* BooleanDisposable.swift */; };
+		26249B83223ABFDF00C5AB90 /* XMLCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26249B82223ABFDF00C5AB90 /* XMLCodable.swift */; };
+		26249B85223ACE9F00C5AB90 /* Dictionary+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26249B84223ACE9F00C5AB90 /* Dictionary+Espresso.swift */; };
 		262BC5A0188D3F2307163C5747BEAA47 /* NSTextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A038185670838AB85D6AC5496DB316BD /* NSTextField+Rx.swift */; };
 		265C670E22347C0800645902 /* AppCoordinator+DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C670D22347C0800645902 /* AppCoordinator+DI.swift */; };
 		265C67102236069D00645902 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C670F2236069D00645902 /* Action.swift */; };
@@ -660,6 +662,8 @@
 		24CF2AC7A3E00900E4BBA754B8FF82B5 /* UINavigationController+UITransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UITransition.swift"; sourceTree = "<group>"; };
 		25084DED203306717134466B7E963EA3 /* RxTableViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewDataSourceType.swift; path = RxCocoa/iOS/Protocols/RxTableViewDataSourceType.swift; sourceTree = "<group>"; };
 		252AB5DBCCE9BAFF1D144256777DA287 /* SubscriptionDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscriptionDisposable.swift; path = RxSwift/Disposables/SubscriptionDisposable.swift; sourceTree = "<group>"; };
+		26249B82223ABFDF00C5AB90 /* XMLCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLCodable.swift; sourceTree = "<group>"; };
+		26249B84223ACE9F00C5AB90 /* Dictionary+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Espresso.swift"; sourceTree = "<group>"; };
 		265C670D22347C0800645902 /* AppCoordinator+DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AppCoordinator+DI.swift"; path = "Espresso/Classes/DI/AppCoordinator+DI.swift"; sourceTree = "<group>"; };
 		265C670F2236069D00645902 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		265C671222360A3300645902 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -1239,12 +1243,14 @@
 				D87BAA96079684A63944E08F29CD6979 /* Array+Espresso.swift */,
 				9304DDF26E51DAD9B522C0B6FC1A1269 /* AsyncOperation.swift */,
 				B9F76F44EA1D8B9F025EA596A86BA3BD /* Collection+Espresso.swift */,
+				26249B84223ACE9F00C5AB90 /* Dictionary+Espresso.swift */,
 				265C671222360A3300645902 /* DataSource.swift */,
 				EDF98C200A41C6CB1AA378334CFC906F /* Date+Espresso.swift */,
 				63F453802D0FA5D8FA63E96EDE4D4D46 /* Float+Espresso.swift */,
 				16F3F6E0DA940501B920B5DC3EFD0CA0 /* IndexPath+Espresso.swift */,
 				00D63EBD61933D5FC683303D7AAC1F60 /* NotificationObserver.swift */,
 				EC300FA76D267A59D7D8D2CD82143FAC /* String+Espresso.swift */,
+				26249B82223ABFDF00C5AB90 /* XMLCodable.swift */,
 			);
 			name = Foundation;
 			path = Espresso/Classes/Core/Foundation;
@@ -2731,6 +2737,7 @@
 				4251DDE1E618CAEF7638E926EE5FC179 /* UIAnimation.swift in Sources */,
 				614F9E5EB02BE089F9F9975EEACB0AA8 /* UIAnimationGroup.swift in Sources */,
 				9AC7A217D62B827C0184DA0D727BD92E /* UIAnimationGroupConvertible.swift in Sources */,
+				26249B85223ACE9F00C5AB90 /* Dictionary+Espresso.swift in Sources */,
 				DD9B34B23A8323671AB3B0C5FCC998B2 /* UIAnimationOperation.swift in Sources */,
 				27665A665CE57BC0F8536A144DBBB3A9 /* UIAnimationOperationQueue.swift in Sources */,
 				91EDCFE91CB315304177E52BBA7DDBA2 /* UIApplication+Espresso.swift in Sources */,
@@ -2770,6 +2777,7 @@
 				EE9750EF93962809F69BBC6BD4246E33 /* UIView+Espresso.swift in Sources */,
 				A2910D520A9D7E0158844F9CCD5D5096 /* UIViewController+Espresso.swift in Sources */,
 				452373B3F056A811E0F2A09C5EFD971B /* UIViewController+UITransition.swift in Sources */,
+				26249B83223ABFDF00C5AB90 /* XMLCodable.swift in Sources */,
 				C8CC08BF73FB0BD1A4914519B678CBEC /* UIViewControllerCoordinating.swift in Sources */,
 				120A17B9B569060A86AD14917BE5F030 /* UIViewModelCollectionViewCell.swift in Sources */,
 				267F03CCE64408060FF73359BC42B629 /* UIViewModelTableViewCell.swift in Sources */,
