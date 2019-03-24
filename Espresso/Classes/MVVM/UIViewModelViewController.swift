@@ -38,8 +38,12 @@ open class UIViewModelViewController<V: ViewModel>: UIViewController {
      For example, when initializing a view controller from a storyboard, this can be called
      after the view controller is loaded to configure the view with a view model.
      */
-    public func setup(viewModel: V) {
+    @discardableResult
+    public func setup(viewModel: V) -> Self {
+        
         self.viewModel = viewModel
+        return self
+        
     }
     
 }

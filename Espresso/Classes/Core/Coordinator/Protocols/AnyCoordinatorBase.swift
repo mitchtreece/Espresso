@@ -14,7 +14,7 @@ import UIKit
 public protocol AnyCoordinatorBase: class {
     
     /// The coordinator's navigation controller.
-    var navigationController: UINavigationController { get }
+    var navigationController: UINavigationController! { get }
     
 }
 

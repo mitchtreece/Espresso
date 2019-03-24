@@ -29,20 +29,3 @@ public extension Identifiable {
 
 extension UIView: Identifiable {}
 extension UIViewController: Identifiable {}
-
-extension Identifiable where Self: UIViewController {
-    
-    /**
-     Initializes a new instance of the view controller from a storyboard. If no name is provided, _\"Main\"_ will be used.
-     
-     - Parameter name: The storyboard's name.
-     - Returns: A typed storyboard-loaded view controller instance.
-     */
-    public static func initFromStoryboard(named name: String = "Main") -> Self? {
-        
-        let sb = UIStoryboard(name: name, bundle: nil)
-        return (sb.instantiateViewController(withIdentifier: Self.identifier) as? Self)
-        
-    }
-    
-}
