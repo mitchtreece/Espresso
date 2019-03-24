@@ -88,8 +88,49 @@ public extension UIApplication /* Environment */ {
      Representation of the various application environments.
      */
     public enum Environment: String {
-        case development
-        case production
+        
+        case development    = "dev"
+        case staging        = "stg"
+        case preproduction  = "pre"
+        case production     = "prod"
+        
+        /// The environment's short name.
+        public var shortName: String {
+            return self.rawValue
+        }
+        
+        /// The environment's long name.
+        public var longName: String {
+            
+            switch self {
+            case .development: return "development"
+            case .staging: return "staging"
+            case .preproduction: return "pre-production"
+            case .production: return "production"
+            }
+            
+        }
+        
+        /// Flag indicating if the environment is `development`.
+        public var isDevelopment: Bool {
+            
+            switch self {
+            case .development: return true
+            default: return false
+            }
+            
+        }
+        
+        /// Flag indicating if the environment is `production`.
+        public var isProduction: Bool {
+            
+            switch self {
+            case .production: return true
+            default: return false
+            }
+            
+        }
+        
     }
     
     /**
@@ -117,6 +158,10 @@ public extension UIApplication /* Environment */ {
         
         #if DEBUG
             return Environment.development
+        #elseif STAGING
+            return Environment.staging
+        #elseif PREPROD
+            return Environment.preproduction
         #else
             return Environment.production
         #endif

@@ -50,12 +50,16 @@ open class AppCoordinator: AppCoordinatorBase {
     /// Flag indicating if debug logging is enabled.
     public private(set) var isDebugEnabled: Bool
 
-    private var rootCoordinator: Coordinator!
+    public private(set) var rootCoordinator: Coordinator!
     
-    public var navigationController: UINavigationController {
+    public var activeCoordinator: Coordinator {
+        return self.rootCoordinator.children.last ?? self.rootCoordinator
+    }
+    
+    public var navigationController: UINavigationController! {
         
         guard let nav = self.window.rootViewController as? UINavigationController else {
-            fatalError("AppCoordinator managed window must contain a root navigation controller")
+            fatalError("\(self.typeString)'s managed window must contain a root navigation controller")
         }
         
         return nav
@@ -70,28 +74,59 @@ open class AppCoordinator: AppCoordinatorBase {
     }
 
     open func load() -> Coordinator {
-        fatalError("AppCoordinator must return a root coordinator")
+        fatalError("\(self.typeString) must return a root coordinator")
     }
 
     public func start() -> Self {
         
         self.rootCoordinator = load()
-        
+        self.rootCoordinator.parentCoordinator = self
+
         if self.isDebugEnabled {
             print("🎬 \(self.typeString) =(add)=> \(self.rootCoordinator.typeString)")
         }
         
-        let rootViewController = self.rootCoordinator.loadForAppCoordinator()
-        
-        guard !(rootViewController is UINavigationController) else {
-            fatalError("An AppCoordinator's root view controller cannot be a UINavigationController")
+        guard let rootViewController = actualRootViewController(in: self.rootCoordinator.loadForAppCoordinator()) else {
+            fatalError("\(self.rootCoordinator.typeString): unable to load a root view controller")
         }
         
         self.navigationController.setViewControllers([rootViewController], animated: false)
+        self.rootCoordinator.navigationController = self.navigationController
+        self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
         self.rootCoordinator.didStart()
         
         return self
 
+    }
+    
+    internal func replaceRootCoordinator(with coordinator: Coordinator, animated: Bool) {
+        
+        if self.isDebugEnabled {
+            print("🎬 \(self.typeString) =(remove)=> \(self.rootCoordinator.typeString)")
+            print("🎬 \(self.typeString) =(add)=> \(coordinator.typeString)")
+        }
+        
+        coordinator.parentCoordinator = self
+        self.rootCoordinator = coordinator
+        
+        var viewController = coordinator.loadForAppCoordinator()
+        if let nav = (viewController as? UINavigationController), let vc = nav.viewControllers.first {
+            viewController = vc
+        }
+        
+        self.navigationController.setViewControllers([viewController], animated: animated)
+        self.rootCoordinator.didStart()
+        
+    }
+    
+    private func actualRootViewController(in viewController: UIViewController) -> UIViewController? {
+        
+        if let nav = viewController as? UINavigationController {
+            return nav.viewControllers.first
+        }
+        
+        return viewController
+        
     }
     
 }

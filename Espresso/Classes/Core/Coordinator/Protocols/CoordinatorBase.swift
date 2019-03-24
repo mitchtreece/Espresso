@@ -31,8 +31,17 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
      but it **will not** be presented. An embedded coordinator manages it's own presentation / dismissal.
      
      - Parameter coordinator: The child coordinator.
+     - Parameter embedded: Flag indicating if the coordinator is going to be manually embedded in it's parent; _defaults to false_.
      */
-    func start(child coordinator: Coordinator)
+    func start(child coordinator: Coordinator, embedded: Bool)
+    
+    /**
+     Replaces the current coordinator with another in the same parent.
+     
+     - Parameter coordinator: The replacement coordinator.
+     - Parameter animated: Flag indicating if this should be done with an animation or not.
+     */
+    func replace(with coordinator: Coordinator, animated: Bool)
     
     /**
      Tells the coordinator's parent that it's finished.

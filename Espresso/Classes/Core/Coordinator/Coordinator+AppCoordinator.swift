@@ -13,7 +13,7 @@ extension Coordinator /* AppCoordinator */ {
     internal var appCoordinator: AppCoordinator {
         
         guard let coordinator = self.appCoordinator(in: self) else {
-            fatalError("Application must contain exactly one AppCoordinator subclass")
+            fatalError("Application's must contain exactly one AppCoordinator subclass")
         }
         
         return coordinator
