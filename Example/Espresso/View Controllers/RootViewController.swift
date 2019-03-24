@@ -18,21 +18,6 @@ protocol RootViewControllerDelegate: class {
     
 }
 
-struct TestModel: XMLCodable {
-    
-    var id: Int
-    var name: String
-    
-    func xml(tag: String) -> XMLContainer {
-        
-        return XMLContainer(tag: tag)
-            .append(tag: "id", value: self.id)
-            .append(tag: "name", value: self.name)
-        
-    }
-    
-}
-
 class RootViewController: UIStyledViewController {
     
     private var tableView: UITableView!
@@ -42,15 +27,6 @@ class RootViewController: UIStyledViewController {
         
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
-        
-        let c = XMLContainer(tag: "test")
-            .append(tag: "model", from: TestModel(id: 23, name: "Mitch"))
-//            .append(tag: "count", value: 1)
-//            .append(tag: "cost", value: 1.5)
-//            .append(tag: "float", value: Float(1))
-//            .append(tag: "cgfloat", value: CGFloat(1))
-        
-        print(c)
         
     }
     

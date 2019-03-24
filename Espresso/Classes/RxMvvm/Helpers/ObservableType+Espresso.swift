@@ -46,8 +46,8 @@ public extension ObservableType {
             return Array(values.suffix(2))
             
         }
-        .map({ $0.map({ ObservableValueBox<Self.E>(value: $0) }) })
-        .map({ ($0.first!, $0.last!) })
+        .map { $0.map { ObservableValueBox<Self.E>(value: $0) } }
+        .map { ($0.first!, $0.last!) }
         .subscribe(onNext: onValueChange, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
         
     }

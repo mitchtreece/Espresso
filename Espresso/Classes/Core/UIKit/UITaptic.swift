@@ -40,23 +40,12 @@ public class UITaptic {
     public init(style: Style) {
         
         switch style {
-        case .selection:
-            
-            generator = UISelectionFeedbackGenerator()
-            generator.prepare()
-            
-        case .impact(let _style):
-            
-            generator = UIImpactFeedbackGenerator(style: _style)
-            generator.prepare()
-            
-        case .notification:
-            
-            generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            
+        case .selection: self.generator = UISelectionFeedbackGenerator()
+        case .impact(let _style): self.generator = UIImpactFeedbackGenerator(style: _style)
+        case .notification: self.generator = UINotificationFeedbackGenerator()
         }
         
+        self.generator.prepare()
         self.style = style
         
     }
@@ -65,7 +54,7 @@ public class UITaptic {
      Prepares the taptic feedback.
      */
     public func prepare() {
-        generator.prepare()
+        self.generator.prepare()
     }
     
     /**

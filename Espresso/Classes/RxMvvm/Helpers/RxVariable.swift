@@ -11,6 +11,18 @@ import RxCocoa
 
 public typealias RxVariable<Element> = BehaviorRelay<Element>
 
+public extension RxVariable {
+    
+    /**
+     Createsa read-only version of this variable.
+     - Returns: A `RxReadOnlyVariable<Element>` instance of this read-write variable.
+     */
+    public func asReadOnly() -> RxReadOnlyVariable<Element> {
+        return RxReadOnlyVariable<Element>(self)
+    }
+    
+}
+
 /**
  A read-only Rx variable.
  */
