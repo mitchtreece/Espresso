@@ -115,6 +115,8 @@ open class AppCoordinator: AppCoordinatorBase {
         }
         
         self.navigationController.setViewControllers([viewController], animated: animated)
+        self.rootCoordinator.navigationController = self.navigationController
+        self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
         self.rootCoordinator.didStart()
         
     }
