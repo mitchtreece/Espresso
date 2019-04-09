@@ -114,10 +114,29 @@ open class AppCoordinator: AppCoordinatorBase {
             viewController = vc
         }
         
-        self.navigationController.setViewControllers([viewController], animated: animated)
-        self.rootCoordinator.navigationController = self.navigationController
-        self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
-        self.rootCoordinator.didStart()
+        if animated {
+            
+            if let transition = viewController.transition {
+                self.navigationController.delegate = transition
+            }
+            
+            CATransaction.begin()
+            self.navigationController.pushViewController(viewController, animated: true)
+            CATransaction.setCompletionBlock {
+                self.navigationController.setViewControllers([viewController], animated: false)
+                self.rootCoordinator.navigationController = self.navigationController
+                self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
+                self.rootCoordinator.didStart()
+            }
+            CATransaction.commit()
+            
+        }
+        else {
+            self.navigationController.setViewControllers([viewController], animated: false)
+            self.rootCoordinator.navigationController = self.navigationController
+            self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
+            self.rootCoordinator.didStart()
+        }
         
     }
     

@@ -107,7 +107,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    public func start(child coordinator: Coordinator, embedded: Bool = false) {
+    public func start(child coordinator: Coordinator, animated: Bool = true, embedded: Bool = false) {
         
         // Set properties from parent -> child
         
@@ -151,10 +151,24 @@ open class Coordinator: CoordinatorBase, Equatable {
             // presenting modally and it's nav controller is it's own
             
             coordinator.navigationController = childNav
-            presentModal(viewController: childNav)
+            
+            presentModal(
+                viewController: childNav,
+                animated: animated
+            )
             
         }
         else {
+            
+            guard animated else {
+                self.navigationController.pushViewController(rootViewController, animated: false)
+                return
+            }
+        
+            if let transition = rootViewController.transition {
+                self.navigationController.pushViewController(rootViewController, with: transition)
+                return
+            }
             
             self.navigationController.pushViewController(rootViewController, animated: true)
             
@@ -183,15 +197,22 @@ open class Coordinator: CoordinatorBase, Equatable {
     public func replace(with coordinator: Coordinator, animated: Bool = true) {
         
         if let appCoordinator = self.parentCoordinator as? AppCoordinator {
-            appCoordinator.replaceRootCoordinator(with: coordinator, animated: animated)
+            
+            appCoordinator.replaceRootCoordinator(
+                with: coordinator,
+                animated: animated
+            )
+            
         }
         else {
             
-            // TODO: Animations?
-            
             let parent = self.parentCoordinator as! Coordinator
             coordinator.parentCoordinator = parent
-            parent.start(child: coordinator)
+            
+            parent.start(
+                child: coordinator,
+                animated: animated
+            )
             
             finish()
             

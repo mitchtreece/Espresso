@@ -17,9 +17,13 @@ public extension UINavigationController {
      */
     public func pushViewController(_ vc: UIViewController, with transition: UITransition) {
         
+        let oldDelegate = self.delegate
+        
         vc.transition = transition
         self.delegate = vc.transition
+        
         self.pushViewController(vc, animated: true)
+        self.delegate = oldDelegate
         
     }
     

@@ -34,8 +34,8 @@ extension Coordinator /* Modal */ {
      Presents a view controller modally from the navigation controller's key view controller.
      - Parameter viewController: The view controller to present.
      */
-    public func presentModal(viewController: UIViewController) {
-        self.viewControllerForModalPresentation?.present(viewController, animated: true, completion: nil)
+    public func presentModal(viewController: UIViewController, animated: Bool = true) {
+        self.viewControllerForModalPresentation?.present(viewController, animated: animated, completion: nil)
     }
     
 }

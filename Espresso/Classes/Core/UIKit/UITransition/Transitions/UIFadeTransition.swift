@@ -22,7 +22,13 @@ public class UIFadeTransition: UITransition {
         
         /// Crossfade between the source & destination view controllers
         case cross
+        
     }
+    
+    /**
+     The transition's duration; _defaults to 0.6_.
+     */
+    public var duration: TimeInterval
     
     /**
      The transition's fade type; _defaults to over_.
@@ -33,7 +39,8 @@ public class UIFadeTransition: UITransition {
      Initializes the transition with parameters.
      - Parameter fadeType: The transition's fade type; _defaults to over_.
      */
-    public init(fadeType: FadeType = .over) {
+    public init(duration: TimeInterval = 0.6, fadeType: FadeType = .over) {
+        self.duration = duration
         self.fadeType = fadeType
     }
     
@@ -52,7 +59,7 @@ public class UIFadeTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation {
+            UIAnimation(duration: self.duration) {
                 
                 if self.fadeType == .cross {
                     sourceVC.view.alpha = 0
