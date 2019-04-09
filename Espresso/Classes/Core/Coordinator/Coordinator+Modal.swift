@@ -35,7 +35,13 @@ extension Coordinator /* Modal */ {
      - Parameter viewController: The view controller to present.
      */
     public func presentModal(viewController: UIViewController, animated: Bool = true) {
-        self.viewControllerForModalPresentation?.present(viewController, animated: animated, completion: nil)
+        
+        self.viewControllerForModalPresentation?.present(
+            viewController,
+            animated: animated,
+            completion: nil
+        )
+        
     }
     
 }

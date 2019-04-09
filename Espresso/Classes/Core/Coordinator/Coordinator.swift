@@ -161,16 +161,34 @@ open class Coordinator: CoordinatorBase, Equatable {
         else {
             
             guard animated else {
-                self.navigationController.pushViewController(rootViewController, animated: false)
+                
+                self.navigationController.pushViewController(
+                    rootViewController,
+                    animated: false
+                )
+                
                 return
-            }
-        
-            if let transition = rootViewController.transition {
-                self.navigationController.pushViewController(rootViewController, with: transition)
-                return
+                
             }
             
-            self.navigationController.pushViewController(rootViewController, animated: true)
+            if let transitioningDelegate = rootViewController.transitioningDelegate,
+                let transitioningNavDelegate = transitioningDelegate as? UINavigationControllerDelegate {
+                
+                    let oldDelegate = self.navigationController.delegate
+                    self.navigationController.delegate = transitioningNavDelegate
+                
+                    self.navigationController.pushViewController(rootViewController, completion: {
+                        self.navigationController.delegate = oldDelegate
+                    })
+                
+                    return
+                
+                }
+            
+            self.navigationController.pushViewController(
+                rootViewController,
+                animated: true
+            )
             
         }
         

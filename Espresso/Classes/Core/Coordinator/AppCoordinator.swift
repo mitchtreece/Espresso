@@ -116,26 +116,28 @@ open class AppCoordinator: AppCoordinatorBase {
         
         if animated {
             
-            if let transition = viewController.transition {
-                self.navigationController.delegate = transition
-            }
+            if let transitioningDelegate = viewController.transitioningDelegate,
+                let transitioningNavDelegate = transitioningDelegate as? UINavigationControllerDelegate {
+                    self.navigationController.delegate = transitioningNavDelegate
+                }
             
-            CATransaction.begin()
-            self.navigationController.pushViewController(viewController, animated: true)
-            CATransaction.setCompletionBlock {
+            self.navigationController.pushViewController(viewController, completion: {
+                
                 self.navigationController.setViewControllers([viewController], animated: false)
                 self.rootCoordinator.navigationController = self.navigationController
                 self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
                 self.rootCoordinator.didStart()
-            }
-            CATransaction.commit()
+                
+            })
             
         }
         else {
+            
             self.navigationController.setViewControllers([viewController], animated: false)
             self.rootCoordinator.navigationController = self.navigationController
             self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
             self.rootCoordinator.didStart()
+            
         }
         
     }

@@ -37,6 +37,7 @@ public class UIFadeTransition: UITransition {
     
     /**
      Initializes the transition with parameters.
+     - Parameter duration: The transition's animation duration; _defaults to 0.6_.
      - Parameter fadeType: The transition's fade type; _defaults to over_.
      */
     public init(duration: TimeInterval = 0.6, fadeType: FadeType = .over) {
