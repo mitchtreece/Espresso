@@ -33,13 +33,15 @@ extension Coordinator /* Modal */ {
     /**
      Presents a view controller modally from the navigation controller's key view controller.
      - Parameter viewController: The view controller to present.
+     - Parameter animated: Flag indicating if the modal presentation should be performed with an animation; _defaults to true_.
+     - Parameter completion: An optional completion handler to be called when the presentation finishes.
      */
-    public func presentModal(viewController: UIViewController, animated: Bool = true) {
+    public func presentModal(viewController: UIViewController, animated: Bool = true, completion: (()->())? = nil) {
         
         self.viewControllerForModalPresentation?.present(
             viewController,
             animated: animated,
-            completion: nil
+            completion: completion
         )
         
     }
