@@ -12,13 +12,15 @@ internal class CoordinatorNavigationDelegate: NSObject, UINavigationControllerDe
     
     private weak var coordinator: Coordinator?
     
+    internal var isEnabled: Bool = true
+    
     internal init(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         
-        guard let coordinator = self.coordinator else { return }
+        guard let coordinator = self.coordinator, self.isEnabled else { return }
         
         // Grab source view controller and make sure it was popped
         

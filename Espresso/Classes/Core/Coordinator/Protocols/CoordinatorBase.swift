@@ -45,12 +45,20 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
     func replace(with coordinator: Coordinator, animated: Bool)
     
     /**
+     Replaces the current coordinator's managed view controllers with another set of view controllers.
+     
+     - Parameter viewControllers: The replacement set of view controllers.
+     - Parameter animated: Flag indicating if this should be done with an animation or not.
+     */
+    func replaceViewControllers(with viewControllers: [UIViewController], animated: Bool)
+    
+    /**
      Tells the coordinator's parent that it's finished.
      This will remove the child from the parent's coordinator stack & dismiss it if needed.
      
      If the coordinator is embedded, it will still be removed from its parent's coordinator stack,
      but it **will not** be dismissed. An embedded coordinator manages it's own presentation / dismissal.
      */
-    func finish()
+    func finish(completion: (()->())?)
     
 }

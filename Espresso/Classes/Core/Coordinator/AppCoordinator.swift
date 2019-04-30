@@ -108,7 +108,8 @@ open class AppCoordinator: AppCoordinatorBase {
         
         coordinator.parentCoordinator = self
         self.rootCoordinator = coordinator
-        
+        self.rootCoordinator.navigationController = self.navigationController
+
         var viewController = coordinator.loadForAppCoordinator()
         if let nav = (viewController as? UINavigationController), let vc = nav.viewControllers.first {
             viewController = vc
@@ -124,7 +125,6 @@ open class AppCoordinator: AppCoordinatorBase {
             self.navigationController.pushViewController(viewController, completion: {
                 
                 self.navigationController.setViewControllers([viewController], animated: false)
-                self.rootCoordinator.navigationController = self.navigationController
                 self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
                 self.rootCoordinator.didStart()
                 
@@ -134,7 +134,6 @@ open class AppCoordinator: AppCoordinatorBase {
         else {
             
             self.navigationController.setViewControllers([viewController], animated: false)
-            self.rootCoordinator.navigationController = self.navigationController
             self.rootCoordinator.navigationController.delegate = self.rootCoordinator.navigationDelegate
             self.rootCoordinator.didStart()
             

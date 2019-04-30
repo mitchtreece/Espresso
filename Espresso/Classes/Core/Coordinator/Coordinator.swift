@@ -238,7 +238,72 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    public func finish() {
+    public func replaceViewControllers(with viewControllers: [UIViewController], animated: Bool = true) {
+        
+        guard !viewControllers.isEmpty else {
+            self.debugPrint("Attempting to replace vieew controllers with an empty array. Skipping.")
+            return
+        }
+        
+        var currentViewControllers = self.navigationController.viewControllers
+        
+        guard let startArrayIndex = currentViewControllers
+            .firstIndex(of: self.rootViewController) else { return }
+        
+        let startIndex = Int(startArrayIndex)
+        var endIndex = (currentViewControllers.count - 1)
+        
+        if let firstChildRoot = self.children.first?.rootViewController {
+            
+            guard let endArrayIndex = currentViewControllers
+                .firstIndex(of: firstChildRoot) else { return }
+            
+            endIndex = Int(endArrayIndex)
+            
+        }
+        
+        var replacementViewControllers = [UIViewController]()
+        var replacementIndex: Int = 0
+        
+        for i in 0..<currentViewControllers.count {
+            
+            var vc = currentViewControllers[i]
+            
+            if (i >= startIndex) && (i <= endIndex) {
+                vc = viewControllers[replacementIndex]
+                replacementIndex += 1
+            }
+            
+            replacementViewControllers.append(vc)
+            
+        }
+        
+        let newRootViewController = viewControllers.first!
+        self.rootViewController = newRootViewController
+        
+        self.navigationDelegate.isEnabled = false
+        
+        if animated {
+            
+            self.navigationController.setViewControllers(replacementViewControllers, completion: {
+                self.navigationDelegate.isEnabled = true
+            })
+            
+        }
+        else {
+            
+            self.navigationController.setViewControllers(
+                replacementViewControllers,
+                animated: false
+            )
+            
+            self.navigationDelegate.isEnabled = true
+            
+        }
+        
+    }
+    
+    public func finish(completion: (()->())? = nil) {
         
         if let _ = self.parentCoordinator as? AppCoordinator {
             self.debugPrint("Attempting to call finish on the application's root coordinator (\(self.typeString)). Skipping.")
@@ -246,7 +311,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         }
         
         (self.parentCoordinator as! Coordinator)
-            .remove(child: self)
+            .remove(child: self, completion: completion)
         
         self.didFinish()
         
@@ -260,7 +325,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    internal func remove(child: Coordinator, dismiss: Bool = true) {
+    internal func remove(child: Coordinator, dismiss: Bool = true, completion: (()->())? = nil) {
         
         guard let index = self.children.firstIndex(where: { $0 === child }) else { return }
         
@@ -269,17 +334,28 @@ open class Coordinator: CoordinatorBase, Equatable {
         
         guard !child.isEmbedded else { return }
         self.navigationController.delegate = self.navigationDelegate
-        guard dismiss else { return }
+        
+        guard dismiss else {
+            completion?()
+            return
+        }
         
         if child.rootViewController is UINavigationController {
-            child.rootViewController.dismiss(animated: true, completion: nil)
+            
+            child.rootViewController.dismiss(
+                animated: true,
+                completion: completion
+            )
+            
         }
         else if let nav = child.rootViewController.navigationController, nav == self.navigationController {
             
             guard let rootVC = child.rootViewController else { return }
             guard let index = nav.viewControllers.index(of: rootVC) else { return }
             let destinationViewController = nav.viewControllers[index - 1]
-            nav.popToViewController(destinationViewController, animated: true)
+            nav.popToViewController(destinationViewController, completion: { _ in
+                completion?()
+            })
             
         }
         
