@@ -17,22 +17,22 @@ import UIKit
  ```
  class MyAppCoordinator: AppCoordinator {
  
-    override func initialCoordinator() -> Coordinator {
-        return MyInitialCoordinator.in(parent: self)
+    override func load() -> Coordinator {
+        return MyInitialCoordinator()
     }
  
  }
  ```
  ```
  @UIApplicationMain
- class AppDelegate: UIResponder, UIApplicationDelegate, AppCoordinated {
+ class AppDelegate: UIResponder, UIApplicationDelegate, CoordinatedApplication {
  
     var window: UIWindow?
-    var coordinator: MyAppCoordinator!
+    private var appCoordinator: MyAppCoordinator!
  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-        self.coordinator = self.coordinated(
+        self.appCoordinator = self.coordinated(
             by: MyAppCoordinator.self
         ).start()
  
@@ -45,13 +45,17 @@ import UIKit
  */
 open class AppCoordinator: AppCoordinatorBase {    
     
+    /// The app coordinator's managed window.
     public private(set) var window: UIWindow
     
     /// Flag indicating if debug logging is enabled.
     public private(set) var isDebugEnabled: Bool
 
+    /// The app coordinator's current root coordinator.
     public private(set) var rootCoordinator: Coordinator!
     
+    /// The top-most child coordinator, _or_ the root coordinator
+    /// if no children have been added.
     public var activeCoordinator: Coordinator {
         return self.rootCoordinator.children.last ?? self.rootCoordinator
     }
@@ -102,8 +106,7 @@ open class AppCoordinator: AppCoordinatorBase {
     internal func replaceRootCoordinator(with coordinator: Coordinator, animated: Bool) {
         
         if self.isDebugEnabled {
-            print("🎬 \(self.typeString) =(remove)=> \(self.rootCoordinator.typeString)")
-            print("🎬 \(self.typeString) =(add)=> \(coordinator.typeString)")
+            print("🎬 \(self.typeString) =(replace)=> \(self.rootCoordinator.typeString) =(with)=> \(coordinator.typeString)")
         }
         
         coordinator.parentCoordinator = self

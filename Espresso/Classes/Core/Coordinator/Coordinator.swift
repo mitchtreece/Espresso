@@ -56,7 +56,7 @@ import UIKit
  
     func didTapGreen(_ sender: UIButton) {
  
-        let coordinator = GreenCoordinator(parentCoordinator: self)
+        let coordinator = GreenCoordinator()
         self.start(child: coordinator)
  
     }
@@ -70,7 +70,6 @@ open class Coordinator: CoordinatorBase, Equatable {
         return lhs === rhs
     }
     
-    /// The coordinator's parent coordinator
     internal weak var parentCoordinator: AnyCoordinatorBase?
     
     public internal(set) var navigationController: UINavigationController!
@@ -198,7 +197,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     
     /**
      Called after the coordinator has been started & added to it's parent.
-     Override this function to perform additional setup after the coordinator has been started.
+     Override this function to perform additional setup.
      */
     open func didStart() {
         // Override me

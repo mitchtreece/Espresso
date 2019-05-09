@@ -14,7 +14,9 @@ private struct AssociatedKeys {
 /**
  Protocol describing a way for a `UIViewController` to access it's associated coordinator.
  */
-public protocol UIViewControllerCoordinating {}
+public protocol UIViewControllerCoordinating {
+    //
+}
 
 public extension UIViewControllerCoordinating {
     

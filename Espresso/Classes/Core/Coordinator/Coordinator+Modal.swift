@@ -11,19 +11,19 @@ import UIKit
 extension Coordinator /* Modal */ {
     
     private var viewControllerForModalPresentation: UIViewController? {
-        return keyViewController(in: self.navigationController)
+        return activeViewController(in: self.navigationController)
     }
     
-    private func keyViewController(in base: UIViewController?) -> UIViewController? {
+    private func activeViewController(in base: UIViewController?) -> UIViewController? {
         
         if let presentedViewController = base?.presentedViewController {
-            return keyViewController(in: presentedViewController)
+            return activeViewController(in: presentedViewController)
         }
         else if let nav = base as? UINavigationController, let visibleViewController = nav.visibleViewController {
-            return keyViewController(in: visibleViewController)
+            return activeViewController(in: visibleViewController)
         }
         else if let tab = base as? UITabBarController, let selectedViewController = tab.selectedViewController {
-            return keyViewController(in: selectedViewController)
+            return activeViewController(in: selectedViewController)
         }
         
         return base
