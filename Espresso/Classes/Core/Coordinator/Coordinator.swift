@@ -56,7 +56,7 @@ import UIKit
  
     func didTapGreen(_ sender: UIButton) {
  
-        let coordinator = GreenCoordinator(parentCoordinator: self)
+        let coordinator = GreenCoordinator()
         self.start(child: coordinator)
  
     }
@@ -70,7 +70,6 @@ open class Coordinator: CoordinatorBase, Equatable {
         return lhs === rhs
     }
     
-    /// The coordinator's parent coordinator.
     internal weak var parentCoordinator: AnyCoordinatorBase?
     
     public internal(set) var navigationController: UINavigationController!
@@ -107,7 +106,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    public func start(child coordinator: Coordinator, embedded: Bool = false) {
+    public func start(child coordinator: Coordinator, animated: Bool = true, embedded: Bool = false) {
         
         // Set properties from parent -> child
         
@@ -151,12 +150,44 @@ open class Coordinator: CoordinatorBase, Equatable {
             // presenting modally and it's nav controller is it's own
             
             coordinator.navigationController = childNav
-            presentModal(viewController: childNav)
+            
+            presentModal(
+                viewController: childNav,
+                animated: animated
+            )
             
         }
         else {
             
-            self.navigationController.pushViewController(rootViewController, animated: true)
+            guard animated else {
+                
+                self.navigationController.pushViewController(
+                    rootViewController,
+                    animated: false
+                )
+                
+                return
+                
+            }
+            
+            if let transitioningDelegate = rootViewController.transitioningDelegate,
+                let transitioningNavDelegate = transitioningDelegate as? UINavigationControllerDelegate {
+                
+                    let oldDelegate = self.navigationController.delegate
+                    self.navigationController.delegate = transitioningNavDelegate
+                
+                    self.navigationController.pushViewController(rootViewController, completion: {
+                        self.navigationController.delegate = oldDelegate
+                    })
+                
+                    return
+                
+                }
+            
+            self.navigationController.pushViewController(
+                rootViewController,
+                animated: true
+            )
             
         }
         
@@ -166,7 +197,7 @@ open class Coordinator: CoordinatorBase, Equatable {
     
     /**
      Called after the coordinator has been started & added to it's parent.
-     Override this function to perform additional setup after the coordinator has been started.
+     Override this function to perform additional setup.
      */
     open func didStart() {
         // Override me
@@ -183,15 +214,22 @@ open class Coordinator: CoordinatorBase, Equatable {
     public func replace(with coordinator: Coordinator, animated: Bool = true) {
         
         if let appCoordinator = self.parentCoordinator as? AppCoordinator {
-            appCoordinator.replaceRootCoordinator(with: coordinator, animated: animated)
+            
+            appCoordinator.replaceRootCoordinator(
+                with: coordinator,
+                animated: animated
+            )
+            
         }
         else {
             
-            // TODO: Animations?
-            
             let parent = self.parentCoordinator as! Coordinator
             coordinator.parentCoordinator = parent
-            parent.start(child: coordinator)
+            
+            parent.start(
+                child: coordinator,
+                animated: animated
+            )
             
             finish()
             
@@ -199,7 +237,72 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    public func finish() {
+    public func replaceViewControllers(with viewControllers: [UIViewController], animated: Bool = true) {
+        
+        guard !viewControllers.isEmpty else {
+            self.debugPrint("Attempting to replace vieew controllers with an empty array. Skipping.")
+            return
+        }
+        
+        var currentViewControllers = self.navigationController.viewControllers
+        
+        guard let startArrayIndex = currentViewControllers
+            .firstIndex(of: self.rootViewController) else { return }
+        
+        let startIndex = Int(startArrayIndex)
+        var endIndex = (currentViewControllers.count - 1)
+        
+        if let firstChildRoot = self.children.first?.rootViewController {
+            
+            guard let endArrayIndex = currentViewControllers
+                .firstIndex(of: firstChildRoot) else { return }
+            
+            endIndex = Int(endArrayIndex)
+            
+        }
+        
+        var replacementViewControllers = [UIViewController]()
+        var replacementIndex: Int = 0
+        
+        for i in 0..<currentViewControllers.count {
+            
+            var vc = currentViewControllers[i]
+            
+            if (i >= startIndex) && (i <= endIndex) {
+                vc = viewControllers[replacementIndex]
+                replacementIndex += 1
+            }
+            
+            replacementViewControllers.append(vc)
+            
+        }
+        
+        let newRootViewController = viewControllers.first!
+        self.rootViewController = newRootViewController
+        
+        self.navigationDelegate.isEnabled = false
+        
+        if animated {
+            
+            self.navigationController.setViewControllers(replacementViewControllers, completion: {
+                self.navigationDelegate.isEnabled = true
+            })
+            
+        }
+        else {
+            
+            self.navigationController.setViewControllers(
+                replacementViewControllers,
+                animated: false
+            )
+            
+            self.navigationDelegate.isEnabled = true
+            
+        }
+        
+    }
+    
+    public func finish(completion: (()->())? = nil) {
         
         if let _ = self.parentCoordinator as? AppCoordinator {
             self.debugPrint("Attempting to call finish on the application's root coordinator (\(self.typeString)). Skipping.")
@@ -207,7 +310,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         }
         
         (self.parentCoordinator as! Coordinator)
-            .remove(child: self)
+            .remove(child: self, completion: completion)
         
         self.didFinish()
         
@@ -221,7 +324,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         
     }
     
-    internal func remove(child: Coordinator, dismiss: Bool = true) {
+    internal func remove(child: Coordinator, dismiss: Bool = true, completion: (()->())? = nil) {
         
         guard let index = self.children.firstIndex(where: { $0 === child }) else { return }
         
@@ -230,17 +333,28 @@ open class Coordinator: CoordinatorBase, Equatable {
         
         guard !child.isEmbedded else { return }
         self.navigationController.delegate = self.navigationDelegate
-        guard dismiss else { return }
+        
+        guard dismiss else {
+            completion?()
+            return
+        }
         
         if child.rootViewController is UINavigationController {
-            child.rootViewController.dismiss(animated: true, completion: nil)
+            
+            child.rootViewController.dismiss(
+                animated: true,
+                completion: completion
+            )
+            
         }
         else if let nav = child.rootViewController.navigationController, nav == self.navigationController {
             
             guard let rootVC = child.rootViewController else { return }
             guard let index = nav.viewControllers.index(of: rootVC) else { return }
             let destinationViewController = nav.viewControllers[index - 1]
-            nav.popToViewController(destinationViewController, animated: true)
+            nav.popToViewController(destinationViewController, completion: { _ in
+                completion?()
+            })
             
         }
         

@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- Protocol describing the attributes of an application coordinator.
+ Protocol describing the base attributes of an application coordinator.
  */
 public protocol AppCoordinatorBase: AnyCoordinatorBase {
     

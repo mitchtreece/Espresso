@@ -29,9 +29,9 @@ extension CoordinatedApplication {
      
      ```
      var window: UIWindow?
-     var coordinator: MyAppCoordinator!
+     var appCoordinator: MyAppCoordinator!
      
-     self.coordinator = self.coordinated(
+     self.appCoordinator = self.coordinated(
         by: MyAppCoordinator.self
      ).start()
      ```
