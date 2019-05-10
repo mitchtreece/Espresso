@@ -11,19 +11,19 @@ import UIKit
 extension Coordinator /* Modal */ {
     
     private var viewControllerForModalPresentation: UIViewController? {
-        return keyViewController(in: self.navigationController)
+        return activeViewController(in: self.navigationController)
     }
     
-    private func keyViewController(in base: UIViewController?) -> UIViewController? {
+    private func activeViewController(in base: UIViewController?) -> UIViewController? {
         
         if let presentedViewController = base?.presentedViewController {
-            return keyViewController(in: presentedViewController)
+            return activeViewController(in: presentedViewController)
         }
         else if let nav = base as? UINavigationController, let visibleViewController = nav.visibleViewController {
-            return keyViewController(in: visibleViewController)
+            return activeViewController(in: visibleViewController)
         }
         else if let tab = base as? UITabBarController, let selectedViewController = tab.selectedViewController {
-            return keyViewController(in: selectedViewController)
+            return activeViewController(in: selectedViewController)
         }
         
         return base
@@ -33,9 +33,17 @@ extension Coordinator /* Modal */ {
     /**
      Presents a view controller modally from the navigation controller's key view controller.
      - Parameter viewController: The view controller to present.
+     - Parameter animated: Flag indicating if the modal presentation should be performed with an animation; _defaults to true_.
+     - Parameter completion: An optional completion handler to be called when the presentation finishes.
      */
-    public func presentModal(viewController: UIViewController) {
-        self.viewControllerForModalPresentation?.present(viewController, animated: true, completion: nil)
+    public func presentModal(viewController: UIViewController, animated: Bool = true, completion: (()->())? = nil) {
+        
+        self.viewControllerForModalPresentation?.present(
+            viewController,
+            animated: animated,
+            completion: completion
+        )
+        
     }
     
 }

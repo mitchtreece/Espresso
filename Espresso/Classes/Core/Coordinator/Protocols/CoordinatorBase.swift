@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- Protocol describing the attributes of a coordinator.
+ Protocol describing the base attributes of a coordinator.
  */
 public protocol CoordinatorBase: AnyCoordinatorBase {
     
@@ -18,6 +18,11 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
      Called by a parent coordinator while starting a child.
      This function should be overriden by subclasses to return an appropriate view controller.
 
+     If a `UIViewController` instance is returned from this function, the parent coordinator
+     will start & push onto it's existing navigation stack. However, if a `UINavigationController`
+     instance is returned, the parent will treat this child as being self-managed, and present the navigation
+     controller instance modally.
+     
      This should **never** be called directly.
      
      - Returns: A `UIViewController` instance.
@@ -31,12 +36,13 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
      but it **will not** be presented. An embedded coordinator manages it's own presentation / dismissal.
      
      - Parameter coordinator: The child coordinator.
+     - Parameter animated: Flag indicating if the coordinator should start with an animation; _defaults to true_.
      - Parameter embedded: Flag indicating if the coordinator is going to be manually embedded in it's parent; _defaults to false_.
      */
-    func start(child coordinator: Coordinator, embedded: Bool)
+    func start(child coordinator: Coordinator, animated: Bool, embedded: Bool)
     
     /**
-     Replaces the current coordinator with another in the same parent.
+     Replaces the coordinator with another in the same parent.
      
      - Parameter coordinator: The replacement coordinator.
      - Parameter animated: Flag indicating if this should be done with an animation or not.
@@ -44,12 +50,20 @@ public protocol CoordinatorBase: AnyCoordinatorBase {
     func replace(with coordinator: Coordinator, animated: Bool)
     
     /**
+     Replaces the coordinator's managed view controllers with another set of view controllers.
+     
+     - Parameter viewControllers: The replacement set of view controllers.
+     - Parameter animated: Flag indicating if this should be done with an animation or not.
+     */
+    func replaceViewControllers(with viewControllers: [UIViewController], animated: Bool)
+    
+    /**
      Tells the coordinator's parent that it's finished.
      This will remove the child from the parent's coordinator stack & dismiss it if needed.
      
-     If the coordinator is embedded, it will still be removed from its parent's coordinator stack,
+     If the coordinator is embedded, it will still be removed from it's parent's coordinator stack,
      but it **will not** be dismissed. An embedded coordinator manages it's own presentation / dismissal.
      */
-    func finish()
+    func finish(completion: (()->())?)
     
 }

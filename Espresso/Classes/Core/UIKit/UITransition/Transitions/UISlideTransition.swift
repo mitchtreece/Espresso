@@ -12,6 +12,16 @@ import UIKit
  */
 public class UISlideTransition: UITransition {
     
+    public var duration: TimeInterval
+    
+    /**
+     Initializes the transition with parameters.
+     - Parameter duration: The transition's animation duration; _defaults to 0.6_.
+     */
+    public init(duration: TimeInterval = 0.6) {
+        self.duration = duration
+    }
+    
     override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
 
         let sourceVC = info.sourceViewController
@@ -33,7 +43,7 @@ public class UISlideTransition: UITransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: self.duration, {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,

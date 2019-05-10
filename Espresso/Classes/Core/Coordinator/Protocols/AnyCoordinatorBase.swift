@@ -13,7 +13,7 @@ import UIKit
  */
 public protocol AnyCoordinatorBase: class {
     
-    /// The coordinator's navigation controller.
+    /// The coordinator's managed navigation controller.
     var navigationController: UINavigationController! { get }
     
 }

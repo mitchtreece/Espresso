@@ -78,6 +78,7 @@
 		265C670E22347C0800645902 /* AppCoordinator+DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C670D22347C0800645902 /* AppCoordinator+DI.swift */; };
 		265C67102236069D00645902 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C670F2236069D00645902 /* Action.swift */; };
 		265C671322360A3300645902 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C671222360A3300645902 /* DataSource.swift */; };
+		265E012A225D059000081B5E /* UINavigationController+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265E0129225D059000081B5E /* UINavigationController+Espresso.swift */; };
 		267F03CCE64408060FF73359BC42B629 /* UIViewModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82812F2D21BC95D3BD70B3F6EEA502E9 /* UIViewModelTableViewCell.swift */; };
 		275F8F72216A8BF0FD1F5F47422328B5 /* Coordinator+AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03A5085BED7D941E3B17CA982BC2E4 /* Coordinator+AppCoordinator.swift */; };
 		27665A665CE57BC0F8536A144DBBB3A9 /* UIAnimationOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363EA8B3A0E5121798CC55C4E7FB10A /* UIAnimationOperationQueue.swift */; };
@@ -667,6 +668,7 @@
 		265C670D22347C0800645902 /* AppCoordinator+DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AppCoordinator+DI.swift"; path = "Espresso/Classes/DI/AppCoordinator+DI.swift"; sourceTree = "<group>"; };
 		265C670F2236069D00645902 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		265C671222360A3300645902 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		265E0129225D059000081B5E /* UINavigationController+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Espresso.swift"; sourceTree = "<group>"; };
 		26A64CFCBE27FE2163AA685430F8E741 /* RxTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewCell.swift; path = Espresso/Classes/RxMvvm/RxTableViewCell.swift; sourceTree = "<group>"; };
 		29BC3B7ADAE05B33D12403C1236C509A /* Scan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scan.swift; path = RxSwift/Observables/Scan.swift; sourceTree = "<group>"; };
 		29BF8F39C2716E39CD287456DB6C8748 /* ServiceEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceEntry.swift; path = Sources/ServiceEntry.swift; sourceTree = "<group>"; };
@@ -1591,6 +1593,7 @@
 				94D503FDE03FE10282670F664D7BB24D /* UITokenLabel.swift */,
 				17CA03A32720A31EC6175FFAD4BAA366 /* UIView+Espresso.swift */,
 				F3CF64278DEBF23D7D54FBF3DA2DDBBE /* UIViewController+Espresso.swift */,
+				265E0129225D059000081B5E /* UINavigationController+Espresso.swift */,
 				51296CDD8FE83FDB3FD44DDADDDE032E /* UIAnimation */,
 				D96E565A0D6E7DF719DFB05A2044F708 /* UIDevice */,
 				40ED1EA2F2453DFBB3242AFD770469B0 /* UIScreen */,
@@ -2764,6 +2767,7 @@
 				1339B1A3FBB906E4AF4121306F3E30E2 /* UIScreen+Espresso.swift in Sources */,
 				07FEA748DDA264C4F3F5173928747BC9 /* UISlideTransition.swift in Sources */,
 				0FD63393C8D8E48AD45B4C318EE83526 /* UIStatusBarAppearanceProvider.swift in Sources */,
+				265E012A225D059000081B5E /* UINavigationController+Espresso.swift in Sources */,
 				9BB2551B68E27BD343C2CE40C979CE8A /* UIStyledNavigationController.swift in Sources */,
 				31285581069667137224EC5AD9B0438F /* UIStyledViewController.swift in Sources */,
 				08ED649754F10A7158D8C1970AB1E749 /* UISwapTransition.swift in Sources */,
