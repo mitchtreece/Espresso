@@ -17,7 +17,7 @@ public extension RxVariable {
      Createsa read-only version of this variable.
      - Returns: A `RxReadOnlyVariable<Element>` instance of this read-write variable.
      */
-    public func asReadOnly() -> RxReadOnlyVariable<Element> {
+    func asReadOnly() -> RxReadOnlyVariable<Element> {
         return RxReadOnlyVariable<Element>(self)
     }
     
@@ -45,7 +45,7 @@ public final class RxReadOnlyVariable<Element>: ObservableType {
         self.variable = variable
     }
     
-    public func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == E {
+    public func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.Element == E {
         return self.variable.subscribe(observer)
     }
     

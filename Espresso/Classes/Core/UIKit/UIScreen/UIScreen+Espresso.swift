@@ -12,14 +12,14 @@ public extension UIScreen /* Size */ {
     /**
      The screen's bounds size.
      */
-    public var size: CGSize {
+    var size: CGSize {
         return bounds.size
     }
     
     /**
      The screen's orientation independent (potrait-locked) size.
      */
-    public var sizeOrientationIndependent: CGSize {
+    var sizeOrientationIndependent: CGSize {
         
         let width = min(self.size.width, self.size.height)
         let height = max(self.size.width, self.size.height)
@@ -34,11 +34,11 @@ public extension UIScreen /* Display Features */ {
     /**
      The screen's display feature insets. These take into account features like: status-bars, notches, home-grabbers, etc.
      */
-    public var displayFeatureInsets: UIEdgeInsets {
+    var displayFeatureInsets: UIEdgeInsets {
         
         let statusBar = UIApplication.shared.statusBarFrame.height
         
-        guard UIDevice.current.isDeviceModern else {
+        guard UIDevice.current.isModern else {
             return UIEdgeInsets(top: statusBar, left: 0, bottom: 0, right: 0)
         }
         
@@ -50,9 +50,9 @@ public extension UIScreen /* Display Features */ {
     /**
      The screen's corner radius.
      */
-    public var cornerRadius: CGFloat {
+    var cornerRadius: CGFloat {
         
-        guard UIDevice.current.isDeviceModern else { return 0 }
+        guard UIDevice.current.isModern else { return 0 }
         
         if UIDevice.current.isModernPhone || UIDevice.current.isModernPad {
             
@@ -70,7 +70,7 @@ public extension UIScreen /* Display Features */ {
     /**
      The screen's top notch.
      */
-    public var topNotch: UINotch? {
+    var topNotch: UINotch? {
         
         guard UIDevice.current.isModernPhone else { return nil }
         let size = CGSize(width: 209, height: 31)
@@ -83,9 +83,9 @@ public extension UIScreen /* Display Features */ {
     /**
      The screen's bottom home-grabber.
      */
-    public var homeGrabber: UIHomeGrabber? {
+    var homeGrabber: UIHomeGrabber? {
         
-        guard UIDevice.current.isDeviceModern else { return nil }
+        guard UIDevice.current.isModern else { return nil }
         let size = CGSize(width: UIScreen.main.bounds.width, height: 23)
         let frame = CGRect(x: 0, y: (UIScreen.main.bounds.height - size.height), width: size.width, height: size.height)
         let grabber = UIHomeGrabber(frame: frame)

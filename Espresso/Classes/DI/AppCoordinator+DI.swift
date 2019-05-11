@@ -15,7 +15,7 @@ public extension AppCoordinator /* DI */ {
      - Parameter resolver: The dependency resolver.
      - Returns: This app coordinator instance.
      */
-    public func start(with resolver: Resolver) -> Self {
+    func start(with resolver: Resolver) -> Self {
         self._resolver = resolver
         return start()
     }

@@ -32,21 +32,21 @@ public extension ObservableType {
      - Parameter onDisposed: The dispose handler; _defaults to nil_.
      - Returns: A disposable.
      */
-    public func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.E>, _ newValue: ObservableValueBox<Self.E>)->(),
-                          onError: ((_ error: Error)->())? = nil,
-                          onCompleted: (()->())? = nil,
-                          onDisposed: (()->())? = nil) -> Disposable {
+    func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.Element>, _ newValue: ObservableValueBox<Self.Element>)->(),
+                   onError: ((_ error: Error)->())? = nil,
+                   onCompleted: (()->())? = nil,
+                   onDisposed: (()->())? = nil) -> Disposable {
         
-        let array = [Self.E]()
+        let array = [Self.Element]()
         
-        return scan(array) { (prev, next) -> [Self.E] in
+        return scan(array) { (prev, next) -> [Self.Element] in
             
             var values = prev
             values.append(next)
             return Array(values.suffix(2))
             
         }
-        .map { $0.map { ObservableValueBox<Self.E>(value: $0) } }
+        .map { $0.map { ObservableValueBox<Self.Element>(value: $0) } }
         .map { ($0.first!, $0.last!) }
         .subscribe(onNext: onValueChange, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
         

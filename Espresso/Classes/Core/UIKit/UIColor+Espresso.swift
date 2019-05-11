@@ -15,7 +15,7 @@ public extension UIColor /* Random */ {
      - Parameter alpha: The color's alpha value; _defaults to 1_.
      - Returns: A random color.
      */
-    public static func random(alpha: CGFloat = 1) -> UIColor {
+    static func random(alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1.0)
     }
     
@@ -28,7 +28,7 @@ public extension UIColor /* Hex */ {
      
      - Parameter hexString: The hex code string.
      */
-    public convenience init(hexString: String) {
+    convenience init(hexString: String) {
         
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()

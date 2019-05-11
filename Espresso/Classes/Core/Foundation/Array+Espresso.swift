@@ -14,7 +14,7 @@ public extension Array /* Prepend */ {
      
      - Parameter newElement: The element to prepend.
      */
-    public mutating func prepend(_ newElement: Array.Element) {
+    mutating func prepend(_ newElement: Array.Element) {
         self.insert(newElement, at: 0)
     }
     
@@ -23,7 +23,7 @@ public extension Array /* Prepend */ {
      
      - Parameter newElements: The elements to prepend.
      */
-    public mutating func prepend<S>(contentsOf newElements: S) where Element == S.Element, S: Sequence {
+    mutating func prepend<S>(contentsOf newElements: S) where Element == S.Element, S: Sequence {
         
         newElements.reversed().forEach { (element) in
             self.insert(element, at: 0)
@@ -40,7 +40,7 @@ public extension Array where Element: Operation {
      
      - Parameter block: The completion handler.
      */
-    public func completion(block: @escaping ()->()) {
+    func completion(block: @escaping ()->()) {
         
         let operation = BlockOperation(block: block)
         self.forEach { [unowned operation] in operation.addDependency($0) }

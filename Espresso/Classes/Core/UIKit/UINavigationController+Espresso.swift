@@ -14,7 +14,7 @@ public extension UINavigationController /* Push */ {
      - Parameter viewControllers: The view controllers.
      - Parameter completion: The completion handler to call after the view controllers have been set.
      */
-    public func setViewControllers(_ viewControllers: [UIViewController], completion: @escaping ()->()) {
+    func setViewControllers(_ viewControllers: [UIViewController], completion: @escaping ()->()) {
         
         CATransaction.begin()
         self.setViewControllers(viewControllers, animated: true)
@@ -30,7 +30,7 @@ public extension UINavigationController /* Push */ {
      - Parameter viewController: The view controller to push.
      - Parameter completion: The completion handler to call after the view controller has been pushed.
      */
-    public func pushViewController(_ viewController: UIViewController, completion: @escaping ()->()) {
+    func pushViewController(_ viewController: UIViewController, completion: @escaping ()->()) {
         
         CATransaction.begin()
         self.pushViewController(viewController, animated: true)
@@ -45,7 +45,7 @@ public extension UINavigationController /* Push */ {
      Pop the top view controller off the navigation stack with a given completion handler.
      - Parameter completion: The completion handler to call after popping.
      */
-    public func popViewController(completion: @escaping (UIViewController?)->()) {
+    func popViewController(completion: @escaping (UIViewController?)->()) {
         
         CATransaction.begin()
         let poppedViewController = self.popViewController(animated: true)
@@ -60,7 +60,7 @@ public extension UINavigationController /* Push */ {
      Pops all view controllers above the root off the navigation stack with a given completion handler.
      - Parameter completion: The completion handler to call after popping.
      */
-    public func popToRootViewController(completion: @escaping ([UIViewController]?)->()) {
+    func popToRootViewController(completion: @escaping ([UIViewController]?)->()) {
         
         CATransaction.begin()
         let poppedViewControllers = self.popToRootViewController(animated: true)
@@ -75,7 +75,7 @@ public extension UINavigationController /* Push */ {
      Pop to a view controller lower in the navigation stack with a given completion handler.
      - Parameter completion: The completion handler to call after popping.
      */
-    public func popToViewController(_ viewController: UIViewController, completion: @escaping ([UIViewController]?)->()) {
+    func popToViewController(_ viewController: UIViewController, completion: @escaping ([UIViewController]?)->()) {
         
         CATransaction.begin()
         let poppedViewControllers = self.popToViewController(viewController, animated: true)

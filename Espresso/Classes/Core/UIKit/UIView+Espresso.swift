@@ -18,7 +18,7 @@ public extension UIView /* Shadow */ {
      - Parameter offset: The shadow offset; _defaults to zero_.
      - Parameter path: The optional shadow path.
      */
-    public func drawShadow(color: UIColor = .black,
+    func drawShadow(color: UIColor = .black,
                            radius: CGFloat = 6,
                            opacity: CGFloat = 0.2,
                            offset: CGSize = .zero,
@@ -39,7 +39,7 @@ public extension UIView /* Motion Effects */ {
     /**
      Adds parallax motion to the recieving view with a specified movement vector.
      */
-    public func addParallaxMotionEffect(_ vector: CGVector) {
+    func addParallaxMotionEffect(_ vector: CGVector) {
         
         var effects = [UIInterpolatingMotionEffect]()
         var verticalEffect: UIInterpolatingMotionEffect?
@@ -78,7 +78,7 @@ public extension UIView /* Subviews */ {
     /**
      Removes all subviews from the recieving view.
      */
-    public func removeAllSubviews() {
+    func removeAllSubviews() {
         self.subviews.forEach { $0.removeFromSuperview() }
     }
     
@@ -140,7 +140,7 @@ public extension UIView /* Nib Loading */ {
      
      - Parameter name: The nib's name.
      */
-    public func loadContentsFromNib(name: String? = nil) {
+    func loadContentsFromNib(name: String? = nil) {
         
         let _name = name ?? self.className
         

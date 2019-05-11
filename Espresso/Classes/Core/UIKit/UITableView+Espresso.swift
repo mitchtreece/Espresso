@@ -15,7 +15,7 @@ public extension UITableView /* Cell Registration */ {
      Registers an array of cells in the table view.
      - Parameter cells: The cell classes to register in the table view.
      */
-    public func register(cells: [UITableViewCell.Type]) {
+    func register(cells: [UITableViewCell.Type]) {
         cells.forEach({ $0.register(in: self) })
     }
     
@@ -27,7 +27,7 @@ public extension UITableView /* Cell Registration */ {
      - SeeAlso: `UITableViewCell.register(in:)`, `UITableViewCell.registerNib(in:)`
      - Requires: The nib filenames must **exactly** match their respective cell classes.
      */
-    public func register(cellNibs: [UITableViewCell.Type]) {
+    func register(cellNibs: [UITableViewCell.Type]) {
         cellNibs.forEach({ $0.registerNib(in: self) })
     }
     

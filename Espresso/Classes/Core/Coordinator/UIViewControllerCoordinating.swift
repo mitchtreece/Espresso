@@ -30,7 +30,7 @@ public extension UIViewControllerCoordinating {
     }
     
     /// The view controller's associated coordinator instance.
-    public var coordinator: Coordinator? {
+    var coordinator: Coordinator? {
         return self._coordinator
     }
     
@@ -39,7 +39,7 @@ public extension UIViewControllerCoordinating {
      - Parameter type: The coordinator type.
      - Returns: A typed `Coordinator` instance.
      */
-    public func coordinator<C: Coordinator>(as type: C.Type) -> C? {
+    func coordinator<C: Coordinator>(as type: C.Type) -> C? {
         return self.coordinator as? C
     }
     

@@ -350,7 +350,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         else if let nav = child.rootViewController.navigationController, nav == self.navigationController {
             
             guard let rootVC = child.rootViewController else { return }
-            guard let index = nav.viewControllers.index(of: rootVC) else { return }
+            guard let index = nav.viewControllers.firstIndex(of: rootVC) else { return }
             let destinationViewController = nav.viewControllers[index - 1]
             nav.popToViewController(destinationViewController, completion: { _ in
                 completion?()

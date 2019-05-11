@@ -15,7 +15,7 @@ public extension UICollectionView /* Cell Registration */ {
      Registers an array of cells in the collection view.
      - Parameter cells: The cell classes to register in the table view.
      */
-    public func register(cells: [UICollectionViewCell.Type]) {
+    func register(cells: [UICollectionViewCell.Type]) {
         cells.forEach({ $0.register(in: self) })
     }
     
@@ -27,7 +27,7 @@ public extension UICollectionView /* Cell Registration */ {
      - SeeAlso: `UICollectionViewCell.register(in:)`, `UICollectionViewCell.registerNib(in:)`
      - Requires: The nib filenames must **exactly** match their respective cell classes.
      */
-    public func register(cellNibs: [UICollectionViewCell.Type]) {
+    func register(cellNibs: [UICollectionViewCell.Type]) {
         cellNibs.forEach({ $0.registerNib(in: self) })
     }
     

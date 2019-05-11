@@ -9,7 +9,7 @@ import Foundation
 
 public extension Dictionary {
     
-    public func printJSON() {
+    func printJSON() {
         
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]),
             let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
