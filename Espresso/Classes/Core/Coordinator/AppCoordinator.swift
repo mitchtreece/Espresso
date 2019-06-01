@@ -57,7 +57,7 @@ open class AppCoordinator: AppCoordinatorBase {
     /// The top-most child coordinator, _or_ the root coordinator
     /// if no children have been added.
     public var activeCoordinator: Coordinator {
-        return self.rootCoordinator.children.last ?? self.rootCoordinator
+        return activeCoordinator(in: self.rootCoordinator)
     }
     
     public var navigationController: UINavigationController! {
@@ -101,6 +101,13 @@ open class AppCoordinator: AppCoordinatorBase {
         
         return self
 
+    }
+    
+    private func activeCoordinator(in coordinator: Coordinator) -> Coordinator {
+        
+        guard let topChildCoordinator = coordinator.children.last else { return coordinator }
+        return activeCoordinator(in: topChildCoordinator)
+        
     }
     
     internal func replaceRootCoordinator(with coordinator: Coordinator, animated: Bool) {
