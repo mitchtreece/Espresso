@@ -45,6 +45,14 @@ public final class RxReadOnlyVariable<Element>: ObservableType {
         self.variable = variable
     }
     
+    /**
+     Initializes a `RxReadOnlyVariable` with a value.
+     - Parameter value: The underlying variable's value.
+     */
+    public convenience init(value: Element) {
+        self.init(RxVariable<Element>(value: value))
+    }
+    
     public func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.Element == E {
         return self.variable.subscribe(observer)
     }

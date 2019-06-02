@@ -70,7 +70,7 @@ open class Coordinator: CoordinatorBase, Equatable {
         return lhs === rhs
     }
     
-    internal weak var parentCoordinator: AnyCoordinatorBase?
+    public internal(set) weak var parentCoordinator: AnyCoordinatorBase?
     
     public internal(set) var navigationController: UINavigationController!
     
