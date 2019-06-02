@@ -15,7 +15,7 @@ import RxCocoa
 public struct ObservableValueBox<T> {
     
     /// The box's underlying value.
-    var value: T
+    public var value: T
     
 }
 
