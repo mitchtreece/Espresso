@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIGestureRecognizer /* Action */ {
     
-    public typealias Action = (UIGestureRecognizer)->()
+    typealias Action = (UIGestureRecognizer)->()
     
     private struct AssociatedKeys {
         static var action: UInt8 = 0
@@ -32,7 +32,7 @@ public extension UIGestureRecognizer /* Action */ {
      
      - Parameter action: The gesture recognizer's action handler.
      */
-    public convenience init(action: @escaping Action) {
+    convenience init(action: @escaping Action) {
         
         self.init()
         self.action = action

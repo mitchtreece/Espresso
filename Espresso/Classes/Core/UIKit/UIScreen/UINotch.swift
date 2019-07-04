@@ -8,13 +8,11 @@
 import UIKit
 
 /**
- Class describing the physical characteristics of the iPhone X's top notch.
+ Class describing the physical characteristics of the top notch on modern devices.
  */
 public class UINotch: UIDisplayFeature {
-    
-    /**
-     The notch's corner radius.
-     */
+
+    /// The notch's corner radius.
     public private(set) var cornerRadius: CGFloat = 20
     
 }

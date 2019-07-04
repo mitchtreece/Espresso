@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
     s.source                    = { :git => 'https://github.com/mitchtreece/Espresso.git', :tag => s.version.to_s }
     s.social_media_url          = 'https://twitter.com/mitchtreece'
 
-    s.swift_version             = '4.2'
-    s.ios.deployment_target     = '10.0'
+    s.swift_version             = '5'
+    s.ios.deployment_target     = '11.0'
 
     # Subspecs
 
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
         core.dependency         'Director', '~> 1.0'
-        core.dependency         'SnapKit',  '~> 4.0'
+        core.dependency         'SnapKit',  '~> 5.0'
 
     end
 
@@ -49,8 +49,8 @@ Pod::Spec.new do |s|
 
         rx.source_files         = 'Espresso/Classes/RxMvvm/**/*'
         rx.dependency           'Espresso/Mvvm'
-        rx.dependency           'RxSwift', '~> 4.0'
-        rx.dependency           'RxCocoa', '~> 4.0'
+        rx.dependency           'RxSwift', '~> 5.0'
+        rx.dependency           'RxCocoa', '~> 5.0'
 
     end
 

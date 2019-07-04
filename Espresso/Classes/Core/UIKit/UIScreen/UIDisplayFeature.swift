@@ -15,13 +15,13 @@ public class UIDisplayFeature {
     /**
      The display feature's frame.
      */
-    public private(set) var frame: CGRect = CGRect.zero
+    public private(set) var frame: CGRect = .zero
     
     /**
      The display feature's frame size.
      */
     public var size: CGSize {
-        return frame.size
+        return self.frame.size
     }
     
     internal init(frame: CGRect) {

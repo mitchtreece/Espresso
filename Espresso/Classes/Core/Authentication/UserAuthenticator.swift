@@ -72,6 +72,7 @@ public final class UserAuthenticator {
                 case .none: return .password
                 case .touchID: return .touchId
                 case .faceID: return .faceId
+                @unknown default: return .password
                 }
                 
             }

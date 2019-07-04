@@ -183,7 +183,7 @@ public class UIStyledNavigationController: UINavigationController, UINavigationC
     
     public override func popViewController(animated: Bool) -> UIViewController? {
         
-        if let topVC = topViewController, let index = viewControllers.index(of: topVC) {
+        if let topVC = topViewController, let index = viewControllers.firstIndex(of: topVC) {
             
             guard (index - 1) >= 0 else { return super.popViewController(animated: animated) }
             

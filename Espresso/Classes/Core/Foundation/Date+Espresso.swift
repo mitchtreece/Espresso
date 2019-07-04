@@ -16,7 +16,7 @@ public extension Date /* Arithmetic */ {
      - Parameter value: The value to add to the date.
      - Returns: A new date by adding the specified component-value.
      */
-    public func byAdding(_ component: Calendar.Component, value: Int) -> Date? {
+    func byAdding(_ component: Calendar.Component, value: Int) -> Date? {
         return Calendar.current.date(byAdding: component, value: value, to: self)
     }
     
@@ -24,7 +24,7 @@ public extension Date /* Arithmetic */ {
 
 public extension Date /* Since */ {
     
-    public typealias DateInterval = (years: Int, days: Int, hours: Int, minutes: Int, seconds: Int)
+    typealias DateInterval = (years: Int, days: Int, hours: Int, minutes: Int, seconds: Int)
     
     /**
      Gets the date interval between the reciever and a specified date.
@@ -32,7 +32,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: A date interval.
      */
-    public func dateIntervalSince(_ date: Date) -> DateInterval {
+    func dateIntervalSince(_ date: Date) -> DateInterval {
         
         let components = Calendar.current.dateComponents([.year, .day, .hour, .minute, .second], from: date, to: self)
         
@@ -51,7 +51,7 @@ public extension Date /* Since */ {
      
      - Returns: A date interval.
      */
-    public func dateIntervalSinceNow() -> DateInterval {
+    func dateIntervalSinceNow() -> DateInterval {
         return self.dateIntervalSince(Date())
     }
     
@@ -61,7 +61,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of seconds.
      */
-    public func seconds(since date: Date) -> Int? {
+    func seconds(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.second], from: date, to: self).second
     }
     
@@ -70,7 +70,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of seconds.
      */
-    public func secondsSinceNow() -> Int? {
+    func secondsSinceNow() -> Int? {
         return self.seconds(since: Date())
     }
     
@@ -80,7 +80,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of minutes.
      */
-    public func minutes(since date: Date) -> Int? {
+    func minutes(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.minute], from: date, to: self).minute
     }
     
@@ -89,7 +89,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of minutes.
      */
-    public func minutesSinceNow() -> Int? {
+    func minutesSinceNow() -> Int? {
         return self.minutes(since: Date())
     }
     
@@ -99,7 +99,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of hours.
      */
-    public func hours(since date: Date) -> Int? {
+    func hours(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.hour], from: date, to: self).hour
     }
     
@@ -108,7 +108,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of hours.
      */
-    public func hoursSinceNow() -> Int? {
+    func hoursSinceNow() -> Int? {
         return self.hours(since: Date())
     }
     
@@ -118,7 +118,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of days.
      */
-    public func days(since date: Date) -> Int? {
+    func days(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.day], from: date, to: self).day
     }
     
@@ -127,7 +127,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of days.
      */
-    public func daysSinceNow() -> Int? {
+    func daysSinceNow() -> Int? {
         return self.days(since: Date())
     }
     
@@ -137,7 +137,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of weeks.
      */
-    public func weeks(since date: Date) -> Int? {
+    func weeks(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.weekOfYear], from: date, to: self).weekOfYear
     }
     
@@ -146,7 +146,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of weeks.
      */
-    public func weeksSinceNow() -> Int? {
+    func weeksSinceNow() -> Int? {
         return self.weeks(since: Date())
     }
     
@@ -156,7 +156,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of months.
      */
-    public func months(since date: Date) -> Int? {
+    func months(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.month], from: date, to: self).month
     }
     
@@ -165,7 +165,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of months.
      */
-    public func monthsSinceNow() -> Int? {
+    func monthsSinceNow() -> Int? {
         return self.months(since: Date())
     }
     
@@ -175,7 +175,7 @@ public extension Date /* Since */ {
      - Parameter date: The date.
      - Returns: An `Int` number of years.
      */
-    public func years(since date: Date) -> Int? {
+    func years(since date: Date) -> Int? {
         return Calendar.current.dateComponents([.year], from: date, to: self).year
     }
     
@@ -184,7 +184,7 @@ public extension Date /* Since */ {
      
      - Returns: An `Int` number of years.
      */
-    public func yearsSinceNow() -> Int? {
+    func yearsSinceNow() -> Int? {
         return self.years(since: Date())
     }
     
