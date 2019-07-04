@@ -1,17 +1,18 @@
 //
-//  Coordinator+Resolver.swift
+//  AnyCoordinator+DI.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 3/9/19.
 //
 
+import Director
 import Swinject
 
 private struct AssociatedKeys {
     static var resolver: UInt8 = 0
 }
 
-public extension AnyCoordinatorBase /* Resolver */ {
+public extension AnyCoordinator /* DI */ {
     
     internal var _resolver: Resolver? {
         get {
@@ -22,14 +23,15 @@ public extension AnyCoordinatorBase /* Resolver */ {
         }
     }
     
-    /// The coordinator's assigned resolver.
+    /// The coordinator's assigned dependency resolver.
     var resolver: Resolver? {
 
-        if let r = self._resolver {
-            return r
+        if let resolver = self._resolver {
+            return resolver
         }
-        else if let coordinator = self as? Coordinator, let r = coordinator.parentCoordinator?.resolver {
-            return r
+        else if let viewCoordinator = self as? ViewCoordinator,
+            let resolver = viewCoordinator.parentCoordinator?.resolver {
+            return resolver
         }
         
         return nil

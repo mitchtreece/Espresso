@@ -18,7 +18,7 @@
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_versions": "5",
   "platforms": {
-    "ios": "11.0"
+    "ios": "12.0"
   },
   "default_subspecs": "Core",
   "subspecs": [
@@ -26,6 +26,9 @@
       "name": "Core",
       "source_files": "Espresso/Classes/Core/**/*",
       "dependencies": {
+        "Director": [
+          "~> 1.0"
+        ],
         "SnapKit": [
           "~> 5.0"
         ]

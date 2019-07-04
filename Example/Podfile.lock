@@ -1,10 +1,12 @@
 PODS:
+  - Director (1.0.1)
   - Espresso/All (2.1.1):
     - Espresso/Core
     - Espresso/DI
     - Espresso/Mvvm
     - Espresso/RxMvvm
   - Espresso/Core (2.1.1):
+    - Director (~> 1.0)
     - SnapKit (~> 5.0)
   - Espresso/DI (2.1.1):
     - Espresso/Core
@@ -29,6 +31,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Director
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -40,7 +43,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: d856b38e20296879e06bbf1f78ef361ce8c37011
+  Director: 5ebf90836d91d94570f182591aea562e42f11989
+  Espresso: 6221d852a2b8ab55347e4291303ceb2589c58e89
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
