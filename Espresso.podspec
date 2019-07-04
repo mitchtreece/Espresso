@@ -25,7 +25,8 @@ Pod::Spec.new do |s|
     s.subspec 'Core' do |core|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'SnapKit', '~> 4.0'
+        core.dependency         'Director', '~> 1.0'
+        core.dependency         'SnapKit',  '~> 4.0'
 
     end
 
