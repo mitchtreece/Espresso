@@ -23,7 +23,7 @@ public extension AnyCoordinatorBase /* Resolver */ {
     }
     
     /// The coordinator's assigned resolver.
-    public var resolver: Resolver? {
+    var resolver: Resolver? {
 
         if let r = self._resolver {
             return r

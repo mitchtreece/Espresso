@@ -15,7 +15,7 @@ public extension Collection /* Safety */ {
      - Parameter index: The element's index.
      - Returns: An optional element.
      */
-    public subscript(safe index: Index) -> Element? {
+    subscript(safe index: Index) -> Element? {
         
         if distance(to: index) >= 0 && distance(from: index) > 0 {
             return self[index]
@@ -31,7 +31,7 @@ public extension Collection /* Safety */ {
      - Parameter bounds: The element range.
      - Returns: An optional array  `SubSequence`.
      */
-    public subscript(safe bounds: Range<Index>) -> SubSequence? {
+    subscript(safe bounds: Range<Index>) -> SubSequence? {
         
         if distance(to: bounds.lowerBound) >= 0 && distance(from: bounds.upperBound) >= 0 {
             return self[bounds]
@@ -47,7 +47,7 @@ public extension Collection /* Safety */ {
      - Parameter bounds: The element range.
      - Returns: An optional array  `SubSequence`.
      */
-    public subscript(safe bounds: ClosedRange<Index>) -> SubSequence? {
+    subscript(safe bounds: ClosedRange<Index>) -> SubSequence? {
         
         if distance(to: bounds.lowerBound) >= 0 && distance(from: bounds.upperBound) > 0 {
             return self[bounds]

@@ -164,6 +164,7 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
             case .easeIn: curveString = "simple(easeIn)"
             case .easeOut: curveString = "simple(easeOut)"
             case .easeInOut: curveString = "simple(easeInOut)"
+            @unknown default: curveString = "unknown"
             }
             
         case .cubicBezier(let cp1, let cp2): curveString = "cubicBezier(cp1: (\(cp1.x), \(cp1.y)), cp2: (\(cp2.x), \(cp2.y)))"

@@ -12,7 +12,7 @@ public extension UIDevice /* Info*/ {
     /**
      Representation of the various iOS device types. Also provides information about the current device's system & state.
      */
-    public enum DeviceInfo: String, CaseIterable {
+    enum DeviceInfo: String, CaseIterable {
         
         // iPhone
         
@@ -277,7 +277,7 @@ public extension UIDevice /* Info*/ {
      If the current device is a simulator and this is set to _false_, the emulated device will be returned instead.
      - Returns: A new device info object.
      */
-    public func info(includeSimulator: Bool = false) -> DeviceInfo {
+    func info(includeSimulator: Bool = false) -> DeviceInfo {
         
         #if targetEnvironment(simulator)
             let isSimulator = true
@@ -317,42 +317,42 @@ public extension UIDevice /* Info*/ {
     /**
      Flag indicating whether the current device is a simulator.
      */
-    public var isSimulator: Bool {
+    var isSimulator: Bool {
         return (self.info(includeSimulator: true) == DeviceInfo.simulator)
     }
     
     /**
      Flag indicating whether the current device is a phone.
      */
-    public var isPhone: Bool {
+    var isPhone: Bool {
         return self.info().displayName.contains("iPhone")
     }
     
     /**
      Flag indicating whether the current device is an iPad.
      */
-    public var isPad: Bool {
+    var isPad: Bool {
         return self.info().displayName.contains("iPad")
     }
     
     /**
      Flag indicating whether the current device is an iPod.
      */
-    public var isPod: Bool {
+    var isPod: Bool {
         return self.info().displayName.contains("iPod")
     }
     
     /**
      Flag indicating whether the current device is a TV.
      */
-    public var isTV: Bool {
+    var isTV: Bool {
         return self.info().displayName.contains("TV")
     }
     
     /**
      Flag indicating whether the current device is a modern phone (iPhone X form-factor).
      */
-    public var isModernPhone: Bool {
+    var isModernPhone: Bool {
         
         let info = self.info()
         
@@ -368,7 +368,7 @@ public extension UIDevice /* Info*/ {
     /**
      Flag indicating whether the current device is a modern pad (2018 iPad Pro form-factor).
      */
-    public var isModernPad: Bool {
+    var isModernPad: Bool {
         
         let info = self.info()
         
@@ -382,7 +382,7 @@ public extension UIDevice /* Info*/ {
     /**
      Flag indicating whether the current device is modern (edge-to-edge screen without a home button).
      */
-    public var isDeviceModern: Bool {
+    var isModern: Bool {
         return (self.isModernPhone || self.isModernPad)
     }
     

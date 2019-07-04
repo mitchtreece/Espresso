@@ -12,7 +12,7 @@ public extension IndexPath {
     /**
      A zero-based index path.
      */
-    public static var zero: IndexPath {
+    static var zero: IndexPath {
         return IndexPath(row: 0, section: 0)
     }
     

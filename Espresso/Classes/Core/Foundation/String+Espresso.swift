@@ -16,7 +16,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the size.
      - Returns: The string's display size.
      */
-    public func size(constrainedTo size: CGSize, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
+    func size(constrainedTo size: CGSize, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
         
         return (self as NSString).boundingRect(with: size,
                                                options: [.usesLineFragmentOrigin],
@@ -32,7 +32,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the width.
      - Returns: The string's display width.
      */
-    public func width(forHeight height: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
+    func width(forHeight height: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
         let constraint = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
         return size(constrainedTo: constraint, attributes: attributes).width
@@ -46,7 +46,7 @@ public extension String /* Size */ {
      - Parameter font: The font to use while calculating the width.
      - Returns: The string's display width.
      */
-    public func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
+    func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
         return width(forHeight: height, attributes: [.font: font])
     }
     
@@ -57,7 +57,7 @@ public extension String /* Size */ {
      - Parameter attributes: The string attributes to use while calculating the height.
      - Returns: The string's display height.
      */
-    public func height(forWidth width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
+    func height(forWidth width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
         let constraint = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         return size(constrainedTo: constraint, attributes: attributes).height
@@ -71,15 +71,13 @@ public extension String /* Size */ {
      - Parameter font: The font to use while calculating the height.
      - Returns: The string's display height.
      */
-    public func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
+    func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
         return height(forWidth: width, attributes: [.font: font])
     }
     
 }
 
 public extension String /* Tokens */ {
-    
-    public typealias Token = String
     
     /**
      Creates a new string by replacing all occurrences of a **\<token\>** with another string.
@@ -88,7 +86,7 @@ public extension String /* Tokens */ {
      - Parameter string: The replacement string.
      - Returns: A new string with all token occurrences replaced.
      */
-    public func replacing(token: Token, with string: String) -> String {
+    func replacing(token: String, with string: String) -> String {
         
         let _token = (token.first == "<" && token.last == ">") ? token : "<\(token)>"
         return self.replacingOccurrences(of: _token, with: string)
@@ -101,7 +99,7 @@ public extension String /* Tokens */ {
      - Parameter tokens: A dictionary map of \<token\>'s to replacement strings.
      - Returns: A new string with all token occurrences replaced.
      */
-    public func replacing(tokens: [Token: String]) -> String {
+    func replacing(tokens: [String: String]) -> String {
         
         var string = self
         

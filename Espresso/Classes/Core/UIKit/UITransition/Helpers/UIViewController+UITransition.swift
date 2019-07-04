@@ -16,7 +16,7 @@ public extension UIViewController {
     /**
      The view controller's transition object.
      */
-    @objc public var transition: UITransition? {
+    @objc var transition: UITransition? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKey.transition) as? UITransition
         }
@@ -33,7 +33,7 @@ public extension UIViewController {
      - Parameter transition: The transition to present the view controller with.
      - Parameter completion: An optional completion block to run after the transition finishes.
      */
-    public func present(_ vc: UIViewController, with transition: UITransition, completion: (()->(Void))?) {
+    func present(_ vc: UIViewController, with transition: UITransition, completion: (()->(Void))?) {
         
         vc.transition = transition
         self.present(vc, animated: true, completion: completion)
