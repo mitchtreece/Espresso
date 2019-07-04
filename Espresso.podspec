@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.social_media_url          = 'https://twitter.com/mitchtreece'
 
     s.swift_version             = '5'
-    s.ios.deployment_target     = '10.0'
+    s.ios.deployment_target     = '11.0'
 
     # Subspecs
 

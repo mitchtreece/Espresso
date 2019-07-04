@@ -235,6 +235,7 @@ extension Container: _Resolver {
     fileprivate var maxResolutionDepth: Int { return 200 }
 
     fileprivate func incrementResolutionDepth() {
+        parent?.incrementResolutionDepth()
         if resolutionDepth == 0 && currentObjectGraph == nil {
             currentObjectGraph = GraphIdentifier()
         }
@@ -246,13 +247,16 @@ extension Container: _Resolver {
     }
 
     fileprivate func decrementResolutionDepth() {
+        parent?.decrementResolutionDepth()
         assert(resolutionDepth > 0, "The depth cannot be negative.")
 
         resolutionDepth -= 1
-        if resolutionDepth == 0 {
-            services.values.forEach { $0.storage.graphResolutionCompleted() }
-            self.currentObjectGraph = nil
-        }
+        if resolutionDepth == 0 { graphResolutionCompleted() }
+    }
+
+    fileprivate func graphResolutionCompleted() {
+        services.values.forEach { $0.storage.graphResolutionCompleted() }
+        self.currentObjectGraph = nil
     }
 }
 
@@ -295,7 +299,9 @@ extension Container: Resolver {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
 
-        guard let currentObjectGraph = currentObjectGraph else { fatalError() }
+        guard let currentObjectGraph = currentObjectGraph else {
+            fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
+        }
 
         if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
             return persistedService

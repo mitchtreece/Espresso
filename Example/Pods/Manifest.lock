@@ -22,7 +22,7 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
   - SnapKit (5.0.0)
-  - Swinject (2.6.0)
+  - Swinject (2.6.2)
 
 DEPENDENCIES:
   - Espresso/All (from `../`)
@@ -40,13 +40,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: c5ef875aa8264eba0b52313d15fddbb9043ad319
+  Espresso: d856b38e20296879e06bbf1f78ef361ce8c37011
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  Swinject: 48a96cda93633cf2860697b4ce76ab5db9ebaca2
+  Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
 
 PODFILE CHECKSUM: 5b503e38b6ce4e358ef14847494705c9740e49cf
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.3
