@@ -92,6 +92,7 @@ The following timing curves are currently supported:
 - `simple`
 - `cubicBezier`
 - `spring`
+- `material`
 - `custom`
 
 `UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
