@@ -52,6 +52,16 @@ public class UIAnimation {
             /// A deceleration Material Design easing curve.
             case deceleration
             
+            internal var name: String {
+                
+                switch self {
+                case .standard: return "standard"
+                case .acceleration: return "acceleration"
+                case .deceleration: return "deceleration"
+                }
+                
+            }
+            
             internal var controlPoints: (cp1: CGPoint, cp2: CGPoint) {
                 
                 switch self {
@@ -205,6 +215,7 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
             
         case .cubicBezier(let cp1, let cp2): curveString = "cubicBezier(cp1: (\(cp1.x), \(cp1.y)), cp2: (\(cp2.x), \(cp2.y)))"
         case .spring(let damping, let velocity): curveString = "spring(damping: \(damping), velocity: (\(velocity.dx), \(velocity.dy)))"
+        case .material(let easing): curveString = "material(\(easing.name))"
         case .custom: curveString = "custom"
         }
 
