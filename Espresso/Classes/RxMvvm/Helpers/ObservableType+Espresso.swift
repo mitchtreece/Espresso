@@ -5,7 +5,6 @@
 //  Created by Mitch Treece on 11/3/18.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -19,7 +18,25 @@ public struct ObservableValueBox<T> {
     
 }
 
-public extension ObservableType {
+public extension ObservableType /* Value */ {
+    
+    /// Current value of the observable type.
+    var value: Self.Element {
+        
+        var value: Self.Element!
+        let disposeBag = DisposeBag()
+        
+        self.subscribe(onNext: { _value in
+            value = _value
+        }).disposed(by: disposeBag)
+        
+        return value
+        
+    }
+    
+}
+
+public extension ObservableType /* Value Change */ {
     
     /**
      Subscribes observer to receive events for this sequence by providing the old and new values.
