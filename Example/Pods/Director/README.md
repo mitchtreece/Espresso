@@ -14,7 +14,7 @@ Director is a lightweight coordinator library written for Swift. 🎬
 ## Installation
 ### CocoaPods
 ```
-pod 'Director', '~> 1.0'
+pod 'Director', '~> 1.0.0'
 ```
 
 ### Swift Package Manager

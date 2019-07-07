@@ -1,5 +1,10 @@
 PODS:
-  - Director (1.0.1)
+  - Director (1.0.2):
+    - Director/Core (= 1.0.2)
+  - Director/Core (1.0.2)
+  - Director/DI (1.0.2):
+    - Director/Core
+    - Swinject (~> 2.6.0)
   - Espresso/All (2.1.1):
     - Espresso/Core
     - Espresso/DI
@@ -9,6 +14,7 @@ PODS:
     - Director (~> 1.0.0)
     - SnapKit (~> 5.0.0)
   - Espresso/DI (2.1.1):
+    - Director/DI (~> 1.0.0)
     - Espresso/Core
     - Swinject (~> 2.6.0)
   - Espresso/Mvvm (2.1.1):
@@ -43,8 +49,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Director: 5ebf90836d91d94570f182591aea562e42f11989
-  Espresso: 487ebcf70dba67d7c4c0072583d18ee8952b38f1
+  Director: b99a2a7d832c82730e4d328ecb73dd90fb83c978
+  Espresso: 48b8650a2f59e5e28f166456bca0c79aaff2872f
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
