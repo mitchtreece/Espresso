@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     s.subspec 'DI' do |di|
 
         di.source_files         = 'Espresso/Classes/DI/**/*'
+        di.dependency           'Director/DI', '~> 1.0.0'
         di.dependency           'Espresso/Core'
         di.dependency           'Swinject', '~> 2.6.0'
 
