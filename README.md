@@ -10,8 +10,8 @@ Espresso is a Swift convenience library for iOS. Everything is better with a lit
 
 ## Installation
 
-**Swift 4**: Version **<= 2.1.1**<br>
-**Swift 5**: Version **>= 2.2.0**
+⚠️ **Swift 4**: Version **<= 2.1.1**<br>
+⚠️ **Swift 5**: Version **>= 2.2.0**
 
 ### CocoaPods
 Espresso is integrated with CocoaPods!
@@ -19,7 +19,7 @@ Espresso is integrated with CocoaPods!
 1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Espresso', '~> 2.1.0'
+pod 'Espresso', '~> 2.2.0'
 ```
 2. In your project directory, run `pod install`
 3. Import the `Espresso` module wherever you need it
