@@ -10,8 +10,8 @@ Espresso is a Swift convenience library for iOS. Everything is better with a lit
 
 ## Installation
 
-⚠️ **Swift 4**: Version **<= 2.1.1**<br>
-⚠️ **Swift 5**: Version **>= 2.2.0**
+- **Swift 4**: Version **<= 2.1.1**<br>
+- **Swift 5**: Version **>= 2.2.0**
 
 ### CocoaPods
 Espresso is integrated with CocoaPods!
