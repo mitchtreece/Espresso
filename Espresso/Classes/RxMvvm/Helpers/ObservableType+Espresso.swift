@@ -5,7 +5,6 @@
 //  Created by Mitch Treece on 11/3/18.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -15,11 +14,29 @@ import RxCocoa
 public struct ObservableValueBox<T> {
     
     /// The box's underlying value.
-    var value: T
+    public var value: T
     
 }
 
-public extension ObservableType {
+public extension ObservableType /* Value */ {
+    
+    /// Current value of the observable type.
+    var value: Self.Element {
+        
+        var value: Self.Element!
+        let disposeBag = DisposeBag()
+        
+        self.subscribe(onNext: { _value in
+            value = _value
+        }).disposed(by: disposeBag)
+        
+        return value
+        
+    }
+    
+}
+
+public extension ObservableType /* Value Change */ {
     
     /**
      Subscribes observer to receive events for this sequence by providing the old and new values.
@@ -32,21 +49,21 @@ public extension ObservableType {
      - Parameter onDisposed: The dispose handler; _defaults to nil_.
      - Returns: A disposable.
      */
-    public func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.E>, _ newValue: ObservableValueBox<Self.E>)->(),
-                          onError: ((_ error: Error)->())? = nil,
-                          onCompleted: (()->())? = nil,
-                          onDisposed: (()->())? = nil) -> Disposable {
+    func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.Element>, _ newValue: ObservableValueBox<Self.Element>)->(),
+                   onError: ((_ error: Error)->())? = nil,
+                   onCompleted: (()->())? = nil,
+                   onDisposed: (()->())? = nil) -> Disposable {
         
-        let array = [Self.E]()
+        let array = [Self.Element]()
         
-        return scan(array) { (prev, next) -> [Self.E] in
+        return scan(array) { (prev, next) -> [Self.Element] in
             
             var values = prev
             values.append(next)
             return Array(values.suffix(2))
             
         }
-        .map { $0.map { ObservableValueBox<Self.E>(value: $0) } }
+        .map { $0.map { ObservableValueBox<Self.Element>(value: $0) } }
         .map { ($0.first!, $0.last!) }
         .subscribe(onNext: onValueChange, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
         

@@ -118,6 +118,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case cover
         case swap
         case pushBack
+        case zoom
         case custom
         
         var transition: UITransition {
@@ -128,6 +129,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .cover: return UICoverTransition()
             case .swap: return UISwapTransition()
             case .pushBack: return UIPushBackTransition()
+            case .zoom: return UIZoomTransition()
             case .custom: return CustomTransition()
             }
             
@@ -141,6 +143,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .cover: return "UICoverTransition"
             case .swap: return "UISwapTransition"
             case .pushBack: return "UIPushBackTransition"
+            case .zoom: return "UIZoomTransition"
             case .custom: return "Custom"
             }
             

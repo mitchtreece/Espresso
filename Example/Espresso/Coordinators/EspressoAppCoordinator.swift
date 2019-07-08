@@ -1,16 +1,16 @@
 //
-//  EspressoAppCoordinator.swift
+//  EspressoSceneCoordinator.swift
 //  Espresso_Example
 //
 //  Created by Mitch Treece on 1/8/19.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
-import Espresso
+import Director
 
-class EspressoAppCordinator: AppCoordinator {
-    
-    override func load() -> Coordinator {
+class EspressoSceneCoordinator: SceneCoordinator {
+
+    override func build() -> ViewCoordinator {
         return RootCoordinator()
     }
     

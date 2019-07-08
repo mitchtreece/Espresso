@@ -14,7 +14,7 @@ public extension Array where Element: UIAnimation {
      
      - Parameter completion: An optional completion handler; _defaults to nil_.
      */
-    public func run(completion: UIAnimationCompletion? = nil) {
+    func run(completion: UIAnimationCompletion? = nil) {
         
         let queue = UIAnimationOperationQueue()
         

@@ -16,7 +16,7 @@ public extension Identifiable where Self: UIViewController /* Storyboard */ {
      - Parameter identifier: The view controller's storyboard identifier. If no identifier is provided, the class name will be used; _defaults to nil_.
      - Returns: A typed storyboard-loaded view controller instance.
      */
-    public static func initFromStoryboard(named name: String = "Main", identifier: String? = nil) -> Self? {
+    static func initFromStoryboard(named name: String = "Main", identifier: String? = nil) -> Self? {
         
         let storyboard = UIStoryboard(name: name, bundle: nil)
         let identifier = identifier ?? self.identifier

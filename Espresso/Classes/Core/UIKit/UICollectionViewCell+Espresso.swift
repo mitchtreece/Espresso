@@ -7,8 +7,6 @@
 
 import UIKit
 
-// MARK: Register
-
 public extension UICollectionViewCell /* Register */ {
     
     // NOTE: `UICollectionViewCell` conforms to `Identifiable`

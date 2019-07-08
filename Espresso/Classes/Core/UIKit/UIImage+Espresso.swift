@@ -15,7 +15,7 @@ public extension UIImage /* Color */ {
      - Parameter color: The image fill color.
      - Parameter size: The image size.
      */
-    public convenience init?(color: UIColor, size: CGSize) {
+    convenience init?(color: UIColor, size: CGSize) {
         
         let rect = CGRect(origin: .zero, size: size)
         
@@ -40,7 +40,7 @@ public extension UIImage /* Scale */ {
      
      - Parameter size: The desired image size.
      */
-    public func scaled(to size: CGSize) -> UIImage? {
+    func scaled(to size: CGSize) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
@@ -55,7 +55,7 @@ public extension UIImage /* Scale */ {
      
      - Parameter factor: The scale factor.
      */
-    public func scaled(by factor: CGFloat) -> UIImage? {
+    func scaled(by factor: CGFloat) -> UIImage? {
         
         let width = (self.size.width * factor)
         let height = (self.size.height * factor)

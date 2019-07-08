@@ -38,6 +38,42 @@ public class UIAnimation {
      */
     public enum TimingCurve {
         
+        /*
+         Representation of the various Material Design easing curves.
+         */
+        public enum MaterialEasing {
+            
+            /// A standard Material Design easing curve.
+            case standard
+            
+            /// An acceleration Material Design easing curve.
+            case acceleration
+            
+            /// A deceleration Material Design easing curve.
+            case deceleration
+            
+            internal var name: String {
+                
+                switch self {
+                case .standard: return "standard"
+                case .acceleration: return "acceleration"
+                case .deceleration: return "deceleration"
+                }
+                
+            }
+            
+            internal var controlPoints: (cp1: CGPoint, cp2: CGPoint) {
+                
+                switch self {
+                case .standard: return (CGPoint(x: 0.4, y: 0), CGPoint(x: 0.2, y: 1))
+                case .acceleration: return (CGPoint(x: 0.4, y: 0), CGPoint(x: 1, y: 1))
+                case .deceleration: return (CGPoint(x: 0, y: 0), CGPoint(x: 0.2, y: 1))
+                }
+                
+            }
+            
+        }
+        
         /// A simple timing curve using one of the built-in `UIViewAnimationCurve` types.
         case simple(UIView.AnimationCurve)
         
@@ -46,6 +82,9 @@ public class UIAnimation {
         
         /// A spring timing curve using a damping ratio & initial velocity.
         case spring(damping: CGFloat, velocity: CGVector)
+        
+        /// A Material Design timing curve using preset material control points.
+        case material(MaterialEasing)
         
         /// A custom timing curve using a specified `UITimingCurveProvider`.
         case custom(UITimingCurveProvider)
@@ -136,6 +175,13 @@ public class UIAnimation {
             
         case .cubicBezier(let cp1, let cp2): provider = UICubicTimingParameters(controlPoint1: cp1, controlPoint2: cp2)
         case .spring(let damping, let velocity): provider = UISpringTimingParameters(dampingRatio: damping, initialVelocity: velocity)
+        case .material(let easing):
+            
+            provider = UICubicTimingParameters(
+                controlPoint1: easing.controlPoints.cp1,
+                controlPoint2: easing.controlPoints.cp2
+            )
+
         case .custom(let _provider): provider = _provider
         }
         
@@ -164,10 +210,12 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
             case .easeIn: curveString = "simple(easeIn)"
             case .easeOut: curveString = "simple(easeOut)"
             case .easeInOut: curveString = "simple(easeInOut)"
+            @unknown default: curveString = "unknown"
             }
             
         case .cubicBezier(let cp1, let cp2): curveString = "cubicBezier(cp1: (\(cp1.x), \(cp1.y)), cp2: (\(cp2.x), \(cp2.y)))"
         case .spring(let damping, let velocity): curveString = "spring(damping: \(damping), velocity: (\(velocity.dx), \(velocity.dy)))"
+        case .material(let easing): curveString = "material(\(easing.name))"
         case .custom: curveString = "custom"
         }
 

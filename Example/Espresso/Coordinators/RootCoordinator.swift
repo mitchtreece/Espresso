@@ -6,11 +6,12 @@
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
+import Director
 import Espresso
 
-class RootCoordinator: Coordinator {
-    
-    override func load() -> UIViewController {
+class RootCoordinator: ViewCoordinator {
+
+    override func build() -> UIViewController {
         return RootViewController(delegate: self)
     }
     
@@ -70,8 +71,7 @@ extension RootCoordinator: RootViewControllerDelegate {
             vc.statusBarAppearance = UIStatusBarAppearance()
             vc.navBarAppearance = navBar
 
-            let nav = UIStyledNavigationController(rootViewController: vc)
-            self.presentModal(viewController: nav)
+            modal(UIStyledNavigationController(rootViewController: vc))
             
         }
         
@@ -93,8 +93,7 @@ extension RootCoordinator: RootViewControllerDelegate {
         
         let nav = UIStyledNavigationController(rootViewController: vc)
         nav.transition = row.transition
-        
-        self.presentModal(viewController: nav)
+        modal(nav)
         
     }
     
