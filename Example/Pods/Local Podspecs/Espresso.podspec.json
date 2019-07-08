@@ -26,8 +26,11 @@
       "name": "Core",
       "source_files": "Espresso/Classes/Core/**/*",
       "dependencies": {
+        "Director": [
+          "~> 1.0.0"
+        ],
         "SnapKit": [
-          "~> 5.0"
+          "~> 5.0.0"
         ]
       }
     },
@@ -35,11 +38,14 @@
       "name": "DI",
       "source_files": "Espresso/Classes/DI/**/*",
       "dependencies": {
+        "Director/DI": [
+          "~> 1.0.0"
+        ],
         "Espresso/Core": [
 
         ],
         "Swinject": [
-          "~> 2.6"
+          "~> 2.6.0"
         ]
       }
     },
@@ -60,10 +66,10 @@
 
         ],
         "RxSwift": [
-          "~> 5.0"
+          "~> 5.0.0"
         ],
         "RxCocoa": [
-          "~> 5.0"
+          "~> 5.0.0"
         ]
       }
     },

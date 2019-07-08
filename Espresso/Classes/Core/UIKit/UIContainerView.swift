@@ -8,7 +8,7 @@
 import UIKit
 
 /**
- `UIView` subclass that delegates it's touch events to other recievers.
+ `UIView` subclass that delegates it's touch events to other receivers.
  */
 open class UIContainerView: UIView {
 

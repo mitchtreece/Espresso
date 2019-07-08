@@ -8,18 +8,22 @@
 
 import UIKit
 import Espresso
+import Director
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CoordinatedApplication {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var coordinator: EspressoAppCordinator!
+    private var sceneDirector: SceneDirector!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        self.coordinator = self.coordinated(
-            by: EspressoAppCordinator.self,
-            navigationController: UIStyledNavigationController(rootViewController: UIViewController()),
+        self.window = self.window ?? UIWindow(frame: UIScreen.main.bounds)
+        self.window!.rootViewController = UIStyledNavigationController(rootViewController: UIViewController())
+        
+        self.sceneDirector = SceneDirector(
+            EspressoSceneCoordinator(),
+            window: self.window!,
             debug: true
         ).start()
         
