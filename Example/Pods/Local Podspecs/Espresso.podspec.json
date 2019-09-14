@@ -36,7 +36,6 @@
     },
     {
       "name": "DI",
-      "source_files": "Espresso/Classes/DI/**/*",
       "dependencies": {
         "Espresso/Core": [
 
