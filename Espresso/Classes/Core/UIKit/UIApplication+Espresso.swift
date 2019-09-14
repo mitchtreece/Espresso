@@ -33,40 +33,6 @@ public extension UIApplication /* Key View Controller */ {
     
 }
 
-public extension UIApplication /* UIStatusBarAppearance */ {
-    
-    /**
-     The application's current status bar appearance.
-     */
-    var statusBarAppearance: UIStatusBarAppearance {
-        
-        guard let rootVC = keyWindow?.rootViewController else { return UIStatusBarAppearance() }
-        
-        let `default` = UIStatusBarAppearance()
-        
-        if let nav = rootVC as? UINavigationController {
-            
-            let style = nav.topViewController?.preferredStatusBarStyle ?? `default`.style
-            let hidden = nav.topViewController?.prefersStatusBarHidden ?? `default`.hidden
-            let animation = nav.topViewController?.preferredStatusBarUpdateAnimation ?? `default`.animation
-            return UIStatusBarAppearance(style: style, hidden: hidden, animation: animation)
-            
-        }
-        else if let tab = rootVC as? UITabBarController {
-            
-            let style = tab.selectedViewController?.preferredStatusBarStyle ?? `default`.style
-            let hidden = tab.selectedViewController?.prefersStatusBarHidden ?? `default`.hidden
-            let animation = tab.selectedViewController?.preferredStatusBarUpdateAnimation ?? `default`.animation
-            return UIStatusBarAppearance(style: style, hidden: hidden, animation: animation)
-            
-        }
-        
-        return `default`
-        
-    }
-    
-}
-
 public extension UIApplication /* Keyboard Window */ {
     
     /**

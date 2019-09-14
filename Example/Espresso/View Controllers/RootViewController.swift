@@ -11,14 +11,11 @@ import Espresso
 import SnapKit
 
 protocol RootViewControllerDelegate: class {
-    
-    func rootViewController(_ vc: RootViewController, didSelectAppearanceRow row: RootViewController.AppearanceRow)
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
-    
 }
 
-class RootViewController: UIStyledViewController {
+class RootViewController: UIViewController {
     
     private var tableView: UITableView!
     private weak var delegate: RootViewControllerDelegate?
@@ -32,30 +29,6 @@ class RootViewController: UIStyledViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var preferredStatusBarAppearance: UIStatusBarAppearance {
-
-        let appearance = UIStatusBarAppearance()
-        appearance.style = .lightContent
-        return appearance
-
-    }
-    
-    override var preferredNavigationBarAppearance: UINavigationBarAppearance {
-
-        let appearance = UINavigationBarAppearance()
-        appearance.barColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-        appearance.titleColor = UIColor.white
-        appearance.itemColor = UIColor.white
-
-        if #available(iOS 11, *) {
-            appearance.largeTitleDisplayMode = .always
-            appearance.largeTitleColor = UIColor.white
-        }
-
-        return appearance
-
     }
 
     override func viewDidLoad() {
@@ -83,31 +56,10 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int, CaseIterable {
         
-        case appearance
         case transition
         case rxMvvm
         case taptics
         case helpers
-        
-    }
-    
-    enum AppearanceRow: Int, CaseIterable {
-        
-        case `default`
-        case inferred
-        case custom
-        case modal
-        
-        var title: String {
-            
-            switch self {
-            case .default: return "Default"
-            case .inferred: return "Inferred"
-            case .custom: return "Custom"
-            case .modal: return "Modal"
-            }
-            
-        }
         
     }
     
@@ -222,7 +174,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
-        case .appearance: return "Appearance"
         case .transition: return "Transitions"
         case .rxMvvm: return "Rx / MVVM"
         case .taptics: return "Taptics"
@@ -236,7 +187,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
-        case .appearance: return AppearanceRow.allCases.count
         case .transition: return TransitionRow.allCases.count
         case .rxMvvm: return RxMvvmRow.allCases.count
         case .taptics: return TapticRow.allCases.count
@@ -252,17 +202,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
 
         switch _section {
-        case .appearance:
-            
-            guard let row = AppearanceRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            
-            switch row {
-            case .default: cell.textLabel?.text = "Default"
-            case .inferred: cell.textLabel?.text = "Inferred"
-            case .custom: cell.textLabel?.text = "Custom"
-            case .modal: cell.textLabel?.text = "Modal"
-            }
-         
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -302,11 +241,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
         switch _section {
-        case .appearance:
-            
-            guard let row = AppearanceRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectAppearanceRow: row)
-        
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
