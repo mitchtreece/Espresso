@@ -13,9 +13,9 @@ public extension UIViewController {
         static var transition = "UIViewController.transition"
     }
     
-    /**
-     The view controller's transition object.
-     */
+    /// The view controller's transition object.
+    ///
+    /// Setting this also sets the view controllers modal presentation style to `currentContext`.
     @objc var transition: UITransition? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKey.transition) as? UITransition
@@ -23,6 +23,7 @@ public extension UIViewController {
         set {
             objc_setAssociatedObject(self, &AssociatedKey.transition, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.transitioningDelegate = newValue
+            self.modalPresentationStyle = .currentContext
         }
     }
     

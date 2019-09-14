@@ -325,8 +325,10 @@ private class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransition
         guard let context = transitionContext else { return 0 }
         guard let info = self.info(from: context) else { return 0 }
         
-        return transition.transitionController(for: isPresentation ? .presentation : .dismissal,
-                                               info: info).animationDuration
+        return transition.transitionController(
+            for: isPresentation ? .presentation : .dismissal,
+            info: info
+        ).animationDuration
         
     }
     
@@ -353,10 +355,12 @@ private class UITransitionAnimator: NSObject, UIViewControllerAnimatedTransition
         guard let fromVC = context.viewController(forKey: .from) else { return nil }
         guard let toVC = context.viewController(forKey: .to) else { return nil }
         
-        return UITransition.Info(transitionContainerView: context.containerView,
-                                 sourceViewController: fromVC,
-                                 destinationViewController: toVC,
-                                 context: context)
+        return UITransition.Info(
+            transitionContainerView: context.containerView,
+            sourceViewController: fromVC,
+            destinationViewController: toVC,
+            context: context
+        )
         
     }
     

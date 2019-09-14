@@ -27,7 +27,6 @@ extension RootCoordinator: RootViewControllerDelegate {
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
         nav.transition = row.transition
         modal(nav)
         
