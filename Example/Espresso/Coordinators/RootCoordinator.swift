@@ -19,79 +19,15 @@ class RootCoordinator: ViewCoordinator {
 
 extension RootCoordinator: RootViewControllerDelegate {
     
-    func rootViewController(_ vc: RootViewController, didSelectAppearanceRow row: RootViewController.AppearanceRow) {
-        
-        let vc = AppearanceViewController()
-        vc.title = row.title
-        vc.delegate = self
-        
-        switch row {
-        case .default:
-            
-            vc.statusBarAppearance = UIStatusBarAppearance()
-            vc.navBarAppearance = UINavigationBarAppearance()
-            self.navigationController.pushViewController(vc, animated: true)
-        
-        case .inferred:
-            
-            vc.statusBarAppearance = UIStatusBarAppearance.inferred(for: vc)
-            vc.navBarAppearance = UINavigationBarAppearance.inferred(for: vc)
-            self.navigationController.pushViewController(vc, animated: true)
-        
-        case .custom:
-            
-            let status = UIStatusBarAppearance()
-            status.style = .lightContent
-
-            let nav = UINavigationBarAppearance()
-            nav.barColor = UIColor(white: 0.1, alpha: 1)
-            nav.titleColor = UIColor.white
-            nav.itemColor = UIColor.white
-
-            if #available(iOS 11, *) {
-                nav.largeTitleDisplayMode = .always
-                nav.largeTitleColor = UIColor.white
-                nav.largeTitleFont = UIFont.systemFont(ofSize: 40, weight: .black)
-            }
-
-            vc.statusBarAppearance = status
-            vc.navBarAppearance = nav
-
-            self.navigationController.pushViewController(vc, animated: true)
-        
-        case .modal:
-            
-            let navBar = UINavigationBarAppearance()
-            navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-            navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .black)
-            navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-            navBar.transparent = true
-
-            vc.showsDismissButton = true
-            vc.statusBarAppearance = UIStatusBarAppearance()
-            vc.navBarAppearance = navBar
-
-            modal(UIStyledNavigationController(rootViewController: vc))
-            
-        }
-        
-    }
-    
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow) {
         
-        let vc = AppearanceViewController()
+        let vc = DetailViewController()
         vc.title = row.title
         vc.showsDismissButton = true
         vc.delegate = self
         
-        let navBar = UINavigationBarAppearance()
-        navBar.titleColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-        navBar.titleFont = UIFont.systemFont(ofSize: 16, weight: .medium)
-        navBar.itemColor = #colorLiteral(red: 0.851971209, green: 0.6156303287, blue: 0.454634726, alpha: 1)
-        navBar.transparent = true
-        vc.navBarAppearance = navBar
-        
-        let nav = UIStyledNavigationController(rootViewController: vc)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
         nav.transition = row.transition
         modal(nav)
         
@@ -106,10 +42,10 @@ extension RootCoordinator: RootViewControllerDelegate {
     
 }
 
-extension RootCoordinator: AppearanceViewControllerDelegate {
+extension RootCoordinator: DetailViewControllerDelegate {
     
-    func appearanceViewControllerDidTapDone(_ vc: AppearanceViewController) {
-        vc.dismiss(animated: true, completion: nil)
+    func detailViewControllerDidTapDone(_ viewController: DetailViewController) {
+        viewController.dismiss(animated: true, completion: nil)
     }
     
 }
