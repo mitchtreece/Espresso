@@ -12,6 +12,11 @@ import UIKit
  */
 open class UIBaseViewController: UIViewController {
     
+    @available(iOS 12, *)
+    public var userInterfaceStyle: UIUserInterfaceStyle {
+        return self.traitCollection.userInterfaceStyle
+    }
+    
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         
         super.traitCollectionDidChange(previousTraitCollection)
