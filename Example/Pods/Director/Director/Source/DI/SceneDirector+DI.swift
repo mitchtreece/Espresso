@@ -8,7 +8,7 @@
 import Swinject
 
 public extension SceneDirector /* DI */ {
-
+    
     /**
      Starts the scene director with a dependency resolver.
      
@@ -16,7 +16,7 @@ public extension SceneDirector /* DI */ {
      - Returns: This scene director instance.
      */
     final func start(with resolver: Resolver) -> Self {
-        self.sceneCoordinator._resolver = resolver
+        DIStorage.shared.resolver = resolver
         return start()
     }
     

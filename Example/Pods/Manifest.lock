@@ -1,25 +1,25 @@
 PODS:
-  - Director (1.0.3):
-    - Director/Core (= 1.0.3)
-  - Director/Core (1.0.3)
-  - Director/DI (1.0.3):
+  - Director (1.0.5):
+    - Director/Core (= 1.0.5)
+  - Director/Core (1.0.5)
+  - Director/DI (1.0.5):
     - Director/Core
-    - Swinject (~> 2.6.0)
-  - Espresso/All (2.2.1):
+    - Swinject (~> 2.7.0)
+  - Espresso/All (2.2.2):
     - Espresso/Core
     - Espresso/DI
     - Espresso/Mvvm
     - Espresso/RxMvvm
-  - Espresso/Core (2.2.1):
+  - Espresso/Core (2.2.2):
     - Director (~> 1.0.0)
     - SnapKit (~> 5.0.0)
-  - Espresso/DI (2.2.1):
+  - Espresso/DI (2.2.2):
     - Director/DI (~> 1.0.0)
     - Espresso/Core
-    - Swinject (~> 2.6.0)
-  - Espresso/Mvvm (2.2.1):
+    - Swinject (~> 2.7.0)
+  - Espresso/Mvvm (2.2.2):
     - Espresso/Core
-  - Espresso/RxMvvm (2.2.1):
+  - Espresso/RxMvvm (2.2.2):
     - Espresso/Mvvm
     - RxCocoa (~> 5.0.0)
     - RxSwift (~> 5.0.0)
@@ -30,7 +30,7 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
   - SnapKit (5.0.1)
-  - Swinject (2.6.2)
+  - Swinject (2.7.1)
 
 DEPENDENCIES:
   - Espresso/All (from `../`)
@@ -49,13 +49,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Director: ea4eb01b2271d7d5a16f68ed8a5a9e671030ece9
-  Espresso: b7e5852b5fd8997005359cda95bec66c5a16dc35
+  Director: f39c6442b22a63e365f97974f7a067efd5ce4db9
+  Espresso: d9e11faa77b333f6466ce08806f04a7f26ab32e1
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
 PODFILE CHECKSUM: 5b503e38b6ce4e358ef14847494705c9740e49cf
 

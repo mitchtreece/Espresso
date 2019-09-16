@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Director.svg?style=for-the-badge)](http://cocoapods.org/pods/Director)
 [![SPM](https://img.shields.io/badge/spm-coming_soon-orange.svg?style=for-the-badge)](https://swift.org/package-manager)
 ![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg?style=for-the-badge)
-![iOS](https://img.shields.io/badge/iOS-12--13-green.svg?style=for-the-badge)
+![iOS](https://img.shields.io/badge/iOS-11--13-green.svg?style=for-the-badge)
 [![License](https://img.shields.io/cocoapods/l/Director.svg?style=for-the-badge)](http://cocoapods.org/pods/Director)
 
 ## Overview
@@ -75,7 +75,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+        guard let windowScene = scene as? UIWindowScene else { return }
+
+        self.window = UIWindow(windowScene: windowScene)
 
         self.director = SceneDirector(
             ExampleSceneCoordinator(),
