@@ -32,7 +32,7 @@ open class UIBaseCollectionViewCell: UICollectionViewCell {
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your cell as needed.
     @available(iOS 12, *)
-    public func userInterfaceStyleDidChange() {
+    open func userInterfaceStyleDidChange() {
         // Override
     }
     

@@ -32,7 +32,7 @@ open class UIBaseViewController: UIViewController {
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your interface as needed.
     @available(iOS 12, *)
-    public func userInterfaceStyleDidChange() {
+    open func userInterfaceStyleDidChange() {
         // Override
     }
     
