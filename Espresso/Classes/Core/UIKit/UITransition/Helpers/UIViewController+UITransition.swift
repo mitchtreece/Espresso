@@ -13,16 +13,33 @@ public extension UIViewController {
         static var transition = "UIViewController.transition"
     }
     
-    /**
-     The view controller's transition object.
-     */
+    /// The view controller's transition.
+    ///
+    /// Setting this to a non-nil value also sets the view controller's modal presentation style to `currentContext`.
+    /// Setting this to a nil value sets the view controller's modal presentation style back to the default.
     @objc var transition: UITransition? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKey.transition) as? UITransition
         }
         set {
+            
             objc_setAssociatedObject(self, &AssociatedKey.transition, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.transitioningDelegate = newValue
+            
+            if let _ = newValue {
+                self.modalPresentationStyle = .currentContext
+            }
+            else {
+                
+                if #available(iOS 13, *) {
+                    self.modalPresentationStyle = .automatic
+                }
+                else {
+                    self.modalPresentationStyle = .fullScreen
+                }
+                
+            }
+                        
         }
     }
     
