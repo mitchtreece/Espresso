@@ -10,7 +10,7 @@ import UIKit
 /**
  `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
  */
-open class UIViewModelTableViewCell<V: ViewModel>: UITableViewCell {
+open class UIViewModelTableViewCell<V: ViewModel>: UIBaseTableViewCell {
     
     /// The cell's backing view model.
     public private(set) var viewModel: V!

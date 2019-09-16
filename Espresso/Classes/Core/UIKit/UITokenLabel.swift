@@ -10,7 +10,7 @@ import Foundation
 /**
  `UIView` subclass that emulates a `UILabel` within a styled view.
  */
-open class UITokenLabel: UIView {
+open class UITokenLabel: UIBaseView {
     
     /**
      Flag indicating whether the token should be filled or not; _defaults to false_.
