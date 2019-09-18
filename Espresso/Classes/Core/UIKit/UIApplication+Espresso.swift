@@ -7,6 +7,11 @@
 
 import Foundation
 
+private struct AssociatedKeys {
+    static var life: UInt8 = 0
+    static var environmentOverride: UInt8 = 0
+}
+
 public extension UIApplication /* Key View Controller */ {
     
     /**
@@ -39,16 +44,56 @@ public extension UIApplication /* Keyboard Window */ {
      The application's active keyboard window.
      */
     var keyboardWindow: UIWindow? {
-        return UIApplication.shared.windows.first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
+        
+        return UIApplication.shared.windows
+            .first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
+        
+    }
+    
+}
+
+public extension UIApplication /* Life */ {
+    
+    var life: UIApplicationLife {
+        
+        if let life = objc_getAssociatedObject(self, &AssociatedKeys.life) as? UIApplicationLife {
+            return life
+        }
+
+        let life = UIApplicationLife()
+
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.life,
+            life,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+        )
+
+        return life
+        
+    }
+    
+}
+
+public extension UIApplication /* Version */ {
+    
+    /**
+     The application's version string _(CFBundleShortVersionString)_.
+     */
+    var version: String? {
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
+    /**
+     The application's build number string _(CFBundleVersion)_.
+     */
+    var build: String? {
+        return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     }
     
 }
 
 public extension UIApplication /* Environment */ {
-    
-    private struct AssociatedKeys {
-        static var environmentOverride: UInt8 = 0
-    }
     
     /**
      Representation of the various application environments.
@@ -132,24 +177,6 @@ public extension UIApplication /* Environment */ {
             return Environment.production
         #endif
         
-    }
-    
-}
-
-public extension UIApplication /* Version */ {
-    
-    /**
-     The application's version string _(CFBundleShortVersionString)_.
-     */
-    var version: String? {
-        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    }
-    
-    /**
-     The application's build number string _(CFBundleVersion)_.
-     */
-    var build: String? {
-        return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     }
     
 }
