@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Espresso
 
 protocol DetailViewControllerDelegate: class {
     func detailViewControllerDidTapDone(_ viewController: DetailViewController)

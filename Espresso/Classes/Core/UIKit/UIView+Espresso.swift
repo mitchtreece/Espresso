@@ -34,6 +34,34 @@ public extension UIView /* Shadow */ {
     
 }
 
+public extension UIView /* Gestures */ {
+    
+    /// Adds a tap gesture recognizer to the receiver.
+    /// - parameter setup: An optional `UITapGestureRecognizer` setup block.
+    /// - parameter action: The gesture recognizer's action handler.
+    func addTapGesture(setup: ((UITapGestureRecognizer)->())? = nil,
+                       action: @escaping UIGestureRecognizer.Action) {
+        
+        let recognizer = UITapGestureRecognizer(action: action)
+        setup?(recognizer)
+        addGestureRecognizer(recognizer)
+                
+    }
+    
+    /// Adds a long-press gesture recognizer to the receiver.
+    /// - parameter setup: An optional `UILongPressGestureRecognizer` setup block.
+    /// - parameter action: The gesture recognizer's action handler.
+    func addLongPressGesture(setup: ((UILongPressGestureRecognizer)->())? = nil,
+                             action: @escaping UIGestureRecognizer.Action) {
+        
+        let recognizer = UILongPressGestureRecognizer(action: action)
+        setup?(recognizer)
+        addGestureRecognizer(recognizer)
+        
+    }
+    
+}
+
 public extension UIView /* Motion Effects */ {
     
     /**
