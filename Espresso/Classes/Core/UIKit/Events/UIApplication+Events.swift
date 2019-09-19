@@ -13,6 +13,7 @@ private struct AssociatedKeys {
 
 public extension UIApplication /* Events */ {
     
+    /// The application's event holder.
     var events: UIApplicationEvents {
         
         if let events = objc_getAssociatedObject(self, &AssociatedKeys.events) as? UIApplicationEvents {

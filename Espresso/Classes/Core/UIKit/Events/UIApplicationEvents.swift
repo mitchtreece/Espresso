@@ -7,28 +7,54 @@
 
 import UIKit
 
-
+/// `UIApplication` event holder class.
 public class UIApplicationEvents {
     
-    public let didBecomeActive      = VoidEvent()
-    public let willResignActive     = VoidEvent()
-    public let didEnterBackground   = VoidEvent()
-    public let willEnterForeground  = VoidEvent()
-    public let willTerminate        = VoidEvent()
+    /// Dispatched after the application becomes active.
+    public let didBecomeActive = VoidEvent()
     
-    public let protectedDataAvailabilityWillChange  = Event<Bool>()
-    public let significantTimeChange                = VoidEvent()
-    public let backgroundRefreshStatusDidChange     = VoidEvent()
-    public let userDidTakeScreenshot                = VoidEvent()
-    public let didReceiveMemoryWarning              = VoidEvent()
+    /// Dispatched when the application will resign active.
+    public let willResignActive = VoidEvent()
+    
+    /// Dispatched after the application did enter the background.
+    public let didEnterBackground = VoidEvent()
+    
+    /// Dispatched when the application will enter the foreground.
+    public let willEnterForeground = VoidEvent()
+    
+    /// Dispatched when the application will terminate.
+    public let willTerminate = VoidEvent()
+    
+    /// Dispatched when protected data availibility will change.
+    public let protectedDataAvailabilityWillChange = Event<Bool>()
+    
+    /// Dispatched after a significant time change occurs.
+    public let significantTimeChange = VoidEvent()
+    
+    /// Dispatched after a background refresh status change occurs.
+    public let backgroundRefreshStatusDidChange = VoidEvent()
+    
+    /// Dispatched after the user takes a screenshot.
+    public let userDidTakeScreenshot = VoidEvent()
+    
+    /// Dispatched after the application receives a memory warning.
+    public let didReceiveMemoryWarning = VoidEvent()
     
     // NOTE: These notifications were deprecated in iOS 13 in favor of
     // `viewWillTransitionToSize:withTransitionCoordinator:`.
     // Should probably remove these at some point.
-    public let willChangeStatusBarOrientation   = VoidEvent()
-    public let didChangeStatusBarOrientation    = VoidEvent()
-    public let willChangeStatusBarFrame         = VoidEvent()
-    public let didChangeStatusBarFrame          = VoidEvent()
+    
+    /// Dispatched when the application will change the status bar orientation.
+    public let willChangeStatusBarOrientation = VoidEvent()
+    
+    /// Dispatched after the application changes the status bar orientation.
+    public let didChangeStatusBarOrientation = VoidEvent()
+    
+    /// Dispatched when the application will change the status bar frame.
+    public let willChangeStatusBarFrame = VoidEvent()
+    
+    /// Dispatched after the application changes the status bar frame.
+    public let didChangeStatusBarFrame = VoidEvent()
 
     private var observers = [Any]()
     

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// `UIViewController` event holder class.
 public class UIViewControllerEvents {
     
     private class ProxyViewController: UIViewController {
@@ -75,12 +76,22 @@ public class UIViewControllerEvents {
         
     }
     
-    public let viewDidLoad          = VoidEvent()
-    public let viewWillAppear       = VoidEvent()
-    public let viewDidAppear        = VoidEvent()
-    public let viewWillDisappear    = VoidEvent()
-    public let viewDidDisappear     = VoidEvent()
+    /// Dispatched after the view controller's view loads.
+    public let viewDidLoad = VoidEvent()
     
+    /// Dispatched when the view controller's view will appear.
+    public let viewWillAppear = VoidEvent()
+    
+    /// Dispatched after the view controller's view appears.
+    public let viewDidAppear = VoidEvent()
+    
+    /// Dispatched when the view controller's view wil disappear.
+    public let viewWillDisappear = VoidEvent()
+    
+    /// Dispatched after the view controller's view disappears.
+    public let viewDidDisappear = VoidEvent()
+    
+    /// Dispatched after the view controller receives a memory warning.
     public let didReceiveMemoryWarning = VoidEvent()
         
     private let proxyViewController: ProxyViewController
