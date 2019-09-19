@@ -1,5 +1,5 @@
 //
-//  ObservableEvent.swift
+//  Event.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 9/18/19.
@@ -7,24 +7,24 @@
 
 import Foundation
 
-public class ObservableEvent<V> {
+/// An observable event that dispatches with a value.
+public class Event<V> {
     
     internal class Observer<V> {
+                
+        private var handler: (V)->()
         
-        typealias Handler = (V)->()
-        
-        private var handler: Handler
-        
-        init(handler: @escaping Handler) {
+        init(handler: @escaping (V)->()) {
             self.handler = handler
         }
         
-        func dispatch(value: V) {
+        func send(value: V) {
             self.handler(value)
         }
         
     }
     
+    /// `Event` token class that can be used to identify a specific observer.
     public class Token<V> {
         
         internal var observer: Observer<V>
@@ -37,10 +37,14 @@ public class ObservableEvent<V> {
     
     private var observers = [Observer<V>]()
     
+    /// Initializes an event.
     public init() {
         //
     }
     
+    /// Adds an observer using a given handler.
+    /// - parameter handler: The handler called when dispatching.
+    /// - returns: An event token.
     @discardableResult
     public func addObserver(_ handler: @escaping (V)->()) -> Token<V> {
         
@@ -50,6 +54,8 @@ public class ObservableEvent<V> {
         
     }
     
+    /// Removes an observer using an event token.
+    /// - parameter token: The event token.
     public func removeObserver(token: Token<V>) {
         
         // We cannot just remove the observers from the array,
@@ -67,12 +73,15 @@ public class ObservableEvent<V> {
         
     }
     
+    /// Removes all observers.
     public func removeAllObservers() {
         self.observers.removeAll()
     }
     
+    /// Dispatches a value to all observers.
+    /// - parameter value: The value to dispatch.
     public func dispatch(value: V) {
-        self.observers.forEach { $0.dispatch(value: value) }
+        self.observers.forEach { $0.send(value: value) }
     }
     
 }

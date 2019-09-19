@@ -8,7 +8,6 @@
 import Foundation
 
 private struct AssociatedKeys {
-    static var life: UInt8 = 0
     static var environmentOverride: UInt8 = 0
 }
 
@@ -47,29 +46,6 @@ public extension UIApplication /* Keyboard Window */ {
         
         return UIApplication.shared.windows
             .first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
-        
-    }
-    
-}
-
-public extension UIApplication /* Life */ {
-    
-    var life: UIApplicationLife {
-        
-        if let life = objc_getAssociatedObject(self, &AssociatedKeys.life) as? UIApplicationLife {
-            return life
-        }
-
-        let life = UIApplicationLife()
-
-        objc_setAssociatedObject(
-            self,
-            &AssociatedKeys.life,
-            life,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
-        )
-
-        return life
         
     }
     

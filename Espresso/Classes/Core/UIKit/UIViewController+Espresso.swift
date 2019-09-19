@@ -7,33 +7,6 @@
 
 import UIKit
 
-private struct AssociatedKeys {
-    static var life: UInt8 = 0
-}
-
-public extension UIViewController /* Life */ {
-    
-    var life: UIViewControllerLife {
-        
-        if let life = objc_getAssociatedObject(self, &AssociatedKeys.life) as? UIViewControllerLife {
-            return life
-        }
-
-        let life = UIViewControllerLife(viewController: self)
-
-        objc_setAssociatedObject(
-            self,
-            &AssociatedKeys.life,
-            life,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
-        )
-
-        return life
-        
-    }
-    
-}
-
 public extension Identifiable where Self: UIViewController /* Storyboard */ {
     
     /**

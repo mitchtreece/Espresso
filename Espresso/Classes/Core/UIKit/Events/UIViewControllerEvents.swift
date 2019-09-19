@@ -1,5 +1,5 @@
 //
-//  UIViewControllerLife.swift
+//  UIViewControllerEvents.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 9/18/19.
@@ -7,27 +7,30 @@
 
 import UIKit
 
-public class UIViewControllerLife {
+public class UIViewControllerEvents {
     
     private class ProxyViewController: UIViewController {
         
-        private let _viewDidLoad:        ObservableVoidEvent
-        private let _viewWillAppear:     ObservableVoidEvent
-        private let _viewDidAppear:      ObservableVoidEvent
-        private let _viewWillDisappear:  ObservableVoidEvent
-        private let _viewDidDisappear:   ObservableVoidEvent
+        private let _viewDidLoad:               VoidEvent
+        private let _viewWillAppear:            VoidEvent
+        private let _viewDidAppear:             VoidEvent
+        private let _viewWillDisappear:         VoidEvent
+        private let _viewDidDisappear:          VoidEvent
+        private let _didReceiveMemoryWarning:   VoidEvent
         
-        init(viewDidLoad: ObservableVoidEvent,
-             viewWillAppear: ObservableVoidEvent,
-             viewDidAppear: ObservableVoidEvent,
-             viewWillDisappear: ObservableVoidEvent,
-             viewDidDisappear: ObservableVoidEvent) {
+        init(viewDidLoad: VoidEvent,
+             viewWillAppear: VoidEvent,
+             viewDidAppear: VoidEvent,
+             viewWillDisappear: VoidEvent,
+             viewDidDisappear: VoidEvent,
+             didReceiveMemoryWarning: VoidEvent) {
             
             self._viewDidLoad = viewDidLoad
             self._viewWillAppear = viewWillAppear
             self._viewDidAppear = viewDidAppear
             self._viewWillDisappear = viewWillDisappear
             self._viewDidDisappear = viewDidDisappear
+            self._didReceiveMemoryWarning = didReceiveMemoryWarning
             
             super.init(
                 nibName: nil,
@@ -65,13 +68,20 @@ public class UIViewControllerLife {
             self._viewDidDisappear.dispatch()
         }
         
+        override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            self._didReceiveMemoryWarning.dispatch()
+        }
+        
     }
     
-    public let viewDidLoad          = ObservableVoidEvent()
-    public let viewWillAppear       = ObservableVoidEvent()
-    public let viewDidAppear        = ObservableVoidEvent()
-    public let viewWillDisappear    = ObservableVoidEvent()
-    public let viewDidDisappear     = ObservableVoidEvent()
+    public let viewDidLoad          = VoidEvent()
+    public let viewWillAppear       = VoidEvent()
+    public let viewDidAppear        = VoidEvent()
+    public let viewWillDisappear    = VoidEvent()
+    public let viewDidDisappear     = VoidEvent()
+    
+    public let didReceiveMemoryWarning = VoidEvent()
         
     private let proxyViewController: ProxyViewController
     
@@ -82,7 +92,8 @@ public class UIViewControllerLife {
             viewWillAppear: self.viewWillAppear,
             viewDidAppear: self.viewDidAppear,
             viewWillDisappear: self.viewWillDisappear,
-            viewDidDisappear: self.viewDidDisappear
+            viewDidDisappear: self.viewDidDisappear,
+            didReceiveMemoryWarning: self.didReceiveMemoryWarning
         )
         
         viewController.addChild(self.proxyViewController)
