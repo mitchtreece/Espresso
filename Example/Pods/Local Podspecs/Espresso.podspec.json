@@ -1,6 +1,6 @@
 {
   "name": "Espresso",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "summary": "Swift convenience library for iOS.",
   "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "2.2.2"
+    "tag": "2.2.3"
   },
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_versions": "5",

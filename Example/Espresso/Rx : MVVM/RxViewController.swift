@@ -50,6 +50,12 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         
         super.bindModel()
         
+        self.events.viewDidAppear.observable
+            .bind { _ in
+                print("Did appear!")
+            }
+            .disposed(by: self.modelDisposeBag)
+        
         self.viewModel.labelText.asObservable()
             .bind(to: self.label.rx.text)
             .disposed(by: self.modelDisposeBag)
