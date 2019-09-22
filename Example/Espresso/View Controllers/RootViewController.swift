@@ -36,6 +36,10 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Espresso ☕️"
         
+        self.events.viewDidAppear.addObserver {
+            print("☕️ RootViewController did appear")
+        }
+        
         self.tableView = UITableView(frame: .zero, style: .grouped)
         self.tableView.backgroundColor = UIColor.groupTableViewBackground
         self.tableView.tableFooterView = UIView()
