@@ -52,7 +52,7 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         
         self.events.viewDidAppear.observable
             .bind { _ in
-                print("Did appear!")
+                print("RxViewController did appear!")
             }
             .disposed(by: self.modelDisposeBag)
         
