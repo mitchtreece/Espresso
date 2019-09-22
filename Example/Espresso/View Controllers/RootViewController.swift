@@ -36,8 +36,8 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Espresso ☕️"
         
-        UIApplication.shared.events.willChangeStatusBarFrame.addObserver {
-            
+        self.events.viewDidAppear.addObserver {
+            print("☕️ RootViewController did appear")
         }
         
         self.tableView = UITableView(frame: .zero, style: .grouped)

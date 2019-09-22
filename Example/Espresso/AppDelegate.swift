@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debug: true
         ).start()
         
+        application.events.didBecomeActive.addObserver {
+            print("☕️ application did become active")
+        }
+        
+        application.events.willResignActive.addObserver {
+            print("☕️ application will resign active")
+        }
+        
         return true
         
     }

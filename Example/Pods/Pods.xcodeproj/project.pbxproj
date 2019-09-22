@@ -89,6 +89,7 @@
 		25486211296A5407AF8370D3C599961F /* UILabel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA86DCCFB926742CA25AA0594B60E55 /* UILabel+Rx.swift */; };
 		25CED2A5498BC08B6713653CBAB4F5AD /* UIRefreshControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78809F389A5777A09FF64CF4012F0DA /* UIRefreshControl+Rx.swift */; };
 		2619742711A31A537536C690F7AC6AD4 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F77B38ECF483168C09E48C9E685F092 /* Lock.swift */; };
+		262463E02336A70E0016683A /* UITransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262463DF2336A70E0016683A /* UITransitionAnimator.swift */; };
 		263C9C6D2332ED4D00798F55 /* UIApplication+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C6C2332ED4D00798F55 /* UIApplication+Events.swift */; };
 		263C9C6F2332ED9D00798F55 /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C6E2332ED9D00798F55 /* UIViewController+Events.swift */; };
 		263C9C722332F41100798F55 /* Event+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C712332F41100798F55 /* Event+Rx.swift */; };
@@ -661,6 +662,7 @@
 		2476FEA00A6FDACC2A2D6BF17D78C6B6 /* ElementAt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElementAt.swift; path = RxSwift/Observables/ElementAt.swift; sourceTree = "<group>"; };
 		24EF91225D25B3F43CF070DEA6B839ED /* ConnectableObservableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectableObservableType.swift; path = RxSwift/ConnectableObservableType.swift; sourceTree = "<group>"; };
 		25A9A5057E3BC09EB81F67B29226ED57 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
+		262463DF2336A70E0016683A /* UITransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionAnimator.swift; sourceTree = "<group>"; };
 		263C9C6C2332ED4D00798F55 /* UIApplication+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Events.swift"; sourceTree = "<group>"; };
 		263C9C6E2332ED9D00798F55 /* UIViewController+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
 		263C9C712332F41100798F55 /* Event+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Rx.swift"; sourceTree = "<group>"; };
@@ -1839,6 +1841,7 @@
 			isa = PBXGroup;
 			children = (
 				06949B66B8053F848CF092C49197B16F /* UITransition.swift */,
+				262463DF2336A70E0016683A /* UITransitionAnimator.swift */,
 				99DD6030B7EBC7B5E78FFD52BB32BE31 /* UITransitionController.swift */,
 				E1D1A7A8ED686FC74634281F9772EA39 /* UITransitionInteractionController.swift */,
 				98BA0A959693755D472C067DCCB2F6F8 /* Helpers */,
@@ -1968,8 +1971,8 @@
 		D743798F4A503CD60B1D3057C123ED2F /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				B768753A18B606509EDAB51C65914BF0 /* UICoverTransition.swift */,
 				4E79AED7CF6C949160668022657ADCF1 /* UIFadeTransition.swift */,
+				B768753A18B606509EDAB51C65914BF0 /* UICoverTransition.swift */,
 				850A05F021908DDEB68F119D85613EFB /* UIPushBackTransition.swift */,
 				B464BBFE4ED12CF0B0D6F2DABCC2D21E /* UISlideTransition.swift */,
 				C6BFDC2186D4CEE1FE86272D0F69FBF4 /* UISwapTransition.swift */,
@@ -2694,6 +2697,7 @@
 				9B463BF1D69D8C268B7E42C8FC0EE837 /* UIAnimationGroup.swift in Sources */,
 				6FA46A0F70729474621B17CE9080F6FA /* UIAnimationGroupConvertible.swift in Sources */,
 				A8FC4653311DE95A85103F5B8ACB8DDC /* UIAnimationOperation.swift in Sources */,
+				262463E02336A70E0016683A /* UITransitionAnimator.swift in Sources */,
 				02AE87FF6E2716919CBA79BE92335329 /* UIAnimationOperationQueue.swift in Sources */,
 				151FB5D922B54D9B28A92CCA08B52DFB /* UIApplication+Espresso.swift in Sources */,
 				C7A93424D6AC28E4517A7A335764961E /* UIApplicationEvents.swift in Sources */,
