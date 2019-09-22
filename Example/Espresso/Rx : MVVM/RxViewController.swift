@@ -34,6 +34,17 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
             make.edges.equalTo(0)
         }
         
+        let waves = UIWaveView(waves: [
+            UIWaveView.Wave(curve: 0, speed: 4, height: 100, color: .red),
+            UIWaveView.Wave(curve: 0, speed: 2, height: 100, color: UIColor.green.withAlphaComponent(0.5))
+        ])
+        
+        self.view.addSubview(waves)
+        waves.snp.makeConstraints { make in
+            make.left.bottom.right.equalTo(0)
+            make.height.equalTo(300)
+        }
+        
     }
     
     override func bindComponents() {
