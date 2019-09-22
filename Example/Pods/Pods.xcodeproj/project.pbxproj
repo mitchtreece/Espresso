@@ -90,7 +90,6 @@
 		25CED2A5498BC08B6713653CBAB4F5AD /* UIRefreshControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78809F389A5777A09FF64CF4012F0DA /* UIRefreshControl+Rx.swift */; };
 		2619742711A31A537536C690F7AC6AD4 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F77B38ECF483168C09E48C9E685F092 /* Lock.swift */; };
 		262463E02336A70E0016683A /* UITransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262463DF2336A70E0016683A /* UITransitionAnimator.swift */; };
-		262463E22336E5700016683A /* UIPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262463E12336E5700016683A /* UIPresentationTransition.swift */; };
 		263C9C6D2332ED4D00798F55 /* UIApplication+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C6C2332ED4D00798F55 /* UIApplication+Events.swift */; };
 		263C9C6F2332ED9D00798F55 /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C6E2332ED9D00798F55 /* UIViewController+Events.swift */; };
 		263C9C722332F41100798F55 /* Event+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C712332F41100798F55 /* Event+Rx.swift */; };
@@ -664,7 +663,6 @@
 		24EF91225D25B3F43CF070DEA6B839ED /* ConnectableObservableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectableObservableType.swift; path = RxSwift/ConnectableObservableType.swift; sourceTree = "<group>"; };
 		25A9A5057E3BC09EB81F67B29226ED57 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		262463DF2336A70E0016683A /* UITransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransitionAnimator.swift; sourceTree = "<group>"; };
-		262463E12336E5700016683A /* UIPresentationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPresentationTransition.swift; sourceTree = "<group>"; };
 		263C9C6C2332ED4D00798F55 /* UIApplication+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Events.swift"; sourceTree = "<group>"; };
 		263C9C6E2332ED9D00798F55 /* UIViewController+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
 		263C9C712332F41100798F55 /* Event+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Rx.swift"; sourceTree = "<group>"; };
@@ -1843,7 +1841,6 @@
 			isa = PBXGroup;
 			children = (
 				06949B66B8053F848CF092C49197B16F /* UITransition.swift */,
-				262463E12336E5700016683A /* UIPresentationTransition.swift */,
 				262463DF2336A70E0016683A /* UITransitionAnimator.swift */,
 				99DD6030B7EBC7B5E78FFD52BB32BE31 /* UITransitionController.swift */,
 				E1D1A7A8ED686FC74634281F9772EA39 /* UITransitionInteractionController.swift */,
@@ -2670,7 +2667,6 @@
 				839F0CAB9A9A6778636125F14F077D34 /* AsyncOperation.swift in Sources */,
 				3EA9207569E62B48D47974A1624B72EC /* BoolConvertible.swift in Sources */,
 				3EBB8FE5A86A2CA54B2859487BAB8522 /* CaseIterable.swift in Sources */,
-				262463E22336E5700016683A /* UIPresentationTransition.swift in Sources */,
 				B9830065F2C6A0BB8BE5DFD2F328E4A0 /* Collection+Espresso.swift in Sources */,
 				8AD02DED2D8475270D07F6BD9345ACC6 /* CryptoDigest.swift in Sources */,
 				23C44F42B32075F4CE9557E94DAB4CAD /* Data+Digest.swift in Sources */,
