@@ -35,8 +35,8 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         }
         
         let waves = UIWaveView(waves: [
-            UIWaveView.Wave(curve: 0, speed: 4, height: 100, color: .red),
-            UIWaveView.Wave(curve: 0, speed: 2, height: 100, color: UIColor.green.withAlphaComponent(0.5))
+            UIWaveView.Wave(height: 10, inset: 8, speed: 1, color: #colorLiteral(red: 0.9742994905, green: 0.8415424824, blue: 0.8921473622, alpha: 1)),
+            UIWaveView.GradientWave(height: 25, speed: 2, colors: [#colorLiteral(red: 0.8025608063, green: 0.3659369349, blue: 0.6304686666, alpha: 1), #colorLiteral(red: 0.9994346499, green: 0.6217572093, blue: 0.2507359982, alpha: 1).withAlphaComponent(0.6)])
         ])
         
         self.view.addSubview(waves)
