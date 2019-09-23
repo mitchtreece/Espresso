@@ -117,11 +117,7 @@ public class UIWaveView: UIView {
     }
     
     private func setupSubviews() {
-        
         self.backgroundColor = .clear
-        self.clipsToBounds = true
-        self.layer.masksToBounds = true
-        
     }
     
     private func setupWaves() {

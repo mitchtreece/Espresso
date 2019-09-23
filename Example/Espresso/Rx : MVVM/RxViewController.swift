@@ -34,15 +34,15 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
             make.edges.equalTo(0)
         }
         
-        let waves = UIWaveView(waves: [
-            .solid(height: 10, inset: 8, speed: 1, color: #colorLiteral(red: 0.9742994905, green: 0.8415424824, blue: 0.8921473622, alpha: 1)),
-            .gradient(height: 25, speed: 2, colors: [#colorLiteral(red: 0.8025608063, green: 0.3659369349, blue: 0.6304686666, alpha: 1), #colorLiteral(red: 0.9994346499, green: 0.6217572093, blue: 0.2507359982, alpha: 1).withAlphaComponent(0.6)], stops: .equal)
+        let waveView = UIWaveView(waves: [
+            .solid(height: 15, inset: 5, speed: 0.5, color: #colorLiteral(red: 0.8025608063, green: 0.3659369349, blue: 0.6304686666, alpha: 1).withAlphaComponent(0.25)),
+            .gradient(height: 20, inset: 0, speed: 2, colors: [#colorLiteral(red: 0.8025608063, green: 0.3659369349, blue: 0.6304686666, alpha: 1), #colorLiteral(red: 0.9411764706, green: 0.3921568627, blue: 0.4392156863, alpha: 1).withAlphaComponent(0.8), #colorLiteral(red: 0.9994346499, green: 0.6217572093, blue: 0.2507359982, alpha: 1).withAlphaComponent(0.6)], stops: .equal)
         ])
         
-        self.view.addSubview(waves)
-        waves.snp.makeConstraints { make in
+        self.view.addSubview(waveView)
+        waveView.snp.makeConstraints { make in
             make.left.bottom.right.equalTo(0)
-            make.height.equalTo(300)
+            make.height.equalTo(200)
         }
         
     }
