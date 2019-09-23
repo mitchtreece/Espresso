@@ -40,7 +40,19 @@ open class UIGradientView: UIBaseView {
         
     }
     
-    private lazy var gradient: CAGradientLayer = {
+    /// Representation of the various gradient color stops.
+    public enum Stops: Hashable {
+        
+        /// An equal color stop distribution.
+        case equal
+        
+        /// A custom color stop distribution.
+        case custom([CGFloat])
+        
+    }
+    
+    /// The view's backing `CAGradientLayer`.
+    public private(set) lazy var gradientLayer: CAGradientLayer = {
         return self.layer as! CAGradientLayer
     }()
     
@@ -57,6 +69,13 @@ open class UIGradientView: UIBaseView {
      The gradient direction; _defaults to up_.
      */
     public var direction: Direction = .up {
+        didSet {
+            update()
+        }
+    }
+    
+    /// The gradient's color stops; _defaults to equal_.
+    public var stops: Stops = .equal {
         didSet {
             update()
         }
@@ -107,9 +126,19 @@ open class UIGradientView: UIBaseView {
     /// Updates & draws the view's gradient.
     func update() {
         
-        self.gradient.colors = colors.map({ $0.cgColor })
-        self.gradient.startPoint = points(for: self.direction).start
-        self.gradient.endPoint = points(for: self.direction).end
+        self.gradientLayer.colors = colors.map({ $0.cgColor })
+        self.gradientLayer.startPoint = points(for: self.direction).start
+        self.gradientLayer.endPoint = points(for: self.direction).end
+                
+        switch self.stops {
+        case .custom(let values):
+            
+            self.gradientLayer.locations = values
+                .map { Float($0) }
+                .map { NSNumber(value: $0) }
+            
+        default: self.gradientLayer.locations = nil
+        }
         
     }
     

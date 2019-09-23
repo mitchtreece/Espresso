@@ -9,57 +9,81 @@ import UIKit
 
 public class UIWaveView: UIView {
     
-    public class Wave: Hashable {
+    public enum Wave: Hashable {
         
         public static func == (lhs: UIWaveView.Wave, rhs: UIWaveView.Wave) -> Bool {
-            return lhs.id == rhs.id
+            
+            switch lhs {
+            case .solid(let l_height, let l_inset, let l_speed, let l_color):
+                
+                switch rhs {
+                case .solid(let r_height, let r_inset, let r_speed, let r_color):
+                    
+                    return (
+                        (l_height == r_height) &&
+                        (l_inset == r_inset) &&
+                        (l_speed == r_speed) &&
+                        (l_color == r_color)
+                    )
+                    
+                default: return false
+                }
+            
+            case .gradient(let l_height, let l_inset, let l_speed, let l_colors, let l_dist):
+                
+                switch rhs {
+                case .gradient(let r_height, let r_inset, let r_speed, let r_colors, let r_dist):
+                    
+                    return (
+                        (l_height == r_height) &&
+                        (l_inset == r_inset) &&
+                        (l_speed == r_speed) &&
+                        (l_colors == r_colors) &&
+                        (l_dist == r_dist)
+                    )
+                    
+                default: return false
+                }
+                
+            }
+            
         }
         
         public func hash(into hasher: inout Hasher) {
-            hasher.combine(self.id)
-        }
-        
-        private var id: UUID
-        
-        public var height: CGFloat
-        public var inset: CGFloat?
-        public var speed: CGFloat
-        public var color: UIColor
-        
-        public init(height: CGFloat,
-                    inset: CGFloat? = nil,
-                    speed: CGFloat,
-                    color: UIColor) {
             
-            self.id = UUID()
-            self.height = height
-            self.inset = inset
-            self.speed = speed
-            self.color = color
+            switch self {
+            case .solid(let height, let inset, let speed, let color):
+                
+                hasher.combine(height)
+                hasher.combine(inset)
+                hasher.combine(speed)
+                hasher.combine(color)
+                
+            case .gradient(let height, let inset, let speed, let colors, _):
+                
+                hasher.combine(height)
+                hasher.combine(inset)
+                hasher.combine(speed)
+                hasher.combine(colors)
+                
+            }
             
         }
         
-    }
-    
-    public class GradientWave: Wave {
+        case solid(
+            height: CGFloat,
+            inset: CGFloat? = nil,
+            speed: CGFloat,
+            color: UIColor
+        )
         
-        public var colors: [UIColor]
-        
-        public init(height: CGFloat,
-                    inset: CGFloat? = nil,
-                    speed: CGFloat,
-                    colors: [UIColor]) {
-            
-            self.colors = colors
-            
-            super.init(
-                height: height,
-                inset: inset,
-                speed: speed,
-                color: .clear
-            )
-            
-        }
+        case gradient(
+            height: CGFloat,
+            inset: CGFloat? = nil,
+            speed: CGFloat,
+            colors: [UIColor],
+            stops: UIGradientView.Stops
+        )
         
     }
     
@@ -134,22 +158,21 @@ public class UIWaveView: UIView {
     
     private func layer(for wave: Wave) -> CALayer {
         
-        if let gradientWave = wave as? GradientWave {
-            
-            let layer = CAGradientLayer()
-            layer.frame = self.bounds
-            layer.colors = gradientWave.colors.map { $0.cgColor }
-            layer.startPoint = CGPoint(x: 0.5, y: 1)
-            layer.endPoint = CGPoint(x: 0.5, y: 0)
-            return layer
-            
-        }
-        else {
+        switch wave {
+        case .solid(_, _, _, let color):
             
             let layer = CAShapeLayer()
             layer.frame = self.bounds
-            layer.fillColor = wave.color.cgColor
+            layer.fillColor = color.cgColor
             return layer
+        
+        case .gradient(_, _, _, let colors, let stops):
+            
+            let gradient = UIGradientView(frame: self.bounds)
+            gradient.colors = colors
+            gradient.direction = .up
+            gradient.stops = stops
+            return gradient.gradientLayer
             
         }
         
@@ -169,6 +192,25 @@ public class UIWaveView: UIView {
             let angle: CGFloat = (.pi / 180)
             let _offset = CGFloat(self.offset)
             
+            var waveHeight: CGFloat = 0
+            var waveInset: CGFloat = 0
+            var waveSpeed: CGFloat = 0
+            
+            switch wave {
+            case .solid(let height, let inset, let speed, _):
+                
+                waveHeight = height
+                waveInset = inset ?? 0
+                waveSpeed = speed
+                
+            case .gradient(let height, let inset, let speed, _, _):
+                
+                waveHeight = height
+                waveInset = inset ?? 0
+                waveSpeed = speed
+                
+            }
+            
             let path = CGMutablePath()
             path.move(to: CGPoint(x: 0, y: viewSize.height))
             
@@ -176,9 +218,9 @@ public class UIWaveView: UIView {
             
             while xOffset < viewSize.width {
                 
-                let depth = (wave.height / 2)
-                let waveTopInset = wave.inset ?? 0
-                let yOffset = ((depth * sin(xOffset * angle + _offset * angle * wave.speed) + depth) + waveTopInset)
+                let depth = (waveHeight / 2)
+                let waveTopInset = waveInset
+                let yOffset = ((depth * sin(xOffset * angle + _offset * angle * waveSpeed) + depth) + waveTopInset)
                 
                 path.addLine(to: CGPoint(x: xOffset, y: yOffset))
                 xOffset += 1
