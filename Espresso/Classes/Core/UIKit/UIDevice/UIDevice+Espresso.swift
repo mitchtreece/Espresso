@@ -37,6 +37,9 @@ public extension UIDevice /* Info*/ {
         case iPhoneXR
         case iPhoneXS
         case iPhoneXSMax
+        case iPhone11
+        case iPhone11Pro
+        case iPhone11ProMax
         
         // iPod Touch
         
@@ -46,6 +49,7 @@ public extension UIDevice /* Info*/ {
         case iPodTouch4G
         case iPodTouch5G
         case iPodTouch6G
+        case iPodTouch7G
         
         // iPad
         
@@ -59,14 +63,24 @@ public extension UIDevice /* Info*/ {
         case iPadMini2
         case iPadMini3
         case iPadMini4
+        case iPadMini5
         case iPadAir
         case iPadAir2
+        case iPadAir3
         case iPadPro9
         case iPadPro10
         case iPadPro12
         case iPadPro12_2G
         case iPadPro11
         case iPadPro12_3G
+        
+        // Watch
+        
+        case appleWatch
+        case appleWatchS1
+        case appleWatchS2
+        case appleWatchS3
+        case appleWatchS4
         
         // Apple TV
         
@@ -109,6 +123,9 @@ public extension UIDevice /* Info*/ {
             case .iPhoneXR: return "iPhone XR"
             case .iPhoneXS: return "iPhone XS"
             case .iPhoneXSMax: return "iPhone XS Max"
+            case .iPhone11: return  "iPhone 11"
+            case .iPhone11Pro: return "iPhone 11 Pro"
+            case .iPhone11ProMax: return "iPhone 11 Pro Max"
                 
             case .iPodTouch: return "iPod touch"
             case .iPodTouch2G: return "iPod touch 2G"
@@ -116,6 +133,13 @@ public extension UIDevice /* Info*/ {
             case .iPodTouch4G: return "iPod touch 4G"
             case .iPodTouch5G: return "iPod touch 5G"
             case .iPodTouch6G: return "iPod touch 6G"
+            case .iPodTouch7G: return "iPod touch 7G"
+                
+            case .appleWatch: return "Apple Watch"
+            case .appleWatchS1: return "Apple Watch Series 1"
+            case .appleWatchS2: return "Apple Watch Series 2"
+            case .appleWatchS3: return "Apple Watch Series 3"
+            case .appleWatchS4: return "Apple Watch Series 4"
                 
             case .iPad: return "iPad"
             case .iPad2: return "iPad 2"
@@ -127,8 +151,10 @@ public extension UIDevice /* Info*/ {
             case .iPadMini2: return "iPad mini 2"
             case .iPadMini3: return "iPad mini 3"
             case .iPadMini4: return "iPad mini 4"
+            case .iPadMini5: return "iPad mini 5"
             case .iPadAir: return "iPad Air"
             case .iPadAir2: return "iPad Air 2"
+            case .iPadAir3: return "iPd Air 3"
             case .iPadPro9: return "iPad Pro (9-inch)"
             case .iPadPro10: return "iPad Pro (10.5-inch)"
             case .iPadPro12: return "iPad Pro (12.9-inch)"
@@ -171,6 +197,9 @@ public extension UIDevice /* Info*/ {
             case .iPhoneXR: return ["iPhone11,8"]
             case .iPhoneXS: return ["iPhone11,2"]
             case .iPhoneXSMax: return ["iPhone11,4", "iPhone11,6"]
+            case .iPhone11: return ["iPhone12,1"]
+            case .iPhone11Pro: return ["iPhone12,3"]
+            case .iPhone11ProMax: return ["iPhone12,5"]
                 
             case .iPodTouch: return ["iPod1,1"]
             case .iPodTouch2G: return ["iPod2,1"]
@@ -178,6 +207,7 @@ public extension UIDevice /* Info*/ {
             case .iPodTouch4G: return ["iPod4,1"]
             case .iPodTouch5G: return ["iPod5,1"]
             case .iPodTouch6G: return ["iPod7,1"]
+            case .iPodTouch7G: return ["iPod9,1"]
                 
             case .iPad: return ["iPad1,1", "iPad1,2"]
             case .iPad2: return ["iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4"]
@@ -189,14 +219,22 @@ public extension UIDevice /* Info*/ {
             case .iPadMini2: return ["iPad4,4", "iPad4,5", "iPad4,6"]
             case .iPadMini3: return ["iPad4,7", "iPad4,8", "iPad4,9"]
             case .iPadMini4: return ["iPad5,1", "iPad5,2"]
+            case .iPadMini5: return ["iPad11,1", "iPad11,2"]
             case .iPadAir: return ["iPad4,1", "iPad4,2", "iPad4,3"]
             case .iPadAir2: return ["iPad5,3", "iPad5,4"]
+            case .iPadAir3: return ["iPad11,3", "iPad11,4"]
             case .iPadPro9: return ["iPad6,3", "iPad6,4"]
             case .iPadPro10: return ["iPad7,3", "iPad7,4"]
             case .iPadPro12: return ["iPad6,7", "iPad6,8"]
             case .iPadPro12_2G: return ["iPad7,1", "iPad7,2"]
             case .iPadPro11: return ["iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4"]
             case .iPadPro12_3G: return ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"]
+                
+            case .appleWatch: return ["Watch1,1", "Watch1,2"]
+            case .appleWatchS1: return ["Watch2,6", "Watch2,7"]
+            case .appleWatchS2: return ["Watch2,3", "Watch2,4"]
+            case .appleWatchS3: return ["Watch3,1", "Watch3,2", "Watch3,3", "Watch3,4"]
+            case .appleWatchS4: return ["Watch4,1", "Watch4,2", "Watch4,3", "Watch4,4"]
                 
             case .appleTV: return ["AppleTV5,3"]
             case .appleTV4K: return ["AppleTV6,2"]
@@ -360,7 +398,10 @@ public extension UIDevice /* Info*/ {
             info == .iPhoneX ||
             info == .iPhoneXR ||
             info == .iPhoneXS ||
-            info == .iPhoneXSMax
+            info == .iPhoneXSMax ||
+            info == .iPhone11 ||
+            info == .iPhone11Pro ||
+            info == .iPhone11ProMax
         )
         
     }
