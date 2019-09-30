@@ -29,14 +29,18 @@ class ContextView: UIView {
         self.label.snp.makeConstraints { make in
             make.edges.equalTo(0).inset(8)
         }
-        
+
         self.contextMenu = UIContextMenu(
             title: "Hello, iOS 13!",
             image: nil,
             identifier: nil,
-            actions: [
-                UIAction(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in print("foo") }),
-                UIAction(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in print("bar") })
+            previewProvider: nil,
+            items: [
+                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in print("foo") }),
+                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in print("bar") }),
+                .menu(title: "More...", children: [
+                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in print("Another one!") })
+                ])
             ])
         
     }

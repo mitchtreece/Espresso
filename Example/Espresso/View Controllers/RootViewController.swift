@@ -210,7 +210,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var cell: UITableViewCell!
         
         if #available(iOS 13, *) {
-            cell = ContextTableCell.dequeue(for: tableView, at: indexPath)
+            
+            let contextCell = ContextTableCell.dequeue(for: tableView, at: indexPath)
+            contextCell.delegate = self
+            cell = contextCell
+            
         }
         else {
             cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
@@ -356,6 +360,18 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         }
+        
+    }
+    
+}
+
+@available(iOS 13, *)
+extension RootViewController: ContextTableCellDelegate {
+    
+    func contextTableCellDidTapContextMenuPreview(_ cell: ContextTableCell) {
+        
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
+        tableView(self.tableView, didSelectRowAt: indexPath)
         
     }
     
