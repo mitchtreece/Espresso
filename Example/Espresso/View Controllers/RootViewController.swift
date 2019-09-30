@@ -50,7 +50,11 @@ class RootViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        UITableViewCell.register(in: tableView)
+        UITableViewCell.register(in: self.tableView)
+        
+        if #available(iOS 13, *) {
+            ContextTableCell.register(in: self.tableView)
+        }
         
     }
     
@@ -203,7 +207,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let _section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         
-        let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
+        var cell: UITableViewCell!
+        
+        if #available(iOS 13, *) {
+            cell = ContextTableCell.dequeue(for: tableView, at: indexPath)
+        }
+        else {
+            cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
+        }
 
         switch _section {
         case .transition:

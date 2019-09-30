@@ -388,7 +388,7 @@ public extension UIDevice /* Info*/ {
     }
     
     /**
-     Flag indicating whether the current device is a modern phone (iPhone X form-factor).
+     Flag indicating whether the current device is a modern phone (edge-to-edge screen without a home button).
      */
     var isModernPhone: Bool {
         
@@ -407,7 +407,7 @@ public extension UIDevice /* Info*/ {
     }
     
     /**
-     Flag indicating whether the current device is a modern pad (2018 iPad Pro form-factor).
+     Flag indicating whether the current device is a modern pad (edge-to-edge screen without a home button).
      */
     var isModernPad: Bool {
         

@@ -39,6 +39,17 @@ class DetailViewController: UIViewController {
             
         }
         
+        if #available(iOS 13, *) {
+            
+            let contextView = ContextView(color: .groupTableViewBackground)
+            self.view.addSubview(contextView)
+            contextView.snp.makeConstraints { make in
+                make.width.height.equalTo(150)
+                make.center.equalToSuperview()
+            }
+            
+        }
+        
     }
     
     @objc private func didTapDismiss(_ sender: UIBarButtonItem) {

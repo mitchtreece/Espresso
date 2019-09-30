@@ -13,6 +13,8 @@
 		26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */; };
 		26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
+		26D7637123403EDF000C9746 /* ContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7637023403EDF000C9746 /* ContextView.swift */; };
+		26D76374234042C0000C9746 /* ContextTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76373234042C0000C9746 /* ContextTableCell.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -40,6 +42,8 @@
 		26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspressoAppCoordinator.swift; sourceTree = "<group>"; };
 		26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
+		26D7637023403EDF000C9746 /* ContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextView.swift; sourceTree = "<group>"; };
+		26D76373234042C0000C9746 /* ContextTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableCell.swift; sourceTree = "<group>"; };
 		26F2DC62232C782900168F38 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,8 @@
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
+				26D7637023403EDF000C9746 /* ContextView.swift */,
+				26D76373234042C0000C9746 /* ContextTableCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -386,6 +392,8 @@
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
 				26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */,
 				26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */,
+				26D7637123403EDF000C9746 /* ContextView.swift in Sources */,
+				26D76374234042C0000C9746 /* ContextTableCell.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
