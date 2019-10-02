@@ -96,6 +96,7 @@
 		263C9C722332F41100798F55 /* Event+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C9C712332F41100798F55 /* Event+Rx.swift */; };
 		26716B174C7DEDFFB50B7293058C65A5 /* GroupedObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF883FA521B8E72E2985E5A9EA60179F /* GroupedObservable.swift */; };
 		269077587811CACA1E932F4448D8DD0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A96FC5AF767CDA27863653505E9EFCEB /* Foundation.framework */; };
+		26D7637223403F8D000C9746 /* UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7636E23403320000C9746 /* UIContextMenu.swift */; };
 		27056B364B766DBA759911ED63577980 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CEA6EF4BE266772799B11605DFDE43 /* Bag.swift */; };
 		27B43D5C2A95E8DD8506F624E943DC5C /* Espresso-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 029516D1A26304D8B0E805CB77399711 /* Espresso-dummy.m */; };
 		280CAF0D9445E1330DCA4E7AB944502E /* TakeUntil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52EE8A86B022C02C8A8E46DC5169A2 /* TakeUntil.swift */; };
@@ -669,6 +670,7 @@
 		263C9C6E2332ED9D00798F55 /* UIViewController+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
 		263C9C712332F41100798F55 /* Event+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Rx.swift"; sourceTree = "<group>"; };
 		26516A5C320D6EEEF545523DEA55FFF2 /* Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Catch.swift; path = RxSwift/Observables/Catch.swift; sourceTree = "<group>"; };
+		26D7636E23403320000C9746 /* UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenu.swift; sourceTree = "<group>"; };
 		2758A862A9A460CA51BC2C264945FF24 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		278BAE2C3AB2444D74640EEDDCF25315 /* RxSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxSwift-dummy.m"; sourceTree = "<group>"; };
 		2838C0D8E4C0A68634C670573D225304 /* UITableView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView+Rx.swift"; path = "RxCocoa/iOS/UITableView+Rx.swift"; sourceTree = "<group>"; };
@@ -1363,6 +1365,7 @@
 				BAF20E524CFA2B300A5A8704D0C5BF95 /* UITokenLabel.swift */,
 				AB465AA96FDF9AA3553CB08365FC8FED /* UIView+Espresso.swift */,
 				AA493E1E9D03EA5552FAD3829030CBCD /* UIViewController+Espresso.swift */,
+				26D7636E23403320000C9746 /* UIContextMenu.swift */,
 				25E94ED19B8FA8B23CDFD0A4FD5C5CAD /* Base */,
 				4AB5EF0D6EFCABE0D677FA0AEB03AD05 /* Events */,
 				483A15982DB8BFC73215FCFF1E539D16 /* UIAnimation */,
@@ -2708,6 +2711,7 @@
 				3869D3ED5C4D9100F4D5B66B52FA59AC /* UIBaseCollectionViewCell.swift in Sources */,
 				263C9C722332F41100798F55 /* Event+Rx.swift in Sources */,
 				7C81B5ACFF76E69205F478476FEF2579 /* UIBaseTableViewCell.swift in Sources */,
+				26D7637223403F8D000C9746 /* UIContextMenu.swift in Sources */,
 				10A3C71EC809BF61B15A954E004CE9BA /* UIBaseView.swift in Sources */,
 				A342569FC17FD7B5F3502155E33BE2AA /* UIBaseViewController.swift in Sources */,
 				03B2D7CE3E1E11B7C90A47F1202D48A5 /* UIBlurView.swift in Sources */,
