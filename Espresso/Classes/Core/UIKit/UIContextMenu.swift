@@ -21,7 +21,7 @@ public extension UIView {
             if let _ = self.contextMenu {
                 
                 // If we already have a context menu, and we're setting a new one
-                // we need to remove the old one. Assuming there is only onw
+                // we need to remove the old one. Assuming there is only one
                 // `UIContextMenuInteraction` registered to a view at a time.
                 
                 let interaction = self.interactions
@@ -166,11 +166,15 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     /// generate a preview based on the context menu's parent view.
     public let previewProvider: UIContextMenuContentPreviewProvider?
     
-    /// The context menu's preview pop closure.
+    /// The context menu's preview commit closure.
     ///
     /// This will be called after a user taps on the context menu's preview.
-    /// Perform navigation or other tasks if needed.
-    public let previewPopHandler: (()->())?
+    /// If possible, the currently previewed view controller will be provided
+    /// to the closure. Perform navigation or other tasks if needed.
+    public let commitHandler: ((UIViewController?)->())?
+        
+    /// The context menu's preferred preview commit style; _defaults to pop_.
+    public var commitStyle: UIContextMenuInteractionCommitStyle = .pop
     
     /// Flag indicating if tapping on a provided preview should
     public let automaticallyPopToPreview: Bool = true
@@ -185,17 +189,17 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     
     /// Initializes a new `UIContextMenu`.
     /// - parameter title: The context menu's title.
-    /// - parameter image: The context menu's image.
-    /// - parameter identifier: The context menu's identifier.
+    /// - parameter image: The context menu's image; _defaults to nil_.
+    /// - parameter identifier: The context menu's identifier; _defaults to nil_.
     /// - parameter previewProvider: The context menu's preview providing closure; _defaults to nil_.
-    /// - parameter previewPopHandler: The context menu's preview pop closure; _defaults to nil_.
+    /// - parameter commitHandler: The context menu's preview commit closure; _defaults to nil_.
     /// - parameter items: The context menu's items.
     /// - parameter includeSuggestedItems: Flag indicating if system-suggested items should be displayed; _defaults to false_.
     public init(title: String,
-                image: UIImage?,
-                identifier: String?,
+                image: UIImage? = nil,
+                identifier: String? = nil,
                 previewProvider: UIContextMenuContentPreviewProvider? = nil,
-                previewPopHandler: (()->())? = nil,
+                commitHandler: ((UIViewController?)->())? = nil,
                 items: [Item],
                 includeSuggestedItems: Bool = false) {
         
@@ -203,7 +207,7 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         self.image = image
         self.identifier = identifier
         self.previewProvider = previewProvider
-        self.previewPopHandler = previewPopHandler
+        self.commitHandler = commitHandler
         self.items = items
         self.includeSuggestedItems = includeSuggestedItems
         
@@ -240,14 +244,25 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         return self.configuration!
                 
     }
-    
+        
     public func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-                                       willCommitWithAnimator animator: UIContextMenuInteractionCommitAnimating) {
+                                       willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                       animator: UIContextMenuInteractionCommitAnimating) {
         
-        guard let handler = self.previewPopHandler else { return }
+        // If this protocol function is implemented,
+        // the system always performs some kind of animation.
+        // This isn't ideal, but doesn't hurt anything.
+        //
+        // Need to find a way to conditionally adopt this function
+        // Only when needed. responds(toSelector:) fuckery?
         
+        guard let handler = self.commitHandler else {
+            return
+        }
+                
+        animator.preferredCommitStyle = self.commitStyle
         animator.addCompletion {
-            handler()
+            handler(animator.previewViewController)
         }
         
     }

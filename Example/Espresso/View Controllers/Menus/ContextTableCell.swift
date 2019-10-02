@@ -11,33 +11,41 @@ import Espresso
 
 @available(iOS 13, *)
 protocol ContextTableCellDelegate: class {
-    func contextTableCellDidTapContextMenuPreview(_ cell: ContextTableCell)
+    func contextTableCellPreview(_ cell: ContextTableCell, for color: Color) -> UIViewController?
+    func contextTableCellDidTapPreview(_ cell: ContextTableCell, preview: UIViewController?)
 }
 
 @available(iOS 13, *)
 class ContextTableCell: UITableViewCell {
     
+    private(set) var color: Color!
     weak var delegate: ContextTableCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.accessoryType = .disclosureIndicator
         
         self.contextMenu = UIContextMenu(
-            title: "Hello, iOS 13!",
-            image: nil,
-            identifier: nil,
-            previewProvider: {
+            title: "Hello, world!",
+            previewProvider: { [weak self] in
                 
-                let vc = UIViewController()
-                vc.view.backgroundColor = .green
-                return vc
+                guard let _self = self else { return nil }
+                
+                return _self.delegate?.contextTableCellPreview(
+                    _self,
+                    for: _self.color
+                )
                 
             },
-            previewPopHandler: { [weak self] in
+            commitHandler: { [weak self] preview in
                 
                 guard let _self = self else { return }
-                _self.delegate?.contextTableCellDidTapContextMenuPreview(_self)
+                
+                _self.delegate?.contextTableCellDidTapPreview(
+                    _self,
+                    preview: preview
+                )
                 
             },
             items: [
@@ -47,6 +55,14 @@ class ContextTableCell: UITableViewCell {
                     .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in print("Another one!") }) 
                 ])
             ])
+        
+    }
+    
+    func setup(color: Color, delegate: ContextTableCellDelegate) {
+        
+        self.delegate = delegate
+        self.color = color
+        self.textLabel?.text = color.name
         
     }
     

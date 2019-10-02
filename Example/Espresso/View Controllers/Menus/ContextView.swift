@@ -9,7 +9,6 @@
 import UIKit
 import Espresso
 
-@available(iOS 13, *)
 class ContextView: UIView {
     
     private var label: UILabel!
@@ -24,24 +23,11 @@ class ContextView: UIView {
         self.label.numberOfLines = 0
         self.label.textAlignment = .center
         self.label.font = .systemFont(ofSize: 13)
-        self.label.text = "Tap & hold for more context!"
+        self.label.text = "Tap & hold for a menu!"
         self.addSubview(self.label)
         self.label.snp.makeConstraints { make in
             make.edges.equalTo(0).inset(8)
         }
-
-        self.contextMenu = UIContextMenu(
-            title: "Hello, iOS 13!",
-            image: nil,
-            identifier: nil,
-            previewProvider: nil,
-            items: [
-                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in print("foo") }),
-                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in print("bar") }),
-                .menu(title: "More...", children: [
-                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in print("Another one!") })
-                ])
-            ])
         
     }
     
