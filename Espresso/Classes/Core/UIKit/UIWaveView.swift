@@ -7,8 +7,10 @@
 
 import UIKit
 
+/// `UIView` subclass that draws & animates fluid waves.
 public class UIWaveView: UIView {
     
+    /// Representation of the various wave types.
     public enum Wave: Hashable {
         
         public static func == (lhs: UIWaveView.Wave, rhs: UIWaveView.Wave) -> Bool {
@@ -70,6 +72,15 @@ public class UIWaveView: UIView {
             
         }
         
+        /// A wave drawn with a solid color.
+        ///
+        /// **height**: The height of the wave inset from view's top.
+        ///
+        /// **inset**: The amount to inset the wave from the view's top; _defaults to nil_.
+        ///
+        /// **speed**: The wave's movement speed.
+        ///
+        /// **color**: The wave's color.
         case solid(
             height: CGFloat,
             inset: CGFloat? = nil,
@@ -77,6 +88,17 @@ public class UIWaveView: UIView {
             color: UIColor
         )
         
+        /// A wave drawn with a gradient.
+        ///
+        /// **height**: The height of the wave inset from view's top.
+        ///
+        /// **inset**: The amount to inset the wave from the view's top; _defaults to nil_.
+        ///
+        /// **speed**: The wave's movement speed.
+        ///
+        /// **colors**: The wave's gradient colors.
+        ///
+        /// **stops**: The wave's gradient stops.
         case gradient(
             height: CGFloat,
             inset: CGFloat? = nil,
@@ -87,6 +109,7 @@ public class UIWaveView: UIView {
         
     }
     
+    /// The view's waves.
     public var waves = [Wave]() {
         didSet {
             setupWaves()
@@ -98,6 +121,8 @@ public class UIWaveView: UIView {
     
     private var displayLink: CADisplayLink?
     
+    /// Initializes a `UIWaveView` with waves.
+    /// - parameter waves: The view's waves.
     public convenience init(waves: [Wave]) {
         
         self.init(frame: .zero)
