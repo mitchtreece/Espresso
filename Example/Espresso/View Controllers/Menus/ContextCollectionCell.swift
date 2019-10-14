@@ -39,10 +39,10 @@ class ContextCollectionCell: UICollectionViewCell {
                 
             },
             items: [
-                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in print("foo") }),
-                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in print("bar") }),
+                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in self.alert("Foo") }),
+                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in self.alert("Bar") }),
                 .menu(title: "More...", children: [
-                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in print("Another one!") })
+                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in self.alert("Another one!") })
                 ])
             ])
         
@@ -58,6 +58,10 @@ class ContextCollectionCell: UICollectionViewCell {
         self.color = color
         self.contentView.backgroundColor = color.color
         
+    }
+    
+    private func alert(_ message: String) {
+        (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }
     
 }

@@ -27,7 +27,7 @@ class ContextTableCell: UITableViewCell {
         self.accessoryType = .disclosureIndicator
         
         self.contextMenu = UIContextMenu(
-            title: "Hello, world!",
+            title: "Hello, context menu!",
             previewProvider: { [weak self] in
                 
                 guard let _self = self else { return nil }
@@ -49,13 +49,17 @@ class ContextTableCell: UITableViewCell {
                 
             },
             items: [
-                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in print("foo") }),
-                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in print("bar") }),
+                .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in self.alert("Foo") }),
+                .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in self.alert("Bar") }),
                 .menu(title: "More...", children: [
-                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in print("Another one!") }) 
+                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in self.alert("Another one!") })
                 ])
             ])
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup(color: Color, delegate: ContextTableCellDelegate) {
@@ -66,8 +70,8 @@ class ContextTableCell: UITableViewCell {
         
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func alert(_ message: String) {
+        (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }
     
 }
