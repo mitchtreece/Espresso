@@ -78,6 +78,7 @@ extension ContextMenuTableViewController: ContextTableCellDelegate {
     func contextTableCellPreview(_ cell: ContextTableCell, for color: Color) -> UIViewController? {
         
         let vc = DetailViewController()
+        vc.title = color.name
         vc.view.backgroundColor = color.color
         return vc
         

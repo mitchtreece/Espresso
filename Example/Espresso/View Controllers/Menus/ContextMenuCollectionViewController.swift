@@ -89,6 +89,7 @@ extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
     func contextCollectionCellPreview(_ cell: ContextCollectionCell, for color: Color) -> UIViewController? {
         
         let vc = DetailViewController()
+        vc.title = color.name
         vc.view.backgroundColor = color.color
         return vc
         
