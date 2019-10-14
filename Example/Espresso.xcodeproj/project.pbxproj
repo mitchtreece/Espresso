@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
+		266E0EB1235500F3004D2559 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E0EB0235500F3004D2559 /* WaveViewController.swift */; };
 		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
 		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
 		269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		266E0EB0235500F3004D2559 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
+				266E0EB0235500F3004D2559 /* WaveViewController.swift */,
 				269114BE2344302F00A4A5F6 /* Menus */,
 			);
 			path = "View Controllers";
@@ -417,6 +420,7 @@
 				269114C12344318F00A4A5F6 /* ContextView.swift in Sources */,
 				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
 				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
+				266E0EB1235500F3004D2559 /* WaveViewController.swift in Sources */,
 				26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */,
 				269114C62344341500A4A5F6 /* Color.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,

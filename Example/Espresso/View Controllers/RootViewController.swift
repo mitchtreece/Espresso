@@ -12,6 +12,7 @@ import SnapKit
 
 protocol RootViewControllerDelegate: class {
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
+    func rootViewController(_ vc: RootViewController, didSelectViewRow row: RootViewController.ViewRow)
     func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow)
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
 }
@@ -69,6 +70,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case rxMvvm
         case taptics
         case helpers
+        case views
         case menus
         
     }
@@ -107,6 +109,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .pushBack: return "UIPushBackTransition"
             case .zoom: return "UIZoomTransition"
             case .custom: return "Custom"
+            }
+            
+        }
+        
+    }
+    
+    enum ViewRow: Int, CaseIterable {
+        
+        case wave
+        
+        var title: String {
+            
+            switch self {
+            case .wave: return "UIWaveView"
             }
             
         }
@@ -209,6 +225,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .transition: return "Transitions"
+        case .views: return "Views"
         case .menus: return "Menus"
         case .rxMvvm: return "Rx / MVVM"
         case .taptics: return "Taptics"
@@ -223,6 +240,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .transition: return TransitionRow.allCases.count
+        case .views: return ViewRow.allCases.count
         case .menus: return MenuRow.allCases.count
         case .rxMvvm: return RxMvvmRow.allCases.count
         case .taptics: return TapticRow.allCases.count
@@ -241,6 +259,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+            
+        case .views:
+            
+            guard let row = ViewRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
         
         case .menus:
@@ -286,6 +309,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
             self.delegate?.rootViewController(self, didSelectTransitionRow: row)
+            
+        case .views:
+            
+            guard let row = ViewRow(rawValue: indexPath.row) else { return }
+            self.delegate?.rootViewController(self, didSelectViewRow: row)
             
         case .menus:
             

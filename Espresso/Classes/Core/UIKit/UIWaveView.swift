@@ -154,13 +154,13 @@ public class UIWaveView: UIView {
         self.layerMap.removeAll()
         
         var map = [Wave: CALayer]()
-        
+                
         self.waves.forEach {
             
             let layer = self.layer(for: $0)
             map[$0] = layer
             self.layer.addSublayer(layer)
-            
+                        
         }
         
         self.layerMap = map

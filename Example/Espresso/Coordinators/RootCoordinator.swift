@@ -32,6 +32,18 @@ extension RootCoordinator: RootViewControllerDelegate {
         
     }
     
+    func rootViewController(_ vc: RootViewController, didSelectViewRow row: RootViewController.ViewRow) {
+              
+        var vc: UIViewController!
+        
+        switch row {
+        case .wave: vc = WaveViewController()
+        }
+        
+        push(vc)
+        
+    }
+    
     func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow) {
         
         if #available(iOS 13, *) {
