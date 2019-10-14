@@ -10,7 +10,7 @@ import UIKit
 /**
  `UIViewController` subclass that provides common properties & functions when backed by a view model.
  */
-open class UIViewModelViewController<V: ViewModel>: UIViewController {
+open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     
     /// The view controller's backing view model.
     public private(set) var viewModel: V!

@@ -10,7 +10,7 @@ import UIKit
 /**
  `UICollectionViewCell` subclass that provides common properties & functions when backed by a view model.
  */
-open class UIViewModelCollectionViewCell<V: ViewModel>: UICollectionViewCell {
+open class UIViewModelCollectionViewCell<V: ViewModel>: UIBaseCollectionViewCell {
     
     /// The cell's backing view model.
     public private(set) var viewModel: V!

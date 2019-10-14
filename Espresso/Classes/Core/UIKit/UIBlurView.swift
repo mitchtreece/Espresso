@@ -11,7 +11,7 @@ import SnapKit
 /**
  Blurred `UIView` subclass that responds to tint color changes.
  */
-open class UIBlurView: UIView {
+open class UIBlurView: UIBaseView {
     
     private var blurView: UIVisualEffectView!
     private var blurStyle = UIBlurEffect.Style.light

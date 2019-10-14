@@ -10,7 +10,7 @@ import UIKit
 /**
  `UIView` subclass that draws a gradient for it's contents.
  */
-open class UIGradientView: UIView {
+open class UIGradientView: UIBaseView {
     
     /**
      Representation of the various gradient directions.
@@ -40,7 +40,19 @@ open class UIGradientView: UIView {
         
     }
     
-    private lazy var gradient: CAGradientLayer = {
+    /// Representation of the various gradient color stops.
+    public enum Stops: Hashable {
+        
+        /// An equal color stop distribution.
+        case equal
+        
+        /// A custom color stop distribution.
+        case custom([CGFloat])
+        
+    }
+    
+    /// The view's backing `CAGradientLayer`.
+    public private(set) lazy var gradientLayer: CAGradientLayer = {
         return self.layer as! CAGradientLayer
     }()
     
@@ -49,7 +61,7 @@ open class UIGradientView: UIView {
      */
     public var colors = [UIColor.black, UIColor.clear] {
         didSet {
-            draw()
+            update()
         }
     }
     
@@ -58,12 +70,25 @@ open class UIGradientView: UIView {
      */
     public var direction: Direction = .up {
         didSet {
-            draw()
+            update()
+        }
+    }
+    
+    /// The gradient's color stops; _defaults to equal_.
+    public var stops: Stops = .equal {
+        didSet {
+            update()
         }
     }
     
     override open class var layerClass: AnyClass {
         return CAGradientLayer.self
+    }
+    
+    @available(iOS 12, *)
+    public override func userInterfaceStyleDidChange() {
+        super.userInterfaceStyleDidChange()
+        update()
     }
     
     /**
@@ -78,7 +103,7 @@ open class UIGradientView: UIView {
         self.init(frame: frame)
         self.colors = colors
         self.direction = direction
-        self.draw()
+        update()
         
     }
     
@@ -86,7 +111,7 @@ open class UIGradientView: UIView {
         
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
-        self.draw()
+        update()
         
     }
     
@@ -94,15 +119,26 @@ open class UIGradientView: UIView {
         
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clear
-        self.draw()
+        update()
         
     }
     
-    private func draw() {
+    /// Updates & draws the view's gradient.
+    func update() {
         
-        gradient.colors = colors.map({ $0.cgColor })
-        gradient.startPoint = points(for: direction).start
-        gradient.endPoint = points(for: direction).end
+        self.gradientLayer.colors = colors.map({ $0.cgColor })
+        self.gradientLayer.startPoint = points(for: self.direction).start
+        self.gradientLayer.endPoint = points(for: self.direction).end
+                
+        switch self.stops {
+        case .custom(let values):
+            
+            self.gradientLayer.locations = values
+                .map { Float($0) }
+                .map { NSNumber(value: $0) }
+            
+        default: self.gradientLayer.locations = nil
+        }
         
     }
     
