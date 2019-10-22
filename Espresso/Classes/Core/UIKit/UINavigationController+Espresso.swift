@@ -16,12 +16,19 @@ public extension UINavigationController /* Push */ {
      */
     func setViewControllers(_ viewControllers: [UIViewController], completion: @escaping ()->()) {
         
-        CATransaction.begin()
-        self.setViewControllers(viewControllers, animated: true)
-        CATransaction.setCompletionBlock {
+        setViewControllers(
+            viewControllers,
+            animated: true
+        )
+        
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion()
+            }
+        }
+        else {
             completion()
         }
-        CATransaction.commit()
         
     }
     
@@ -32,12 +39,19 @@ public extension UINavigationController /* Push */ {
      */
     func pushViewController(_ viewController: UIViewController, completion: @escaping ()->()) {
         
-        CATransaction.begin()
-        self.pushViewController(viewController, animated: true)
-        CATransaction.setCompletionBlock {
+        pushViewController(
+            viewController,
+            animated: true
+        )
+        
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion()
+            }
+        }
+        else {
             completion()
         }
-        CATransaction.commit()
         
     }
     
@@ -47,12 +61,16 @@ public extension UINavigationController /* Push */ {
      */
     func popViewController(completion: @escaping (UIViewController?)->()) {
         
-        CATransaction.begin()
-        let poppedViewController = self.popViewController(animated: true)
-        CATransaction.setCompletionBlock {
+        let poppedViewController = popViewController(animated: true)
+        
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion(poppedViewController)
+            }
+        }
+        else {
             completion(poppedViewController)
         }
-        CATransaction.commit()
         
     }
     
@@ -62,12 +80,16 @@ public extension UINavigationController /* Push */ {
      */
     func popToRootViewController(completion: @escaping ([UIViewController]?)->()) {
         
-        CATransaction.begin()
-        let poppedViewControllers = self.popToRootViewController(animated: true)
-        CATransaction.setCompletionBlock {
+        let poppedViewControllers = popToRootViewController(animated: true)
+        
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion(poppedViewControllers)
+            }
+        }
+        else {
             completion(poppedViewControllers)
         }
-        CATransaction.commit()
         
     }
     
@@ -77,12 +99,19 @@ public extension UINavigationController /* Push */ {
      */
     func popToViewController(_ viewController: UIViewController, completion: @escaping ([UIViewController]?)->()) {
         
-        CATransaction.begin()
-        let poppedViewControllers = self.popToViewController(viewController, animated: true)
-        CATransaction.setCompletionBlock {
+        let poppedViewControllers = popToViewController(
+            viewController,
+            animated: true
+        )
+
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion(poppedViewControllers)
+            }
+        }
+        else {
             completion(poppedViewControllers)
         }
-        CATransaction.commit()
         
     }
     
