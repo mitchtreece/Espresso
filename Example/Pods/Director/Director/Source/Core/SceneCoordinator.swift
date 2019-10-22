@@ -118,7 +118,7 @@ open class SceneCoordinator: AnyCoordinator {
             
             self.navigationController.delegate = transitioningNavDelegate
             
-            self.navigationController.pushViewController(viewController, completion: {
+            self.navigationController.pushViewController(viewController, animated: true, completion: {
                 self.navigationController.setViewControllers([viewController], animated: false)
                 self.rootCoordinator.navigationController.delegate = self.rootCoordinator.presentationDelegate
             })
@@ -157,7 +157,7 @@ open class SceneCoordinator: AnyCoordinator {
             
             self.navigationController.delegate = transitioningNavDelegate
             
-            self.navigationController.pushViewController(viewController, completion: {
+            self.navigationController.pushViewController(viewController, animated: true, completion: {
                 self.navigationController.setViewControllers([viewController], animated: false)
                 self.rootCoordinator.navigationController.delegate = self.rootCoordinator.presentationDelegate
                 completion?()
@@ -166,7 +166,7 @@ open class SceneCoordinator: AnyCoordinator {
         }
         else {
 
-            self.navigationController.setViewControllers([viewController], completion: {
+            self.navigationController.setViewControllers([viewController], animated: true, completion: {
                 self.rootCoordinator.navigationController.delegate = self.rootCoordinator.presentationDelegate
                 completion?()
             })
