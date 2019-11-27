@@ -80,6 +80,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case fade
         case slide
         case cover
+        case reveal
         case swap
         case pushBack
         case zoom
@@ -91,6 +92,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .fade: return UIFadeTransition()
             case .slide: return UISlideTransition()
             case .cover: return UICoverTransition()
+            case .reveal: return UIRevealTransition()
             case .swap: return UISwapTransition()
             case .pushBack: return UIPushBackTransition()
             case .zoom: return UIZoomTransition()
@@ -105,6 +107,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .fade: return "UIFadeTransition"
             case .slide: return "UISlideTransition"
             case .cover: return "UICoverTransition"
+            case .reveal: return "UIRevealTransition"
             case .swap: return "UISwapTransition"
             case .pushBack: return "UIPushBackTransition"
             case .zoom: return "UIZoomTransition"
