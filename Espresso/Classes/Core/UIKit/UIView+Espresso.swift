@@ -119,19 +119,50 @@ public extension UIView /* Nib Loading */ {
     }
     
     /**
-     Load's a view from a nib with a specified name. If no name is provided, the class name will be used.
+     Load's a view from a nib with a specified name & bundle. If no name is provided, the class name will be used.
+     If no bundle is provided, the main bundle will be used.
      
      - Parameter name: The nib's name.
+     - Parameter bundleName: The bundle to load the nib from.
      - Returns: A typed nib-loaded view instance.
      */
-    static func loadFromNib(name: String? = nil) -> Self {
-        return _loadFromNib(name: name)
+    static func loadFromNib(name: String? = nil, bundleName: String? = nil) -> Self {
+        
+        return _loadFromNib(
+            name: name,
+            bundleName: bundleName
+        )
+        
     }
     
-    private class func _loadFromNib<T: UIView>(name: String? = nil) -> T {
+    private class func _loadFromNib<T: UIView>(name: String?, bundleName: String?) -> T {
         
         let name = name ?? String(describing: self)
-        return Bundle.main.loadNibNamed(name, owner: self, options: nil)![0] as! T
+
+        if let bundleName = bundleName {
+            
+            var _bundleName = bundleName
+            if !_bundleName.contains(".bundle") {
+                _bundleName += ".bundle"
+            }
+            
+            let url = Bundle(for: self)
+                .resourceURL!
+                .appendingPathComponent(_bundleName)
+            
+            return Bundle(url: url)!.loadNibNamed(
+                name,
+                owner: self,
+                options: nil
+            )!.first! as! T
+            
+        }
+        
+        return Bundle.main.loadNibNamed(
+            name,
+            owner: self,
+            options: nil
+        )!.first! as! T
         
     }
     
