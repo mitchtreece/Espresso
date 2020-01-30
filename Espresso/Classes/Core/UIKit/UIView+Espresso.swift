@@ -123,42 +123,24 @@ public extension UIView /* Nib Loading */ {
      If no bundle is provided, the main bundle will be used.
      
      - Parameter name: The nib's name.
-     - Parameter bundleName: The bundle to load the nib from.
+     - Parameter bundle: The bundle to load the nib from.
      - Returns: A typed nib-loaded view instance.
      */
-    static func loadFromNib(name: String? = nil, bundleName: String? = nil) -> Self {
+    static func loadFromNib(name: String? = nil, bundle: Bundle? = nil) -> Self {
         
         return _loadFromNib(
             name: name,
-            bundleName: bundleName
+            bundle: bundle
         )
         
     }
     
-    private class func _loadFromNib<T: UIView>(name: String?, bundleName: String?) -> T {
+    private class func _loadFromNib<T: UIView>(name: String?, bundle: Bundle?) -> T {
         
         let name = name ?? String(describing: self)
-
-        if let bundleName = bundleName {
-            
-            var _bundleName = bundleName
-            if !_bundleName.contains(".bundle") {
-                _bundleName += ".bundle"
-            }
-            
-            let url = Bundle(for: self)
-                .resourceURL!
-                .appendingPathComponent(_bundleName)
-            
-            return Bundle(url: url)!.loadNibNamed(
-                name,
-                owner: self,
-                options: nil
-            )!.first! as! T
-            
-        }
+        let bundle = bundle ?? Bundle.main
         
-        return Bundle.main.loadNibNamed(
+        return bundle.loadNibNamed(
             name,
             owner: self,
             options: nil
