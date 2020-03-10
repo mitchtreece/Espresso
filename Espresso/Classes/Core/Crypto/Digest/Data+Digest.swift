@@ -10,12 +10,10 @@ import CommonCrypto
 
 public extension Data {
 
-    /**
-     Hashes the data with a given digest method & output format. Additionally adds an RSA-2048 ASN.1 header.
-     - Parameter digest: The digest hashing method.
-     - Parameter format: The digest hash output format; _defaults to hex_.
-     - Returns: A hashed string containing an RSA-2048 ASN.1 header.
-     */
+    /// Hashes the data with a given digest method & output format. Additionally adds an RSA-2048 ASN.1 header.
+    /// - Parameter digest: The digest hashing method.
+    /// - Parameter format: The digest hash output format; _defaults to hex_.
+    /// - Returns: A hashed string containing an RSA-2048 ASN.1 header.
     func hashWithRSA2048ASN1Header(digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
         
         let header: [UInt8] = [
@@ -26,16 +24,17 @@ public extension Data {
         var headerData = Data(header)
         headerData.append(self)
         
-        return hashed(with: digest, format: format)
+        return hashed(
+            with: digest,
+            format: format
+        )
         
     }
     
-    /**
-     Hashes the data with a given digest method & output format.
-     - Parameter digest: The digest hashing method.
-     - Parameter format: The digest hash output format; _defaults to hex_.
-     - Returns: A hashed string.
-     */
+    /// Hashes the data with a given digest method & output format.
+    /// - Parameter digest: The digest hashing method.
+    /// - Parameter format: The digest hash output format; _defaults to hex_.
+    /// - Returns: A hashed string.
     func hashed(with digest: CryptoDigest, format: CryptoDigest.OutputFormat = .hex) -> String? {
         
         var data = Data(count: Int(digest.length))

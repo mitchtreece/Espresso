@@ -8,14 +8,10 @@
 import Foundation
 import CommonCrypto
 
-/**
- Representation of the various digest hashing methods.
- */
+/// Representation of the various digest hashing methods.
 public enum CryptoDigest {
     
-    /**
-     Representation of the various digest hash formats.
-     */
+    /// Representation of the various digest hash formats.
     public enum OutputFormat {
         case hex
         case base64
