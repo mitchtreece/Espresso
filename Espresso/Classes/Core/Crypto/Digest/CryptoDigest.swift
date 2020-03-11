@@ -12,9 +12,11 @@ import CommonCrypto
 public enum CryptoDigest {
     
     /// Representation of the various digest hash formats.
-    public enum OutputFormat {
+    public enum Format {
+        
         case hex
         case base64
+        
     }
     
     /// An MD5 hashing method
