@@ -23,14 +23,16 @@ public class Nonce {
     
     // The nonce's base64 string representation.
     public var string: String {
-        return self.data.base64EncodedString()
+        return String(data: self.data, encoding: .utf8)!
     }
     
     /// Initializes a `Nonce` with a given length.
     /// - Parameter length: The nonce data length; _defaults to 32_.
     public init?(length: Int = 32) {
         
-        guard let data = Data(randomWithLength: length) else { return nil }
+        guard let data = String(randomWithLength: length)
+            .data(using: .utf8) else { return nil }
+        
         self.data = data
         self.length = length
         

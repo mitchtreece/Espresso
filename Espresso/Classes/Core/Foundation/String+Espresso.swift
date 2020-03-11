@@ -115,3 +115,52 @@ public extension String /* Tokens */ {
     }
     
 }
+
+public extension String /* Random */ {
+    
+    /// Representation of the various string-allowed character types.
+    enum CharacterType {
+        
+        /// A numeric-only character type.
+        case numeric
+        
+        /// An alphabet-only character type.
+        case alphabetic
+        
+        /// An alphanumeric-only character type.
+        case alphanumeric
+        
+        /// A custom set character type.
+        case inString(String)
+        
+        /// The string representation of the character type.
+        public var set: String {
+            
+            let numbers = "0123456789"
+            let letters = "abcdefghijklmnopqrstuvwxyz"
+            
+            switch self {
+            case .numeric: return numbers
+            case .alphabetic: return (letters + letters.uppercased())
+            case .alphanumeric: return (letters + letters.uppercased() + numbers)
+            case .inString(let string): return string
+            }
+            
+        }
+        
+    }
+    
+    /// Initializes a string with a random length & allowed character type.
+    /// - Parameter length: The random string length.
+    /// - Parameter allowedCharacters: The allowed character type; _defaults to alphanumeric_.
+    init(randomWithLength length: Int, allowedCharacters: CharacterType = .alphanumeric) {
+        
+        let randomCharacters = (0..<length).compactMap { _ in
+            allowedCharacters.set.randomElement()
+        }
+        
+        self.init(randomCharacters)
+        
+    }
+    
+}

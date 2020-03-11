@@ -39,22 +39,15 @@ public extension Data {
         
         var data = Data(count: Int(digest.length))
         
-        _ = data.withUnsafeMutableBytes { digestBytes -> Void in
+        _ = data.withUnsafeMutableBytes { digestBytes in
             
-            self.withUnsafeBytes { messageBytes -> Void in
-                
-                let messagePointer = messageBytes.baseAddress
-                let digestPointer = digestBytes.bindMemory(to: UInt8.self).baseAddress
-                let length = CC_LONG(self.count)
-                
-                switch digest {
-                case .md5: CC_MD5(messagePointer, length, digestPointer)
-                case .sha1: CC_SHA1(messagePointer, length, digestPointer)
-                case .sha224: CC_SHA224(messagePointer, length, digestPointer)
-                case .sha256: CC_SHA256(messagePointer, length, digestPointer)
-                case .sha384: CC_SHA384(messagePointer, length, digestPointer)
-                case .sha512: CC_SHA512(messagePointer, length, digestPointer)
-                }
+            self.withUnsafeBytes { messageBytes in
+
+                digest.hash(
+                    data: messageBytes.baseAddress!,
+                    length: CC_LONG(self.count),
+                    md: digestBytes.bindMemory(to: UInt8.self).baseAddress!
+                )
                 
             }
             

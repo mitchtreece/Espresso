@@ -51,4 +51,17 @@ public enum CryptoDigest {
         
     }
     
+    internal func hash(data: UnsafeRawPointer, length: CC_LONG, md: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> {
+        
+        switch self {
+        case .md5: return CC_MD5(data, length, md)
+        case .sha1: return CC_SHA1(data, length, md)
+        case .sha224: return CC_SHA224(data, length, md)
+        case .sha256: return CC_SHA256(data, length, md)
+        case .sha384: return CC_SHA384(data, length, md)
+        case .sha512: return CC_SHA512(data, length, md)
+        }
+        
+    }
+    
 }
