@@ -18,16 +18,11 @@ public class Nonce {
     /// The nonce length.
     public let length: Int
     
-    // The nonce's raw string representation.
-    public private(set) var rawString: String = ""
-    
     // The nonce's data representation.
-    public var data: Data {
-        return Data(self.rawString.utf8)
-    }
+    public private(set) var data: Data
     
     // The nonce's base64 string representation.
-    public var base64String: String {
+    public var string: String {
         return self.data.base64EncodedString()
     }
     
@@ -35,14 +30,9 @@ public class Nonce {
     /// - Parameter length: The nonce data length; _defaults to 32_.
     public init?(length: Int = 32) {
         
+        guard let data = Data(randomWithLength: length) else { return nil }
+        self.data = data
         self.length = length
-
-        do {
-            self.rawString = try generate()
-        }
-        catch {
-            return nil
-        }
         
     }
 
@@ -51,51 +41,6 @@ public class Nonce {
     /// - Returns: A hashed hex nonce string.
     public func hashed(using digest: CryptoDigest = .sha256) -> String? {
         return self.data.hashed(using: digest)
-    }
-    
-    private func generate() throws -> String {
-        
-        // Adapted from:
-        // https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-        
-        guard self.length > 0 else { throw Error.invalidLength }
-        
-        let charset: Array<Character> = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        
-        var result = ""
-        var remainingLength = self.length
-        
-        while remainingLength > 0 {
-            
-            let randoms: [UInt8] = try (0..<16).map { _ in
-                
-                var random: UInt8 = 0
-                
-                let secCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                
-                if secCode != errSecSuccess {
-                    throw Error.sec(secCode)
-                }
-                
-                return random
-                
-            }
-               
-            randoms.forEach { rand in
-                
-                guard remainingLength != 0 else { return }
-                
-                if rand < charset.count {
-                    result.append(charset[Int(rand)])
-                    remainingLength -= 1
-                }
-                
-            }
-            
-        }
-        
-        return result
-        
     }
     
 }

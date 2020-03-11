@@ -84,6 +84,7 @@
 		258B87937F5D3017A979B65C48FBA582 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E777E67D33E1A29A66CBB1280D9FBD97 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B99817DBEA38069C94D8B6EBA635CD /* UINavigationController+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09D2DF4B74F0FF5CF1843B8470B03 /* UINavigationController+Espresso.swift */; };
 		26624EF724182F270038EAB4 /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26624EF624182F270038EAB4 /* Nonce.swift */; };
+		26624EFE241970D70038EAB4 /* Data+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26624EFD241970D70038EAB4 /* Data+Espresso.swift */; };
 		266F050C238E4D7A004C4236 /* UIRevealTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266F050B238E4D7A004C4236 /* UIRevealTransition.swift */; };
 		26918039115AA48C4265A42CC73374D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640CA2B88DC54FAD914B7C048A8CAA5 /* Foundation.framework */; };
 		26C089829E55C0B6259A4F787B03E987 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87D51B2C19DD77B404773C42AF1B57 /* SpinLock.swift */; };
@@ -650,6 +651,7 @@
 		261437FCD1F961B0891EA884FB9396A9 /* RetryWhen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryWhen.swift; path = RxSwift/Observables/RetryWhen.swift; sourceTree = "<group>"; };
 		262DC92B1832299308F492511E079FCF /* NSTextStorage+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextStorage+Rx.swift"; path = "RxCocoa/iOS/NSTextStorage+Rx.swift"; sourceTree = "<group>"; };
 		26624EF624182F270038EAB4 /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
+		26624EFD241970D70038EAB4 /* Data+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Espresso.swift"; sourceTree = "<group>"; };
 		266F050B238E4D7A004C4236 /* UIRevealTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRevealTransition.swift; sourceTree = "<group>"; };
 		26BA866E96822E5DD298D20103F92328 /* NSObject+Rx+KVORepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Rx+KVORepresentable.swift"; path = "RxCocoa/Foundation/NSObject+Rx+KVORepresentable.swift"; sourceTree = "<group>"; };
 		26C0C972F1132A569CFFF740D2BD353A /* UISegmentedControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UISegmentedControl+Rx.swift"; path = "RxCocoa/iOS/UISegmentedControl+Rx.swift"; sourceTree = "<group>"; };
@@ -1469,6 +1471,7 @@
 				F716F8550094BB144E85BCD478ACE975 /* Collection+Espresso.swift */,
 				130051E4476DB159BD6D65983E3D83D0 /* DataSource.swift */,
 				6DC6910469F32884DFF8858F7E6CD87F /* Date+Espresso.swift */,
+				26624EFD241970D70038EAB4 /* Data+Espresso.swift */,
 				AF6EDD4C8836CC5FDAAF012FE773B901 /* Dictionary+Espresso.swift */,
 				7F2A907B3DCAF757B20002705E642CF0 /* Float+Espresso.swift */,
 				154F1E201258307B7ACAE0620B147855 /* IndexPath+Espresso.swift */,
@@ -2583,6 +2586,7 @@
 				676FD26ABBB26C74D0A368EB2D79479A /* RxViewModelViewController.swift in Sources */,
 				755BAC6F3A367789C360A22520932DF5 /* String+Digest.swift in Sources */,
 				0EAB073209D16F2B7E8F65FFA2A672F2 /* String+Espresso.swift in Sources */,
+				26624EFE241970D70038EAB4 /* Data+Espresso.swift in Sources */,
 				A53766B4762D6913AC33E4E7BDDF1FFF /* UIAnimation.swift in Sources */,
 				C9AA87AD2F50157DBA2682B4428C71BF /* UIAnimationGroup.swift in Sources */,
 				5645F8921A076AA933DA8880549D26B9 /* UIAnimationGroupConvertible.swift in Sources */,
