@@ -67,7 +67,7 @@ public class Nonce {
         
         while remainingLength > 0 {
             
-            try (0..<16).map { _ -> UInt8 in
+            let randoms: [UInt8] = try (0..<16).map { _ in
                 
                 var random: UInt8 = 0
                 
@@ -80,19 +80,18 @@ public class Nonce {
                 return random
                 
             }
-            .forEach { random in
+               
+            randoms.forEach { rand in
                 
                 guard remainingLength != 0 else { return }
                 
-                if random < charset.count {
-                    
-                    result.append(charset[Int(random)])
+                if rand < charset.count {
+                    result.append(charset[Int(rand)])
                     remainingLength -= 1
-                    
                 }
                 
             }
-                        
+            
         }
         
         return result

@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.events.willResignActive.addObserver {
             print("☕️ application will resign active")
         }
+        
+        let nonce = Nonce()!
+        print("nonce - raw: \(nonce.rawString), hash: \(nonce.hashed()!)")
           
         return true
         
