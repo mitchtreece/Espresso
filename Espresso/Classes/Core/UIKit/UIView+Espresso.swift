@@ -7,6 +7,41 @@
 
 import UIKit
 
+@available(iOS 13, *)
+public extension UIView /* Round Corners (Modern) */ {
+    
+    /// Rounds the view's corners using a radius & curve.
+    /// - Parameter corners: The corners to mask; _defaults to all_.
+    /// - Parameter radius: The corner radius.
+    /// - Parameter curve: The corner curve; _defaults to circular_.
+    func roundCorners(_ corners: UIRectCorner = .allCorners,
+                      radius: CGFloat,
+                      curve: CALayerCornerCurve = .circular) {
+        
+        self.layer.maskedCorners = corners.cornerMask
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = curve
+        
+    }
+    
+}
+
+public extension UIView /* Round Corners (Legacy) */ {
+    
+    /// Masks the view's corners using a radius.
+    /// - Parameter corners: The corners to mask; _defaults to all_.
+    /// - Parameter radius: The corner radius.
+    ///
+    /// This is a deprecated function that will be removed in iOS 14. Please use `roundCorners(corners:radius:curve:)` instead.
+    func roundCorners(_ corners: UIRectCorner = .allCorners, radius: CGFloat) {
+        
+        self.layer.maskedCorners = corners.cornerMask
+        self.layer.cornerRadius = radius
+        
+    }
+    
+}
+
 public extension UIView /* Shadow */ {
     
     /**
