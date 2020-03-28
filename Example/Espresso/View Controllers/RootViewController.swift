@@ -51,7 +51,7 @@ class RootViewController: UIViewController {
         self.tableView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }
-        
+                        
         UITableViewCell.register(in: self.tableView)
         
         if #available(iOS 13, *) {
