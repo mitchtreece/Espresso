@@ -10,50 +10,50 @@ import UIKit
 /// `UIApplication` event holder class.
 public class UIApplicationEvents {
     
-    /// Dispatched after the application becomes active.
+    /// Emitted after the application becomes active.
     public let didBecomeActive = VoidEvent()
     
-    /// Dispatched when the application will resign active.
+    /// Emitted when the application will resign active.
     public let willResignActive = VoidEvent()
     
-    /// Dispatched after the application did enter the background.
+    /// Emitted after the application did enter the background.
     public let didEnterBackground = VoidEvent()
     
-    /// Dispatched when the application will enter the foreground.
+    /// Emitted when the application will enter the foreground.
     public let willEnterForeground = VoidEvent()
     
-    /// Dispatched when the application will terminate.
+    /// Emitted when the application will terminate.
     public let willTerminate = VoidEvent()
     
-    /// Dispatched when protected data availibility will change.
+    /// Emitted when protected data availibility will change.
     public let protectedDataAvailabilityWillChange = Event<Bool>()
     
-    /// Dispatched after a significant time change occurs.
+    /// Emitted after a significant time change occurs.
     public let significantTimeChange = VoidEvent()
     
-    /// Dispatched after a background refresh status change occurs.
+    /// Emitted after a background refresh status change occurs.
     public let backgroundRefreshStatusDidChange = VoidEvent()
     
-    /// Dispatched after the user takes a screenshot.
+    /// Emitted after the user takes a screenshot.
     public let userDidTakeScreenshot = VoidEvent()
     
-    /// Dispatched after the application receives a memory warning.
+    /// Emitted after the application receives a memory warning.
     public let didReceiveMemoryWarning = VoidEvent()
     
-    // NOTE: These notifications were deprecated in iOS 13 in favor of
-    // `viewWillTransitionToSize:withTransitionCoordinator:`.
-    // Should probably remove these at some point.
-    
-    /// Dispatched when the application will change the status bar orientation.
+    /// Emitted when the application will change the status bar orientation.
+    @available(iOS, deprecated: 13.0, message: "Use `UIViewController.viewWillTransitionToSize(size:coordinator:)`")
     public let willChangeStatusBarOrientation = VoidEvent()
     
-    /// Dispatched after the application changes the status bar orientation.
+    /// Emitted after the application changes the status bar orientation.
+    @available(iOS, deprecated: 13.0, message: "Use `UIViewController.viewWillTransitionToSize(size:coordinator:)`")
     public let didChangeStatusBarOrientation = VoidEvent()
     
-    /// Dispatched when the application will change the status bar frame.
+    /// Emitted when the application will change the status bar frame.
+    @available(iOS, deprecated: 13.0, message: "Use `UIViewController.viewWillTransitionToSize(size:coordinator:)`")
     public let willChangeStatusBarFrame = VoidEvent()
     
-    /// Dispatched after the application changes the status bar frame.
+    /// Emitted after the application changes the status bar frame.
+    @available(iOS, deprecated: 13.0, message: "Use `UIViewController.viewWillTransitionToSize(size:coordinator:)`")
     public let didChangeStatusBarFrame = VoidEvent()
 
     private var observers = [Any]()
@@ -75,7 +75,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.didBecomeActive.dispatch()
+                self?.didBecomeActive.emit()
             }))
         
         observers.append(center.addObserver(
@@ -83,7 +83,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.willResignActive.dispatch()
+                self?.willResignActive.emit()
             }))
         
         observers.append(center.addObserver(
@@ -91,7 +91,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.didEnterBackground.dispatch()
+                self?.didEnterBackground.emit()
             }))
         
         observers.append(center.addObserver(
@@ -99,7 +99,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.willEnterForeground.dispatch()
+                self?.willEnterForeground.emit()
             }))
         
         observers.append(center.addObserver(
@@ -107,7 +107,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.willTerminate.dispatch()
+                self?.willTerminate.emit()
             }))
         
         observers.append(center.addObserver(
@@ -115,7 +115,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.willChangeStatusBarOrientation.dispatch()
+                self?.willChangeStatusBarOrientation.emit()
             }))
         
         observers.append(center.addObserver(
@@ -123,7 +123,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.didChangeStatusBarOrientation.dispatch()
+                self?.didChangeStatusBarOrientation.emit()
             }))
         
         observers.append(center.addObserver(
@@ -131,7 +131,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.willChangeStatusBarFrame.dispatch()
+                self?.willChangeStatusBarFrame.emit()
             }))
         
         observers.append(center.addObserver(
@@ -139,7 +139,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.didChangeStatusBarFrame.dispatch()
+                self?.didChangeStatusBarFrame.emit()
             }))
         
         observers.append(center.addObserver(
@@ -147,7 +147,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.protectedDataAvailabilityWillChange.dispatch(value: false)
+                self?.protectedDataAvailabilityWillChange.emit(value: false)
             }))
         
         observers.append(center.addObserver(
@@ -155,7 +155,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.protectedDataAvailabilityWillChange.dispatch(value: true)
+                self?.protectedDataAvailabilityWillChange.emit(value: true)
             }))
         
         observers.append(center.addObserver(
@@ -163,7 +163,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.significantTimeChange.dispatch()
+                self?.significantTimeChange.emit()
             }))
         
         observers.append(center.addObserver(
@@ -171,7 +171,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.backgroundRefreshStatusDidChange.dispatch()
+                self?.backgroundRefreshStatusDidChange.emit()
             }))
         
         observers.append(center.addObserver(
@@ -179,7 +179,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.userDidTakeScreenshot.dispatch()
+                self?.userDidTakeScreenshot.emit()
             }))
         
         observers.append(center.addObserver(
@@ -187,7 +187,7 @@ public class UIApplicationEvents {
             object: app,
             queue: .main,
             using: { [weak self] _ in
-                self?.didReceiveMemoryWarning.dispatch()
+                self?.didReceiveMemoryWarning.emit()
             }))
         
     }

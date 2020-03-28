@@ -61,7 +61,7 @@ public enum UIModalStyle {
         
     }
     
-    /// A default moda style.
+    /// A default modal style.
     ///
     /// On iOS 13, this corresponds to the `automatic` modal presentation style.
     /// On prior iOS versions, this corresponds to the `fullscreen` modal presentation style.
@@ -95,7 +95,7 @@ public enum UIModalStyle {
     @available(tvOS 11.0, *)
     case blurOverFullscreen
     
-    /// The `UIModalPresentationStyle` this style represents.
+    /// The `UIModalPresentationStyle` representation.
     public var presentationStyle: UIModalPresentationStyle {
         
         switch self {
@@ -135,7 +135,7 @@ public enum UIModalStyle {
             #if os(tvOS)
             return .blurOverFullscreen
             #else
-            fatalError("blurOverFullscreen is only available on tvOS")
+            fatalError("UIModalPresentationBlurOverFullScreen is only available on tvOS")
             #endif
             
         }

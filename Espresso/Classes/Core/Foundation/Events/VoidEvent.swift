@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An observable event that dispatches with no value.
+/// An observable event.
 public class VoidEvent {
     
     private let event = Event<Void>()
@@ -36,9 +36,9 @@ public class VoidEvent {
         self.event.removeAllObservers()
     }
     
-    /// Dispatches to all observers.
-    public func dispatch() {
-        self.event.dispatch(value: ())
+    /// Emits to all observers.
+    public func emit() {
+        self.event.emit(value: ())
     }
     
 }

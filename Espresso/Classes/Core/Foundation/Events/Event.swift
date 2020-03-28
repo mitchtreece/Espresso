@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An observable event that dispatches with a value.
+/// An observable event that emits a value.
 public class Event<V> {
     
     internal class Observer<V> {
@@ -78,9 +78,9 @@ public class Event<V> {
         self.observers.removeAll()
     }
     
-    /// Dispatches a value to all observers.
-    /// - parameter value: The value to dispatch.
-    public func dispatch(value: V) {
+    /// Emits a value to all observers.
+    /// - parameter value: The value to emit.
+    public func emit(value: V) {
         self.observers.forEach { $0.send(value: value) }
     }
     
