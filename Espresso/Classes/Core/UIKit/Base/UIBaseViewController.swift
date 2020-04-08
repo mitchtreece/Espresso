@@ -7,10 +7,18 @@
 
 import UIKit
 
-/*
- `UIViewController` subclass that provides common helper functions & properties.
- */
+/// `UIViewController` subclass that provides common helper functions & properties.
 open class UIBaseViewController: UIViewController {
+    
+    /// The view controller's modal style.
+    public var modalStyle: UIModalStyle {
+        get {
+            return UIModalStyle.from(presentationStyle: self.modalPresentationStyle)
+        }
+        set {
+            self.modalPresentationStyle = newValue.presentationStyle
+        }
+    }
     
     @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
