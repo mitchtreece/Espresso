@@ -61,6 +61,9 @@ public enum UIModalStyle {
         
     }
     
+    /// A modal style representing the absence of a modal style.
+    case none
+    
     /// A default modal style.
     ///
     /// On iOS 13, this corresponds to the `automatic` modal presentation style.
@@ -87,18 +90,12 @@ public enum UIModalStyle {
     
     /// A custom modal style.
     case custom
-        
-    /// An over-fullscreen blur modal style.
-    @available(iOS, unavailable)
-    @available(watchOS, unavailable)
-    @available(macOS, unavailable)
-    @available(tvOS 11.0, *)
-    case blurOverFullscreen
     
     /// The `UIModalPresentationStyle` representation.
     public var presentationStyle: UIModalPresentationStyle {
         
         switch self {
+        case .none: return .none
         case .default:
             
             if #available(iOS 13, *) {
@@ -130,16 +127,48 @@ public enum UIModalStyle {
             
         case .popover: return .popover
         case .custom: return .custom
-        case .blurOverFullscreen:
+        }
+        
+    }
+    
+    /// Flag indicating if the modal style represents a card-like presentation style.
+    ///
+    /// This is **always** `false` on iOS 12 or lower.
+    public var isModalCard: Bool {
+        
+        if #available(iOS 13, *) {
             
-            #if os(tvOS)
-            return .blurOverFullscreen
-            #else
-            fatalError("UIModalPresentationBlurOverFullScreen is only available on tvOS")
-            #endif
+            switch self {
+            case .default: fallthrough
+            case .sheet(type: .page): return true
+            default: return false
+            }
             
         }
         
+        return false
+        
+    }
+    
+    /// Creates a `UIModalStyle` from a given modal presentation style.
+    /// - Parameter presentationStyle: The modal presentation style.
+    /// - Returns: A `UIModalStyle` instance.
+    public static func from(presentationStyle: UIModalPresentationStyle) -> UIModalStyle {
+        
+        switch presentationStyle {
+        case .fullScreen: return .fullscreen(presentingView: .hidden)
+        case .overFullScreen: return .fullscreen(presentingView: .visible)
+        case .pageSheet: return .sheet(type: .page)
+        case .formSheet: return .sheet(type: .form)
+        case .currentContext: return .currentContext(presentingView: .hidden)
+        case .overCurrentContext: return .currentContext(presentingView: .visible)
+        case .custom: return .custom
+        case .popover: return .popover
+        case .automatic: return .default
+        case .none: return .none
+        @unknown default: return .default
+        }
+                
     }
     
 }
