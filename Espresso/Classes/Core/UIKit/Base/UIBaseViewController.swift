@@ -20,6 +20,21 @@ open class UIBaseViewController: UIViewController {
         }
     }
     
+    public var isInModalCardPresentation: Bool {
+        
+        guard #available(iOS 13, *) else { return false }
+        guard let nav = self.navigationController else {
+            return self.modalStyle.isModalCard
+        }
+        
+        if UIModalStyle.from(presentationStyle: nav.modalPresentationStyle).isModalCard {
+            return true
+        }
+        
+        return false
+        
+    }
+    
     @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
