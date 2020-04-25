@@ -29,6 +29,7 @@ public extension UIDevice /* Info*/ {
         case iPhone6S
         case iPhone6SPlus
         case iPhoneSE
+        case iPhoneSE_2G
         case iPhone7
         case iPhone7Plus
         case iPhone8
@@ -118,6 +119,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone6S: return "iPhone 6s"
             case .iPhone6SPlus: return "iPhone 6s Plus"
             case .iPhoneSE: return "iPhone SE"
+            case .iPhoneSE_2G: return "iPhone SE 2G"
             case .iPhone7: return "iPhone 7"
             case .iPhone7Plus: return "iPhone 7 Plus"
             case .iPhone8: return "iPhone 8"
@@ -195,6 +197,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone6S: return ["iPhone8,1"]
             case .iPhone6SPlus: return ["iPhone8,2"]
             case .iPhoneSE: return ["iPhone8,4"]
+            case .iPhoneSE_2G: return ["iPhone12,8"]
             case .iPhone7: return ["iPhone9,1", "iPhone9,3"]
             case .iPhone7Plus: return ["iPhone9,2", "iPhone9,4"]
             case .iPhone8: return ["iPhone10,1", "iPhone10,4"]
