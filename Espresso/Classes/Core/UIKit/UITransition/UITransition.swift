@@ -17,7 +17,9 @@ open class UIPresentationTransition: UITransition {
     open func presentationController(forPresented presented: UIViewController,
                                      presenting: UIViewController?,
                                      source: UIViewController) -> UIPresentationController? {
-        fatalError("")
+        
+        fatalError("UIPresentationTransition subclasses must override `presentationController(forPresented:presenting:)`")
+        
     }
     
 }
