@@ -92,7 +92,7 @@
 		26608C7524AA638700EC3F11 /* UIDisplayFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26608C7224AA638700EC3F11 /* UIDisplayFeature.swift */; };
 		26608C7724AA639100EC3F11 /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26608C7624AA639100EC3F11 /* UIScreen+Espresso.swift */; };
 		26608C7A24AA640D00EC3F11 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26608C7924AA640D00EC3F11 /* SwiftUI.swift */; };
-		26608C7C24AA641F00EC3F11 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26608C7B24AA641F00EC3F11 /* Combine.swift */; };
+		2672715324AA65CB0082562D /* Publisher+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672715224AA65CB0082562D /* Publisher+Espresso.swift */; };
 		270DA4E1B7C1311989AFABE0E127CFF7 /* Reduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506121171DBFC53E7DD4F511FEB63E0 /* Reduce.swift */; };
 		275E620807E3A5D0DA546441E986BE43 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8138DDD6F2A51C1C86975D78638C995 /* ConstraintAttributes.swift */; };
 		280BA85F3AE87EF04BA5BFA02CB82B00 /* Event+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183707A5C195BCFA6925E6AF0CC031A6 /* Event+Rx.swift */; };
@@ -621,7 +621,7 @@
 		26608C7224AA638700EC3F11 /* UIDisplayFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDisplayFeature.swift; path = Espresso/Classes/UIKit/UIDisplayFeature.swift; sourceTree = "<group>"; };
 		26608C7624AA639100EC3F11 /* UIScreen+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Espresso.swift"; sourceTree = "<group>"; };
 		26608C7924AA640D00EC3F11 /* SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftUI.swift; path = Espresso/Classes/SwiftUI/SwiftUI.swift; sourceTree = "<group>"; };
-		26608C7B24AA641F00EC3F11 /* Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Espresso/Classes/Combine/Combine.swift; sourceTree = "<group>"; };
+		2672715224AA65CB0082562D /* Publisher+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Espresso.swift"; sourceTree = "<group>"; };
 		2734C7E73897A68AAB15E9B699555301 /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
 		273CF7690DFDCC3C30F13D4242075064 /* NSControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSControl+Rx.swift"; path = "RxCocoa/macOS/NSControl+Rx.swift"; sourceTree = "<group>"; };
 		2740BB570E478146DB97B7B8ECDCAB0A /* AnyObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyObserver.swift; path = RxSwift/AnyObserver.swift; sourceTree = "<group>"; };
@@ -1194,6 +1194,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2672714F24AA65910082562D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2672715224AA65CB0082562D /* Publisher+Espresso.swift */,
+			);
+			name = Extensions;
+			path = Espresso/Classes/Combine/Extensions;
+			sourceTree = "<group>";
+		};
 		34ADBE3D0B89569813CEEC99C01E5D3E /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1355,7 +1364,7 @@
 		58E3B8EE2A3F6076467E5F352A2CEC58 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
-				26608C7B24AA641F00EC3F11 /* Combine.swift */,
+				2672714F24AA65910082562D /* Extensions */,
 			);
 			name = Combine;
 			sourceTree = "<group>";
@@ -2697,6 +2706,7 @@
 				422C8242439C856141789BCFC7A9AD4F /* UITableViewCell+Espresso.swift in Sources */,
 				DF70E1321434B8F07D69021C5D14036A /* UITaptic.swift in Sources */,
 				197A14E7F08D4690833FC5E6C3CC552F /* UITokenLabel.swift in Sources */,
+				2672715324AA65CB0082562D /* Publisher+Espresso.swift in Sources */,
 				42EBB300BE78F5CEBB68BD255218ACD4 /* UITransition.swift in Sources */,
 				C15780DA99015A58D5DF4E7B8B269BB7 /* UITransitionAnimator.swift in Sources */,
 				DCBE133239205C1DBAF0AAD5AF05FE18 /* UITransitionController.swift in Sources */,
@@ -2711,7 +2721,6 @@
 				A7B9FB860B423AA6124B14D53C93352A /* UIViewModelCollectionViewCell.swift in Sources */,
 				53469762F9B466B5EB5E07C908CE670F /* UIViewModelTableViewCell.swift in Sources */,
 				972EB24625F35548FE3D20AEE6687559 /* UIViewModelViewController.swift in Sources */,
-				26608C7C24AA641F00EC3F11 /* Combine.swift in Sources */,
 				CF03426C9792B2E229BCA276CED77E02 /* UIWaveView.swift in Sources */,
 				31C558C7BB4ECD200A20BE749A7CAEF6 /* UIZoomTransition.swift in Sources */,
 				DD04B20F4191C097FF11C3B82AAADF9F /* UserAuthenticator.swift in Sources */,
