@@ -102,7 +102,8 @@ public final class UserAuthenticator {
      If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
      be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
      */
-    public static func authenticate(withReason reason: String, completion: @escaping (_ success: Bool, _ error: Error?)->()) {
+    public static func authenticate(withReason reason: String,
+                                    completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
         guard let context = self.authenticationContext else {
             completion(false, "Authentication not supported on this device".error!)

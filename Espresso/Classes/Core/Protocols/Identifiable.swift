@@ -7,14 +7,10 @@
 
 import UIKit
 
-/**
- Protocol that describes a way to identify an object at a class-level.
- */
+/// Protocol that describes a way to identify an object at a class-level.
 public protocol Identifiable {
     
-    /**
-     The class's string identifier.
-     */
+    /// The class's string identifier.
     static var identifier: String { get }
     
 }
@@ -26,6 +22,3 @@ public extension Identifiable {
     }
     
 }
-
-extension UIView: Identifiable {}
-extension UIViewController: Identifiable {}

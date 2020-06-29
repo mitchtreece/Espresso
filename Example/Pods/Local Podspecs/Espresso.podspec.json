@@ -20,49 +20,52 @@
   "platforms": {
     "ios": "11.0"
   },
-  "default_subspecs": "Core",
+  "default_subspecs": "UIKit",
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Espresso/Classes/Core/**/*",
-      "dependencies": {
-        "SnapKit": [
-          "~> 5.0.0"
-        ]
-      }
+      "source_files": "Espresso/Classes/Core/**/*"
     },
     {
-      "name": "DI",
+      "name": "UIKit",
+      "source_files": "Espresso/Classes/UIKit/**/*",
       "dependencies": {
         "Espresso/Core": [
 
         ],
-        "Swinject": [
-          "~> 2.7.0"
+        "SnapKit": [
+          "~> 5.0"
         ]
       }
     },
     {
-      "name": "Mvvm",
-      "source_files": "Espresso/Classes/Mvvm/**/*",
+      "name": "SwiftUI",
+      "source_files": "Espresso/Classes/SwiftUI/**/*",
       "dependencies": {
         "Espresso/Core": [
+
+        ],
+        "Espresso/Combine": [
 
         ]
       }
     },
     {
-      "name": "RxMvvm",
-      "source_files": "Espresso/Classes/RxMvvm/**/*",
+      "name": "Combine",
+      "source_files": "Espresso/Classes/Combine/**/*"
+    },
+    {
+      "name": "RxSwift",
+      "source_files": "Espresso/Classes/RxSwift/**/*",
       "dependencies": {
-        "Espresso/Mvvm": [
+        "Espresso/UIKit": [
 
         ],
         "RxSwift": [
-          "~> 5.0.0"
+          "~> 5.0"
         ],
         "RxCocoa": [
-          "~> 5.0.0"
+          "~> 5.0"
         ]
       }
     },
@@ -72,13 +75,16 @@
         "Espresso/Core": [
 
         ],
-        "Espresso/DI": [
+        "Espresso/UIKit": [
 
         ],
-        "Espresso/Mvvm": [
+        "Espresso/SwiftUI": [
 
         ],
-        "Espresso/RxMvvm": [
+        "Espresso/Combine": [
+
+        ],
+        "Espresso/RxSwift": [
 
         ]
       }

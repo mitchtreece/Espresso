@@ -18,35 +18,40 @@ Pod::Spec.new do |s|
     s.swift_version             = '5'
     s.ios.deployment_target     = '11.0'
 
-    # Subspecs
-
-    s.default_subspec = 'Core'
+    s.default_subspec = 'UIKit'
 
     s.subspec 'Core' do |core|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'SnapKit',  '~> 5.0'
 
     end
 
-    s.subspec 'DI' do |di|
+    s.subspec 'UIKit' do |uikit|
 
-        di.dependency           'Espresso/Core'
-        di.dependency           'Swinject', '~> 2.7'
-
-    end
-
-    s.subspec 'Mvvm' do |mvvm|
-
-        mvvm.source_files       = 'Espresso/Classes/Mvvm/**/*'
-        mvvm.dependency         'Espresso/Core'
+        uikit.source_files       = 'Espresso/Classes/UIKit/**/*'
+        uikit.dependency         'Espresso/Core'
+        uikit.dependency         'SnapKit',  '~> 5.0'
 
     end
 
-    s.subspec 'RxMvvm' do |rx|
+    s.subspec 'SwiftUI' do |swiftui|
 
-        rx.source_files         = 'Espresso/Classes/RxMvvm/**/*'
-        rx.dependency           'Espresso/Mvvm'
+        swiftui.source_files    = 'Espresso/Classes/SwiftUI/**/*'
+        swiftui.dependency        'Espresso/Core'
+        swiftui.dependency        'Espresso/Combine'
+
+    end
+
+    s.subspec 'Combine' do |combine|
+
+        combine.source_files       = 'Espresso/Classes/Combine/**/*'
+
+    end
+
+    s.subspec 'RxSwift' do |rx|
+
+        rx.source_files         = 'Espresso/Classes/RxSwift/**/*'
+        rx.dependency           'Espresso/UIKit'
         rx.dependency           'RxSwift', '~> 5.0'
         rx.dependency           'RxCocoa', '~> 5.0'
 
@@ -55,9 +60,10 @@ Pod::Spec.new do |s|
     s.subspec 'All' do |all|
 
         all.dependency          'Espresso/Core'
-        all.dependency          'Espresso/DI'
-        all.dependency          'Espresso/Mvvm'
-        all.dependency          'Espresso/RxMvvm'
+        all.dependency          'Espresso/UIKit'
+        all.dependency          'Espresso/SwiftUI'
+        all.dependency          'Espresso/Combine'
+        all.dependency          'Espresso/RxSwift'
 
     end
 
