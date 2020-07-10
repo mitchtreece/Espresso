@@ -83,6 +83,8 @@
 		247CAE9EC0BB7225232DC720677E1461 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4CC96939F245358902FD05058914B7 /* Utils.swift */; };
 		258B87937F5D3017A979B65C48FBA582 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E777E67D33E1A29A66CBB1280D9FBD97 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B99817DBEA38069C94D8B6EBA635CD /* UINavigationController+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A09D2DF4B74F0FF5CF1843B8470B03 /* UINavigationController+Espresso.swift */; };
+		26342FF824B833C400E55344 /* Lerpable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26342FF724B833C400E55344 /* Lerpable.swift */; };
+		26342FFA24B833D000E55344 /* Clampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26342FF924B833D000E55344 /* Clampable.swift */; };
 		26624EF724182F270038EAB4 /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26624EF624182F270038EAB4 /* Nonce.swift */; };
 		26624EFE241970D70038EAB4 /* Data+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26624EFD241970D70038EAB4 /* Data+Espresso.swift */; };
 		266F050C238E4D7A004C4236 /* UIRevealTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266F050B238E4D7A004C4236 /* UIRevealTransition.swift */; };
@@ -651,6 +653,8 @@
 		25A06F6B6D6A9057EA1449780606B3ED /* RxCollectionViewDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxCollectionViewDelegateProxy.swift; sourceTree = "<group>"; };
 		261437FCD1F961B0891EA884FB9396A9 /* RetryWhen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryWhen.swift; path = RxSwift/Observables/RetryWhen.swift; sourceTree = "<group>"; };
 		262DC92B1832299308F492511E079FCF /* NSTextStorage+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextStorage+Rx.swift"; path = "RxCocoa/iOS/NSTextStorage+Rx.swift"; sourceTree = "<group>"; };
+		26342FF724B833C400E55344 /* Lerpable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lerpable.swift; sourceTree = "<group>"; };
+		26342FF924B833D000E55344 /* Clampable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clampable.swift; sourceTree = "<group>"; };
 		26624EF624182F270038EAB4 /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
 		26624EFD241970D70038EAB4 /* Data+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Espresso.swift"; sourceTree = "<group>"; };
 		266F050B238E4D7A004C4236 /* UIRevealTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRevealTransition.swift; sourceTree = "<group>"; };
@@ -1851,6 +1855,8 @@
 			children = (
 				62CDF9481D81DDEEC52412C4055B2BD1 /* CaseIterable.swift */,
 				7BE57FAC50D331C99B9EE2F92A30ABA4 /* Identifiable.swift */,
+				26342FF724B833C400E55344 /* Lerpable.swift */,
+				26342FF924B833D000E55344 /* Clampable.swift */,
 				25F561B5EC6FDD6221761C7C4BAC7ED4 /* Convertibles */,
 			);
 			name = Protocols;
@@ -2627,11 +2633,13 @@
 				F9A5AD419EA66CAE25FAE6352F3B87F2 /* UISwapTransition.swift in Sources */,
 				5440F2636A9E1860C08781A4AEA5DF7F /* UITableView+Espresso.swift in Sources */,
 				5B29EDA661856B1780586B3EE5971826 /* UITableViewCell+Espresso.swift in Sources */,
+				26342FF824B833C400E55344 /* Lerpable.swift in Sources */,
 				E35705D544BCC7B8EE283FC5094F68C3 /* UITaptic.swift in Sources */,
 				0E7DB2B1BBBB39413F580293F30923BA /* UITokenLabel.swift in Sources */,
 				E77F13D0159EC3AA877289757BC50D69 /* UITransition.swift in Sources */,
 				1A2ED0C94433743D2A56F1CC67AACDD2 /* UITransitionAnimator.swift in Sources */,
 				6123005018D8970700B00A9EE9BBFDC0 /* UITransitionController.swift in Sources */,
+				26342FFA24B833D000E55344 /* Clampable.swift in Sources */,
 				072F08AACA75B549C16A105AFE9CE2E0 /* UITransitionInteractionController.swift in Sources */,
 				17808E5A61075A90E2B5A55D1F7B999D /* UIView+Espresso.swift in Sources */,
 				26BE20132422F2B6002806EB /* UIRectCorner+Espresso.swift in Sources */,
