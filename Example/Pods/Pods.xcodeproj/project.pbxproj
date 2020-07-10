@@ -370,7 +370,6 @@
 		C7FC35DF397EA9223C55B2BF23628ACC /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63594440F4CED97EFD0574EEEE69654 /* JSONConvertible.swift */; };
 		C8451D46539327642EEAB671C38511D5 /* NSControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328A9439C33A95B03C6165463AFB409 /* NSControl+Rx.swift */; };
 		C903614BC1EF6D6B55C12D858AF86216 /* BooleanDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BDEDD20FA7FB0752150CADDE0DC6B5 /* BooleanDisposable.swift */; };
-		C90AF8986CD3FB626447A44823E6CDB1 /* UIWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C9F1182030528AEBA3695490700F7 /* UIWaveView.swift */; };
 		C941EAD91A636C3D87760CE55EB682DB /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE57FAC50D331C99B9EE2F92A30ABA4 /* Identifiable.swift */; };
 		C9AA87AD2F50157DBA2682B4428C71BF /* UIAnimationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B646E59A8E9A5FD93F108C9A6037C10 /* UIAnimationGroup.swift */; };
 		C9D736D98B911BD13DF092626C046C6B /* Container.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD44DB70725B5C2CFD5C400258AEDB1 /* Container.TypeForwarding.swift */; };
@@ -715,7 +714,6 @@
 		3D15D23F10FC36BC8803E0B809A95546 /* SubjectType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubjectType.swift; path = RxSwift/Subjects/SubjectType.swift; sourceTree = "<group>"; };
 		3D1F16E85AE81B33D4B0F2156B74C08E /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceEntry.TypeForwarding.swift; path = Sources/ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		3D258F4DE44CFC8A26A5FC3562DAFEF0 /* XMLCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XMLCodable.swift; sourceTree = "<group>"; };
-		3D3C9F1182030528AEBA3695490700F7 /* UIWaveView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIWaveView.swift; sourceTree = "<group>"; };
 		3EA8F6DD957BC27EA3483B7CCAE8859E /* UIGestureRecognizer+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+Rx.swift"; path = "RxCocoa/iOS/UIGestureRecognizer+Rx.swift"; sourceTree = "<group>"; };
 		3FA6437551D4B1B48167BC0EA94CD1C5 /* AsyncSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncSubject.swift; path = RxSwift/Subjects/AsyncSubject.swift; sourceTree = "<group>"; };
 		40F7CB6B337B080B102F487C1FABC511 /* LockOwnerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockOwnerType.swift; path = RxSwift/Concurrency/LockOwnerType.swift; sourceTree = "<group>"; };
@@ -1603,7 +1601,6 @@
 				5084C092D0749AF80209323AA1384D04 /* UITokenLabel.swift */,
 				A3D2705EBEEA2653B09F5E474FD3E6AB /* UIView+Espresso.swift */,
 				0943F067DAC49CE1070B052A1E29C1C8 /* UIViewController+Espresso.swift */,
-				3D3C9F1182030528AEBA3695490700F7 /* UIWaveView.swift */,
 				26FC4AB42360D86F000C3B3E /* UIModalStyle.swift */,
 				26BE20112422F2AF002806EB /* UIRectCorner+Espresso.swift */,
 				C601978A5D392D76A975F45F240AEA01 /* Base */,
@@ -2650,7 +2647,6 @@
 				422E118016079186B9AAACE080E9A364 /* UIViewModelCollectionViewCell.swift in Sources */,
 				E999C5CA019B6C7B675C74A9782AE189 /* UIViewModelTableViewCell.swift in Sources */,
 				5562148870A59B49C3BEBF2DFD75A67A /* UIViewModelViewController.swift in Sources */,
-				C90AF8986CD3FB626447A44823E6CDB1 /* UIWaveView.swift in Sources */,
 				106C99E6FD769C83CF9452FC40AC040B /* UIZoomTransition.swift in Sources */,
 				E6DC58E74E2532046C4164ECA4517F08 /* UserAuthenticator.swift in Sources */,
 				E710495329329A52C81BBA87589A1A98 /* ViewModel.swift in Sources */,
