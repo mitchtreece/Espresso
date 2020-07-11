@@ -44,15 +44,8 @@
       "dependencies": {
         "Espresso/Core": [
 
-        ],
-        "Espresso/Combine": [
-
         ]
       }
-    },
-    {
-      "name": "Combine",
-      "source_files": "Espresso/Classes/Combine/**/*"
     },
     {
       "name": "RxSwift",
@@ -79,9 +72,6 @@
 
         ],
         "Espresso/SwiftUI": [
-
-        ],
-        "Espresso/Combine": [
 
         ],
         "Espresso/RxSwift": [

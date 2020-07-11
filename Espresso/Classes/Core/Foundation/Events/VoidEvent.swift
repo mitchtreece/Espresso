@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An observable event.
+/// An observable event that emits no value.
 public class VoidEvent {
     
     private let event = Event<Void>()

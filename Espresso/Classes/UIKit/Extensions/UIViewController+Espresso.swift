@@ -7,9 +7,9 @@
 
 import UIKit
 
-extension UIViewController: Identifiable {}
+extension UIViewController: StringIdentifiable {}
 
-public extension Identifiable where Self: UIViewController /* Storyboard */ {
+public extension StringIdentifiable where Self: UIViewController /* Storyboard */ {
     
     /**
      Initializes a new instance of the view controller from a storyboard.
@@ -21,7 +21,7 @@ public extension Identifiable where Self: UIViewController /* Storyboard */ {
     static func initFromStoryboard(named name: String = "Main", identifier: String? = nil) -> Self? {
         
         let storyboard = UIStoryboard(name: name, bundle: nil)
-        let identifier = identifier ?? self.identifier
+        let identifier = identifier ?? self.stringId
         return storyboard.instantiateViewController(withIdentifier: identifier) as? Self
         
     }

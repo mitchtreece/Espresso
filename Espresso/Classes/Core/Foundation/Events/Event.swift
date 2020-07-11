@@ -8,34 +8,34 @@
 import Foundation
 
 /// An observable event that emits a value.
-public class Event<V> {
+public class Event<T> {
     
     internal class Observer<V> {
                 
-        private var handler: (V)->()
+        private var handler: (T)->()
         
-        init(handler: @escaping (V)->()) {
+        init(handler: @escaping (T)->()) {
             self.handler = handler
         }
         
-        func send(value: V) {
+        func send(value: T) {
             self.handler(value)
         }
         
     }
     
     /// `Event` token class that can be used to identify a specific observer.
-    public class Token<V> {
+    public class Token<T> {
         
-        internal var observer: Observer<V>
+        internal var observer: Observer<T>
         
-        internal init(observer: Observer<V>) {
+        internal init(observer: Observer<T>) {
             self.observer = observer
         }
         
     }
     
-    private var observers = [Observer<V>]()
+    private var observers = [Observer<T>]()
     
     /// Initializes an event.
     public init() {
@@ -46,9 +46,9 @@ public class Event<V> {
     /// - parameter handler: The handler called when dispatching.
     /// - returns: An event token.
     @discardableResult
-    public func addObserver(_ handler: @escaping (V)->()) -> Token<V> {
+    public func addObserver(_ handler: @escaping (T)->()) -> Token<T> {
         
-        let observer = Observer(handler: handler)
+        let observer = Observer<T>(handler: handler)
         self.observers.append(observer)
         return Token(observer: observer)
         
@@ -56,7 +56,7 @@ public class Event<V> {
     
     /// Removes an observer using an event token.
     /// - parameter token: The event token.
-    public func removeObserver(token: Token<V>) {
+    public func removeObserver(token: Token<T>) {
         
         // We cannot just remove the observers from the array,
         // because to do that our observer class would have
@@ -80,7 +80,7 @@ public class Event<V> {
     
     /// Emits a value to all observers.
     /// - parameter value: The value to emit.
-    public func emit(value: V) {
+    public func emit(value: T) {
         self.observers.forEach { $0.send(value: value) }
     }
     

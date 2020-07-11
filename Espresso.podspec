@@ -38,13 +38,6 @@ Pod::Spec.new do |s|
 
         swiftui.source_files    = 'Espresso/Classes/SwiftUI/**/*'
         swiftui.dependency        'Espresso/Core'
-        swiftui.dependency        'Espresso/Combine'
-
-    end
-
-    s.subspec 'Combine' do |combine|
-
-        combine.source_files       = 'Espresso/Classes/Combine/**/*'
 
     end
 
@@ -62,7 +55,6 @@ Pod::Spec.new do |s|
         all.dependency          'Espresso/Core'
         all.dependency          'Espresso/UIKit'
         all.dependency          'Espresso/SwiftUI'
-        all.dependency          'Espresso/Combine'
         all.dependency          'Espresso/RxSwift'
 
     end

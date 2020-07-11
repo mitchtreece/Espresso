@@ -7,15 +7,11 @@
 
 import UIKit
 
-/**
- `UITaptic` is a wrapper class over `UIFeedbackGenerator`.
- */
+/// Taptic wrapper class over `UIFeedbackGenerator`.
 @available(iOS 10, *)
 public class UITaptic {
     
-    /**
-     Representation of the various taptic styles.
-     */
+    /// Representation of the various taptic styles.
     public enum Style {
         
         /// A selection feedback style
@@ -31,13 +27,10 @@ public class UITaptic {
     
     private var style: Style
     private var generator: UIFeedbackGenerator
-    
-    /**
-     Initializes a new `UITaptic` with a specified style.
-     
-     - Parameter style: The taptic style.
-     */
-    public init(style: Style) {
+
+    /// Initializes a taptic with a specified style.
+    /// - Parameter style: The taptic style.
+    public init(_ style: Style) {
         
         switch style {
         case .selection: self.generator = UISelectionFeedbackGenerator()
@@ -49,23 +42,19 @@ public class UITaptic {
         self.style = style
         
     }
-    
-    /**
-     Prepares the taptic feedback.
-     */
+
+    /// Prepares the taptic feedback.
     public func prepare() {
         self.generator.prepare()
     }
     
-    /**
-     Triggers the taptic feedback.
-     */
-    public func trigger() {
+    /// Plays the taptic feedback.
+    public func play() {
         
         switch style {
-        case .selection: (generator as! UISelectionFeedbackGenerator).selectionChanged()
-        case .impact: (generator as! UIImpactFeedbackGenerator).impactOccurred()
-        case .notification(let _type): (generator as! UINotificationFeedbackGenerator).notificationOccurred(_type)
+        case .selection: (self.generator as! UISelectionFeedbackGenerator).selectionChanged()
+        case .impact: (self.generator as! UIImpactFeedbackGenerator).impactOccurred()
+        case .notification(let type): (self.generator as! UINotificationFeedbackGenerator).notificationOccurred(type)
         }
         
     }

@@ -9,7 +9,7 @@ import UIKit
 
 public extension UICollectionView /* Cell Registration */ {
     
-    // NOTE: `UICollectionViewCell` conforms to `Identifiable`
+    // NOTE: `UICollectionViewCell` conforms to `StringIdentifiable`
     
     /**
      Registers an array of cells in the collection view.

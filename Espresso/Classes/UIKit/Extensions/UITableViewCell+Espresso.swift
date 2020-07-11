@@ -9,7 +9,7 @@ import UIKit
 
 public extension UITableViewCell /* Register */ {
     
-    // NOTE: `UITableViewCell` conforms to `Identifiable`
+    // NOTE: `UITableViewCell` conforms to `StringIdentifiable`
     
     /**
      Registers a cell's nib in a table view with a specified name. If no name is provided, the cell's class name will be used.
@@ -19,9 +19,9 @@ public extension UITableViewCell /* Register */ {
      */
     static func registerNib(in tableView: UITableView, nibName: String? = nil) {
         
-        let name = nibName ?? self.identifier
+        let name = nibName ?? self.stringId
         let nib = UINib(nibName: name, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: self.identifier)
+        tableView.register(nib, forCellReuseIdentifier: self.stringId)
         
     }
     
@@ -31,7 +31,7 @@ public extension UITableViewCell /* Register */ {
      - Parameter tableView: The table view to register the cell in.
      */
     static func register(in tableView: UITableView) {
-        tableView.register(self, forCellReuseIdentifier: self.identifier)
+        tableView.register(self, forCellReuseIdentifier: self.stringId)
     }
     
     /**
@@ -58,9 +58,9 @@ public extension UITableViewCell /* Register */ {
     
     private class func _cell<T: UITableViewCell>(for tableView: UITableView, nibName: String? = nil) -> T {
         
-        let name = nibName ?? T.identifier
+        let name = nibName ?? T.stringId
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: T.identifier) as? T {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: T.stringId) as? T {
             return cell
         }
         else {
@@ -70,7 +70,7 @@ public extension UITableViewCell /* Register */ {
     }
     
     private class func _cell<T: UITableViewCell>(dequeuedFor tableView: UITableView, indexPath: IndexPath) -> T {
-        return tableView.dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as! T
+        return tableView.dequeueReusableCell(withIdentifier: T.stringId, for: indexPath) as! T
     }
     
 }

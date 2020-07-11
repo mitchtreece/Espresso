@@ -7,46 +7,35 @@
 
 import Foundation
 
-/// Protocol describing the conversion to various `Error` representations.
+/// Protocol describing a type that can be represented as an `Error`.
 public protocol ErrorConvertible {
     
-    /// An error representation.
-    var error: Error? { get }
-    
-    /// An error string representation.
-    var errorString: String? { get }
+    /// An `Error` value representation.
+    var errorValue: Error { get }
     
 }
 
 extension NSError: ErrorConvertible {
     
-    public var error: Error? {
+    public var errorValue: Error {
         return self as Error
     }
-    
-    public var errorString: String? {
         
-        if let localizedDescription = self.userInfo[NSLocalizedDescriptionKey] as? String {
-            return localizedDescription
-        }
-        
-        return nil
-        
-    }
-    
 }
 
 extension String: ErrorConvertible {
     
-    public var error: Error? {
+    public var errorValue: Error {
         
         let domain = Bundle.main.bundleIdentifier ?? "com.mitchtreece.Espresso"
-        return NSError(domain: domain, code: -1, userInfo: [NSLocalizedDescriptionKey: self]).error
         
-    }
-    
-    public var errorString: String? {
-        return self
+        return NSError(
+            domain: domain,
+            code: 0,
+            userInfo: [NSLocalizedDescriptionKey: self]
+        )
+        .errorValue
+        
     }
     
 }

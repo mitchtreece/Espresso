@@ -9,7 +9,7 @@ import UIKit
 
 public extension UICollectionViewCell /* Register */ {
     
-    // NOTE: `UICollectionViewCell` conforms to `Identifiable`
+    // NOTE: `UICollectionViewCell` conforms to `StringIdentifiable`
     
     /**
      Registers a cell's nib in a collection view with a specified name. If no name is provided, the cell's class name will be used.
@@ -19,9 +19,9 @@ public extension UICollectionViewCell /* Register */ {
      */
     static func registerNib(in collectionView: UICollectionView, nibName: String? = nil) {
         
-        let name = nibName ?? self.identifier
+        let name = nibName ?? self.stringId
         let nib = UINib(nibName: name, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: self.identifier)
+        collectionView.register(nib, forCellWithReuseIdentifier: self.stringId)
         
     }
     
@@ -31,7 +31,7 @@ public extension UICollectionViewCell /* Register */ {
      - Parameter collectionView: The collection view to register the cell in.
      */
     static func register(in collectionView: UICollectionView) {
-        collectionView.register(self, forCellWithReuseIdentifier: self.identifier)
+        collectionView.register(self, forCellWithReuseIdentifier: self.stringId)
     }
     
     /**
@@ -46,7 +46,7 @@ public extension UICollectionViewCell /* Register */ {
     }
     
     private class func _cell<T: UICollectionViewCell>(dequeuedFor collectionView: UICollectionView, at indexPath: IndexPath) -> T {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
+        return collectionView.dequeueReusableCell(withReuseIdentifier: T.stringId, for: indexPath) as! T
     }
     
 }

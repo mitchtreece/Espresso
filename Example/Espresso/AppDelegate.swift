@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.events.willResignActive.addObserver {
             print("☕️ application will resign active")
         }
-
+        
         return true
         
     }

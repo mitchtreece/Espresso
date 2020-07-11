@@ -3,19 +3,16 @@ PODS:
     - Director/Core (= 1.0.6)
   - Director/Core (1.0.6)
   - Espresso/All (2.2.4):
-    - Espresso/Combine
     - Espresso/Core
     - Espresso/RxSwift
     - Espresso/SwiftUI
     - Espresso/UIKit
-  - Espresso/Combine (2.2.4)
   - Espresso/Core (2.2.4)
   - Espresso/RxSwift (2.2.4):
     - Espresso/UIKit
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
   - Espresso/SwiftUI (2.2.4):
-    - Espresso/Combine
     - Espresso/Core
   - Espresso/UIKit (2.2.4):
     - Espresso/Core
@@ -46,7 +43,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Director: ed6f4d3b2bc404ff16b83816daf81b18126b6892
-  Espresso: 3a70e6dd730555294457b6cf1ef46ee565dfe4f4
+  Espresso: cc96f90a70dba167ca8a3a2daea1458ea4f4b2b4
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f

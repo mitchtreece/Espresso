@@ -79,34 +79,49 @@ public extension String /* Size */ {
 
 public extension String /* Tokens */ {
     
-    /**
-     Creates a new string by replacing all occurrences of a **\<token\>** with another string.
-     
-     - Parameter token: The token to replace.
-     - Parameter string: The replacement string.
-     - Returns: A new string with all token occurrences replaced.
-     */
+    /// Creates a new string by replacing all occurrences of **\<token\>** _or_ **{token}** with another string.
+    /// - Parameter token: The token to replace.
+    /// - Parameter string: The replacement string.
+    /// - Returns: A new string with all token occurrences replaced.
     func replacing(token: String, with string: String) -> String {
         
-        let _token = (token.first == "<" && token.last == ">") ? token : "<\(token)>"
+        var _token: String
+        
+        if (token.first == "<" && token.last == ">") ||
+            (token.first == "{" && token.last == "}") {
+            _token = token
+        }
+        else {
+            _token = "<\(token)>"
+        }
+        
         return self.replacingOccurrences(of: _token, with: string)
         
     }
     
-    /**
-     Creates a new string by replacing all occurrences of **\<token\>'s** with their corresponding replacements.
-     
-     - Parameter tokens: A dictionary map of \<token\>'s to replacement strings.
-     - Returns: A new string with all token occurrences replaced.
-     */
+    /// Creates a new string by replacing all occurrences of **\<token\>** _or_ **{token}** with corresponding replacements.
+    /// - Parameter tokens: A dictionary map of tokens to replacement strings.
+    /// - Returns: A new string with all token occurrences replaced.
     func replacing(tokens: [String: String]) -> String {
         
         var string = self
         
         for (key, value) in tokens {
+                        
+            var token: String
             
-            let token = (key.first == "<" && key.last == ">") ? key : "<\(key)>"
-            string = string.replacing(token: token, with: value)
+            if (key.first == "<" && key.last == ">") ||
+                (key.first == "{" && key.last == "}") {
+                token = key
+            }
+            else {
+                token = "<\(key)>"
+            }
+            
+            string = string.replacing(
+                token: token,
+                with: value
+            )
             
         }
         

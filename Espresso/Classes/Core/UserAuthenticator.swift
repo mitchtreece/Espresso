@@ -8,33 +8,27 @@
 import Foundation
 import LocalAuthentication
 
-/**
- `UserAuthenticator` is an authentication helper for biometrics (Touch ID, Face ID) or a device password.
- */
+/// Authentication helper for biometrics (Touch ID, Face ID) or a device password
 public final class UserAuthenticator {
     
-    /**
-     Representation of the various user-authentication types.
-     */
+    /// Representation of the various authentication types.
     public enum AuthenticationType {
         
-        /// A user-authentication type that represents the absence of an authentication type.
+        /// An authentication type that represents the absence of an authentication type.
         case none
         
-        /// A device password user-authentication type.
+        /// A device password authentication type.
         case password
         
-        /// A biometric user-authentication type using Touch ID.
+        /// A biometric authentication type using Touch ID.
         case touchId
         
-        /// A biometric user-authentication type using Face ID.
+        /// A biometric authentication type using Face ID.
         case faceId
         
-        /**
-         The user-authentication type's display name.
-         
-         This value will be `nil` if the user-authentication type is `none`.
-         */
+        /// The authentication type's display name.
+        ///
+        /// This value will be `nil` if the authentication type is `none`.
         public var displayName: String? {
             
             switch self {
@@ -56,7 +50,7 @@ public final class UserAuthenticator {
         
     }
     
-    /// The device's preferred user-authentication type.
+    /// The device's preferred authentication type.
     public static var authenticationType: AuthenticationType {
         get {
             
@@ -92,21 +86,19 @@ public final class UserAuthenticator {
         }
     }
     
-    /**
-     Authenticate's the user using the device's preferred authentication type.
-     - Parameter reason: The reason string to be displayed during authentication.
-     - Parameter completion: The authentication completion handler.
-     - Parameter success: Flag indicating if the authentication was successful.
-     - Parameter error: An optional error returned from the authentication attempt.
-     
-     If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
-     be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
-     */
+    /// Authenticates the user using the device's preferred authentication type.
+    /// - Parameter reason: The reason string to be displayed during authentication.
+    /// - Parameter completion: The authentication completion handler.
+    /// - Parameter success: Flag indicating if the authentication was successful.
+    /// - Parameter error: An optional error returned from the authentication attempt.
+    ///
+    /// If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
+    /// be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
     public static func authenticate(withReason reason: String,
                                     completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
         guard let context = self.authenticationContext else {
-            completion(false, "Authentication not supported on this device".error!)
+            completion(false, "Authentication not supported on this device".errorValue)
             return
         }
         
@@ -115,7 +107,7 @@ public final class UserAuthenticator {
             localizedReason: reason,
             reply: { (success: Bool, error: Error?) -> Void in
                 completion(success, error)
-        })
+            })
         
     }
     

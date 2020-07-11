@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView: Identifiable {}
+extension UIView: StringIdentifiable {}
 
 @available(iOS 13, *)
 public extension UIView /* Round Corners (Modern) */ {

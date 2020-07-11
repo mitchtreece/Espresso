@@ -11,10 +11,11 @@ import Espresso
 import SnapKit
 
 protocol RootViewControllerDelegate: class {
+    
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
-    func rootViewController(_ vc: RootViewController, didSelectViewRow row: RootViewController.ViewRow)
     func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow)
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
+    
 }
 
 class RootViewController: UIViewController {
@@ -41,7 +42,7 @@ class RootViewController: UIViewController {
         self.events.viewDidAppear.addObserver {
             print("☕️ RootViewController did appear")
         }
-        
+                
         self.tableView = UITableView(frame: .zero, style: .grouped)
         self.tableView.backgroundColor = UIColor.groupTableViewBackground
         self.tableView.tableFooterView = UIView()
@@ -67,10 +68,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum Section: Int, CaseIterable {
         
         case transition
-        case rxMvvm
+        case rxSwift
         case taptics
         case helpers
-        case views
         case menus
         
     }
@@ -118,20 +118,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    enum ViewRow: Int, CaseIterable {
-        
-        case wave
-        
-        var title: String {
-            
-            switch self {
-            case .wave: return "UIWaveView"
-            }
-            
-        }
-        
-    }
-    
     enum MenuRow: Int, CaseIterable {
         
         case view
@@ -150,7 +136,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    private enum RxMvvmRow: Int, CaseIterable {
+    private enum RxSwiftRow: Int, CaseIterable {
         
         case viewController
         
@@ -191,13 +177,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var taptic: UITaptic {
             
             switch self {
-            case .selection: return UITaptic(style: .selection)
-            case .impactLight: return UITaptic(style: .impact(.light))
-            case .impactMedium: return UITaptic(style: .impact(.medium))
-            case .impactHeavy: return UITaptic(style: .impact(.heavy))
-            case .notificationSuccess: return UITaptic(style: .notification(.success))
-            case .notificationWarning: return UITaptic(style: .notification(.warning))
-            case .notificationError: return UITaptic(style: .notification(.error))
+            case .selection: return UITaptic(.selection)
+            case .impactLight: return UITaptic(.impact(.light))
+            case .impactMedium: return UITaptic(.impact(.medium))
+            case .impactHeavy: return UITaptic(.impact(.heavy))
+            case .notificationSuccess: return UITaptic(.notification(.success))
+            case .notificationWarning: return UITaptic(.notification(.warning))
+            case .notificationError: return UITaptic(.notification(.error))
             }
             
         }
@@ -228,9 +214,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .transition: return "Transitions"
-        case .views: return "Views"
         case .menus: return "Menus"
-        case .rxMvvm: return "Rx / MVVM"
+        case .rxSwift: return "RxSwift"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
         }
@@ -243,9 +228,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch _section {
         case .transition: return TransitionRow.allCases.count
-        case .views: return ViewRow.allCases.count
         case .menus: return MenuRow.allCases.count
-        case .rxMvvm: return RxMvvmRow.allCases.count
+        case .rxSwift: return RxSwiftRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
         }
@@ -264,19 +248,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
-        case .views:
-            
-            guard let row = ViewRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            cell.textLabel?.text = row.title
-        
         case .menus:
             
             guard let row = MenuRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
         
-        case .rxMvvm:
+        case .rxSwift:
             
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = RxSwiftRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
         case .taptics:
@@ -312,20 +291,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
             self.delegate?.rootViewController(self, didSelectTransitionRow: row)
-            
-        case .views:
-            
-            guard let row = ViewRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectViewRow: row)
-            
+
         case .menus:
             
             guard let row = MenuRow(rawValue: indexPath.row) else { return }
             self.delegate?.rootViewController(self, didSelectMenuRow: row)
             
-        case .rxMvvm:
+        case .rxSwift:
             
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }
+            guard let row = RxSwiftRow(rawValue: indexPath.row) else { return }
 
             switch row {
             case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
@@ -334,7 +308,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return }
-            row.taptic.trigger()
+            row.taptic.play()
             
         case .helpers:
             

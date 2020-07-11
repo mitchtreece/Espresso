@@ -8,16 +8,12 @@
 import RxSwift
 import RxCocoa
 
-private class RxEvent<V> {
+private class RxEvent<T> {
     
-    private let event: Event<V>
-    private let subject = PublishSubject<V>()
+    private let event: Event<T>
+    private let subject = PublishSubject<T>()
     
-    var observable: Observable<V> {
-        return self.subject.asObservable()
-    }
-    
-    init(event: Event<V>) {
+    init(event: Event<T>) {
         
         self.event = event
         self.event.addObserver { v in
@@ -26,16 +22,16 @@ private class RxEvent<V> {
         
     }
     
+    func asObservable() -> Observable<T> {
+        return self.subject.asObservable()
+    }
+    
 }
 
 private class RxVoidEvent {
     
     private let event: VoidEvent
     private let subject = PublishSubject<Void>()
-    
-    var observable: Observable<Void> {
-        return self.subject.asObservable()
-    }
     
     init(event: VoidEvent) {
         
@@ -46,20 +42,26 @@ private class RxVoidEvent {
         
     }
     
+    func asObservable() -> Observable<Void> {
+        return self.subject.asObservable()
+    }
+    
 }
 
 public extension Event /* Rx */ {
     
-    var observable: Observable<V> {
-        return RxEvent<V>(event: self).observable
+    /// The event's `Observable` representation.
+    func asObservable() -> Observable<T> {
+        return RxEvent<T>(event: self).asObservable()
     }
     
 }
 
 public extension VoidEvent /* Rx */ {
     
-    var observable: Observable<Void> {
-        return RxVoidEvent(event: self).observable
+    /// The event's `Observable` representation.
+    func asObservable() -> Observable<Void> {
+        return RxVoidEvent(event: self).asObservable()
     }
     
 }

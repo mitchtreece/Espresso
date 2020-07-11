@@ -9,7 +9,7 @@ import UIKit
 
 public extension UITableView /* Cell Registration */ {
     
-    // NOTE: `UITableViewCell` conforms to `Identifiable`
+    // NOTE: `UITableViewCell` conforms to `StringIdentifiable`
     
     /**
      Registers an array of cells in the table view.
