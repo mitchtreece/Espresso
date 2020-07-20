@@ -7,6 +7,41 @@
 
 import UIKit
 
+@available(iOS 13, *)
+public extension UIView /* Round Corners (Modern) */ {
+    
+    /// Rounds the view's corners using a radius & curve.
+    /// - Parameter corners: The corners to mask; _defaults to all_.
+    /// - Parameter radius: The corner radius.
+    /// - Parameter curve: The corner curve; _defaults to circular_.
+    func roundCorners(_ corners: UIRectCorner = .allCorners,
+                      radius: CGFloat,
+                      curve: CALayerCornerCurve = .circular) {
+        
+        self.layer.maskedCorners = corners.cornerMask
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = curve
+        
+    }
+    
+}
+
+public extension UIView /* Round Corners (Legacy) */ {
+    
+    /// Masks the view's corners using a radius.
+    /// - Parameter corners: The corners to mask; _defaults to all_.
+    /// - Parameter radius: The corner radius.
+    ///
+    /// This is a deprecated function that will be removed in iOS 14. Please use `roundCorners(corners:radius:curve:)` instead.
+    func roundCorners(_ corners: UIRectCorner = .allCorners, radius: CGFloat) {
+        
+        self.layer.maskedCorners = corners.cornerMask
+        self.layer.cornerRadius = radius
+        
+    }
+    
+}
+
 public extension UIView /* Shadow */ {
     
     /**
@@ -119,19 +154,32 @@ public extension UIView /* Nib Loading */ {
     }
     
     /**
-     Load's a view from a nib with a specified name. If no name is provided, the class name will be used.
+     Load's a view from a nib with a specified name & bundle. If no name is provided, the class name will be used.
+     If no bundle is provided, the main bundle will be used.
      
      - Parameter name: The nib's name.
+     - Parameter bundle: The bundle to load the nib from.
      - Returns: A typed nib-loaded view instance.
      */
-    static func loadFromNib(name: String? = nil) -> Self {
-        return _loadFromNib(name: name)
+    static func loadFromNib(name: String? = nil, bundle: Bundle? = nil) -> Self {
+        
+        return _loadFromNib(
+            name: name,
+            bundle: bundle
+        )
+        
     }
     
-    private class func _loadFromNib<T: UIView>(name: String? = nil) -> T {
+    private class func _loadFromNib<T: UIView>(name: String?, bundle: Bundle?) -> T {
         
         let name = name ?? String(describing: self)
-        return Bundle.main.loadNibNamed(name, owner: self, options: nil)![0] as! T
+        let bundle = bundle ?? Bundle.main
+        
+        return bundle.loadNibNamed(
+            name,
+            owner: self,
+            options: nil
+        )!.first! as! T
         
     }
     

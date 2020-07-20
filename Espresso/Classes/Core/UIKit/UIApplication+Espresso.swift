@@ -21,14 +21,15 @@ public extension UIApplication /* Key View Controller */ {
      */
     func keyViewController(in root: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         
-        if let nav = root as? UINavigationController {
+        if let presented = root?.presentedViewController {
+            return keyViewController(in: presented)
+        }
+        else if let nav = root as? UINavigationController {
             return keyViewController(in: nav.visibleViewController)
         }
-        else if let tab = root as? UITabBarController, let selectedViewController = tab.selectedViewController {
+        else if let tab = root as? UITabBarController,
+            let selectedViewController = tab.selectedViewController {
             return keyViewController(in: selectedViewController)
-        }
-        else if let presented = root?.presentedViewController {
-            return keyViewController(in: presented)
         }
         
         return root

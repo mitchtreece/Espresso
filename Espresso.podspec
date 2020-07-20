@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = 'Espresso'
-    s.version          = '2.2.4'
+    s.version          = '2.3.0'
     s.summary          = 'Swift convenience library for iOS.'
 
     s.description      = <<-DESC
@@ -25,17 +25,14 @@ Pod::Spec.new do |s|
     s.subspec 'Core' do |core|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'Director', '~> 1.0.0'
-        core.dependency         'SnapKit',  '~> 5.0.0'
+        core.dependency         'SnapKit',  '~> 5.0'
 
     end
 
     s.subspec 'DI' do |di|
 
-        # di.source_files         = 'Espresso/Classes/DI/**/*'
         di.dependency           'Espresso/Core'
-        di.dependency           'Director/DI', '~> 1.0.0'
-        di.dependency           'Swinject', '~> 2.7.0'
+        di.dependency           'Swinject', '~> 2.7'
 
     end
 
@@ -50,8 +47,8 @@ Pod::Spec.new do |s|
 
         rx.source_files         = 'Espresso/Classes/RxMvvm/**/*'
         rx.dependency           'Espresso/Mvvm'
-        rx.dependency           'RxSwift', '~> 5.0.0'
-        rx.dependency           'RxCocoa', '~> 5.0.0'
+        rx.dependency           'RxSwift', '~> 5.0'
+        rx.dependency           'RxCocoa', '~> 5.0'
 
     end
 

@@ -12,12 +12,12 @@ public class UIViewControllerEvents {
     
     private class ProxyViewController: UIViewController {
         
-        private let _viewDidLoad:               VoidEvent
-        private let _viewWillAppear:            VoidEvent
-        private let _viewDidAppear:             VoidEvent
-        private let _viewWillDisappear:         VoidEvent
-        private let _viewDidDisappear:          VoidEvent
-        private let _didReceiveMemoryWarning:   VoidEvent
+        private let _viewDidLoad: VoidEvent
+        private let _viewWillAppear: VoidEvent
+        private let _viewDidAppear: VoidEvent
+        private let _viewWillDisappear: VoidEvent
+        private let _viewDidDisappear: VoidEvent
+        private let _didReceiveMemoryWarning: VoidEvent
         
         init(viewDidLoad: VoidEvent,
              viewWillAppear: VoidEvent,
@@ -45,33 +45,45 @@ public class UIViewControllerEvents {
         }
         
         override func viewDidLoad() {
+            
             super.viewDidLoad()
-            self._viewDidLoad.dispatch()
+            self._viewDidLoad.emit()
+            
         }
         
         override func viewWillAppear(_ animated: Bool) {
+            
             super.viewWillAppear(animated)
-            self._viewWillAppear.dispatch()
+            self._viewWillAppear.emit()
+            
         }
         
         override func viewDidAppear(_ animated: Bool) {
+            
             super.viewDidAppear(animated)
-            self._viewDidAppear.dispatch()
+            self._viewDidAppear.emit()
+            
         }
         
         override func viewWillDisappear(_ animated: Bool) {
+            
             super.viewWillDisappear(animated)
-            self._viewWillDisappear.dispatch()
+            self._viewWillDisappear.emit()
+            
         }
         
         override func viewDidDisappear(_ animated: Bool) {
+            
             super.viewDidDisappear(animated)
-            self._viewDidDisappear.dispatch()
+            self._viewDidDisappear.emit()
+            
         }
         
         override func didReceiveMemoryWarning() {
+            
             super.didReceiveMemoryWarning()
-            self._didReceiveMemoryWarning.dispatch()
+            self._didReceiveMemoryWarning.emit()
+            
         }
         
     }

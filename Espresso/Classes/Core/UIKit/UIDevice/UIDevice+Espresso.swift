@@ -29,6 +29,7 @@ public extension UIDevice /* Info*/ {
         case iPhone6S
         case iPhone6SPlus
         case iPhoneSE
+        case iPhoneSE_2G
         case iPhone7
         case iPhone7Plus
         case iPhone8
@@ -59,20 +60,23 @@ public extension UIDevice /* Info*/ {
         case iPad4G
         case iPad5G
         case iPad6G
+        case iPad7G
         case iPadMini
         case iPadMini2
         case iPadMini3
         case iPadMini4
-        case iPadMini5
+        case iPadMini5G
         case iPadAir
         case iPadAir2
-        case iPadAir3
+        case iPadAir3G
         case iPadPro9
         case iPadPro10
         case iPadPro12
         case iPadPro12_2G
         case iPadPro11
         case iPadPro12_3G
+        case iPadPro11_2G
+        case iPadPro12_4G
         
         // Watch
         
@@ -115,6 +119,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone6S: return "iPhone 6s"
             case .iPhone6SPlus: return "iPhone 6s Plus"
             case .iPhoneSE: return "iPhone SE"
+            case .iPhoneSE_2G: return "iPhone SE 2G"
             case .iPhone7: return "iPhone 7"
             case .iPhone7Plus: return "iPhone 7 Plus"
             case .iPhone8: return "iPhone 8"
@@ -147,20 +152,23 @@ public extension UIDevice /* Info*/ {
             case .iPad4G: return "iPad 4G"
             case .iPad5G: return "iPad 5G"
             case .iPad6G: return "iPad 6G"
+            case .iPad7G: return "iPad 7G"
             case .iPadMini: return "iPad mini"
             case .iPadMini2: return "iPad mini 2"
             case .iPadMini3: return "iPad mini 3"
             case .iPadMini4: return "iPad mini 4"
-            case .iPadMini5: return "iPad mini 5"
+            case .iPadMini5G: return "iPad mini 5G"
             case .iPadAir: return "iPad Air"
             case .iPadAir2: return "iPad Air 2"
-            case .iPadAir3: return "iPd Air 3"
+            case .iPadAir3G: return "iPad Air 3G"
             case .iPadPro9: return "iPad Pro (9-inch)"
             case .iPadPro10: return "iPad Pro (10.5-inch)"
             case .iPadPro12: return "iPad Pro (12.9-inch)"
             case .iPadPro12_2G: return "iPad Pro (12.9-inch) 2G"
             case .iPadPro11: return "iPad Pro (11-inch)"
             case .iPadPro12_3G: return "iPad Pro (12.9-inch) 3G"
+            case .iPadPro11_2G: return "iPad Pro (11-inch) 2G"
+            case .iPadPro12_4G: return "iPad Pro (12.9-inch) 4G"
                 
             case .appleTV: return "Apple TV"
             case .appleTV4K: return "Apple TV 4K"
@@ -189,6 +197,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone6S: return ["iPhone8,1"]
             case .iPhone6SPlus: return ["iPhone8,2"]
             case .iPhoneSE: return ["iPhone8,4"]
+            case .iPhoneSE_2G: return ["iPhone12,8"]
             case .iPhone7: return ["iPhone9,1", "iPhone9,3"]
             case .iPhone7Plus: return ["iPhone9,2", "iPhone9,4"]
             case .iPhone8: return ["iPhone10,1", "iPhone10,4"]
@@ -215,20 +224,23 @@ public extension UIDevice /* Info*/ {
             case .iPad4G: return ["iPad3,4", "iPad3,5", "iPad3,6"]
             case .iPad5G: return ["iPad6,11", "iPad6,12"]
             case .iPad6G: return ["iPad7,5", "iPad7,6"]
+            case .iPad7G: return ["iPad7,11", "iPad7,12"]
             case .iPadMini: return ["iPad2,5", "iPad2,6", "iPad2,7"]
             case .iPadMini2: return ["iPad4,4", "iPad4,5", "iPad4,6"]
             case .iPadMini3: return ["iPad4,7", "iPad4,8", "iPad4,9"]
             case .iPadMini4: return ["iPad5,1", "iPad5,2"]
-            case .iPadMini5: return ["iPad11,1", "iPad11,2"]
+            case .iPadMini5G: return ["iPad11,1", "iPad11,2"]
             case .iPadAir: return ["iPad4,1", "iPad4,2", "iPad4,3"]
             case .iPadAir2: return ["iPad5,3", "iPad5,4"]
-            case .iPadAir3: return ["iPad11,3", "iPad11,4"]
+            case .iPadAir3G: return ["iPad11,3", "iPad11,4"]
             case .iPadPro9: return ["iPad6,3", "iPad6,4"]
             case .iPadPro10: return ["iPad7,3", "iPad7,4"]
             case .iPadPro12: return ["iPad6,7", "iPad6,8"]
             case .iPadPro12_2G: return ["iPad7,1", "iPad7,2"]
             case .iPadPro11: return ["iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4"]
             case .iPadPro12_3G: return ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"]
+            case .iPadPro11_2G: return ["iPad8,9", "iPad8,10"]
+            case .iPadPro12_4G: return ["iPad8,11", "iPad8,12"]
                 
             case .appleWatch: return ["Watch1,1", "Watch1,2"]
             case .appleWatchS1: return ["Watch2,6", "Watch2,7"]
@@ -363,28 +375,44 @@ public extension UIDevice /* Info*/ {
      Flag indicating whether the current device is a phone.
      */
     var isPhone: Bool {
-        return self.info().displayName.contains("iPhone")
+        
+        return self.info()
+            .displayName
+            .contains("iPhone")
+        
     }
     
     /**
      Flag indicating whether the current device is an iPad.
      */
     var isPad: Bool {
-        return self.info().displayName.contains("iPad")
+        
+        return self.info()
+            .displayName
+            .contains("iPad")
+        
     }
     
     /**
      Flag indicating whether the current device is an iPod.
      */
     var isPod: Bool {
-        return self.info().displayName.contains("iPod")
+        
+        return self.info()
+            .displayName
+            .contains("iPod")
+        
     }
     
     /**
      Flag indicating whether the current device is a TV.
      */
     var isTV: Bool {
-        return self.info().displayName.contains("TV")
+        
+        return self.info()
+            .displayName
+            .contains("TV")
+        
     }
     
     /**
@@ -415,7 +443,9 @@ public extension UIDevice /* Info*/ {
         
         return (
             info == .iPadPro11 ||
-            info == .iPadPro12_3G
+            info == .iPadPro12_3G ||
+            info == .iPadPro11_2G ||
+            info == .iPadPro12_4G
         )
         
     }

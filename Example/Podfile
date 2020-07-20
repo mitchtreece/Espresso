@@ -3,6 +3,7 @@ use_frameworks!
 target 'Espresso_Example' do
 
   pod 'Espresso/All', :path => '../'
+  pod 'Director',     '~> 1.0.0'
 
   target 'Espresso_Tests' do
     inherit! :search_paths

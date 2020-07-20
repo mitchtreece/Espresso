@@ -72,6 +72,8 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         private let menuOptions: UIMenu.Options?
         private let menuChildren: [Item]?
         
+        internal let isEnabled: Bool
+        
         internal var element: UIMenuElement? {
             
             if let action = self.action {
@@ -106,11 +108,13 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         /// - parameter image: The action's image; _defaults to nil_.
         /// - parameter identifier: The action's identifier; _defaults to nil_.
         /// - parameter attributes: The action's style attributes; _defaults to nil_.
+        /// - parameter isEnabled: Flag indicating if the item is enabled; _defaults to true_.
         /// - parameter handler: The action's handler.
         public static func action(title: String,
                                   image: UIImage? = nil,
                                   identifier: String? = nil,
                                   attributes: UIMenuElement.Attributes? = nil,
+                                  isEnabled: Bool = true,
                                   handler: @escaping UIActionHandler) -> Item {
             
             return Item(
@@ -120,7 +124,8 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
                 actionAttributes: attributes,
                 action: handler,
                 menuOptions: nil,
-                menuChildren: nil
+                menuChildren: nil,
+                isEnabled: isEnabled
             )
             
         }
@@ -130,11 +135,13 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         /// - parameter image: The menu's image; _defaults to nil_.
         /// - parameter identifier: The menu's identifier; _defaults to nil_.
         /// - parameter options: The menu's style options; _defaults to nil_.
+        /// - parameter isEnabled: Flag indicating if the menu is enabled; _defaults to true_.
         /// - parameter children: The menu's child items.
         public static func menu(title: String,
                                 image: UIImage? = nil,
                                 identifier: String? = nil,
                                 options: UIMenu.Options? = nil,
+                                isEnabled: Bool = true,
                                 children: [Item]) -> Item {
             
             return Item(
@@ -144,7 +151,8 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
                 actionAttributes: nil,
                 action: nil,
                 menuOptions: options,
-                menuChildren: children
+                menuChildren: children,
+                isEnabled: isEnabled
             )
             
         }
@@ -152,41 +160,39 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     }
 
     /// The context menu's title.
-    public let title: String
+    public var title: String
     
     /// The context menu's image.
-    public let image: UIImage?
+    public var image: UIImage?
     
     /// The context menu's identifier.
-    public let identifier: String?
+    public var identifier: String?
     
     /// The context menu's preview providing closure.
     ///
     /// If this is `nil`, the system will automatically
     /// generate a preview based on the context menu's parent view.
-    public let previewProvider: UIContextMenuContentPreviewProvider?
+    public var previewProvider: UIContextMenuContentPreviewProvider?
     
     /// The context menu's preview commit closure.
     ///
     /// This will be called after a user taps on the context menu's preview.
     /// If possible, the currently previewed view controller will be provided
     /// to the closure. Perform navigation or other tasks if needed.
-    public let commitHandler: ((UIViewController?)->())?
+    public var commitHandler: ((UIViewController?)->())?
         
     /// The context menu's preferred preview commit style; _defaults to pop_.
     public var commitStyle: UIContextMenuInteractionCommitStyle = .pop
     
     /// Flag indicating if tapping on a provided preview should
-    public let automaticallyPopToPreview: Bool = true
+    public var automaticallyPopToPreview: Bool = true
     
     /// The context menu's items.
-    public let items: [Item]
+    public var items: [Item]
     
     /// Flag indicating if system-suggested menu items should be displayed.
-    public let includeSuggestedItems: Bool
-    
-    private var configuration: UIContextMenuConfiguration?
-    
+    public var includeSuggestedItems: Bool
+        
     /// Initializes a new `UIContextMenu`.
     /// - parameter title: The context menu's title.
     /// - parameter image: The context menu's image; _defaults to nil_.
@@ -216,16 +222,14 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     public func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                        configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         
-        if let configuration = self.configuration {
-            return configuration
-        }
-        
-        self.configuration = UIContextMenuConfiguration(
+        return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: self.previewProvider,
             actionProvider: { suggestedElements -> UIMenu? in
                               
-                var children = self.items.compactMap { $0.element }
+                var children = self.items
+                    .filter { $0.isEnabled }
+                    .compactMap { $0.element }
                 
                 if self.includeSuggestedItems {
                     children.append(contentsOf: suggestedElements)
@@ -240,8 +244,6 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
                 )
                 
             })
-        
-        return self.configuration!
                 
     }
         

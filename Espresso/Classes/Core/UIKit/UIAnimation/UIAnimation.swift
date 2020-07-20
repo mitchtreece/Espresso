@@ -165,12 +165,9 @@ public class UIAnimation {
         switch timingCurve {
         case .simple(let curve):
             
-            animator = UIViewPropertyAnimator(duration: duration, curve: curve, animations: animationBlock)
-            animator.startAnimation(afterDelay: delay)
-            animator.addCompletion { _ in
-                completion?()
-            }
-            
+            animator = UIViewPropertyAnimator(duration: self.duration, curve: curve, animations: self.animationBlock)
+            animator.addCompletion { _ in completion?() }
+            animator.startAnimation(afterDelay: self.delay)
             return
             
         case .cubicBezier(let cp1, let cp2): provider = UICubicTimingParameters(controlPoint1: cp1, controlPoint2: cp2)
@@ -185,13 +182,11 @@ public class UIAnimation {
         case .custom(let _provider): provider = _provider
         }
         
-        animator = UIViewPropertyAnimator(duration: duration, timingParameters: provider)
-        animator.addAnimations(animationBlock)
-        animator.startAnimation(afterDelay: delay)
-        animator.addCompletion { _ in
-            completion?()
-        }
-        
+        animator = UIViewPropertyAnimator(duration: self.duration, timingParameters: provider)
+        animator.addAnimations(self.animationBlock)
+        animator.addCompletion { _ in completion?() }
+        animator.startAnimation(afterDelay: self.delay)
+
     }
     
 }

@@ -250,7 +250,7 @@ open class ViewCoordinator: AnyCoordinator, Equatable {
                 let oldDelegate = self.navigationController.delegate
                 self.navigationController.delegate = transitioningNavDelegate
                 
-                self.navigationController.pushViewController(viewController, completion: {
+                self.navigationController.pushViewController(viewController, animated: true, completion: {
                     self.navigationController.delegate = oldDelegate
                     coordinator.didStart()
                     completion?()
@@ -260,10 +260,13 @@ open class ViewCoordinator: AnyCoordinator, Equatable {
                 
             }
             
-            self.navigationController.pushViewController(viewController, completion: {
-                coordinator.didStart()
-                completion?()
-            })
+            self.navigationController.pushViewController(
+                viewController,
+                animated: true,
+                completion: {
+                    coordinator.didStart()
+                    completion?()
+                })
             
         }
         
@@ -359,23 +362,12 @@ open class ViewCoordinator: AnyCoordinator, Equatable {
         self.rootViewController = viewControllers.first!
         self.presentationDelegate.isEnabled = false
         
-        if animated {
-            
-            self.navigationController.setViewControllers(replacementViewControllers, completion: {
+        self.navigationController.setViewControllers(
+            replacementViewControllers,
+            animated: animated,
+            completion: {
                 self.presentationDelegate.isEnabled = true
             })
-            
-        }
-        else {
-            
-            self.navigationController.setViewControllers(
-                replacementViewControllers,
-                animated: false
-            )
-
-            self.presentationDelegate.isEnabled = true
-            
-        }
         
     }
     
@@ -466,9 +458,12 @@ open class ViewCoordinator: AnyCoordinator, Equatable {
             guard let index = nav.viewControllers.firstIndex(of: coordinator.rootViewController) else { return }
             let destinationViewController = nav.viewControllers[index - 1]
             
-            nav.popToViewController(destinationViewController, completion: { _ in
-                completion?()
-            })
+            nav.popToViewController(
+                destinationViewController,
+                animated: true,
+                completion: { _ in
+                    completion?()
+                })
             
         }
         

@@ -31,6 +31,7 @@ public extension ViewCoordinator /* Navigation */ {
         
         self.navigationController.pushViewController(
             viewController,
+            animated: true,
             completion: completion
         )
         

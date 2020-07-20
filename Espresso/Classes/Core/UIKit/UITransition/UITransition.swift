@@ -14,10 +14,12 @@ import UIKit
 /// a valid presentation controller from `presentationController(forPresented:presenting:source:)`.
 open class UIPresentationTransition: UITransition {
     
-    public func presentationController(forPresented presented: UIViewController,
-                                       presenting: UIViewController?,
-                                       source: UIViewController) -> UIPresentationController? {
-        fatalError("")
+    open func presentationController(forPresented presented: UIViewController,
+                                     presenting: UIViewController?,
+                                     source: UIViewController) -> UIPresentationController? {
+        
+        fatalError("UIPresentationTransition subclasses must override `presentationController(forPresented:presenting:)`")
+        
     }
     
 }
