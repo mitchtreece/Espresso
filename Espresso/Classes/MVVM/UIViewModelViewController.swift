@@ -18,11 +18,19 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     /**
      Initializes a view controller with a view model.
      - Parameter viewModel: The view model.
+     - Parameter nibName: The nib name.
+     - Parameter bundle: The bundle to load from.
      */
-    public init(viewModel: V) {
+    public init(viewModel: V,
+                nibName: String? = nil,
+                bundle: Bundle? = nil) {
         
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        
+        super.init(
+            nibName: nibName,
+            bundle: bundle
+        )
         
     }
     

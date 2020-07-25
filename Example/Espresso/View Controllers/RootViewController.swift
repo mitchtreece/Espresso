@@ -38,7 +38,7 @@ class RootViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Espresso ☕️"
-        
+                
         self.events.viewDidAppear.addObserver {
             print("☕️ RootViewController did appear")
         }
