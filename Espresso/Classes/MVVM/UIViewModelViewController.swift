@@ -21,9 +21,9 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
      - Parameter nibName: The nib name.
      - Parameter bundle: The bundle to load from.
      */
-    public required init(viewModel: V,
-                         nibName: String? = nil,
-                         bundle: Bundle? = nil) {
+    public init(viewModel: V,
+                nibName: String? = nil,
+                bundle: Bundle? = nil) {
         
         self.viewModel = viewModel
         
