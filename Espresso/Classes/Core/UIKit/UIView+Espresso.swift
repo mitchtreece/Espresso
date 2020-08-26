@@ -153,15 +153,13 @@ public extension UIView /* Nib Loading */ {
         static var nibs: UInt8 = 0
     }
     
-    /**
-     Load's a view from a nib with a specified name & bundle. If no name is provided, the class name will be used.
-     If no bundle is provided, the main bundle will be used.
-     
-     - Parameter name: The nib's name.
-     - Parameter bundle: The bundle to load the nib from.
-     - Returns: A typed nib-loaded view instance.
-     */
-    static func loadFromNib(name: String? = nil, bundle: Bundle? = nil) -> Self {
+    /// Load's a view from a nib with a specified name & bundle. If no name is provided, the class name will be used.
+    /// If no bundle is provided, the main bundle will be used.
+    ///
+    /// - Parameter name: The nib's name.
+    /// - Parameter bundle: The bundle to load the nib from.
+    /// - Returns: A typed nib-loaded view instance.
+    static func loadFromNib(name: String? = nil, bundle: Bundle = Bundle.main) -> Self {
         
         return _loadFromNib(
             name: name,
@@ -170,10 +168,9 @@ public extension UIView /* Nib Loading */ {
         
     }
     
-    private class func _loadFromNib<T: UIView>(name: String?, bundle: Bundle?) -> T {
+    private class func _loadFromNib<T: UIView>(name: String?, bundle: Bundle) -> T {
         
         let name = name ?? String(describing: self)
-        let bundle = bundle ?? Bundle.main
         
         return bundle.loadNibNamed(
             name,
