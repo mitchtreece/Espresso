@@ -10,7 +10,7 @@ import Espresso
 import RxSwift
 import RxCocoa
 
-class RxViewModel: ViewModel {
+class RxViewModel: UIViewModel {
     
     let title = "Rx / MVVM"
     let barButtonTitle = "Tap Me!"

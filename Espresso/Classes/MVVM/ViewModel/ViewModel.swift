@@ -7,20 +7,16 @@
 
 import Foundation
 
-/**
- Abstract protocol representing a view model.
- */
+/// Abstract protocol representing a view model.
 public protocol ViewModelProtocol: Equatable {
     //
 }
 
-/**
- View model base class.
- 
- This should never be used directly. Instead, create a specialized `ViewModel` by subclassing it.
- */
+/// View model base class.
+///
+/// This should never be used directly. Instead, create a specialized `ViewModel` by subclassing it.
 open class ViewModel: ViewModelProtocol {
-    
+        
     public init() {
         //
     }

@@ -89,6 +89,8 @@
 		26624EFE241970D70038EAB4 /* Data+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26624EFD241970D70038EAB4 /* Data+Espresso.swift */; };
 		266F050C238E4D7A004C4236 /* UIRevealTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266F050B238E4D7A004C4236 /* UIRevealTransition.swift */; };
 		26918039115AA48C4265A42CC73374D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640CA2B88DC54FAD914B7C048A8CAA5 /* Foundation.framework */; };
+		26A185AF25523B0B005F9A6A /* UIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A185AD25523B0B005F9A6A /* UIViewModel.swift */; };
+		26A185B025523B0B005F9A6A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A185AE25523B0B005F9A6A /* ViewModel.swift */; };
 		26BE20132422F2B6002806EB /* UIRectCorner+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BE20112422F2AF002806EB /* UIRectCorner+Espresso.swift */; };
 		26C089829E55C0B6259A4F787B03E987 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87D51B2C19DD77B404773C42AF1B57 /* SpinLock.swift */; };
 		26E5F9401ACAAE69AAAFB0D12FDD17A0 /* Platform.Darwin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A419D0AFAC40E7B4800D2DBCB02571A /* Platform.Darwin.swift */; };
@@ -427,7 +429,6 @@
 		E6DC58E74E2532046C4164ECA4517F08 /* UserAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC5E3BCD1CF80F61EE152AE49A3D466 /* UserAuthenticator.swift */; };
 		E6E0D000F64359FF6B27C6262E1867AE /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A514CB4E947B3309ECDAEABA8C5F3B /* WithLatestFrom.swift */; };
 		E6E62F40FED190CFDFFB3117406BD110 /* ObserverBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB2BC61B3334A2746D6A3A7F88F449 /* ObserverBase.swift */; };
-		E710495329329A52C81BBA87589A1A98 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3871C962FC1DCBC6ABE9D18E2FF50B /* ViewModel.swift */; };
 		E72AAEA5161922C0D82D65B863967FD0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B576A87D164E42B774FCA65C2B7AE9 /* Container.swift */; };
 		E74F4FBD50895570AE3670D6AD3B2DB2 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E146C30B863D6A18F5095816CB79635 /* DispatchQueue+Extensions.swift */; };
 		E77F13D0159EC3AA877289757BC50D69 /* UITransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3308801613E6A89CC8F1D0635665BBBC /* UITransition.swift */; };
@@ -657,6 +658,8 @@
 		26624EF624182F270038EAB4 /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
 		26624EFD241970D70038EAB4 /* Data+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Espresso.swift"; sourceTree = "<group>"; };
 		266F050B238E4D7A004C4236 /* UIRevealTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRevealTransition.swift; sourceTree = "<group>"; };
+		26A185AD25523B0B005F9A6A /* UIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewModel.swift; sourceTree = "<group>"; };
+		26A185AE25523B0B005F9A6A /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		26BA866E96822E5DD298D20103F92328 /* NSObject+Rx+KVORepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Rx+KVORepresentable.swift"; path = "RxCocoa/Foundation/NSObject+Rx+KVORepresentable.swift"; sourceTree = "<group>"; };
 		26BE20112422F2AF002806EB /* UIRectCorner+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+Espresso.swift"; sourceTree = "<group>"; };
 		26C0C972F1132A569CFFF740D2BD353A /* UISegmentedControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UISegmentedControl+Rx.swift"; path = "RxCocoa/iOS/UISegmentedControl+Rx.swift"; sourceTree = "<group>"; };
@@ -1095,7 +1098,6 @@
 		F8DB0C23DB96EC06D31A49C2B97F2BF4 /* NSButton+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSButton+Rx.swift"; path = "RxCocoa/macOS/NSButton+Rx.swift"; sourceTree = "<group>"; };
 		F8F72EE2C9DB1542144F8FA011A8155D /* ViewCoordinator+Modal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ViewCoordinator+Modal.swift"; path = "Director/Source/Core/ViewCoordinator+Modal.swift"; sourceTree = "<group>"; };
 		F9A31404D4EBBF7C875A4C73768D98EE /* Array+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+Espresso.swift"; sourceTree = "<group>"; };
-		FA3871C962FC1DCBC6ABE9D18E2FF50B /* ViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = Espresso/Classes/MVVM/ViewModel.swift; sourceTree = "<group>"; };
 		FA49018FB12CE55EF61FDBC61EB6BBE4 /* SynchronizedOnType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedOnType.swift; path = RxSwift/Concurrency/SynchronizedOnType.swift; sourceTree = "<group>"; };
 		FB17A1D57A1007A405EC6DF843C16728 /* Switch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Switch.swift; path = RxSwift/Observables/Switch.swift; sourceTree = "<group>"; };
 		FB2A64FB1E7A0E0D92E02DF3F628627D /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
@@ -1413,6 +1415,16 @@
 			path = Convertibles;
 			sourceTree = "<group>";
 		};
+		26A185AC25523AB4005F9A6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26A185AD25523B0B005F9A6A /* UIViewModel.swift */,
+				26A185AE25523B0B005F9A6A /* ViewModel.swift */,
+			);
+			name = ViewModel;
+			path = Espresso/Classes/MVVM/ViewModel;
+			sourceTree = "<group>";
+		};
 		2F634D51727422CEB3E8DB08763C835B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1521,7 +1533,7 @@
 				7EAC92CF282B18F9CF7B276590E7DC04 /* UIViewModelCollectionViewCell.swift */,
 				DA9A58F91283E4B2D6650BDD7D82A6EA /* UIViewModelTableViewCell.swift */,
 				D9AC54F78CDA4164937BDBCCC1CCC5D0 /* UIViewModelViewController.swift */,
-				FA3871C962FC1DCBC6ABE9D18E2FF50B /* ViewModel.swift */,
+				26A185AC25523AB4005F9A6A /* ViewModel */,
 			);
 			name = Mvvm;
 			sourceTree = "<group>";
@@ -2597,6 +2609,7 @@
 				C9AA87AD2F50157DBA2682B4428C71BF /* UIAnimationGroup.swift in Sources */,
 				5645F8921A076AA933DA8880549D26B9 /* UIAnimationGroupConvertible.swift in Sources */,
 				0071FB9A8BACE0B87E3319D58E608223 /* UIAnimationOperation.swift in Sources */,
+				26A185B025523B0B005F9A6A /* ViewModel.swift in Sources */,
 				2B0DE3A4376EC54C4E9E0D73601A1BEC /* UIAnimationOperationQueue.swift in Sources */,
 				B9B013B393C23ECF909EE73A1F20A651 /* UIApplication+Espresso.swift in Sources */,
 				4053B027E86B8B10A71F2332389B6F19 /* UIApplication+Events.swift in Sources */,
@@ -2608,6 +2621,7 @@
 				2D81D8DD4080D7F57196F784F9290E5B /* UIBlurView.swift in Sources */,
 				E56A2E02F0497572050CADF5476E4DA8 /* UICollectionView+Espresso.swift in Sources */,
 				907283CA7ECE322BEC5A8256F06C9E90 /* UICollectionViewCell+Espresso.swift in Sources */,
+				26A185AF25523B0B005F9A6A /* UIViewModel.swift in Sources */,
 				7B1C288CDD8C03B9AAAF0A7DD5E77477 /* UIColor+Espresso.swift in Sources */,
 				26624EF724182F270038EAB4 /* Nonce.swift in Sources */,
 				20F66D4C156B6428D8330F5C631CC554 /* UIContainerView.swift in Sources */,
@@ -2649,7 +2663,6 @@
 				5562148870A59B49C3BEBF2DFD75A67A /* UIViewModelViewController.swift in Sources */,
 				106C99E6FD769C83CF9452FC40AC040B /* UIZoomTransition.swift in Sources */,
 				E6DC58E74E2532046C4164ECA4517F08 /* UserAuthenticator.swift in Sources */,
-				E710495329329A52C81BBA87589A1A98 /* ViewModel.swift in Sources */,
 				B104F4CE1CA3A1ADEDA82D7D8ED74AE0 /* VoidEvent.swift in Sources */,
 				3DD4F6E3B1D45594E92153986143404C /* XMLCodable.swift in Sources */,
 			);
