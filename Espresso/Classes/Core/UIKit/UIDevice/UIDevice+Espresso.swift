@@ -9,9 +9,8 @@ import UIKit
 
 public extension UIDevice /* Info*/ {
     
-    /**
-     Representation of the various iOS device types. Also provides information about the current device's system & state.
-     */
+    /// Representation of the various iOS device types.
+    /// Also provides information about the current device's system & state.
     enum DeviceInfo: String, CaseIterable {
         
         // iPhone
@@ -110,9 +109,7 @@ public extension UIDevice /* Info*/ {
         case simulator
         case unknown
         
-        /**
-         The device's display name.
-         */
+        /// The device's display name.
         public var displayName: String {
             
             switch self {
@@ -289,17 +286,13 @@ public extension UIDevice /* Info*/ {
             
         }
         
-        /**
-         The device's system version string.
-         */
+        /// The device's system version string.
         public var systemVersion: String {
             return UIDevice.current.systemVersion
         }
         
-        /**
-         Flag indicating whether the current device is jailbroken or not.
-         This is **not** guaranteed to be 100% accurate.
-         */
+        /// Flag indicating whether the current device is jailbroken or not.
+        /// This is **not** guaranteed to be 100% accurate.
         public var isJailbroken: Bool {
             
             guard !UIDevice.current.isSimulator else { return false }
@@ -350,13 +343,10 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Creates a new device info object, optionally overlooking the simulator if desired.
-     
-     - Parameter includeSimulator: Flag indicating whether the `simulator` device type should be reported or not.
-     If the current device is a simulator and this is set to _false_, the emulated device will be returned instead.
-     - Returns: A new device info object.
-     */
+    /// Creates a new device info object, optionally overlooking the simulator if desired.
+    /// - parameter includeSimulator: Flag indicating whether the `simulator` device type should be reported or not.
+    /// If the current device is a simulator and this is set to _false_, the emulated device will be returned instead.
+    /// - returns: A new device info object.
     func info(includeSimulator: Bool = false) -> DeviceInfo {
         
         #if targetEnvironment(simulator)
@@ -394,16 +384,12 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is a simulator.
-     */
+    /// Flag indicating whether the current device is a simulator.
     var isSimulator: Bool {
         return (self.info(includeSimulator: true) == DeviceInfo.simulator)
     }
     
-    /**
-     Flag indicating whether the current device is a phone.
-     */
+    /// Flag indicating whether the current device is a phone.
     var isPhone: Bool {
         
         return self.info()
@@ -412,9 +398,7 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is an iPad.
-     */
+    /// Flag indicating whether the current device is an iPad.
     var isPad: Bool {
         
         return self.info()
@@ -423,9 +407,7 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is an iPod.
-     */
+    /// Flag indicating whether the current device is an iPod.
     var isPod: Bool {
         
         return self.info()
@@ -434,9 +416,7 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is a TV.
-     */
+    /// Flag indicating whether the current device is a TV.
     var isTV: Bool {
         
         return self.info()
@@ -445,9 +425,7 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is a modern phone (edge-to-edge screen without a home button).
-     */
+    /// Flag indicating whether the current device is a modern phone (edge-to-edge screen without a home button).
     var isModernPhone: Bool {
         
         let info = self.info()
@@ -459,14 +437,16 @@ public extension UIDevice /* Info*/ {
             info == .iPhoneXSMax ||
             info == .iPhone11 ||
             info == .iPhone11Pro ||
-            info == .iPhone11ProMax
+            info == .iPhone11ProMax ||
+            info == .iPhone12 ||
+            info == .iPhone12Mini ||
+            info == .iPhone12Pro ||
+            info == .iPhone12ProMax
         )
         
     }
     
-    /**
-     Flag indicating whether the current device is a modern pad (edge-to-edge screen without a home button).
-     */
+    /// Flag indicating whether the current device is a modern pad (edge-to-edge screen without a home button).
     var isModernPad: Bool {
         
         let info = self.info()
@@ -480,9 +460,7 @@ public extension UIDevice /* Info*/ {
         
     }
     
-    /**
-     Flag indicating whether the current device is modern (edge-to-edge screen without a home button).
-     */
+    /// Flag indicating whether the current device is modern (edge-to-edge screen without a home button).
     var isModern: Bool {
         return (self.isModernPhone || self.isModernPad)
     }
