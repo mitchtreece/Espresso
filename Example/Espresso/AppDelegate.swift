@@ -12,7 +12,7 @@ import Director
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     private var sceneDirector: SceneDirector!
     

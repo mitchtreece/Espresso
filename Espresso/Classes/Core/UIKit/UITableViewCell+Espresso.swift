@@ -19,14 +19,14 @@ public extension UITableViewCell /* Register */ {
                             nibName: String? = nil,
                             bundle: Bundle = Bundle.main) {
         
-        let name = nibName ?? self.identifier
+        let name = nibName ?? self.staticIdentifier
         
         tableView.register(
             UINib(
                 nibName: name,
                 bundle: bundle
             ),
-            forCellReuseIdentifier: self.identifier
+            forCellReuseIdentifier: self.staticIdentifier
         )
         
     }
@@ -39,7 +39,7 @@ public extension UITableViewCell /* Register */ {
         
         tableView.register(
             self,
-            forCellReuseIdentifier: self.identifier
+            forCellReuseIdentifier: self.staticIdentifier
         )
         
     }
@@ -81,9 +81,9 @@ public extension UITableViewCell /* Register */ {
                                                  nibName: String? = nil,
                                                  bundle: Bundle = Bundle.main) -> T {
         
-        let name = nibName ?? T.identifier
+        let name = nibName ?? T.staticIdentifier
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: T.identifier) as? T {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: T.staticIdentifier) as? T {
             return cell
         }
         else {
@@ -101,7 +101,7 @@ public extension UITableViewCell /* Register */ {
     private class func _cell<T: UITableViewCell>(dequeuedFor tableView: UITableView, at indexPath: IndexPath) -> T {
         
         return tableView.dequeueReusableCell(
-            withIdentifier: T.identifier,
+            withIdentifier: T.staticIdentifier,
             for: indexPath
         ) as! T
         

@@ -17,14 +17,14 @@ public extension UICollectionViewCell /* Register */ {
                             nibName: String? = nil,
                             bundle: Bundle = Bundle.main) {
         
-        let name = nibName ?? self.identifier
+        let name = nibName ?? self.staticIdentifier
         
         collectionView.register(
             UINib(
                 nibName: name,
                 bundle: bundle
             ),
-            forCellWithReuseIdentifier: self.identifier
+            forCellWithReuseIdentifier: self.staticIdentifier
         )
         
     }
@@ -36,7 +36,7 @@ public extension UICollectionViewCell /* Register */ {
         
         collectionView.register(
             self,
-            forCellWithReuseIdentifier: self.identifier
+            forCellWithReuseIdentifier: self.staticIdentifier
         )
         
     }
@@ -58,7 +58,7 @@ public extension UICollectionViewCell /* Register */ {
     private class func _cell<T: UICollectionViewCell>(dequeuedFor collectionView: UICollectionView, at indexPath: IndexPath) -> T {
         
         return collectionView.dequeueReusableCell(
-            withReuseIdentifier: T.identifier,
+            withReuseIdentifier: T.staticIdentifier,
             for: indexPath
         ) as! T
         
