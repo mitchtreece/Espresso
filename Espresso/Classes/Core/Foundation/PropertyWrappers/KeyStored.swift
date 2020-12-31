@@ -15,6 +15,23 @@ public struct KeyStored<T> {
     private let defaultValue: T?
     private let store: KeyStore
     
+    public var wrappedValue: T? {
+        get {
+
+            let _value: T? = self.store.get(self.key)
+            
+            guard let value = _value else {
+                return self.defaultValue
+            }
+            
+            return value
+            
+        }
+        set {
+            self.store.set(value: newValue, for: self.key)
+        }
+    }
+    
     /// Initializes a `KeyStored` property wrapper.
     /// - parameter key: The unique key used when reading from & writing to the store.
     /// - parameter default: A default value used when reading an empty value from the store; _defaults to nil_.
@@ -36,28 +53,11 @@ public struct KeyStored<T> {
     public init(_ key: String,
                 default: T? = nil,
                 store: KeyStore = UserDefaults.standard) {
-        
+                
         self.key = key
         self.defaultValue = `default`
         self.store = store
         
-    }
-    
-    public var wrappedValue: T? {
-        get {
-
-            let _value: T? = self.store.get(self.key)
-            
-            guard let value = _value else {
-                return self.defaultValue
-            }
-            
-            return value
-            
-        }
-        set {
-            self.store.set(value: newValue, for: self.key)
-        }
     }
     
 }
