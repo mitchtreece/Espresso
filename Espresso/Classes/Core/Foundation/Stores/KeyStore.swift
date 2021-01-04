@@ -22,7 +22,7 @@ public protocol KeyStore: Store {
     
 }
 
-public extension KeyStore {
+public extension KeyStore /* Key */ {
     
     /// Retrieves a value from the store using a unique key.
     /// - parameter key: The unique key.
@@ -36,6 +36,22 @@ public extension KeyStore {
     /// - parameter key: The unique key.
     func set(value: Any?, for key: Key) {
         set(value: value, for: key.value)
+    }
+    
+}
+
+public extension KeyStore /* Clear */ {
+    
+    /// Clears a value from the store associated with a given key.
+    /// - parameter key: The key.
+    func clear(key: String) {
+        self.set(value: nil, for: key)
+    }
+    
+    /// Clears a value from the store associated with a given key.
+    /// - parameter key: The key.
+    func clear(key: Key) {
+        self.set(value: nil, for: key)
     }
     
 }
