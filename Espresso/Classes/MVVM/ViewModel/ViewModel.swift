@@ -16,13 +16,13 @@ public protocol ViewModelProtocol: Equatable {
 ///
 /// This should never be used directly. Instead, create a specialized `ViewModel` by subclassing it.
 open class ViewModel: ViewModelProtocol {
-        
-    public init() {
-        //
-    }
-    
+     
     public static func == (lhs: ViewModel, rhs: ViewModel) -> Bool {
         return lhs === rhs
+    }
+    
+    public init() {
+        //
     }
     
 }
