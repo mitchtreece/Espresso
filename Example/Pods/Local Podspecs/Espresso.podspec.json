@@ -28,14 +28,6 @@
       "dependencies": {
         "SnapKit": [
           "~> 5.0"
-        ]
-      }
-    },
-    {
-      "name": "DI",
-      "dependencies": {
-        "Espresso/Core": [
-
         ],
         "Swinject": [
           "~> 2.0"
@@ -43,19 +35,10 @@
       }
     },
     {
-      "name": "Mvvm",
-      "source_files": "Espresso/Classes/Mvvm/**/*",
+      "name": "Rx",
+      "source_files": "Espresso/Classes/Rx/**/*",
       "dependencies": {
         "Espresso/Core": [
-
-        ]
-      }
-    },
-    {
-      "name": "RxMvvm",
-      "source_files": "Espresso/Classes/RxMvvm/**/*",
-      "dependencies": {
-        "Espresso/Mvvm": [
 
         ],
         "RxSwift": [
@@ -72,13 +55,7 @@
         "Espresso/Core": [
 
         ],
-        "Espresso/DI": [
-
-        ],
-        "Espresso/Mvvm": [
-
-        ],
-        "Espresso/RxMvvm": [
+        "Espresso/Rx": [
 
         ]
       }

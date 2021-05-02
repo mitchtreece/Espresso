@@ -7,12 +7,26 @@
 
 import UIKit
 
-/**
- Class describing the physical characteristics of the top notch on modern devices.
- */
-public class UINotch: UIDisplayFeature {
+/// Object describing the characteristics of a screen notch.
+public class UINotch: UIScreenFeature {
 
+    public override var frame: CGRect {
+        
+        // Is this the same for all devices?
+        
+        let size = CGSize(width: 209, height: 31)
+        let origin = CGPoint(x: ((self.screen.bounds.width - size.width) / 2), y: 0)
+        
+        return CGRect(
+            origin: origin,
+            size: size
+        )
+        
+    }
+    
     /// The notch's corner radius.
-    public private(set) var cornerRadius: CGFloat = 20
+    public var cornerRadius: CGFloat {
+        return 20 // Is this the same for all devices?
+    }
     
 }

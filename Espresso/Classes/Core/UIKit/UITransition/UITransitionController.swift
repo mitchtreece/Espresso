@@ -7,9 +7,7 @@
 
 import UIKit
 
-/**
- `UITransitionController` provides animations to run while transitioning between source & destination view controllers.
- */
+/// `UITransitionController` provides animations to run while transitioning between source & destination view controllers.
 public struct UITransitionController {
     
     public typealias SetupBlock = ()->()
@@ -28,9 +26,7 @@ public struct UITransitionController {
 
     }
     
-    /**
-     Initializes a new `UITransitionController` with specified setup, animation, & completion blocks.
-     */
+    /// Initializes a `UITransitionController` with specified setup, animation, & completion blocks.
     public init(setup: SetupBlock?,
                 animations: AnimationsBlock,
                 completion: @escaping Completion) {

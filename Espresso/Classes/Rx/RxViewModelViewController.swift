@@ -9,9 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-/**
- An Rx-based `UIViewController` subclass that provides common properties & functions when backed by a view model.
- */
+/// An Rx-based `UIViewController` subclass that provides common properties & functions when backed by a view model.
 open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
     /// The view controller's model dispose bag.
@@ -38,12 +36,10 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
         
     }
     
-    /**
-     Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
-     
-     The view controller's `componentDisposeBag` is created when this is called.
-     Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
-     */
+    /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
+    ///
+    /// The view controller's `componentDisposeBag` is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
     open func bindComponents() {
         
         // Override me
@@ -51,12 +47,10 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
         
     }
     
-    /**
-     Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
-     
-     The view controller's `modelDisposeBag` is created when this is called.
-     Subclasses that override this function should call `super.modelDisposeBag()` **before** accessing the `modelDisposeBag`.
-     */
+    /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
+    ///
+    /// The view controller's `modelDisposeBag` is created when this is called.
+    /// Subclasses that override this function should call `super.modelDisposeBag()` **before** accessing the `modelDisposeBag`.
     open func bindModel() {
         
         // Override me

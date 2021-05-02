@@ -7,13 +7,24 @@
 
 import UIKit
 
-@available(iOS 13, *)
-public extension UIView /* Round Corners (Modern) */ {
+public extension UIView /* Corners */ {
+    
+    /// Masks the view's corners using a radius.
+    /// - Parameter corners: The corners to mask; _defaults to all_.
+    /// - Parameter radius: The corner radius.
+    func roundCorners(_ corners: UIRectCorner = .allCorners,
+                      radius: CGFloat) {
+        
+        self.layer.maskedCorners = corners.cornerMask
+        self.layer.cornerRadius = radius
+        
+    }
     
     /// Rounds the view's corners using a radius & curve.
     /// - Parameter corners: The corners to mask; _defaults to all_.
     /// - Parameter radius: The corner radius.
     /// - Parameter curve: The corner curve; _defaults to circular_.
+    @available(iOS 13, *)
     func roundCorners(_ corners: UIRectCorner = .allCorners,
                       radius: CGFloat,
                       curve: CALayerCornerCurve = .circular) {
@@ -26,33 +37,14 @@ public extension UIView /* Round Corners (Modern) */ {
     
 }
 
-public extension UIView /* Round Corners (Legacy) */ {
-    
-    /// Masks the view's corners using a radius.
-    /// - Parameter corners: The corners to mask; _defaults to all_.
-    /// - Parameter radius: The corner radius.
-    ///
-    /// This is a deprecated function that will be removed in iOS 14. Please use `roundCorners(corners:radius:curve:)` instead.
-    func roundCorners(_ corners: UIRectCorner = .allCorners, radius: CGFloat) {
-        
-        self.layer.maskedCorners = corners.cornerMask
-        self.layer.cornerRadius = radius
-        
-    }
-    
-}
-
 public extension UIView /* Shadow */ {
     
-    /**
-     Draws a shadow on the view's layer with specified parameters.
-     
-     - Parameter color: The shadow color; _defaults to black_.
-     - Parameter radius: The shadow radius; _defaults to 6_.
-     - Parameter opacity: The shadow opacity; _defaults to 0.2_.
-     - Parameter offset: The shadow offset; _defaults to zero_.
-     - Parameter path: The optional shadow path.
-     */
+    /// Draws a drop-shadow on the view's layer with specified parameters.
+    /// - Parameter color: The shadow color; _defaults to black_.
+    /// - Parameter radius: The shadow radius; _defaults to 6_.
+    /// - Parameter opacity: The shadow opacity; _defaults to 0.2_.
+    /// - Parameter offset: The shadow offset; _defaults to zero_.
+    /// - Parameter path: The optional shadow path.
     func drawShadow(color: UIColor = .black,
                            radius: CGFloat = 6,
                            opacity: CGFloat = 0.2,
@@ -97,31 +89,30 @@ public extension UIView /* Gestures */ {
     
 }
 
-public extension UIView /* Motion Effects */ {
+public extension UIView /* Motion */ {
     
-    /**
-     Adds parallax motion to the recieving view with a specified movement vector.
-     */
-    func addParallaxMotionEffect(_ vector: CGVector) {
+    /// Adds an accelerometer-based parallax motion effect to the view.
+    /// - Parameter:
+    func addParallaxMotionEffect(movement: CGVector) {
         
         var effects = [UIInterpolatingMotionEffect]()
         var verticalEffect: UIInterpolatingMotionEffect?
         var horizontalEffect: UIInterpolatingMotionEffect?
 
-        if vector.dy > 0 {
+        if movement.dy > 0 {
             
             verticalEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
-            verticalEffect!.minimumRelativeValue = -vector.dy
-            verticalEffect!.maximumRelativeValue = vector.dy
+            verticalEffect!.minimumRelativeValue = -movement.dy
+            verticalEffect!.maximumRelativeValue = movement.dy
             effects.append(verticalEffect!)
             
         }
         
-        if vector.dx > 0 {
+        if movement.dx > 0 {
             
             horizontalEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
-            horizontalEffect!.minimumRelativeValue = -vector.dx
-            horizontalEffect!.maximumRelativeValue = vector.dx
+            horizontalEffect!.minimumRelativeValue = -movement.dx
+            horizontalEffect!.maximumRelativeValue = movement.dx
             effects.append(horizontalEffect!)
             
         }
@@ -130,7 +121,15 @@ public extension UIView /* Motion Effects */ {
         
         let group = UIMotionEffectGroup()
         group.motionEffects = effects
-        self.addMotionEffect(group)
+        addMotionEffect(group)
+        
+    }
+    
+    /// Removes all motion effects from the view.
+    func removeAllMotionEffects() {
+        
+        self.motionEffects
+            .forEach { self.removeMotionEffect($0) }
         
     }
     
@@ -138,9 +137,7 @@ public extension UIView /* Motion Effects */ {
 
 public extension UIView /* Subviews */ {
     
-    /**
-     Removes all subviews from the recieving view.
-     */
+    /// Removes all subviews from the view.
     func removeAllSubviews() {
         self.subviews.forEach { $0.removeFromSuperview() }
     }
@@ -208,11 +205,8 @@ public extension UIView /* Nib Loading */ {
         
     }
     
-    /**
-     Load's a view's contents from a nib with a specified name. If no name is provided, the class name will be used.
-     
-     - Parameter name: The nib's name.
-     */
+    /// Load's a view's contents from a nib with a specified name. If no name is provided, the class name will be used.
+    /// - Parameter name: The nib's name.
     func loadContentsFromNib(name: String? = nil) {
         
         let _name = name ?? self.className

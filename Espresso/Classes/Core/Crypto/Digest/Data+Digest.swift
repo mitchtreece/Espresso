@@ -9,7 +9,7 @@ import Foundation
 import CommonCrypto
 
 public extension Data {
-
+    
     /// Hashes the data with a given digest method & format. Additionally adds an RSA-2048 ASN.1 header.
     /// - Parameter digest: The digest hashing method.
     /// - Parameter format: The digest hash format; _defaults to hex_.

@@ -7,14 +7,10 @@
 
 import Foundation
 
-/**
- An `Operation` subclass for simple async tasks.
- */
+/// An async `Operation` subclass.
 public class AsyncOperation: Operation {
     
-    /**
-     Representation of the various async operation states.
-     */
+    /// Representation of the various async operation states.
     public enum State: String {
         
         /// A ready state.
@@ -30,9 +26,7 @@ public class AsyncOperation: Operation {
         
     }
     
-    /**
-     The async operation's current state.
-     */
+    /// The async operation's current state.
     public var state: State = .ready {
         
         willSet {

@@ -7,9 +7,7 @@
 
 import UIKit
 
-/*
-`UICollectionViewCell` subclass that provides common helper functions & properties.
-*/
+/// `UICollectionViewCell` subclass that provides common helper functions & properties.
 open class UIBaseCollectionViewCell: UICollectionViewCell {
     
     @available(iOS 12, *)

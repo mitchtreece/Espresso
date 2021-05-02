@@ -10,6 +10,7 @@ import UIKit
 public extension UIDevice /* Info*/ {
     
     /// Representation of the various iOS device types.
+    ///
     /// Also provides information about the current device's system & state.
     enum DeviceInfo: String, CaseIterable {
         
@@ -335,7 +336,8 @@ public extension UIDevice /* Info*/ {
         }
         
         /// Flag indicating whether the current device is jailbroken or not.
-        /// This is **not** guaranteed to be 100% accurate.
+        ///
+        /// This is a simple check, and is **not** guaranteed to be 100% accurate.
         public var isJailbroken: Bool {
             
             guard !UIDevice.current.isSimulator else { return false }

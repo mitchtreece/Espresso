@@ -14,9 +14,9 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     public private(set) var viewModel: V!
     
     /// Initializes a view controller with a view model.
-    /// - parameter viewModel: The view model.
-    /// - parameter nibName: The nib name.
-    /// - parameter bundle: The bundle to load from.
+    /// - Parameter viewModel: The view model.
+    /// - Parameter nibName: The nib name.
+    /// - Parameter bundle: The bundle to load from.
     public init(viewModel: V,
                 nibName: String? = nil,
                 bundle: Bundle? = nil) {

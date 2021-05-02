@@ -7,15 +7,11 @@
 
 import UIKit
 
-/**
- `UITaptic` is a wrapper class over `UIFeedbackGenerator`.
- */
+/// `UITaptic` is a wrapper class over `UIFeedbackGenerator`.
 @available(iOS 10, *)
 public class UITaptic {
     
-    /**
-     Representation of the various taptic styles.
-     */
+    /// Representation of the various taptic styles.
     public enum Style {
         
         /// A selection feedback style
@@ -32,11 +28,8 @@ public class UITaptic {
     private var style: Style
     private var generator: UIFeedbackGenerator
     
-    /**
-     Initializes a new `UITaptic` with a specified style.
-     
-     - Parameter style: The taptic style.
-     */
+    /// Initializes a `UITaptic` with a specified style.
+    /// - Parameter style: The taptic style.
     public init(style: Style) {
         
         switch style {
@@ -50,16 +43,12 @@ public class UITaptic {
         
     }
     
-    /**
-     Prepares the taptic feedback.
-     */
+    /// Tells the taptic that it's about to be triggered.
     public func prepare() {
         self.generator.prepare()
     }
     
-    /**
-     Triggers the taptic feedback.
-     */
+    /// Triggers the taptic's feedback.
     public func trigger() {
         
         switch style {

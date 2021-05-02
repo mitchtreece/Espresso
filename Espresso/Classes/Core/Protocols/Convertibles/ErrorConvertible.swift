@@ -7,19 +7,13 @@
 
 import Foundation
 
-/**
- Protocol describing the conversion to various `Error` representations.
- */
+/// Protocol describing the conversion to various `Error` representations.
 public protocol ErrorConvertible {
-    
-    /**
-     An error representation.
-     */
+
+    /// An error representation.
     var error: Error? { get }
     
-    /**
-     An error string representation.
-     */
+    /// An error's string representation.
     var errorString: String? { get }
     
 }

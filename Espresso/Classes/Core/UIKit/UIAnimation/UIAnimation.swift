@@ -7,49 +7,39 @@
 
 import UIKit
 
-/**
- A typealias representing an animation block.
- */
+/// An animation block.
 public typealias UIAnimationBlock = ()->()
 
-/**
- A typealias representing an animation completion handler.
- */
+/// An animation completion bloc.
 public typealias UIAnimationCompletion = ()->()
 
-/**
- `UIAnimation` is a wrapper over `UIView` property animation.
-
- ```
- let view = UIView()
- view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
- view.alpha = 0
- 
- UIAnimation {
-    view.alpha = 1
-    view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
- }.run()
- ```
- */
+/// `UIAnimation` is a wrapper over `UIView` property animation.
+///
+/// ```
+/// let view = UIView()
+/// view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+/// view.alpha = 0
+///
+/// UIAnimation {
+///     view.alpha = 1
+///     view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+/// }.run()
+/// ```
 public class UIAnimation {
     
-    /**
-     Representation of the various animation timing curves.
-     */
+    /// Representation of the various animation timing curves.
     public enum TimingCurve {
         
-        /*
-         Representation of the various Material Design easing curves.
-         */
-        public enum MaterialEasing {
+        /// Representation of the various Material Design timing curves.
+        public enum MaterialCurve {
             
-            /// A standard Material Design easing curve.
+            /// A standard Material Design timing curve.
             case standard
             
-            /// An acceleration Material Design easing curve.
+            /// An acceleration Material Design timing curve.
             case acceleration
             
-            /// A deceleration Material Design easing curve.
+            /// A deceleration Material Design timing curve.
             case deceleration
             
             internal var name: String {
@@ -74,7 +64,7 @@ public class UIAnimation {
             
         }
         
-        /// A simple timing curve using one of the built-in `UIViewAnimationCurve` types.
+        /// A simple timing curve using one of the standard `UIView.AnimationCurve` types.
         case simple(UIView.AnimationCurve)
         
         /// A cubic bezier timing curve using two control points.
@@ -83,43 +73,32 @@ public class UIAnimation {
         /// A spring timing curve using a damping ratio & initial velocity.
         case spring(damping: CGFloat, velocity: CGVector)
         
-        /// A Material Design timing curve using preset material control points.
-        case material(MaterialEasing)
+        /// A Material Design timing curve.
+        case material(MaterialCurve)
         
-        /// A custom timing curve using a specified `UITimingCurveProvider`.
+        /// A custom timing curve using a given `UITimingCurveProvider`.
         case custom(UITimingCurveProvider)
         
     }
     
-    /**
-     The animation's timing curve.
-     */
+    /// The animation's timing curve.
     public private(set) var timingCurve: TimingCurve
     
-    /**
-     The animation's duration.
-     */
+    /// The animation's duration.
     public private(set) var duration: TimeInterval
     
-    /**
-     The animation's start delay.
-     */
+    /// The animation's start delay.
     public private(set) var delay: TimeInterval
     
-    /**
-     The animation block.
-     */
+    /// The animation block.
     public private(set) var animationBlock: UIAnimationBlock
     
-    /**
-     Initializes a new animation with the specified parameters.
-
-     - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
-     - Parameter duration: The animation's duration; _defaults to 0.6_.
-     - Parameter delay: The animation's start delay; _defaults to 0_.
-     - Parameter animations: The animation block.
-     - Returns: A new `UIAnimation` instance.
-     */
+    /// Initializes a new animation with the specified parameters.
+    /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
+    /// - Parameter duration: The animation's duration; _defaults to 0.6_.
+    /// - Parameter delay: The animation's start delay; _defaults to 0_.
+    /// - Parameter animations: The animation block.
+    /// - Returns: A new `UIAnimation` instance.
     public init(_ timingCurve: TimingCurve = .simple(.easeInOut),
                 duration: TimeInterval = 0.6,
                 delay: TimeInterval = 0,
@@ -132,31 +111,31 @@ public class UIAnimation {
         
     }
     
-    /**
-     Creates a new animation group containing the current animation,
-     then chains a new animation with the specified parameters.
-     
-     - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
-     - Parameter duration: The animation's duration; _defaults to 0.6_.
-     - Parameter delay: The animation's start delay; _defaults to 0_.
-     - Parameter animations: The animation block.
-     - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
-     */
+    /// Creates a new animation group containing the current animation,
+    /// then appends a new animation with the specified parameters.
+    /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
+    /// - Parameter duration: The animation's duration; _defaults to 0.6_.
+    /// - Parameter delay: The animation's start delay; _defaults to 0_.
+    /// - Parameter animations: The animation block.
+    /// - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
     public func then(_ timingCurve: TimingCurve = .simple(.easeInOut),
                      duration: TimeInterval = 0.6,
                      delay: TimeInterval = 0,
                      _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
         
-        let nextAnimation = UIAnimation(timingCurve, duration: duration, delay: delay, animations)
+        let nextAnimation = UIAnimation(
+            timingCurve,
+            duration: duration,
+            delay: delay,
+            animations
+        )
+        
         return UIAnimationGroup(animations: [self, nextAnimation])
         
     }
 
-    /**
-     Starts the animation.
-     
-     - Parameter completion: An optional completion handler; _defaults to nil_.
-     */
+    /// Starts the animation.
+    /// - Parameter completion: An optional completion handler; _defaults to nil_.
     public func run(completion: UIAnimationCompletion? = nil) {
 
         let animator: UIViewPropertyAnimator
@@ -165,13 +144,31 @@ public class UIAnimation {
         switch timingCurve {
         case .simple(let curve):
             
-            animator = UIViewPropertyAnimator(duration: self.duration, curve: curve, animations: self.animationBlock)
+            animator = UIViewPropertyAnimator(
+                duration: self.duration,
+                curve: curve,
+                animations: self.animationBlock
+            )
+            
             animator.addCompletion { _ in completion?() }
             animator.startAnimation(afterDelay: self.delay)
+            
             return
             
-        case .cubicBezier(let cp1, let cp2): provider = UICubicTimingParameters(controlPoint1: cp1, controlPoint2: cp2)
-        case .spring(let damping, let velocity): provider = UISpringTimingParameters(dampingRatio: damping, initialVelocity: velocity)
+        case .cubicBezier(let cp1, let cp2):
+            
+            provider = UICubicTimingParameters(
+                controlPoint1: cp1,
+                controlPoint2: cp2
+            )
+            
+        case .spring(let damping, let velocity):
+            
+            provider = UISpringTimingParameters(
+                dampingRatio: damping,
+                initialVelocity: velocity
+            )
+            
         case .material(let easing):
             
             provider = UICubicTimingParameters(
@@ -182,7 +179,11 @@ public class UIAnimation {
         case .custom(let _provider): provider = _provider
         }
         
-        animator = UIViewPropertyAnimator(duration: self.duration, timingParameters: provider)
+        animator = UIViewPropertyAnimator(
+            duration: self.duration,
+            timingParameters: provider
+        )
+        
         animator.addAnimations(self.animationBlock)
         animator.addCompletion { _ in completion?() }
         animator.startAnimation(afterDelay: self.delay)

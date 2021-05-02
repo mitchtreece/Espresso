@@ -7,19 +7,13 @@
 
 import UIKit
 
-/**
- `UIAnimationGroupConvertible` is a protocol describing the conversion to various `UIAnimationGroup` representations.
- */
+/// `UIAnimationGroupConvertible` is a protocol describing the conversion to various `UIAnimationGroup` representations.
 public protocol UIAnimationGroupConvertible {
     
-    /**
-     A `UIAnimation` array representation.
-     */
+    /// A `UIAnimation` array representation.
     var animations: [UIAnimation] { get }
     
-    /**
-     A `UIAnimationGroup` representation.
-     */
+    /// A `UIAnimationGroup` representation.
     var animationGroup: UIAnimationGroup { get }
     
 }

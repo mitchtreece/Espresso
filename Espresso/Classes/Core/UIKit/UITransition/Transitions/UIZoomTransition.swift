@@ -7,9 +7,7 @@
 
 import UIKit
 
-/**
- A zooming view controller transition.
- */
+/// A zooming view controller transition.
 public class UIZoomTransition: UITransition {
     
     /// The transition's duration; _defaults to 0.6_.
@@ -21,13 +19,13 @@ public class UIZoomTransition: UITransition {
     /// The corner radius to apply to the animating view controller; _defaults to 20_.
     public var cornerRadius: CGFloat
     
-    /**
-     Initializes the transition with parameters.
-     - Parameter duration: The transition's animation duration; _defaults to 0.6_.
-     - Parameter scale: The transition's zoom scale; _defaults to 0.8_.
-     - Parameter cornerRadius: The corner radius to apply to the animating view controller; _defaults to 20_.
-     */
-    public init(duration: TimeInterval = 0.6, scale: CGFloat = 0.8, cornerRadius: CGFloat = 20) {
+    /// Initializes the transition with parameters.
+    /// - Parameter duration: The transition's animation duration; _defaults to 0.6_.
+    /// - Parameter scale: The transition's zoom scale; _defaults to 0.8_.
+    /// - Parameter cornerRadius: The corner radius to apply to the animating view controller; _defaults to 20_.
+    public init(duration: TimeInterval = 0.6,
+                scale: CGFloat = 0.8,
+                cornerRadius: CGFloat = 20) {
         
         self.duration = duration
         self.scale = scale

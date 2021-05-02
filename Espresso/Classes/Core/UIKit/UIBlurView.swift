@@ -8,19 +8,15 @@
 import UIKit
 import SnapKit
 
-/**
- Blurred `UIView` subclass that responds to tint color changes.
- */
+/// Blurred `UIView` subclass that responds to tint color changes.
 open class UIBlurView: UIBaseView {
     
     private var blurView: UIVisualEffectView!
-    private var blurStyle = UIBlurEffect.Style.light
+    private var blurStyle: UIBlurEffect.Style = .light
     
-    /**
-     A `UIView` object that can have a visual effect view added to it.
-     
-     Add subviews to the `contentView` and not to `UIBlurView` directly.
-     */
+    /// The blur view's content view.
+    ///
+    /// Add subviews to this, and not `UIBlurView` directly.
     public var contentView: UIView {
         return blurView.contentView
     }
@@ -29,12 +25,9 @@ open class UIBlurView: UIBaseView {
         self.backgroundColor = self.tintColor
     }
     
-    /**
-     Initializes a new `UIBlurView` with a specified blur style.
-     
-     - Parameter frame: The view's frame.
-     - Parameter style: The blur style.
-     */
+    /// Initializes a new `UIBlurView` with a specified blur style.
+    /// - Parameter frame: The view's frame.
+    /// - Parameter style: The blur style.
     public init(frame: CGRect, style: UIBlurEffect.Style) {
         
         super.init(frame: frame)
@@ -57,10 +50,10 @@ open class UIBlurView: UIBaseView {
         
         self.clipsToBounds = true
         
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: blurStyle))
-        self.addSubview(blurView)
-        blurView.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+        self.blurView = UIVisualEffectView(effect: UIBlurEffect(style: blurStyle))
+        self.addSubview(self.blurView)
+        self.blurView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
         }
         
     }

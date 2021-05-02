@@ -7,33 +7,25 @@
 
 import UIKit
 
-/**
- A push-back view controller transition.
- */
+/// A push-back view controller transition.
 public class UIPushBackTransition: UITransition {
     
-    /**
-     The covered view controller's scale; _defaults to 0.8_.
-     */
+    /// The covered view controller's scale; _defaults to 0.8_.
     public var pushBackScale: CGFloat
     
-    /**
-     The covered view controller's alpha; _defaults to 0.3_.
-     */
+    /// The covered view controller's alpha; _defaults to 0.3_.
     public var pushBackAlpha: CGFloat
     
-    /**
-     The covered view controller's corner radius; _defaults to 20_.
-     */
+    /// The covered view controller's corner radius; _defaults to 20_.
     public var roundedCornerRadius: CGFloat
     
-    /**
-     Initializes the transition with parameters.
-     - Parameter pushBackScale: The covered view controller's scale; _defaults to 0.8_.
-     - Parameter pushBackAlpha: The covered view controller's alpha; _defaults to 0.3_.
-     - Parameter roundedCornerRadius: The covered view controller's corner radius; _defaults to 20_.
-     */
-    public init(pushBackScale: CGFloat = 0.8, pushBackAlpha: CGFloat = 0.3, roundedCornerRadius: CGFloat = 20) {
+    /// Initializes the transition with parameters.
+    /// - Parameter pushBackScale: The covered view controller's scale; _defaults to 0.8_.
+    /// - Parameter pushBackAlpha: The covered view controller's alpha; _defaults to 0.3_.
+    /// - Parameter roundedCornerRadius: The covered view controller's corner radius; _defaults to 20_.
+    public init(pushBackScale: CGFloat = 0.8,
+                pushBackAlpha: CGFloat = 0.3,
+                roundedCornerRadius: CGFloat = 20) {
         
         self.pushBackScale = pushBackScale
         self.pushBackAlpha = pushBackAlpha

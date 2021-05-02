@@ -7,9 +7,7 @@
 
 import UIKit
 
-/*
-`UITableViewCell` subclass that provides common helper functions & properties.
-*/
+/// `UITableViewCell` subclass that provides common helper functions & properties.
 open class UIBaseTableViewCell: UITableViewCell {
     
     @available(iOS 12, *)

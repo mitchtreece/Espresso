@@ -7,24 +7,16 @@
 
 import Foundation
 
-/**
- Protocol describing the conversion to various `Bool` representations.
- */
+/// Protocol describing the conversion to various `Bool` representations.
 public protocol BoolConvertible {
     
-    /**
-     A boolean representation.
-     */
+    /// A boolean representation.
     var bool: Bool? { get }
     
-    /**
-     A boolean integer representation; _0 or 1_.
-     */
+    /// A boolean's integer representation; _0 or 1_.
     var boolInt: Int? { get }
 
-    /**
-     A boolean string representation _"true" or "false"_.
-     */
+    /// A boolean's string representation _"true" or "false"_.
     var boolString: String? { get }
     
 }

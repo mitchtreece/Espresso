@@ -7,9 +7,7 @@
 
 import UIKit
 
-/**
- `UIView` subclass that delegates it's touch events to other receivers.
- */
+/// `UIView` subclass that delegates it's touch events to other receivers.
 open class UIContainerView: UIView {
 
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

@@ -69,13 +69,10 @@ public extension UIViewController {
         }
     }
     
-    /**
-     Presents a view controller modally with a transition & optional completion handler.
-     
-     - Parameter vc: The view controller to present.
-     - Parameter transition: The transition to present the view controller with.
-     - Parameter completion: An optional completion block to run after the transition finishes.
-     */
+    /// Presents a view controller modally with a transition & optional completion handler.
+    /// - Parameter vc: The view controller to present.
+    /// - Parameter transition: The transition to present the view controller with.
+    /// - Parameter completion: An optional completion block to run after the transition finishes.
     func present(_ vc: UIViewController, with transition: UITransition, completion: (()->())?) {
         
         vc.transition = transition

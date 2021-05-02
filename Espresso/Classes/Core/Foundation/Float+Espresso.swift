@@ -7,76 +7,35 @@
 
 import Foundation
 
-public extension Float /* Degrees & Radians */ {
+public extension Float {
     
-    /**
-     A degree value expressed in radians.
-     */
-    var degreesToRadians: Float {
-        return (self * .pi / 180)
-    }
-    
-    /**
-     A radian value expressed in degrees.
-     */
-    var radiansToDegrees: Float {
-        return (self * 180 / .pi)
-    }
-    
-}
-
-public extension CGFloat /* Degrees & Radians */ {
-    
-    /**
-     A radian value for this degree value.
-     */
-    var degreesToRadians: CGFloat {
-        return CGFloat(Float(self).degreesToRadians)
-    }
-    
-    /**
-     A degree value for this radian value.
-     */
-    var radiansToDegrees: CGFloat {
-        return CGFloat(Float(self).radiansToDegrees)
+    /// Converts an angle value to a different angle unit.
+    /// - Parameter unit: The angle unit to convert to.
+    func convertAngle(to unit: AngleUnit) -> Float {
+        
+        switch unit {
+        case .degree:
+            
+            // Radians -> Degrees
+            return (self * 180 / .pi)
+            
+        case .radian:
+            
+            // Degrees -> Radians
+            return (self * .pi / 180)
+            
+        }
+        
     }
     
 }
 
-public extension Float /* Aspect Ratio */ {
+public extension CGFloat {
     
-    /**
-     The standard aspect ratio (16:9) width for this height.
-     */
-    var standardAspectRatioWidth: Float {
-        guard self > 0 else { return 0 }
-        return self * 16/9
-    }
-    
-    /**
-     The standard aspect ratio (16:9) height for this width.
-     */
-    var standardAspectRatioHeight: Float {
-        guard self > 0 else { return 0 }
-        return self * 9/16
-    }
-    
-}
-
-public extension CGFloat /* Aspect Ratio */ {
-    
-    /**
-     The standard aspect ratio (16:9) width for this height.
-     */
-    var standardAspectRatioWidth: CGFloat {
-        return CGFloat(Float(self).standardAspectRatioWidth)
-    }
-    
-    /**
-     The standard aspect ratio (16:9) height for this width.
-     */
-    var standardAspectRatioHeight: CGFloat {
-        return CGFloat(Float(self).standardAspectRatioHeight)
+    /// Converts an angle value to a different angle unit.
+    /// - Parameter unit: The angle unit to convert to.
+    func convertAngle(to unit: AngleUnit) -> CGFloat {
+        return CGFloat(Float(self).convertAngle(to: unit))
     }
     
 }

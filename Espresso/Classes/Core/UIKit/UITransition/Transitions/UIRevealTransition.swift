@@ -19,9 +19,12 @@ public class UIRevealTransition: UITransition {
     /// Initializes the transition with parameters.
     /// - Parameter revealedViewAlpha: The revealed view's alpha to animate from while transitioning; _defaults to 0.7_.
     /// - Parameter revealedViewParallaxAmount: The amount to move the revealed view while transitioning; _defaults to 0_.
-    public init(revealedViewAlpha: CGFloat = 0.7, revealedViewParallaxAmount: CGFloat = 0) {
+    public init(revealedViewAlpha: CGFloat = 0.7,
+                revealedViewParallaxAmount: CGFloat = 0) {
+        
         self.revealedViewAlpha = revealedViewAlpha
         self.revealedViewParallaxAmount = revealedViewParallaxAmount
+        
     }
     
     override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {

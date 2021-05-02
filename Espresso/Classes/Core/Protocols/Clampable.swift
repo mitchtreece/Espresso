@@ -11,18 +11,18 @@ import Foundation
 public protocol Clampable {
     
     /// Clamps between minimum & maximum values.
-    /// - parameter min: The minimum value.
-    /// - parameter max: The maximum value.
-    /// - returns: The clamped value.
+    /// - Parameter min: The minimum value.
+    /// - Parameter max: The maximum value.
+    /// - Returns: The clamped value.
     func clamp(min: Self, max: Self) -> Self
     
 }
 
 /// Clamps a value between minimum & maximum values.
-/// - parameter value: The value to clamp.
-/// - parameter min: The minimum value.
-/// - parameter max: The maximum value.
-/// - returns: The clamped value.
+/// - Parameter value: The value to clamp.
+/// - Parameter min: The minimum value.
+/// - Parameter max: The maximum value.
+/// - Returns: The clamped value.
 public func clamp<T: Clampable>(_ value: T, min: T, max: T) -> T {
     
     return value.clamp(

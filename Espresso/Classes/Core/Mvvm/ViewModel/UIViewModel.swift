@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Specialized `ViewModel` base class that manages a `UIView`.
+/// Specialized base view-model class that manages a `UIView`.
 ///
 /// This should never be used directly. Instead, create a specialized `UIViewModel` by subclassing it.
 open class UIViewModel: ViewModel {

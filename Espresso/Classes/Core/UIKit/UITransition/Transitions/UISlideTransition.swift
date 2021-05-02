@@ -7,17 +7,13 @@
 
 import UIKit
 
-/**
- A sliding view controller transition.
- */
+/// A sliding view controller transition.
 public class UISlideTransition: UITransition {
     
     public var duration: TimeInterval
     
-    /**
-     Initializes the transition with parameters.
-     - Parameter duration: The transition's animation duration; _defaults to 0.6_.
-     */
+    /// Initializes the transition with parameters.
+    /// - Parameter duration: The transition's animation duration; _defaults to 0.6_.
     public init(duration: TimeInterval = 0.6) {
         self.duration = duration
     }

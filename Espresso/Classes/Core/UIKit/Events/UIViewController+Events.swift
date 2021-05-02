@@ -13,7 +13,7 @@ private struct AssociatedKeys {
 
 public extension UIViewController /* Events */ {
     
-    /// The view controller's event holder.
+    /// The view controller's event collection.
     var events: UIViewControllerEvents {
         
         if let events = objc_getAssociatedObject(self, &AssociatedKeys.events) as? UIViewControllerEvents {

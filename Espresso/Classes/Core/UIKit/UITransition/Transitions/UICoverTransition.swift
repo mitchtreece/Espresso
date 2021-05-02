@@ -7,29 +7,24 @@
 
 import UIKit
 
-/**
- A covering view controller transition.
- */
+/// A covering view controller transition.
 public class UICoverTransition: UITransition {
     
-    /**
-     The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
-     */
+    /// The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
     public var coveredViewAlpha: CGFloat
     
-    /**
-     The amount to move the covered view while transitioning; _defaults to 0_.
-     */
+    /// The amount to move the covered view while transitioning; _defaults to 0_.
     public var coveredViewParallaxAmount: CGFloat
     
-    /**
-     Initializes the transition with parameters.
-     - Parameter coveredViewAlpha: The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
-     - Parameter coveredViewParallaxAmount: The amount to move the covered view while transitioning; _defaults to 0_.
-     */
-    public init(coveredViewAlpha: CGFloat = 0.7, coveredViewParallaxAmount: CGFloat = 0) {
+    /// Initializes the transition with parameters.
+    /// - Parameter coveredViewAlpha: The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
+    /// - Parameter coveredViewParallaxAmount: The amount to move the covered view while transitioning; _defaults to 0_.
+    public init(coveredViewAlpha: CGFloat = 0.7,
+                coveredViewParallaxAmount: CGFloat = 0) {
+        
         self.coveredViewAlpha = coveredViewAlpha
         self.coveredViewParallaxAmount = coveredViewParallaxAmount
+        
     }
     
     override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {

@@ -9,11 +9,9 @@ import UIKit
 
 public extension UINavigationController /* Push */ {
     
-    /**
-     Set the navigation controller's view controllers with a given completion handler.
-     - Parameter viewControllers: The view controllers.
-     - Parameter completion: The completion handler to call after the view controllers have been set.
-     */
+    /// Set the navigation controller's view controllers with a given completion handler.
+    /// - Parameter viewControllers: The view controllers.
+    /// - Parameter completion: The completion handler to call after the view controllers have been set.
     func setViewControllers(_ viewControllers: [UIViewController], completion: @escaping ()->()) {
         
         setViewControllers(
@@ -32,11 +30,9 @@ public extension UINavigationController /* Push */ {
         
     }
     
-    /**
-     Push a view controller onto the navigation stack with a given completion handler.
-     - Parameter viewController: The view controller to push.
-     - Parameter completion: The completion handler to call after the view controller has been pushed.
-     */
+    /// Push a view controller onto the navigation stack with a given completion handler.
+    /// - Parameter viewController: The view controller to push.
+    /// - Parameter completion: The completion handler to call after the view controller has been pushed.
     func pushViewController(_ viewController: UIViewController, completion: @escaping ()->()) {
         
         pushViewController(
@@ -55,10 +51,8 @@ public extension UINavigationController /* Push */ {
         
     }
     
-    /**
-     Pop the top view controller off the navigation stack with a given completion handler.
-     - Parameter completion: The completion handler to call after popping.
-     */
+    /// Pop the top view controller off the navigation stack with a given completion handler.
+    /// - Parameter completion: The completion handler to call after popping.
     func popViewController(completion: @escaping (UIViewController?)->()) {
         
         let poppedViewController = popViewController(animated: true)
@@ -74,10 +68,8 @@ public extension UINavigationController /* Push */ {
         
     }
     
-    /**
-     Pops all view controllers above the root off the navigation stack with a given completion handler.
-     - Parameter completion: The completion handler to call after popping.
-     */
+    /// Pops all view controllers above the root off the navigation stack with a given completion handler.
+    /// - Parameter completion: The completion handler to call after popping.
     func popToRootViewController(completion: @escaping ([UIViewController]?)->()) {
         
         let poppedViewControllers = popToRootViewController(animated: true)
@@ -93,10 +85,8 @@ public extension UINavigationController /* Push */ {
         
     }
     
-    /**
-     Pop to a view controller lower in the navigation stack with a given completion handler.
-     - Parameter completion: The completion handler to call after popping.
-     */
+    /// Pop to a view controller lower in the navigation stack with a given completion handler.
+    /// - Parameter completion: The completion handler to call after popping.
     func popToViewController(_ viewController: UIViewController, completion: @escaping ([UIViewController]?)->()) {
         
         let poppedViewControllers = popToViewController(

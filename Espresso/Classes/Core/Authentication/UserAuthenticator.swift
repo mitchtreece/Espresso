@@ -8,14 +8,10 @@
 import Foundation
 import LocalAuthentication
 
-/**
- `UserAuthenticator` is an authentication helper for biometrics (Touch ID, Face ID) or a device password.
- */
+/// `UserAuthenticator` is an authentication helper for biometrics (Touch ID, Face ID) or a device password.
 public final class UserAuthenticator {
     
-    /**
-     Representation of the various user-authentication types.
-     */
+    /// Representation of the various user-authentication types.
     public enum AuthenticationType {
         
         /// A user-authentication type that represents the absence of an authentication type.
@@ -30,11 +26,9 @@ public final class UserAuthenticator {
         /// A biometric user-authentication type using Face ID.
         case faceId
         
-        /**
-         The user-authentication type's display name.
-         
-         This value will be `nil` if the user-authentication type is `none`.
-         */
+        /// The user-authentication type's display name.
+        ///
+        /// This value will be `nil` if the user-authentication type is `none`.
         public var displayName: String? {
             
             switch self {
@@ -92,16 +86,14 @@ public final class UserAuthenticator {
         }
     }
     
-    /**
-     Authenticate's the user using the device's preferred authentication type.
-     - Parameter reason: The reason string to be displayed during authentication.
-     - Parameter completion: The authentication completion handler.
-     - Parameter success: Flag indicating if the authentication was successful.
-     - Parameter error: An optional error returned from the authentication attempt.
-     
-     If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
-     be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
-     */
+    /// Authenticate's the user using the device's preferred authentication type.
+    /// - parameter reason: The reason string to be displayed during authentication.
+    /// - parameter completion: The authentication completion handler.
+    /// - parameter success: Flag indicating if the authentication was successful.
+    /// - parameter error: An optional error returned from the authentication attempt.
+    ///
+    /// If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
+    /// be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
     public static func authenticate(withReason reason: String, completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
         guard let context = self.authenticationContext else {

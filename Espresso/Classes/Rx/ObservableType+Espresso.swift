@@ -8,9 +8,7 @@
 import RxSwift
 import RxCocoa
 
-/**
- An observable value box over a type.
- */
+/// An observable value box over a type.
 public struct ObservableValueBox<T> {
     
     /// The box's underlying value.
@@ -38,21 +36,20 @@ public extension ObservableType /* Value */ {
 
 public extension ObservableType /* Value Change */ {
     
-    /**
-     Subscribes observer to receive events for this sequence by providing the old and new values.
-     - Parameter onValueChange: The value changed handler.
-     - Parameter oldValue: The stream's old (previous) value.
-     - Parameter newValue: The streams new value.
-     - Parameter onError: The error handler; _defaults to nil_.
-     - Parameter error: The error.
-     - Parameter onCompleted: The completion handler; _defaults to nil_.
-     - Parameter onDisposed: The dispose handler; _defaults to nil_.
-     - Returns: A disposable.
-     */
-    func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.Element>, _ newValue: ObservableValueBox<Self.Element>)->(),
-                   onError: ((_ error: Error)->())? = nil,
-                   onCompleted: (()->())? = nil,
-                   onDisposed: (()->())? = nil) -> Disposable {
+    /// Subscribes observer to receive events for this sequence by providing the old and new values.
+    /// - Parameter onValueChange: The value changed handler.
+    /// - Parameter oldValue: The stream's old (previous) value.
+    /// - Parameter newValue: The streams new value.
+    /// - Parameter onError: The error handler; _defaults to nil_.
+    /// - Parameter error: The error.
+    /// - Parameter onCompleted: The completion handler; _defaults to nil_.
+    /// - Parameter onDisposed: The dispose handler; _defaults to nil_.
+    /// - Returns: A disposable.
+    func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.Element>,
+                                             _ newValue: ObservableValueBox<Self.Element>)->(),
+                                            onError: ((_ error: Error)->())? = nil,
+                                            onCompleted: (()->())? = nil,
+                                            onDisposed: (()->())? = nil) -> Disposable {
         
         let array = [Self.Element]()
         

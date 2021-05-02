@@ -1,18 +1,12 @@
 PODS:
   - Espresso/All (2.3.0):
     - Espresso/Core
-    - Espresso/DI
-    - Espresso/Mvvm
-    - Espresso/RxMvvm
+    - Espresso/Rx
   - Espresso/Core (2.3.0):
     - SnapKit (~> 5.0)
-  - Espresso/DI (2.3.0):
-    - Espresso/Core
     - Swinject (~> 2.0)
-  - Espresso/Mvvm (2.3.0):
+  - Espresso/Rx (2.3.0):
     - Espresso/Core
-  - Espresso/RxMvvm (2.3.0):
-    - Espresso/Mvvm
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - RxCocoa (6.1.0):
@@ -40,7 +34,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 74e3a8125933d38bd40fb0d2dcec905707903e9b
+  Espresso: 87c93ba4e6f956bcaee9d95dee70bd645abafa93
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce

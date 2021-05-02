@@ -7,9 +7,19 @@
 
 import UIKit
 
-/**
- Class describing the physical characteristics of the home grabber on modern devices.
- */
-public class UIHomeGrabber: UIDisplayFeature {
-    //
+/// Object describing the characteristics of a screen home-grabber.
+public class UIHomeGrabber: UIScreenFeature {
+    
+    public override var frame: CGRect {
+        
+        let size = CGSize(width: UIScreen.main.bounds.width, height: 23)
+        let origin = CGPoint(x: 0, y: (self.screen.bounds.height - size.height))
+        
+        return CGRect(
+            origin: origin,
+            size: size
+        )
+        
+    }
+    
 }

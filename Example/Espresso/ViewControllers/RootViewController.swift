@@ -334,7 +334,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 self.navigationController?.view.addSubview(v)
                 v.snp.makeConstraints { (make) in
                     
-                    let insets = UIScreen.main.displayFeatureInsets
+                    let insets = UIScreen.main.featureInsets
                     
                     make.top.equalTo(0).offset(insets.top)
                     make.left.equalTo(0).offset(insets.left)

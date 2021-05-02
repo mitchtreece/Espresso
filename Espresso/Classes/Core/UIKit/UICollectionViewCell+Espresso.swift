@@ -9,7 +9,9 @@ import UIKit
 
 public extension UICollectionViewCell /* Register */ {
         
-    /// Registers a cell's nib in a collection view with a specified name. If no name is provided, the cell's class name will be used.
+    /// Registers a cell's nib in a collection view with a specified name.
+    ///
+    /// If no name is provided, the cell's class name will be used.
     ///
     /// - Parameter collectionView: The collection view to register the cell in.
     /// - Parameter nibName: The cell's nib name.

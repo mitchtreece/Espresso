@@ -11,14 +11,19 @@ private struct AssociatedKeys {
     static var environmentOverride: UInt8 = 0
 }
 
-public extension UIApplication /* Key View Controller */ {
+public extension UIApplication {
     
-    /**
-     Gets the top-most (key) `UIViewController` in a given root view controller.
-     
-     - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keyWindow?.rootViewController_.
-     - Returns: The top-most (key) view controller in the root view controller.
-     */
+    /// The application's active keyboard window.
+    var keyboardWindow: UIWindow? {
+        
+        return self.windows
+            .first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
+        
+    }
+    
+    /// Gets the top-most (key) `UIViewController` in a given root view controller.
+    /// - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keyWindow?.rootViewController_.
+    /// - Returns: The top-most (key) view controller in the root view controller.
     func keyViewController(in root: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         
         if let presented = root?.presentedViewController {
@@ -38,32 +43,14 @@ public extension UIApplication /* Key View Controller */ {
     
 }
 
-public extension UIApplication /* Keyboard Window */ {
+public extension UIApplication /* Version & Build */ {
     
-    /**
-     The application's active keyboard window.
-     */
-    var keyboardWindow: UIWindow? {
-        
-        return UIApplication.shared.windows
-            .first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
-        
-    }
-    
-}
-
-public extension UIApplication /* Version */ {
-    
-    /**
-     The application's version string _(CFBundleShortVersionString)_.
-     */
+    /// The application's version string _(CFBundleShortVersionString)_.
     var version: String? {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
     
-    /**
-     The application's build number string _(CFBundleVersion)_.
-     */
+    /// The application's build number string _(CFBundleVersion)_.
     var build: String? {
         return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     }
@@ -72,15 +59,20 @@ public extension UIApplication /* Version */ {
 
 public extension UIApplication /* Environment */ {
     
-    /**
-     Representation of the various application environments.
-     */
+    /// Representation of the various application environments.
     enum Environment: String {
         
-        case development    = "dev"
-        case staging        = "stg"
-        case preproduction  = "pre"
-        case production     = "prod"
+        /// A development environment.
+        case development = "dev"
+        
+        /// A staging environment.
+        case staging = "stg"
+        
+        /// A pre-production environment.
+        case preproduction = "preprod"
+        
+        /// A production environment.
+        case production = "prod"
         
         /// The environment's short name.
         public var shortName: String {
@@ -121,10 +113,9 @@ public extension UIApplication /* Environment */ {
         
     }
     
-    /**
-     The application's environment override.
-     Setting this will lock the application to a specific environment regardless of what it's environment actually is.
-     */
+    /// The application's environment override.
+    ///
+    /// Setting this will lock the application to a specific environment.
     var environmentOverride: Environment? {
         get {
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.environmentOverride) as? Environment else { return nil }
@@ -135,9 +126,7 @@ public extension UIApplication /* Environment */ {
         }
     }
     
-    /**
-     The application's current environment.
-     */
+    /// The application's current environment.
     var environment: Environment {
         
         if let override = environmentOverride {

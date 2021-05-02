@@ -9,11 +9,8 @@ import Foundation
 
 public extension Array where Element: UIAnimation {
 
-    /**
-     Starts the array's animations.
-     
-     - Parameter completion: An optional completion handler; _defaults to nil_.
-     */
+    /// Starts the array's animations.
+    /// - Parameter completion: An optional completion handler; _defaults to nil_.
     func run(completion: UIAnimationCompletion? = nil) {
         
         let queue = UIAnimationOperationQueue()

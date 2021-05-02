@@ -7,14 +7,10 @@
 
 import UIKit
 
-/**
- `UIView` subclass that draws a gradient for it's contents.
- */
+/// `UIView` subclass that draws a gradient as its content.
 open class UIGradientView: UIBaseView {
     
-    /**
-     Representation of the various gradient directions.
-     */
+    /// Representation of the various gradient directions.
     public enum Direction {
         
         /// An upwards direction.
@@ -29,7 +25,7 @@ open class UIGradientView: UIBaseView {
         /// A right direction
         case right
         
-        /// A custom angle direction (in degrees)
+        /// A custom angle direction (degrees)
         case angle(CGFloat)
         
         /// A 45-degree angle direction from the bottom left, to the top right.
@@ -40,13 +36,13 @@ open class UIGradientView: UIBaseView {
         
     }
     
-    /// Representation of the various gradient color stops.
-    public enum Stops: Hashable {
+    /// Representation of the various gradient color stop modes.
+    public enum StopMode: Hashable {
         
-        /// An equal color stop distribution.
+        /// An equal color stop mode.
         case equal
         
-        /// A custom color stop distribution.
+        /// A custom color stop mode.
         case custom([CGFloat])
         
     }
@@ -56,26 +52,22 @@ open class UIGradientView: UIBaseView {
         return self.layer as! CAGradientLayer
     }()
     
-    /**
-     The gradient colors; _defaults to [black, clear]_.
-     */
-    public var colors = [UIColor.black, UIColor.clear] {
+    /// The gradient colors; _defaults to [black, clear]_.
+    public var colors: [UIColor] = [.black, .clear] {
         didSet {
             update()
         }
     }
     
-    /**
-     The gradient direction; _defaults to up_.
-     */
+    /// The gradient direction; _defaults to up_.
     public var direction: Direction = .up {
         didSet {
             update()
         }
     }
     
-    /// The gradient's color stops; _defaults to equal_.
-    public var stops: Stops = .equal {
+    /// The gradient's color stop mode; _defaults to equal_.
+    public var stops: StopMode = .equal {
         didSet {
             update()
         }
@@ -91,18 +83,18 @@ open class UIGradientView: UIBaseView {
         update()
     }
     
-    /**
-     Initializes a new `UIGradientView` with colors & a specified direction.
-     
-     - Parameter frame: The view's frame.
-     - Parameter colors: The gradient colors.
-     - Parameter direction: The gradient direction; _defaults to up_.
-     */
-    public convenience init(frame: CGRect, colors: [UIColor], direction: Direction = .up) {
+    /// Initializes a new `UIGradientView` with colors & a specified direction.
+    /// - Parameter frame: The view's frame.
+    /// - Parameter colors: The gradient colors.
+    /// - Parameter direction: The gradient direction; _defaults to up_.
+    public convenience init(frame: CGRect,
+                            colors: [UIColor],
+                            direction: Direction = .up) {
         
         self.init(frame: frame)
         self.colors = colors
         self.direction = direction
+        
         update()
         
     }
@@ -110,7 +102,8 @@ open class UIGradientView: UIBaseView {
     public override init(frame: CGRect) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
+        
         update()
         
     }
@@ -118,7 +111,8 @@ open class UIGradientView: UIBaseView {
     public required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
+        
         update()
         
     }
@@ -168,7 +162,7 @@ open class UIGradientView: UIBaseView {
     
     private func _pointsForAngle(_ angle: CGFloat) -> CGPoint {
         
-        let radians = angle.degreesToRadians
+        let radians = angle.convertAngle(to: .radian)
         var x = cos(radians)
         var y = sin(radians)
         

@@ -7,9 +7,7 @@
 
 import UIKit
 
-/*
-`UIView` subclass that provides common helper functions & properties.
-*/
+/// `UIView` subclass that provides common helper functions & properties.
 open class UIBaseView: UIView {
     
     @available(iOS 12, *)

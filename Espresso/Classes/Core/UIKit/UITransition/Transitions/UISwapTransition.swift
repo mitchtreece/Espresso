@@ -7,33 +7,25 @@
 
 import Foundation
 
-/**
- A swapping view controller transition.
- */
+/// A swapping view controller transition.
 public class UISwapTransition: UITransition {
     
-    /**
-     The source & destination view controller's scale; _defaults to 1_.
-     */
+    /// The source & destination view controller's scale; _defaults to 1_.
     public var swapScale: CGFloat
     
-    /**
-     The covered view controller's alpha; _defaults to 0.6_.
-     */
+    /// The covered view controller's alpha; _defaults to 0.6_.
     public var swapAlpha: CGFloat
     
-    /**
-     The source & destination view controller's corner radius; _defaults to 10_.
-     */
+    /// The source & destination view controller's corner radius; _defaults to 10_.
     public var roundedCornerRadius: CGFloat
     
-    /**
-     Initializes the transition with parameters.
-     - Parameter swapScale: The source & destination view controller's scale; _defaults to 1_.
-     - Parameter swapAlpha: The covered view controller's alpha; _defaults to 0.6_.
-     - Parameter roundedCornerRadius: The source & destination view controller's corner radius; _defaults to 10_.
-     */
-    public init(swapScale: CGFloat = 1, swapAlpha: CGFloat = 0.6, roundedCornerRadius: CGFloat = 10) {
+    /// Initializes the transition with parameters.
+    /// - Parameter swapScale: The source & destination view controller's scale; _defaults to 1_.
+    /// - Parameter swapAlpha: The covered view controller's alpha; _defaults to 0.6_.
+    /// - Parameter roundedCornerRadius: The source & destination view controller's corner radius; _defaults to 10_.
+    public init(swapScale: CGFloat = 1,
+                swapAlpha: CGFloat = 0.6,
+                roundedCornerRadius: CGFloat = 10) {
         
         self.swapScale = swapScale
         self.swapAlpha = swapAlpha

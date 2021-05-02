@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIRectCorner {
     
-    /// The corner mask representation.
+    /// A corner mask representation.
     var cornerMask: CACornerMask {
         
         guard !self.contains(.allCorners) else {

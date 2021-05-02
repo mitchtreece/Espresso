@@ -8,7 +8,7 @@
 import Foundation
 import CommonCrypto
 
-/// Representation of the various digest hashing methods.
+/// Representation of the various digest hashing functions.
 public enum CryptoDigest {
     
     /// Representation of the various digest hash formats.
@@ -19,22 +19,22 @@ public enum CryptoDigest {
         
     }
     
-    /// An MD5 hashing method
+    /// An `MD5` hashing method
     case md5
     
-    /// A SHA1 hashing method
+    /// A `SHA1` hashing method
     case sha1
     
-    /// A SHA224 hashing method
+    /// A `SHA224` hashing method
     case sha224
     
-    /// A SHA256 hashing method
+    /// A `SHA256` hashing method
     case sha256
     
-    /// A SHA384 hashing method
+    /// A `SHA384` hashing method
     case sha384
     
-    /// A SHA512 hashing method
+    /// A `SHA512` hashing method
     case sha512
     
     /// The hashing method's digest length in bytes.

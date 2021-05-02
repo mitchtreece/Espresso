@@ -12,7 +12,7 @@ public protocol ViewModelProtocol: Equatable {
     //
 }
 
-/// View model base class.
+/// Base view-model class.
 ///
 /// This should never be used directly. Instead, create a specialized `ViewModel` by subclassing it.
 open class ViewModel: ViewModelProtocol {

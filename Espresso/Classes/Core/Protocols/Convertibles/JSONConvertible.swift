@@ -9,24 +9,16 @@ import Foundation
 
 public typealias JSON = [String: Any]
 
-/**
- Protocol describing the conversion to various `JSON` representations.
- */
+/// Protocol describing the conversion to various `JSON` representations.
 public protocol JSONConvertible {
     
-    /**
-     A `JSON` representation.
-     */
+    /// A `JSON` representation.
     var json: JSON? { get }
     
-    /**
-     A `JSON` array representation.
-     */
+    /// A `JSON` array representation.
     var jsonArray: [JSON]? { get }
     
-    /**
-     A `JSON` data representation.
-     */
+    /// A `JSON` data representation.
     var jsonData: Data? { get }
     
 }

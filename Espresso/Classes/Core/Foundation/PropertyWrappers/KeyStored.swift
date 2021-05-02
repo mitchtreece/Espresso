@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Marks a property as being readable from & writable to a keyed data-store.
+/// Marks a property as being backed by a keyed data-store.
 @propertyWrapper
 public struct KeyStored<T> {
     
