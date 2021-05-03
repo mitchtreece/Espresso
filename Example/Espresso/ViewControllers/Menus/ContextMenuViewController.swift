@@ -28,7 +28,7 @@ class ContextMenuViewController: UIViewController {
             items: [
                 .action(title: "Foo", image: UIImage(systemName: "01.circle"), handler: { _ in self.alert("Foo") }),
                 .action(title: "Bar", image: UIImage(systemName: "02.circle"), handler: { _ in self.alert("Bar") }),
-                .menu(title: "More...", children: [
+                .group(title: "More...", image: nil, children: [
                     .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), handler: { _ in self.alert("Another one!") })
                 ])
             ])

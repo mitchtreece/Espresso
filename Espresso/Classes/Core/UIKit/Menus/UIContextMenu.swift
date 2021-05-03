@@ -57,103 +57,48 @@ public extension UIView {
 @available(iOS 13, *)
 public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     
-    /// Struct representing an element in a `UIContextMenu`.
-    public struct Item {
+    public enum Item {
         
-        private let title: String
-        private let image: UIImage?
-        private let identifier: String?
+        case action(title: String,
+                    image: UIImage? = nil,
+                    identifier: String? = nil,
+                    description: String? = nil,
+                    state: UIMenuElement.State = .off,
+                    attributes: UIMenuElement.Attributes = [],
+                    handler: UIActionHandler)
         
-        // UIAction
-        private let actionAttributes: UIMenuElement.Attributes?
-        private let action: UIActionHandler?
+        case group(title: String,
+                   image: UIImage? = nil,
+                   identifier: String? = nil,
+                   options: UIMenu.Options = [],
+                   children: [Item])
         
-        // UIMenu
-        private let menuOptions: UIMenu.Options?
-        private let menuChildren: [Item]?
-        
-        internal let isEnabled: Bool
-        
-        internal var element: UIMenuElement? {
+        internal var menuItem: UIContextMenuItem {
             
-            if let action = self.action {
+            switch self {
+            case .action(let title, let image, let identifier, let description, let state, let attributes, let action):
                 
-                return UIAction(
-                    title: self.title,
-                    image: self.image,
-                    identifier: (self.identifier != nil) ? UIAction.Identifier(self.identifier!) : nil,
-                    attributes: self.actionAttributes ?? [],
-                    handler: action
+                return UIContextMenuActionItem(
+                    title: title,
+                    image: image,
+                    identifier: identifier,
+                    description: description,
+                    state: state,
+                    attributes: attributes,
+                    action: action
+                )
+                
+            case .group(let title, let image, let identifier, let options, let children):
+                
+                return UIContextMenuGroupItem(
+                    title: title,
+                    image: image,
+                    identifier: identifier,
+                    options: options,
+                    children: children.map { $0.menuItem }
                 )
                 
             }
-            else if let children = self.menuChildren {
-                                
-                return UIMenu(
-                    title: self.title,
-                    image: self.image,
-                    identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
-                    options: self.menuOptions ?? [],
-                    children: children.compactMap { $0.element }
-                )
-                
-            }
-            
-            return nil
-            
-        }
-        
-        /// Initializes a context menu action item.
-        /// - parameter title: The action's title.
-        /// - parameter image: The action's image; _defaults to nil_.
-        /// - parameter identifier: The action's identifier; _defaults to nil_.
-        /// - parameter attributes: The action's style attributes; _defaults to nil_.
-        /// - parameter isEnabled: Flag indicating if the item is enabled; _defaults to true_.
-        /// - parameter handler: The action's handler.
-        public static func action(title: String,
-                                  image: UIImage? = nil,
-                                  identifier: String? = nil,
-                                  attributes: UIMenuElement.Attributes? = nil,
-                                  isEnabled: Bool = true,
-                                  handler: @escaping UIActionHandler) -> Item {
-            
-            return Item(
-                title: title,
-                image: image,
-                identifier: identifier,
-                actionAttributes: attributes,
-                action: handler,
-                menuOptions: nil,
-                menuChildren: nil,
-                isEnabled: isEnabled
-            )
-            
-        }
-        
-        /// Initializes a child context menu item.
-        /// - parameter title: The menu's title.
-        /// - parameter image: The menu's image; _defaults to nil_.
-        /// - parameter identifier: The menu's identifier; _defaults to nil_.
-        /// - parameter options: The menu's style options; _defaults to nil_.
-        /// - parameter isEnabled: Flag indicating if the menu is enabled; _defaults to true_.
-        /// - parameter children: The menu's child items.
-        public static func menu(title: String,
-                                image: UIImage? = nil,
-                                identifier: String? = nil,
-                                options: UIMenu.Options? = nil,
-                                isEnabled: Bool = true,
-                                children: [Item]) -> Item {
-            
-            return Item(
-                title: title,
-                image: image,
-                identifier: identifier,
-                actionAttributes: nil,
-                action: nil,
-                menuOptions: options,
-                menuChildren: children,
-                isEnabled: isEnabled
-            )
             
         }
         
@@ -228,7 +173,7 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
             actionProvider: { suggestedElements -> UIMenu? in
                               
                 var children = self.items
-                    .filter { $0.isEnabled }
+                    .map { $0.menuItem }
                     .compactMap { $0.element }
                 
                 if self.includeSuggestedItems {
@@ -263,6 +208,7 @@ public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
         }
                 
         animator.preferredCommitStyle = self.commitStyle
+        
         animator.addCompletion {
             handler(animator.previewViewController)
         }

@@ -33,7 +33,7 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         label.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
-        
+
     }
     
     override func bindComponents() {

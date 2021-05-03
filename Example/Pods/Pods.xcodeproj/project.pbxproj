@@ -79,6 +79,9 @@
 		263A0D47263F3641005EA484 /* UIVerticalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D46263F3641005EA484 /* UIVerticalEdgeInsets.swift */; };
 		263A0D49263F365D005EA484 /* UIHorizontalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D48263F365D005EA484 /* UIHorizontalEdgeInsets.swift */; };
 		263A0D4D263F389B005EA484 /* TriggerRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D4C263F389B005EA484 /* TriggerRelay.swift */; };
+		263A0D51263F64F9005EA484 /* UIContextMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D50263F64F9005EA484 /* UIContextMenuItem.swift */; };
+		263A0D53263F6507005EA484 /* UIContextMenuActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D52263F6507005EA484 /* UIContextMenuActionItem.swift */; };
+		263A0D55263F6514005EA484 /* UIContextMenuGroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D54263F6514005EA484 /* UIContextMenuGroupItem.swift */; };
 		26B2041D396A1A5139FCB8F3A436BAD4 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCD5A71308FF6CF677949D8137EE60 /* ConstraintMakerPriortizable.swift */; };
 		26D09F3A842D66D73156BC2BD4F2BB2D /* ShareReplayScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493852D273FF4F798930534A9459572A /* ShareReplayScope.swift */; };
 		26D90061C5C56516CB7B006AA05A403A /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97228E2D591454D0BD7AA828A5353F82 /* Assembler.swift */; };
@@ -655,6 +658,9 @@
 		263A0D46263F3641005EA484 /* UIVerticalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVerticalEdgeInsets.swift; sourceTree = "<group>"; };
 		263A0D48263F365D005EA484 /* UIHorizontalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHorizontalEdgeInsets.swift; sourceTree = "<group>"; };
 		263A0D4C263F389B005EA484 /* TriggerRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerRelay.swift; sourceTree = "<group>"; };
+		263A0D50263F64F9005EA484 /* UIContextMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuItem.swift; sourceTree = "<group>"; };
+		263A0D52263F6507005EA484 /* UIContextMenuActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuActionItem.swift; sourceTree = "<group>"; };
+		263A0D54263F6514005EA484 /* UIContextMenuGroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuGroupItem.swift; sourceTree = "<group>"; };
 		26C84FC52ABBA676832D6FA1D1CB0889 /* UIViewControllerEvents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerEvents.swift; sourceTree = "<group>"; };
 		274E45FFBA2417C084E8AF2FCEB4540F /* Date+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+Espresso.swift"; sourceTree = "<group>"; };
 		2800C0D57894E2729BF0749E376ABD93 /* UIAnimationGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimationGroup.swift; sourceTree = "<group>"; };
@@ -1230,6 +1236,17 @@
 				263A0D3E263F26A5005EA484 /* VoidAction.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		263A0D4F263F64C4005EA484 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				B6AE12C73FF3FDF63B2EA31B8421A3D5 /* UIContextMenu.swift */,
+				263A0D50263F64F9005EA484 /* UIContextMenuItem.swift */,
+				263A0D52263F6507005EA484 /* UIContextMenuActionItem.swift */,
+				263A0D54263F6514005EA484 /* UIContextMenuGroupItem.swift */,
+			);
+			path = Menus;
 			sourceTree = "<group>";
 		};
 		2A0914CFA563842A6A5FE8A071A0AAD0 /* Base */ = {
@@ -2007,7 +2024,6 @@
 				46606D7A4E0B1FE97CFF1B9173E6E588 /* UICollectionViewCell+Espresso.swift */,
 				49DEBC0E1F53FEB268FF86819A40FF08 /* UIColor+Espresso.swift */,
 				82E19D0733EB14C72A30102EA4270FD2 /* UIContainerView.swift */,
-				B6AE12C73FF3FDF63B2EA31B8421A3D5 /* UIContextMenu.swift */,
 				6EC65F3F7C0B6AE553860A8B39F72362 /* UIGestureRecognizer+Espresso.swift */,
 				579D6A0D2CB70E48EAF46C33651EC356 /* UIGradientView.swift */,
 				72A44C56215716C2708D268A79036C94 /* UIImage+Espresso.swift */,
@@ -2029,6 +2045,7 @@
 				BCE8F0EB0B65E04C05C045F78EADD908 /* UIDevice */,
 				5D320B8DB896275CC155C1EFD69460DB /* UIScreen */,
 				40B17A8E55EBDBC92EB56DD4DC500E23 /* UITransition */,
+				263A0D4F263F64C4005EA484 /* Menus */,
 			);
 			name = UIKit;
 			path = Espresso/Classes/Core/UIKit;
@@ -2790,6 +2807,8 @@
 				41CE32D7DB18A0324CEED38166911FDF /* UIAnimation.swift in Sources */,
 				75292436D3CA94307AE12AF4E3503256 /* UIAnimationGroup.swift in Sources */,
 				4C1268037AE11B09A1516611F4139FBB /* UIAnimationGroupConvertible.swift in Sources */,
+				263A0D53263F6507005EA484 /* UIContextMenuActionItem.swift in Sources */,
+				263A0D51263F64F9005EA484 /* UIContextMenuItem.swift in Sources */,
 				263A0D49263F365D005EA484 /* UIHorizontalEdgeInsets.swift in Sources */,
 				F2365C8DCB1DFB4D263B4C6E9AA4CE84 /* UIAnimationOperation.swift in Sources */,
 				BC4F5B064A5D4C64277B2B1ED74DCD91 /* UIAnimationOperationQueue.swift in Sources */,
@@ -2838,6 +2857,7 @@
 				C091EDD9BE6AC1F9D4C5F4CB9212A204 /* UIView+Espresso.swift in Sources */,
 				8475046A2E330A5C4AA2D328050B1FF7 /* UIViewController+Espresso.swift in Sources */,
 				FD2EB8F598BB0803EF95C6DD478AD83F /* UIViewController+Events.swift in Sources */,
+				263A0D55263F6514005EA484 /* UIContextMenuGroupItem.swift in Sources */,
 				1FFE87B77B508BCADAAAD6D4BFF7FA64 /* UIViewController+UITransition.swift in Sources */,
 				C52F2D2F253B78C37A3521214B2A80AF /* UIViewControllerEvents.swift in Sources */,
 				B5FD525D11444D44593B849F25BD969C /* UIViewModel.swift in Sources */,
