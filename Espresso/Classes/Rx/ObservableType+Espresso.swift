@@ -8,25 +8,18 @@
 import RxSwift
 import RxCocoa
 
-/// An observable value box over a type.
-public struct ObservableValueBox<T> {
-    
-    /// The box's underlying value.
-    public var value: T
-    
-}
-
 public extension ObservableType /* Value */ {
     
-    /// Current value of the observable type.
+    /// Latest value of the observable sequence.
     var value: Self.Element {
         
         var value: Self.Element!
         let disposeBag = DisposeBag()
         
-        self.subscribe(onNext: { _value in
+        subscribe(onNext: { _value in
             value = _value
-        }).disposed(by: disposeBag)
+        })
+        .disposed(by: disposeBag)
         
         return value
         
@@ -34,36 +27,30 @@ public extension ObservableType /* Value */ {
     
 }
 
-public extension ObservableType /* Value Change */ {
+extension ObservableType where Element: OptionalType /* Optional */ {
     
-    /// Subscribes observer to receive events for this sequence by providing the old and new values.
-    /// - Parameter onValueChange: The value changed handler.
-    /// - Parameter oldValue: The stream's old (previous) value.
-    /// - Parameter newValue: The streams new value.
-    /// - Parameter onError: The error handler; _defaults to nil_.
-    /// - Parameter error: The error.
-    /// - Parameter onCompleted: The completion handler; _defaults to nil_.
-    /// - Parameter onDisposed: The dispose handler; _defaults to nil_.
-    /// - Returns: A disposable.
-    func subscribe(onValueChange: @escaping (_ oldValue: ObservableValueBox<Self.Element>,
-                                             _ newValue: ObservableValueBox<Self.Element>)->(),
-                                            onError: ((_ error: Error)->())? = nil,
-                                            onCompleted: (()->())? = nil,
-                                            onDisposed: (()->())? = nil) -> Disposable {
+    /// Filters optional elements out of an observable sequence.
+    func `guard`() -> Observable<Element.Wrapped> {
         
-        let array = [Self.Element]()
-        
-        return scan(array) { (prev, next) -> [Self.Element] in
-            
-            var values = prev
-            values.append(next)
-            return Array(values.suffix(2))
-            
+        return self.flatMap { element -> Observable<Element.Wrapped> in
+            guard let value = element.optionalValue else { return Observable<Element.Wrapped>.empty() }
+            return Observable<Element.Wrapped>.just(value)
         }
-        .map { $0.map { ObservableValueBox<Self.Element>(value: $0) } }
-        .map { ($0.first!, $0.last!) }
-        .subscribe(onNext: onValueChange, onError: onError, onCompleted: onCompleted, onDisposed: onDisposed)
         
+    }
+    
+}
+
+extension ObservableType where Element == Bool /* Bool */ {
+    
+    /// Filters `false` elements out of an observable ssequence.
+    func isTrue() -> Observable<Element> {
+        return self.filter { $0 }
+    }
+    
+    /// Filters `true` elements out of an observable ssequence.
+    func isFalse() -> Observable<Element> {
+        return self.filter { !$0 }
     }
     
 }

@@ -7,6 +7,13 @@
 
 import Foundation
 
+public extension String /* Empty */ {
+    
+    /// An empty string value.
+    static let empty: String = ""
+    
+}
+
 public extension String /* Size */ {
     
     /// Calculates the display size for the string using a constraint & attributes.

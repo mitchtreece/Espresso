@@ -7,6 +7,17 @@
 
 import Foundation
 
+public extension Data /* Hex */ {
+    
+    /// The data's hex token representation.
+    ///
+    /// This is commonly used when working with APNS device token data.
+    var hexToken: String {
+        return self.map { String(format: "%02.2hhx", $0) }.joined()
+    }
+    
+}
+
 public extension Data /* Random */ {
     
     /// Initializes data with random bytes of a given length.
