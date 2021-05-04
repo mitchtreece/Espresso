@@ -27,7 +27,7 @@ public extension ObservableType /* Value */ {
     
 }
 
-extension ObservableType where Element: OptionalType /* Optional */ {
+public extension ObservableType where Element: OptionalType /* Optional */ {
     
     /// Filters optional elements out of an observable sequence.
     func `guard`() -> Observable<Element.Wrapped> {
@@ -41,7 +41,7 @@ extension ObservableType where Element: OptionalType /* Optional */ {
     
 }
 
-extension ObservableType where Element == Bool /* Bool */ {
+public extension ObservableType where Element == Bool /* Bool */ {
     
     /// Filters `false` elements out of an observable ssequence.
     func isTrue() -> Observable<Element> {
