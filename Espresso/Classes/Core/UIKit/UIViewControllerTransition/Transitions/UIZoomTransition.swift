@@ -33,8 +33,8 @@ public class UIZoomTransition: UIViewControllerTransition {
         
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
         
         let isPresentation = (transitionType == .presentation)
         
@@ -43,7 +43,7 @@ public class UIZoomTransition: UIViewControllerTransition {
         let container = ctx.transitionContainerView
         let context = ctx.context
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             if isPresentation {
                 

@@ -38,20 +38,20 @@ public class UIPushBackTransition: UIViewControllerTransition {
         
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
         
         let isPresentation = (transitionType == .presentation)
         let settings = self.settings(for: transitionType)
         
         return isPresentation ?
-            _present(with: ctx, settings: settings) :
-            _dismiss(with: ctx, settings: settings)
+            present(with: ctx, settings: settings) :
+            dismiss(with: ctx, settings: settings)
         
     }
     
-    private func _present(with ctx: Context,
-                          settings: Settings) -> UIAnimationGroupAnimator {
+    private func present(with ctx: Context,
+                         settings: Settings) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -61,7 +61,7 @@ public class UIPushBackTransition: UIViewControllerTransition {
         let previousClipsToBound = sourceVC.view.clipsToBounds
         let previousCornerRadius = sourceVC.view.layer.cornerRadius
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             
@@ -96,7 +96,8 @@ public class UIPushBackTransition: UIViewControllerTransition {
         
     }
     
-    private func _dismiss(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
+    private func dismiss(with ctx: Context,
+                         settings: Settings) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -106,7 +107,7 @@ public class UIPushBackTransition: UIViewControllerTransition {
         let previousClipsToBound = destinationVC.view.clipsToBounds
         let previousCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.alpha = self.pushBackAlpha
             destinationVC.view.frame = context.finalFrame(for: destinationVC)

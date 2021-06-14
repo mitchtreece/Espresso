@@ -27,8 +27,8 @@ public class UIRevealTransition: UIViewControllerTransition {
         
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
         
         let settings = self.settings(for: transitionType)
         
@@ -37,7 +37,7 @@ public class UIRevealTransition: UIViewControllerTransition {
         let container = ctx.transitionContainerView
         let context = ctx.context
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.alpha = self.revealedViewAlpha
             destinationVC.view.transform = self.translation(

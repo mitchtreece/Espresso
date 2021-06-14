@@ -7,12 +7,6 @@
 
 import UIKit
 
-/// An animation block.
-public typealias UIAnimationBlock = ()->()
-
-/// An animation completion bloc.
-public typealias UIAnimationCompletion = ()->()
-
 /// `UIAnimation` is a wrapper over `UIView` property animation.
 ///
 /// ```
@@ -26,6 +20,12 @@ public typealias UIAnimationCompletion = ()->()
 /// }.run()
 /// ```
 public class UIAnimation {
+    
+    /// A `UIAnimation` animation closure.
+    public typealias Animations = ()->()
+    
+    /// A `UIAnimation` completion closure.
+    public typealias Completion = ()->()
     
     /// Representation of the various animation timing curves.
     public enum TimingCurve {
@@ -90,24 +90,26 @@ public class UIAnimation {
     /// The animation's start delay.
     public private(set) var delay: TimeInterval
     
-    /// The animation block.
-    public private(set) var animationBlock: UIAnimationBlock
+    /// The animation's animation closure.
+    public private(set) var animations: Animations
+    
+    private var animator: UIViewPropertyAnimator?
     
     /// Initializes a new animation with the specified parameters.
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
     /// - Parameter duration: The animation's duration; _defaults to 0.6_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
-    /// - Parameter animations: The animation block.
+    /// - Parameter animations: The animation closure.
     /// - Returns: A new `UIAnimation` instance.
     public init(_ timingCurve: TimingCurve = .simple(.easeInOut),
                 duration: TimeInterval = 0.6,
                 delay: TimeInterval = 0,
-                _ animations: @escaping UIAnimationBlock) {
+                _ animations: @escaping Animations) {
         
         self.timingCurve = timingCurve
         self.duration = duration
         self.delay = delay
-        self.animationBlock = animations
+        self.animations = animations
         
     }
     
@@ -116,45 +118,47 @@ public class UIAnimation {
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
     /// - Parameter duration: The animation's duration; _defaults to 0.6_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
-    /// - Parameter animations: The animation block.
+    /// - Parameter animations: The animation closure.
     /// - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
     public func then(_ timingCurve: TimingCurve = .simple(.easeInOut),
                      duration: TimeInterval = 0.6,
                      delay: TimeInterval = 0,
-                     _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
+                     _ animations: @escaping Animations) -> UIAnimationGroup {
         
-        let nextAnimation = UIAnimation(
+        let next = UIAnimation(
             timingCurve,
             duration: duration,
             delay: delay,
             animations
         )
         
-        return UIAnimationGroup(animations: [self, nextAnimation])
+        return UIAnimationGroup(animations: [
+            self,
+            next
+        ])
         
     }
 
-    /// Starts the animation.
-    /// - Parameter completion: An optional completion handler; _defaults to nil_.
-    public func run(completion: UIAnimationCompletion? = nil) {
-
-        let animator: UIViewPropertyAnimator
-        var provider: UITimingCurveProvider
+    /// Starts or resumes the animation.
+    /// - Parameter completion: An optional completion closure; _defaults to nil_.
+    public func start(completion: Completion? = nil) {
         
-        switch timingCurve {
-        case .simple(let curve):
+        if let animator = self.animator {
             
-            animator = UIViewPropertyAnimator(
-                duration: self.duration,
-                curve: curve,
-                animations: self.animationBlock
-            )
+            animator.addCompletion { _ in
+                completion?()
+            }
             
-            animator.addCompletion { _ in completion?() }
-            animator.startAnimation(afterDelay: self.delay)
-            
+            animator.startAnimation()
             return
             
+        }
+
+        var curve: UIView.AnimationCurve?
+        var provider: UITimingCurveProvider?
+        
+        switch timingCurve {
+        case .simple(let _curve): curve = _curve
         case .cubicBezier(let cp1, let cp2):
             
             provider = UICubicTimingParameters(
@@ -178,16 +182,78 @@ public class UIAnimation {
 
         case .custom(let _provider): provider = _provider
         }
+                
+        if let curve = curve {
+            
+            self.animator = UIViewPropertyAnimator(
+                duration: self.duration,
+                curve: curve
+            )
+            
+        }
+        else if let provider = provider {
+            
+            self.animator = UIViewPropertyAnimator(
+                duration: self.duration,
+                timingParameters: provider
+            )
+                                    
+        }
         
-        animator = UIViewPropertyAnimator(
-            duration: self.duration,
-            timingParameters: provider
-        )
+        self.animator?.addAnimations(self.animations)
         
-        animator.addAnimations(self.animationBlock)
-        animator.addCompletion { _ in completion?() }
-        animator.startAnimation(afterDelay: self.delay)
+        self.animator?.addCompletion { _ in
+            completion?()
+        }
+        
+        self.animator?.startAnimation(afterDelay: self.delay)
 
+    }
+    
+    /// Pauses the animation.
+    public func pause() {
+        
+        guard let animator = self.animator,
+              animator.state == .active else { return }
+        
+        animator.pauseAnimation()
+        
+    }
+    
+    /// Stops the animation.
+    /// - parameter finish: Flag indicating if the underlying animator should be told to finish; _defaults to false_.
+    ///
+    /// If the `finish` flag is `false`, the animator's finishing actions (i.e. completion closures) will **not** be called.
+    /// You can manually call `finish(at:)` after calling `stop(finish: true)` if you want to manually invoke the animator's
+    /// finishing actions.
+    public func stop(finish: Bool = false) {
+        
+        guard let animator = self.animator,
+              animator.state != .stopped else { return }
+        
+        animator.stopAnimation(!finish)
+        
+    }
+    
+    /// Finishes the animation.
+    /// - parameter position: The position to set animation values to; _defaults to end_.
+    ///
+    /// This should only be called after calling `stop(finish: true)` to manually invoke the animator's finishing actions.
+    public func finish(at position: UIViewAnimatingPosition = .end) {
+        
+        guard let animator = self.animator,
+              animator.state == .stopped else { return }
+        
+        animator.finishAnimation(at: position)
+        
+    }
+    
+}
+
+extension UIAnimation: UIAnimationGroupable {
+    
+    public func asAnimationGroup() -> UIAnimationGroup {
+        return UIAnimationGroup(animations: [self])
     }
     
 }

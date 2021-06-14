@@ -18,8 +18,8 @@ public class UISlideTransition: UIViewControllerTransition {
         self.duration = duration
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
 
         let settings = self.settings(for: transitionType)
         
@@ -28,7 +28,7 @@ public class UISlideTransition: UIViewControllerTransition {
         let container = ctx.transitionContainerView
         let context = ctx.context
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.transform = self.boundsTransform(

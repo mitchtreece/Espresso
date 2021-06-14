@@ -27,26 +27,27 @@ public class UICoverTransition: UIViewControllerTransition {
         
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
         
         let isPresentation = (transitionType == .presentation)
         let settings = self.settings(for: transitionType)
         
         return isPresentation ?
-            _present(with: ctx, settings: settings) :
-            _dismiss(with: ctx, settings: settings)
+            present(with: ctx, settings: settings) :
+            dismiss(with: ctx, settings: settings)
         
     }
     
-    private func _present(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
+    private func present(with ctx: Context,
+                         settings: Settings) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.transitionContainerView
         let context = ctx.context
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
@@ -79,14 +80,15 @@ public class UICoverTransition: UIViewControllerTransition {
         
     }
     
-    private func _dismiss(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
+    private func dismiss(with ctx: Context,
+                         settings: Settings) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.transitionContainerView
         let context = ctx.context
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.alpha = self.coveredViewAlpha

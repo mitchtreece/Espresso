@@ -23,7 +23,7 @@ internal class UIAnimationOperation: AsyncOperation {
         
         DispatchQueue.main.async {
             
-            self.animation.run(completion: {
+            self.animation.start(completion: {
                 self.state = .finished
             })
             

@@ -9,8 +9,6 @@ import UIKit
 
 /// `UIAnimationGroup` is a container over a set of animations.
 ///
-/// Animations can be _chained_ to a group by using the `then()` function.
-///
 /// ```
 /// let view = UIView()
 /// view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -25,22 +23,22 @@ import UIKit
 /// ```
 public class UIAnimationGroup {
         
-    internal private(set) var _animations: [UIAnimation]
+    public private(set) var animations: [UIAnimation]
 
     internal init(animations: [UIAnimation]) {
-        self._animations = animations
+        self.animations = animations
     }
     
     /// Appends a new animation to the group with the specified parameters.
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
     /// - Parameter duration: The animation's duration; _defaults to 0.6_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
-    /// - Parameter animations: The animation block.
+    /// - Parameter animations: The animation closure.
     /// - Returns: A `UIAnimationGroup` by appending the new animation.
     public func then(_ timingCurve: UIAnimation.TimingCurve = .simple(.easeInOut),
                      duration: TimeInterval = 0.6,
                      delay: TimeInterval = 0,
-                     _ animations: @escaping UIAnimationBlock) -> UIAnimationGroup {
+                     _ animations: @escaping UIAnimation.Animations) -> UIAnimationGroup {
         
         let animation = UIAnimation(
             timingCurve,
@@ -49,15 +47,23 @@ public class UIAnimationGroup {
             animations
         )
         
-        self._animations.append(animation)
+        self.animations.append(animation)
         return self
         
     }
     
     /// Starts the group's animations.
-    /// - Parameter completion: An optional completion handler; _defaults to nil_.
-    public func run(completion: UIAnimationCompletion? = nil) {
-        self._animations.run(completion: completion)
+    /// - Parameter completion: An optional completion closure; _defaults to nil_.
+    public func start(completion: UIAnimation.Completion? = nil) {
+        self.animations.startAnimations(completion: completion)
+    }
+    
+}
+
+extension UIAnimationGroup: UIAnimationGroupable {
+    
+    public func asAnimationGroup() -> UIAnimationGroup {
+        return self
     }
     
 }

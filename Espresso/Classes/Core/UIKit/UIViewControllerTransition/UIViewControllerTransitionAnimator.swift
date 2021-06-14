@@ -26,12 +26,12 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
         guard let transitionContext = transitionContext else { return 0 }
         guard let ctx = self.context(from: transitionContext) else { return 0 }
         
-        return transition.animator(
+        return transition.animations(
             for: self.isPresentation ? .presentation : .dismissal,
             context: ctx
         )
         .duration
-        
+
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -43,11 +43,11 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
             .presentation :
             .dismissal
         
-        transition.animator(
+        transition.animations(
             for: transitionType,
             context: ctx
         )
-        .run()
+        .start()
         
     }
     

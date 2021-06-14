@@ -38,8 +38,8 @@ public class UISwapTransition: UIViewControllerTransition {
         
     }
     
-    override public func animator(for transitionType: TransitionType,
-                                  context ctx: Context) -> UIAnimationGroupAnimator {
+    override public func animations(for transitionType: TransitionType,
+                                    context ctx: Context) -> UIAnimationGroupController {
         
         let settings = self.settings(for: transitionType)
         
@@ -54,7 +54,7 @@ public class UISwapTransition: UIViewControllerTransition {
         let previousDestinationClipsToBounds = destinationVC.view.clipsToBounds
         let previousDestinationCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UIAnimationGroupAnimator(setup: {
+        return UIAnimationGroupController(setup: {
             
             sourceVC.view.clipsToBounds = true
             destinationVC.view.clipsToBounds = true

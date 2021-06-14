@@ -193,37 +193,17 @@ open class UIPresentationControllerTransition: UIViewControllerTransition {
     
     // MARK: Public
     
-    /// Asks the transition for a `UIAnimationGroupAnimator` containing one or more animations to run while transitioning.
+    /// Asks the transition for a `UIAnimationGroupController` containing one or more animations to run while transitioning.
     ///
     /// **This should not be called directly**. Instead, override this function within a `UIViewControllerTransition` subclass and provide custom animations.
     /// - parameter transitionType: The transition's type.
     /// - parameter context: The transition's context.
-    /// - returns: A `UIAnimationGroupAnimator` containing animations to run while transitioning between source & destination view controllers.
-    open func animator(for transitionType: TransitionType,
-                       context ctx: Context) -> UIAnimationGroupAnimator {
+    /// - returns: A new animation group controller.
+    open func animations(for transitionType: TransitionType,
+                         context ctx: Context) -> UIAnimationGroupController {
         
-        // Override me
-        
-        let container = ctx.transitionContainerView
-        let destinationVC = ctx.destinationViewController
-        let finalFrame = ctx.context.finalFrame(for: destinationVC)
-        
-        return UIAnimationGroupAnimator(
-            setup: nil,
-            animations: {
-            
-                UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
-                    container.addSubview(destinationVC.view)
-                    destinationVC.view.frame = finalFrame
-                })
-                
-            },
-            completion: {
-                
-                ctx.context.completeTransition(!ctx.context.transitionWasCancelled)
-                
-            })
-        
+        fatalError("UIViewControllerTransition subclasses must override animations(for:context:)")
+
     }
     
 }
