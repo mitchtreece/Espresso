@@ -20,10 +20,10 @@ public class Nonce {
     /// The nonce length.
     public let length: Int
     
-    // The nonce data representation.
+    /// The nonce data representation.
     public private(set) var data: Data
     
-    // The nonce base64 string representation.
+    /// The nonce base64 string representation.
     public var string: String {
         return String(data: self.data, encoding: .utf8)!
     }

@@ -431,7 +431,7 @@ public extension UIDevice /* Info*/ {
     
     /// Flag indicating whether the current device is a simulator.
     var isSimulator: Bool {
-        return (self.info(includeSimulator: true) == DeviceInfo.simulator)
+        return (self.info(includeSimulator: true) == .simulator)
     }
     
     /// Flag indicating whether the current device is a phone.

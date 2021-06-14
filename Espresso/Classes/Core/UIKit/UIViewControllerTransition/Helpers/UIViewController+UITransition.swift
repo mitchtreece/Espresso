@@ -21,13 +21,13 @@ public extension UIViewController {
     ///
     /// Setting this to a `nil` value sets the view controller's
     /// modal presentation style back to the system default.
-    @objc var transition: UITransition? {
+    @objc var transition: UIViewControllerTransition? {
         get {
             
             return objc_getAssociatedObject(
                 self,
                 &AssociatedKey.transition
-            ) as? UITransition
+            ) as? UIViewControllerTransition
             
         }
         set {
@@ -43,7 +43,7 @@ public extension UIViewController {
             
             if let transition = newValue {
                 
-                if let _ = transition as? UIPresentationTransition {
+                if let _ = transition as? UIPresentationControllerTransition {
                     self.modalPresentationStyle = .custom
                 }
                 else {
@@ -73,7 +73,9 @@ public extension UIViewController {
     /// - Parameter vc: The view controller to present.
     /// - Parameter transition: The transition to present the view controller with.
     /// - Parameter completion: An optional completion block to run after the transition finishes.
-    func present(_ vc: UIViewController, with transition: UITransition, completion: (()->())?) {
+    func present(_ vc: UIViewController,
+                 with transition: UIViewControllerTransition,
+                 completion: (()->())?) {
         
         vc.transition = transition
         

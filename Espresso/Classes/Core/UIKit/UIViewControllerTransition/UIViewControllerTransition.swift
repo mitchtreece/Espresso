@@ -1,5 +1,5 @@
 //
-//  UITransition.swift
+//  UIViewControllerTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -7,28 +7,28 @@
 
 import UIKit
 
-/// `UITransition` subclass that's backed by a `UIPresentationController`.
+/// `UIViewControllerTransition` subclass that's backed by a `UIPresentationController`.
 ///
 /// This class is used to determine if the transition should ask it's delegate
 /// for a presentation controller to use while transitioning. Subclasses must return
 /// a valid presentation controller from `presentationController(forPresented:presenting:source:)`.
-open class UIPresentationTransition: UITransition {
+open class UIPresentationControllerTransition: UIViewControllerTransition {
     
     open func presentationController(forPresented presented: UIViewController,
                                      presenting: UIViewController?,
                                      source: UIViewController) -> UIPresentationController? {
         
-        fatalError("UIPresentationTransition subclasses must override `presentationController(forPresented:presenting:)`")
+        fatalError("UIPresentationControllerTransition subclasses must override `presentationController(forPresented:presenting:)`")
         
     }
     
 }
 
-/// `UITransition` is a base class for custom view controller transitions.
-@objc open class UITransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+/// `UIViewControllerTransition` is a base class for custom view controller transitions.
+@objc open class UIViewControllerTransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
     /// Struct containing the various properties of a view controller transition.
-    public struct Info {
+    public struct Context {
         
         /// The transition's container view.
         public private(set) var transitionContainerView: UIView
@@ -52,39 +52,6 @@ open class UIPresentationTransition: UITransition {
         
         /// A dismissal transition type.
         case dismissal
-        
-    }
-    
-    /// Representation of the different 2D directions.
-    public enum Direction {
-        
-        /// The upwards direction
-        case up
-        
-        /// The downwards direction
-        case down
-        
-        /// The left direction
-        case left
-        
-        /// The right direction
-        case right
-        
-        /// Helper function that returns the current direction's reversed direction.
-        ///
-        /// `up <-> down`
-        ///
-        /// `left <-> right`
-        func reversed() -> Direction {
-            
-            switch self {
-            case .up: return .down
-            case .down: return .up
-            case .left: return .right
-            case .right: return .left
-            }
-            
-        }
         
     }
     
@@ -130,6 +97,12 @@ open class UIPresentationTransition: UITransition {
     /// An optional modal presentation style to be set on the destination view controller
     /// before the transition is performed.
     public var modalPresentationStyleOverride: UIModalPresentationStyle?
+    
+    /// Fetches the transition's settings for a specified transition type.
+    /// - returns: Transition settings for a specified transition type.
+    func settings(for transitionType: TransitionType) -> Settings {
+        return (transitionType == .presentation) ? self.presentation : self.dismissal
+    }
         
     // MARK: UIViewControllerTransitioningDelegate
     
@@ -146,7 +119,7 @@ open class UIPresentationTransition: UITransition {
                 
         }
         
-        return UITransitionAnimator(
+        return UIViewControllerTransitionAnimator(
             transition: self,
             presentation: true
         )
@@ -155,7 +128,7 @@ open class UIPresentationTransition: UITransition {
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return UITransitionAnimator(
+        return UIViewControllerTransitionAnimator(
             transition: self,
             presentation: false
         )
@@ -186,12 +159,15 @@ open class UIPresentationTransition: UITransition {
                 
             }
             
-            return UITransitionAnimator(transition: self, presentation: true)
+            return UIViewControllerTransitionAnimator(
+                transition: self,
+                presentation: true
+            )
                 
         }
         else if (operation == .pop) {
             
-            return UITransitionAnimator(
+            return UIViewControllerTransitionAnimator(
                 transition: self,
                 presentation: false
             )
@@ -205,7 +181,7 @@ open class UIPresentationTransition: UITransition {
     public func navigationController(_ navigationController: UINavigationController,
                                      interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
-        guard let animationController = animationController as? UITransitionAnimator,
+        guard let animationController = animationController as? UIViewControllerTransitionAnimator,
             !animationController.isPresentation else { return nil }
         
         guard let interactor = self.interactor,
@@ -217,51 +193,51 @@ open class UIPresentationTransition: UITransition {
     
     // MARK: Public
     
-    /// Asks the transition for a `UITransitionController` containing one or more animations to run while transitioning.
+    /// Asks the transition for a `UIAnimationGroupAnimator` containing one or more animations to run while transitioning.
     ///
-    /// **This should not be called directly**. Instead, override this function within a `UITransition` subclass and provide custom animations.
+    /// **This should not be called directly**. Instead, override this function within a `UIViewControllerTransition` subclass and provide custom animations.
     /// - parameter transitionType: The transition's type.
-    /// - parameter info: The transition's info.
-    /// - returns: A `UITransitionController` containing animations to run while transitioning between source & destination view controllers.
-    open func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    /// - parameter context: The transition's context.
+    /// - returns: A `UIAnimationGroupAnimator` containing animations to run while transitioning between source & destination view controllers.
+    open func animator(for transitionType: TransitionType,
+                       context ctx: Context) -> UIAnimationGroupAnimator {
         
         // Override me
         
-        let container = info.transitionContainerView
-        let destinationVC = info.destinationViewController
-        let finalFrame = info.context.finalFrame(for: destinationVC)
+        let container = ctx.transitionContainerView
+        let destinationVC = ctx.destinationViewController
+        let finalFrame = ctx.context.finalFrame(for: destinationVC)
         
-        return UITransitionController(setup: nil, animations: {
+        return UIAnimationGroupAnimator(
+            setup: nil,
+            animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
-                container.addSubview(destinationVC.view)
-                destinationVC.view.frame = finalFrame
+                UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+                    container.addSubview(destinationVC.view)
+                    destinationVC.view.frame = finalFrame
+                })
+                
+            },
+            completion: {
+                
+                ctx.context.completeTransition(!ctx.context.transitionWasCancelled)
+                
             })
-            
-        }, completion: {
-            
-            info.context.completeTransition(!info.context.transitionWasCancelled)
-            
-        })
         
     }
     
-    // MARK: Helpers
-    
-    /// Fetches the transition's settings for a specified transition type.
-    /// - returns: Transition settings for a specified transition type.
-    public func settings(for transitionType: TransitionType) -> Settings {
-        return (transitionType == .presentation) ? self.presentation : self.dismissal
-    }
+}
+
+public extension UIViewControllerTransition /* Helpers */ {
     
     /// Calculates a bounds translation-transform in a given view.
     /// - parameter container: The view.
     /// - parameter direction: The direction of the transform.
     /// - parameter offset: An optional offset to apply to the translation; _defaults to 0_.
     /// - returns: A bounds translated `CGAffineTransform`.
-    public func boundsTransform(in container: UIView,
-                                direction: Direction,
-                                offsetBy offset: CGFloat = 0) -> CGAffineTransform {
+    func boundsTransform(in container: UIView,
+                         direction: Direction,
+                         offsetBy offset: CGFloat = 0) -> CGAffineTransform {
         
         switch direction {
         case .up: return CGAffineTransform(translationX: 0, y: -container.bounds.height + offset)
@@ -277,9 +253,9 @@ open class UIPresentationTransition: UITransition {
     /// - parameter direction: The direction of the transform.
     /// - parameter offset: An optional offset to apply to the translation; _defaults to 0_.
     /// - returns: A half-bounds translated `CGAffineTransform`.
-    public func halfBoundsTransform(in container: UIView,
-                                    direction: Direction,
-                                    offsetBy offset: CGFloat = 0) -> CGAffineTransform {
+    func halfBoundsTransform(in container: UIView,
+                             direction: Direction,
+                             offsetBy offset: CGFloat = 0) -> CGAffineTransform {
         
         let transform = boundsTransform(in: container, direction: direction, offsetBy: offset)
         return CGAffineTransform(translationX: (transform.tx / 2), y: (transform.ty / 2))
@@ -290,7 +266,8 @@ open class UIPresentationTransition: UITransition {
     /// - parameter amount: The translation amount.
     /// - parameter direction: The direction of the transform.
     /// - returns: A translation `CGAffineTransform`.
-    public func translation(_ amount: CGFloat, direction: Direction) -> CGAffineTransform {
+    func translation(_ amount: CGFloat,
+                     direction: Direction) -> CGAffineTransform {
         
         switch direction {
         case .up: return CGAffineTransform(translationX: 0, y: -amount)

@@ -8,7 +8,7 @@
 import UIKit
 
 /// A push-back view controller transition.
-public class UIPushBackTransition: UITransition {
+public class UIPushBackTransition: UIViewControllerTransition {
     
     /// The covered view controller's scale; _defaults to 0.8_.
     public var pushBackScale: CGFloat
@@ -38,29 +38,39 @@ public class UIPushBackTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
         let isPresentation = (transitionType == .presentation)
         let settings = self.settings(for: transitionType)
-        return isPresentation ? _present(with: info, settings: settings) : _dismiss(with: info, settings: settings)
+        
+        return isPresentation ?
+            _present(with: ctx, settings: settings) :
+            _dismiss(with: ctx, settings: settings)
         
     }
     
-    private func _present(with info: Info, settings: Settings) -> UITransitionController {
+    private func _present(with ctx: Context,
+                          settings: Settings) -> UIAnimationGroupAnimator {
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
         let previousClipsToBound = sourceVC.view.clipsToBounds
         let previousCornerRadius = sourceVC.view.layer.cornerRadius
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            
             container.addSubview(destinationVC.view)
-            destinationVC.view.transform = self.boundsTransform(in: container, direction: settings.direction.reversed())
+            
+            destinationVC.view.transform = self.boundsTransform(
+                in: container,
+                direction: settings.direction.inverted()
+            )
             
             sourceVC.view.clipsToBounds = true
             
@@ -86,17 +96,17 @@ public class UIPushBackTransition: UITransition {
         
     }
     
-    private func _dismiss(with info: Info, settings: Settings) -> UITransitionController {
+    private func _dismiss(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
         let previousClipsToBound = destinationVC.view.clipsToBounds
         let previousCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.alpha = self.pushBackAlpha
             destinationVC.view.frame = context.finalFrame(for: destinationVC)

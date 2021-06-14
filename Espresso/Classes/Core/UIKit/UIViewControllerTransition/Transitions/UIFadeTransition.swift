@@ -8,7 +8,7 @@
 import UIKit
 
 /// A fading view controller transition.
-public class UIFadeTransition: UITransition {
+public class UIFadeTransition: UIViewControllerTransition {
 
     /// Representation of different fading methods.
     public enum FadeType {
@@ -38,14 +38,15 @@ public class UIFadeTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.alpha = 0
             destinationVC.view.frame = context.finalFrame(for: destinationVC)

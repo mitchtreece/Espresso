@@ -8,7 +8,7 @@
 import Foundation
 
 /// A swapping view controller transition.
-public class UISwapTransition: UITransition {
+public class UISwapTransition: UIViewControllerTransition {
     
     /// The source & destination view controller's scale; _defaults to 1_.
     public var swapScale: CGFloat
@@ -38,14 +38,15 @@ public class UISwapTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
-        
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
         let settings = self.settings(for: transitionType)
+        
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
         let previousSourceClipsToBound = sourceVC.view.clipsToBounds
         let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
@@ -53,7 +54,7 @@ public class UISwapTransition: UITransition {
         let previousDestinationClipsToBounds = destinationVC.view.clipsToBounds
         let previousDestinationCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             sourceVC.view.clipsToBounds = true
             destinationVC.view.clipsToBounds = true
@@ -69,12 +70,17 @@ public class UISwapTransition: UITransition {
                 sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
                 
-                let destinationTransform = self.halfBoundsTransform(in: container, direction: settings.direction.reversed())
+                let destinationTransform = self.halfBoundsTransform(
+                    in: container,
+                    direction: settings.direction.inverted()
+                )
+                
                 destinationVC.view.transform = destinationTransform.scaledBy(x: self.swapScale, y: self.swapScale)
                 destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
                 destinationVC.view.alpha = 1
                 
-            }).then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
+            })
+            .then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
                 
                 container.bringSubviewToFront(destinationVC.view)
                 

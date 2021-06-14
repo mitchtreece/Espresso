@@ -8,7 +8,7 @@
 import UIKit
 
 /// A zooming view controller transition.
-public class UIZoomTransition: UITransition {
+public class UIZoomTransition: UIViewControllerTransition {
     
     /// The transition's duration; _defaults to 0.6_.
     public var duration: TimeInterval
@@ -33,16 +33,17 @@ public class UIZoomTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
         let isPresentation = (transitionType == .presentation)
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             if isPresentation {
                 

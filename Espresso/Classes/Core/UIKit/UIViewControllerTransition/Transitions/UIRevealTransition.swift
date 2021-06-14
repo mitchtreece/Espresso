@@ -8,7 +8,7 @@
 import UIKit
 
 /// A revealing view controller transition.
-public class UIRevealTransition: UITransition {
+public class UIRevealTransition: UIViewControllerTransition {
     
     /// The revealed view's alpha to animate from while transitioning; _defaults to 0.7_.
     public var revealedViewAlpha: CGFloat
@@ -27,28 +27,22 @@ public class UIRevealTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
-        return _animate(
-            with: info,
-            settings: settings(for: transitionType)
-        )
+        let settings = self.settings(for: transitionType)
         
-    }
-    
-    private func _animate(with info: Info, settings: Settings) -> UITransitionController {
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
-        
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.alpha = self.revealedViewAlpha
             destinationVC.view.transform = self.translation(
                 self.revealedViewParallaxAmount,
-                direction: settings.direction.reversed()
+                direction: settings.direction.inverted()
             )
             
             container.insertSubview(

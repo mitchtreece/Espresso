@@ -12,7 +12,8 @@ public extension UINavigationController {
     /// Push a view controller onto the navigation stack using a transition.
     /// - Parameter vc: The view controller to present.
     /// - Parameter transition: The transition to present the view controller with.
-    func pushViewController(_ vc: UIViewController, with transition: UITransition?) {
+    func pushViewController(_ vc: UIViewController,
+                            with transition: UIViewControllerTransition?) {
         
         guard let transition = transition else {
             

@@ -8,7 +8,7 @@
 import UIKit
 
 /// A sliding view controller transition.
-public class UISlideTransition: UITransition {
+public class UISlideTransition: UIViewControllerTransition {
     
     public var duration: TimeInterval
     
@@ -18,21 +18,22 @@ public class UISlideTransition: UITransition {
         self.duration = duration
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
 
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
-        
         let settings = self.settings(for: transitionType)
         
-        return UITransitionController(setup: {
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
+        
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
-                direction: settings.direction.reversed()
+                direction: settings.direction.inverted()
             )
             
             container.addSubview(destinationVC.view)

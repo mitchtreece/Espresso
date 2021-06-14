@@ -8,7 +8,7 @@
 import UIKit
 
 /// A covering view controller transition.
-public class UICoverTransition: UITransition {
+public class UICoverTransition: UIViewControllerTransition {
     
     /// The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
     public var coveredViewAlpha: CGFloat
@@ -27,26 +27,30 @@ public class UICoverTransition: UITransition {
         
     }
     
-    override public func transitionController(for transitionType: TransitionType, info: Info) -> UITransitionController {
+    override public func animator(for transitionType: TransitionType,
+                                  context ctx: Context) -> UIAnimationGroupAnimator {
         
         let isPresentation = (transitionType == .presentation)
         let settings = self.settings(for: transitionType)
-        return isPresentation ? _present(with: info, settings: settings) : _dismiss(with: info, settings: settings)
+        
+        return isPresentation ?
+            _present(with: ctx, settings: settings) :
+            _dismiss(with: ctx, settings: settings)
         
     }
     
-    private func _present(with info: Info, settings: Settings) -> UITransitionController {
+    private func _present(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
-                direction: settings.direction.reversed()
+                direction: settings.direction.inverted()
             )
             
             container.addSubview(destinationVC.view)
@@ -75,20 +79,20 @@ public class UICoverTransition: UITransition {
         
     }
     
-    private func _dismiss(with info: Info, settings: Settings) -> UITransitionController {
+    private func _dismiss(with ctx: Context, settings: Settings) -> UIAnimationGroupAnimator {
         
-        let sourceVC = info.sourceViewController
-        let destinationVC = info.destinationViewController
-        let container = info.transitionContainerView
-        let context = info.context
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.transitionContainerView
+        let context = ctx.context
         
-        return UITransitionController(setup: {
+        return UIAnimationGroupAnimator(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.alpha = self.coveredViewAlpha
             destinationVC.view.transform = self.translation(
                 self.coveredViewParallaxAmount,
-                direction: settings.direction.reversed()
+                direction: settings.direction.inverted()
             )
             
             container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)

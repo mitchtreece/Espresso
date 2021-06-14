@@ -86,7 +86,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case zoom
         case custom
         
-        var transition: UITransition {
+        var transition: UIViewControllerTransition {
             
             switch self {
             case .fade: return UIFadeTransition()

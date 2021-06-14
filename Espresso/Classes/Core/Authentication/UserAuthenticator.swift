@@ -11,24 +11,24 @@ import LocalAuthentication
 /// `UserAuthenticator` is an authentication helper for biometrics (Touch ID, Face ID) or a device password.
 public final class UserAuthenticator {
     
-    /// Representation of the various user-authentication types.
-    public enum AuthenticationType {
+    /// Representation of the various user-authentication methods.
+    public enum Method {
         
-        /// A user-authentication type that represents the absence of an authentication type.
+        /// A user-authentication method that represents the absence of an authentication method.
         case none
         
-        /// A device password user-authentication type.
+        /// A device password user-authentication method.
         case password
         
-        /// A biometric user-authentication type using Touch ID.
+        /// A biometric user-authentication method using Touch ID.
         case touchId
         
-        /// A biometric user-authentication type using Face ID.
+        /// A biometric user-authentication method using Face ID.
         case faceId
         
-        /// The user-authentication type's display name.
+        /// The user-authentication method's display name.
         ///
-        /// This value will be `nil` if the user-authentication type is `none`.
+        /// This value will be `nil` if the user-authentication method is `none`.
         public var displayName: String? {
             
             switch self {
@@ -51,7 +51,7 @@ public final class UserAuthenticator {
     }
     
     /// The device's preferred user-authentication type.
-    public static var authenticationType: AuthenticationType {
+    public static var preferredAuthenticationMethod: Method {
         get {
             
             guard let context = self.authenticationContext else { return .none }
@@ -72,7 +72,7 @@ public final class UserAuthenticator {
             }
             else {
                 
-                // iOS < 11, the only supported biometric type is Touch ID.
+                // iOS < 11, the only supported biometric method is Touch ID.
                 // If we can evaluate biometrics, use that. Otherwise we're using password authentication.
                 
                 if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
@@ -86,7 +86,7 @@ public final class UserAuthenticator {
         }
     }
     
-    /// Authenticate's the user using the device's preferred authentication type.
+    /// Authenticate's the user using the device's preferred authentication method.
     /// - parameter reason: The reason string to be displayed during authentication.
     /// - parameter completion: The authentication completion handler.
     /// - parameter success: Flag indicating if the authentication was successful.
@@ -106,7 +106,7 @@ public final class UserAuthenticator {
             localizedReason: reason,
             reply: { (success: Bool, error: Error?) -> Void in
                 completion(success, error)
-        })
+            })
         
     }
     
