@@ -123,7 +123,7 @@
 		372350A5F8BAB5D9FEF10FE079CBC20E /* UIFadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC9C3CB471547202BFA98859FAEE7F /* UIFadeTransition.swift */; };
 		375D152F36557530F803CE283AEAC7ED /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE14A21D9648F29A24483733BC292 /* ServiceEntry.TypeForwarding.swift */; };
 		377517F6725E6265915F18DFD0B38EEA /* ScheduledItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92BC6B9ED8C3D8AB6C7748A4CF6AD3A /* ScheduledItem.swift */; };
-		38317F3A73B9FBC5389FC10335D065C5 /* UITransitionInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597C243C145D77F8C2FEE695959CDC60 /* UITransitionInteractionController.swift */; };
+		38317F3A73B9FBC5389FC10335D065C5 /* UIViewControllerTransitionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597C243C145D77F8C2FEE695959CDC60 /* UIViewControllerTransitionInteractor.swift */; };
 		3989079D9796544A010D014E2939014F /* Multicast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC9DE3981938704F95BBB6C828A5BF4 /* Multicast.swift */; };
 		398F9442AD56E2F6FCFB73D008AC7241 /* UIGestureRecognizer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7754DEEFD50B7A76F9472AD663A3CA3 /* UIGestureRecognizer+Rx.swift */; };
 		3AA71A1BD31B94856C394B50FEC6F689 /* ObservableConvertibleType+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8DF042665F48DC9D30D32A93F6D55 /* ObservableConvertibleType+Driver.swift */; };
@@ -772,7 +772,7 @@
 		5872AEE1C6D683BB77672351B691D104 /* HistoricalSchedulerTimeConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalSchedulerTimeConverter.swift; path = RxSwift/Schedulers/HistoricalSchedulerTimeConverter.swift; sourceTree = "<group>"; };
 		5876843E4A8F2FD8AA9DA29A32BCFECD /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		592CA2DBED1D9B8246DA743BC9330B15 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		597C243C145D77F8C2FEE695959CDC60 /* UITransitionInteractionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITransitionInteractionController.swift; sourceTree = "<group>"; };
+		597C243C145D77F8C2FEE695959CDC60 /* UIViewControllerTransitionInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerTransitionInteractor.swift; sourceTree = "<group>"; };
 		59AF4DEACCA10FF06567CCCA86B1AB65 /* ControlEvent+Driver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlEvent+Driver.swift"; path = "RxCocoa/Traits/Driver/ControlEvent+Driver.swift"; sourceTree = "<group>"; };
 		5A1814CF2819EAEF360F2835A3B48112 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		5B433917971DBE34B7BAAD567F58475D /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
@@ -1448,7 +1448,7 @@
 				467784097A83918EA812C3AD99C752A1 /* UIViewControllerTransition.swift */,
 				2607EC6C26781A9700911838 /* UIViewControllerDirectionalTransition.swift */,
 				BF13331F0FEA6F686F1E9DB14C63DFC2 /* UIViewControllerTransitionAnimator.swift */,
-				597C243C145D77F8C2FEE695959CDC60 /* UITransitionInteractionController.swift */,
+				597C243C145D77F8C2FEE695959CDC60 /* UIViewControllerTransitionInteractor.swift */,
 				73619C154DB70AD225A15DC09D62BF3D /* Transitions */,
 				BFCC5F07964A6F55730D266A2AB989EF /* Helpers */,
 			);
@@ -2861,7 +2861,7 @@
 				2A90446AE3CFB65264EBC54460ABB7DE /* UIViewControllerTransitionAnimator.swift in Sources */,
 				400862727BFEA8DDAF045CC9B34F0477 /* UIAnimationGroupController.swift in Sources */,
 				263A0D5926407679005EA484 /* BooleanType.swift in Sources */,
-				38317F3A73B9FBC5389FC10335D065C5 /* UITransitionInteractionController.swift in Sources */,
+				38317F3A73B9FBC5389FC10335D065C5 /* UIViewControllerTransitionInteractor.swift in Sources */,
 				C091EDD9BE6AC1F9D4C5F4CB9212A204 /* UIView+Espresso.swift in Sources */,
 				2607EC692677F82A00911838 /* Array+UIAnimationGroupable.swift in Sources */,
 				8475046A2E330A5C4AA2D328050B1FF7 /* UIViewController+Espresso.swift in Sources */,

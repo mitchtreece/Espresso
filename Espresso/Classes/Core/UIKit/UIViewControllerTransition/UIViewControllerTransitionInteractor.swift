@@ -1,5 +1,5 @@
 //
-//  UITransitionInteractionController.swift
+//  UIViewControllerTransitionInteractor.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -7,26 +7,33 @@
 
 import UIKit
 
-internal class UITransitionInteractionController: UIPercentDrivenInteractiveTransition {
+internal class UIViewControllerTransitionInteractor: UIPercentDrivenInteractiveTransition {
     
     private var viewController: UIViewController
     private var navigationController: UINavigationController?
     private(set) var transitionInProgress = false
     
-    internal init(viewController: UIViewController, navigationController: UINavigationController?) {
+    internal init(viewController: UIViewController,
+                  navigationController: UINavigationController?) {
         
         self.viewController = viewController
         self.navigationController = navigationController
+        
         super.init()
+        
         setup()
         
     }
     
     private func setup() {
         
-        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePan(_:)))
+        let edgePan = UIScreenEdgePanGestureRecognizer(
+            target: self,
+            action: #selector(handleEdgePan(_:))
+        )
+        
         edgePan.edges = .left
-        viewController.view.addGestureRecognizer(edgePan)
+        self.viewController.view.addGestureRecognizer(edgePan)
         
     }
     
@@ -39,33 +46,40 @@ internal class UITransitionInteractionController: UIPercentDrivenInteractiveTran
         switch recognizer.state {
         case .began:
             
-            transitionInProgress = true
+            self.transitionInProgress = true
             
             if let nav = navigationController {
                 nav.popViewController(animated: true)
             }
             else {
-                viewController.dismiss(animated: true, completion: nil)
+                
+                self.viewController.dismiss(
+                    animated: true,
+                    completion: nil
+                )
+                
             }
             
-        case .changed: self.update(progress)
+        case .changed: update(progress)
         case .cancelled:
             
-            transitionInProgress = false
-            self.cancel()
+            self.transitionInProgress = false
+            cancel()
             
         case .ended:
             
-            transitionInProgress = false
+            self.transitionInProgress = false
             
             let velocity = recognizer.velocity(in: view)
             
             if (progress >= 0.5 || velocity.x > 0) {
+                
                 self.completionSpeed = 0.8
-                self.finish()
+                finish()
+                
             }
             else {
-                self.cancel()
+                cancel()
             }
             
         default: break

@@ -68,7 +68,7 @@ import UIKit
     }
     
     private var animator: UIViewControllerTransitionAnimator?
-    private var interactor: UITransitionInteractionController?
+    private var interactor: UIViewControllerTransitionInteractor?
     
     // MARK: UIViewControllerTransitioningDelegate
     
@@ -78,7 +78,7 @@ import UIKit
         
         if self.isInteractive {
                 
-            self.interactor = UITransitionInteractionController(
+            self.interactor = UIViewControllerTransitionInteractor(
                 viewController: presented,
                 navigationController: nil
             )
@@ -114,7 +114,7 @@ import UIKit
                 
             if self.isInteractive {
                 
-                self.interactor = UITransitionInteractionController(
+                self.interactor = UIViewControllerTransitionInteractor(
                     viewController: toVC,
                     navigationController: navigationController
                 )
