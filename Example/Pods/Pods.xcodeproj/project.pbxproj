@@ -72,6 +72,7 @@
 		2607EC6426770B9B00911838 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607EC6326770B9B00911838 /* Direction.swift */; };
 		2607EC662677F67200911838 /* UIAnimationGroupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607EC652677F67200911838 /* UIAnimationGroupable.swift */; };
 		2607EC692677F82A00911838 /* Array+UIAnimationGroupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607EC682677F82A00911838 /* Array+UIAnimationGroupable.swift */; };
+		2607EC6D26781A9700911838 /* UIViewControllerDirectionalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607EC6C26781A9700911838 /* UIViewControllerDirectionalTransition.swift */; };
 		261A0D633A096D7064AC3C4BC22B6E64 /* RxTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFBAD514E76FAB00C0F7D226F2EF6EE /* RxTarget.swift */; };
 		263A0D3D263F269D005EA484 /* DataAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D3C263F269D005EA484 /* DataAction.swift */; };
 		263A0D3F263F26A5005EA484 /* VoidAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A0D3E263F26A5005EA484 /* VoidAction.swift */; };
@@ -656,6 +657,7 @@
 		2607EC6326770B9B00911838 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		2607EC652677F67200911838 /* UIAnimationGroupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimationGroupable.swift; sourceTree = "<group>"; };
 		2607EC682677F82A00911838 /* Array+UIAnimationGroupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UIAnimationGroupable.swift"; sourceTree = "<group>"; };
+		2607EC6C26781A9700911838 /* UIViewControllerDirectionalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerDirectionalTransition.swift; sourceTree = "<group>"; };
 		263A0D3C263F269D005EA484 /* DataAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAction.swift; sourceTree = "<group>"; };
 		263A0D3E263F26A5005EA484 /* VoidAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidAction.swift; sourceTree = "<group>"; };
 		263A0D40263F2CAD005EA484 /* TimeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDuration.swift; sourceTree = "<group>"; };
@@ -1444,6 +1446,7 @@
 			isa = PBXGroup;
 			children = (
 				467784097A83918EA812C3AD99C752A1 /* UIViewControllerTransition.swift */,
+				2607EC6C26781A9700911838 /* UIViewControllerDirectionalTransition.swift */,
 				BF13331F0FEA6F686F1E9DB14C63DFC2 /* UIViewControllerTransitionAnimator.swift */,
 				597C243C145D77F8C2FEE695959CDC60 /* UITransitionInteractionController.swift */,
 				73619C154DB70AD225A15DC09D62BF3D /* Transitions */,
@@ -2853,6 +2856,7 @@
 				A8B1BA4BD7F8D6FA19A1C1DA219F2796 /* UITableView+Espresso.swift in Sources */,
 				8CAFB704966ADBDC848944F44FAF3588 /* UITableViewCell+Espresso.swift in Sources */,
 				DADE7D5FBB73ED6A8E9594243A057C23 /* UITaptic.swift in Sources */,
+				2607EC6D26781A9700911838 /* UIViewControllerDirectionalTransition.swift in Sources */,
 				719F96753E2956660AA2FDF622193E41 /* UIViewControllerTransition.swift in Sources */,
 				2A90446AE3CFB65264EBC54460ABB7DE /* UIViewControllerTransitionAnimator.swift in Sources */,
 				400862727BFEA8DDAF045CC9B34F0477 /* UIAnimationGroupController.swift in Sources */,

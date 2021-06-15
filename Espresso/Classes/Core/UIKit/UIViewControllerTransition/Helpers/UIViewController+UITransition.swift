@@ -16,8 +16,9 @@ public extension UIViewController {
     /// The view controller's transition.
     ///
     /// Setting this to a non-`nil` value also sets the view controller's
-    /// modal presentation style to `fullScreen`, _or_ to the transition's
-    /// modal presentation style override if non-`nil`.
+    /// `modalPresentationStyle` to `fullScreen`. If the transition is
+    /// backed by a `UIPresentationController`, the view controller's
+    /// `modalPresentationStyle` will instead be set to `custom`.
     ///
     /// Setting this to a `nil` value sets the view controller's
     /// modal presentation style back to the system default.
@@ -42,14 +43,7 @@ public extension UIViewController {
             self.transitioningDelegate = newValue
             
             if let transition = newValue {
-                
-                if let _ = transition as? UIPresentationControllerTransition {
-                    self.modalPresentationStyle = .custom
-                }
-                else {
-                    self.modalPresentationStyle = transition.modalPresentationStyleOverride ?? .fullScreen
-                }
-                
+                self.modalPresentationStyle = transition.modalPresentationStyle
             }
             else {
                 
@@ -69,18 +63,18 @@ public extension UIViewController {
         }
     }
     
-    /// Presents a view controller modally with a transition & optional completion handler.
-    /// - Parameter vc: The view controller to present.
-    /// - Parameter transition: The transition to present the view controller with.
-    /// - Parameter completion: An optional completion block to run after the transition finishes.
-    func present(_ vc: UIViewController,
-                 with transition: UIViewControllerTransition,
-                 completion: (()->())?) {
+    /// Presents a view controller using a transition.
+    /// - parameter viewController: The view controller to present.
+    /// - parameter transition: The view controller transition.
+    /// - parameter completion: An optional completion closure to run after the transition finishes; _defaults to nil_.
+    func present(_ viewController: UIViewController,
+                 using transition: UIViewControllerTransition,
+                 completion: (()->())? = nil) {
         
-        vc.transition = transition
+        viewController.transition = transition
         
-        self.present(
-            vc,
+        present(
+            viewController,
             animated: true,
             completion: completion
         )

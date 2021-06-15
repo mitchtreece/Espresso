@@ -31,12 +31,12 @@ public class UIAnimationGroup {
     
     /// Appends a new animation to the group with the specified parameters.
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
-    /// - Parameter duration: The animation's duration; _defaults to 0.6_.
+    /// - Parameter duration: The animation's duration; _defaults to defaultDuration_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
     /// - Parameter animations: The animation closure.
     /// - Returns: A `UIAnimationGroup` by appending the new animation.
     public func then(_ timingCurve: UIAnimation.TimingCurve = .simple(.easeInOut),
-                     duration: TimeInterval = 0.6,
+                     duration: TimeInterval = UIAnimation.defaultDuration,
                      delay: TimeInterval = 0,
                      _ animations: @escaping UIAnimation.Animations) -> UIAnimationGroup {
         

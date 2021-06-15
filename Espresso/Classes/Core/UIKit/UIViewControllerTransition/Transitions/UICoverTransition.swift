@@ -8,67 +8,51 @@
 import UIKit
 
 /// A covering view controller transition.
-public class UICoverTransition: UIViewControllerTransition {
+public class UICoverTransition: UIViewControllerDirectionalTransition {
     
-    /// The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
-    public var coveredViewAlpha: CGFloat
+    /// The alpha to apply to the covered view while transitioning; _defaults to 0.7_.
+    public var coveredViewAlpha: CGFloat = 0.7
     
-    /// The amount to move the covered view while transitioning; _defaults to 0_.
-    public var coveredViewParallaxAmount: CGFloat
+    /// The parallax amount to move the covered view by while transitioning; _defaults to 100_.
+    public var coveredViewParallaxAmount: CGFloat = 100
     
-    /// Initializes the transition with parameters.
-    /// - Parameter coveredViewAlpha: The covered view's alpha to animate to while transitioning; _defaults to 0.7_.
-    /// - Parameter coveredViewParallaxAmount: The amount to move the covered view while transitioning; _defaults to 0_.
-    public init(coveredViewAlpha: CGFloat = 0.7,
-                coveredViewParallaxAmount: CGFloat = 0) {
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
         
-        self.coveredViewAlpha = coveredViewAlpha
-        self.coveredViewParallaxAmount = coveredViewParallaxAmount
+        return (ctx.operation == .presentation) ?
+            present(ctx) :
+            dismiss(ctx)
         
     }
     
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-        
-        let isPresentation = (transitionType == .presentation)
-        let settings = self.settings(for: transitionType)
-        
-        return isPresentation ?
-            present(with: ctx, settings: settings) :
-            dismiss(with: ctx, settings: settings)
-        
-    }
-    
-    private func present(with ctx: Context,
-                         settings: Settings) -> UIAnimationGroupController {
+    private func present(_ ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
         return UIAnimationGroupController(setup: {
             
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
-                direction: settings.direction.inverted()
+                direction: self.presentationDirection.inverted()
             )
             
             container.addSubview(destinationVC.view)
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+            UIAnimation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.alpha = self.coveredViewAlpha
                 sourceVC.view.transform = self.translation(
                     self.coveredViewParallaxAmount,
-                    direction: settings.direction
+                    direction: self.presentationDirection
                 )
                 
                 destinationVC.view.transform = .identity
                 
-            })
+            }
             
         }, completion: {
             
@@ -80,38 +64,40 @@ public class UICoverTransition: UIViewControllerTransition {
         
     }
     
-    private func dismiss(with ctx: Context,
-                         settings: Settings) -> UIAnimationGroupController {
+    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
         return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.alpha = self.coveredViewAlpha
-            destinationVC.view.transform = self.translation(
-                self.coveredViewParallaxAmount,
-                direction: settings.direction.inverted()
+            container.insertSubview(
+                destinationVC.view,
+                belowSubview: sourceVC.view
             )
             
-            container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+            destinationVC.view.transform = self.translation(
+                self.coveredViewParallaxAmount,
+                direction: self.dismissalDirection.inverted()
+            )
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+            UIAnimation(.defaultSpring) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,
-                    direction: settings.direction
+                    direction: self.dismissalDirection
                 )
                 
                 destinationVC.view.alpha = 1
                 destinationVC.view.transform = .identity
                 
-            })
+            }
             
         }, completion: {
                 

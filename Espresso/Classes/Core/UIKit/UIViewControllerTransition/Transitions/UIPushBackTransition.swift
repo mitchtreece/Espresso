@@ -8,87 +8,75 @@
 import UIKit
 
 /// A push-back view controller transition.
-public class UIPushBackTransition: UIViewControllerTransition {
+public class UIPushBackTransition: UIViewControllerDirectionalTransition {
     
-    /// The covered view controller's scale; _defaults to 0.8_.
-    public var pushBackScale: CGFloat
+    /// The scale to apply to the pushed-back view while transitioning; _defaults to 0.9_.
+    public var pushedBackViewScale: CGFloat = 0.9
     
-    /// The covered view controller's alpha; _defaults to 0.3_.
-    public var pushBackAlpha: CGFloat
+    /// The alpha to apply to the pushed-back view while transitioning; _defaults to 0.7_.
+    public var pushedBackViewAlpha: CGFloat = 0.7
     
-    /// The covered view controller's corner radius; _defaults to 20_.
-    public var roundedCornerRadius: CGFloat
+    /// The corner radius to apply to the pushed-back view while transitioning; _defaults to 20_.
+    public var pushedBackViewCornerRadius: CGFloat = 20
     
-    /// Initializes the transition with parameters.
-    /// - Parameter pushBackScale: The covered view controller's scale; _defaults to 0.8_.
-    /// - Parameter pushBackAlpha: The covered view controller's alpha; _defaults to 0.3_.
-    /// - Parameter roundedCornerRadius: The covered view controller's corner radius; _defaults to 20_.
-    public init(pushBackScale: CGFloat = 0.8,
-                pushBackAlpha: CGFloat = 0.3,
-                roundedCornerRadius: CGFloat = 20) {
-        
-        self.pushBackScale = pushBackScale
-        self.pushBackAlpha = pushBackAlpha
-        self.roundedCornerRadius = roundedCornerRadius
+    public override init() {
         
         super.init()
-        
-        self.presentation.direction = .up
-        self.dismissal.direction = .down
-        
-    }
-    
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-        
-        let isPresentation = (transitionType == .presentation)
-        let settings = self.settings(for: transitionType)
-        
-        return isPresentation ?
-            present(with: ctx, settings: settings) :
-            dismiss(with: ctx, settings: settings)
+        self.presentationDirection = .up
+        self.dismissalDirection = .down
         
     }
     
-    private func present(with ctx: Context,
-                         settings: Settings) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+
+        return (ctx.operation == .presentation) ?
+            present(ctx) :
+            dismiss(ctx)
+        
+    }
+    
+    private func present(_ ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
-        let previousClipsToBound = sourceVC.view.clipsToBounds
-        let previousCornerRadius = sourceVC.view.layer.cornerRadius
+        let previousSourceClipsToBounds = sourceVC.view.clipsToBounds
+        let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
         
         return UIAnimationGroupController(setup: {
             
-            destinationVC.view.frame = context.finalFrame(for: destinationVC)
-            
-            container.addSubview(destinationVC.view)
-            
-            destinationVC.view.transform = self.boundsTransform(
-                in: container,
-                direction: settings.direction.inverted()
-            )
-            
             sourceVC.view.clipsToBounds = true
             
+            destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            container.addSubview(destinationVC.view)
+            destinationVC.view.transform = self.boundsTransform(
+                in: container,
+                direction: self.presentationDirection.inverted()
+            )
+                        
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
-                sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
-                sourceVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
-                sourceVC.view.alpha = self.pushBackAlpha
+            UIAnimation(.defaultSpring, duration: self.duration) {
+                
+                sourceVC.view.alpha = self.pushedBackViewAlpha
+                sourceVC.view.layer.cornerRadius = self.pushedBackViewCornerRadius
+                sourceVC.view.transform = CGAffineTransform(
+                    scaleX: self.pushedBackViewScale,
+                    y: self.pushedBackViewScale
+                )
+                
                 destinationVC.view.transform = .identity
-            })
+                
+            }
             
         }, completion: {
             
-            sourceVC.view.clipsToBounds = previousClipsToBound
-            sourceVC.view.layer.cornerRadius = previousCornerRadius
-            sourceVC.view.transform = .identity
             sourceVC.view.alpha = 1
+            sourceVC.view.transform = .identity
+            sourceVC.view.clipsToBounds = previousSourceClipsToBounds
+            sourceVC.view.layer.cornerRadius = previousSourceCornerRadius
             
             context.completeTransition(!context.transitionWasCancelled)
             
@@ -96,39 +84,55 @@ public class UIPushBackTransition: UIViewControllerTransition {
         
     }
     
-    private func dismiss(with ctx: Context,
-                         settings: Settings) -> UIAnimationGroupController {
+    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
-        let previousClipsToBound = destinationVC.view.clipsToBounds
-        let previousCornerRadius = destinationVC.view.layer.cornerRadius
+        let previousDestinationClipsToBounds = destinationVC.view.clipsToBounds
+        let previousDestinationCornerRadius = destinationVC.view.layer.cornerRadius
         
         return UIAnimationGroupController(setup: {
             
-            destinationVC.view.alpha = self.pushBackAlpha
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
-            container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
-            destinationVC.view.transform = CGAffineTransform(scaleX: self.pushBackScale, y: self.pushBackScale)
-            
-            destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
+            destinationVC.view.alpha = self.pushedBackViewAlpha
             destinationVC.view.clipsToBounds = true
+            destinationVC.view.layer.cornerRadius = self.pushedBackViewCornerRadius
+            
+            container.insertSubview(
+                destinationVC.view,
+                belowSubview: sourceVC.view
+            )
+            
+            destinationVC.view.transform = CGAffineTransform(
+                scaleX: self.pushedBackViewScale,
+                y: self.pushedBackViewScale
+            )
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
-                sourceVC.view.transform = self.boundsTransform(in: container, direction: settings.direction)
-                destinationVC.view.layer.cornerRadius = previousCornerRadius
-                destinationVC.view.transform = .identity
+            UIAnimation(.defaultSpring, duration: self.duration) {
+                
+                sourceVC.view.transform = self.boundsTransform(
+                    in: container,
+                    direction: self.dismissalDirection
+                )
+                
                 destinationVC.view.alpha = 1
-            })
+                destinationVC.view.transform = .identity
+                destinationVC.view.layer.cornerRadius = previousDestinationCornerRadius
+
+            }
             
         }, completion: {
                 
-            destinationVC.view.clipsToBounds = previousClipsToBound
+            sourceVC.view.transform = .identity
+            
+            destinationVC.view.alpha = 1
+            destinationVC.view.clipsToBounds = previousDestinationClipsToBounds
+            
             context.completeTransition(!context.transitionWasCancelled)
                 
         })

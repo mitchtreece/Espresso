@@ -11,11 +11,10 @@ import Espresso
 
 class CustomTransition: UIViewControllerTransition {
     
-    override func animations(for transitionType: UIViewControllerTransition.TransitionType,
-                             context ctx: UIViewControllerTransition.Context) -> UIAnimationGroupController {
+    override func animations(using ctx: UIViewControllerTransition.Context) -> UIAnimationGroupController {
         
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
         return UIAnimationGroupController(setup: {
@@ -27,10 +26,10 @@ class CustomTransition: UIViewControllerTransition {
             
         }, animations: {
         
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+            UIAnimation(.defaultSpring) {
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
-            })
+            }
             
         }, completion: {
             

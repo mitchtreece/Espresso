@@ -7,31 +7,30 @@
 
 import UIKit
 
-/// `UIViewControllerTransition` subclass that's backed by a `UIPresentationController`.
-///
-/// This class is used to determine if the transition should ask it's delegate
-/// for a presentation controller to use while transitioning. Subclasses must return
-/// a valid presentation controller from `presentationController(forPresented:presenting:source:)`.
-open class UIPresentationControllerTransition: UIViewControllerTransition {
+/// View controller transition base class.
+@objc open class UIViewControllerTransition: NSObject,
+                                             UIViewControllerTransitioningDelegate,
+                                             UINavigationControllerDelegate {
     
-    open func presentationController(forPresented presented: UIViewController,
-                                     presenting: UIViewController?,
-                                     source: UIViewController) -> UIPresentationController? {
-        
-        fatalError("UIPresentationControllerTransition subclasses must override `presentationController(forPresented:presenting:)`")
-        
-    }
-    
-}
-
-/// `UIViewControllerTransition` is a base class for custom view controller transitions.
-@objc open class UIViewControllerTransition: NSObject, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
-    
-    /// Struct containing the various properties of a view controller transition.
+    /// Transitioning context object containing the various attributes of a view controller transition.
     public struct Context {
         
+        /// Representation of the various transition operations.
+        public enum Operation {
+            
+            /// A presentation operation.
+            case presentation
+            
+            /// A dismissal operation.
+            case dismissal
+            
+        }
+        
+        /// The transition's operation.
+        public private(set) var operation: Operation
+        
         /// The transition's container view.
-        public private(set) var transitionContainerView: UIView
+        public private(set) var containerView: UIView
         
         /// The transition's source (from) view controller.
         public private(set) var sourceViewController: UIViewController
@@ -39,71 +38,38 @@ open class UIPresentationControllerTransition: UIViewControllerTransition {
         /// The transition's destination (to) view controller.
         public private(set) var destinationViewController: UIViewController
         
-        /// The transitioning context.
+        /// The view controller transitioning context.
         public private(set) var context: UIViewControllerContextTransitioning
         
     }
     
-    /// Representation of the different transition types.
-    public enum TransitionType {
-        
-        /// A presentation transition type.
-        case presentation
-        
-        /// A dismissal transition type.
-        case dismissal
-        
-    }
-    
-    /// Representation of the different view controller types.
-    public enum ViewControllerType {
-        
-        /// The source (from) view controller type.
-        case source
-        
-        /// The destination (to) view controller type.
-        case destination
-        
-    }
-    
-    /// Struct containing the various configuration options for a view controller transition.
-    public struct Settings {
-        
-        /// The transitional direction.
-        public var direction: Direction
-        
-        /// Helper function that returns the default transition settings for a specified type.
-        /// - parameter transitionType: The desired transition type.
-        /// - returns: Default transition settings for a specified transition type.
-        public static func `default`(for transitionType: TransitionType) -> Settings {
-            
-            let isPresentation = (transitionType == .presentation)
-            return Settings(direction: isPresentation ? .left : .right)
-            
-        }
-        
-    }
-    
-    /// The transition's presentation settings.
-    public var presentation = Settings.default(for: .presentation)
-    
-    /// The transition's dismissal settings.
-    public var dismissal = Settings.default(for: .dismissal)
+    /// The transition's duration; _defaults to 0.6_.
+    public var duration: TimeInterval = 0.6
     
     /// Flag indicating whether the transition should be performed interactively.
     public var isInteractive: Bool = false
+    
+    private var isPresentationControllerBacked: Bool {
+        
+        let fakeViewController = UIViewController()
+        
+        guard let _ = self.presentationController(
+            forPresented: fakeViewController,
+            presenting: nil,
+            source: fakeViewController
+        ) else { return false }
+        
+        return true
+        
+    }
+    
+    internal var modalPresentationStyle: UIModalPresentationStyle {
+        return self.isPresentationControllerBacked ? .custom : .fullScreen
+    }
+    
+    private var animator: UIViewControllerTransitionAnimator?
     private var interactor: UITransitionInteractionController?
     
-    /// An optional modal presentation style to be set on the destination view controller
-    /// before the transition is performed.
-    public var modalPresentationStyleOverride: UIModalPresentationStyle?
-    
-    /// Fetches the transition's settings for a specified transition type.
-    /// - returns: Transition settings for a specified transition type.
-    func settings(for transitionType: TransitionType) -> Settings {
-        return (transitionType == .presentation) ? self.presentation : self.dismissal
-    }
-        
     // MARK: UIViewControllerTransitioningDelegate
     
     public func animationController(forPresented presented: UIViewController,
@@ -119,19 +85,15 @@ open class UIPresentationControllerTransition: UIViewControllerTransition {
                 
         }
         
-        return UIViewControllerTransitionAnimator(
-            transition: self,
-            presentation: true
-        )
+        self.animator = UIViewControllerTransitionAnimator(transition: self)
+        return self.animator
         
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return UIViewControllerTransitionAnimator(
-            transition: self,
-            presentation: false
-        )
+        self.animator?.isPresentation = false
+        return self.animator
         
     }
     
@@ -159,22 +121,14 @@ open class UIPresentationControllerTransition: UIViewControllerTransition {
                 
             }
             
-            return UIViewControllerTransitionAnimator(
-                transition: self,
-                presentation: true
-            )
+            self.animator = UIViewControllerTransitionAnimator(transition: self)
                 
         }
         else if (operation == .pop) {
-            
-            return UIViewControllerTransitionAnimator(
-                transition: self,
-                presentation: false
-            )
-            
+            self.animator?.isPresentation = false
         }
 
-        return nil
+        return self.animator
         
     }
     
@@ -191,19 +145,23 @@ open class UIPresentationControllerTransition: UIViewControllerTransition {
         
     }
     
+    open func presentationController(forPresented presented: UIViewController,
+                                     presenting: UIViewController?,
+                                     source: UIViewController) -> UIPresentationController? {
+        
+        return nil
+        
+    }
+    
     // MARK: Public
     
     /// Asks the transition for a `UIAnimationGroupController` containing one or more animations to run while transitioning.
     ///
     /// **This should not be called directly**. Instead, override this function within a `UIViewControllerTransition` subclass and provide custom animations.
-    /// - parameter transitionType: The transition's type.
-    /// - parameter context: The transition's context.
+    /// - parameter ctx: The transition's context.
     /// - returns: A new animation group controller.
-    open func animations(for transitionType: TransitionType,
-                         context ctx: Context) -> UIAnimationGroupController {
-        
-        fatalError("UIViewControllerTransition subclasses must override animations(for:context:)")
-
+    open func animations(using ctx: Context) -> UIAnimationGroupController {
+        fatalError("UIViewControllerTransition subclasses must override animations(using:)")
     }
     
 }

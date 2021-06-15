@@ -10,38 +10,17 @@ import UIKit
 /// A zooming view controller transition.
 public class UIZoomTransition: UIViewControllerTransition {
     
-    /// The transition's duration; _defaults to 0.6_.
-    public var duration: TimeInterval
+    /// The scale to apply to the zoomed view while transitioning; _defaults to 0.9_.
+    public var zoomedViewScale: CGFloat = 0.9
     
-    /// The transition's zoom scale; _defaults to 0.8_.
-    public var scale: CGFloat
-    
-    /// The corner radius to apply to the animating view controller; _defaults to 20_.
-    public var cornerRadius: CGFloat
-    
-    /// Initializes the transition with parameters.
-    /// - Parameter duration: The transition's animation duration; _defaults to 0.6_.
-    /// - Parameter scale: The transition's zoom scale; _defaults to 0.8_.
-    /// - Parameter cornerRadius: The corner radius to apply to the animating view controller; _defaults to 20_.
-    public init(duration: TimeInterval = 0.6,
-                scale: CGFloat = 0.8,
-                cornerRadius: CGFloat = 20) {
-        
-        self.duration = duration
-        self.scale = scale
-        self.cornerRadius = cornerRadius
-        
-    }
-    
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-        
-        let isPresentation = (transitionType == .presentation)
-        
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+                
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
+        
+        let isPresentation = (ctx.operation == .presentation)
         
         return UIAnimationGroupController(setup: {
             
@@ -49,22 +28,28 @@ public class UIZoomTransition: UIViewControllerTransition {
                 
                 destinationVC.view.alpha = 0
                 destinationVC.view.frame = context.finalFrame(for: destinationVC)
-                destinationVC.view.transform = CGAffineTransform(scaleX: self.scale, y: self.scale)
-                destinationVC.view.layer.cornerRadius = self.cornerRadius
                 destinationVC.view.clipsToBounds = true
                 container.addSubview(destinationVC.view)
+                
+                destinationVC.view.transform = CGAffineTransform(
+                    scaleX: self.zoomedViewScale,
+                    y: self.zoomedViewScale
+                )
                 
             }
             else {
                 
                 destinationVC.view.frame = context.finalFrame(for: destinationVC)
-                container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+                container.insertSubview(
+                    destinationVC.view,
+                    belowSubview: sourceVC.view
+                )
                 
             }
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: self.duration, {
+            UIAnimation(.defaultSpring, duration: self.duration) {
                 
                 if isPresentation {
                     
@@ -75,20 +60,23 @@ public class UIZoomTransition: UIViewControllerTransition {
                 }
                 else {
                     
-                    let scaleAddition = ((1 - self.scale) / 3)
-                    let adjustedScale = (self.scale + scaleAddition)
+                    let scaleAddition = ((1 - self.zoomedViewScale) / 3)
+                    let adjustedScale = (self.zoomedViewScale + scaleAddition)
                     
                     sourceVC.view.alpha = 0
-                    sourceVC.view.layer.cornerRadius = self.cornerRadius
-                    sourceVC.view.transform = CGAffineTransform(scaleX: adjustedScale, y: adjustedScale)
+                    sourceVC.view.transform = CGAffineTransform(
+                        scaleX: adjustedScale,
+                        y: adjustedScale
+                    )
                     
                 }
                 
-            })
+            }
             
         }, completion: {
             
             sourceVC.view.alpha = 1
+            sourceVC.view.transform = .identity
             context.completeTransition(!context.transitionWasCancelled)
             
         })

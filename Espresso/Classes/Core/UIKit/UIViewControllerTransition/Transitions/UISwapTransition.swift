@@ -8,45 +8,34 @@
 import Foundation
 
 /// A swapping view controller transition.
-public class UISwapTransition: UIViewControllerTransition {
+public class UISwapTransition: UIViewControllerDirectionalTransition {
     
-    /// The source & destination view controller's scale; _defaults to 1_.
-    public var swapScale: CGFloat
+    /// The scale to apply to swapped views while transitioning; _defaults to 0.95_.
+    public var swappedViewScale: CGFloat = 0.95
     
-    /// The covered view controller's alpha; _defaults to 0.6_.
-    public var swapAlpha: CGFloat
+    /// The corner radius to apply to swapped views while transitioning; _defaults to 20_.
+    public var swappedViewCornerRadius: CGFloat = 20
     
-    /// The source & destination view controller's corner radius; _defaults to 10_.
-    public var roundedCornerRadius: CGFloat
+    /// The alpha to apply to the covered view while transitioning; _defaults to 0.7_.
+    public var coveredViewAlpha: CGFloat = 0.7
     
-    /// Initializes the transition with parameters.
-    /// - Parameter swapScale: The source & destination view controller's scale; _defaults to 1_.
-    /// - Parameter swapAlpha: The covered view controller's alpha; _defaults to 0.6_.
-    /// - Parameter roundedCornerRadius: The source & destination view controller's corner radius; _defaults to 10_.
-    public init(swapScale: CGFloat = 1,
-                swapAlpha: CGFloat = 0.6,
-                roundedCornerRadius: CGFloat = 10) {
-        
-        self.swapScale = swapScale
-        self.swapAlpha = swapAlpha
-        self.roundedCornerRadius = roundedCornerRadius
+    public override init() {
         
         super.init()
-        
-        self.presentation.direction = .left
-        self.dismissal.direction = .left
+        self.duration = 0.7
         
     }
     
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-        
-        let settings = self.settings(for: transitionType)
-        
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+                
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
+        
+        let direction = ctx.operation == .presentation ?
+            self.presentationDirection :
+            self.dismissalDirection
         
         let previousSourceClipsToBound = sourceVC.view.clipsToBounds
         let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
@@ -57,41 +46,61 @@ public class UISwapTransition: UIViewControllerTransition {
         return UIAnimationGroupController(setup: {
             
             sourceVC.view.clipsToBounds = true
+            
+            destinationVC.view.alpha = self.coveredViewAlpha
             destinationVC.view.clipsToBounds = true
-            destinationVC.view.alpha = self.swapAlpha
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
-            container.insertSubview(destinationVC.view, belowSubview: sourceVC.view)
+            container.insertSubview(
+                destinationVC.view,
+                belowSubview: sourceVC.view
+            )
             
         }, animations: {
             
-            UIAnimation(duration: 0.3, {
+            UIAnimation(duration: (self.duration * 0.4)) {
                 
-                let sourceTransform = self.halfBoundsTransform(in: container, direction: settings.direction)
-                sourceVC.view.transform = sourceTransform.scaledBy(x: self.swapScale, y: self.swapScale)
-                sourceVC.view.layer.cornerRadius = self.roundedCornerRadius
+                // Source
+                
+                let sourceTransform = self.halfBoundsTransform(
+                    in: container,
+                    direction: direction
+                )
+                
+                sourceVC.view.transform = sourceTransform.scaledBy(
+                    x: self.swappedViewScale,
+                    y: self.swappedViewScale
+                )
+                
+                sourceVC.view.layer.cornerRadius = self.swappedViewCornerRadius
+                
+                // Destination
                 
                 let destinationTransform = self.halfBoundsTransform(
                     in: container,
-                    direction: settings.direction.inverted()
+                    direction: direction.inverted()
                 )
                 
-                destinationVC.view.transform = destinationTransform.scaledBy(x: self.swapScale, y: self.swapScale)
-                destinationVC.view.layer.cornerRadius = self.roundedCornerRadius
+                destinationVC.view.transform = destinationTransform.scaledBy(
+                    x: self.swappedViewScale,
+                    y: self.swappedViewScale
+                )
+                
                 destinationVC.view.alpha = 1
+                destinationVC.view.layer.cornerRadius = self.swappedViewCornerRadius
                 
-            })
-            .then(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: 0.4, {
-                
+            }
+            .then(.defaultSpring, duration: (self.duration * 0.6)) {
+
                 container.bringSubviewToFront(destinationVC.view)
-                
-                sourceVC.view.alpha = self.swapAlpha
+
+                sourceVC.view.alpha = self.coveredViewAlpha
                 sourceVC.view.transform = .identity
                 sourceVC.view.layer.cornerRadius = previousSourceCornerRadius
-                
+
                 destinationVC.view.transform = .identity
                 destinationVC.view.layer.cornerRadius = previousDestinationCornerRadius
-                
-            })
+
+            }
             
         }, completion: {
             
@@ -99,6 +108,7 @@ public class UISwapTransition: UIViewControllerTransition {
             sourceVC.view.transform = .identity
             sourceVC.view.clipsToBounds = previousSourceClipsToBound
             
+            destinationVC.view.alpha = 1
             destinationVC.view.transform = .identity
             destinationVC.view.clipsToBounds = previousDestinationClipsToBounds
             

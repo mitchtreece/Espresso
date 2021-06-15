@@ -10,40 +10,25 @@ import UIKit
 /// A fading view controller transition.
 public class UIFadeTransition: UIViewControllerTransition {
 
-    /// Representation of different fading methods.
+    /// Representation of various fading methods.
     public enum FadeType {
         
-        /// Fade over the source view controller
+        /// A fade over the source view controller.
         case over
         
-        /// Crossfade between the source & destination view controllers
+        /// A Crossfade between the source & destination view controllers.
         case cross
         
     }
-    
-    /// The transition's duration; _defaults to 0.6_.
-    public var duration: TimeInterval
-    
+
     /// The transition's fade type; _defaults to over_.
-    public var fadeType: FadeType
-    
-    /// Initializes the transition with parameters.
-    /// - Parameter duration: The transition's animation duration; _defaults to 0.6_.
-    /// - Parameter fadeType: The transition's fade type; _defaults to over_.
-    public init(duration: TimeInterval = 0.6,
-                fadeType: FadeType = .over) {
-        
-        self.duration = duration
-        self.fadeType = fadeType
-        
-    }
-    
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
+    public var fadeType: FadeType = .over
+
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
         return UIAnimationGroupController(setup: {

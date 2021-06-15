@@ -71,7 +71,10 @@ public class UIAnimation {
         case cubicBezier(cp1: CGPoint, cp2: CGPoint)
         
         /// A spring timing curve using a damping ratio & initial velocity.
-        case spring(damping: CGFloat, velocity: CGVector)
+        case spring(damping: CGFloat, velocity: CGFloat)
+        
+        /// A default spring timing curve using damping = 0.9, velocity = 0.2
+        case defaultSpring
         
         /// A Material Design timing curve.
         case material(MaterialCurve)
@@ -80,6 +83,9 @@ public class UIAnimation {
         case custom(UITimingCurveProvider)
         
     }
+    
+    /// The default duration for an animation.
+    public static let defaultDuration: TimeInterval = 0.5
     
     /// The animation's timing curve.
     public private(set) var timingCurve: TimingCurve
@@ -97,12 +103,12 @@ public class UIAnimation {
     
     /// Initializes a new animation with the specified parameters.
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
-    /// - Parameter duration: The animation's duration; _defaults to 0.6_.
+    /// - Parameter duration: The animation's duration; _defaults to defaultDuration_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
     /// - Parameter animations: The animation closure.
     /// - Returns: A new `UIAnimation` instance.
     public init(_ timingCurve: TimingCurve = .simple(.easeInOut),
-                duration: TimeInterval = 0.6,
+                duration: TimeInterval = UIAnimation.defaultDuration,
                 delay: TimeInterval = 0,
                 _ animations: @escaping Animations) {
         
@@ -116,12 +122,12 @@ public class UIAnimation {
     /// Creates a new animation group containing the current animation,
     /// then appends a new animation with the specified parameters.
     /// - Parameter timingCurve: The animation's timing curve; _defaults to simple(easeInOut)_.
-    /// - Parameter duration: The animation's duration; _defaults to 0.6_.
+    /// - Parameter duration: The animation's duration; _defaults to defaultDuration_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
     /// - Parameter animations: The animation closure.
     /// - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
     public func then(_ timingCurve: TimingCurve = .simple(.easeInOut),
-                     duration: TimeInterval = 0.6,
+                     duration: TimeInterval = UIAnimation.defaultDuration,
                      delay: TimeInterval = 0,
                      _ animations: @escaping Animations) -> UIAnimationGroup {
         
@@ -170,8 +176,19 @@ public class UIAnimation {
             
             provider = UISpringTimingParameters(
                 dampingRatio: damping,
-                initialVelocity: velocity
-            )
+                initialVelocity: CGVector(
+                    dx: velocity,
+                    dy: velocity
+                ))
+            
+        case .defaultSpring:
+            
+            provider = UISpringTimingParameters(
+                dampingRatio: 0.9,
+                initialVelocity: CGVector(
+                    dx: 0.2,
+                    dy: 0.2
+                ))
             
         case .material(let easing):
             
@@ -276,7 +293,8 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
             }
             
         case .cubicBezier(let cp1, let cp2): curveString = "cubicBezier(cp1: (\(cp1.x), \(cp1.y)), cp2: (\(cp2.x), \(cp2.y)))"
-        case .spring(let damping, let velocity): curveString = "spring(damping: \(damping), velocity: (\(velocity.dx), \(velocity.dy)))"
+        case .spring(let damping, let velocity): curveString = "spring(damping: \(damping), velocity: \(velocity))"
+        case .defaultSpring: curveString = "defaultSpring"
         case .material(let easing): curveString = "material(\(easing.name))"
         case .custom: curveString = "custom"
         }
@@ -286,7 +304,7 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
     }
     
     public var debugDescription: String {
-        return description
+        return self.description
     }
     
 }

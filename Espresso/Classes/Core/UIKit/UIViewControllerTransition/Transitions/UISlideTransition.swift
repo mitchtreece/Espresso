@@ -8,48 +8,42 @@
 import UIKit
 
 /// A sliding view controller transition.
-public class UISlideTransition: UIViewControllerTransition {
+public class UISlideTransition: UIViewControllerDirectionalTransition {
     
-    public var duration: TimeInterval
-    
-    /// Initializes the transition with parameters.
-    /// - Parameter duration: The transition's animation duration; _defaults to 0.6_.
-    public init(duration: TimeInterval = 0.6) {
-        self.duration = duration
-    }
-    
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-
-        let settings = self.settings(for: transitionType)
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
+        
+        let direction = ctx.operation == .presentation ?
+            self.presentationDirection :
+            self.dismissalDirection
         
         return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
+            
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
-                direction: settings.direction.inverted()
+                direction: direction.inverted()
             )
             
             container.addSubview(destinationVC.view)
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), duration: self.duration, {
+            UIAnimation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,
-                    direction: settings.direction
+                    direction: direction
                 )
                 
                 destinationVC.view.transform = .identity
                 
-            })
+            }
             
         }, completion: {
                 

@@ -8,33 +8,27 @@
 import UIKit
 
 /// A revealing view controller transition.
-public class UIRevealTransition: UIViewControllerTransition {
-    
-    /// The revealed view's alpha to animate from while transitioning; _defaults to 0.7_.
-    public var revealedViewAlpha: CGFloat
-    
-    /// The amount to move the revealed view while transitioning; _defaults to 0_.
-    public var revealedViewParallaxAmount: CGFloat
-    
-    /// Initializes the transition with parameters.
-    /// - Parameter revealedViewAlpha: The revealed view's alpha to animate from while transitioning; _defaults to 0.7_.
-    /// - Parameter revealedViewParallaxAmount: The amount to move the revealed view while transitioning; _defaults to 0_.
-    public init(revealedViewAlpha: CGFloat = 0.7,
-                revealedViewParallaxAmount: CGFloat = 0) {
+public class UIRevealTransition: UIViewControllerDirectionalTransition {
         
-        self.revealedViewAlpha = revealedViewAlpha
-        self.revealedViewParallaxAmount = revealedViewParallaxAmount
+    /// The alpha to apply to the revealed view while transitioning; _defaults to 0.7_.
+    public var revealedViewAlpha: CGFloat = 0.7
+    
+    /// The parallax amount to move the revealed view by while transitioning; _defaults to 100_.
+    public var revealedViewParallaxAmount: CGFloat = 100
+    
+    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+                
+        return (ctx.operation == .presentation) ?
+            present(ctx) :
+            dismiss(ctx)
         
     }
     
-    override public func animations(for transitionType: TransitionType,
-                                    context ctx: Context) -> UIAnimationGroupController {
-        
-        let settings = self.settings(for: transitionType)
+    private func present(_ ctx: Context) -> UIAnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
-        let container = ctx.transitionContainerView
+        let container = ctx.containerView
         let context = ctx.context
         
         return UIAnimationGroupController(setup: {
@@ -42,7 +36,7 @@ public class UIRevealTransition: UIViewControllerTransition {
             destinationVC.view.alpha = self.revealedViewAlpha
             destinationVC.view.transform = self.translation(
                 self.revealedViewParallaxAmount,
-                direction: settings.direction.inverted()
+                direction: self.presentationDirection.inverted()
             )
             
             container.insertSubview(
@@ -52,20 +46,60 @@ public class UIRevealTransition: UIViewControllerTransition {
             
         }, animations: {
             
-            UIAnimation(.spring(damping: 0.9, velocity: CGVector(dx: 0.25, dy: 0)), {
+            UIAnimation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,
-                    direction: settings.direction
+                    direction: self.presentationDirection
                 )
                 
                 destinationVC.view.alpha = 1
                 destinationVC.view.transform = .identity
                 
-            })
+            }
             
         }, completion: {
             
+            sourceVC.view.transform = .identity
+            context.completeTransition(!context.transitionWasCancelled)
+            
+        })
+        
+    }
+    
+    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
+        
+        let sourceVC = ctx.sourceViewController
+        let destinationVC = ctx.destinationViewController
+        let container = ctx.containerView
+        let context = ctx.context
+        
+        return UIAnimationGroupController(setup: {
+            
+            destinationVC.view.transform = self.boundsTransform(
+                in: container,
+                direction: self.dismissalDirection.inverted()
+            )
+
+            container.addSubview(destinationVC.view)
+            
+        }, animations: {
+            
+            UIAnimation(.defaultSpring, duration: self.duration) {
+                
+                sourceVC.view.alpha = self.revealedViewAlpha
+                sourceVC.view.transform = self.translation(
+                    self.revealedViewParallaxAmount,
+                    direction: self.dismissalDirection
+                )
+                
+                destinationVC.view.transform = .identity
+                
+            }
+            
+        }, completion: {
+            
+            sourceVC.view.alpha = 1
             sourceVC.view.transform = .identity
             context.completeTransition(!context.transitionWasCancelled)
             

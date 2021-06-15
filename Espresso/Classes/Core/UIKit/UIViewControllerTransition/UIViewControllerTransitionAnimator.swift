@@ -10,12 +10,11 @@ import UIKit
 internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private weak var transition: UIViewControllerTransition?
-    private(set) var isPresentation = true
+    var isPresentation = true
     
-    init(transition: UIViewControllerTransition, presentation: Bool) {
+    init(transition: UIViewControllerTransition) {
         
         self.transition = transition
-        self.isPresentation = presentation
         super.init()
         
     }
@@ -26,11 +25,9 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
         guard let transitionContext = transitionContext else { return 0 }
         guard let ctx = self.context(from: transitionContext) else { return 0 }
         
-        return transition.animations(
-            for: self.isPresentation ? .presentation : .dismissal,
-            context: ctx
-        )
-        .duration
+        return transition
+            .animations(using: ctx)
+            .duration
 
     }
     
@@ -39,15 +36,9 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
         guard let transition = self.transition else { return transitionContext.completeTransition(true) }
         guard let ctx = self.context(from: transitionContext) else { return transitionContext.completeTransition(true) }
         
-        let transitionType: UIViewControllerTransition.TransitionType = self.isPresentation ?
-            .presentation :
-            .dismissal
-        
-        transition.animations(
-            for: transitionType,
-            context: ctx
-        )
-        .start()
+        transition
+            .animations(using: ctx)
+            .start()
         
     }
     
@@ -57,7 +48,8 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
         guard let toVC = transitionContext.viewController(forKey: .to) else { return nil }
         
         return UIViewControllerTransition.Context(
-            transitionContainerView: transitionContext.containerView,
+            operation: (self.isPresentation ? .presentation : .dismissal),
+            containerView: transitionContext.containerView,
             sourceViewController: fromVC,
             destinationViewController: toVC,
             context: transitionContext
