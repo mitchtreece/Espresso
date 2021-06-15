@@ -1,5 +1,5 @@
 //
-//  UIViewController+UITransition.swift
+//  UIViewController+UIViewControllerTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
