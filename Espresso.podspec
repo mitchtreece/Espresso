@@ -20,13 +20,20 @@ Pod::Spec.new do |s|
 
     # Subspecs
 
-    s.default_subspec = 'Core'
+    s.default_subspec = 'UIKit'
 
     s.subspec 'Core' do |core|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'SnapKit',  '~> 5.0'
         core.dependency         'Swinject', '~> 2.0'
+
+    end
+
+    s.subspec 'UIKit' do |uikit|
+
+        uikit.source_files      = 'Espresso/Classes/UIKit/**/*'
+        uikit.dependency        'Espresso/Core'
+        uikit.dependency        'SnapKit', '~> 5.0'
 
     end
 
@@ -39,10 +46,20 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'Rx-UIKit' do |rxuikit|
+
+        rxuikit.source_files    = 'Espresso/Classes/Rx-UIKit/**/*'
+        rxuikit.dependency      'Espresso/Rx'
+        rxuikit.dependency      'Espresso/UIKit'
+
+    end
+
     s.subspec 'All' do |all|
 
         all.dependency          'Espresso/Core'
+        all.dependency          'Espresso/UIKit'
         all.dependency          'Espresso/Rx'
+        all.dependency          'Espresso/Rx-UIKit'
 
     end
 

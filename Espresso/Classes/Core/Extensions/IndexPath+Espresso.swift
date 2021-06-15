@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 12/15/17.
 //
 
-import UIKit
+import Foundation
 
 public extension IndexPath {
     

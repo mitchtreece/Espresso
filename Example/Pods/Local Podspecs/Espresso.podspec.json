@@ -20,17 +20,26 @@
   "platforms": {
     "ios": "11.0"
   },
-  "default_subspecs": "Core",
+  "default_subspecs": "UIKit",
   "subspecs": [
     {
       "name": "Core",
       "source_files": "Espresso/Classes/Core/**/*",
       "dependencies": {
-        "SnapKit": [
-          "~> 5.0"
-        ],
         "Swinject": [
           "~> 2.0"
+        ]
+      }
+    },
+    {
+      "name": "UIKit",
+      "source_files": "Espresso/Classes/UIKit/**/*",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ],
+        "SnapKit": [
+          "~> 5.0"
         ]
       }
     },
@@ -50,12 +59,30 @@
       }
     },
     {
+      "name": "Rx-UIKit",
+      "source_files": "Espresso/Classes/Rx-UIKit/**/*",
+      "dependencies": {
+        "Espresso/Rx": [
+
+        ],
+        "Espresso/UIKit": [
+
+        ]
+      }
+    },
+    {
       "name": "All",
       "dependencies": {
         "Espresso/Core": [
 
         ],
+        "Espresso/UIKit": [
+
+        ],
         "Espresso/Rx": [
+
+        ],
+        "Espresso/Rx-UIKit": [
 
         ]
       }

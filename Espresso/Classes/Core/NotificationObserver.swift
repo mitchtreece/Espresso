@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// `NotificationObserver` is a block-based wrapper over `NotificationCenter` observation.
+/// Closure-based wrapper over `NotificationCenter` observation.
 public class NotificationObserver {
     
     private let observer: Any?

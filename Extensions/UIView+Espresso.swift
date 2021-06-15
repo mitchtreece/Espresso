@@ -7,6 +7,8 @@
 
 import UIKit
 
+extension UIView: StaticIdentifiable {}
+
 public extension UIView /* Corners */ {
     
     /// Masks the view's corners using a radius.

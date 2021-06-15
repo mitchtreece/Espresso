@@ -18,7 +18,7 @@ open class UINibView: UIBaseView {
     public static func initFromNib(named name: String? = nil,
                                    in bundle: Bundle = Bundle.main) -> Self {
         
-        return self.loadFromNib(
+        return loadFromNib(
             name: name,
             bundle: bundle
         )

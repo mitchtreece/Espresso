@@ -20,17 +20,17 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         self.title = self.viewModel.title
         self.view.backgroundColor = UIColor.white
         
-        barItem = UIBarButtonItem()
-        barItem.title = self.viewModel.barButtonTitle
-        self.navigationItem.rightBarButtonItem = barItem
+        self.barItem = UIBarButtonItem()
+        self.barItem.title = self.viewModel.barButtonTitle
+        self.navigationItem.rightBarButtonItem = self.barItem
         
-        label = UILabel()
-        label.backgroundColor = UIColor.clear
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.numberOfLines = 0
-        self.view.addSubview(label)
-        label.snp.makeConstraints { (make) in
+        self.label = UILabel()
+        self.label.backgroundColor = .clear
+        self.label.textAlignment = .center
+        self.label.font = UIFont.boldSystemFont(ofSize: 20)
+        self.label.numberOfLines = 0
+        self.view.addSubview(self.label)
+        self.label.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
 
@@ -40,7 +40,7 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         
         super.bindComponents()
         
-        barItem.rx.tap
+        self.barItem.rx.tap
             .bind { self.viewModel.updateText() }
             .disposed(by: self.componentDisposeBag)
         
@@ -50,10 +50,9 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         
         super.bindModel()
         
-        self.events.viewDidAppear.observable
-            .bind { _ in
-                print("☕️ RxViewController did appear")
-            }
+        self.events.viewDidAppear
+            .asObservable()
+            .bind { _ in print("☕️ RxViewController did appear") }
             .disposed(by: self.modelDisposeBag)
         
         self.viewModel.labelText.asObservable()

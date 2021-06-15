@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 1/27/18.
 //
 
-import UIKit
+import Foundation
 
 /// Protocol that describes a way to identify an object statically.
 public protocol StaticIdentifiable {
@@ -22,6 +22,3 @@ public extension StaticIdentifiable {
     }
     
 }
-
-extension UIView: StaticIdentifiable {}
-extension UIViewController: StaticIdentifiable {}

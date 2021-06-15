@@ -13,17 +13,18 @@ private class RxEvent<V> {
     private let event: Event<V>
     private let subject = PublishSubject<V>()
     
-    var observable: Observable<V> {
-        return self.subject.asObservable()
-    }
-    
     init(event: Event<V>) {
         
         self.event = event
+        
         self.event.addObserver { v in
             self.subject.onNext(v)
         }
         
+    }
+    
+    func asObservable() -> Observable<V> {
+        return self.subject.asObservable()
     }
     
 }
@@ -33,35 +34,44 @@ private class RxVoidEvent {
     private let event: VoidEvent
     private let subject = PublishSubject<Void>()
     
-    var observable: Observable<Void> {
-        return self.subject.asObservable()
-    }
-    
     init(event: VoidEvent) {
         
         self.event = event
+        
         self.event.addObserver {
             self.subject.onNext(())
         }
         
     }
     
+    func asObservable() -> Observable<Void> {
+        return self.subject.asObservable()
+    }
+    
 }
 
 public extension Event /* Rx */ {
     
-    /// An Rx observable for this event.
-    var observable: Observable<V> {
-        return RxEvent<V>(event: self).observable
+    /// Returns the event as an observable.
+    /// - returns: An observable.
+    func asObservable() -> Observable<V> {
+        
+        return RxEvent<V>(event: self)
+            .asObservable()
+        
     }
     
 }
 
 public extension VoidEvent /* Rx */ {
     
-    /// An Rx observable for this event.
-    var observable: Observable<Void> {
-        return RxVoidEvent(event: self).observable
+    /// Returns the event as an observable.
+    /// - returns: An observable.
+    func asObservable() -> Observable<Void> {
+        
+        return RxVoidEvent(event: self)
+            .asObservable()
+        
     }
     
 }

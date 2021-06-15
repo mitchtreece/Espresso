@@ -12,8 +12,15 @@ public class UIHomeGrabber: UIScreenFeature {
     
     public override var frame: CGRect {
         
-        let size = CGSize(width: UIScreen.main.bounds.width, height: 23)
-        let origin = CGPoint(x: 0, y: (self.screen.bounds.height - size.height))
+        let size = CGSize(
+            width: self.screen.bounds.width,
+            height: 23
+        )
+        
+        let origin = CGPoint(
+            x: 0,
+            y: (self.screen.bounds.height - size.height)
+        )
         
         return CGRect(
             origin: origin,

@@ -13,14 +13,14 @@ public class TriggerRelay {
     
     private var relay = PublishRelay<Void>()
     
-    /// Converts this relay to an observable sequence.
-    public func asObservable() -> Observable<Void> {
-        return self.relay.asObservable()
-    }
-    
     /// Fires an event to subscribers.
     func fire() {
         self.relay.accept(())
+    }
+    
+    /// Converts this relay to an observable sequence.
+    public func asObservable() -> Observable<Void> {
+        return self.relay.asObservable()
     }
     
 }

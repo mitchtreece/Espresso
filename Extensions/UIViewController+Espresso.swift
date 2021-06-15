@@ -7,6 +7,8 @@
 
 import UIKit
 
+extension UIViewController: StaticIdentifiable {}
+
 public extension StaticIdentifiable where Self: UIViewController /* Storyboard */ {
     
     /// Initializes a new instance of the view controller from a storyboard.
