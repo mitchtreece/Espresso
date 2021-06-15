@@ -1252,7 +1252,8 @@
 				1764F0DE32100ECEB548E07685BF6377 /* UIScreen+Espresso.swift */,
 				6B80648AA180F99F0D48D1C02DB501C7 /* Events */,
 			);
-			path = Extensions;
+			name = Extensions;
+			path = Espresso/Classes/UIKit/Extensions;
 			sourceTree = "<group>";
 		};
 		2607EC7026789DB600911838 /* ScreenFeatures */ = {
@@ -1262,7 +1263,8 @@
 				3118962EAFC007FA3DEC45D77DF8EC90 /* UINotch.swift */,
 				36B074C8D1F30DE6BB401CDABB942959 /* UIScreenFeature.swift */,
 			);
-			path = ScreenFeatures;
+			name = ScreenFeatures;
+			path = Espresso/Classes/UIKit/ScreenFeatures;
 			sourceTree = "<group>";
 		};
 		2B03222145BFF8BB02AEE3DB8652D52C /* Base */ = {
