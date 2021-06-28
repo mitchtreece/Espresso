@@ -39,4 +39,24 @@ public enum Edge {
     /// A vertical edge.
     case vertical(Vertical)
     
+    /// A vertical-top edge.
+    public static var top: Edge {
+        return .vertical(.top)
+    }
+    
+    /// A horizontal-left edge.
+    public static var left: Edge {
+        return .horizontal(.left)
+    }
+    
+    /// A vertical-bottom edge.
+    public static var bottom: Edge {
+        return .vertical(.bottom)
+    }
+    
+    /// A horizontal-right edge.
+    public static var right: Edge {
+        return .horizontal(.right)
+    }
+    
 }

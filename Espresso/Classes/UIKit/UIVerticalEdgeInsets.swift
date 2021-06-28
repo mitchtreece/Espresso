@@ -21,6 +21,17 @@ public struct UIVerticalEdgeInsets {
     /// The bottom edge inset.
     public var bottom: CGFloat
     
+    /// Initializes `UIVerticalEdgeInsets` with top & bottom values.
+    /// - parameter top: The left value.
+    /// - parameter bottom: The right value.
+    public init(top: CGFloat,
+                bottom: CGFloat) {
+        
+        self.top = top
+        self.bottom = bottom
+        
+    }
+    
     /// A traditional `UIEdgeInsets` representation.
     public var edgeInsets: UIEdgeInsets {
         

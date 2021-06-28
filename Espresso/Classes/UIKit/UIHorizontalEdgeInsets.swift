@@ -21,6 +21,17 @@ public struct UIHorizontalEdgeInsets {
     /// The right edge inset.
     public var right: CGFloat
     
+    /// Initializes `UIHorizontalEdgeInsets` with left & right values.
+    /// - parameter left: The left value.
+    /// - parameter right: The right value.
+    public init(left: CGFloat,
+                right: CGFloat) {
+        
+        self.left = left
+        self.right = right
+        
+    }
+    
     /// A traditional `UIEdgeInsets` representation.
     public var edgeInsets: UIEdgeInsets {
         
