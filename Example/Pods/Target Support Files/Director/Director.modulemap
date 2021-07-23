@@ -1,6 +1,0 @@
-framework module Director {
-  umbrella header "Director-umbrella.h"
-
-  export *
-  module * { export * }
-}

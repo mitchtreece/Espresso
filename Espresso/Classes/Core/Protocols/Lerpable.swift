@@ -11,24 +11,24 @@ import Foundation
 public protocol Lerpable {
     
     /// Linearly interpolate between minimum & maximum values.
-    /// - parameter min: The minimum value.
-    /// - parameter max: The maximum value.
-    /// - returns: The linearly interpolated value.
+    /// - Parameter min: The minimum value.
+    /// - Parameter max: The maximum value.
+    /// - Returns: The linearly interpolated value.
     func lerp(min: Self, max: Self) -> Self
     
     /// Inversely linear interpolate between minimum & maximum values.
     /// - parameter min: The minimum value.
-    /// - parameter max: The maximum value.
-    /// - returns: The inversely linear interpolated value.
+    /// - Parameter max: The maximum value.
+    /// - Returns: The inversely linear interpolated value.
     func ilerp(min: Self, max: Self) -> Self
     
 }
 
 /// Linearly interpolate between minimum & maximum values using a specified weight.
-/// - parameter weight: The weight value. This is usually in the range `0...1`
-/// - parameter min: The minimum value.
-/// - parameter max: The maximum value.
-/// - returns: The linearly interpolated value.
+/// - Parameter weight: The weight value. This is usually in the range `0...1`
+/// - Parameter min: The minimum value.
+/// - Parameter max: The maximum value.
+/// - Returns: The linearly interpolated value.
 public func lerp<T: Lerpable>(_ weight: T, min: T, max: T) -> T {
     
     return weight.lerp(
@@ -39,10 +39,10 @@ public func lerp<T: Lerpable>(_ weight: T, min: T, max: T) -> T {
 }
 
 /// Inversely linear interpolate between minimum & maximum values using a specified value.
-/// - parameter value: The value. This is usually in the range `min...max`
-/// - parameter min: The minimum value.
-/// - parameter max: The maximum value.
-/// - returns: The inversely linear interpolated weight value.
+/// - Parameter value: The value. This is usually in the range `min...max`
+/// - Parameter min: The minimum value.
+/// - Parameter max: The maximum value.
+/// - Returns: The inversely linear interpolated weight value.
 public func ilerp<T: Lerpable>(_ value: T, min: T, max: T) -> T {
     
     return value.ilerp(

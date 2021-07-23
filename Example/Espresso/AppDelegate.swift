@@ -8,24 +8,19 @@
 
 import UIKit
 import Espresso
-import Director
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-    private var sceneDirector: SceneDirector!
+    private var navController: UINavigationController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+                
         self.window = self.window ?? UIWindow(frame: UIScreen.main.bounds)
-        self.window!.rootViewController = UINavigationController(rootViewController: UIViewController())
-        
-        self.sceneDirector = SceneDirector(
-            EspressoSceneCoordinator(),
-            window: self.window!,
-            debug: true
-        ).start()
+        self.navController = UINavigationController(rootViewController: RootViewController(delegate: self))
+        self.window!.rootViewController = self.navController
+        self.window!.makeKeyAndVisible()
         
         application.events.didBecomeActive.addObserver {
             print("☕️ application did become active")
@@ -79,4 +74,114 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+}
+
+extension AppDelegate: RootViewControllerDelegate {
+    
+    func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow) {
+            
+        let vc = DetailViewController()
+        vc.title = row.title
+        vc.showsDismissButton = true
+        vc.delegate = self
+        
+        let nav = UINavigationController(rootViewController: vc)
+        nav.transition = row.transition
+        
+        self.navController.present(
+            nav,
+            animated: true,
+            completion: nil
+        )
+        
+    }
+    
+    func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow) {
+        
+        if #available(iOS 13, *) {
+            
+            var vc: UIViewController
+            
+            switch row {
+            case .view:
+                
+                vc = ContextMenuViewController()
+                vc.title = row.title
+                
+            case .table:
+                
+                let contextTableVC = ContextMenuTableViewController()
+                contextTableVC.title = row.title
+                contextTableVC.delegate = self
+                vc = contextTableVC
+                
+            case .collection:
+                
+                let contextCollectionVC = ContextMenuCollectionViewController()
+                contextCollectionVC.title = row.title
+                contextCollectionVC.delegate = self
+                vc = contextCollectionVC
+                
+            }
+            
+            self.navController.pushViewController(
+                vc,
+                animated: true
+            )
+            
+        }
+        
+    }
+    
+    func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController) {
+        
+        self.navController.pushViewController(
+            RxViewController(viewModel: RxViewModel()),
+            animated: true
+        )
+        
+    }
+    
+}
+
+extension AppDelegate: DetailViewControllerDelegate {
+    
+    func detailViewControllerDidTapDone(_ viewController: DetailViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+@available(iOS 13, *)
+extension AppDelegate: ContextMenuTableViewControllerDelegate {
+    
+    func contextMenuTableViewController(_ vc: ContextMenuTableViewController, didSelectColor color: Color) {
+        
+        let vc = DetailViewController()
+        vc.view.backgroundColor = color.color
+        
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
+        
+    }
+    
+}
+
+@available(iOS 13, *)
+extension AppDelegate: ContextMenuCollectionViewControllerDelegate {
+    
+    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController, didSelectColor color: Color) {
+        
+        let vc = DetailViewController()
+        vc.view.backgroundColor = color.color
+        
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
+        
+    }
+    
 }

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = 'Espresso'
-    s.version          = '2.3.0'
+    s.version          = '2.4.0'
     s.summary          = 'Swift convenience library for iOS.'
 
     s.description      = <<-DESC
@@ -20,44 +20,46 @@ Pod::Spec.new do |s|
 
     # Subspecs
 
-    s.default_subspec = 'Core'
+    s.default_subspec = 'UIKit'
 
     s.subspec 'Core' do |core|
 
         core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'SnapKit',  '~> 5.0'
+        core.dependency         'Swinject', '~> 2.0'
 
     end
 
-    s.subspec 'DI' do |di|
+    s.subspec 'UIKit' do |uikit|
 
-        di.dependency           'Espresso/Core'
-        di.dependency           'Swinject', '~> 2.7'
-
-    end
-
-    s.subspec 'Mvvm' do |mvvm|
-
-        mvvm.source_files       = 'Espresso/Classes/Mvvm/**/*'
-        mvvm.dependency         'Espresso/Core'
+        uikit.source_files      = 'Espresso/Classes/UIKit/**/*'
+        uikit.dependency        'Espresso/Core'
+        uikit.dependency        'SnapKit', '~> 5.0'
 
     end
 
-    s.subspec 'RxMvvm' do |rx|
+    s.subspec 'Rx' do |rx|
 
-        rx.source_files         = 'Espresso/Classes/RxMvvm/**/*'
-        rx.dependency           'Espresso/Mvvm'
-        rx.dependency           'RxSwift', '~> 5.0'
-        rx.dependency           'RxCocoa', '~> 5.0'
+        rx.source_files         = 'Espresso/Classes/Rx/**/*'
+        rx.dependency           'Espresso/Core'
+        rx.dependency           'RxSwift', '~> 6.0'
+        rx.dependency           'RxCocoa', '~> 6.0'
+
+    end
+
+    s.subspec 'Rx-UIKit' do |rxuikit|
+
+        rxuikit.source_files    = 'Espresso/Classes/Rx-UIKit/**/*'
+        rxuikit.dependency      'Espresso/Rx'
+        rxuikit.dependency      'Espresso/UIKit'
 
     end
 
     s.subspec 'All' do |all|
 
         all.dependency          'Espresso/Core'
-        all.dependency          'Espresso/DI'
-        all.dependency          'Espresso/Mvvm'
-        all.dependency          'Espresso/RxMvvm'
+        all.dependency          'Espresso/UIKit'
+        all.dependency          'Espresso/Rx'
+        all.dependency          'Espresso/Rx-UIKit'
 
     end
 

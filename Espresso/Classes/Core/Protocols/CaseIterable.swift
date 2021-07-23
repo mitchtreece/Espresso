@@ -11,16 +11,12 @@ import Foundation
     // Built into the standard library as of Swift 4.2
 #else
 
-/**
- Protocol describing a way to iterate over all cases of an enum.
- */
+/// Protocol describing a way to iterate over all cases of an enum.
 public protocol CaseIterable {
     
     associatedtype AllCases: Collection where AllCases.Element == Self
     
-    /**
-     A collection containing all the cases of the enum.
-     */
+    /// A collection containing all the cases of the enum.
     static var allCases: AllCases { get }
     
 }

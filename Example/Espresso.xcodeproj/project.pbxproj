@@ -17,8 +17,6 @@
 		269114C62344341500A4A5F6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C52344341500A4A5F6 /* Color.swift */; };
 		26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */; };
 		26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */; };
-		26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */; };
-		26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
@@ -49,8 +47,6 @@
 		269114C52344341500A4A5F6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuCollectionViewController.swift; sourceTree = "<group>"; };
 		26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCollectionCell.swift; sourceTree = "<group>"; };
-		26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspressoAppCoordinator.swift; sourceTree = "<group>"; };
-		26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		26D7637023403EDF000C9746 /* ContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextView.swift; sourceTree = "<group>"; };
 		26D76373234042C0000C9746 /* ContextTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableCell.swift; sourceTree = "<group>"; };
@@ -125,23 +121,15 @@
 			path = Menus;
 			sourceTree = "<group>";
 		};
-		26CC8AE521E52F5200AE6F94 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				26CC8AE721E52F8B00AE6F94 /* EspressoAppCoordinator.swift */,
-				26CC8AE921E52FB000AE6F94 /* RootCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		26CC8AE621E52F6C00AE6F94 /* View Controllers */ = {
+		26CC8AE621E52F6C00AE6F94 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
 				269114BE2344302F00A4A5F6 /* Menus */,
+				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -169,9 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				26CC8AE521E52F5200AE6F94 /* Coordinators */,
-				26CC8AE621E52F6C00AE6F94 /* View Controllers */,
-				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
+				26CC8AE621E52F6C00AE6F94 /* ViewControllers */,
 				2628056F21F68E8200FDF34D /* Transitions */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -382,7 +368,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Director/Director.framework",
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
@@ -392,7 +377,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Director.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
@@ -413,11 +397,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
-				26CC8AEA21E52FB000AE6F94 /* RootCoordinator.swift in Sources */,
 				269114C12344318F00A4A5F6 /* ContextView.swift in Sources */,
 				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
 				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
-				26CC8AE821E52F8B00AE6F94 /* EspressoAppCoordinator.swift in Sources */,
 				269114C62344341500A4A5F6 /* Color.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
