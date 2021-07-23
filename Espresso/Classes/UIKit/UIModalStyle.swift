@@ -5,9 +5,9 @@
 //  Created by Mitch Treece on 10/23/19.
 //
 
-import Foundation
+import UIKit
 
-// Updated for iOS 14:
+// Updated for iOS 15:
 // UIModalPresentationFullScreen = 0,
 // UIModalPresentationPageSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
 // UIModalPresentationFormSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
@@ -150,25 +150,25 @@ public enum UIModalStyle {
         
     }
     
-    /// Creates a `UIModalStyle` from a given modal presentation style.
+    /// Initializes a `UIModalStyle` from a modal presentation style.
     /// - Parameter presentationStyle: The modal presentation style.
     /// - Returns: A `UIModalStyle` instance.
-    public static func from(presentationStyle: UIModalPresentationStyle) -> UIModalStyle {
+    public init(presentationStyle: UIModalPresentationStyle) {
         
         switch presentationStyle {
-        case .fullScreen: return .fullscreen(presentingView: .hidden)
-        case .overFullScreen: return .fullscreen(presentingView: .visible)
-        case .pageSheet: return .sheet(type: .page)
-        case .formSheet: return .sheet(type: .form)
-        case .currentContext: return .currentContext(presentingView: .hidden)
-        case .overCurrentContext: return .currentContext(presentingView: .visible)
-        case .custom: return .custom
-        case .popover: return .popover
-        case .automatic: return .default
-        case .none: return .none
-        @unknown default: return .default
+        case .fullScreen: self = .fullscreen(presentingView: .hidden)
+        case .overFullScreen: self = .fullscreen(presentingView: .visible)
+        case .pageSheet: self = .sheet(type: .page)
+        case .formSheet: self = .sheet(type: .form)
+        case .currentContext: self = .currentContext(presentingView: .hidden)
+        case .overCurrentContext: self = .currentContext(presentingView: .visible)
+        case .custom: self = .custom
+        case .popover: self = .popover
+        case .automatic: self = .default
+        case .none: self = .none
+        @unknown default: self = .default
         }
-                
+        
     }
     
 }
