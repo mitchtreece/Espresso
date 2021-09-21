@@ -103,7 +103,7 @@ public extension UIDevice /* Info*/ {
         case appleWatchS5
         case appleWatchSE
         case appleWatchS6
-        // TODO: case appleWatchS7 (2021)
+        case appleWatchS7
         
         // Apple TV
         
@@ -220,7 +220,7 @@ public extension UIDevice /* Info*/ {
             case .appleWatchS5: return "Apple Watch Series 5"
             case .appleWatchSE: return "Apple Watch SE"
             case .appleWatchS6: return "Apple Watch Series 6"
-            // case .appleWatchS7: return "Apple Watch Series 7"
+            case .appleWatchS7: return "Apple Watch Series 7"
                 
             case .appleTV: return "Apple TV"
             case .appleTV_2: return "Apple TV (2nd Gen)"
@@ -329,7 +329,7 @@ public extension UIDevice /* Info*/ {
             case .appleWatchS5: return ["Watch5,1", "Watch5,2", "Watch5,3", "Watch5,4"]
             case .appleWatchS6: return ["Watch6,1", "Watch6,2", "Watch6,3", "Watch6,4"]
             case .appleWatchSE: return ["Watch5,9", "Watch5,10", "Watch5,11", "Watch5,12"]
-            // case .appleWatchS7: return []
+            case .appleWatchS7: return ["Watch6,6", "Watch6,7", "Watch6,8", "Watch6,9"]
                 
             case .appleTV: return ["AppleTV1,1"]
             case .appleTV_2: return ["AppleTV2,1"]
