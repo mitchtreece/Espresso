@@ -49,6 +49,7 @@ public extension UIDevice /* Info*/ {
         case iPhone13Mini
         case iPhone13Pro
         case iPhone13ProMax
+        case iPhoneSE_3
         
         // iPod Touch
         
@@ -92,6 +93,7 @@ public extension UIDevice /* Info*/ {
         case iPadPro12_5
         case iPad_9
         case iPadMini_6
+        case iPadAir_5
 
         // Watch
         
@@ -172,6 +174,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone13Mini: return "iPhone 13 mini"
             case .iPhone13Pro: return "iPhone 13 Pro"
             case .iPhone13ProMax: return "iPhone 13 Pro Max"
+            case .iPhoneSE_3: return "iPhone SE (3rd Gen)"
                 
             case .iPodTouch: return "iPod touch"
             case .iPodTouch_2: return "iPod touch (2nd Gen)"
@@ -211,6 +214,7 @@ public extension UIDevice /* Info*/ {
             case .iPadPro12_5: return "iPad Pro (12.9-inch) (5th Gen)"
             case .iPad_9: return "iPad (9th Gen)"
             case .iPadMini_6: return "iPad mini (6th Gen)"
+            case .iPadAir_5: return "iPad Air (5th Gen)"
                 
             case .appleWatch: return "Apple Watch"
             case .appleWatchS1: return "Apple Watch Series 1"
@@ -281,6 +285,7 @@ public extension UIDevice /* Info*/ {
             case .iPhone13Mini: return ["iPhone14,4"]
             case .iPhone13Pro: return ["iPhone14,2"]
             case .iPhone13ProMax: return ["iPhone14,3"]
+            case .iPhoneSE_3: return ["iPhone14,6"]
                 
             case .iPodTouch: return ["iPod1,1"]
             case .iPodTouch_2: return ["iPod2,1"]
@@ -320,6 +325,7 @@ public extension UIDevice /* Info*/ {
             case .iPadPro12_5: return ["iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11"]
             case .iPad_9: return ["iPad12,1", "iPad12,2"]
             case .iPadMini_6: return ["iPad14,1", "iPad14,2"]
+            case .iPadAir_5: return ["iPad13,6", "iPad13,7"]
                 
             case .appleWatch: return ["Watch1,1", "Watch1,2"]
             case .appleWatchS1: return ["Watch2,6", "Watch2,7"]
