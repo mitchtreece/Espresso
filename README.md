@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-![iOS](https://img.shields.io/badge/iOS-11--12-green.svg?style=for-the-badge)
+![iOS](https://img.shields.io/badge/iOS-11--15-green.svg?style=for-the-badge)
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 ## Overview
@@ -19,7 +19,7 @@ Espresso is integrated with CocoaPods!
 1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Espresso', '~> 2.2.0'
+pod 'Espresso', '~> 2.0'
 ```
 2. In your project directory, run `pod install`
 3. Import the `Espresso` module wherever you need it
