@@ -13,8 +13,12 @@ public class TriggerRelay {
     
     private var relay = PublishRelay<Void>()
     
+    public init() {
+        //
+    }
+    
     /// Fires an event to subscribers.
-    func fire() {
+    public func fire() {
         self.relay.accept(())
     }
     
