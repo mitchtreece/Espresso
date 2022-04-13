@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-/// An Rx relay that only publishes `Void` events.
+/// A wrapped Rx relay that only publishes `Void` events.
 public class TriggerRelay {
     
     private var relay = PublishRelay<Void>()

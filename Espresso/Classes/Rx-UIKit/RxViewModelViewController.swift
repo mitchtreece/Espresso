@@ -40,7 +40,7 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
     /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
     ///
     /// The view controller's `modelDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.modelDisposeBag()` **before** accessing the `modelDisposeBag`.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelDisposeBag`.
     open func bindModel() {
         
         // Override me

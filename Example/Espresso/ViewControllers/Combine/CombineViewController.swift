@@ -40,18 +40,18 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
     override func bindModel() {
         
         super.bindModel()
-                
-//        self.events.viewDidAppear
-//            .asObservable()
-//            .bind { _ in print("☕️ RxViewController did appear") }
-//            .disposed(by: self.modelDisposeBag)
+        
+        self.events.viewDidAppear
+            .asPublisher()
+            .sink { print("☕️ RxViewController did appear") }
+            .store(in: &self.modelCancellableBag)
         
         self.viewModel.$labelText
             .receive(on: DispatchQueue.main)
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)
-            .store(in: &self.modelCancellables)
-
+            .store(in: &self.modelCancellableBag)
+        
     }
     
     override func bindComponents() {
@@ -60,7 +60,7 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         
         self.barItem.actionPublisher
             .sink { self.viewModel.updateText() }
-            .store(in: &self.componentCancellables)
+            .store(in: &self.componentCancellableBag)
         
     }
     

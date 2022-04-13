@@ -75,6 +75,10 @@
 		2629FFE62806AC9D0053FB82 /* UIControl+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFE52806AC9D0053FB82 /* UIControl+Espresso.swift */; };
 		2629FFE82806AE1A0053FB82 /* UIBarButtonItem+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFE72806AE1A0053FB82 /* UIBarButtonItem+Espresso.swift */; };
 		2629FFEA2806AEE00053FB82 /* UIBarButtonItem+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFE92806AEE00053FB82 /* UIBarButtonItem+Combine.swift */; };
+		2629FFEC2806B7240053FB82 /* Publisher+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFEB2806B7240053FB82 /* Publisher+Espresso.swift */; };
+		2629FFEE2806B7AB0053FB82 /* CancellableBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFED2806B7AB0053FB82 /* CancellableBag.swift */; };
+		2629FFF02806BAFF0053FB82 /* Event+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFEF2806BAFF0053FB82 /* Event+Combine.swift */; };
+		2629FFF22806BD650053FB82 /* TriggerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFF12806BD650053FB82 /* TriggerPublisher.swift */; };
 		2734B9429C02B8DB76C3B18958D22146 /* SingleAssignmentDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658F4AACA272D6EC17FDEBD8013C016 /* SingleAssignmentDisposable.swift */; };
 		27A10232B075D033E1825AA7856D57A9 /* UIBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BD520CB43DC6F6E340C5D757BA44F /* UIBaseCollectionViewCell.swift */; };
 		2898FC47EC4C7161453B0C85DD0A93D9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028AB2E1F7867A35B799DA189955B9E9 /* Queue.swift */; };
@@ -676,6 +680,10 @@
 		2629FFE52806AC9D0053FB82 /* UIControl+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Espresso.swift"; sourceTree = "<group>"; };
 		2629FFE72806AE1A0053FB82 /* UIBarButtonItem+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Espresso.swift"; sourceTree = "<group>"; };
 		2629FFE92806AEE00053FB82 /* UIBarButtonItem+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Combine.swift"; sourceTree = "<group>"; };
+		2629FFEB2806B7240053FB82 /* Publisher+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Espresso.swift"; sourceTree = "<group>"; };
+		2629FFED2806B7AB0053FB82 /* CancellableBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableBag.swift; sourceTree = "<group>"; };
+		2629FFEF2806BAFF0053FB82 /* Event+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Combine.swift"; sourceTree = "<group>"; };
+		2629FFF12806BD650053FB82 /* TriggerPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerPublisher.swift; sourceTree = "<group>"; };
 		2888271F2BB8047EAF82F2CA6EA91D8D /* ControlEvent+Signal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlEvent+Signal.swift"; path = "RxCocoa/Traits/Signal/ControlEvent+Signal.swift"; sourceTree = "<group>"; };
 		28F65D14685903C39CFCBF351F66AE38 /* Infallible+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+Create.swift"; path = "RxSwift/Traits/Infallible/Infallible+Create.swift"; sourceTree = "<group>"; };
 		2AC7084362A19EB2F0C56EDB2688CE43 /* JSONType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
@@ -1298,6 +1306,10 @@
 		2629FFDC280660300053FB82 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
+				2629FFEF2806BAFF0053FB82 /* Event+Combine.swift */,
+				2629FFED2806B7AB0053FB82 /* CancellableBag.swift */,
+				2629FFEB2806B7240053FB82 /* Publisher+Espresso.swift */,
+				2629FFF12806BD650053FB82 /* TriggerPublisher.swift */,
 			);
 			name = Combine;
 			path = Espresso/Classes/Combine;
@@ -2831,6 +2843,7 @@
 				6D699F13E38544839484468A44AC702F /* Date+Espresso.swift in Sources */,
 				BAC4B3C94DE74E76F28BC79F3D00D83B /* Dictionary+Espresso.swift in Sources */,
 				34BA0A9339D40A1885217F9A4CBBDE40 /* Direction.swift in Sources */,
+				2629FFEE2806B7AB0053FB82 /* CancellableBag.swift in Sources */,
 				104FAD833B8A7F863171F7A2428183C2 /* Edge.swift in Sources */,
 				0A82C9CAF56670D6953378661A657F10 /* ErrorType.swift in Sources */,
 				95E970505808ED9E50DD605F37CE66A2 /* Espresso-dummy.m in Sources */,
@@ -2862,6 +2875,7 @@
 				BC5A2228779C653BBFA1E72BDE4F4AAC /* UIAnimationGroup.swift in Sources */,
 				2F4AD43AE22DF6AE177650A4EDDFE591 /* UIAnimationGroupable.swift in Sources */,
 				85D2E3F65423F49A3B7101CF8965B57D /* UIAnimationGroupController.swift in Sources */,
+				2629FFF22806BD650053FB82 /* TriggerPublisher.swift in Sources */,
 				E10626C046B47FB0A835A7DC4F684CB4 /* UIAnimationOperation.swift in Sources */,
 				499E316C11DC29637A4267FBF3AE3F58 /* UIAnimationOperationQueue.swift in Sources */,
 				E898D99D3D12DA83BC0A910787C46806 /* UIApplication+Espresso.swift in Sources */,
@@ -2883,6 +2897,7 @@
 				68986CBC8BE1BB112D105EABB8B113CC /* UIContextMenuGroupItem.swift in Sources */,
 				AB9A3518CD847D2FC13FF46213D96B4D /* UIContextMenuItem.swift in Sources */,
 				B7DA4D3F79B46574B3B883ECDBCEF3A7 /* UICoverTransition.swift in Sources */,
+				2629FFF02806BAFF0053FB82 /* Event+Combine.swift in Sources */,
 				46C940BC14AEF196C65D78151586CFB0 /* UIDevice+Espresso.swift in Sources */,
 				E8AF4348343C15B607BC7B96B6910BCC /* UIFadeTransition.swift in Sources */,
 				4CCA8C3F37352540F276FA1CCF5AF24D /* UIGestureRecognizer+Espresso.swift in Sources */,
@@ -2920,6 +2935,7 @@
 				6F88564B15483B35613F204134585995 /* UIViewControllerTransitionInteractor.swift in Sources */,
 				890B72C0D53964D35573A074A3D89B6D /* UIViewModel.swift in Sources */,
 				67288346B21A7BBCE82E3C4D4FC0EB53 /* UIViewModelCollectionViewCell.swift in Sources */,
+				2629FFEC2806B7240053FB82 /* Publisher+Espresso.swift in Sources */,
 				965D2E3B2577EBE1B97B5222DE988508 /* UIViewModelTableViewCell.swift in Sources */,
 				D397388979F091046DAC0C92F6C4BEBA /* UIViewModelViewController.swift in Sources */,
 				B26E2AFC37EC62B67582A7A94DE92090 /* UIZoomTransition.swift in Sources */,

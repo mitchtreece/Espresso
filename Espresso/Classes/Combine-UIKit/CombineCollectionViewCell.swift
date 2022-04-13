@@ -12,11 +12,11 @@ import Combine
 @available(iOS 13, *)
 open class CombineCollectionViewCell<V: ViewModel>: UIViewModelCollectionViewCell<V> {
     
-    /// The cell's model cancellable storage.
-    public private(set) var modelCancellables = [AnyCancellable]()
+    /// The cell's model cancellable bag.
+    public var modelCancellableBag: CancellableBag!
     
-    // The cell's component cancellable storage.
-    public private(set) var componentCancellables = [AnyCancellable]()
+    // The cell's component cancellable bag.
+    public var componentCancellableBag: CancellableBag!
     
     open override func awakeFromNib() {
         
@@ -33,20 +33,22 @@ open class CombineCollectionViewCell<V: ViewModel>: UIViewModelCollectionViewCel
         
     }
     
-    /// Binding function called in `setup(viewModel:)`. Override this to setup custom model bindings.
+    /// Binding function called in `setup(viewModel:)`.
+    /// Override this to setup custom model bindings.
     ///
-    /// The cell's `modelDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelDisposeBag`.
+    /// The cell's `modelCancellableBag` is created when this is called.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelCancellableBag`.
     open func bindModel() {
-        // Override me
+        self.modelCancellableBag = CancellableBag()
     }
     
-    /// Binding function called in `awakeFromNib()`. Override this to setup custom component bindings.
+    /// Binding function called in `awakeFromNib()`.
+    /// Override this to setup custom component bindings.
     ///
-    /// The cell's `componentDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
+    /// The cell's `componentCancellableBag` is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentCancellableBag`.
     open func bindComponents() {
-        // Override me
+        self.componentCancellableBag = CancellableBag()
     }
     
 }
