@@ -7,7 +7,7 @@
 
 import Combine
 
-/// A wrapped Combine publisher that only sends `Void` values.
+/// A wrapped publisher that only outputs `Void` values.
 @available(iOS 13, *)
 public class TriggerPublisher {
     

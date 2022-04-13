@@ -43,14 +43,14 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         
         self.events.viewDidAppear
             .asPublisher()
-            .sink { print("☕️ RxViewController did appear") }
-            .store(in: &self.modelCancellableBag)
+            .sink { print("☕️ CombineViewController did appear") }
+            .store(in: &self.modelBag)
         
         self.viewModel.$labelText
             .receive(on: DispatchQueue.main)
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)
-            .store(in: &self.modelCancellableBag)
+            .store(in: &self.modelBag)
         
     }
     
@@ -60,7 +60,7 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         
         self.barItem.actionPublisher
             .sink { self.viewModel.updateText() }
-            .store(in: &self.componentCancellableBag)
+            .store(in: &self.componentBag)
         
     }
     

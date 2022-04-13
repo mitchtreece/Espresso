@@ -10,6 +10,7 @@ import Combine
 @available(iOS 13, *)
 public extension Publisher where Failure == Never {
     
+    /// Latest value of the publisher's output sequence.
     var value: Self.Output {
         
         var value: Self.Output!
@@ -22,9 +23,11 @@ public extension Publisher where Failure == Never {
         
     }
     
+    /// Republishes elements received from a publisher,
+    /// by weakly assigning them to a property marked as a publisher.
     func weakAssign<T: AnyObject>(to keyPath: ReferenceWritableKeyPath<T, Output>,
                                   on object: T) -> AnyCancellable {
-        
+
         sink { [weak object] value in
             object?[keyPath: keyPath] = value
         }

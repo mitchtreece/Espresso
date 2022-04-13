@@ -13,10 +13,10 @@ import Combine
 open class CombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     
     /// The cell's model cancellable bag.
-    public var modelCancellableBag: CancellableBag!
+    public var modelBag: CancellableBag!
     
     // The cell's component cancellable bag.
-    public var componentCancellableBag: CancellableBag!
+    public var componentBag: CancellableBag!
     
     open override func awakeFromNib() {
         
@@ -36,19 +36,19 @@ open class CombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     /// Binding function called in `setup(viewModel:)`.
     /// Override this to setup custom model bindings.
     ///
-    /// The cell's `modelCancellableBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelCancellableBag`.
+    /// The cell's model cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelBag`.
     open func bindModel() {
-        self.modelCancellableBag = CancellableBag()
+        self.modelBag = CancellableBag()
     }
     
     /// Binding function called in `awakeFromNib()`.
     /// Override this to setup custom component bindings.
     ///
-    /// The cell's `componentCancellableBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentCancellableBag`.
+    /// The cell's component cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentBag`.
     open func bindComponents() {
-        self.componentCancellableBag = CancellableBag()
+        self.componentBag = CancellableBag()
     }
     
 }

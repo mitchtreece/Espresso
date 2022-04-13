@@ -13,10 +13,10 @@ import Combine
 open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
     // The view controller's model cancellable bag.
-    public var modelCancellableBag: CancellableBag!
+    public var modelBag: CancellableBag!
     
     // The view controller's component cancellable bag.
-    public var componentCancellableBag: CancellableBag!
+    public var componentBag: CancellableBag!
 
     /// Flag indicating if binding functions have been called yet.
     /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
@@ -40,19 +40,19 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
     /// Binding function called once in `viewWillAppear(animated:)`.
     /// Override this to setup custom component bindings.
     ///
-    /// The view controller's `modelCancellableBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelCancellableBag`.
+    /// The view controller's model cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelBag`.
     open func bindModel() {
-        self.modelCancellableBag = CancellableBag()
+        self.modelBag = CancellableBag()
     }
     
     /// Binding function called once in `viewWillAppear(animated:)`.
     /// Override this to setup custom component bindings.
     ///
-    /// The view controller's `componentCancellableBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentCancellableBag`.
+    /// The view controller's component cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentBag`.
     open func bindComponents() {
-        self.componentCancellableBag = CancellableBag()
+        self.componentBag = CancellableBag()
     }
     
 }

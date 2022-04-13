@@ -10,8 +10,8 @@ import Combine
 @available(iOS 13, *)
 public extension Event /* Combine */ {
     
-    /// Returns the event as a publisher.
-    /// - returns: A publisher.
+    /// The event as a publisher.
+    /// - returns: An `Event` publisher.
     func asPublisher() -> AnyPublisher<V, Never> {
         
         return CombineEvent(event: self)
@@ -24,8 +24,8 @@ public extension Event /* Combine */ {
 @available(iOS 13, *)
 public extension VoidEvent /* Combine */ {
     
-    /// Returns the event as an observable.
-    /// - returns: An observable.
+    /// The event as an observable.
+    /// - returns: A `VoidEvent` publisher.
     func asPublisher() -> AnyPublisher<Void, Never> {
 
         return CombineVoidEvent(event: self)

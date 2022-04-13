@@ -36,16 +36,6 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
 
     }
     
-    override func bindComponents() {
-        
-        super.bindComponents()
-        
-        self.barItem.rx.tap
-            .bind { self.viewModel.updateText() }
-            .disposed(by: self.componentDisposeBag)
-        
-    }
-    
     override func bindModel() {
         
         super.bindModel()
@@ -53,11 +43,21 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         self.events.viewDidAppear
             .asObservable()
             .bind { _ in print("☕️ RxViewController did appear") }
-            .disposed(by: self.modelDisposeBag)
+            .disposed(by: self.modelBag)
         
         self.viewModel.labelText.asObservable()
             .bind(to: self.label.rx.text)
-            .disposed(by: self.modelDisposeBag)
+            .disposed(by: self.modelBag)
+        
+    }
+    
+    override func bindComponents() {
+        
+        super.bindComponents()
+        
+        self.barItem.rx.tap
+            .bind { self.viewModel.updateText() }
+            .disposed(by: self.componentBag)
         
     }
     

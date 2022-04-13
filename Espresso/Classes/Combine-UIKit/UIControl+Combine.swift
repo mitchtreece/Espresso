@@ -11,6 +11,7 @@ import Combine
 @available(iOS 13, *)
 public extension UIControl {
     
+    /// A publisher that emits when a given `UIControl.Event` is received.
     func eventPublisher(for events: Event) -> AnyPublisher<Void, Never> {
         
         return Publishers.UIControlEvent(
@@ -26,6 +27,7 @@ public extension UIControl {
 @available(iOS 13, *)
 public extension Publishers {
     
+    /// A `UIControl` event publisher.
     struct UIControlEvent<C: UIControl>: Publisher {
         
         public typealias Output = Void
@@ -54,6 +56,7 @@ public extension Publishers {
         
     }
     
+    /// A `UIControl` property publisher.
     struct UIControlProperty<C: UIControl, V>: Publisher {
         
         public typealias Output = V
@@ -86,6 +89,7 @@ public extension Publishers {
         
     }
     
+    /// A target-action publisher.
     struct TargetAction<C: AnyObject>: Publisher {
         
         public typealias Output = Void

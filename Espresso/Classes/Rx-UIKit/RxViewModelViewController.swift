@@ -13,10 +13,10 @@ import RxCocoa
 open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
     /// The view controller's model dispose bag.
-    public private(set) var modelDisposeBag: DisposeBag!
+    public private(set) var modelBag: DisposeBag!
     
     /// The view controller's component dispose bag.
-    public private(set) var componentDisposeBag: DisposeBag!
+    public private(set) var componentBag: DisposeBag!
     
     /// Flag indicating if binding functions have been called yet.
     /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
@@ -39,24 +39,18 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
     
     /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
     ///
-    /// The view controller's `modelDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelDisposeBag`.
+    /// The view controller's model dispose bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelBag`.
     open func bindModel() {
-        
-        // Override me
-        self.modelDisposeBag = DisposeBag()
-        
+        self.modelBag = DisposeBag()
     }
     
     /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
     ///
-    /// The view controller's `componentDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
+    /// The view controller's component dispose bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentBag`.
     open func bindComponents() {
-        
-        // Override me
-        self.componentDisposeBag = DisposeBag()
-        
+        self.componentBag = DisposeBag()
     }
     
 }
