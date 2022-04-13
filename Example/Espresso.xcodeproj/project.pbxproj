@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
+		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
 		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
 		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
+		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
@@ -97,6 +101,15 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		2629FFD7280653B50053FB82 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				2629FFD8280653C40053FB82 /* CombineViewModel.swift */,
+				2629FFDA280653CE0053FB82 /* CombineViewController.swift */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
 		26854DD7218E73E600B3ABBB /* Rx / Mvvm */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +141,7 @@
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
 				269114BE2344302F00A4A5F6 /* Menus */,
 				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
+				2629FFD7280653B50053FB82 /* Combine */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -403,9 +417,11 @@
 				269114C62344341500A4A5F6 /* Color.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
+				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
 				269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */,
 				269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */,
 				269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */,
+				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */,

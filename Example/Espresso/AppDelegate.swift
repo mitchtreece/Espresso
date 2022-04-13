@@ -142,6 +142,17 @@ extension AppDelegate: RootViewControllerDelegate {
         
     }
     
+    func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController) {
+     
+        guard #available(iOS 13, *) else { return }
+        
+        self.navController.pushViewController(
+            CombineViewController(viewModel: CombineViewModel()),
+            animated: true
+        )
+        
+    }
+    
 }
 
 extension AppDelegate: DetailViewControllerDelegate {

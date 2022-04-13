@@ -54,12 +54,28 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'Combine' do |combine|
+
+        combine.source_files    = 'Espresso/Classes/Combine/**/*'
+        combine.dependency      'Espresso/Core'
+
+    end
+
+    s.subspec 'Combine-UIKit' do |combineuikit|
+
+        combineuikit.source_files    = 'Espresso/Classes/Combine-UIKit/**/*'
+        combineuikit.dependency      'Espresso/Combine'
+        combineuikit.dependency      'Espresso/UIKit'
+
+    end
+
     s.subspec 'All' do |all|
 
         all.dependency          'Espresso/Core'
         all.dependency          'Espresso/UIKit'
         all.dependency          'Espresso/Rx'
         all.dependency          'Espresso/Rx-UIKit'
+        all.dependency          'Espresso/Combine-UIKit'
 
     end
 

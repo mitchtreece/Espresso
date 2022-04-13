@@ -28,22 +28,12 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
         
         if !self.isBinded {
             
-            self.isBinded = true
             bindComponents()
             bindModel()
             
+            self.isBinded = true
+            
         }
-        
-    }
-    
-    /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
-    ///
-    /// The view controller's `componentDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
-    open func bindComponents() {
-        
-        // Override me
-        self.componentDisposeBag = DisposeBag()
         
     }
     
@@ -55,6 +45,17 @@ open class RxViewModelViewController<V: ViewModel>: UIViewModelViewController<V>
         
         // Override me
         self.modelDisposeBag = DisposeBag()
+        
+    }
+    
+    /// Binding function called once in `viewWillAppear(animated:)`. Override this to setup custom component bindings.
+    ///
+    /// The view controller's `componentDisposeBag` is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
+    open func bindComponents() {
+        
+        // Override me
+        self.componentDisposeBag = DisposeBag()
         
     }
     
