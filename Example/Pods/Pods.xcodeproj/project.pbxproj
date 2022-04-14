@@ -79,6 +79,8 @@
 		2629FFEE2806B7AB0053FB82 /* CancellableBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFED2806B7AB0053FB82 /* CancellableBag.swift */; };
 		2629FFF02806BAFF0053FB82 /* Event+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFEF2806BAFF0053FB82 /* Event+Combine.swift */; };
 		2629FFF22806BD650053FB82 /* TriggerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFF12806BD650053FB82 /* TriggerPublisher.swift */; };
+		2629FFF92807DD6E0053FB82 /* GuaranteePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFF82807DD6E0053FB82 /* GuaranteePublisher.swift */; };
+		2629FFFB2807DDB30053FB82 /* GuaranteePassthroughSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFFA2807DDB30053FB82 /* GuaranteePassthroughSubject.swift */; };
 		2734B9429C02B8DB76C3B18958D22146 /* SingleAssignmentDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658F4AACA272D6EC17FDEBD8013C016 /* SingleAssignmentDisposable.swift */; };
 		27A10232B075D033E1825AA7856D57A9 /* UIBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BD520CB43DC6F6E340C5D757BA44F /* UIBaseCollectionViewCell.swift */; };
 		2898FC47EC4C7161453B0C85DD0A93D9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028AB2E1F7867A35B799DA189955B9E9 /* Queue.swift */; };
@@ -684,6 +686,8 @@
 		2629FFED2806B7AB0053FB82 /* CancellableBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableBag.swift; sourceTree = "<group>"; };
 		2629FFEF2806BAFF0053FB82 /* Event+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Combine.swift"; sourceTree = "<group>"; };
 		2629FFF12806BD650053FB82 /* TriggerPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerPublisher.swift; sourceTree = "<group>"; };
+		2629FFF82807DD6E0053FB82 /* GuaranteePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuaranteePublisher.swift; sourceTree = "<group>"; };
+		2629FFFA2807DDB30053FB82 /* GuaranteePassthroughSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuaranteePassthroughSubject.swift; sourceTree = "<group>"; };
 		2888271F2BB8047EAF82F2CA6EA91D8D /* ControlEvent+Signal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlEvent+Signal.swift"; path = "RxCocoa/Traits/Signal/ControlEvent+Signal.swift"; sourceTree = "<group>"; };
 		28F65D14685903C39CFCBF351F66AE38 /* Infallible+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+Create.swift"; path = "RxSwift/Traits/Infallible/Infallible+Create.swift"; sourceTree = "<group>"; };
 		2AC7084362A19EB2F0C56EDB2688CE43 /* JSONType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
@@ -1310,6 +1314,8 @@
 				2629FFED2806B7AB0053FB82 /* CancellableBag.swift */,
 				2629FFEB2806B7240053FB82 /* Publisher+Espresso.swift */,
 				2629FFF12806BD650053FB82 /* TriggerPublisher.swift */,
+				2629FFF82807DD6E0053FB82 /* GuaranteePublisher.swift */,
+				2629FFFA2807DDB30053FB82 /* GuaranteePassthroughSubject.swift */,
 			);
 			name = Combine;
 			path = Espresso/Classes/Combine;
@@ -2829,6 +2835,7 @@
 				1878D5DB9CF0D6BB8975A0A2DEDC24FA /* Array+UIAnimation.swift in Sources */,
 				E2849E7929DF45E1BBEB1AF7ECA17948 /* Array+UIAnimationGroupable.swift in Sources */,
 				06E997E8F37A14C481B3591CB54A500B /* AsyncOperation.swift in Sources */,
+				2629FFF92807DD6E0053FB82 /* GuaranteePublisher.swift in Sources */,
 				F271977DAB4223088D132464FF15B17C /* Bool+Espresso.swift in Sources */,
 				0996A2FF02DF85D2A07F33CF46879A2B /* BooleanType.swift in Sources */,
 				EA0CCBBAB221A1D62305AE0EF3B86AA1 /* CaseIterable.swift in Sources */,
@@ -2933,6 +2940,7 @@
 				6F1C1F69971025E4ECBC9240EC92EC2F /* UIViewControllerTransition.swift in Sources */,
 				8E14F4B8B7E8A88B06F273AC1695044B /* UIViewControllerTransitionAnimator.swift in Sources */,
 				6F88564B15483B35613F204134585995 /* UIViewControllerTransitionInteractor.swift in Sources */,
+				2629FFFB2807DDB30053FB82 /* GuaranteePassthroughSubject.swift in Sources */,
 				890B72C0D53964D35573A074A3D89B6D /* UIViewModel.swift in Sources */,
 				67288346B21A7BBCE82E3C4D4FC0EB53 /* UIViewModelCollectionViewCell.swift in Sources */,
 				2629FFEC2806B7240053FB82 /* Publisher+Espresso.swift in Sources */,

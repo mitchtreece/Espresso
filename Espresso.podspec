@@ -75,6 +75,7 @@ Pod::Spec.new do |s|
         all.dependency          'Espresso/UIKit'
         all.dependency          'Espresso/Rx'
         all.dependency          'Espresso/Rx-UIKit'
+        all.dependency          'Espresso/Combine'
         all.dependency          'Espresso/Combine-UIKit'
 
     end
