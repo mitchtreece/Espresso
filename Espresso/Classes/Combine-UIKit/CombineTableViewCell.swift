@@ -1,22 +1,22 @@
 //
-//  RxTableViewCell.swift
+//  CombineTableViewCell.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 11/3/18.
+//  Created by Mitch Treece on 4/12/22.
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import Combine
 
-/// An Rx-based `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
-open class RxTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
+/// A Combine-based `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
+@available(iOS 13, *)
+open class CombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     
-    /// The cell's model dispose bag.
-    public private(set) var modelBag: DisposeBag!
+    /// The cell's model cancellable bag.
+    public var modelBag: CancellableBag!
     
-    // The cell's component dispose bag.
-    public private(set) var componentBag: DisposeBag!
+    // The cell's component cancellable bag.
+    public var componentBag: CancellableBag!
     
     open override func awakeFromNib() {
         
@@ -36,22 +36,19 @@ open class RxTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     /// Binding function called in `setup(viewModel:)`.
     /// Override this to setup custom model bindings.
     ///
-    /// The cell's model dispose bag is created when this is called.
+    /// The cell's model cancellable bag is created when this is called.
     /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelBag`.
     open func bindModel() {
-        self.modelBag = DisposeBag()
+        self.modelBag = CancellableBag()
     }
     
     /// Binding function called in `awakeFromNib()`.
     /// Override this to setup custom component bindings.
     ///
-    /// The cell's component dispose bag is created when this is called.
+    /// The cell's component cancellable bag is created when this is called.
     /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentBag`.
     open func bindComponents() {
-        
-        // Override me
-        self.componentBag = DisposeBag()
-        
+        self.componentBag = CancellableBag()
     }
     
 }

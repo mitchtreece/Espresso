@@ -13,10 +13,10 @@ import RxCocoa
 open class RxCollectionViewCell<V: ViewModel>: UIViewModelCollectionViewCell<V> {
     
     /// The cell's model dispose bag.
-    public private(set) var modelDisposeBag: DisposeBag!
+    public private(set) var modelBag: DisposeBag!
     
     // The cell's component dispose bag.
-    public private(set) var componentDisposeBag: DisposeBag!
+    public private(set) var componentBag: DisposeBag!
     
     open override func awakeFromNib() {
         
@@ -33,26 +33,22 @@ open class RxCollectionViewCell<V: ViewModel>: UIViewModelCollectionViewCell<V> 
         
     }
     
-    /// Binding function called in `awakeFromNib()`. Override this to setup custom component bindings.
+    /// Binding function called in `setup(viewModel:)`.
+    /// Override this to setup custom model bindings.
     ///
-    /// The cell's `componentDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentDisposeBag`.
-    open func bindComponents() {
-        
-        // Override me
-        self.componentDisposeBag = DisposeBag()
-        
+    /// The cell's model dispose bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelBag`.
+    open func bindModel() {
+        self.modelBag = DisposeBag()
     }
     
-    /// Binding function called in `setup(viewModel:)`. Override this to setup custom model bindings.
+    /// Binding function called in `awakeFromNib()`.
+    /// Override this to setup custom component bindings.
     ///
-    /// The cell's `modelDisposeBag` is created when this is called.
-    /// Subclasses that override this function should call `super.bindModel()` **before** accessing the `modelDisposeBag`.
-    open func bindModel() {
-        
-        // Override me
-        self.modelDisposeBag = DisposeBag()
-        
+    /// The cell's component dispose bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindComponents()` **before** accessing the `componentBag`.
+    open func bindComponents() {
+        self.componentBag = DisposeBag()
     }
     
 }

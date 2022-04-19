@@ -10,12 +10,13 @@ import UIKit
 import Espresso
 import SnapKit
 
-protocol RootViewControllerDelegate: class {
+protocol RootViewControllerDelegate: AnyObject {
     
     func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
     func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow)
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
-    
+    func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
+
 }
 
 class RootViewController: UIViewController {
@@ -69,6 +70,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
         case transition
         case rxMvvm
+        case combine
         case taptics
         case helpers
         case menus
@@ -150,6 +152,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    private enum CombineRow: Int, CaseIterable {
+        
+        case viewController
+        
+        var title: String {
+            
+            switch self {
+            case .viewController: return "UIViewController"
+            }
+            
+        }
+        
+    }
+    
     private enum TapticRow: Int, CaseIterable {
         
         case selection
@@ -216,6 +232,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .transition: return "Transitions"
         case .menus: return "Menus"
         case .rxMvvm: return "Rx / MVVM"
+        case .combine: return "Combine"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
         }
@@ -230,6 +247,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .transition: return TransitionRow.allCases.count
         case .menus: return MenuRow.allCases.count
         case .rxMvvm: return RxMvvmRow.allCases.count
+        case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
         }
@@ -258,6 +276,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
+        case .combine:
+            
+            guard let row = CombineRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+        
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -303,6 +326,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
             switch row {
             case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
+            }
+            
+        case .combine:
+            
+            guard let row = CombineRow(rawValue: indexPath.row) else { return }
+
+            switch row {
+            case .viewController: self.delegate?.rootViewControllerWantsToPresentCombineViewController(self)
             }
             
         case .taptics:

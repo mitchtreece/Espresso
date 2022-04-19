@@ -1,15 +1,16 @@
 //
-//  RxViewController.swift
+//  CombineViewController.swift
 //  Espresso_Example
 //
-//  Created by Mitch Treece on 11/3/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Created by Mitch Treece on 4/12/22.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import Espresso
 import SnapKit
 
-class RxViewController: RxViewModelViewController<RxViewModel> {
+@available(iOS 13, *)
+class CombineViewController: CombineViewModelViewController<CombineViewModel> {
     
     private var barItem: UIBarButtonItem!
     private var label: UILabel!
@@ -41,13 +42,15 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         super.bindModel()
         
         self.events.viewDidAppear
-            .asObservable()
-            .bind { _ in print("☕️ RxViewController did appear") }
-            .disposed(by: self.modelBag)
+            .asPublisher()
+            .sink { print("☕️ CombineViewController did appear") }
+            .store(in: &self.modelBag)
         
-        self.viewModel.labelText.asObservable()
-            .bind(to: self.label.rx.text)
-            .disposed(by: self.modelBag)
+        self.viewModel.$labelText
+            .receive(on: DispatchQueue.main)
+            .map { $0 as String? }
+            .assign(to: \.text, on: self.label)
+            .store(in: &self.modelBag)
         
     }
     
@@ -55,9 +58,9 @@ class RxViewController: RxViewModelViewController<RxViewModel> {
         
         super.bindComponents()
         
-        self.barItem.rx.tap
-            .bind { self.viewModel.updateText() }
-            .disposed(by: self.componentBag)
+        self.barItem.actionPublisher
+            .sink { self.viewModel.updateText() }
+            .store(in: &self.componentBag)
         
     }
     

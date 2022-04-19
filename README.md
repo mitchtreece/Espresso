@@ -28,6 +28,8 @@ pod 'Espresso', '~> 2.0'
 Espresso is broken down into several subspecs:
 - **Core**: `Foundation` classes & extensions
 - **UIKit (default)**: `UIKit` classes & extensions
+- **Combine**: `Combine` classes & extensions
+- **Combine-UIKit**: `UIKit`-specific Combine classes & extensions. This includes the `Combine` & `UIKit` subspecs.
 - **Rx**: [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions
 - **Rx-UIKit**: `UIKit`-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions. This includes the `Rx` & `UIKit` subspecs
 - **All**: Includes all of the above subspecs
