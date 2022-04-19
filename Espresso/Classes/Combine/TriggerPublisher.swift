@@ -11,7 +11,7 @@ import Combine
 @available(iOS 13, *)
 public class TriggerPublisher {
     
-    private let subject = PassthroughSubject<Void, Never>()
+    private let subject = GuaranteePassthroughSubject<Void>()
     
     public init() {
         //
@@ -21,7 +21,7 @@ public class TriggerPublisher {
         self.subject.send(())
     }
     
-    public func asPublisher() -> AnyPublisher<Void, Never> {
+    public func asPublisher() -> GuaranteePublisher<Void> {
         return self.subject.eraseToAnyPublisher()
     }
     
