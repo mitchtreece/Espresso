@@ -12,10 +12,10 @@ import Combine
 @available(iOS 13, *)
 open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
-    // The view controller's model cancellable bag.
+    /// The view controller's model cancellable bag.
     public var modelBag: CancellableBag!
     
-    // The view controller's component cancellable bag.
+    /// The view controller's component cancellable bag.
     public var componentBag: CancellableBag!
 
     /// Flag indicating if binding functions have been called yet.

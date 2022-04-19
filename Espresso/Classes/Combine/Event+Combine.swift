@@ -12,7 +12,7 @@ public extension Event /* Combine */ {
     
     /// The event as a publisher.
     /// - returns: An `Event` publisher.
-    func asPublisher() -> AnyPublisher<V, Never> {
+    func asPublisher() -> GuaranteePublisher<V> {
         
         return CombineEvent(event: self)
             .asPublisher()
@@ -26,7 +26,7 @@ public extension VoidEvent /* Combine */ {
     
     /// The event as an observable.
     /// - returns: A `VoidEvent` publisher.
-    func asPublisher() -> AnyPublisher<Void, Never> {
+    func asPublisher() -> GuaranteePublisher<Void> {
 
         return CombineVoidEvent(event: self)
             .asPublisher()
@@ -39,7 +39,7 @@ public extension VoidEvent /* Combine */ {
 private class CombineEvent<V> {
     
     private let event: Event<V>
-    private let subject = PassthroughSubject<V, Never>()
+    private let subject = GuaranteePassthroughSubject<V>()
     
     init(event: Event<V>) {
         
@@ -51,7 +51,7 @@ private class CombineEvent<V> {
         
     }
     
-    func asPublisher() -> AnyPublisher<V, Never> {
+    func asPublisher() -> GuaranteePublisher<V> {
         return self.subject.eraseToAnyPublisher()
     }
     
@@ -61,7 +61,7 @@ private class CombineEvent<V> {
 private class CombineVoidEvent {
     
     private let event: VoidEvent
-    private let subject = PassthroughSubject<Void, Never>()
+    private let subject = GuaranteePassthroughSubject<Void>()
     
     init(event: VoidEvent) {
         
@@ -73,7 +73,7 @@ private class CombineVoidEvent {
         
     }
     
-    func asPublisher() -> AnyPublisher<Void, Never> {
+    func asPublisher() -> GuaranteePublisher<Void> {
         return self.subject.eraseToAnyPublisher()
     }
     

@@ -12,7 +12,7 @@ import Combine
 public extension UIBarButtonItem {
     
     /// A publisher that emits when the `UIBarButtonItem` action is invoked.
-    var actionPublisher: AnyPublisher<Void, Never> {
+    var actionPublisher: GuaranteePublisher<Void> {
         
         return Publishers.TargetAction(
             control: self,

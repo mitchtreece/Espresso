@@ -15,7 +15,7 @@ open class CombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     /// The cell's model cancellable bag.
     public var modelBag: CancellableBag!
     
-    // The cell's component cancellable bag.
+    /// The cell's component cancellable bag.
     public var componentBag: CancellableBag!
     
     open override func awakeFromNib() {

@@ -15,7 +15,7 @@ open class RxCollectionViewCell<V: ViewModel>: UIViewModelCollectionViewCell<V> 
     /// The cell's model dispose bag.
     public private(set) var modelBag: DisposeBag!
     
-    // The cell's component dispose bag.
+    /// The cell's component dispose bag.
     public private(set) var componentBag: DisposeBag!
     
     open override func awakeFromNib() {

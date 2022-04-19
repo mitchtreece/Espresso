@@ -12,7 +12,7 @@ import Combine
 public extension UIControl {
     
     /// A publisher that emits when a given `UIControl.Event` is received.
-    func eventPublisher(for events: Event) -> AnyPublisher<Void, Never> {
+    func eventPublisher(for events: Event) -> GuaranteePublisher<Void> {
         
         return Publishers.UIControlEvent(
             control: self,

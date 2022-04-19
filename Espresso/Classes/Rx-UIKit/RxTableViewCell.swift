@@ -15,7 +15,7 @@ open class RxTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     /// The cell's model dispose bag.
     public private(set) var modelBag: DisposeBag!
     
-    // The cell's component dispose bag.
+    /// The cell's component dispose bag.
     public private(set) var componentBag: DisposeBag!
     
     open override func awakeFromNib() {
