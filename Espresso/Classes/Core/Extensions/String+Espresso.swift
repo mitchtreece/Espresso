@@ -153,3 +153,39 @@ public extension String /* Random */ {
     }
     
 }
+
+public extension String /* Number */ {
+    
+    var isNumber: Bool {
+        
+        guard let regex = try? NSRegularExpression(pattern: "[0-9]+") else { return false }
+        return firstMatch(for: regex).map { $0 == self } ?? false
+        
+    }
+    
+}
+
+public extension String /* Regex */ {
+    
+    func rangeOfFirstMatch(for regex: NSRegularExpression) -> NSRange {
+        
+        return regex.rangeOfFirstMatch(
+            in: self,
+            range: NSRange(location: 0, length: self.count)
+        )
+        
+    }
+
+    func firstMatch(for regex: NSRegularExpression) -> String? {
+        
+        return regex
+            .firstMatch(
+                in: self,
+                range: NSRange(location: 0, length: self.count)
+            )
+            .map { Range($0.range, in: self)! }
+            .map { String(self[$0]) }
+        
+    }
+    
+}

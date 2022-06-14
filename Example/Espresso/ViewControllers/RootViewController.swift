@@ -348,11 +348,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             switch row {
             case .deviceInfo:
                 
-                let info = UIDevice.current.info()
-                let isSimulator = UIDevice.current.isSimulator
-                
-                let title = isSimulator ? "\(info.displayName) (Simulator)" : info.displayName
-                let message = "System Version: \(info.systemVersion)\nJailbroken: \(info.isJailbroken)"
+                let device = AppleDevice.current()
+                let title = device.isSimulator ? "\(device.generationalName) (Simulator)" : device.generationalName
+                let message = "\(device.software.name): \(device.currentSoftwareVersion)\nJailbroken: \(device.isJailbroken)"
                 
                 let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))

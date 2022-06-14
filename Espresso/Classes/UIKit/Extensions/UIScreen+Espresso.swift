@@ -41,7 +41,7 @@ public extension UIScreen /* Features */ {
     /// The screen's corner radius.
     var cornerRadius: CGFloat {
         
-        guard UIDevice.current.isModern else { return 0 }
+        guard AppleDevice.current().isModern else { return 0 }
         
         // NOTE: I'm not sure if iPhone & iPad have the same corner radii.
         // I should double check this.
@@ -50,49 +50,49 @@ public extension UIScreen /* Features */ {
         
     }
     
-//    /// The screen's notch.
-//    var notch: UINotch? {
-//
-//        guard UIDevice.current.isModernPhone else { return nil }
-//        return UINotch(screen: self)
-//
-//    }
-//
-//    /// The screen's home-grabber.
-//    var homeGrabber: UIHomeGrabber? {
-//
-//        guard UIDevice.current.isModern else { return nil }
-//        return UIHomeGrabber(screen: self)
-//
-//    }
-//
-//    /// The screen's feature insets.
-//    ///
-//    /// This takes into account things like: status-bars, notches, home-grabbers, etc.
-//    var featureInsets: UIEdgeInsets {
-//
-//        let statusBar = UIApplication.shared
-//            .statusBarFrame
-//            .height
-//
-//        guard UIDevice.current.isModern else {
-//
-//            return UIEdgeInsets(
-//                top: statusBar,
-//                left: 0,
-//                bottom: 0,
-//                right: 0
-//            )
-//
-//        }
-//
-//        return UIEdgeInsets(
-//            top: statusBar,
-//            left: 0,
-//            bottom: self.homeGrabber?.size.height ?? 0,
-//            right: 0
-//        )
-//
-//    }
+    /// The screen's notch.
+    var notch: UINotch? {
+
+        guard AppleDevice.current().isModernPhone else { return nil }
+        return UINotch(screen: self)
+
+    }
+
+    /// The screen's home-grabber.
+    var homeGrabber: UIHomeGrabber? {
+
+        guard AppleDevice.current().isModern else { return nil }
+        return UIHomeGrabber(screen: self)
+
+    }
+
+    /// The screen's feature insets.
+    ///
+    /// This takes into account things like: status-bars, notches, home-grabbers, etc.
+    var featureInsets: UIEdgeInsets {
+
+        let statusBar = UIApplication.shared
+            .statusBarFrame
+            .height
+
+        guard AppleDevice.current().isModern else {
+
+            return UIEdgeInsets(
+                top: statusBar,
+                left: 0,
+                bottom: 0,
+                right: 0
+            )
+
+        }
+
+        return UIEdgeInsets(
+            top: statusBar,
+            left: 0,
+            bottom: self.homeGrabber?.size.height ?? 0,
+            right: 0
+        )
+
+    }
     
 }
