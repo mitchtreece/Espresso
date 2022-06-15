@@ -18,74 +18,105 @@ public extension UIDevice {
     
     /// Flag indicating whether this device is a simulator.
     var isSimulator: Bool {
-        return asAppleDevice().isSimulator
+        
+        return asAppleDevice()
+            .isSimulator
+        
     }
     
     /// Flag indicating whether this device is an iPhone.
     var isPhone: Bool {
-        return asAppleDevice().isPhone
+        
+        return asAppleDevice()
+            .isPhone
+        
     }
     
     /// Flag indicating whether this device is an iPad.
     var isPad: Bool {
-        return asAppleDevice().isPad
+        
+        return asAppleDevice()
+            .isPad
+        
     }
     
     /// Flag indicating whether this device is an iPod.
     var isPod: Bool {
-        return asAppleDevice().isPod
+        
+        return asAppleDevice()
+            .isPod
+        
     }
     
     /// Flag indicating whether this device is an Apple TV.
     var isTV: Bool {
-        return asAppleDevice().isTV
+        
+        return asAppleDevice()
+            .isTV
+        
     }
     
     /// Flag indicating whether this device is modern (edge-to-edge screen without a home button).
     var isModern: Bool {
-        return asAppleDevice().isModern
+        
+        return asAppleDevice()
+            .isModern
+        
     }
     
     /// Flag indicating whether this device is legacy (non-edge-to-edge screen with a home button).
     var isLegacy: Bool {
-        return asAppleDevice().isLegacy
+        
+        return asAppleDevice()
+            .isLegacy
+        
     }
     
     /// Flag indicating whether this device is a modern iPhone (edge-to-edge screen without a home button).
     var isModernPhone: Bool {
-        return asAppleDevice().isModernPhone
+        
+        return asAppleDevice()
+            .isModernPhone
+        
     }
     
     /// Flag indicating whether this device is a legacy iPhone (non-edge-to-edge screen with a home button).
     var isLegacyPhone: Bool {
-        return asAppleDevice().isLegacyPhone
+        
+        return asAppleDevice()
+            .isLegacyPhone
+        
     }
     
     /// Flag indicating whether this device is a modern iPad (edge-to-edge screen without a home button).
     var isModernPad: Bool {
-        return asAppleDevice().isModernPad
+        
+        return asAppleDevice()
+            .isModernPad
+        
     }
     
     /// Flag indicating whether this device is a legacy iPad (non-edge-to-edge screen with a home button).
     var isLegacyPad: Bool {
-        return asAppleDevice().isLegacyPad
+        
+        return asAppleDevice()
+            .isLegacyPad
+        
     }
     
     /// Flag indicating whether this device is jailbroken.
     ///
     /// This is a simple check and **not** guaranteed to be accurate.
     var isJailbroken: Bool {
-        return asAppleDevice().isJailbroken
+        
+        return asAppleDevice()
+            .isJailbroken
+        
     }
     
     /// Gets the Apple device representation of this `UIDevice`.
-    func asAppleDevice() -> LocalAppleDevice {
-        
-        return LocalAppleDevice(
-            identifier: modelIdentifier(simulatorPrefix: true),
-            uiDevice: self
-        )
-                
+    func asAppleDevice() -> AppleDevice {
+        return AppleDevice(device: self)
     }
     
     internal func modelIdentifier(simulatorPrefix: Bool) -> String {

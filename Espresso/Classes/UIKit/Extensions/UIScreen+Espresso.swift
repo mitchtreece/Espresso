@@ -41,7 +41,7 @@ public extension UIScreen /* Features */ {
     /// The screen's corner radius.
     var cornerRadius: CGFloat {
         
-        guard AppleDevice.current().isModern else { return 0 }
+        guard AppleDevice.current.isModern else { return 0 }
         
         // NOTE: I'm not sure if iPhone & iPad have the same corner radii.
         // I should double check this.
@@ -53,7 +53,7 @@ public extension UIScreen /* Features */ {
     /// The screen's notch.
     var notch: UINotch? {
 
-        guard AppleDevice.current().isModernPhone else { return nil }
+        guard AppleDevice.current.isModernPhone else { return nil }
         return UINotch(screen: self)
 
     }
@@ -61,7 +61,7 @@ public extension UIScreen /* Features */ {
     /// The screen's home-grabber.
     var homeGrabber: UIHomeGrabber? {
 
-        guard AppleDevice.current().isModern else { return nil }
+        guard AppleDevice.current.isModern else { return nil }
         return UIHomeGrabber(screen: self)
 
     }
@@ -75,7 +75,7 @@ public extension UIScreen /* Features */ {
             .statusBarFrame
             .height
 
-        guard AppleDevice.current().isModern else {
+        guard AppleDevice.current.isModern else {
 
             return UIEdgeInsets(
                 top: statusBar,

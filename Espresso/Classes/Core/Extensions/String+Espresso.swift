@@ -156,10 +156,13 @@ public extension String /* Random */ {
 
 public extension String /* Number */ {
     
+    /// Flag indicating whether the string can be represented as a whole number.
     var isNumber: Bool {
         
         guard let regex = try? NSRegularExpression(pattern: "[0-9]+") else { return false }
-        return firstMatch(for: regex).map { $0 == self } ?? false
+        
+        return firstMatch(for: regex)
+            .map { $0 == self } ?? false
         
     }
     
@@ -167,6 +170,9 @@ public extension String /* Number */ {
 
 public extension String /* Regex */ {
     
+    /// Returns the range of the first match of a regular expression within the string.
+    /// - parameter regex: The regular expression.
+    /// - returns: The range of the first match. Returns {NSNotFound, 0} if no match is found.
     func rangeOfFirstMatch(for regex: NSRegularExpression) -> NSRange {
         
         return regex.rangeOfFirstMatch(
@@ -176,15 +182,20 @@ public extension String /* Regex */ {
         
     }
 
+    /// Returns the first match of the regular expression within the string.
+    /// - parameter regex: The regular expression.
+    /// - returns: The first match.
     func firstMatch(for regex: NSRegularExpression) -> String? {
         
         return regex
             .firstMatch(
                 in: self,
-                range: NSRange(location: 0, length: self.count)
-            )
-            .map { Range($0.range, in: self)! }
-            .map { String(self[$0]) }
+                range: NSRange(
+                    location: 0,
+                    length: self.count
+                ))
+                .map { Range($0.range, in: self)! }
+                .map { String(self[$0]) }
         
     }
     

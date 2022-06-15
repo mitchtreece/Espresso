@@ -1,22 +1,23 @@
+////
+////  Bundle+Version.swift
+////  Espresso
+////
+////  Created by Mitch Treece on 6/14/22.
+////
 //
-//  Bundle+Version.swift
-//  Espresso
+//import Foundation
 //
-//  Created by Mitch Treece on 6/14/22.
+//public extension Bundle {
 //
-
-import Foundation
-
-public extension Bundle {
-    
-    var version: Version? {
-        
-        if let bundleVersion = self.infoDictionary?["CFBundleShortVersionString"] as? String {
-            return try? Version(bundleVersion)
-        }
-        
-        return nil
-        
-    }
-    
-}
+//    /// The bundle's version.
+//    var version: Version? {
+//
+//        if let bundleVersion = self.infoDictionary?["CFBundleShortVersionString"] as? String {
+//            return try? Version(bundleVersion)
+//        }
+//
+//        return nil
+//
+//    }
+//
+//}
