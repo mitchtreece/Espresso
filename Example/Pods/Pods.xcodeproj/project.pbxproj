@@ -85,15 +85,12 @@
 		263AC4272857D2F10069102C /* VersionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC4262857D2F10069102C /* VersionParser.swift */; };
 		263AC4292857FD090069102C /* UIDevice+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC4282857FD090069102C /* UIDevice+Espresso.swift */; };
 		263AC42C285803F00069102C /* AppleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC42B285803F00069102C /* AppleDevice.swift */; };
-		263AC4302858780B0069102C /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC42F2858780B0069102C /* Bundle+Version.swift */; };
+		263AC4302858780B0069102C /* Version+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC42F2858780B0069102C /* Version+Bundle.swift */; };
 		263AC432285878E60069102C /* Scanner+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC431285878E60069102C /* Scanner+Espresso.swift */; };
 		263AC434285946F40069102C /* AppleDevice+DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC433285946F40069102C /* AppleDevice+DeviceType.swift */; };
 		263AC436285947E50069102C /* AppleDevice+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC435285947E50069102C /* AppleDevice+Helpers.swift */; };
-		263AC438285956170069102C /* NewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC437285956170069102C /* NewVersion.swift */; };
-		263AC43A2859B1D40069102C /* NewVersion+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC4392859B1D40069102C /* NewVersion+Bundle.swift */; };
-		263AC43C2859B7470069102C /* NewVersion+ProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43B2859B7470069102C /* NewVersion+ProcessInfo.swift */; };
-		263AC43E2859B7C70069102C /* NewVersion+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43D2859B7C70069102C /* NewVersion+Range.swift */; };
-		263AC440285A5F6B0069102C /* NewVersion+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* NewVersion+Codable.swift */; };
+		263AC43E2859B7C70069102C /* Version+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43D2859B7C70069102C /* Version+Range.swift */; };
+		263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* Version+Codable.swift */; };
 		2734B9429C02B8DB76C3B18958D22146 /* SingleAssignmentDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658F4AACA272D6EC17FDEBD8013C016 /* SingleAssignmentDisposable.swift */; };
 		27A10232B075D033E1825AA7856D57A9 /* UIBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BD520CB43DC6F6E340C5D757BA44F /* UIBaseCollectionViewCell.swift */; };
 		2898FC47EC4C7161453B0C85DD0A93D9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028AB2E1F7867A35B799DA189955B9E9 /* Queue.swift */; };
@@ -703,15 +700,12 @@
 		263AC4262857D2F10069102C /* VersionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionParser.swift; sourceTree = "<group>"; };
 		263AC4282857FD090069102C /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
 		263AC42B285803F00069102C /* AppleDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleDevice.swift; sourceTree = "<group>"; };
-		263AC42F2858780B0069102C /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
+		263AC42F2858780B0069102C /* Version+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Bundle.swift"; sourceTree = "<group>"; };
 		263AC431285878E60069102C /* Scanner+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scanner+Espresso.swift"; sourceTree = "<group>"; };
 		263AC433285946F40069102C /* AppleDevice+DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleDevice+DeviceType.swift"; sourceTree = "<group>"; };
 		263AC435285947E50069102C /* AppleDevice+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleDevice+Helpers.swift"; sourceTree = "<group>"; };
-		263AC437285956170069102C /* NewVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVersion.swift; sourceTree = "<group>"; };
-		263AC4392859B1D40069102C /* NewVersion+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewVersion+Bundle.swift"; sourceTree = "<group>"; };
-		263AC43B2859B7470069102C /* NewVersion+ProcessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewVersion+ProcessInfo.swift"; sourceTree = "<group>"; };
-		263AC43D2859B7C70069102C /* NewVersion+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewVersion+Range.swift"; sourceTree = "<group>"; };
-		263AC43F285A5F6B0069102C /* NewVersion+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewVersion+Codable.swift"; sourceTree = "<group>"; };
+		263AC43D2859B7C70069102C /* Version+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Range.swift"; sourceTree = "<group>"; };
+		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
 		2888271F2BB8047EAF82F2CA6EA91D8D /* ControlEvent+Signal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlEvent+Signal.swift"; path = "RxCocoa/Traits/Signal/ControlEvent+Signal.swift"; sourceTree = "<group>"; };
 		28F65D14685903C39CFCBF351F66AE38 /* Infallible+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+Create.swift"; path = "RxSwift/Traits/Infallible/Infallible+Create.swift"; sourceTree = "<group>"; };
 		2AC7084362A19EB2F0C56EDB2688CE43 /* JSONType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
@@ -1348,14 +1342,11 @@
 		263AC4252857D2300069102C /* Version */ = {
 			isa = PBXGroup;
 			children = (
-				263AC437285956170069102C /* NewVersion.swift */,
-				263AC43D2859B7C70069102C /* NewVersion+Range.swift */,
-				263AC43F285A5F6B0069102C /* NewVersion+Codable.swift */,
-				263AC4392859B1D40069102C /* NewVersion+Bundle.swift */,
-				263AC43B2859B7470069102C /* NewVersion+ProcessInfo.swift */,
 				263AC4232857CDE00069102C /* Version.swift */,
+				263AC43D2859B7C70069102C /* Version+Range.swift */,
+				263AC43F285A5F6B0069102C /* Version+Codable.swift */,
+				263AC42F2858780B0069102C /* Version+Bundle.swift */,
 				263AC4262857D2F10069102C /* VersionParser.swift */,
-				263AC42F2858780B0069102C /* Bundle+Version.swift */,
 			);
 			name = Version;
 			path = Espresso/Classes/Core/Version;
@@ -2913,7 +2904,6 @@
 				97A112F11AE75E0B77662490F7D922FE /* Float+Espresso.swift in Sources */,
 				2BC25325738E19B72AB8544C76E5EF51 /* ImageType.swift in Sources */,
 				A4B6D031AED63007843646CFBFCF462B /* IndexPath+Espresso.swift in Sources */,
-				263AC43A2859B1D40069102C /* NewVersion+Bundle.swift in Sources */,
 				682E9A026E54A184A418D7C51CE6FBC8 /* JSONType.swift in Sources */,
 				C35DD71CB68BAAFB0F9CCD6E5499137E /* Key.swift in Sources */,
 				E55FEC7D2B83038C90CEDF2E6D5A4990 /* KeyStore.swift in Sources */,
@@ -2923,7 +2913,6 @@
 				655C8EE8C207506A24FA053EE63FDA31 /* NotificationObserver.swift in Sources */,
 				4DA4738D33461BA0669F674394F52C71 /* ObservableType+Espresso.swift in Sources */,
 				6D2FE474CDDE09E8BF43101BED51E1C7 /* OptionalType.swift in Sources */,
-				263AC438285956170069102C /* NewVersion.swift in Sources */,
 				9EB6BB6476923271EC5C198B27F6F2C0 /* RxCollectionViewCell.swift in Sources */,
 				0B5DEB68AE26CFAEE83590370E9694A1 /* RxTableViewCell.swift in Sources */,
 				CCF01ED175603AAD3AF3A1220AE32C06 /* RxViewModelViewController.swift in Sources */,
@@ -2943,7 +2932,7 @@
 				E10626C046B47FB0A835A7DC4F684CB4 /* UIAnimationOperation.swift in Sources */,
 				499E316C11DC29637A4267FBF3AE3F58 /* UIAnimationOperationQueue.swift in Sources */,
 				E898D99D3D12DA83BC0A910787C46806 /* UIApplication+Espresso.swift in Sources */,
-				263AC4302858780B0069102C /* Bundle+Version.swift in Sources */,
+				263AC4302858780B0069102C /* Version+Bundle.swift in Sources */,
 				263AC432285878E60069102C /* Scanner+Espresso.swift in Sources */,
 				13D64518E9AF5898BEC6781672E57A7F /* UIApplication+Events.swift in Sources */,
 				4EFAA7525ED84D5F0BD3AF22ABEF7FA1 /* UIApplicationEvents.swift in Sources */,
@@ -2976,19 +2965,18 @@
 				7268BFA29E7A96BEA7590552E0F3713E /* UIHorizontalEdgeInsets.swift in Sources */,
 				210E08189A9C40813F592F0F80765F6D /* UIImage+Espresso.swift in Sources */,
 				2E99356241E75826324811BA3C95DFB2 /* UIModalStyle.swift in Sources */,
-				263AC43C2859B7470069102C /* NewVersion+ProcessInfo.swift in Sources */,
 				12B07923F1F47C9436BF060F57A45BB0 /* UINavigationController+Espresso.swift in Sources */,
 				1821511B577ECFB0D9A3394CDDE4AA3C /* UINavigationController+UIViewControllerTransition.swift in Sources */,
 				CA0934DFB1D3DDF71C66709A2F87CA5E /* UINibView.swift in Sources */,
 				42D9DE3D5BF9A8BFAA04B5B77F62D257 /* UINotch.swift in Sources */,
-				263AC43E2859B7C70069102C /* NewVersion+Range.swift in Sources */,
+				263AC43E2859B7C70069102C /* Version+Range.swift in Sources */,
 				B8B5D51C4A3D7E6463331EAEA4377BD8 /* UIPushBackTransition.swift in Sources */,
 				39F3A1BC66BDBF900A72795C8829E100 /* UIRectCorner+Espresso.swift in Sources */,
 				E99FE8AC7CE6CD014F0AB4D538E19F68 /* UIRevealTransition.swift in Sources */,
 				D16D42469AB24AAF70FA112EC30C90E8 /* UIScreen+Espresso.swift in Sources */,
 				878A813E48790892102539D0031B791E /* UIScreenFeature.swift in Sources */,
 				16528908C7DC9C17BF104E1E5D6CCFC5 /* UISlideTransition.swift in Sources */,
-				263AC440285A5F6B0069102C /* NewVersion+Codable.swift in Sources */,
+				263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */,
 				6A3A1CBA26AB57DB850D31DC88D10910 /* UISwapTransition.swift in Sources */,
 				DDE9B95BCDDB06A4D7AB4120F4AF0872 /* UITableView+Espresso.swift in Sources */,
 				2629FFD4280652620053FB82 /* CombineTableViewCell.swift in Sources */,
