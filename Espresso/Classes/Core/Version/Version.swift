@@ -10,46 +10,75 @@ import Foundation
 /// Representation of a semantic version (SemVer) number.
 public struct Version {
     
-    public enum Component {
+    /// Representation of the various semantic version components.
+    public enum Component: String {
         
+        /// A major version component.
         case major
+        
+        /// A minor version component.
         case minor
+        
+        /// A patch (revision) version component.
         case patch
+        
+        /// A pre-release version component.
         case prerelease
+        
+        /// A (build) metadata version component.
         case metadata
         
     }
     
-    /// Representation of the various version-string formats.
+    /// Representation of the various string-formats a version can be represented as.
     public enum StringFormat {
         
-        /// A compact version-string format.
+        /// A compact string format.
         ///
         /// `{major}.{minor}.{patch}`
         ///
-        /// `1.2.3`
+        /// ```
+        /// "1.2.3"
+        /// ```
         case compact
         
-        /// An expanded version-string format.
+        /// An expanded string format.
         ///
-        /// `{major}.{minor}.{patch}-{prerelease}`
+        /// `{major}.{minor}.{patch}-{prerelease?}`
         ///
-        /// `1.2.3-rc.1`
+        /// ```
+        /// "1.2.3"
+        /// "1.2.3-beta"
+        /// "1.2.3-rc.1"
+        /// ```
         case expanded
         
-        /// A full version-string format.
+        /// A full string format.
         ///
-        /// `{major}.{minor}.{patch}-{prerelease}+{metadata}`
+        /// `{major}.{minor}.{patch}-{prerelease?}+{metadata?}`
         ///
-        /// `1.2.3-rc.1+SHA.a0f21`
+        ///
+        /// ```
+        /// "1.2.3"
+        /// "1.2.3-beta"
+        /// "1.2.3-rc.1"
+        /// "1.2.3-beta+20220615"
+        /// "1.2.3-rc.1+20220615.mitchtreece"
+        /// ```
         case full
         
     }
     
+    /// Representation of the various version errors.
     public enum Error: Swift.Error {
 
+        /// An invalid string error.
         case invalidString(String, Swift.Error?)
+        
+        /// A digits-not-found error.
         case digitsNotFound(String)
+        
+        /// A parsing error.
         case parsing(Version.Component, Swift.Error)
 
         var localizedDescription: String {
@@ -61,11 +90,11 @@ public struct Version {
 
             case .digitsNotFound(let version):
 
-                return "no digits in \(version)"
+                return "\"\(version)\" doesn't contain any digits"
 
             case .parsing(let component, let error):
 
-                return "\(component) error: \(error.localizedDescription)"
+                return "error parsing component \"\(component.rawValue)\": \(error.localizedDescription)"
 
             }
 
@@ -73,14 +102,35 @@ public struct Version {
 
     }
     
+    /// The version's major component.
     public let major: String
+    
+    /// The version's minor component.
     public let minor: String
+    
+    /// The version's patch (revision) component.
     public let patch: String
+    
+    /// The version's pre-release identifiers component.
     public let prerelease: [String]
+    
+    
+    /// The version's (build) metadata component.
     public let metadata: [String]
         
+    /// An invalid-value version.
+    ///
+    /// `0.0.0`
     public static let invalid = Version(0, 0, 0)
+    
+    /// A minimum-value version.
+    ///
+    /// `0.0.1`
     public static let min = Version(0, 0, 1)
+    
+    /// A maximum-value version.
+    ///
+    /// `999.999.999`
     public static let max = Version(999, 999, 999)
     
     internal static let dotDelimiter = "."
@@ -101,6 +151,14 @@ public struct Version {
         
     }
     
+    /// Initializes a version with major, minor, patch,
+    /// and optional pre-release & (build) metadata identifiers.
+    /// - parameter major: The major version.
+    /// - parameter minor: The minor version.
+    /// - parameter patch: The patch (revision) version.
+    /// - parameter prerelease: Optional prerelease identifiers; _defaults to none_.
+    /// - parameter metadata: Optional (build) metadata identifiers; _defaults to none_.
+    /// - returns: A version instance.
     public init(_ major: UInt,
                 _ minor: UInt,
                 _ patch: UInt,
@@ -117,18 +175,29 @@ public struct Version {
         
     }
     
-    /// Parses the string as a Semver and returns the result.
+    /// Initializes a version using a string.
+    /// - parameter string: The version string.
+    /// - throws: A `Version.Error` if the string is not a valid representation of a semantic version.
     ///
-    /// - Parameter version: a string to parse.
-    /// - Throws: throw `ParsingError` if the string is not a valid representation of a semantic version.
+    /// ```
+    /// "1" => "1.0.0"
+    /// "1.2" => "1.2.0"
+    /// "1.34.0" => "1.34.0"
+    /// "1.0-beta.1+20220615" => "1.0.0-beta.1+20220615"
+    /// ```
     public init(_ string: String) throws {
         self = try VersionParser.parse(string)
     }
     
-    /// Parses the number as a Semver and returns the result.
+    /// Initializes a version using a number.
+    /// - parameter number: The version number.
+    /// - throws: A `Version.Error` if the number is not a valid representation of a semantic version.
     ///
-    /// - Parameter version: a numeric object to parse.
-    /// - Throws: throw `ParsingError` if the numeric object is not a valid representation of a semantic version.
+    /// ```
+    /// 1 => "1.0.0"
+    /// 1.2 => "1.2.0"
+    /// 1.34 => "1.34.0"
+    /// ```
     public init<T: Numeric>(_ number: T) throws {
         self = try VersionParser.parse("\(number)")
     }
