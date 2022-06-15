@@ -103,13 +103,13 @@ public struct Version {
     }
     
     /// The version's major component.
-    public let major: String
+    public let major: UInt
     
     /// The version's minor component.
-    public let minor: String
+    public let minor: UInt
     
     /// The version's patch (revision) component.
-    public let patch: String
+    public let patch: UInt
     
     /// The version's pre-release identifiers component.
     public let prerelease: [String]
@@ -136,21 +136,7 @@ public struct Version {
     internal static let dotDelimiter = "."
     internal static let prereleaseDelimiter = "-"
     internal static let metadataDelimiter = "+"
-    
-    internal init(major: String,
-                  minor: String,
-                  patch: String,
-                  prerelease: [String],
-                  metadata: [String]) {
-        
-        self.major = major
-        self.minor = minor
-        self.patch = patch
-        self.prerelease = prerelease
-        self.metadata = metadata
-        
-    }
-    
+
     /// Initializes a version with major, minor, patch,
     /// and optional pre-release & (build) metadata identifiers.
     /// - parameter major: The major version.
@@ -165,13 +151,11 @@ public struct Version {
                 prerelease: [String] = [],
                 metadata: [String] = []) {
         
-        self.init(
-            major: "\(major)",
-            minor: "\(minor)",
-            patch: "\(patch)",
-            prerelease: prerelease,
-            metadata: metadata
-        )
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.prerelease = prerelease
+        self.metadata = metadata
         
     }
     
@@ -208,9 +192,18 @@ public struct Version {
     /// - Returns: a string representation of the Version.
     public func asString(format: StringFormat = .full) -> String {
         
-        let version = [self.major, self.minor, self.patch].joined(separator: Self.dotDelimiter)
-        let prerelease = self.prerelease.joined(separator: Self.dotDelimiter)
-        let metadata = self.metadata.joined(separator: Self.dotDelimiter)
+        let version = [
+            String(self.major),
+            String(self.minor),
+            String(self.patch)
+        ]
+        .joined(separator: Self.dotDelimiter)
+        
+        let prerelease = self.prerelease
+            .joined(separator: Self.dotDelimiter)
+        
+        let metadata = self.metadata
+            .joined(separator: Self.dotDelimiter)
         
         switch format {
         case .compact: return version
@@ -235,9 +228,9 @@ extension Version: Comparable {
     
     public static func == (lhs: Version, rhs: Version) -> Bool {
         
-        let isMajorEqual = (lhs.major.compare(rhs.major, options: .numeric) == .orderedSame)
-        let isMinorEqual = (lhs.minor.compare(rhs.minor, options: .numeric) == .orderedSame)
-        let isPatchEqual = (lhs.patch.compare(rhs.patch, options: .numeric) == .orderedSame)
+        let isMajorEqual = (lhs.major == rhs.major)
+        let isMinorEqual = (lhs.minor == rhs.minor)
+        let isPatchEqual = (lhs.patch == rhs.patch)
         
         let isPrereleaseCountEqual = (lhs.prerelease.count == rhs.prerelease.count)
         let isPrereleaseIdentifiersEqual = zip(
@@ -274,7 +267,7 @@ extension Version: Comparable {
         let rhsComponents = [rhs.major, rhs.minor, rhs.patch]
 
         for (l, r) in zip(lhsComponents, rhsComponents) where l != r {
-            return (l.compare(r, options: .numeric) == .orderedAscending)
+            return (l < r)
         }
 
         if lhs.prerelease.count == 0 { return false }

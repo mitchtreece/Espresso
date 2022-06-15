@@ -17,7 +17,7 @@ internal struct VersionParser {
         let minor: String
         let patch: String
         let prereleaseIdentifiers: [String]
-        let buildIdentifiers: [String]
+        let metadataIdentifiers: [String]
 
         let validator = try NSRegularExpression(
             pattern: "^([0-9A-Za-z|\\\(Version.prereleaseDelimiter)|\\\(Version.dotDelimiter)|\\\(Version.metadataDelimiter)]+)$"
@@ -96,7 +96,7 @@ internal struct VersionParser {
 
             let range = Range(remainder.rangeOfFirstMatch(for: buildRegex), in: remainder)
 
-            buildIdentifiers = range
+            metadataIdentifiers = range
                 .map { String(remainder[$0]) }
                 .map { $0.components(separatedBy: Version.dotDelimiter) }
                 ?? []
@@ -111,13 +111,21 @@ internal struct VersionParser {
         guard remainder.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 else {
             throw VersionError.invalidString(input, nil)
         }
+        
+        guard let majorInt = UInt(major),
+              let minorInt = UInt(minor),
+              let patchInt = UInt(patch) else {
+            
+            throw VersionError.invalidString(input, nil)
+            
+        }
 
         return Version(
-            major: major,
-            minor: minor,
-            patch: patch,
+            majorInt,
+            minorInt,
+            patchInt,
             prerelease: prereleaseIdentifiers,
-            metadata: buildIdentifiers
+            metadata: metadataIdentifiers
         )
 
     }
