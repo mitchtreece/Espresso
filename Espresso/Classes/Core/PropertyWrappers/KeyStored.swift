@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Marks a property as being backed by a keyed data-store.
+/// Marks a property as being backed by a read/write keyed data-store.
 @propertyWrapper
 public struct KeyStored<T> {
     
@@ -17,15 +17,7 @@ public struct KeyStored<T> {
     
     public var wrappedValue: T? {
         get {
-
-            let _value: T? = self.store.get(self.key)
-            
-            guard let value = _value else {
-                return self.defaultValue
-            }
-            
-            return value
-            
+            return self.store.get(self.key) ?? self.defaultValue
         }
         set {
             self.store.set(value: newValue, for: self.key)
@@ -35,7 +27,7 @@ public struct KeyStored<T> {
     /// Initializes a `KeyStored` property wrapper.
     /// - parameter key: The unique key used when reading from & writing to the store.
     /// - parameter default: A default value used when reading an empty value from the store; _defaults to nil_.
-    /// - parameter store: The store to read from & write to.
+    /// - parameter store: The store to read from & write to; _defaults to UserDefaults.standard_.
     public init(_ key: Key,
                 default: T? = nil,
                 store: KeyStore = UserDefaults.standard) {
@@ -49,7 +41,7 @@ public struct KeyStored<T> {
     /// Initializes a `KeyStored` property wrapper.
     /// - parameter key: The unique key used when reading from & writing to the store.
     /// - parameter default: A default value used when reading an empty value from the store; _defaults to nil_.
-    /// - parameter store: The store to read from & write to.
+    /// - parameter store: The store to read from & write to; _defaults to UserDefaults.standard_.
     public init(_ key: String,
                 default: T? = nil,
                 store: KeyStore = UserDefaults.standard) {

@@ -93,6 +93,7 @@
 		263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* Version+Codable.swift */; };
 		26BC2BB0287763FA002F672F /* KeyStoreWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */; };
 		26BC2BB2287764CD002F672F /* KeyStoreReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */; };
+		26BC2BB528776818002F672F /* KeyStoredReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB428776818002F672F /* KeyStoredReadable.swift */; };
 		2734B9429C02B8DB76C3B18958D22146 /* SingleAssignmentDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658F4AACA272D6EC17FDEBD8013C016 /* SingleAssignmentDisposable.swift */; };
 		27A10232B075D033E1825AA7856D57A9 /* UIBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BD520CB43DC6F6E340C5D757BA44F /* UIBaseCollectionViewCell.swift */; };
 		2898FC47EC4C7161453B0C85DD0A93D9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028AB2E1F7867A35B799DA189955B9E9 /* Queue.swift */; };
@@ -710,6 +711,7 @@
 		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
 		26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreReadable.swift; sourceTree = "<group>"; };
+		26BC2BB428776818002F672F /* KeyStoredReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
 		2888271F2BB8047EAF82F2CA6EA91D8D /* ControlEvent+Signal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlEvent+Signal.swift"; path = "RxCocoa/Traits/Signal/ControlEvent+Signal.swift"; sourceTree = "<group>"; };
 		28F65D14685903C39CFCBF351F66AE38 /* Infallible+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+Create.swift"; path = "RxSwift/Traits/Infallible/Infallible+Create.swift"; sourceTree = "<group>"; };
 		2AC7084362A19EB2F0C56EDB2688CE43 /* JSONType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
@@ -1292,6 +1294,7 @@
 			isa = PBXGroup;
 			children = (
 				69C7650B5C79E466861D8315BCC08D5C /* KeyStored.swift */,
+				26BC2BB428776818002F672F /* KeyStoredReadable.swift */,
 			);
 			name = PropertyWrappers;
 			path = Espresso/Classes/Core/PropertyWrappers;
@@ -2955,6 +2958,7 @@
 				7794FED2E7158EC4E5E64A3CA60CB69F /* UIBaseTableViewCell.swift in Sources */,
 				263AC4272857D2F10069102C /* VersionParser.swift in Sources */,
 				A9673CA36D26ECADE4A601240491EAE0 /* UIBaseView.swift in Sources */,
+				26BC2BB528776818002F672F /* KeyStoredReadable.swift in Sources */,
 				0FB73E4A6E60CE027F390779AD28F3EE /* UIBaseViewController.swift in Sources */,
 				02D7FE3B1C120F64F894FC8DA4B1C325 /* UIBlurView.swift in Sources */,
 				263AC4242857CDE00069102C /* Version.swift in Sources */,
