@@ -101,6 +101,26 @@ public extension UIApplication /* Environment */ {
             
         }
         
+        /// Flag indicating if the environment is `staging`.
+        public var isStaging: Bool {
+            
+            switch self {
+            case .staging: return true
+            default: return false
+            }
+            
+        }
+        
+        /// Flag indicating if the environment is `pre-production`.
+        public var isPreProduction: Bool {
+            
+            switch self {
+            case .preproduction: return true
+            default: return false
+            }
+            
+        }
+        
         /// Flag indicating if the environment is `production`.
         public var isProduction: Bool {
             
@@ -146,9 +166,7 @@ public extension UIApplication /* Environment */ {
             return override
         }
         
-        #if DEBUG
-        return .development
-        #elseif DEVELOPMENT
+        #if DEVELOPMENT
         return .development
         #elseif STAGING
         return .staging
