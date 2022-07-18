@@ -101,26 +101,6 @@ public extension UIApplication /* Environment */ {
             
         }
         
-        /// Flag indicating if the environment is `staging`.
-        public var isStaging: Bool {
-            
-            switch self {
-            case .staging: return true
-            default: return false
-            }
-            
-        }
-        
-        /// Flag indicating if the environment is `pre-production`.
-        public var isPreProduction: Bool {
-            
-            switch self {
-            case .preproduction: return true
-            default: return false
-            }
-            
-        }
-        
         /// Flag indicating if the environment is `production`.
         public var isProduction: Bool {
             
@@ -131,18 +111,19 @@ public extension UIApplication /* Environment */ {
             
         }
         
-        /// Flag indicating if the environment is in debug mode.
+        /// Flag indicating if the environment is running in debug mode.
+        ///
+        /// This searches the processes command-line arguments for
+        /// a `DEBUG` flag.
         public var isDebug: Bool {
-                        
-            #if DEBUG
-            return true
-            #else
+            
+            if CommandLine.arguments.contains("DEBUG") {
+                return true
+            }
+            
             return false
-            #endif
             
         }
-        
-    }
     
     /// The application's environment override.
     ///
@@ -164,7 +145,7 @@ public extension UIApplication /* Environment */ {
             return override
         }
         
-        #if DEVELOPMENT
+        #if DEVELOPMENT || DEBUG
         return .development
         #elseif STAGING
         return .staging
