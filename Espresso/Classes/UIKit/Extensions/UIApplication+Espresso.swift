@@ -111,6 +111,19 @@ public extension UIApplication /* Environment */ {
             
         }
         
+        /// Flag indicating if the environment is `development` (debug).
+        public var isDebug: Bool {
+            
+            guard self.isDevelopment else { return false }
+            
+            #if DEBUG
+            return true
+            #else
+            return false
+            #endif
+            
+        }
+        
     }
     
     /// The application's environment override.
@@ -129,18 +142,20 @@ public extension UIApplication /* Environment */ {
     /// The application's current environment.
     var environment: Environment {
         
-        if let override = environmentOverride {
+        if let override = self.environmentOverride {
             return override
         }
         
         #if DEBUG
-            return Environment.development
+        return .development
+        #elseif DEVELOPMENT
+        return .development
         #elseif STAGING
-            return Environment.staging
+        return .staging
         #elseif PREPROD
-            return Environment.preproduction
+        return .preproduction
         #else
-            return Environment.production
+        return .production
         #endif
         
     }
