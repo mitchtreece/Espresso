@@ -131,11 +131,9 @@ public extension UIApplication /* Environment */ {
             
         }
         
-        /// Flag indicating if the environment is `development` (debug).
+        /// Flag indicating if the environment is in debug mode.
         public var isDebug: Bool {
-            
-            guard self.isDevelopment else { return false }
-            
+                        
             #if DEBUG
             return true
             #else
