@@ -124,6 +124,8 @@ public extension UIApplication /* Environment */ {
             return false
             
         }
+        
+    }
     
     /// The application's environment override.
     ///
