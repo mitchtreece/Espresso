@@ -12,7 +12,9 @@ open class UIContainerView: UIView {
 
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
-        guard let view = super.hitTest(point, with: event), view != self else { return nil }
+        guard let view = super.hitTest(point, with: event),
+              view != self else { return nil }
+        
         return view
         
     }

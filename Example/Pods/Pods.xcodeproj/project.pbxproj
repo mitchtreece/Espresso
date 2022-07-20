@@ -91,6 +91,8 @@
 		263AC436285947E50069102C /* AppleDevice+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC435285947E50069102C /* AppleDevice+Helpers.swift */; };
 		263AC43E2859B7C70069102C /* Version+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43D2859B7C70069102C /* Version+Range.swift */; };
 		263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* Version+Codable.swift */; };
+		26A04F142888C5D5004FB481 /* UIParallaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A04F132888C5D5004FB481 /* UIParallaxView.swift */; };
+		26A04F162888C5E8004FB481 /* UICarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A04F152888C5E8004FB481 /* UICarouselView.swift */; };
 		26BC2BB0287763FA002F672F /* KeyStoreWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */; };
 		26BC2BB2287764CD002F672F /* KeyStoreReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */; };
 		26BC2BB528776818002F672F /* KeyStoredReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB428776818002F672F /* KeyStoredReadable.swift */; };
@@ -709,6 +711,8 @@
 		263AC435285947E50069102C /* AppleDevice+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleDevice+Helpers.swift"; sourceTree = "<group>"; };
 		263AC43D2859B7C70069102C /* Version+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Range.swift"; sourceTree = "<group>"; };
 		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
+		26A04F132888C5D5004FB481 /* UIParallaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIParallaxView.swift; path = Espresso/Classes/UIKit/UIParallaxView.swift; sourceTree = "<group>"; };
+		26A04F152888C5E8004FB481 /* UICarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICarouselView.swift; path = Espresso/Classes/UIKit/UICarouselView.swift; sourceTree = "<group>"; };
 		26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreReadable.swift; sourceTree = "<group>"; };
 		26BC2BB428776818002F672F /* KeyStoredReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
@@ -1832,6 +1836,8 @@
 				7D08EDC00EADFFA177FB18C3F6BD6352 /* UINibView.swift */,
 				84AC47F396F950D4AC29955ADA2A9EA9 /* UITaptic.swift */,
 				19DB58FFAA8A28B024A1A8D69E448412 /* UIVerticalEdgeInsets.swift */,
+				26A04F132888C5D5004FB481 /* UIParallaxView.swift */,
+				26A04F152888C5E8004FB481 /* UICarouselView.swift */,
 				263AC42A285803B20069102C /* AppleDevice */,
 				5A3CDA25EF4F8031903185E436BDABF9 /* Base */,
 				F050A6E89A06ACF1B6A260DDE5FC0646 /* Extensions */,
@@ -2932,6 +2938,7 @@
 				6D2FE474CDDE09E8BF43101BED51E1C7 /* OptionalType.swift in Sources */,
 				9EB6BB6476923271EC5C198B27F6F2C0 /* RxCollectionViewCell.swift in Sources */,
 				0B5DEB68AE26CFAEE83590370E9694A1 /* RxTableViewCell.swift in Sources */,
+				26A04F162888C5E8004FB481 /* UICarouselView.swift in Sources */,
 				CCF01ED175603AAD3AF3A1220AE32C06 /* RxViewModelViewController.swift in Sources */,
 				A94EA24E2C019DD74F74397E59322CE0 /* StaticIdentifiable.swift in Sources */,
 				263AC42C285803F00069102C /* AppleDevice.swift in Sources */,
@@ -3017,6 +3024,7 @@
 				2629FFFB2807DDB30053FB82 /* GuaranteePassthroughSubject.swift in Sources */,
 				890B72C0D53964D35573A074A3D89B6D /* UIViewModel.swift in Sources */,
 				67288346B21A7BBCE82E3C4D4FC0EB53 /* UIViewModelCollectionViewCell.swift in Sources */,
+				26A04F142888C5D5004FB481 /* UIParallaxView.swift in Sources */,
 				2629FFEC2806B7240053FB82 /* Publisher+Espresso.swift in Sources */,
 				965D2E3B2577EBE1B97B5222DE988508 /* UIViewModelTableViewCell.swift in Sources */,
 				D397388979F091046DAC0C92F6C4BEBA /* UIViewModelViewController.swift in Sources */,
