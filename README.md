@@ -9,13 +9,16 @@
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
+<br>TODO: Add better overview....
 
 ## Installation
 
-- **Swift 4**: Version **<= 2.1.1**<br>
-- **Swift 5**: Version **>= 2.2.0**
+### SPM
+
+TODO
 
 ### CocoaPods
+
 Espresso is integrated with CocoaPods!
 
 1. Add the following to your `Podfile`:
@@ -37,6 +40,7 @@ Espresso is broken down into several subspecs:
 - **All**: Includes all of the above subspecs
 
 ### Manually
+
 You can also manually add the source files to your project.
 
 1. Clone this git repo
@@ -44,6 +48,7 @@ You can also manually add the source files to your project.
 3. Profit
 
 ## Espresso
+
 Espresso adds a bunch of useful features and extensions to components commonly used while developing for Apple platforms.
 
 Some of the more interesting things include:
@@ -57,6 +62,7 @@ Some of the more interesting things include:
 - _+ much more!_
 
 ### UIAnimation
+
 Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
 
 ```
@@ -136,6 +142,7 @@ let a2 = UIAnimation(.simple(.easeIn), duration: 0.5) {
 ```
 
 ### UIViewControllerTransition
+
 Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `UIViewControllerTransition` implementation might look something like this:
 
 ```
@@ -199,6 +206,7 @@ The following view controller transitions are included with Espresso:
 - `UIZoomTransition`
 
 ### User Authentication
+
 The `UserAuthenticator` class helps with authenticating a user via Touch ID, Face ID, or a password. An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID. Devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, password authentication will be used.
 
 ```
@@ -210,6 +218,7 @@ UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.")
 **NOTE:** `NSFaceIDUsageDescription` key _must_ be added to your **Info.plist** if you intend to authenticate via Face ID.
 
 ### Digest Hashing
+
 Hashing extensions are available on both `Data` & `String`:
 
 ```
@@ -229,4 +238,5 @@ The following hash types are included with Espresso:
 - `sha512`
 
 ## Contributing
+
 Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
