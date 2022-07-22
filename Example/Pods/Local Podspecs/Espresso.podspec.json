@@ -1,6 +1,6 @@
 {
   "name": "Espresso",
-  "version": "2.3.0",
+  "version": "2.4.1",
   "summary": "Swift convenience library for iOS.",
   "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
@@ -13,12 +13,12 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "2.3.0"
+    "tag": "2.4.1"
   },
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_versions": "5",
   "platforms": {
-    "ios": "11.0"
+    "ios": "13.0"
   },
   "default_subspecs": "UIKit",
   "subspecs": [
@@ -71,6 +71,27 @@
       }
     },
     {
+      "name": "Combine",
+      "source_files": "Espresso/Classes/Combine/**/*",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Combine-UIKit",
+      "source_files": "Espresso/Classes/Combine-UIKit/**/*",
+      "dependencies": {
+        "Espresso/Combine": [
+
+        ],
+        "Espresso/UIKit": [
+
+        ]
+      }
+    },
+    {
       "name": "All",
       "dependencies": {
         "Espresso/Core": [
@@ -83,6 +104,12 @@
 
         ],
         "Espresso/Rx-UIKit": [
+
+        ],
+        "Espresso/Combine": [
+
+        ],
+        "Espresso/Combine-UIKit": [
 
         ]
       }

@@ -1,29 +1,36 @@
 PODS:
-  - Espresso/All (2.3.0):
+  - Espresso/All (2.4.1):
+    - Espresso/Combine
+    - Espresso/Combine-UIKit
     - Espresso/Core
     - Espresso/Rx
     - Espresso/Rx-UIKit
     - Espresso/UIKit
-  - Espresso/Core (2.3.0):
+  - Espresso/Combine (2.4.1):
+    - Espresso/Core
+  - Espresso/Combine-UIKit (2.4.1):
+    - Espresso/Combine
+    - Espresso/UIKit
+  - Espresso/Core (2.4.1):
     - Swinject (~> 2.0)
-  - Espresso/Rx (2.3.0):
+  - Espresso/Rx (2.4.1):
     - Espresso/Core
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - Espresso/Rx-UIKit (2.3.0):
+  - Espresso/Rx-UIKit (2.4.1):
     - Espresso/Rx
     - Espresso/UIKit
-  - Espresso/UIKit (2.3.0):
+  - Espresso/UIKit (2.4.1):
     - Espresso/Core
     - SnapKit (~> 5.0)
-  - RxCocoa (6.1.0):
-    - RxRelay (= 6.1.0)
-    - RxSwift (= 6.1.0)
-  - RxRelay (6.1.0):
-    - RxSwift (= 6.1.0)
-  - RxSwift (6.1.0)
-  - SnapKit (5.0.1)
-  - Swinject (2.7.1)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
+  - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Espresso/All (from `../`)
@@ -41,13 +48,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 08cc4c14ef7900e36f198756a68944816dc006ff
-  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
-  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
-  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  Espresso: 62540a43fc3fc36601ff879057cf1a452b170a3e
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: 5b503e38b6ce4e358ef14847494705c9740e49cf
+PODFILE CHECKSUM: 23087355445a3b8e0e8ca6fc1135b156118e4431
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
