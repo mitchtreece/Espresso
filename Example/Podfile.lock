@@ -5,6 +5,7 @@ PODS:
     - Espresso/Core
     - Espresso/Rx
     - Espresso/Rx-UIKit
+    - Espresso/SwiftUI
     - Espresso/UIKit
   - Espresso/Combine (2.4.1):
     - Espresso/Core
@@ -19,6 +20,8 @@ PODS:
     - RxSwift (~> 6.0)
   - Espresso/Rx-UIKit (2.4.1):
     - Espresso/Rx
+    - Espresso/UIKit
+  - Espresso/SwiftUI (2.4.1):
     - Espresso/UIKit
   - Espresso/UIKit (2.4.1):
     - Espresso/Core
@@ -48,7 +51,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 62540a43fc3fc36601ff879057cf1a452b170a3e
+  Espresso: 55ce7671b4752658520150e3c0e7b1d0a5649ece
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8

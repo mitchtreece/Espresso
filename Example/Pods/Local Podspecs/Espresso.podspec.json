@@ -44,6 +44,15 @@
       }
     },
     {
+      "name": "SwiftUI",
+      "source_files": "Espresso/Classes/SwiftUI/**/*",
+      "dependencies": {
+        "Espresso/UIKit": [
+
+        ]
+      }
+    },
+    {
       "name": "Rx",
       "source_files": "Espresso/Classes/Rx/**/*",
       "dependencies": {
@@ -98,6 +107,9 @@
 
         ],
         "Espresso/UIKit": [
+
+        ],
+        "Espresso/SwiftUI": [
 
         ],
         "Espresso/Rx": [
