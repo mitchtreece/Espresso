@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = 'Espresso'
-    s.version          = '2.4.1'
+    s.version          = '3.0.0'
     s.summary          = 'Swift convenience library for iOS.'
 
     s.description      = <<-DESC
@@ -22,69 +22,130 @@ Pod::Spec.new do |s|
 
     s.default_subspec = 'UIKit'
 
+    ## Core
+
     s.subspec 'Core' do |core|
 
-        core.source_files       = 'Espresso/Classes/Core/**/*'
+        core.dependency      'Espresso/Core/Core'
+        core.dependency      'Espresso/Core/Types'
+
+    end
+
+    s.subspec 'Core/Core' do |core|
+
+        core.source_files       = 'Espresso/Classes/Core/Core/**/*'
         core.dependency         'Swinject', '~> 2.0'
 
     end
 
+    s.subspec 'Core/Types' do |core|
+
+        core.source_files       = 'Espresso/Classes/Core/Types/**/*'
+
+    end
+
+    ## UI
+
+    s.subspec 'UI' do |ui|
+
+        ui.dependency      'Espresso/UI/UIKit'
+        ui.dependency      'Espresso/UI/SwiftUI'
+
+    end
+
+    s.subspec 'UI/UIKit' do |ui|
+
+        ui.source_files      = 'Espresso/Classes/UI/UIKit/**/*'
+        ui.dependency        'Espresso/Core'
+        ui.dependency        'SnapKit', '~> 5.0'
+
+    end
+
+    s.subspec 'UI/SwiftUI' do |ui|
+
+        # manually add uikit source files instead of dependency so we dont get
+        # uikit dependencies (i.e. snapkit)
+
+        ui.source_files      = 'Espresso/Classes/UI/SwiftUI/**/*'
+        ui.source_files      = 'Espresso/Classes/UI/UIKit/**/*'
+        ui.dependency        'Espresso/Core'
+
+    end
+
+    ## Combine
+
+    s.subspec 'Combine' do |combine|
+
+        combine.dependency      'Espresso/Combine/Core'
+        combine.dependency      'Espresso/Combine/UIKit'
+
+    end
+
+    s.subspec 'Combine/Core' do |combine|
+
+        combine.source_files      = 'Espresso/Classes/Combine/Core/**/*'
+        combine.dependency        'Espresso/Core'
+
+    end
+
+    s.subspec 'Combine/UIKit' do |uikit|
+
+        combine.source_files      = 'Espresso/Classes/Combine/UIKit/**/*'
+        combine.dependency        'Espresso/Combine/Core'
+        combine.dependency        'Espresso/UI/UIKit'
+
+    end
+
+    ## Rx
+
+    s.subspec 'Rx' do |rx|
+
+        rx.dependency      'Espresso/Rx/Core'
+        rx.dependency      'Espresso/Rx/UIKit'
+
+    end
+
+    s.subspec 'Rx/Core' do |rx|
+
+        rx.source_files      = 'Espresso/Classes/Rx/Core/**/*'
+        rx.dependency          'Espresso/Core'
+
+    end
+
+    s.subspec 'Rx/UIKit' do |rx|
+
+        rx.source_files      = 'Espresso/Classes/Rx/UIKit/**/*'
+        rx.dependency          'Espresso/Rx/Core'
+        rx.dependency          'Espresso/UI/UIKit'
+
+    end
+
+    ## Aggregates
+
     s.subspec 'UIKit' do |uikit|
 
-        uikit.source_files      = 'Espresso/Classes/UIKit/**/*'
-        uikit.dependency        'Espresso/Core'
-        uikit.dependency        'SnapKit', '~> 5.0'
+        uikit.dependency          'Espresso/Core'
+        uikit.dependency          'Espresso/UI/UIKit'
+        uikit.dependency          'Espresso/Combine/UIKit'
+        uikit.dependency          'Espresso/Rx/UIKit'
 
     end
 
     s.subspec 'SwiftUI' do |swiftui|
 
-        swiftui.source_files      = 'Espresso/Classes/SwiftUI/**/*'
-        swiftui.dependency        'Espresso/UIKit'
-
-    end
-
-    s.subspec 'Rx' do |rx|
-
-        rx.source_files         = 'Espresso/Classes/Rx/**/*'
-        rx.dependency           'Espresso/Core'
-        rx.dependency           'RxSwift', '~> 6.0'
-        rx.dependency           'RxCocoa', '~> 6.0'
-
-    end
-
-    s.subspec 'Rx-UIKit' do |rxuikit|
-
-        rxuikit.source_files    = 'Espresso/Classes/Rx-UIKit/**/*'
-        rxuikit.dependency      'Espresso/Rx'
-        rxuikit.dependency      'Espresso/UIKit'
-
-    end
-
-    s.subspec 'Combine' do |combine|
-
-        combine.source_files    = 'Espresso/Classes/Combine/**/*'
-        combine.dependency      'Espresso/Core'
-
-    end
-
-    s.subspec 'Combine-UIKit' do |combineuikit|
-
-        combineuikit.source_files    = 'Espresso/Classes/Combine-UIKit/**/*'
-        combineuikit.dependency      'Espresso/Combine'
-        combineuikit.dependency      'Espresso/UIKit'
+        swiftui.dependency          'Espresso/Core'
+        swiftui.dependency          'Espresso/UI/SwiftUI'
+        swiftui.dependency          'Espresso/Combine/Core'
+        swiftui.dependency          'Espresso/Rx/Core'
 
     end
 
     s.subspec 'All' do |all|
 
-        all.dependency          'Espresso/Core'
-        all.dependency          'Espresso/UIKit'
-        all.dependency          'Espresso/SwiftUI'
-        all.dependency          'Espresso/Rx'
-        all.dependency          'Espresso/Rx-UIKit'
-        all.dependency          'Espresso/Combine'
-        all.dependency          'Espresso/Combine-UIKit'
+        rx.dependency          'Espresso/Core'
+        rx.dependency          'Espresso/UI'
+        rx.dependency          'Espresso/Combine'
+        rx.dependency          'Espresso/Rx'
 
     end
 

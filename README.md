@@ -11,6 +11,9 @@
 Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
 <br>TODO: Add better overview....
 
+## Table of Contents
+TODO
+
 ## Installation
 
 ### SPM
@@ -24,28 +27,31 @@ Espresso is integrated with CocoaPods!
 1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Espresso', '~> 2.0'
+pod 'Espresso', '~> 3.0'
 ```
 2. In your project directory, run `pod install`
 3. Import the `Espresso` module wherever you need it
 4. Profit
 
-Espresso is broken down into several subspecs:
-- **Core**: `Foundation` classes & extensions
-- **UIKit (default)**: `UIKit` classes & extensions
-- **Combine**: `Combine` classes & extensions
-- **Combine-UIKit**: `UIKit`-specific Combine classes & extensions. This includes the `Combine` & `UIKit` subspecs.
-- **Rx**: [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions
-- **Rx-UIKit**: `UIKit`-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions. This includes the `Rx` & `UIKit` subspecs
-- **All**: Includes all of the above subspecs
+#### Subspecs
 
-### Manually
+Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
 
-You can also manually add the source files to your project.
-
-1. Clone this git repo
-2. Add all the Swift files in the `Espresso/` subdirectory to your project
-3. Profit
+- `Core`
+    - `Core`: Core classes, helpers, extensions, & dependencies
+    - `Types`: Core types
+- `UI`
+    - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
+    - `SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
+- `Combine`
+    - `Core`: Core [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
+    - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit)-specific [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
+- `Rx`
+    - `Core`: Core [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
+    - `UIKit` [UIKit](https://developer.apple.com/documentation/uikit)-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
+- `UIKit`: Aggregate subspec that includes **everything** related to [UIKit](https://developer.apple.com/documentation/uikit)
+- `SwiftUI`: Aggregate subspec that includes **everything** related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- `All`: Aggregate subspec that includes **everything**
 
 ## Espresso
 
