@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Color: CaseIterable {
+enum ESColor: CaseIterable {
     
     case red
     case green

@@ -9,16 +9,19 @@
 import UIKit
 import Espresso
 
-@available(iOS 13, *)
-protocol ContextCollectionCellDelegate: class {
-    func contextCollectionCellPreview(_ cell: ContextCollectionCell, for color: Color) -> UIViewController?
-    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell, preview: UIViewController?)
+protocol ContextCollectionCellDelegate: AnyObject {
+    
+    func contextCollectionCellPreview(_ cell: ContextCollectionCell,
+                                      for color: ESColor) -> UIViewController?
+    
+    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell,
+                                            preview: UIViewController?)
+    
 }
 
-@available(iOS 13, *)
 class ContextCollectionCell: UICollectionViewCell {
     
-    private(set) var color: Color!
+    private(set) var color: ESColor!
     weak var delegate: ContextCollectionCellDelegate?
 
     override init(frame: CGRect) {
@@ -52,7 +55,7 @@ class ContextCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(color: Color, delegate: ContextCollectionCellDelegate) {
+    func setup(color: ESColor, delegate: ContextCollectionCellDelegate) {
         
         self.delegate = delegate
         self.color = color

@@ -9,16 +9,19 @@
 import UIKit
 import Espresso
 
-@available(iOS 13, *)
-protocol ContextTableCellDelegate: class {
-    func contextTableCellPreview(_ cell: ContextTableCell, for color: Color) -> UIViewController?
-    func contextTableCellDidTapPreview(_ cell: ContextTableCell, preview: UIViewController?)
+protocol ContextTableCellDelegate: AnyObject {
+    
+    func contextTableCellPreview(_ cell: ContextTableCell,
+                                 for color: ESColor) -> UIViewController?
+    
+    func contextTableCellDidTapPreview(_ cell: ContextTableCell,
+                                       preview: UIViewController?)
+    
 }
 
-@available(iOS 13, *)
 class ContextTableCell: UITableViewCell {
     
-    private(set) var color: Color!
+    private(set) var color: ESColor!
     weak var delegate: ContextTableCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -62,7 +65,7 @@ class ContextTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(color: Color, delegate: ContextTableCellDelegate) {
+    func setup(color: ESColor, delegate: ContextTableCellDelegate) {
         
         self.delegate = delegate
         self.color = color

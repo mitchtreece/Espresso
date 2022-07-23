@@ -11,14 +11,19 @@ import SnapKit
 /// Blurred `UIView` subclass that responds to tint color changes.
 open class UIBlurView: UIBaseView {
     
-    private var blurView: UIVisualEffectView!
-    private var blurStyle: UIBlurEffect.Style = .light
+    private var blurView: UIVisualEffectView?
+    
+    public var blurStyle: UIBlurEffect.Style = .light {
+        didSet {
+            setupBlurView()
+        }
+    }
     
     /// The blur view's content view.
     ///
     /// Add subviews to this, and not `UIBlurView` directly.
     public var contentView: UIView {
-        return blurView.contentView
+        return self.blurView!.contentView
     }
     
     open override func tintColorDidChange() {
@@ -28,7 +33,8 @@ open class UIBlurView: UIBaseView {
     /// Initializes a new `UIBlurView` with a specified blur style.
     /// - Parameter frame: The view's frame.
     /// - Parameter style: The blur style.
-    public init(frame: CGRect, style: UIBlurEffect.Style) {
+    public init(frame: CGRect,
+                style: UIBlurEffect.Style) {
         
         super.init(frame: frame)
         self.blurStyle = style
@@ -37,22 +43,33 @@ open class UIBlurView: UIBaseView {
     }
     
     public override init(frame: CGRect) {
+        
         super.init(frame: frame)
         setup()
+        
     }
     
     public required init?(coder aDecoder: NSCoder) {
+        
         super.init(coder: aDecoder)
         setup()
+        
     }
     
     private func setup() {
         
         self.clipsToBounds = true
+        setupBlurView()
         
-        self.blurView = UIVisualEffectView(effect: UIBlurEffect(style: blurStyle))
-        self.addSubview(self.blurView)
-        self.blurView.snp.makeConstraints { (make) in
+    }
+    
+    private func setupBlurView() {
+        
+        self.blurView?.removeFromSuperview()
+        
+        self.blurView = UIVisualEffectView(effect: UIBlurEffect(style: self.blurStyle))
+        self.addSubview(self.blurView!)
+        self.blurView!.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         

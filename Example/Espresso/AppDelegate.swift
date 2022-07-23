@@ -8,6 +8,7 @@
 
 import UIKit
 import Espresso
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var navController: UINavigationController!
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions
+                     launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
                 
         self.window = self.window ?? UIWindow(frame: UIScreen.main.bounds)
         self.navController = UINavigationController(rootViewController: RootViewController(delegate: self))
@@ -35,25 +37,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
+        // Sent when the application is about to move from active to inactive state.
+        // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
+        // or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates.
+        // Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        // Use this method to release shared resources, save user data, invalidate timers,
+        // and store enough application state information to restore your application to
+        // its current state in case it is terminated later. If your application supports
+        // background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        // Called as part of the transition from the background to the inactive state;
+        // here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        // Restart any tasks that were paused (or not yet started) while the application was inactive.
+        // If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        // Called when the application is about to terminate. Save data if appropriate.
+        // See also applicationDidEnterBackground:.
+        
     }
     
     func alert(_ message: String) {
@@ -78,7 +97,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: RootViewControllerDelegate {
     
-    func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow) {
+    func rootViewController(_ vc: RootViewController,
+                            didSelectSwiftUIRow row: RootViewController.SwiftUIRow) {
+                
+        var vc: UIViewController!
+        
+        switch row {
+        case .views: vc = UIHostingController(rootView: ViewsContentView())
+        }
+        
+//        let nav = UINavigationController(rootViewController: vc)
+                
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
+
+    }
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectTransitionRow row: RootViewController.TransitionRow) {
             
         let vc = DetailViewController()
         vc.title = row.title
@@ -96,7 +134,8 @@ extension AppDelegate: RootViewControllerDelegate {
         
     }
     
-    func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow) {
+    func rootViewController(_ vc: RootViewController,
+                            didSelectMenuRow row: RootViewController.MenuRow) {
         
         if #available(iOS 13, *) {
             
@@ -163,10 +202,10 @@ extension AppDelegate: DetailViewControllerDelegate {
     
 }
 
-@available(iOS 13, *)
 extension AppDelegate: ContextMenuTableViewControllerDelegate {
     
-    func contextMenuTableViewController(_ vc: ContextMenuTableViewController, didSelectColor color: Color) {
+    func contextMenuTableViewController(_ vc: ContextMenuTableViewController,
+                                        didSelectColor color: ESColor) {
         
         let vc = DetailViewController()
         vc.view.backgroundColor = color.color
@@ -180,10 +219,10 @@ extension AppDelegate: ContextMenuTableViewControllerDelegate {
     
 }
 
-@available(iOS 13, *)
 extension AppDelegate: ContextMenuCollectionViewControllerDelegate {
     
-    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController, didSelectColor color: Color) {
+    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController,
+                                             didSelectColor color: ESColor) {
         
         let vc = DetailViewController()
         vc.view.backgroundColor = color.color

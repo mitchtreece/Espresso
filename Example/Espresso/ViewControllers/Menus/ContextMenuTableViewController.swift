@@ -8,12 +8,13 @@
 
 import Espresso
 
-@available(iOS 13, *)
-protocol ContextMenuTableViewControllerDelegate: class {
-    func contextMenuTableViewController(_ vc: ContextMenuTableViewController, didSelectColor color: Color)
+protocol ContextMenuTableViewControllerDelegate: AnyObject {
+    
+    func contextMenuTableViewController(_ vc: ContextMenuTableViewController,
+                                        didSelectColor color: ESColor)
+    
 }
 
-@available(iOS 13, *)
 class ContextMenuTableViewController: UIViewController {
     
     private var tableView: UITableView!
@@ -38,7 +39,6 @@ class ContextMenuTableViewController: UIViewController {
     
 }
 
-@available(iOS 13, *)
 extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,7 +52,7 @@ extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = ContextTableCell.dequeue(for: tableView, at: indexPath)
-        cell.setup(color: Color.allCases.randomElement() ?? .red, delegate: self)
+        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
         return cell
         
     }
@@ -72,10 +72,10 @@ extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
-@available(iOS 13, *)
 extension ContextMenuTableViewController: ContextTableCellDelegate {
     
-    func contextTableCellPreview(_ cell: ContextTableCell, for color: Color) -> UIViewController? {
+    func contextTableCellPreview(_ cell: ContextTableCell,
+                                 for color: ESColor) -> UIViewController? {
         
         let vc = DetailViewController()
         vc.title = color.name

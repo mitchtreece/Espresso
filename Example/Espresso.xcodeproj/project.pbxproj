@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E0288B4505009FBD15 /* ViewsContentView.swift */; };
+		262848E7288B79B2009FBD15 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E6288B79B2009FBD15 /* TitleView.swift */; };
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
 		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
@@ -16,7 +18,7 @@
 		269114C12344318F00A4A5F6 /* ContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7637023403EDF000C9746 /* ContextView.swift */; };
 		269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */; };
 		269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76373234042C0000C9746 /* ContextTableCell.swift */; };
-		269114C62344341500A4A5F6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C52344341500A4A5F6 /* Color.swift */; };
+		269114C62344341500A4A5F6 /* ESColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C52344341500A4A5F6 /* ESColor.swift */; };
 		26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */; };
 		26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		262848E0288B4505009FBD15 /* ViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsContentView.swift; sourceTree = "<group>"; };
+		262848E6288B79B2009FBD15 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
 		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +52,7 @@
 		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
 		269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuTableViewController.swift; sourceTree = "<group>"; };
-		269114C52344341500A4A5F6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		269114C52344341500A4A5F6 /* ESColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESColor.swift; sourceTree = "<group>"; };
 		26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuCollectionViewController.swift; sourceTree = "<group>"; };
 		26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCollectionCell.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
@@ -101,6 +105,15 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		262848DD288B4493009FBD15 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				262848E0288B4505009FBD15 /* ViewsContentView.swift */,
+				262848E6288B79B2009FBD15 /* TitleView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		2629FFD7280653B50053FB82 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +136,7 @@
 		269114BE2344302F00A4A5F6 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
-				269114C52344341500A4A5F6 /* Color.swift */,
+				269114C52344341500A4A5F6 /* ESColor.swift */,
 				269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */,
 				26D7637023403EDF000C9746 /* ContextView.swift */,
 				269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */,
@@ -139,6 +152,7 @@
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
+				262848DD288B4493009FBD15 /* SwiftUI */,
 				269114BE2344302F00A4A5F6 /* Menus */,
 				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 				2629FFD7280653B50053FB82 /* Combine */,
@@ -414,13 +428,15 @@
 				269114C12344318F00A4A5F6 /* ContextView.swift in Sources */,
 				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
 				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
-				269114C62344341500A4A5F6 /* Color.swift in Sources */,
+				262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */,
+				269114C62344341500A4A5F6 /* ESColor.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
 				269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */,
 				269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */,
 				269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */,
+				262848E7288B79B2009FBD15 /* TitleView.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

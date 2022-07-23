@@ -8,12 +8,13 @@
 
 import Espresso
 
-@available(iOS 13, *)
-protocol ContextMenuCollectionViewControllerDelegate: class {
-    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController, didSelectColor color: Color)
+protocol ContextMenuCollectionViewControllerDelegate: AnyObject {
+    
+    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController,
+                                             didSelectColor color: ESColor)
+    
 }
 
-@available(iOS 13, *)
 class ContextMenuCollectionViewController: UIViewController {
     
     private var collectionView: UICollectionView!
@@ -51,26 +52,30 @@ class ContextMenuCollectionViewController: UIViewController {
     
 }
 
-@available(iOS 13, *)
 extension ContextMenuCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        
         return 100
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = ContextCollectionCell.dequeue(for: collectionView, at: indexPath)
-        cell.setup(color: Color.allCases.randomElement() ?? .red, delegate: self)
+        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
         return cell
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return }
 
@@ -83,10 +88,10 @@ extension ContextMenuCollectionViewController: UICollectionViewDelegate, UIColle
     
 }
 
-@available(iOS 13, *)
 extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
     
-    func contextCollectionCellPreview(_ cell: ContextCollectionCell, for color: Color) -> UIViewController? {
+    func contextCollectionCellPreview(_ cell: ContextCollectionCell,
+                                      for color: ESColor) -> UIViewController? {
         
         let vc = DetailViewController()
         vc.title = color.name
@@ -95,7 +100,8 @@ extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
         
     }
     
-    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell, preview: UIViewController?) {
+    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell,
+                                            preview: UIViewController?) {
         
         self.delegate?.contextMenuCollectionViewController(
             self,

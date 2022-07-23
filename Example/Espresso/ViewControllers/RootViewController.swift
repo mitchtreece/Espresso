@@ -12,8 +12,15 @@ import SnapKit
 
 protocol RootViewControllerDelegate: AnyObject {
     
-    func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
-    func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow)
+    func rootViewController(_ vc: RootViewController,
+                            didSelectSwiftUIRow row: RootViewController.SwiftUIRow)
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectTransitionRow row: RootViewController.TransitionRow)
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectMenuRow row: RootViewController.MenuRow)
+    
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
 
@@ -45,7 +52,7 @@ class RootViewController: UIViewController {
         }
                 
         self.tableView = UITableView(frame: .zero, style: .grouped)
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.backgroundColor = .systemGroupedBackground
         self.tableView.tableFooterView = UIView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -68,12 +75,27 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int, CaseIterable {
         
+        case swiftui
         case transition
         case rxMvvm
         case combine
         case taptics
         case helpers
         case menus
+        
+    }
+    
+    enum SwiftUIRow: Int, CaseIterable {
+        
+        case views
+        
+        var title: String {
+            
+            switch self {
+            case .views: return "Views"
+            }
+            
+        }
         
     }
     
@@ -229,6 +251,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
+        case .swiftui: return "SwiftUI"
         case .transition: return "Transitions"
         case .menus: return "Menus"
         case .rxMvvm: return "Rx / MVVM"
@@ -244,6 +267,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
+        case .swiftui: return SwiftUIRow.allCases.count
         case .transition: return TransitionRow.allCases.count
         case .menus: return MenuRow.allCases.count
         case .rxMvvm: return RxMvvmRow.allCases.count
@@ -261,6 +285,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
 
         switch _section {
+        case .swiftui:
+            
+            guard let row = SwiftUIRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+            
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -310,6 +339,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
         switch _section {
+        case .swiftui:
+            
+            guard let row = SwiftUIRow(rawValue: indexPath.row) else { return }
+            self.delegate?.rootViewController(self, didSelectSwiftUIRow: row)
+            
         case .transition:
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
