@@ -8,7 +8,6 @@
 import UIKit
 
 /// `UITaptic` is a wrapper class over `UIFeedbackGenerator`.
-@available(iOS 10, *)
 public class UITaptic {
     
     /// Representation of the various taptic styles.

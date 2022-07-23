@@ -10,7 +10,6 @@ import UIKit
 /// `UICollectionViewCell` subclass that provides common helper functions & properties.
 open class UIBaseCollectionViewCell: UICollectionViewCell {
     
-    @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
     }
@@ -30,7 +29,6 @@ open class UIBaseCollectionViewCell: UICollectionViewCell {
     
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your cell as needed.
-    @available(iOS 12, *)
     open func userInterfaceStyleDidChange() {
         // Override
     }

@@ -42,7 +42,6 @@ open class UIBaseViewController: UIViewController {
         
     }
     
-    @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
     }
@@ -80,7 +79,6 @@ open class UIBaseViewController: UIViewController {
     
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your interface as needed.
-    @available(iOS 12, *)
     open func userInterfaceStyleDidChange() {
         // Override
     }

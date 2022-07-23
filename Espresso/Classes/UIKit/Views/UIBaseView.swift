@@ -10,7 +10,6 @@ import UIKit
 /// `UIView` subclass that provides common helper functions & properties.
 open class UIBaseView: UIView {
     
-    @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
     }
@@ -30,7 +29,6 @@ open class UIBaseView: UIView {
     
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your view as needed.
-    @available(iOS 12, *)
     open func userInterfaceStyleDidChange() {
         // Override
     }

@@ -77,7 +77,6 @@ open class UIGradientView: UIBaseView {
         return CAGradientLayer.self
     }
     
-    @available(iOS 12, *)
     public override func userInterfaceStyleDidChange() {
         super.userInterfaceStyleDidChange()
         update()
