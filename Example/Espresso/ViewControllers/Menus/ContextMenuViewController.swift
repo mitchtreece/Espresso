@@ -8,7 +8,6 @@
 
 import Espresso
 
-@available(iOS 13, *)
 class ContextMenuViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -16,7 +15,7 @@ class ContextMenuViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        let contextView = ContextView(color: .groupTableViewBackground)
+        let contextView = ContextView(color: .systemGroupedBackground)
         self.view.addSubview(contextView)
         contextView.snp.makeConstraints { make in
             make.width.height.equalTo(150)

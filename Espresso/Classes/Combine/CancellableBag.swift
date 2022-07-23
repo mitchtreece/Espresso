@@ -13,5 +13,4 @@ import Combine
 /// change the bag's value, or create a new one in its place.
 ///
 ///     self.bag = CancellableBag()
-@available(iOS 13, *)
 public typealias CancellableBag = Set<AnyCancellable>

@@ -8,7 +8,6 @@
 import Combine
 
 /// A wrapped publisher that only outputs `Void` values.
-@available(iOS 13, *)
 public class TriggerPublisher {
     
     private let subject = GuaranteePassthroughSubject<Void>()

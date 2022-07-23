@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 
-@available(iOS 13, *)
 public extension UIControl {
     
     /// A publisher that emits when a given `UIControl.Event` is received.
@@ -24,7 +23,6 @@ public extension UIControl {
 
 }
 
-@available(iOS 13, *)
 public extension Publishers {
     
     /// A `UIControl` event publisher.
@@ -127,7 +125,6 @@ public extension Publishers {
     
 }
 
-@available(iOS 13, *)
 public extension Publishers.UIControlEvent {
     
     private final class Subscription<S: Subscriber, C: UIControl>: Combine.Subscription where S.Input == Void {
@@ -179,7 +176,6 @@ public extension Publishers.UIControlEvent {
     
 }
 
-@available(iOS 13, *)
 public extension Publishers.UIControlProperty {
 
     private final class Subscription<S: Subscriber, C: UIControl, V>: Combine.Subscription where S.Input == V {
@@ -246,7 +242,6 @@ public extension Publishers.UIControlProperty {
 
 }
 
-@available(iOS 13, *)
 public extension Publishers.TargetAction {
     
     private final class Subscription<S: Subscriber, C: AnyObject>: Combine.Subscription where S.Input == Void {

@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 13, *)
 public extension UIView {
     
     private struct AssociatedKeys {
@@ -54,7 +53,6 @@ public extension UIView {
 }
 
 /// `UIContextMenu` is a wrapper class over `UIContextMenuInteraction` & `UIContextMenuInteractionDelegate`.
-@available(iOS 13, *)
 public class UIContextMenu: NSObject, UIContextMenuInteractionDelegate {
     
     public enum Item {

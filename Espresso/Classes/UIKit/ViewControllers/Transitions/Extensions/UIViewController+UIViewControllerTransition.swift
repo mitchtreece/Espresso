@@ -51,12 +51,7 @@ public extension UIViewController {
                 // we should return the view controller's `modalPresentationStyle`
                 // back to the system default.
 
-                if #available(iOS 13, *) {
-                    self.modalPresentationStyle = .automatic
-                }
-                else {
-                    self.modalPresentationStyle = .fullScreen
-                }
+                self.modalPresentationStyle = .automatic
 
             }
                         

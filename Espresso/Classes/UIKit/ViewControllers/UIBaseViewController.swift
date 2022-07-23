@@ -33,9 +33,7 @@ open class UIBaseViewController: UIViewController {
     }
     
     public var isInModalCardPresentation: Bool {
-        
-        guard #available(iOS 13, *) else { return false }
-        
+                
         guard let nav = self.navigationController else {
             return self.modalStyle.isModalCard
         }
@@ -71,15 +69,11 @@ open class UIBaseViewController: UIViewController {
         
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if #available(iOS 12, *) {
-            
-            let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
-            let newInterfaceStyle = self.traitCollection.userInterfaceStyle
-            
-            if newInterfaceStyle != previousInterfaceStyle {
-                userInterfaceStyleDidChange()
-            }
-            
+        let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
+        let newInterfaceStyle = self.traitCollection.userInterfaceStyle
+        
+        if newInterfaceStyle != previousInterfaceStyle {
+            userInterfaceStyleDidChange()
         }
         
     }

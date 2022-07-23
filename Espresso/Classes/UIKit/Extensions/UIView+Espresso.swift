@@ -11,22 +11,10 @@ extension UIView: StaticIdentifiable {}
 
 public extension UIView /* Corners */ {
     
-    /// Masks the view's corners using a radius.
-    /// - Parameter corners: The corners to mask; _defaults to all_.
-    /// - Parameter radius: The corner radius.
-    func roundCorners(_ corners: UIRectCorner = .allCorners,
-                      radius: CGFloat) {
-        
-        self.layer.maskedCorners = corners.cornerMask
-        self.layer.cornerRadius = radius
-        
-    }
-    
     /// Rounds the view's corners using a radius & curve.
     /// - Parameter corners: The corners to mask; _defaults to all_.
     /// - Parameter radius: The corner radius.
     /// - Parameter curve: The corner curve; _defaults to circular_.
-    @available(iOS 13, *)
     func roundCorners(_ corners: UIRectCorner = .allCorners,
                       radius: CGFloat,
                       curve: CALayerCornerCurve = .circular) {

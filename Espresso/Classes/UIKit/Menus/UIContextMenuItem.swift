@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 13, *)
 public protocol UIContextMenuItem {
     
     var title: String  { get }

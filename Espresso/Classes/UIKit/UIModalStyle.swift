@@ -96,14 +96,7 @@ public enum UIModalStyle {
         
         switch self {
         case .none: return .none
-        case .default:
-            
-            if #available(iOS 13, *) {
-                return .automatic
-            }
-            
-            return .fullScreen
-            
+        case .default: return .automatic
         case .fullscreen(let mode):
             
             switch mode {
@@ -136,17 +129,11 @@ public enum UIModalStyle {
     /// This is **always** `false` on iOS 12 or lower.
     public var isModalCard: Bool {
         
-        if #available(iOS 13, *) {
-            
-            switch self {
-            case .default: fallthrough
-            case .sheet(type: .page): return true
-            default: return false
-            }
-            
+        switch self {
+        case .default: fallthrough
+        case .sheet(type: .page): return true
+        default: return false
         }
-        
-        return false
         
     }
     

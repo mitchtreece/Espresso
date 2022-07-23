@@ -60,27 +60,11 @@ public final class UserAuthenticator {
             // If we get this far, then we know authentication will
             // happen either with biometrics or a password.
             
-            if #available(iOS 11.0, *) {
-                
-                switch context.biometryType {
-                case .none: return .password
-                case .touchID: return .touchId
-                case .faceID: return .faceId
-                @unknown default: return .password
-                }
-                
-            }
-            else {
-                
-                // iOS < 11, the only supported biometric method is Touch ID.
-                // If we can evaluate biometrics, use that. Otherwise we're using password authentication.
-                
-                if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-                    return .touchId
-                }
-                
-                return .password
-                
+            switch context.biometryType {
+            case .none: return .password
+            case .touchID: return .touchId
+            case .faceID: return .faceId
+            @unknown default: return .password
             }
             
         }

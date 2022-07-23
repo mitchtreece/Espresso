@@ -7,7 +7,6 @@
 
 import Combine
 
-@available(iOS 13, *)
 public extension Event /* Combine */ {
     
     /// The event as a publisher.
@@ -21,7 +20,6 @@ public extension Event /* Combine */ {
     
 }
 
-@available(iOS 13, *)
 public extension VoidEvent /* Combine */ {
     
     /// The event as an observable.
@@ -35,7 +33,6 @@ public extension VoidEvent /* Combine */ {
     
 }
 
-@available(iOS 13, *)
 private class CombineEvent<V> {
     
     private let event: Event<V>
@@ -57,7 +54,6 @@ private class CombineEvent<V> {
     
 }
 
-@available(iOS 13, *)
 private class CombineVoidEvent {
     
     private let event: VoidEvent

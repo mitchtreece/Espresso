@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 /// A Combine-based `UIViewController` subclass that provides common properties & functions when backed by a view model.
-@available(iOS 13, *)
 open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
     /// The view controller's model cancellable bag.

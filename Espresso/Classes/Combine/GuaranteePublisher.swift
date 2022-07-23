@@ -8,5 +8,4 @@
 import Combine
 
 /// A publisher that can never fail.
-@available(iOS 13, *)
 public typealias GuaranteePublisher<Output> = AnyPublisher<Output, Never>

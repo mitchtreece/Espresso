@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 13, *)
 public struct UIContextMenuGroupItem: UIContextMenuItem {
     
     public let title: String

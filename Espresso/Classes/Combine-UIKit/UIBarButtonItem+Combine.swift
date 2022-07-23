@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 
-@available(iOS 13, *)
 public extension UIBarButtonItem {
     
     /// A publisher that emits when the `UIBarButtonItem` action is invoked.

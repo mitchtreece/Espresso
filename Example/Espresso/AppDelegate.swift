@@ -137,38 +137,34 @@ extension AppDelegate: RootViewControllerDelegate {
     func rootViewController(_ vc: RootViewController,
                             didSelectMenuRow row: RootViewController.MenuRow) {
         
-        if #available(iOS 13, *) {
+        var vc: UIViewController
+        
+        switch row {
+        case .view:
             
-            var vc: UIViewController
+            vc = ContextMenuViewController()
+            vc.title = row.title
             
-            switch row {
-            case .view:
-                
-                vc = ContextMenuViewController()
-                vc.title = row.title
-                
-            case .table:
-                
-                let contextTableVC = ContextMenuTableViewController()
-                contextTableVC.title = row.title
-                contextTableVC.delegate = self
-                vc = contextTableVC
-                
-            case .collection:
-                
-                let contextCollectionVC = ContextMenuCollectionViewController()
-                contextCollectionVC.title = row.title
-                contextCollectionVC.delegate = self
-                vc = contextCollectionVC
-                
-            }
+        case .table:
             
-            self.navController.pushViewController(
-                vc,
-                animated: true
-            )
+            let contextTableVC = ContextMenuTableViewController()
+            contextTableVC.title = row.title
+            contextTableVC.delegate = self
+            vc = contextTableVC
+            
+        case .collection:
+            
+            let contextCollectionVC = ContextMenuCollectionViewController()
+            contextCollectionVC.title = row.title
+            contextCollectionVC.delegate = self
+            vc = contextCollectionVC
             
         }
+        
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
         
     }
     
@@ -182,9 +178,7 @@ extension AppDelegate: RootViewControllerDelegate {
     }
     
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController) {
-     
-        guard #available(iOS 13, *) else { return }
-        
+             
         self.navController.pushViewController(
             CombineViewController(viewModel: CombineViewModel()),
             animated: true

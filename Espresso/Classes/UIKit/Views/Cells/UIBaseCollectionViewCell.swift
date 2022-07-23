@@ -19,15 +19,11 @@ open class UIBaseCollectionViewCell: UICollectionViewCell {
         
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if #available(iOS 12, *) {
-            
-            let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
-            let newInterfaceStyle = self.traitCollection.userInterfaceStyle
-            
-            if newInterfaceStyle != previousInterfaceStyle {
-                userInterfaceStyleDidChange()
-            }
-            
+        let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
+        let newInterfaceStyle = self.traitCollection.userInterfaceStyle
+        
+        if newInterfaceStyle != previousInterfaceStyle {
+            userInterfaceStyleDidChange()
         }
         
     }

@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 /// A Combine-based `UITableViewCell` subclass that provides common properties & functions when backed by a view model.
-@available(iOS 13, *)
 open class CombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     
     /// The cell's model cancellable bag.

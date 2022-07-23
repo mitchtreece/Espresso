@@ -60,13 +60,12 @@ class RootViewController: UIViewController {
         self.tableView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }
-                        
-        UITableViewCell.register(in: self.tableView)
         
-        if #available(iOS 13, *) {
-            ContextTableCell.register(in: self.tableView)
-        }
-        
+        self.tableView.register(cells: [
+            UITableViewCell.self,
+            ContextTableCell.self
+        ])
+
     }
     
 }
@@ -237,13 +236,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if #available(iOS 13, *) {
-            return Section.allCases.count
-        }
-        
-        return (Section.allCases.count - 1)
-        
+        return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

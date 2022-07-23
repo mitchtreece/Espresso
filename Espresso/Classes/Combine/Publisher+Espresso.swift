@@ -7,7 +7,6 @@
 
 import Combine
 
-@available(iOS 13, *)
 public extension Publisher where Failure == Never {
     
     /// Latest value of the publisher's output sequence.
@@ -36,7 +35,6 @@ public extension Publisher where Failure == Never {
     
 }
 
-@available(iOS 13, *)
 public extension Publisher where Output == Bool {
 
     /// Filters `false` outputs out of a publisher sequence.

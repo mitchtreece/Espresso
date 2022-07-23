@@ -10,7 +10,6 @@ import UIKit
 /// `UITableViewCell` subclass that provides common helper functions & properties.
 open class UIBaseTableViewCell: UITableViewCell {
     
-    @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
     }
@@ -19,22 +18,17 @@ open class UIBaseTableViewCell: UITableViewCell {
         
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if #available(iOS 12, *) {
-            
-            let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
-            let newInterfaceStyle = self.traitCollection.userInterfaceStyle
-            
-            if newInterfaceStyle != previousInterfaceStyle {
-                userInterfaceStyleDidChange()
-            }
-            
+        let previousInterfaceStyle = previousTraitCollection?.userInterfaceStyle
+        let newInterfaceStyle = self.traitCollection.userInterfaceStyle
+        
+        if newInterfaceStyle != previousInterfaceStyle {
+            userInterfaceStyleDidChange()
         }
         
     }
     
     /// Called when the system's `UIUserInterfaceStyle` changes.
     /// Override this function to update your cell as needed.
-    @available(iOS 12, *)
     open func userInterfaceStyleDidChange() {
         // Override
     }

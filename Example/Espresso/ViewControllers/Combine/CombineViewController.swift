@@ -9,7 +9,6 @@
 import Espresso
 import SnapKit
 
-@available(iOS 13, *)
 class CombineViewController: CombineViewModelViewController<CombineViewModel> {
     
     private var barItem: UIBarButtonItem!
