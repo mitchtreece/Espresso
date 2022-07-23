@@ -32,7 +32,7 @@ PODS:
     - Espresso/UI-SwiftUI
     - Espresso/UI-UIKit
   - Espresso/UI-SwiftUI (3.0.0):
-    - Espresso/Core
+    - Espresso/UI-UIKit
   - Espresso/UI-UIKit (3.0.0):
     - Espresso/Core
     - SnapKit (~> 5.0)
@@ -61,7 +61,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: c79b7866e72b074aeb622ba6ec262fe4b0c325f6
+  Espresso: fffb17695517c6bbae7fc1c2a4c0a7ada20d04a4
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8

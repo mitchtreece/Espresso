@@ -63,12 +63,8 @@ Pod::Spec.new do |s|
 
     s.subspec 'UI-SwiftUI' do |ui|
 
-        # manually add uikit source files instead of dependency so we dont get
-        # uikit dependencies (i.e. snapkit)
-
         ui.source_files      = 'Espresso/Classes/UI/SwiftUI/**/*'
-        ui.source_files      = 'Espresso/Classes/UI/UIKit/**/*'
-        ui.dependency        'Espresso/Core'
+        ui.dependency        'Espresso/UI-UIKit'
 
     end
 

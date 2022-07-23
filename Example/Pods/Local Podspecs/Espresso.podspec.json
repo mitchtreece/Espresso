@@ -71,9 +71,9 @@
     },
     {
       "name": "UI-SwiftUI",
-      "source_files": "Espresso/Classes/UI/UIKit/**/*",
+      "source_files": "Espresso/Classes/UI/SwiftUI/**/*",
       "dependencies": {
-        "Espresso/Core": [
+        "Espresso/UI-UIKit": [
 
         ]
       }
