@@ -1,5 +1,5 @@
 //
-//  UITaptic.swift
+//  Taptic.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 7/5/18.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-/// `UITaptic` is a wrapper class over `UIFeedbackGenerator`.
-public class UITaptic {
+/// `Taptic` is a wrapper class over `UIFeedbackGenerator`.
+public class Taptic {
     
     /// Representation of the various taptic styles.
     public enum Style {

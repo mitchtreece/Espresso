@@ -23,12 +23,12 @@ open class UIBaseViewController: UIViewController {
     }
     
     /// The view controller's modal style.
-    public var modalStyle: UIModalStyle {
+    public var modalStyle: ModalStyle {
         get {
-            return UIModalStyle(presentationStyle: self.modalPresentationStyle)
+            return ModalStyle(modalPresentationStyle: self.modalPresentationStyle)
         }
         set {
-            self.modalPresentationStyle = newValue.presentationStyle
+            self.modalPresentationStyle = newValue.asModalPresentationStyle()
         }
     }
     
@@ -38,7 +38,7 @@ open class UIBaseViewController: UIViewController {
             return self.modalStyle.isModalCard
         }
         
-        return UIModalStyle(presentationStyle: nav.modalPresentationStyle).isModalCard
+        return ModalStyle(modalPresentationStyle: nav.modalPresentationStyle).isModalCard
         
     }
     

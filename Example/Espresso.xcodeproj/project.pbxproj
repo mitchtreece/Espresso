@@ -108,8 +108,8 @@
 		262848DD288B4493009FBD15 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				262848E0288B4505009FBD15 /* ViewsContentView.swift */,
 				262848E6288B79B2009FBD15 /* TitleView.swift */,
+				262848E0288B4505009FBD15 /* ViewsContentView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";

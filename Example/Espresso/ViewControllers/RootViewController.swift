@@ -211,16 +211,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        var taptic: UITaptic {
+        var taptic: Taptic {
             
             switch self {
-            case .selection: return UITaptic(style: .selection)
-            case .impactLight: return UITaptic(style: .impact(.light))
-            case .impactMedium: return UITaptic(style: .impact(.medium))
-            case .impactHeavy: return UITaptic(style: .impact(.heavy))
-            case .notificationSuccess: return UITaptic(style: .notification(.success))
-            case .notificationWarning: return UITaptic(style: .notification(.warning))
-            case .notificationError: return UITaptic(style: .notification(.error))
+            case .selection: return Taptic(style: .selection)
+            case .impactLight: return Taptic(style: .impact(.light))
+            case .impactMedium: return Taptic(style: .impact(.medium))
+            case .impactHeavy: return Taptic(style: .impact(.heavy))
+            case .notificationSuccess: return Taptic(style: .notification(.success))
+            case .notificationWarning: return Taptic(style: .notification(.warning))
+            case .notificationError: return Taptic(style: .notification(.error))
             }
             
         }

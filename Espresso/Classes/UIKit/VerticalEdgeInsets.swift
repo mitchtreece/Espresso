@@ -8,11 +8,11 @@
 import UIKit
 
 /// A set of vertical edge insets.
-public struct UIVerticalEdgeInsets {
+public struct VerticalEdgeInsets {
     
     /// A zero-based vertical edge inset.
-    public static var zero: UIVerticalEdgeInsets {
-        return UIVerticalEdgeInsets(top: 0, bottom: 0)
+    public static var zero: VerticalEdgeInsets {
+        return .init(top: 0, bottom: 0)
     }
     
     /// The top edge inset.
@@ -21,7 +21,7 @@ public struct UIVerticalEdgeInsets {
     /// The bottom edge inset.
     public var bottom: CGFloat
     
-    /// Initializes `UIVerticalEdgeInsets` with top & bottom values.
+    /// Initializes `VerticalEdgeInsets` with top & bottom values.
     /// - parameter top: The left value.
     /// - parameter bottom: The right value.
     public init(top: CGFloat,
@@ -33,7 +33,7 @@ public struct UIVerticalEdgeInsets {
     }
     
     /// A traditional `UIEdgeInsets` representation.
-    public var edgeInsets: UIEdgeInsets {
+    public func asEdgeInsets() -> UIEdgeInsets {
         
         return UIEdgeInsets(
             top: self.top,

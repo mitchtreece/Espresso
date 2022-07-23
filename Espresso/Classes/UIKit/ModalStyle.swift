@@ -1,5 +1,5 @@
 //
-//  UIModalStyle.swift
+//  ModalStyle.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 10/23/19.
@@ -20,8 +20,8 @@ import UIKit
 // UIModalPresentationNone API_AVAILABLE(ios(7.0)) = -1,
 // UIModalPresentationAutomatic API_AVAILABLE(ios(13.0)) = -2,
 
-/// `UIModalStyle` is a declarative wrapper over `UIModalPresentationStyle`.
-public enum UIModalStyle {
+/// `ModalStyle` is a declarative wrapper over `UIModalPresentationStyle`.
+public enum ModalStyle {
     
     /// Representation of the various presenting view modes.
     public enum PresentingViewMode {
@@ -91,8 +91,41 @@ public enum UIModalStyle {
     /// A custom modal style.
     case custom
     
-    /// The `UIModalPresentationStyle` representation.
-    public var presentationStyle: UIModalPresentationStyle {
+    /// Flag indicating if the modal style represents a card-like presentation style.
+    ///
+    /// This is **always** `false` on iOS 12 or lower.
+    public var isModalCard: Bool {
+        
+        switch self {
+        case .default: fallthrough
+        case .sheet(type: .page): return true
+        default: return false
+        }
+        
+    }
+    
+    /// Initializes a `ModalStyle` from a modal presentation style.
+    /// - Parameter modalPresentationStyle: The modal presentation style.
+    public init(modalPresentationStyle: UIModalPresentationStyle) {
+        
+        switch modalPresentationStyle {
+        case .fullScreen: self = .fullscreen(presentingView: .hidden)
+        case .overFullScreen: self = .fullscreen(presentingView: .visible)
+        case .pageSheet: self = .sheet(type: .page)
+        case .formSheet: self = .sheet(type: .form)
+        case .currentContext: self = .currentContext(presentingView: .hidden)
+        case .overCurrentContext: self = .currentContext(presentingView: .visible)
+        case .custom: self = .custom
+        case .popover: self = .popover
+        case .automatic: self = .default
+        case .none: self = .none
+        @unknown default: self = .default
+        }
+        
+    }
+    
+    /// A `UIModalPresentationStyle` representation.
+    public func asModalPresentationStyle() -> UIModalPresentationStyle {
         
         switch self {
         case .none: return .none
@@ -120,40 +153,6 @@ public enum UIModalStyle {
             
         case .popover: return .popover
         case .custom: return .custom
-        }
-        
-    }
-    
-    /// Flag indicating if the modal style represents a card-like presentation style.
-    ///
-    /// This is **always** `false` on iOS 12 or lower.
-    public var isModalCard: Bool {
-        
-        switch self {
-        case .default: fallthrough
-        case .sheet(type: .page): return true
-        default: return false
-        }
-        
-    }
-    
-    /// Initializes a `UIModalStyle` from a modal presentation style.
-    /// - Parameter presentationStyle: The modal presentation style.
-    /// - Returns: A `UIModalStyle` instance.
-    public init(presentationStyle: UIModalPresentationStyle) {
-        
-        switch presentationStyle {
-        case .fullScreen: self = .fullscreen(presentingView: .hidden)
-        case .overFullScreen: self = .fullscreen(presentingView: .visible)
-        case .pageSheet: self = .sheet(type: .page)
-        case .formSheet: self = .sheet(type: .form)
-        case .currentContext: self = .currentContext(presentingView: .hidden)
-        case .overCurrentContext: self = .currentContext(presentingView: .visible)
-        case .custom: self = .custom
-        case .popover: self = .popover
-        case .automatic: self = .default
-        case .none: self = .none
-        @unknown default: self = .default
         }
         
     }
