@@ -32,14 +32,17 @@ struct ViewsContentView: View {
                         )
                         
                         BlurView()
-                            .frame(height: 300)
+                            .frame(height: 100)
                         
                         Spacer()
                         
                         TitleView(
-                            title: "Another One",
+                            title: "GradientView",
                             bottomSpacing: 8
                         )
+                        
+                        GradientView()
+                            .frame(height: 100)
                         
                     }
                     
