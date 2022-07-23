@@ -31,7 +31,6 @@
 		0B3C96CF473CA3CAE740FDFA860F0F72 /* Completable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554B5E9DB3DB69B97F275FBB3454F477 /* Completable.swift */; };
 		0B4D5A3303D216764285B41B1BEF395B /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF396948903DA10D5A5C546DC35E81 /* ConstraintView+Extensions.swift */; };
 		0C38D1F53613980A2990A7B2DE1B0A69 /* UIViewControllerDirectionalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324541AD91B6627BE86D26578003BDEA /* UIViewControllerDirectionalTransition.swift */; };
-		0C74F1E6938BDF27616CCBE378B0A7CC /* AppleDevice+DeviceType_with_software_versions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89D994AE0F9EC2D6179D3782CB199E /* AppleDevice+DeviceType_with_software_versions.swift */; };
 		0C9EA84273C3C4E0E8B6DABBC52C7FDB /* UIBarButtonItem+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8790AD6F0D01DB2909311A1AD77D3E1E /* UIBarButtonItem+Combine.swift */; };
 		0CBC3D5258ECFF90C702B777B5A49938 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9B3DCDD7C23F36DA2B736B60E13FD /* LayoutConstraint.swift */; };
 		0CEFCBBFFB0566AC81290019606F1E9C /* Event+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995956102CA7F9FF0542D609592C9D7C /* Event+Rx.swift */; };
@@ -92,6 +91,8 @@
 		24B56687592B9294D8A18A51C1A0AEEE /* Reduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A95CD5336D6304098EFF4C159821E2C /* Reduce.swift */; };
 		24BF7674E04ED91E82FE4EB21A425C91 /* UIViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B6CCE77F4BDDCDF3C6AC5D56CB575 /* UIViewControllerTransition.swift */; };
 		251082C7B641D863D6A177D6037458BA /* Platform.Darwin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6DB4172A7ADFD8618B8D5B06BE402B /* Platform.Darwin.swift */; };
+		262848EB288BCE3B009FBD15 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848EA288BCE3B009FBD15 /* GradientView.swift */; };
+		262848ED288BD0B3009FBD15 /* Binding+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848EC288BD0B3009FBD15 /* Binding+Espresso.swift */; };
 		2678084A7B48B7370CB94BCF2B25C5D1 /* Dictionary+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681E14D323CB9FBF7C57E46A199D69C9 /* Dictionary+Espresso.swift */; };
 		26D403AA7AFE94A35E1F10B641BF1739 /* AnyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B308C7BA3E474C5F96279246D78C0AF /* AnyObserver.swift */; };
 		26DF474D4FF1E21361337EC0C93A8E35 /* RxTabBarControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE8FAAA4B5173782521C4E84BBBCA1 /* RxTabBarControllerDelegateProxy.swift */; };
@@ -445,7 +446,6 @@
 		DB03DF2EFB58FB363E4AAA042965F298 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC81A3A5A9FF99631F816D8F08EDC /* RxTableViewCell.swift */; };
 		DB42BA29C419DCD7D7693E577B7D352F /* UITabBar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16FE1E960446F560924CE431F663000 /* UITabBar+Rx.swift */; };
 		DB585EF42A0A37D65517037C534FF0CF /* KeyStoredReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14F4C35EE17D4290FF543A98772DD2 /* KeyStoredReadable.swift */; };
-		DD74A1166F5B6CA5794507D26981C7BF /* Array+UIAnimationGroupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338640D886A64C72CD3E7C3A5049952A /* Array+UIAnimationGroupable.swift */; };
 		DE104CD776F00A1FC4B0A895D108CD43 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C900E289F8798BD9721C6563B0956DCF /* Timeout.swift */; };
 		DE3B7AA73EFF37D80ED0DC86A771B291 /* GroupBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D63F3BA0306DE69EF442A1F417009 /* GroupBy.swift */; };
 		DEE92AC6F7CC21FE1D7CA1E3F1413751 /* Pods-Espresso_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C093A84F39374F9A9E4754CB5B166619 /* Pods-Espresso_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -689,6 +689,8 @@
 		2529F23C657F5006E3998700559564F3 /* UIAnimationOperationQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimationOperationQueue.swift; sourceTree = "<group>"; };
 		253FA9B4F271FC1CEF2CF269576E1830 /* UIDatePicker+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIDatePicker+Rx.swift"; path = "RxCocoa/iOS/UIDatePicker+Rx.swift"; sourceTree = "<group>"; };
 		25C1CCF0BA3DFD5E65750343F3D1BA9D /* RxCocoa.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RxCocoa.modulemap; sourceTree = "<group>"; };
+		262848EA288BCE3B009FBD15 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		262848EC288BD0B3009FBD15 /* Binding+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Espresso.swift"; sourceTree = "<group>"; };
 		268399E7591A70C00786839D9DDD23EE /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Sources/ConstraintView.swift; sourceTree = "<group>"; };
 		27112A2DC35E6791B563DBEEF0F81657 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxSearchControllerDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		28D207B35E6FEACA1B814A6270523B00 /* RxSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxSwift-dummy.m"; sourceTree = "<group>"; };
@@ -716,7 +718,6 @@
 		32672A4A49DFFA54CC59C44DAFF9EA2E /* UIStepper+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStepper+Rx.swift"; path = "RxCocoa/iOS/UIStepper+Rx.swift"; sourceTree = "<group>"; };
 		333CF58BEE37E83FFB3B25B0E9099847 /* Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Create.swift; path = RxSwift/Observables/Create.swift; sourceTree = "<group>"; };
 		3379E91C17262D4A9E339AE9C61C6617 /* RxCollectionViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewDataSourceType.swift; path = RxCocoa/iOS/Protocols/RxCollectionViewDataSourceType.swift; sourceTree = "<group>"; };
-		338640D886A64C72CD3E7C3A5049952A /* Array+UIAnimationGroupable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+UIAnimationGroupable.swift"; sourceTree = "<group>"; };
 		34122E4364EB6CE5CBE99E0D1BC1171B /* DefaultIfEmpty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultIfEmpty.swift; path = RxSwift/Observables/DefaultIfEmpty.swift; sourceTree = "<group>"; };
 		370D0B11641E71F2EFE5B4E06B47C14C /* Enumerated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enumerated.swift; path = RxSwift/Observables/Enumerated.swift; sourceTree = "<group>"; };
 		37EBA9A13E47DD68E8F628EDADD3874C /* Pods-Espresso_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Espresso_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1042,7 +1043,6 @@
 		CDF6B4F278E1ADCB79008273A7FF802E /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		CE62A93F72ADCF9FE84A7C68C9B61282 /* UIDevice+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIDevice+Espresso.swift"; sourceTree = "<group>"; };
 		CE683D462FF8231121D19A30161DDC03 /* SkipWhile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkipWhile.swift; path = RxSwift/Observables/SkipWhile.swift; sourceTree = "<group>"; };
-		CE89D994AE0F9EC2D6179D3782CB199E /* AppleDevice+DeviceType_with_software_versions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppleDevice+DeviceType_with_software_versions.swift"; sourceTree = "<group>"; };
 		CF4CF4DF29150D7FB4A00536BAB8860F /* SynchronizedOnType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedOnType.swift; path = RxSwift/Concurrency/SynchronizedOnType.swift; sourceTree = "<group>"; };
 		CF5AAA51544D6E90A7F3EB397FC8C383 /* RxRelay.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RxRelay.modulemap; sourceTree = "<group>"; };
 		CFB9981D5C728894B90E59557EFFCC79 /* PublishRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublishRelay.swift; path = RxRelay/PublishRelay.swift; sourceTree = "<group>"; };
@@ -1326,19 +1326,30 @@
 			isa = PBXGroup;
 			children = (
 				5CAA0E303EE8886DCD3B04151FD6B8F5 /* BlurView.swift */,
+				262848EA288BCE3B009FBD15 /* GradientView.swift */,
 			);
 			name = Views;
 			path = Espresso/Classes/SwiftUI/Views;
 			sourceTree = "<group>";
 		};
-		288819DF773F295E15BFA06298D3F371 /* Animation */ = {
+		262848E8288BCDA9009FBD15 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				6BE0A8C6A2D972CF69A41A83A71A2F7D /* Array+UIAnimation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		288819DF773F295E15BFA06298D3F371 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
 				950AE094E2C783A9B0F5EB6965E6CE9E /* UIAnimation.swift */,
 				FF4B667DE9E9F66ECB29E685B8A365B4 /* UIAnimationOperation.swift */,
 				2529F23C657F5006E3998700559564F3 /* UIAnimationOperationQueue.swift */,
-				DF9EE3CC0D203D78EDD62453AA29B62E /* UIAnimationGroup */,
+				F83928B05064A23481B94EBBF226E925 /* UIAnimationGroup.swift */,
+				73C330EE8F6FFCB892F2DEE51024475A /* UIAnimationGroupable.swift */,
+				D01C7C6BE70BF022DA02BF05AB79640A /* UIAnimationGroupController.swift */,
+				262848E8288BCDA9009FBD15 /* Extensions */,
 			);
 			name = Animation;
 			path = Espresso/Classes/UIKit/Animation;
@@ -1702,8 +1713,8 @@
 		3F70DAACCCDD7E894EFC6399909B5701 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				324541AD91B6627BE86D26578003BDEA /* UIViewControllerDirectionalTransition.swift */,
 				9D2B6CCE77F4BDDCDF3C6AC5D56CB575 /* UIViewControllerTransition.swift */,
+				324541AD91B6627BE86D26578003BDEA /* UIViewControllerDirectionalTransition.swift */,
 				1D1536D8B419CF44DE20C8A641ED9050 /* UIViewControllerTransitionAnimator.swift */,
 				1EE21B08819E8E9879EA913736744AE2 /* UIViewControllerTransitionInteractor.swift */,
 				FC8826FCDC080ACFBF5ED327173E7901 /* Extensions */,
@@ -2100,17 +2111,6 @@
 			path = Espresso/Classes/Core/Crypto;
 			sourceTree = "<group>";
 		};
-		DF9EE3CC0D203D78EDD62453AA29B62E /* UIAnimationGroup */ = {
-			isa = PBXGroup;
-			children = (
-				338640D886A64C72CD3E7C3A5049952A /* Array+UIAnimationGroupable.swift */,
-				F83928B05064A23481B94EBBF226E925 /* UIAnimationGroup.swift */,
-				73C330EE8F6FFCB892F2DEE51024475A /* UIAnimationGroupable.swift */,
-				D01C7C6BE70BF022DA02BF05AB79640A /* UIAnimationGroupController.swift */,
-			);
-			path = UIAnimationGroup;
-			sourceTree = "<group>";
-		};
 		E0DB4B6B53A81D7A3F2F4D74CC5B3B45 /* Key */ = {
 			isa = PBXGroup;
 			children = (
@@ -2124,6 +2124,7 @@
 		E122E681F796ED2457515F5E01D384B4 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				262848EC288BD0B3009FBD15 /* Binding+Espresso.swift */,
 				262848DC288B370A009FBD15 /* Views */,
 			);
 			name = SwiftUI;
@@ -2167,7 +2168,6 @@
 			children = (
 				309B075BDB75C76F4536E37E8D659F5F /* AppleDevice.swift */,
 				292C9EAE60CE74DD0F5267425902E316 /* AppleDevice+DeviceType.swift */,
-				CE89D994AE0F9EC2D6179D3782CB199E /* AppleDevice+DeviceType_with_software_versions.swift */,
 				05F99D43CE67C3A5485EE690787204D0 /* AppleDevice+Helpers.swift */,
 			);
 			name = AppleDevice;
@@ -2638,11 +2638,9 @@
 				5CF5564319C814ADF30D1ED0150D7EA8 /* AngleUnit.swift in Sources */,
 				76AF90264DE6C05D1E4F05BBE5A17395 /* AppleDevice.swift in Sources */,
 				67107CE84A66A5C8514E32A5018C12ED /* AppleDevice+DeviceType.swift in Sources */,
-				0C74F1E6938BDF27616CCBE378B0A7CC /* AppleDevice+DeviceType_with_software_versions.swift in Sources */,
 				CAC3052D31C11B53C86885C78ACD75CC /* AppleDevice+Helpers.swift in Sources */,
 				EA06326D7D472580F5F8DF6BA950B1E0 /* Array+Espresso.swift in Sources */,
 				C9DB5359C0FA1AF753765BBAB7C056CB /* Array+UIAnimation.swift in Sources */,
-				DD74A1166F5B6CA5794507D26981C7BF /* Array+UIAnimationGroupable.swift in Sources */,
 				C9DB2469011A86F8BC9CC2E3A9380203 /* AsyncOperation.swift in Sources */,
 				B013F4885B0635ACDF6905102A7EA9B7 /* Bool+Espresso.swift in Sources */,
 				A0F4EDD1E6AAFD7FF6B1282E67C84807 /* BooleanType.swift in Sources */,
@@ -2664,6 +2662,7 @@
 				B32BDD7D527E4DAA3A4B2B133ED64B42 /* Edge.swift in Sources */,
 				C0A66D6D16D7E2A4A640A094BC27182A /* ErrorType.swift in Sources */,
 				E293408F6B6BFA240C2C588F7C442C43 /* Espresso-dummy.m in Sources */,
+				262848ED288BD0B3009FBD15 /* Binding+Espresso.swift in Sources */,
 				9A30DF058FC89A8EDEC9DCDB9AD54952 /* Event.swift in Sources */,
 				1267C56E1ADA10109B9DAC17D278867A /* Event+Combine.swift in Sources */,
 				0CEFCBBFFB0566AC81290019606F1E9C /* Event+Rx.swift in Sources */,
@@ -2699,6 +2698,7 @@
 				A38E46F858D690FA2DC5C345BE0558AC /* TriggerRelay.swift in Sources */,
 				A0CBEEA9853A38EEBA80DEFEC82DF923 /* UIAnimation.swift in Sources */,
 				68149101C87F902EF133E9FA517FDE3F /* UIAnimationGroup.swift in Sources */,
+				262848EB288BCE3B009FBD15 /* GradientView.swift in Sources */,
 				EF5D3F417CB810DB3C13D8002EC37B8D /* UIAnimationGroupable.swift in Sources */,
 				D21238B7B13229BD298F822B98F7D089 /* UIAnimationGroupController.swift in Sources */,
 				D4EA827C648DEE28583D02C0847D1624 /* UIAnimationOperation.swift in Sources */,

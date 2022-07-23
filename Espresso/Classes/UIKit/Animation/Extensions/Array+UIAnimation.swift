@@ -32,3 +32,11 @@ public extension Array where Element: UIAnimation {
     }
     
 }
+
+extension Array: UIAnimationGroupable where Element: UIAnimation {
+    
+    public func asAnimationGroup() -> UIAnimationGroup {
+        return UIAnimationGroup(animations: self)
+    }
+    
+}

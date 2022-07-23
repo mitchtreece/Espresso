@@ -17,6 +17,7 @@ open class UIViewModelCollectionViewCell<V: ViewModel>: UIBaseCollectionViewCell
     /// Configures the cell with a view model.
     /// - Parameter viewModel: The view model.
     /// - Returns: This cell instance configured with a view model.
+    @discardableResult
     public func setup(viewModel: V) -> Self {
         
         guard self.viewModel !== viewModel else { return self }

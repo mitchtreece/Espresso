@@ -39,8 +39,8 @@ open class UIGradientView: UIBaseView {
     /// Representation of the various gradient color stop modes.
     public enum StopMode: Hashable {
         
-        /// An equal color stop mode.
-        case equal
+        /// A linear color stop mode.
+        case linear
         
         /// A custom color stop mode.
         case custom([CGFloat])
@@ -66,8 +66,8 @@ open class UIGradientView: UIBaseView {
         }
     }
     
-    /// The gradient's color stop mode; _defaults to equal_.
-    public var stops: StopMode = .equal {
+    /// The gradient's color stop mode; _defaults to linear.
+    public var stops: StopMode = .linear {
         didSet {
             update()
         }

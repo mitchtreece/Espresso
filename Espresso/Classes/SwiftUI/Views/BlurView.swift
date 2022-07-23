@@ -14,20 +14,9 @@ public struct BlurView: UIViewRepresentable {
     
     @Binding private var style: UIBlurEffect.Style
 
-    /// Initializes a `BlurView` with a default style.
-    public init() {
-        self.init(style: .systemMaterial)
-    }
-    
     /// Initializes a `BlurView` with a blur style.
     /// - parameter style: The blur style.
-    public init(style: UIBlurEffect.Style) {
-        self._style = .constant(style)
-    }
-    
-    /// Initializes a `BlurView` with a blur style binding.
-    /// - parameter style: The blur style binding.
-    public init(style: Binding<UIBlurEffect.Style>) {
+    public init(style: Binding<UIBlurEffect.Style> = .value(.systemMaterial)) {
         self._style = style
     }
     
