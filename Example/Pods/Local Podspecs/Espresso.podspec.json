@@ -1,6 +1,6 @@
 {
   "name": "Espresso",
-  "version": "2.4.1",
+  "version": "3.0.0",
   "summary": "Swift convenience library for iOS.",
   "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "2.4.1"
+    "tag": "3.0.0"
   },
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_versions": "5",
@@ -24,7 +24,18 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Espresso/Classes/Core/**/*",
+      "dependencies": {
+        "Espresso/Core-Core": [
+
+        ],
+        "Espresso/Core-Types": [
+
+        ]
+      }
+    },
+    {
+      "name": "Core-Core",
+      "source_files": "Espresso/Classes/Core/Core/**/*",
       "dependencies": {
         "Swinject": [
           "~> 2.0"
@@ -32,8 +43,23 @@
       }
     },
     {
-      "name": "UIKit",
-      "source_files": "Espresso/Classes/UIKit/**/*",
+      "name": "Core-Types",
+      "source_files": "Espresso/Classes/Core/Types/**/*"
+    },
+    {
+      "name": "UI",
+      "dependencies": {
+        "Espresso/UI-UIKit": [
+
+        ],
+        "Espresso/UI-SwiftUI": [
+
+        ]
+      }
+    },
+    {
+      "name": "UI-UIKit",
+      "source_files": "Espresso/Classes/UI/UIKit/**/*",
       "dependencies": {
         "Espresso/Core": [
 
@@ -44,17 +70,60 @@
       }
     },
     {
-      "name": "SwiftUI",
-      "source_files": "Espresso/Classes/SwiftUI/**/*",
+      "name": "UI-SwiftUI",
+      "source_files": "Espresso/Classes/UI/UIKit/**/*",
       "dependencies": {
-        "Espresso/UIKit": [
+        "Espresso/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Combine",
+      "dependencies": {
+        "Espresso/Combine-Core": [
+
+        ],
+        "Espresso/Combine-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "Combine-Core",
+      "source_files": "Espresso/Classes/Combine/Core/**/*",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Combine-UIKit",
+      "source_files": "Espresso/Classes/Combine/UIKit/**/*",
+      "dependencies": {
+        "Espresso/Combine-Core": [
+
+        ],
+        "Espresso/UI-UIKit": [
 
         ]
       }
     },
     {
       "name": "Rx",
-      "source_files": "Espresso/Classes/Rx/**/*",
+      "dependencies": {
+        "Espresso/Rx-Core": [
+
+        ],
+        "Espresso/Rx-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "Rx-Core",
+      "source_files": "Espresso/Classes/Rx/Core/**/*",
       "dependencies": {
         "Espresso/Core": [
 
@@ -69,33 +138,46 @@
     },
     {
       "name": "Rx-UIKit",
-      "source_files": "Espresso/Classes/Rx-UIKit/**/*",
+      "source_files": "Espresso/Classes/Rx/UIKit/**/*",
       "dependencies": {
-        "Espresso/Rx": [
+        "Espresso/Rx-Core": [
 
         ],
-        "Espresso/UIKit": [
+        "Espresso/UI-UIKit": [
 
         ]
       }
     },
     {
-      "name": "Combine",
-      "source_files": "Espresso/Classes/Combine/**/*",
+      "name": "UIKit",
       "dependencies": {
         "Espresso/Core": [
 
+        ],
+        "Espresso/UI-UIKit": [
+
+        ],
+        "Espresso/Combine-UIKit": [
+
+        ],
+        "Espresso/Rx-UIKit": [
+
         ]
       }
     },
     {
-      "name": "Combine-UIKit",
-      "source_files": "Espresso/Classes/Combine-UIKit/**/*",
+      "name": "SwiftUI",
       "dependencies": {
-        "Espresso/Combine": [
+        "Espresso/Core": [
 
         ],
-        "Espresso/UIKit": [
+        "Espresso/UI-SwiftUI": [
+
+        ],
+        "Espresso/Combine-Core": [
+
+        ],
+        "Espresso/Rx-Core": [
 
         ]
       }
@@ -106,22 +188,13 @@
         "Espresso/Core": [
 
         ],
-        "Espresso/UIKit": [
-
-        ],
-        "Espresso/SwiftUI": [
-
-        ],
-        "Espresso/Rx": [
-
-        ],
-        "Espresso/Rx-UIKit": [
+        "Espresso/UI": [
 
         ],
         "Espresso/Combine": [
 
         ],
-        "Espresso/Combine-UIKit": [
+        "Espresso/Rx": [
 
         ]
       }

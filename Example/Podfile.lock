@@ -1,29 +1,39 @@
 PODS:
-  - Espresso/All (2.4.1):
+  - Espresso/All (3.0.0):
     - Espresso/Combine
-    - Espresso/Combine-UIKit
     - Espresso/Core
     - Espresso/Rx
-    - Espresso/Rx-UIKit
-    - Espresso/SwiftUI
-    - Espresso/UIKit
-  - Espresso/Combine (2.4.1):
+    - Espresso/UI
+  - Espresso/Combine (3.0.0):
+    - Espresso/Combine-Core
+    - Espresso/Combine-UIKit
+  - Espresso/Combine-Core (3.0.0):
     - Espresso/Core
-  - Espresso/Combine-UIKit (2.4.1):
-    - Espresso/Combine
-    - Espresso/UIKit
-  - Espresso/Core (2.4.1):
+  - Espresso/Combine-UIKit (3.0.0):
+    - Espresso/Combine-Core
+    - Espresso/UI-UIKit
+  - Espresso/Core (3.0.0):
+    - Espresso/Core-Core
+    - Espresso/Core-Types
+  - Espresso/Core-Core (3.0.0):
     - Swinject (~> 2.0)
-  - Espresso/Rx (2.4.1):
+  - Espresso/Core-Types (3.0.0)
+  - Espresso/Rx (3.0.0):
+    - Espresso/Rx-Core
+    - Espresso/Rx-UIKit
+  - Espresso/Rx-Core (3.0.0):
     - Espresso/Core
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - Espresso/Rx-UIKit (2.4.1):
-    - Espresso/Rx
-    - Espresso/UIKit
-  - Espresso/SwiftUI (2.4.1):
-    - Espresso/UIKit
-  - Espresso/UIKit (2.4.1):
+  - Espresso/Rx-UIKit (3.0.0):
+    - Espresso/Rx-Core
+    - Espresso/UI-UIKit
+  - Espresso/UI (3.0.0):
+    - Espresso/UI-SwiftUI
+    - Espresso/UI-UIKit
+  - Espresso/UI-SwiftUI (3.0.0):
+    - Espresso/Core
+  - Espresso/UI-UIKit (3.0.0):
     - Espresso/Core
     - SnapKit (~> 5.0)
   - RxCocoa (6.5.0):
@@ -51,7 +61,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 55ce7671b4752658520150e3c0e7b1d0a5649ece
+  Espresso: c79b7866e72b074aeb622ba6ec262fe4b0c325f6
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
