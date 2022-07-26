@@ -7,10 +7,13 @@
 
 import Foundation
 
-/// Protocol describing something that *might* have a value.
+/// Protocol describing something that can be represented as an `Optional`.
 public protocol OptionalType {
     
     associatedtype Wrapped
+    
+    /// The optional's type representation.
+    var optionalType: Any.Type { get }
     
     /// An optional representation.
     var optionalValue: Wrapped? { get }
@@ -19,6 +22,10 @@ public protocol OptionalType {
 
 extension Optional: OptionalType {
 
+    public var optionalType: Any.Type {
+        return Wrapped.self
+    }
+    
     public var optionalValue: Wrapped? {
         return self
     }

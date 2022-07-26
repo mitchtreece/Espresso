@@ -82,7 +82,7 @@ public extension UIView /* Gestures */ {
 public extension UIView /* Motion */ {
     
     /// Adds an accelerometer-based parallax motion effect to the view.
-    /// - Parameter:
+    /// - Parameter movement: The movement amount.
     func addParallaxMotionEffect(movement: CGVector) {
         
         var effects = [UIInterpolatingMotionEffect]()

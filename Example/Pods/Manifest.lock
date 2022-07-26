@@ -2,6 +2,7 @@ PODS:
   - Espresso/All (3.0.0):
     - Espresso/Combine
     - Espresso/Core
+    - Espresso/Promise
     - Espresso/Rx
     - Espresso/UI
   - Espresso/Combine (3.0.0):
@@ -15,9 +16,12 @@ PODS:
   - Espresso/Core (3.0.0):
     - Espresso/Core-Core
     - Espresso/Core-Types
-  - Espresso/Core-Core (3.0.0):
-    - Swinject (~> 2.0)
+  - Espresso/Core-Core (3.0.0)
   - Espresso/Core-Types (3.0.0)
+  - Espresso/Promise (3.0.0):
+    - Espresso/Promise-Core
+  - Espresso/Promise-Core (3.0.0):
+    - PromiseKit (~> 6.0)
   - Espresso/Rx (3.0.0):
     - Espresso/Rx-Core
     - Espresso/Rx-UIKit
@@ -36,6 +40,15 @@ PODS:
   - Espresso/UI-UIKit (3.0.0):
     - Espresso/Core
     - SnapKit (~> 5.0)
+  - PromiseKit (6.17.1):
+    - PromiseKit/CorePromise (= 6.17.1)
+    - PromiseKit/Foundation (= 6.17.1)
+    - PromiseKit/UIKit (= 6.17.1)
+  - PromiseKit/CorePromise (6.17.1)
+  - PromiseKit/Foundation (6.17.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.17.1):
+    - PromiseKit/CorePromise
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -43,30 +56,29 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SnapKit (5.6.0)
-  - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Espresso/All (from `../`)
 
 SPEC REPOS:
   trunk:
+    - PromiseKit
     - RxCocoa
     - RxRelay
     - RxSwift
     - SnapKit
-    - Swinject
 
 EXTERNAL SOURCES:
   Espresso:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: fffb17695517c6bbae7fc1c2a4c0a7ada20d04a4
+  Espresso: f797addd4c4fda2eb7776f9f7b0489e0c450f84b
+  PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
 PODFILE CHECKSUM: 23087355445a3b8e0e8ca6fc1135b156118e4431
 

@@ -35,6 +35,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
         
     }
+    
+    func asyncGetString() async -> String {
+        
+        try! await Task.sleep(nanoseconds: 1000)
+        return "Hello, world!"
+        
+    }
+    
+    func asyncGetStringThrowing() async throws -> String {
+        
+        try await Task.sleep(nanoseconds: 1000)
+        return "Hello, world!"
+        
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         

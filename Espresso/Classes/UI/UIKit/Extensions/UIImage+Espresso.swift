@@ -12,7 +12,8 @@ public extension UIImage /* Color */ {
     /// Initializes a new image from a specified color & size.
     /// - Parameter color: The image fill color.
     /// - Parameter size: The image size.
-    convenience init?(color: UIColor, size: CGSize) {
+    convenience init?(color: UIColor,
+                      size: CGSize) {
         
         let rect = CGRect(origin: .zero, size: size)
         
@@ -55,4 +56,35 @@ public extension UIImage /* Scale */ {
         
     }
     
+}
+
+public extension UIImage { /* JPEG */
+
+    /// Representation of the various JPEG quality types.
+    enum JPEGQuality: CGFloat {
+        
+        /// The lowest quality type, value = 0
+        case lowest = 0
+        
+        /// A low quality type, value = 0.25
+        case low = 0.25
+        
+        /// A medium quality type, value = 0.5
+        case medium = 0.5
+        
+        /// A high quality type, value = 0.75
+        case high = 0.75
+        
+        /// The highest quality type, value = 1
+        case highest = 1
+        
+    }
+
+    /// Converts the image into JPEG data using a given quality.
+    /// - parameter quality: The JPEG quality to use.
+    /// - returns: JPEG data.
+    func jpegData(quality: JPEGQuality) -> Data? {
+        jpegData(compressionQuality: quality.rawValue)
+    }
+
 }

@@ -35,12 +35,7 @@
     },
     {
       "name": "Core-Core",
-      "source_files": "Espresso/Classes/Core/Core/**/*",
-      "dependencies": {
-        "Swinject": [
-          "~> 2.0"
-        ]
-      }
+      "source_files": "Espresso/Classes/Core/Core/**/*"
     },
     {
       "name": "Core-Types",
@@ -149,6 +144,23 @@
       }
     },
     {
+      "name": "Promise",
+      "dependencies": {
+        "Espresso/Promise-Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Promise-Core",
+      "source_files": "Espresso/Classes/Promise/Core/**/*",
+      "dependencies": {
+        "PromiseKit": [
+          "~> 6.0"
+        ]
+      }
+    },
+    {
       "name": "UIKit",
       "dependencies": {
         "Espresso/Core": [
@@ -196,6 +208,49 @@
         ],
         "Espresso/Rx": [
 
+        ],
+        "Espresso/Promise": [
+
+        ]
+      }
+    },
+    {
+      "name": "Recipe-Modern-UIKit",
+      "dependencies": {
+        "Espresso/UI-UIKit": [
+
+        ],
+        "Espresso/Combine-UIKit": [
+
+        ],
+        "Spider-Web": [
+          "~> 2.0"
+        ],
+        "Director": [
+          "~> 1.0"
+        ],
+        "Swinject": [
+          "~> 2.0"
+        ]
+      }
+    },
+    {
+      "name": "Recipe-Rx-UIKit",
+      "dependencies": {
+        "Espresso/UI-UIKit": [
+
+        ],
+        "Espresso/Rx-UIKit": [
+
+        ],
+        "Spider-Web": [
+          "~> 2.0"
+        ],
+        "Director": [
+          "~> 1.0"
+        ],
+        "Swinject": [
+          "~> 2.0"
         ]
       }
     }

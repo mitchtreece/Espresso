@@ -24,3 +24,19 @@ public extension StaticIdentifiable where Self: UIViewController /* Storyboard *
     }
     
 }
+
+public extension UIViewController /* Navigation */ {
+    
+    /// Flag indicating if the view-controller is embedded in a
+    /// `UINavigationController` stack **and** is not the stack's
+    /// root view-controller.
+    var isNavigationPoppable: Bool {
+        
+        if let nav = self.navigationController,
+           nav.viewControllers.count > 1 { return true }
+
+        return false
+        
+    }
+    
+}
