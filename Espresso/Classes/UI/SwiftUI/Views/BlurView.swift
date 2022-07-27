@@ -21,12 +21,7 @@ public struct BlurView: UIViewRepresentable {
     }
     
     public func makeUIView(context: Context) -> UIBlurView {
-        
-        return UIBlurView(
-            frame: .zero,
-            style: self.style
-        )
-        
+        return UIBlurView(style: self.style)
     }
     
     public func updateUIView(_ uiView: UIBlurView,

@@ -84,36 +84,36 @@ public class UIScrollingStackView: UIScrollView {
     private var stackViewBottomConstraint: NSLayoutConstraint!
 
     public required init?(coder decoder: NSCoder) {
-        
+
         super.init(coder: decoder)
         setup(axis: .vertical)
-        
+
     }
-    
+
     public override init(frame: CGRect) {
-        
+
         super.init(frame: frame)
         setup(axis: .vertical)
-        
+
     }
-    
+
     public init(axis: NSLayoutConstraint.Axis = .vertical,
                 arrangedSubviews: [UIView] = []) {
-        
+
         super.init(frame: .zero)
-        
+
         setup(axis: axis)
-        
+
         for subview in arrangedSubviews {
             self.addArrangedSubview(subview)
         }
-        
+
     }
-    
+
     public convenience init() {
         self.init(axis: .vertical)
     }
-    
+
     public func addArrangedSubview(_ view: UIView) {
         self.stackView.addArrangedSubview(view)
     }

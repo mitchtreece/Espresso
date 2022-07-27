@@ -46,45 +46,43 @@ public class UIButtonView: UIBaseView {
         }
     }
     
+    public var action: (()->())?
+    
     public var isAnimated: Bool = true
     
-    static let minimumHeight: CGFloat = 44
+    public static let minimumHeight: CGFloat = 44
     
     private var buttonView: UIView!
     private var titleLabel: UILabel!
     
-    private var action: (()->())?
-    
-    public convenience init(title: String?,
-                            style: Style = .filled,
-                            action: @escaping ()->()) {
-        
-        self.init(frame: .zero)
+    public init(title: String?,
+                style: Style = .filled,
+                action: (()->())?) {
         
         self.title = title
         self.style = style
         self.action = action
         
-        updateStyle()
-        updateTitleTextAndFont()
+        super.init(frame: .zero)
+                
+    }
+            
+    public convenience init() {
         
+        self.init(
+            title: nil,
+            action: nil
+        )
+                
     }
-
-    public override init(frame: CGRect) {
-
-        super.init(frame: frame)
-        setupSubviews()
-
-    }
-
+    
     public required init?(coder: NSCoder) {
-
         super.init(coder: coder)
-        setupSubviews()
-
     }
-
-    private func setupSubviews() {
+    
+    open override func setupView() {
+        
+        super.setupView()
 
         self.backgroundColor = .clear
         
@@ -122,6 +120,7 @@ public class UIButtonView: UIBaseView {
         }
 
         updateStyle()
+        updateTitleTextAndFont()
 
     }
     

@@ -77,39 +77,32 @@ open class UIGradientView: UIBaseView {
         return CAGradientLayer.self
     }
     
-    public override func userInterfaceStyleDidChange() {
-        super.userInterfaceStyleDidChange()
-        update()
-    }
+//    public override func userInterfaceStyleDidChange() {
+//        super.userInterfaceStyleDidChange()
+//        update()
+//    }
     
     /// Initializes a new `UIGradientView` with colors & a specified direction.
-    /// - Parameter frame: The view's frame.
-    /// - Parameter colors: The gradient colors.
+    /// - Parameter colors: The gradient colors; _defaults to [black, clear]_.
     /// - Parameter direction: The gradient direction; _defaults to up_.
-    public convenience init(frame: CGRect,
-                            colors: [UIColor],
-                            direction: Direction = .up) {
+    public init(colors: [UIColor] = [.black, .clear],
+                direction: Direction = .up) {
         
-        self.init(frame: frame)
         self.colors = colors
         self.direction = direction
         
-        update()
-        
+        super.init(frame: .zero)
+                
     }
     
-    public override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-        self.backgroundColor = .clear
-        
-        update()
-        
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    open override func setupView() {
         
-        super.init(coder: aDecoder)
+        super.setupView()
+        
         self.backgroundColor = .clear
         
         update()
@@ -134,6 +127,8 @@ open class UIGradientView: UIBaseView {
         }
         
     }
+    
+    // MARK: Private
     
     private func points(for direction: Direction) -> (start: CGPoint, end: CGPoint) {
         

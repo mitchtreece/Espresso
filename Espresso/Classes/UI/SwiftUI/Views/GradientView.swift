@@ -29,7 +29,6 @@ public struct GradientView: UIViewRepresentable {
     public func makeUIView(context: Context) -> UIGradientView {
         
         return UIGradientView(
-            frame: .zero,
             colors: self.colors,
             direction: self.direction
         )

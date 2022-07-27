@@ -13,6 +13,19 @@ private struct AssociatedKeys {
 
 public extension UIApplication {
     
+    /// The application's key windows.
+    var keyWindows: [UIWindow] {
+        
+        return self.windows
+            .filter { $0.isKeyWindow }
+        
+    }
+    
+    /// The application's first key window.
+    var firstKeyWindow: UIWindow? {
+        return self.keyWindows.first
+    }
+    
     /// The application's active keyboard window.
     var keyboardWindow: UIWindow? {
         
@@ -24,7 +37,7 @@ public extension UIApplication {
     /// Gets the top-most (key) `UIViewController` in a given root view controller.
     /// - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keyWindow?.rootViewController_.
     /// - Returns: The top-most (key) view controller in the root view controller.
-    func keyViewController(in root: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    func keyViewController(in root: UIViewController? = UIApplication.shared.firstKeyWindow?.rootViewController) -> UIViewController? {
         
         if let presented = root?.presentedViewController {
             return keyViewController(in: presented)

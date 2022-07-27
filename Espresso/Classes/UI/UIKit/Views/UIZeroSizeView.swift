@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class UIZeroSizeView: UIView {
+public class UIZeroSizeView: UIBaseView {
     
     public override var intrinsicContentSize: CGSize {
         return .zero

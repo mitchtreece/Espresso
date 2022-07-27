@@ -31,34 +31,24 @@ open class UIBlurView: UIBaseView {
     }
     
     /// Initializes a new `UIBlurView` with a specified blur style.
-    /// - Parameter frame: The view's frame.
-    /// - Parameter style: The blur style.
-    public init(frame: CGRect,
-                style: UIBlurEffect.Style) {
+    /// - Parameter style: The blur style; _defaults to light_.
+    public init(style: UIBlurEffect.Style = .light) {
         
-        super.init(frame: frame)
         self.blurStyle = style
-        setup()
+        super.init(frame: .zero)
         
     }
     
-    public override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-        setup()
-        
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
-    
-    public required init?(coder aDecoder: NSCoder) {
+
+    open override func setupView() {
         
-        super.init(coder: aDecoder)
-        setup()
-        
-    }
-    
-    private func setup() {
+        super.setupView()
         
         self.clipsToBounds = true
+        
         setupBlurView()
         
     }

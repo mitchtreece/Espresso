@@ -10,7 +10,7 @@ import SnapKit
 
 public class UIHairlineView: UIBaseView {
     
-    public enum HeightMode {
+    public enum Height {
         
         case constant
         case native
@@ -26,7 +26,7 @@ public class UIHairlineView: UIBaseView {
         
     }
     
-    public var height: HeightMode = .constant {
+    public var height: Height = .constant {
         didSet {
             updateHeight()
         }
@@ -34,30 +34,20 @@ public class UIHairlineView: UIBaseView {
     
     private var heightConstraint: Constraint!
     
-    public convenience init(height: HeightMode = .constant) {
+    public init(height: Height = .constant) {
         
-        self.init(frame: .zero)
         self.height = height
-        
-    }
-    
-    public override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-        setupSubviews()
+        super.init(frame: .zero)
         
     }
     
     public required init?(coder: NSCoder) {
-        
         super.init(coder: coder)
-        setupSubviews()
-        
     }
     
-    // MARK: Private
-    
-    private func setupSubviews() {
+    open override func setupView() {
+        
+        super.setupView()
 
         self.backgroundColor = .lightGray
 
@@ -66,6 +56,8 @@ public class UIHairlineView: UIBaseView {
         }
 
     }
+    
+    // MARK: Private
     
     private func updateHeight() {
 

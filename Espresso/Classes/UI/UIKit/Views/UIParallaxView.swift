@@ -32,27 +32,24 @@ open class UIParallaxView: UIBaseView {
     
     private var views = [UIView]()
     
-    public init(frame: CGRect,
-                layers: [ParallaxLayer]) {
+    public init(layers: [ParallaxLayer] = []) {
         
-        super.init(frame: frame)
-        setupSubviews()
+        super.init(frame: .zero)
         layout(for: layers)
         
     }
-        
-    public override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-        setupSubviews()
-        
-    }
-
+    
     public required init?(coder: NSCoder) {
-        
         super.init(coder: coder)
-        setupSubviews()
+    }
+    
+    open override func setupView() {
         
+        super.setupView()
+        
+        self.backgroundColor = .clear
+        self.clipsToBounds = false
+
     }
     
     public func setParallaxLayers(_ layers: [ParallaxLayer]) {
@@ -144,13 +141,6 @@ open class UIParallaxView: UIBaseView {
     }
     
     // MARK: Private
-    
-    private func setupSubviews() {
-        
-        self.backgroundColor = .clear
-        self.clipsToBounds = false
-
-    }
     
     private func layout(for layers: [ParallaxLayer]) {
         
