@@ -2,14 +2,18 @@ PODS:
   - Espresso/All (3.0.0):
     - Espresso/Combine
     - Espresso/Core
-    - Espresso/Promise
+    - Espresso/PromiseKit
     - Espresso/Rx
     - Espresso/UI
   - Espresso/Combine (3.0.0):
     - Espresso/Combine-Core
+    - Espresso/Combine-PromiseKit
     - Espresso/Combine-UIKit
   - Espresso/Combine-Core (3.0.0):
     - Espresso/Core
+  - Espresso/Combine-PromiseKit (3.0.0):
+    - Espresso/Combine-Core
+    - Espresso/PromiseKit-Core
   - Espresso/Combine-UIKit (3.0.0):
     - Espresso/Combine-Core
     - Espresso/UI-UIKit
@@ -18,9 +22,9 @@ PODS:
     - Espresso/Core-Types
   - Espresso/Core-Core (3.0.0)
   - Espresso/Core-Types (3.0.0)
-  - Espresso/Promise (3.0.0):
-    - Espresso/Promise-Core
-  - Espresso/Promise-Core (3.0.0):
+  - Espresso/PromiseKit (3.0.0):
+    - Espresso/PromiseKit-Core
+  - Espresso/PromiseKit-Core (3.0.0):
     - PromiseKit (~> 6.0)
   - Espresso/Rx (3.0.0):
     - Espresso/Rx-Core
@@ -73,7 +77,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: f797addd4c4fda2eb7776f9f7b0489e0c450f84b
+  Espresso: 3169fc3da547ab8a094460d0dc4e979c9d338a88
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */; };
 		262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E0288B4505009FBD15 /* ViewsContentView.swift */; };
 		262848E7288B79B2009FBD15 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E6288B79B2009FBD15 /* TitleView.swift */; };
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewsViewController.swift; sourceTree = "<group>"; };
 		262848E0288B4505009FBD15 /* ViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsContentView.swift; sourceTree = "<group>"; };
 		262848E6288B79B2009FBD15 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260B98192891BE4200DD63D8 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		2628056F21F68E8200FDF34D /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
+				260B98192891BE4200DD63D8 /* UIKit */,
 				262848DD288B4493009FBD15 /* SwiftUI */,
 				269114BE2344302F00A4A5F6 /* Menus */,
 				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
@@ -428,6 +439,7 @@
 				269114C12344318F00A4A5F6 /* ContextView.swift in Sources */,
 				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
 				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
+				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
 				262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */,
 				269114C62344341500A4A5F6 /* ESColor.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,

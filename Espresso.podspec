@@ -29,11 +29,12 @@ Pod::Spec.new do |s|
     # - Combine
     #     - Combine-Core
     #     - Combine-UIKit
+    #     - Combine-PromiseKit
     # - Rx
     #     - Rx-Core
     #     - Rx-UIKit
-    # - Promise
-    #     - Promise-Core
+    # - PromiseKit
+    #     - PromiseKit-Core
     # 
     # - UIKit
     # - SwiftUI
@@ -107,6 +108,7 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Combine-Core'
         ss.dependency     'Espresso/Combine-UIKit'
+        ss.dependency     'Espresso/Combine-PromiseKit'
 
     end
 
@@ -122,6 +124,14 @@ Pod::Spec.new do |s|
         ss.source_files = 'Espresso/Classes/Combine/UIKit/**/*'
         ss.dependency     'Espresso/Combine-Core'
         ss.dependency     'Espresso/UI-UIKit'
+
+    end
+
+    s.subspec 'Combine-PromiseKit' do |ss|
+        
+        ss.source_files = 'Espresso/Classes/Combine/PromiseKit/**/*'
+        ss.dependency     'Espresso/Combine-Core'
+        ss.dependency     'Espresso/PromiseKit-Core'
 
     end
 
@@ -154,15 +164,15 @@ Pod::Spec.new do |s|
 
     ## Promise
 
-    s.subspec 'Promise' do |ss|
+    s.subspec 'PromiseKit' do |ss|
 
-        ss.dependency     'Espresso/Promise-Core'
+        ss.dependency     'Espresso/PromiseKit-Core'
 
     end
 
-    s.subspec 'Promise-Core' do |ss|
+    s.subspec 'PromiseKit-Core' do |ss|
 
-        ss.source_files = 'Espresso/Classes/Promise/Core/**/*'
+        ss.source_files = 'Espresso/Classes/PromiseKit/Core/**/*'
 
         ss.dependency     'PromiseKit', '~> 6.0'
 
@@ -194,7 +204,7 @@ Pod::Spec.new do |s|
         ss.dependency     'Espresso/UI'
         ss.dependency     'Espresso/Combine'
         ss.dependency     'Espresso/Rx'
-        ss.dependency     'Espresso/Promise'
+        ss.dependency     'Espresso/PromiseKit'
 
     end
 

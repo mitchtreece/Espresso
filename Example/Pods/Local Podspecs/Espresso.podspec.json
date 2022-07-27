@@ -81,6 +81,9 @@
         ],
         "Espresso/Combine-UIKit": [
 
+        ],
+        "Espresso/Combine-PromiseKit": [
+
         ]
       }
     },
@@ -101,6 +104,18 @@
 
         ],
         "Espresso/UI-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "Combine-PromiseKit",
+      "source_files": "Espresso/Classes/Combine/PromiseKit/**/*",
+      "dependencies": {
+        "Espresso/Combine-Core": [
+
+        ],
+        "Espresso/PromiseKit-Core": [
 
         ]
       }
@@ -144,16 +159,16 @@
       }
     },
     {
-      "name": "Promise",
+      "name": "PromiseKit",
       "dependencies": {
-        "Espresso/Promise-Core": [
+        "Espresso/PromiseKit-Core": [
 
         ]
       }
     },
     {
-      "name": "Promise-Core",
-      "source_files": "Espresso/Classes/Promise/Core/**/*",
+      "name": "PromiseKit-Core",
+      "source_files": "Espresso/Classes/PromiseKit/Core/**/*",
       "dependencies": {
         "PromiseKit": [
           "~> 6.0"
@@ -209,7 +224,7 @@
         "Espresso/Rx": [
 
         ],
-        "Espresso/Promise": [
+        "Espresso/PromiseKit": [
 
         ]
       }

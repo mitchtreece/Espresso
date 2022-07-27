@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.events.willResignActive.addObserver {
             print("☕️ application will resign active")
         }
-        
+                
         return true
         
     }
@@ -110,6 +110,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: RootViewControllerDelegate {
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectUIKitRow row: RootViewController.UIKitRow) {
+                
+        var vc: UIViewController!
+        
+        switch row {
+        case .views: vc = UIKitViewsViewController()
+        }
+                        
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
+
+    }
     
     func rootViewController(_ vc: RootViewController,
                             didSelectSwiftUIRow row: RootViewController.SwiftUIRow) {

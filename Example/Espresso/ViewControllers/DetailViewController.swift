@@ -9,7 +9,7 @@
 import UIKit
 import Espresso
 
-protocol DetailViewControllerDelegate: class {
+protocol DetailViewControllerDelegate: AnyObject {
     func detailViewControllerDidTapDone(_ viewController: DetailViewController)
 }
 

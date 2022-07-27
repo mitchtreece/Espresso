@@ -13,6 +13,9 @@ import SnapKit
 protocol RootViewControllerDelegate: AnyObject {
     
     func rootViewController(_ vc: RootViewController,
+                            didSelectUIKitRow row: RootViewController.UIKitRow)
+    
+    func rootViewController(_ vc: RootViewController,
                             didSelectSwiftUIRow row: RootViewController.SwiftUIRow)
     
     func rootViewController(_ vc: RootViewController,
@@ -74,6 +77,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int, CaseIterable {
         
+        case uikit
         case swiftui
         case transition
         case rxMvvm
@@ -81,6 +85,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case taptics
         case helpers
         case menus
+        
+    }
+    
+    enum UIKitRow: Int, CaseIterable {
+        
+        case views
+        
+        var title: String {
+            
+            switch self {
+            case .views: return "Views"
+            }
+            
+        }
         
     }
     
@@ -244,6 +262,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
+        case .uikit: return "UIKit"
         case .swiftui: return "SwiftUI"
         case .transition: return "Transitions"
         case .menus: return "Menus"
@@ -260,6 +279,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
+        case .uikit: return UIKitRow.allCases.count
         case .swiftui: return SwiftUIRow.allCases.count
         case .transition: return TransitionRow.allCases.count
         case .menus: return MenuRow.allCases.count
@@ -278,6 +298,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
 
         switch _section {
+        case .uikit:
+            
+            guard let row = UIKitRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            cell.textLabel?.text = row.title
+            
         case .swiftui:
             
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -332,6 +357,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
         switch _section {
+        case .uikit:
+            
+            guard let row = UIKitRow(rawValue: indexPath.row) else { return }
+            self.delegate?.rootViewController(self, didSelectUIKitRow: row)
+            
         case .swiftui:
             
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return }
