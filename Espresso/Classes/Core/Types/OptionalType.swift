@@ -12,22 +12,15 @@ public protocol OptionalType {
     
     associatedtype Wrapped
     
-    /// The optional's type representation.
-    var optionalType: Any.Type { get }
-    
-    /// The optional's value representation.
-    var optionalValue: Wrapped? { get }
+    /// The optional's value.
+    var wrappedValue: Wrapped? { get }
     
     
 }
 
 extension Optional: OptionalType {
 
-    public var optionalType: Any.Type {
-        return Wrapped.self
-    }
-    
-    public var optionalValue: Wrapped? {
+    public var wrappedValue: Wrapped? {
         return self
     }
     

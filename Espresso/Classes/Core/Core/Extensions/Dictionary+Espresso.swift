@@ -7,16 +7,21 @@
 
 import Foundation
 
-public extension Dictionary {
+public extension Dictionary where Value: OptionalType {
     
-    /// Prints the dictionary to the console using a pretty JSON format.
-    func debugPrintJSON() {
-        
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]),
-            let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return }
-        
-        debugPrint(string)
-        
+    /// Creates a new non-optional dictionary by removing key/value pairs with `nil` values.
+    /// - returns: A new non-optional dictionary.
+    ///
+    ///     let optionalMap: [String: Int?] = [
+    ///         "one": 1,
+    ///         "two": nil,
+    ///         "three": 3
+    ///     ]
+    ///
+    ///     let concreteMap: [String: Int] = optionalMap.compact()
+    ///     print(concreteMap) => "["one": 1, "three": 3]"
+    func compact() -> [Key: Value.Wrapped] {
+        return compactMapValues { $0 as? Value.Wrapped }
     }
     
 }

@@ -21,7 +21,7 @@ class UIKitViewsViewController: DetailViewController {
     }
     
     private func setupSubviews() {
-                
+            
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Dismiss KB",
             style: .done,

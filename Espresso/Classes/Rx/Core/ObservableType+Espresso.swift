@@ -33,7 +33,7 @@ public extension ObservableType where Element: OptionalType /* Optional */ {
     func `guard`() -> Observable<Element.Wrapped> {
         
         return self.flatMap { element -> Observable<Element.Wrapped> in
-            guard let value = element.optionalValue else { return Observable<Element.Wrapped>.empty() }
+            guard let value = element.wrappedValue else { return Observable<Element.Wrapped>.empty() }
             return Observable<Element.Wrapped>.just(value)
         }
         

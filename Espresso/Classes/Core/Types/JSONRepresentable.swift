@@ -7,7 +7,27 @@
 
 import Foundation
 
+/// A json object type representation.
 public typealias JSON = [String: Any]
+
+public extension JSON /* Print */ {
+    
+    /// Pretty prints the json object to the console.
+    func prettyPrint() {
+        
+        guard let data = asJsonData(options: [.prettyPrinted]),
+              let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
+            
+            debugPrint(self)
+            return
+            
+        }
+        
+        debugPrint(string)
+        
+    }
+    
+}
 
 /// Protocol describing something that can be represented as a JSON object.
 public protocol JSONRepresentable {
@@ -17,8 +37,19 @@ public protocol JSONRepresentable {
     func asJson() -> JSON?
     
     /// A json data representation.
+    /// - parameter options: Options to use when writing json data.
     /// - returns: `JSON` data.
-    func asJsonData() -> Data?
+    func asJsonData(options: JSONSerialization.WritingOptions) -> Data?
+    
+}
+
+public extension JSONRepresentable {
+    
+    /// A json data representation.
+    /// - returns: `JSON` data.
+    func asJsonData() -> Data? {
+        return asJsonData(options: [])
+    }
     
 }
 
@@ -30,8 +61,17 @@ public protocol JSONArrayRepresentable {
     func asJsonArray() -> [JSON]?
     
     /// a json-array data representation.
+    /// - parameter options: Options to use when writing json data.
     /// - returns: `JSON` array data.
-    func asJsonArrayData() -> Data?
+    func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data?
+    
+}
+
+public extension JSONArrayRepresentable {
+    
+    func asJsonArrayData() -> Data? {
+        return asJsonArrayData(options: [])
+    }
     
 }
 
@@ -44,10 +84,14 @@ extension Dictionary: JSONRepresentable where Key == String, Value == Any {
         
     }
     
-    public func asJsonData() -> Data? {
+    public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
         
         guard let json = asJson() else { return nil }
-        return try? JSONSerialization.data(withJSONObject: json)
+        
+        return try? JSONSerialization.data(
+            withJSONObject: json,
+            options: options
+        )
         
     }
     
@@ -62,10 +106,14 @@ extension Array: JSONArrayRepresentable where Element == JSON {
         
     }
     
-    public func asJsonArrayData() -> Data? {
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
         
         guard let array = asJsonArray() else { return nil }
-        return try? JSONSerialization.data(withJSONObject: array)
+        
+        return try? JSONSerialization.data(
+            withJSONObject: array,
+            options: options
+        )
         
     }
     
@@ -77,10 +125,15 @@ extension Data: JSONRepresentable, JSONArrayRepresentable {
         return try? JSONSerialization.jsonObject(with: self) as? JSON
     }
     
-    public func asJsonData() -> Data? {
+    public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
         
-        guard let _ = asJson() else { return nil }
-        return self
+        guard let json = asJson() else { return nil }
+        
+        if options.isEmpty {
+            return self
+        }
+        
+        return json.asJsonData(options: options)
         
     }
     
@@ -88,10 +141,15 @@ extension Data: JSONRepresentable, JSONArrayRepresentable {
         return try? JSONSerialization.jsonObject(with: self) as? [JSON]
     }
     
-    public func asJsonArrayData() -> Data? {
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
         
-        guard let _ = asJsonArray() else { return nil }
-        return self
+        guard let array = asJsonArray() else { return nil }
+        
+        if options.isEmpty {
+            return self
+        }
+        
+        return array.asJsonArrayData(options: options)
         
     }
     
@@ -158,10 +216,12 @@ public extension Decodable {
     static func from(jsons: [JSON]) -> [Self]? {
 
         let objects = jsons
-            .compactMap { try? JSONSerialization.data(withJSONObject: $0) }
+            .compactMap { $0.asJsonData() }
             .compactMap { try? JSONDecoder().decode(Self.self, from: $0) }
-        
-        guard !objects.isEmpty else { return nil }
+                
+        if objects.isEmpty {
+            return nil
+        }
         
         return objects
 

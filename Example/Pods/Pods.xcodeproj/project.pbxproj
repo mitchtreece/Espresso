@@ -93,6 +93,7 @@
 		249675585540F94CBD2E37404AABDC55 /* UISegmentedControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440435A6E49D59167568C3AE25A01D5 /* UISegmentedControl+Rx.swift */; };
 		251F5F111B9A86DA8E19B5B13A17F48B /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A07DD12DC799DD78A992E4B462CB5BB /* UITextField+Rx.swift */; };
 		259D2083A3C8F88DC770A134D9CF6316 /* hang.m in Sources */ = {isa = PBXBuildFile; fileRef = D051261E4FCFDD88549DBCF5F7404F6D /* hang.m */; };
+		260B983B289316F400DD63D8 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B983A289316F400DD63D8 /* KeyboardManager.swift */; };
 		2715741C758597FED99B2C1E65364B28 /* UIContextMenuGroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D482746CAAEC22F68509EF147013B5A /* UIContextMenuGroupItem.swift */; };
 		27359BDD485727282D9383B748C6269E /* ReplaySubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E530D32F7DF3413B5D850C4D83AB67F /* ReplaySubject.swift */; };
 		27B3B996427889FE0D9F1F887BBDACF2 /* UIViewControllerTransitionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA4929A0AC7C20593CF2EA4C368789 /* UIViewControllerTransitionInteractor.swift */; };
@@ -714,7 +715,7 @@
 		13BA4929A0AC7C20593CF2EA4C368789 /* UIViewControllerTransitionInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerTransitionInteractor.swift; sourceTree = "<group>"; };
 		1475D16BDC6B25005AA2FBEA1B281E2A /* UIApplicationEvents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIApplicationEvents.swift; sourceTree = "<group>"; };
 		14ED793DD125D7831BCE98255383A2B8 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Sources/ConstraintViewDSL.swift; sourceTree = "<group>"; };
-		14F9CC8895BC32DDCD4B394C9CAC5560 /* Espresso.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Espresso.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		14F9CC8895BC32DDCD4B394C9CAC5560 /* Espresso.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Espresso.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1531A812818B7FEC4491EB894C109BB7 /* UIApplication+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Rx.swift"; path = "RxCocoa/iOS/UIApplication+Rx.swift"; sourceTree = "<group>"; };
 		15CD5F2747EC41F2595EA4E78358D497 /* LegacyRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegacyRepresentable.swift; sourceTree = "<group>"; };
 		16258B3CE3586B20BA3A1695837A3D0D /* CompactMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CompactMap.swift; path = RxSwift/Observables/CompactMap.swift; sourceTree = "<group>"; };
@@ -753,6 +754,7 @@
 		24F00DB11704FC7B08CC6BC38B2672D0 /* IndexPath+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IndexPath+Espresso.swift"; sourceTree = "<group>"; };
 		2524A319B5069E0A337CAFC8841DD031 /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
 		25EA5FA6BCAFE5238FC7987CD2D12070 /* RxCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxCocoa.release.xcconfig; sourceTree = "<group>"; };
+		260B983A289316F400DD63D8 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
 		26921048E9FFA8AA780936525E13C6F0 /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -760,7 +762,7 @@
 		27A37C503DFAAF2FD1859A9CDAE4892D /* Skip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Skip.swift; path = RxSwift/Observables/Skip.swift; sourceTree = "<group>"; };
 		284C2D0C598E12995A96FA0E72155C90 /* RxTableViewDataSourcePrefetchingProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewDataSourcePrefetchingProxy.swift; path = RxCocoa/iOS/Proxies/RxTableViewDataSourcePrefetchingProxy.swift; sourceTree = "<group>"; };
 		285F7CB5A353DA2A8C28023A18B4FA9E /* Mockable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
-		295C0AC2CE6AF803D55E87C60F955820 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		295C0AC2CE6AF803D55E87C60F955820 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		29BA9A595823C4D1429247EC97CCACCF /* UIBarButtonItem+Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+Combine.swift"; path = "Espresso/Classes/Combine/UIKit/UIBarButtonItem+Combine.swift"; sourceTree = "<group>"; };
 		29BDE3F7F721FB68737FA77EB84FC738 /* NSNotificationCenter+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.h"; sourceTree = "<group>"; };
 		29C2784EF17EB77618F443B10859882B /* Espresso-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Espresso-prefix.pch"; sourceTree = "<group>"; };
@@ -976,7 +978,7 @@
 		861F31D527EC55F44C49A8C7EBD3DBC0 /* VirtualTimeScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeScheduler.swift; path = RxSwift/Schedulers/VirtualTimeScheduler.swift; sourceTree = "<group>"; };
 		86722C25F0A24E91C6A08AC5A9644B4A /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Sources/ConstraintInsets.swift; sourceTree = "<group>"; };
 		86F731BA928C072F5A0E3C8618E4967D /* Infallible+Bind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Infallible+Bind.swift"; path = "RxCocoa/Common/Infallible+Bind.swift"; sourceTree = "<group>"; };
-		87259D10EF09FDF3F675E4A95A5248A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		87259D10EF09FDF3F675E4A95A5248A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		87C005C2C164D197948519AE388DB2BB /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
 		87F7180022E8398AE6E14991EBD20FDE /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Sources/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		8A2AE0F8C2617DBCBA7598946CEDF3E4 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Sources/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
@@ -1031,7 +1033,7 @@
 		9C628910205D902DD6D87DB3B8CA093E /* UIAnimationGroupController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimationGroupController.swift; sourceTree = "<group>"; };
 		9D635735DFDFCA213796DFB940C41950 /* Collection+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+Espresso.swift"; sourceTree = "<group>"; };
 		9D8EF6D8732628D086FCFD341E25780E /* UIBaseCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIBaseCollectionViewCell.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E10B57B60F4118AB33DF28BC5A689CA /* Maybe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Maybe.swift; path = RxSwift/Traits/PrimitiveSequence/Maybe.swift; sourceTree = "<group>"; };
 		9E3A2B7762F731F5C044E69A0068D9F7 /* UIGestureRecognizer+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Espresso.swift"; sourceTree = "<group>"; };
 		9E67D7FBB02BDA293FB5929D14B50CCA /* UIImage+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Espresso.swift"; sourceTree = "<group>"; };
@@ -1353,7 +1355,6 @@
 				B86065383E16E3811446FA991453BF4A /* Utils.swift */,
 				629191540C1E5A2D631CE46078B44BF5 /* Support Files */,
 			);
-			name = RxRelay;
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
@@ -1384,7 +1385,6 @@
 				BF6BC25DE450B09C9C8DD7E935BB64ED /* Support Files */,
 				C1C9967AB67BCC9FF300211933A82777 /* UIKit */,
 			);
-			name = PromiseKit;
 			path = PromiseKit;
 			sourceTree = "<group>";
 		};
@@ -1461,7 +1461,6 @@
 				1004D29670A3672C168AE1C21AED4854 /* GuaranteeTask.swift */,
 				48AB34802E9D2E6A9B8D4B4BA2539132 /* Task+Espresso.swift */,
 			);
-			name = Task;
 			path = Task;
 			sourceTree = "<group>";
 		};
@@ -1497,7 +1496,6 @@
 				645A7D8889DB832E741371EB32865E9A /* UISwapTransition.swift */,
 				683B585C8DDAA7C32B38F6D72D38DFD2 /* UIZoomTransition.swift */,
 			);
-			name = Transitions;
 			path = Transitions;
 			sourceTree = "<group>";
 		};
@@ -1521,6 +1519,7 @@
 				075861D2A09E40A23B752327D00D96C3 /* ModalStyle.swift */,
 				9C609778D5D92FF8BD8A4DA304551545 /* Taptic.swift */,
 				7B3792FF85ED180BE5E47682C87B89A1 /* VerticalEdgeInsets.swift */,
+				260B983A289316F400DD63D8 /* KeyboardManager.swift */,
 				A40FB87E0E4FC530A4ECB166B184F3EE /* Animation */,
 				11DC9B25D9FA597FA798F6F0972A073D /* AppleDevice */,
 				EA334F86805FADC042ADA2FD570E19B5 /* Extensions */,
@@ -1544,7 +1543,6 @@
 				32E41F09360E4F1109BC0222E94DFD49 /* UIViewController+Events.swift */,
 				61B37654411F7968DE407C9C03B94B39 /* UIViewControllerEvents.swift */,
 			);
-			name = Events;
 			path = Events;
 			sourceTree = "<group>";
 		};
@@ -1577,7 +1575,6 @@
 				9D8EF6D8732628D086FCFD341E25780E /* UIBaseCollectionViewCell.swift */,
 				DB56CA59D4C3CE420F56227279938D28 /* UIBaseTableViewCell.swift */,
 			);
-			name = Cells;
 			path = Cells;
 			sourceTree = "<group>";
 		};
@@ -1632,7 +1629,6 @@
 				6ABCD41C0D3EC1B8C2E1FBB03A42DCF6 /* UIBottomBarView.swift */,
 				6EB7419E4F268C8573595DEE898901C6 /* UITopBarView.swift */,
 			);
-			name = Bars;
 			path = Bars;
 			sourceTree = "<group>";
 		};
@@ -1678,7 +1674,6 @@
 				BD8EC2DCB918D17833E0B6A28EC50B1B /* UILayoutSupport+Extensions.swift */,
 				B29D2967745681376C014DA1B6B3908E /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1802,7 +1797,6 @@
 				76FCEBEE5B2F8C990606D79CC82977DB /* FailableResult.swift */,
 				DE2B084D919466C55CFF9CEA3BC5E247 /* GuaranteeResult.swift */,
 			);
-			name = Result;
 			path = Result;
 			sourceTree = "<group>";
 		};
@@ -1821,7 +1815,6 @@
 				36B3FA94B9F39D79AA0822786AC8C022 /* UINavigationController+UIViewControllerTransition.swift */,
 				123A83939E388417505E645B1F9E50DC /* UIViewController+UIViewControllerTransition.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1849,7 +1842,6 @@
 			children = (
 				1F404319468E6392E4D8D8FED5CD776B /* Array+UIAnimation.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1877,7 +1869,6 @@
 				8BC3CA7CC6CCD7D2E0DA6ABD78DEECFA /* Data+Digest.swift */,
 				E3214BED49250BCA14E5A3DB4B488E32 /* String+Digest.swift */,
 			);
-			name = Digest;
 			path = Digest;
 			sourceTree = "<group>";
 		};
@@ -1996,7 +1987,6 @@
 				16BED02A9C4B531A3CAA64C26256F2CB /* WKWebView+Rx.swift */,
 				FC95736AE8DF96627F8E702A25CCE0AE /* Support Files */,
 			);
-			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -2246,7 +2236,6 @@
 				2E93DC8EC63EC741D3A443685CF1203C /* Zip+Collection.swift */,
 				B67B17273692B660B2D801FAC81B8A6A /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -2348,7 +2337,6 @@
 				EC546C0D8D3018B8B53031FDCF61C0C4 /* KeyStoreReadable.swift */,
 				A49C568B08681775A3B13126A0F8A7CD /* KeyStoreWritable.swift */,
 			);
-			name = Key;
 			path = Key;
 			sourceTree = "<group>";
 		};
@@ -2451,7 +2439,6 @@
 				84C7337FE9B3AF8F9F76E7B0C3FF8DD3 /* Extensions */,
 				3A728B26FFB01CAB4CF23E1104674864 /* Transitions */,
 			);
-			name = Transitions;
 			path = Transitions;
 			sourceTree = "<group>";
 		};
@@ -2880,6 +2867,7 @@
 				EE5C841E7ED1B4DF7F5DAF6825BE7D86 /* Data+Espresso.swift in Sources */,
 				4B5A3877176611BBD7E13C4DBA23E738 /* DataAction.swift in Sources */,
 				413A2EC4325CDDC2FF44849136DE39A7 /* Date+Espresso.swift in Sources */,
+				260B983B289316F400DD63D8 /* KeyboardManager.swift in Sources */,
 				17AF286284FEE3D3F6E141A6E0BE6A50 /* Dictionary+Espresso.swift in Sources */,
 				EC827029DD8F1FAA79CEAA783CD3B5CC /* Direction.swift in Sources */,
 				B8D78228F8B04C4B8F794C2E022F9ACD /* DispatchQueue+Espresso.swift in Sources */,
@@ -3964,8 +3952,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
