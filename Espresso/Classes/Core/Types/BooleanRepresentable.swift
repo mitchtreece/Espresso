@@ -1,5 +1,5 @@
 //
-//  BooleanType.swift
+//  BooleanRepresentable.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 5/3/21.
@@ -8,28 +8,24 @@
 import Foundation
 
 /// Protocol describing something that can be represented as a `Bool`.
-public protocol BooleanType {
+public protocol BooleanRepresentable {
     
-    /// A boolean representation.
-    var boolValue: Bool { get }
+    /// A boolean representation
+    func asBool() -> Bool
     
 }
 
-public extension BooleanType {
-
-    var boolValue: Bool {
-        return (self as? Bool) ?? false
+extension Bool: BooleanRepresentable {
+    
+    public func asBool() -> Bool {
+        return self
     }
     
 }
 
-extension Bool: BooleanType {
-    //
-}
-
-extension String: BooleanType {
+extension String: BooleanRepresentable {
     
-    public var boolValue: Bool {
+    public func asBool() -> Bool {
         
         let string = self.lowercased()
         
@@ -43,9 +39,9 @@ extension String: BooleanType {
     
 }
 
-extension Int: BooleanType {
+extension Int: BooleanRepresentable {
     
-    public var boolValue: Bool {
+    public func asBool() -> Bool {
         return (self <= 0) ? false : true
     }
     

@@ -81,7 +81,7 @@ public final class UserAuthenticator {
     public static func authenticate(withReason reason: String, completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
         guard let context = self.authenticationContext else {
-            completion(false, "Authentication not supported on this device".errorValue)
+            completion(false, "Authentication not supported on this device".asError())
             return
         }
         

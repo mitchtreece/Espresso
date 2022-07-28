@@ -1,5 +1,5 @@
 //
-//  ErrorType.swift
+//  ErrorRepresentable.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 5/3/21.
@@ -8,31 +8,31 @@
 import Foundation
 
 /// Protocol describing something that can be represented as an `Error`.
-public protocol ErrorType {
+public protocol ErrorRepresentable {
     
     /// An error representation.
-    var errorValue: Error { get }
+    func asError() -> Error
     
 }
 
-extension NSError: ErrorType {
+extension NSError: ErrorRepresentable {
     
-    public var errorValue: Error {
+    public func asError() -> Error {
         return self as Error
     }
     
 }
 
-extension String: ErrorType {
+extension String: ErrorRepresentable {
     
-    public var errorValue: Error {
-                
+    public func asError() -> Error {
+        
         return NSError(
             domain: Bundle.main.bundleIdentifier ?? "com.mitchtreece.Espresso",
             code: 0,
             userInfo: [NSLocalizedDescriptionKey: self]
         )
-        .errorValue
+        .asError()
         
     }
     
