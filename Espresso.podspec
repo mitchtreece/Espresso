@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     # - Rx
     #     - Rx-Core
     #     - Rx-UIKit
+    #     - Rx-PromiseKit
     # - PromiseKit
     #     - PromiseKit-Core
     # 
@@ -141,6 +142,7 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Rx-Core'
         ss.dependency     'Espresso/Rx-UIKit'
+        ss.dependency     'Espresso/Rx-PromiseKit'
 
     end
 
@@ -159,6 +161,14 @@ Pod::Spec.new do |s|
         ss.source_files = 'Espresso/Classes/Rx/UIKit/**/*'
         ss.dependency     'Espresso/Rx-Core'
         ss.dependency     'Espresso/UI-UIKit'
+
+    end
+
+    s.subspec 'Rx-PromiseKit' do |ss|
+        
+        ss.source_files = 'Espresso/Classes/Rx/PromiseKit/**/*'
+        ss.dependency     'Espresso/Rx-Core'
+        ss.dependency     'Espresso/PromiseKit-Core'
 
     end
 

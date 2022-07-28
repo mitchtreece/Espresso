@@ -1,14 +1,14 @@
 //
-//  CancellableBag.swift
+//  Promise+Combine.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 4/13/22.
+//  Created by Mitch Treece on 7/27/22.
 //
 
 import Combine
 import PromiseKit
 
-extension Promise {
+public extension Promise {
     
     /// Creates a publisher over this promise.
     /// - returns: A new publisher.

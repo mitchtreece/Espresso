@@ -28,11 +28,15 @@ PODS:
     - PromiseKit (~> 6.0)
   - Espresso/Rx (3.0.0):
     - Espresso/Rx-Core
+    - Espresso/Rx-PromiseKit
     - Espresso/Rx-UIKit
   - Espresso/Rx-Core (3.0.0):
     - Espresso/Core
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
+  - Espresso/Rx-PromiseKit (3.0.0):
+    - Espresso/PromiseKit-Core
+    - Espresso/Rx-Core
   - Espresso/Rx-UIKit (3.0.0):
     - Espresso/Rx-Core
     - Espresso/UI-UIKit
@@ -77,7 +81,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 3169fc3da547ab8a094460d0dc4e979c9d338a88
+  Espresso: 06e664717469be10acba20eefa770c60b3053383
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd

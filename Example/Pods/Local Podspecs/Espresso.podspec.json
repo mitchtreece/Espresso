@@ -128,6 +128,9 @@
         ],
         "Espresso/Rx-UIKit": [
 
+        ],
+        "Espresso/Rx-PromiseKit": [
+
         ]
       }
     },
@@ -154,6 +157,18 @@
 
         ],
         "Espresso/UI-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "Rx-PromiseKit",
+      "source_files": "Espresso/Classes/Rx/PromiseKit/**/*",
+      "dependencies": {
+        "Espresso/Rx-Core": [
+
+        ],
+        "Espresso/PromiseKit-Core": [
 
         ]
       }
