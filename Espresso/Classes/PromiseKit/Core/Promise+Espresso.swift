@@ -9,13 +9,26 @@ import PromiseKit
 
 // MARK: Async
 
-//public extension Promise {
-//
-//    func asAsync() async throws -> T {
-//        return async()
-//    }
-//
-//}
+public extension Promise {
+    
+    /// Creates an async task over this promise.
+    /// - returns: An async value.
+    func asAsync() async throws -> T {
+        
+        return try await withCheckedThrowingContinuation { c in
+            
+            self.done { value in
+                c.resume(returning: value)
+            }
+            .catch { error in
+                c.resume(throwing: error)
+            }
+            
+        }
+        
+    }
+    
+}
 
 // MARK: Retry
 
@@ -36,7 +49,9 @@ public func retry<T>(_ behavior: Promise<T>.RetryBehavior = .immediate(count: 1)
 
             let (maxCount, delay) = behavior.calculate(attempts)
             guard attempts < maxCount else { throw error }
-            return after(delay).then(on: nil, attempt)
+            
+            return after(delay)
+                .then(on: nil, attempt)
 
         }
 
@@ -97,7 +112,9 @@ public extension Promise {
 
                 let (maxCount, delay) = behavior.calculate(attempts)
                 guard attempts < maxCount else { throw error }
-                return after(delay).then(on: nil, attempt)
+                
+                return after(delay)
+                    .then(on: nil, attempt)
 
             }
 
