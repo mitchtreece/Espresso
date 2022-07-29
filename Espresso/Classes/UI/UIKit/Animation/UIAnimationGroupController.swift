@@ -41,7 +41,7 @@ public class UIAnimationGroupController {
     ///
     /// Setup closures are forced to run without animation using `UIView.performWithoutAnimation(_:)`.
     public init(setup: (()->())? = nil,
-                animations: ()->(UIAnimationGroupable),
+                animations: ()->(UIAnimationGroupRepresentable),
                 completion: UIAnimation.Completion? = nil) {
         
         self.setup = setup

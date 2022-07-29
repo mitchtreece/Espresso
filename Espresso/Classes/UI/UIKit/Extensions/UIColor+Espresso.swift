@@ -10,10 +10,17 @@ import UIKit
 public extension UIColor /* Random */ {
     
     /// Creates a new color with random r, g, b values & a specified alpha.
-    ///- parameter alpha: The color's alpha value; _defaults to 1_.
-    /// -returns: A random color.
+    /// - parameter alpha: The color's alpha value; _defaults to 1_.
+    /// - returns: A random color.
     static func random(alpha: CGFloat = 1) -> UIColor {
-        return UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1.0)
+        
+        return UIColor(
+            red: CGFloat(drand48()),
+            green: CGFloat(drand48()),
+            blue: CGFloat(drand48()),
+            alpha: alpha
+        )
+        
     }
     
 }
@@ -45,13 +52,6 @@ public extension UIColor /* Hex */ {
             alpha: (CGFloat(a) / 255)
         )
         
-    }
-    
-    /// Initializes a new color from a hex code.
-    /// - Parameter hex: The hex code string.
-    /// - Returns: A new hex-based `UIColor`.
-    static func hex(_ hex: String) -> UIColor {
-        return UIColor(hex: hex)
     }
 
 }

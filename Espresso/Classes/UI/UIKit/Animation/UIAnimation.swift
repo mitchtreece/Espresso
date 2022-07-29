@@ -267,7 +267,7 @@ public class UIAnimation {
     
 }
 
-extension UIAnimation: UIAnimationGroupable {
+extension UIAnimation: UIAnimationGroupRepresentable {
     
     public func asAnimationGroup() -> UIAnimationGroup {
         return UIAnimationGroup(animations: [self])

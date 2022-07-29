@@ -1,5 +1,5 @@
 //
-//  UIAnimationGroupable.swift
+//  UIAnimationGroupRepresentable.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/14/21.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-public protocol UIAnimationGroupable {
+public protocol UIAnimationGroupRepresentable {
     
-    /// Returns an animation group over a set of animations.
+    /// A `UIAnimationGroup` representation.
     /// - returns: A new animation group.
     func asAnimationGroup() -> UIAnimationGroup
     

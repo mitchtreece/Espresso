@@ -108,8 +108,10 @@ public final class UserAuthenticator {
             authenticate(withReason: reason) { success, error in
                 
                 if let error = error {
+                    
                     c.resume(throwing: error)
                     return
+                    
                 }
                 
                 c.resume(returning: success)

@@ -60,7 +60,7 @@ public class UIAnimationGroup {
     
 }
 
-extension UIAnimationGroup: UIAnimationGroupable {
+extension UIAnimationGroup: UIAnimationGroupRepresentable {
     
     public func asAnimationGroup() -> UIAnimationGroup {
         return self

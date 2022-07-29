@@ -10,8 +10,8 @@ import UIKit
 public extension UIImage /* Color */ {
     
     /// Initializes a new image from a specified color & size.
-    /// - Parameter color: The image fill color.
-    /// - Parameter size: The image size.
+    /// - parameter color: The image fill color.
+    /// - parameter size: The image size.
     convenience init?(color: UIColor,
                       size: CGSize) {
         
@@ -34,7 +34,7 @@ public extension UIImage /* Color */ {
 public extension UIImage /* Scale */ {
     
     /// Creates a new image from the reciever scaled to a specific size.
-    /// - Parameter size: The desired image size.
+    /// - parameter size: The desired image size.
     func scaled(to size: CGSize) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
@@ -46,7 +46,7 @@ public extension UIImage /* Scale */ {
     }
     
     /// Creates a new image from the reciever scaled by a specified factor.
-    /// - Parameter factor: The scale factor.
+    /// - parameter factor: The scale factor.
     func scaled(by factor: CGFloat) -> UIImage? {
         
         let width = (self.size.width * factor)

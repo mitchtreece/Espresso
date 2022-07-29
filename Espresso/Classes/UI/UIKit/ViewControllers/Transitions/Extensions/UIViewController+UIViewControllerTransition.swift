@@ -59,9 +59,12 @@ public extension UIViewController {
     }
     
     /// Presents a view controller using a transition.
+    ///
     /// - parameter viewController: The view controller to present.
     /// - parameter transition: The view controller transition.
     /// - parameter completion: An optional completion closure to run after the transition finishes; _defaults to nil_.
+    ///
+    /// This is always performed with animations.
     func present(_ viewController: UIViewController,
                  using transition: UIViewControllerTransition,
                  completion: (()->())? = nil) {
@@ -73,6 +76,23 @@ public extension UIViewController {
             animated: true,
             completion: completion
         )
+        
+    }
+    
+    /// Presents a view controller using a transition.
+    ///
+    /// - parameter viewController: The view controller to present.
+    /// - parameter transition: The view controller transition.
+    ///
+    /// This is always performed with animations.
+    func present(_ viewController: UIViewController,
+                 using transition: UIViewControllerTransition) async {
+        
+        await withCheckedContinuation { c in
+            present(viewController, using: transition) {
+                c.resume()
+            }
+        }
         
     }
     

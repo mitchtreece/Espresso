@@ -48,7 +48,7 @@
 		0ED075B4AD2BCD1A495674963DC8BF49 /* PromiseKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 590CC14E97233E966A2C5F42DF89068E /* PromiseKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F4593C5DA2CC86BBF4C69C2ED136E6B /* Infallible+CombineLatest+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F347A6F25C44399A8F15E59708B78CE /* Infallible+CombineLatest+arity.swift */; };
 		1001CF51456CBA58C949F0F4A9EEF15F /* Optional+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5364DB09FC5AAF59B53F4848DEDA6C /* Optional+Espresso.swift */; };
-		10FDFDA754ED5C2C739CD9A926421151 /* UIAnimationGroupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupable.swift */; };
+		10FDFDA754ED5C2C739CD9A926421151 /* UIAnimationGroupRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupRepresentable.swift */; };
 		1188CD07A930FAC0E99EB76DD3CACF4A /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE329707D5261A0852CB5A12DB7F505E /* ConstraintPriorityTarget.swift */; };
 		12515EB87C8E7ECE3E7F4848D338C5C4 /* CryptoDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BEB998A22A7CF528B13AF7A14A6AE3 /* CryptoDigest.swift */; };
 		12ABBCF99C46420D991B1C06396D202D /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366492F66D5299A1A7862C688F2255D9 /* Map.swift */; };
@@ -728,7 +728,7 @@
 		1A07777157C151AB0949E6F1D2E07F38 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Sources/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		1A07DD12DC799DD78A992E4B462CB5BB /* UITextField+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextField+Rx.swift"; path = "RxCocoa/iOS/UITextField+Rx.swift"; sourceTree = "<group>"; };
 		1A0AAD2E8AC090334B5E7C364924E65F /* RxCollectionViewDataSourceProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewDataSourceProxy.swift; path = RxCocoa/iOS/Proxies/RxCollectionViewDataSourceProxy.swift; sourceTree = "<group>"; };
-		1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimationGroupable.swift; sourceTree = "<group>"; };
+		1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIAnimationGroupRepresentable.swift; sourceTree = "<group>"; };
 		1B592663CD58B1BA650A849E0356E548 /* KeyStoreWritable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		1BD3719132EE460C07708DCE15482A2E /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Rx.swift"; path = "RxCocoa/iOS/UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		1C23732B58F2E418CCD42D52F6E34262 /* ObservableConvertibleType+Driver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+Driver.swift"; path = "RxCocoa/Traits/Driver/ObservableConvertibleType+Driver.swift"; sourceTree = "<group>"; };
@@ -1369,8 +1369,8 @@
 		12D8EB66D0077C1CBBA31200F3E809B7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FC1D4000D04CABCC555FD55C6207A96D /* UINavigationController+UIViewControllerTransition.swift */,
 				72AC4F34D7DF351F274C1508012894DB /* UIViewController+UIViewControllerTransition.swift */,
+				FC1D4000D04CABCC555FD55C6207A96D /* UINavigationController+UIViewControllerTransition.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1962,7 +1962,7 @@
 			children = (
 				2EE41C4B730D7528DDFBD9D6B3F43F43 /* UIAnimation.swift */,
 				9E4D4225FB0DC406B6CCD234BF212358 /* UIAnimationGroup.swift */,
-				1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupable.swift */,
+				1A7B50CC87B594F753A05DE798A6BA95 /* UIAnimationGroupRepresentable.swift */,
 				18D4B8E8585FF8893115B143F311BAB8 /* UIAnimationGroupController.swift */,
 				77F9A9D8DD2A055C51DE370BAC11F9A6 /* UIAnimationOperation.swift */,
 				CC84A33403F355495ADD6D66013B935C /* UIAnimationOperationQueue.swift */,
@@ -2366,8 +2366,8 @@
 		CFEB5FAD834A7792E2C66B90DA0BFD5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				06E2968F22B2549A89E4C2C6DC1A9C2E /* UIBackgroundView.swift */,
 				D8E6E61D84D69E3423B416AE0A1AF2EF /* UIBaseView.swift */,
+				06E2968F22B2549A89E4C2C6DC1A9C2E /* UIBackgroundView.swift */,
 				31DCA9C4FE5D2E11DCDF152692E5B6D8 /* UIBlurView.swift */,
 				553EDF013E93A22AB504E2FC0BFB3344 /* UIButtonView.swift */,
 				AFE5CF4DA96556DF27EA6361D1817CCD /* UICarouselView.swift */,
@@ -3106,7 +3106,7 @@
 				3371079E190C312B6928364FD3B2F1A8 /* TriggerRelay.swift in Sources */,
 				2E7611432C004D5A13E092A7C12F2D13 /* UIAnimation.swift in Sources */,
 				C7553CC966BC69622A8358D8658038A0 /* UIAnimationGroup.swift in Sources */,
-				10FDFDA754ED5C2C739CD9A926421151 /* UIAnimationGroupable.swift in Sources */,
+				10FDFDA754ED5C2C739CD9A926421151 /* UIAnimationGroupRepresentable.swift in Sources */,
 				448072DBE71FA68FF4392EA9CBBC6BD8 /* UIAnimationGroupController.swift in Sources */,
 				D52A1FE65C53ED94804916380DA3B068 /* UIAnimationOperation.swift in Sources */,
 				CF32EFEB3997875A9C138D52EE72429D /* UIAnimationOperationQueue.swift in Sources */,
