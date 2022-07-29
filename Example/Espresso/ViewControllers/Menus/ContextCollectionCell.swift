@@ -55,11 +55,15 @@ class ContextCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(color: ESColor, delegate: ContextCollectionCellDelegate) {
+    func setup(color: ESColor,
+               delegate: ContextCollectionCellDelegate) {
         
         self.delegate = delegate
         self.color = color
+        
         self.contentView.backgroundColor = color.color
+        self.contentView.layer.borderColor = UIColor.white.cgColor
+        self.contentView.layer.borderWidth = 8
         
     }
     
