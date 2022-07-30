@@ -65,8 +65,7 @@ class RootViewController: UIViewController {
         }
         
         self.tableView.register(cells: [
-            UITableViewCell.self,
-            ContextTableCell.self
+            UITableViewCell.self
         ])
 
     }

@@ -33,7 +33,8 @@ class ContextMenuTableViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        ContextTableCell.register(in: self.tableView)
+        UITableViewCell.register(in: self.tableView)
+//        ContextTableCell.register(in: self.tableView)
         
     }
     
@@ -51,46 +52,48 @@ extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = ContextTableCell.dequeue(for: tableView, at: indexPath)
-        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
-        return cell
+//        let cell = ContextTableCell.dequeue(for: tableView, at: indexPath)
+//        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
+//        return cell
+        
+        return UITableViewCell.dequeue(for: tableView, at: indexPath)
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? ContextTableCell else { return }
-        
-        self.delegate?.contextMenuTableViewController(
-            self,
-            didSelectColor: cell.color
-        )
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        guard let cell = tableView.cellForRow(at: indexPath) as? ContextTableCell else { return }
+//
+//        self.delegate?.contextMenuTableViewController(
+//            self,
+//            didSelectColor: cell.color
+//        )
         
     }
     
 }
 
-extension ContextMenuTableViewController: ContextTableCellDelegate {
-    
-    func contextTableCellPreview(_ cell: ContextTableCell,
-                                 for color: ESColor) -> UIViewController? {
-        
-        let vc = DetailViewController()
-        vc.title = color.name
-        vc.view.backgroundColor = color.color
-        return vc
-        
-    }
-    
-    func contextTableCellDidTapPreview(_ cell: ContextTableCell, preview: UIViewController?) {
-        
-        self.delegate?.contextMenuTableViewController(
-            self,
-            didSelectColor: cell.color
-        )
-        
-    }
-    
-}
+//extension ContextMenuTableViewController: ContextTableCellDelegate {
+//
+//    func contextTableCellPreview(_ cell: ContextTableCell,
+//                                 for color: ESColor) -> UIViewController? {
+//
+//        let vc = DetailViewController()
+//        vc.title = color.name
+//        vc.view.backgroundColor = color.color
+//        return vc
+//
+//    }
+//
+//    func contextTableCellDidTapPreview(_ cell: ContextTableCell, preview: UIViewController?) {
+//
+//        self.delegate?.contextMenuTableViewController(
+//            self,
+//            didSelectColor: cell.color
+//        )
+//
+//    }
+//
+//}

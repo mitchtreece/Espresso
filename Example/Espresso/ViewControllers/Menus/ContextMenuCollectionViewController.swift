@@ -46,7 +46,8 @@ class ContextMenuCollectionViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        ContextCollectionCell.register(in: self.collectionView)
+        UICollectionViewCell.register(in: self.collectionView)
+//        ContextCollectionCell.register(in: self.collectionView)
         
     }
     
@@ -68,46 +69,48 @@ extension ContextMenuCollectionViewController: UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = ContextCollectionCell.dequeue(for: collectionView, at: indexPath)
-        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
-        return cell
+//        let cell = ContextCollectionCell.dequeue(for: collectionView, at: indexPath)
+//        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
+//        return cell
+        
+        return UICollectionViewCell.dequeue(for: collectionView, at: indexPath)
         
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return }
-
-        self.delegate?.contextMenuCollectionViewController(
-            self,
-            didSelectColor: cell.color
-        )
-        
-    }
-    
-}
-
-extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
-    
-    func contextCollectionCellPreview(_ cell: ContextCollectionCell,
-                                      for color: ESColor) -> UIViewController? {
-        
-        let vc = DetailViewController()
-        vc.title = color.name
-        vc.view.backgroundColor = color.color
-        return vc
-        
-    }
-    
-    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell,
-                                            preview: UIViewController?) {
-        
-        self.delegate?.contextMenuCollectionViewController(
-            self,
-            didSelectColor: cell.color
-        )
+//
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return }
+//
+//        self.delegate?.contextMenuCollectionViewController(
+//            self,
+//            didSelectColor: cell.color
+//        )
         
     }
     
 }
+
+//extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
+//    
+//    func contextCollectionCellPreview(_ cell: ContextCollectionCell,
+//                                      for color: ESColor) -> UIViewController? {
+//        
+//        let vc = DetailViewController()
+//        vc.title = color.name
+//        vc.view.backgroundColor = color.color
+//        return vc
+//        
+//    }
+//    
+//    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell,
+//                                            preview: UIViewController?) {
+//        
+//        self.delegate?.contextMenuCollectionViewController(
+//            self,
+//            didSelectColor: cell.color
+//        )
+//        
+//    }
+//    
+//}
