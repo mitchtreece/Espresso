@@ -9,6 +9,8 @@ import UIKit
 
 public struct UIContextMenuSubMenu: ContextMenu {
     
+    public typealias BuildType = UIMenuElement
+    
     public var title: String
     public var subtitle: String?
     public var image: UIImage?
@@ -34,14 +36,14 @@ public struct UIContextMenuSubMenu: ContextMenu {
 
     }
     
-    public func buildElement() -> UIMenuElement {
+    public func build() -> UIMenuElement {
 
         let menu = UIMenu(
             title: self.title,
             image: self.image,
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
-            children: self.elements.map { $0.buildElement() }
+            children: self.elements.map { $0.build() }
         )
 
         if #available(iOS 15, *) {

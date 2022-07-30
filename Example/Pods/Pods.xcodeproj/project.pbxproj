@@ -105,9 +105,10 @@
 		260B98592895005C00DD63D8 /* ContextMenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98582895005C00DD63D8 /* ContextMenuAction.swift */; };
 		260B985B2895010400DD63D8 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B985A2895010400DD63D8 /* ContextMenu.swift */; };
 		260B985F2895051F00DD63D8 /* ContextMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */; };
-		260B98612895059400DD63D8 /* ContextMenuElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98602895059400DD63D8 /* ContextMenuElementBuilder.swift */; };
 		260B986328950AC300DD63D8 /* ContextMenuBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */; };
 		260B98652895141800DD63D8 /* ContextMenuRootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */; };
+		260B98682895B4C500DD63D8 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98672895B4C500DD63D8 /* Builder.swift */; };
+		260B986A2895B51100DD63D8 /* AsyncBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98692895B51100DD63D8 /* AsyncBuilder.swift */; };
 		261AE8BFFC520617D4C4340F6F789EA1 /* ConcurrentDispatchQueueScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07048039C51CB9B55B89C8EF0A4FEDB5 /* ConcurrentDispatchQueueScheduler.swift */; };
 		270D19B4402F4C819EAB2E822F1EFA2D /* NSObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9C927FE98F2F311485E73F3D69523C /* NSObject+Rx.swift */; };
 		27629CE3169307739B865F428D34A869 /* BinaryDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F429C233E52724244C045B1DB84110 /* BinaryDisposable.swift */; };
@@ -771,9 +772,10 @@
 		260B98582895005C00DD63D8 /* ContextMenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuAction.swift; sourceTree = "<group>"; };
 		260B985A2895010400DD63D8 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuBuilder.swift; sourceTree = "<group>"; };
-		260B98602895059400DD63D8 /* ContextMenuElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuElementBuilder.swift; sourceTree = "<group>"; };
 		260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuBuildable.swift; sourceTree = "<group>"; };
 		260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRootBuilder.swift; sourceTree = "<group>"; };
+		260B98672895B4C500DD63D8 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		260B98692895B51100DD63D8 /* AsyncBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBuilder.swift; sourceTree = "<group>"; };
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
 		26F788DA1CC5C588DE42217A7106401E /* Date+Dispatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Dispatch.swift"; path = "RxSwift/Date+Dispatch.swift"; sourceTree = "<group>"; };
@@ -1542,9 +1544,8 @@
 			isa = PBXGroup;
 			children = (
 				260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */,
-				260B98602895059400DD63D8 /* ContextMenuElementBuilder.swift */,
-				260B98542894FF1A00DD63D8 /* ContextMenuActionBuilder.swift */,
 				260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */,
+				260B98542894FF1A00DD63D8 /* ContextMenuActionBuilder.swift */,
 				260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */,
 			);
 			path = Builders;
@@ -1566,6 +1567,16 @@
 				76D6A3A60FE5905E74290C0E06ED9EBC /* UIContextMenuSubMenu.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		260B98662895B48400DD63D8 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				260B98672895B4C500DD63D8 /* Builder.swift */,
+				260B98692895B51100DD63D8 /* AsyncBuilder.swift */,
+			);
+			name = Builders;
+			path = Espresso/Classes/Core/Core/Builders;
 			sourceTree = "<group>";
 		};
 		294B9AC7DEDC1983F2EC1809EDB18ED1 /* BlurHash */ = {
@@ -2529,6 +2540,7 @@
 				B1CCD4ED6315E538F5956141B8957D72 /* NotificationObserver.swift */,
 				A80BB24CF751B6FEC1CE22AEF5A476A0 /* TimeDuration.swift */,
 				9D7370CF3AAA599A3FF580D8CC033E6C /* UserAuthenticator.swift */,
+				260B98662895B48400DD63D8 /* Builders */,
 				4D4E9890634A0FC57B20953F0F87A0FE /* Actions */,
 				592DC23280A2ED09066C1C34EA7D7417 /* Async */,
 				C674483C90AAD35D63FD2A351A6199D3 /* Crypto */,
@@ -3345,10 +3357,10 @@
 				5995E540AE5465EC5E9DD628EA14A1AE /* DispatchQueue+Espresso.swift in Sources */,
 				00B863FC88547B7BA8A20D330094C341 /* DynamicCodingKeys.swift in Sources */,
 				AE01D04221F0665AC0B144079AF63B5A /* Edge.swift in Sources */,
+				260B986A2895B51100DD63D8 /* AsyncBuilder.swift in Sources */,
 				0D6CDE9DC58914D70E35025C087B20F0 /* ErrorRepresentable.swift in Sources */,
 				77E7BB34D5BAEF1815BD4BFBA50FA7DB /* Espresso-dummy.m in Sources */,
 				CA7B191587F9F72E2F91AA9E4E9B2654 /* Event.swift in Sources */,
-				260B98612895059400DD63D8 /* ContextMenuElementBuilder.swift in Sources */,
 				9F67B30D7C1FFE058FC24DE2792649B9 /* Event+Combine.swift in Sources */,
 				9D1B531C6D09784E61DE4261208C8E72 /* Event+Rx.swift in Sources */,
 				2040B8636C23EA87A907C2DBA273B450 /* FailableFuture.swift in Sources */,
@@ -3371,6 +3383,7 @@
 				DD4487B0A9BEE9DA561E654919C2F8A4 /* Key.swift in Sources */,
 				C83F2E56BABBDE9C456AB0D038F628C2 /* KeyboardManager.swift in Sources */,
 				14B835964B5D7304077BAF489A53B68B /* KeyStore.swift in Sources */,
+				260B98682895B4C500DD63D8 /* Builder.swift in Sources */,
 				4D5CE4FE69FB82BC13726455A32C2126 /* KeyStored.swift in Sources */,
 				E65DD9B6916E672242F215002089EEBF /* KeyStoredReadable.swift in Sources */,
 				AD9CE0865C86880A2CAB739E09C1A8CD /* KeyStoreReadable.swift in Sources */,

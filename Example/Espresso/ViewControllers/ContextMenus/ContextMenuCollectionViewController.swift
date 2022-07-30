@@ -11,7 +11,8 @@ import Espresso
 protocol ContextMenuCollectionViewControllerDelegate: AnyObject {
     
     func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController,
-                                             didSelectColor color: ESColor)
+                                             didSelectColor color: UIColor,
+                                             withTitle title: String)
     
 }
 
@@ -19,7 +20,22 @@ class ContextMenuCollectionViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     
-    weak var delegate: ContextMenuCollectionViewControllerDelegate?
+    private weak var delegate: ContextMenuCollectionViewControllerDelegate?
+    
+    init(delegate: ContextMenuCollectionViewControllerDelegate) {
+        
+        self.delegate = delegate
+        
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         

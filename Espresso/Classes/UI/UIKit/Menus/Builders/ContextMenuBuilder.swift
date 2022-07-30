@@ -7,8 +7,10 @@
 
 import UIKit
 
-public struct ContextMenuBuilder: ContextMenuElementBuilder, ContextMenuBuildable {
+public struct ContextMenuBuilder: Builder, ContextMenuBuildable {
         
+    public typealias BuildType = ContextMenuElement
+    
     public var title: String?
     public var subtitle: String?
     public var image: UIImage?
@@ -20,7 +22,7 @@ public struct ContextMenuBuilder: ContextMenuElementBuilder, ContextMenuBuildabl
         //
     }
     
-    internal func build() -> ContextMenuElement {
+    public func build() -> ContextMenuElement {
         
         return UIContextMenuSubMenu(
             title: self.title ?? "",

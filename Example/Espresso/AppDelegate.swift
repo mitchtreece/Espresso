@@ -177,16 +177,14 @@ extension AppDelegate: RootViewControllerDelegate {
             
         case .table:
             
-            let contextTableVC = ContextMenuTableViewController()
+            let contextTableVC = ContextMenuTableViewController(delegate: self)
             contextTableVC.title = row.title
-            contextTableVC.delegate = self
             vc = contextTableVC
             
         case .collection:
             
-            let contextCollectionVC = ContextMenuCollectionViewController()
+            let contextCollectionVC = ContextMenuCollectionViewController(delegate: self)
             contextCollectionVC.title = row.title
-            contextCollectionVC.delegate = self
             vc = contextCollectionVC
             
         }
@@ -229,13 +227,15 @@ extension AppDelegate: DetailViewControllerDelegate {
 extension AppDelegate: ContextMenuTableViewControllerDelegate {
     
     func contextMenuTableViewController(_ vc: ContextMenuTableViewController,
-                                        didSelectColor color: ESColor) {
+                                        didSelectColor color: UIColor,
+                                        withTitle title: String) {
         
-        let vc = DetailViewController()
-        vc.view.backgroundColor = color.color
+        let viewController = DetailViewController()
+        viewController.view.backgroundColor = color
+        viewController.title = title
         
         self.navController.pushViewController(
-            vc,
+            viewController,
             animated: true
         )
         
@@ -246,13 +246,15 @@ extension AppDelegate: ContextMenuTableViewControllerDelegate {
 extension AppDelegate: ContextMenuCollectionViewControllerDelegate {
     
     func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController,
-                                             didSelectColor color: ESColor) {
+                                             didSelectColor color: UIColor,
+                                             withTitle title: String) {
         
-        let vc = DetailViewController()
-        vc.view.backgroundColor = color.color
+        let viewController = DetailViewController()
+        viewController.view.backgroundColor = color
+        viewController.title = title
         
         self.navController.pushViewController(
-            vc,
+            viewController,
             animated: true
         )
         

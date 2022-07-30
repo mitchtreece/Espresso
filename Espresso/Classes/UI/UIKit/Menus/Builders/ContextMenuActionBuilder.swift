@@ -7,7 +7,9 @@
 
 import UIKit
 
-public struct ContextMenuActionBuilder: ContextMenuElementBuilder {
+public struct ContextMenuActionBuilder: Builder {
+    
+    public typealias BuildType = ContextMenuElement
     
     public var title: String?
     public var subtitle: String?
@@ -21,8 +23,8 @@ public struct ContextMenuActionBuilder: ContextMenuElementBuilder {
     internal init() {
         //
     }
-    
-    internal func build() -> ContextMenuElement {
+        
+    public func build() -> ContextMenuElement {
         
         return UIContextMenuAction(
             title: self.title ?? "",

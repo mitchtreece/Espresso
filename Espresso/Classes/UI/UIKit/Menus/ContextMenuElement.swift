@@ -13,7 +13,7 @@ public protocol ContextMenuElement {
     var subtitle: String? { get set }
     var image: UIImage? { get set }
     var identifier: String? { get set }
-            
-    func buildElement() -> UIMenuElement
+    
+    func build() -> UIMenuElement
     
 }

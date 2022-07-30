@@ -9,6 +9,8 @@ import UIKit
 
 public struct UIContextMenuAction: ContextMenuAction {
     
+    public typealias BuildType = UIMenuElement
+    
     public var title: String
     public var subtitle: String?
     public var image: UIImage?
@@ -40,7 +42,7 @@ public struct UIContextMenuAction: ContextMenuAction {
 
     }
     
-    public func buildElement() -> UIMenuElement {
+    public func build() -> UIMenuElement {
      
         let action = UIAction(
             title: self.title,

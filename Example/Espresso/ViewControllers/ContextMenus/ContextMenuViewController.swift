@@ -10,19 +10,29 @@ import Espresso
 
 class ContextMenuViewController: UIViewController {
     
+    private var contextMenuView: ContextMenuView!
+    
+    private var contextMenu: UIContextMenu!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        let contextView = ContextView(color: .systemGroupedBackground)
-        self.view.addSubview(contextView)
-        contextView.snp.makeConstraints { make in
+        self.contextMenuView = ContextMenuView()
+        self.view.addSubview(self.contextMenuView)
+        self.contextMenuView.snp.makeConstraints { make in
             make.width.height.equalTo(150)
             make.center.equalToSuperview()
         }
         
-        contextView.addContextMenu(UIContextMenu { menu in
+        setupContextMenus()
+        
+    }
+    
+    private func setupContextMenus() {
+        
+        self.contextMenu = UIContextMenu { menu in
             
             menu.title = "Hello, context menu!"
             
@@ -68,8 +78,19 @@ class ContextMenuViewController: UIViewController {
                                 
             }
             
-        })
-
+            menu.willPresent = {
+                print("menu present")
+            }
+            
+            menu.willDismiss = {
+                print("menu dismiss")
+            }
+            
+        }
+        
+        self.contextMenuView
+            .addContextMenu(self.contextMenu)
+        
     }
     
     private func alert(_ message: String) {
