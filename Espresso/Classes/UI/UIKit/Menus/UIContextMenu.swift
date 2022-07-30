@@ -7,11 +7,14 @@
 
 import UIKit
 
-public class UIContextMenu: NSObject {
+public class UIContextMenu: NSObject, ContextMenu, ContextMenuBuildable {
     
     /// The context menu's title.
     public var title: String
 
+    /// The context menu's subtitle.
+    public var subtitle: String?
+    
     /// The context menu's image.
     public var image: UIImage?
 
@@ -21,8 +24,8 @@ public class UIContextMenu: NSObject {
     /// The contet menu's options.
     public var options: UIMenu.Options
 
-    /// The context menu's items.
-    public var items: [Item]
+    /// The context menu's elements.
+    public var elements: [ContextMenuElement]
     
     /// The context menu's preview providing closure.
     ///
@@ -43,38 +46,50 @@ public class UIContextMenu: NSObject {
     /// Flag indicating if system-suggested menu items should be displayed.
     public var includeSuggestedItems: Bool = false
 
-    /// Initializes a new `UIContextMenu`.
-    ///
-    /// - parameter title: The context menu's title.
-    /// - parameter image: The context menu's image; _defaults to nil_.
-    /// - parameter identifier: The context menu's identifier; _defaults to nil_.
-    /// - parameter options: The context menu's options; _defaults to none_.
-    /// - parameter items: The context menu's items.
-    /// - parameter preview: The context menu's preview providing closure; _defaults to nil_.
-    public init(title: String,
-                image: UIImage? = nil,
-                identifier: String? = nil,
-                options: UIMenu.Options = [],
-                items: [Item],
-                preview: UIContextMenuContentPreviewProvider? = nil) {
-
-        self.title = title
-        self.image = image
-        self.identifier = identifier
-        self.options = options
-        self.items = items
-        self.preview = preview
-
+    public init(_ block: (inout ContextMenuRootBuilder)->()) {
+        
+        var builder = ContextMenuRootBuilder()
+        block(&builder)
+        
+        self.title = builder.title ?? ""
+        self.subtitle = builder.subtitle
+        self.image = builder.image
+        self.identifier = builder.identifier
+        self.options = builder.options
+        self.elements = builder.elements
+        
+        self.preview = builder.preview
+        self.previewCommit = builder.previewCommit
+        self.previewCommitStyle = builder.previewCommitStyle
+        self.includeSuggestedItems = builder.includeSuggestedItems
+        
     }
     
-    internal func buildMenu(suggestedItems: [UIMenuElement] = []) -> UIMenu {
+    // MARK: Builders
+    
+    public func buildElement() -> UIMenuElement {
         
-        var children = self.items
-            .map { $0.menuItem() }
-            .map { $0.menuElement() }
+        return UIMenu(
+            title: self.title,
+            image: self.image,
+            identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
+            options: self.options,
+            children: self.elements.map { $0.buildElement() }
+        )
+        
+    }
+    
+    public func buildMenu(suggestedItems: [UIMenuElement] = []) -> UIMenu {
+                
+        guard !suggestedItems.isEmpty && self.includeSuggestedItems else {
+            return buildElement() as! UIMenu
+        }
+        
+        var childElements = self.elements
+            .map { $0.buildElement() }
 
         if self.includeSuggestedItems {
-            children.append(contentsOf: suggestedItems)
+            childElements.append(contentsOf: suggestedItems)
         }
 
         return UIMenu(
@@ -82,12 +97,12 @@ public class UIContextMenu: NSObject {
             image: self.image,
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
-            children: children
+            children: childElements
         )
         
     }
     
-    internal func buildConfiguration() -> UIContextMenuConfiguration {
+    public func buildConfiguration() -> UIContextMenuConfiguration {
         
         return UIContextMenuConfiguration(
             identifier: nil,

@@ -15,44 +15,60 @@ class ContextMenuViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        let x = UIButton()
-        x.backgroundColor = .red
-        self.view.addSubview(x)
-        x.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.top.equalTo(200)
-            make.width.equalTo(200)
-            make.height.equalTo(50)
-        }
-        
         let contextView = ContextView(color: .systemGroupedBackground)
         self.view.addSubview(contextView)
         contextView.snp.makeConstraints { make in
             make.width.height.equalTo(150)
             make.center.equalToSuperview()
         }
-                
-        x.addContextMenu(UIContextMenu(
-            title: "Hello, context menu!",
-            items: [
+        
+        contextView.addContextMenu(UIContextMenu { menu in
             
-                .action(title: "Foo", image: UIImage(systemName: "01.circle"), action: { _ in
+            menu.title = "Hello, context menu!"
+            
+            menu.addAction { action in
+                
+                action.title = "Foo"
+                action.image = UIImage(systemName: "01.circle")
+                action.action = { _ in
                     self.alert("Foo")
-                }),
+                }
                 
-                .action(title: "Bar", image: UIImage(systemName: "02.circle"), action: { _ in
+            }
+            
+            menu.addAction { action in
+                
+                action.title = "Bar"
+                action.image = UIImage(systemName: "02.circle")
+                action.action = { _ in
                     self.alert("Bar")
-                }),
+                }
                 
-                .group(title: "More...", children: [
+            }
+            
+            menu.addMenu { moreMenu in
                 
-                    .action(title: "DJ Khaled says...", image: UIImage(systemName: "star.filled"), action: { _ in
-                        self.alert("Another one!")
-                    })
+                moreMenu.title = "More..."
                 
-                ])
-                
-            ]))
+                moreMenu.addMenu { moreMoreMenu in
+                    
+                    moreMoreMenu.title = "DJ Khaled says..."
+                    moreMoreMenu.image = UIImage(systemName: "star.filled")
+                    moreMoreMenu.addAction { action in
+                        
+                        action.title = "Another one?"
+                        action.image = UIImage(systemName: "star.filled")
+                        action.action = { _ in
+                            self.alert("Another one!")
+                        }
+                        
+                    }
+                    
+                }
+                                
+            }
+            
+        })
 
     }
     

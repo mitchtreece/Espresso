@@ -1,5 +1,5 @@
 //
-//  UIContextMenuActionItem.swift
+//  ContextMenuActionItem.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 5/2/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct ContextMenuActionItem: ContextMenuItem {
+public struct UIContextMenuAction: ContextMenuAction {
     
     public var title: String
     public var subtitle: String?
@@ -40,7 +40,7 @@ public struct ContextMenuActionItem: ContextMenuItem {
 
     }
     
-    public func menuElement() -> UIMenuElement {
+    public func buildElement() -> UIMenuElement {
      
         let action = UIAction(
             title: self.title,
