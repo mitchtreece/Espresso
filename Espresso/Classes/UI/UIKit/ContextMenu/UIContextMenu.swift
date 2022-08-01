@@ -98,12 +98,16 @@ public class UIContextMenu: NSObject, ContextMenu, ContextMenuBuildable {
     // MARK: Data
     
     @discardableResult
-    public func addData(_ data: Any,
+    public func setData(_ data: Any,
                         forKey key: String) -> Self {
         
         self.data[key] = data
         return self
         
+    }
+    
+    public func getData(_ key: String) -> Any? {
+        return self.data[key]
     }
     
     // MARK: Builders

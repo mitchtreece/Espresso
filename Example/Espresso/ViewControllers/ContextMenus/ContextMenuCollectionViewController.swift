@@ -20,6 +20,14 @@ class ContextMenuCollectionViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     
+    private var cellContextMenu: UIContextMenu!
+    
+    private let colors: [String: UIColor] = [
+        "Red": .red,
+        "Green": .green,
+        "Blue": .blue
+    ]
+    
     private weak var delegate: ContextMenuCollectionViewControllerDelegate?
     
     init(delegate: ContextMenuCollectionViewControllerDelegate) {
@@ -40,7 +48,23 @@ class ContextMenuCollectionViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        
+        setupCollection()
+        setupContextMenus()
+        
+    }
+    
+    private func didTapCell(_ cell: ContextCollectionCell) {
+
+        self.delegate?.contextMenuCollectionViewController(
+            self,
+            didSelectColor: cell.color,
+            withTitle: cell.title
+        )
+        
+    }
+    
+    private func setupCollection() {
         
         let screen = UIScreen.main.bounds
         
@@ -62,9 +86,91 @@ class ContextMenuCollectionViewController: UIViewController {
             make.edges.equalTo(0)
         }
         
-        UICollectionViewCell.register(in: self.collectionView)
-//        ContextCollectionCell.register(in: self.collectionView)
+        ContextCollectionCell
+            .register(in: self.collectionView)
         
+    }
+    
+    private func setupContextMenus() {
+        
+        self.cellContextMenu = UIContextMenu { menu in
+            
+            menu.title = "Hello, world!"
+            
+            menu.addAction { action in
+                
+                action.title = "Foo"
+                action.image = UIImage(systemName: "01.circle")
+                action.action = { _ in
+                    self.alert("Foo")
+                }
+                
+            }
+            
+            menu.addAction { action in
+                
+                action.title = "Bar"
+                action.image = UIImage(systemName: "02.circle")
+                action.action = { _ in
+                    self.alert("Bar")
+                }
+                
+            }
+            
+            menu.addMenu { moreMenu in
+                
+                moreMenu.title = "More..."
+                
+                moreMenu.addMenu { moreMoreMenu in
+                    
+                    moreMoreMenu.title = "DJ Khaled says..."
+                    moreMoreMenu.image = UIImage(systemName: "star.filled")
+                    moreMoreMenu.addAction { action in
+                        
+                        action.title = "Another one?"
+                        action.image = UIImage(systemName: "star.filled")
+                        action.action = { _ in
+                            self.alert("Another one!")
+                        }
+                        
+                    }
+                    
+                }
+                                
+            }
+            
+            menu.previewProvider = { data -> UIViewController? in
+                
+                guard let cell = data["cell"] as? ContextCollectionCell else { return nil }
+                
+                let viewController = DetailViewController()
+                viewController.title = cell.title
+                viewController.view.backgroundColor = cell.color
+                return viewController
+                
+            }
+            
+            menu.previewCommitter = { data, viewController in
+                
+                guard let cell = data["cell"] as? ContextCollectionCell else { return }
+                self.didTapCell(cell)
+                
+            }
+            
+            menu.willPresent = {
+                print("menu present")
+            }
+            
+            menu.willDismiss = {
+                print("menu dismiss")
+            }
+            
+        }
+        
+    }
+    
+    private func alert(_ message: String) {
+        (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }
     
 }
@@ -84,49 +190,89 @@ extension ContextMenuCollectionViewController: UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let color = self.colors.randomElement()!
         
-//        let cell = ContextCollectionCell.dequeue(for: collectionView, at: indexPath)
-//        cell.setup(color: ESColor.allCases.randomElement() ?? .red, delegate: self)
-//        return cell
-        
-        return UICollectionViewCell.dequeue(for: collectionView, at: indexPath)
-        
+        return ContextCollectionCell
+            .dequeue(for: collectionView, at: indexPath)
+            .setup(
+                title: color.key,
+                color: color.value
+            )
+                
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-//
-//        guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return }
-//
-//        self.delegate?.contextMenuCollectionViewController(
-//            self,
-//            didSelectColor: cell.color
-//        )
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return }
+        didTapCell(cell)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ContextCollectionCell else { return nil }
+
+        return self.cellContextMenu
+            .setData(cell, forKey: "cell")
+            .buildConfiguration()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplayContextMenu configuration: UIContextMenuConfiguration,
+                        animator: UIContextMenuInteractionAnimating?) {
+        
+        self.cellContextMenu?
+            .willPresent?()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        willEndContextMenuInteraction configuration: UIContextMenuConfiguration,
+                        animator: UIContextMenuInteractionAnimating?) {
+        
+        self.cellContextMenu
+            .willDismiss?()
+        
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        
+        return self.cellContextMenu
+            .targetedHighlightPreviewProvider?(self.cellContextMenu.data)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        
+        self.cellContextMenu
+            .targetedDismissPreviewProvider?(self.cellContextMenu.data)
+        
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                        animator: UIContextMenuInteractionCommitAnimating) {
+        
+        guard let committer = self.cellContextMenu.previewCommitter else { return }
+
+        animator.preferredCommitStyle = self.cellContextMenu.previewCommitStyle
+
+        animator.addCompletion {
+
+            committer(
+                self.cellContextMenu.data,
+                animator.previewViewController
+            )
+
+        }
         
     }
     
 }
-
-//extension ContextMenuCollectionViewController: ContextCollectionCellDelegate {
-//    
-//    func contextCollectionCellPreview(_ cell: ContextCollectionCell,
-//                                      for color: ESColor) -> UIViewController? {
-//        
-//        let vc = DetailViewController()
-//        vc.title = color.name
-//        vc.view.backgroundColor = color.color
-//        return vc
-//        
-//    }
-//    
-//    func contextCollectionCellDidTapPreview(_ cell: ContextCollectionCell,
-//                                            preview: UIViewController?) {
-//        
-//        self.delegate?.contextMenuCollectionViewController(
-//            self,
-//            didSelectColor: cell.color
-//        )
-//        
-//    }
-//    
-//}

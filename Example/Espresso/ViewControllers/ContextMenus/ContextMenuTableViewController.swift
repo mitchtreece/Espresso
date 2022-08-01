@@ -127,17 +127,6 @@ class ContextMenuTableViewController: UIViewController {
                                 
             }
             
-            menu.previewProvider = { data -> UIViewController? in
-                
-                guard let cell = data["cell"] as? ContextTableCell else { return nil }
-                
-                let viewController = DetailViewController()
-                viewController.title = cell.title
-                viewController.view.backgroundColor = cell.color
-                return viewController
-                
-            }
-            
             menu.previewCommitter = { data, viewController in
                 
                 guard let cell = data["cell"] as? ContextTableCell else { return }
@@ -156,14 +145,36 @@ class ContextMenuTableViewController: UIViewController {
         }
         
     }
-    
+
     private func alert(_ message: String) {
         (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }
     
 }
 
-extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSource {
+//extension ContextMenuTableViewController: UITableViewContextMenuDelegate {
+//
+//    func tableView(_ tableView: UITableView,
+//                   contextMenuForCellAt indexPath: IndexPath,
+//                   point: CGPoint) -> UIContextMenu? {
+//
+//        if let cell = tableView.cellForRow(at: indexPath) {
+//
+//            self.cellContextMenu.setData(
+//                cell,
+//                forKey: "cell"
+//            )
+//
+//        }
+//
+//        return self.cellContextMenu
+//
+//    }
+//
+//}
+
+extension ContextMenuTableViewController: UITableViewDelegate,
+                                          UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -209,68 +220,67 @@ extension ContextMenuTableViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
-        
+
         guard let cell = tableView
             .cellForRow(at: indexPath) as? ContextTableCell else { return nil }
-                
+
         return self.cellContextMenu
-            .addData(
-                cell,
-                forKey: "cell"
-            )
+            .setData(cell, forKey: "cell")
             .buildConfiguration()
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView,
                    willDisplayContextMenu configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionAnimating?) {
-        
-        self.cellContextMenu.willPresent?()
-        
+
+        self.cellContextMenu
+            .willPresent?()
+
     }
-    
+
     func tableView(_ tableView: UITableView,
                    willEndContextMenuInteraction configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionAnimating?) {
-        
-        self.cellContextMenu.willDismiss?()
-        
+
+        self.cellContextMenu
+            .willDismiss?()
+
     }
-    
+
     func tableView(_ tableView: UITableView,
                    previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        
+
         return self.cellContextMenu
             .targetedHighlightPreviewProvider?(self.cellContextMenu.data)
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView,
                    previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        
+
         self.cellContextMenu
             .targetedDismissPreviewProvider?(self.cellContextMenu.data)
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView,
                    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionCommitAnimating) {
-        
+
         guard let committer = self.cellContextMenu.previewCommitter else { return }
-        
+
         animator.preferredCommitStyle = self.cellContextMenu.previewCommitStyle
 
         animator.addCompletion {
-                        
+
             committer(
                 self.cellContextMenu.data,
                 animator.previewViewController
             )
-            
+
         }
-        
+
     }
     
 }
