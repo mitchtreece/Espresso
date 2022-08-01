@@ -71,11 +71,18 @@ public class UIContextMenu: NSObject, ContextMenu, ContextMenuBuildable {
         
     }
     
-    public init(_ block: (inout ContextMenuRootBuilder)->()) {
+    public convenience init(_ block: (inout ContextMenuRootBuilder)->()) {
 
         var builder = ContextMenuRootBuilder()
+        
         block(&builder)
                 
+        self.init(builder: builder)
+        
+    }
+    
+    internal init(builder: ContextMenuRootBuilder) {
+        
         self.title = builder.title ?? ""
         self.subtitle = builder.subtitle
         self.identifier = builder.identifier

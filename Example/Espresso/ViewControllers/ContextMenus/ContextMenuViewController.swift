@@ -32,64 +32,61 @@ class ContextMenuViewController: UIViewController {
     
     private func setupContextMenus() {
         
-        self.contextMenu = UIContextMenu { menu in
+        self.contextMenu = self.contextMenuView.addContextMenu { menu in
             
             menu.title = "Hello, context menu!"
-            
+
             menu.addAction { action in
-                
+
                 action.title = "Foo"
                 action.image = UIImage(systemName: "01.circle")
                 action.action = { _ in
                     self.alert("Foo")
                 }
-                
+
             }
-            
+
             menu.addAction { action in
-                
+
                 action.title = "Bar"
                 action.image = UIImage(systemName: "02.circle")
                 action.action = { _ in
                     self.alert("Bar")
                 }
-                
+
             }
-            
+
             menu.addMenu { moreMenu in
-                
+
                 moreMenu.title = "More..."
-                
+
                 moreMenu.addMenu { moreMoreMenu in
-                    
+
                     moreMoreMenu.title = "DJ Khaled says..."
                     moreMoreMenu.image = UIImage(systemName: "star.filled")
                     moreMoreMenu.addAction { action in
-                        
+
                         action.title = "Another one?"
                         action.image = UIImage(systemName: "star.filled")
                         action.action = { _ in
                             self.alert("Another one!")
                         }
-                        
+
                     }
-                    
+
                 }
-                                
+
             }
-            
+
             menu.willPresent = {
-                print("menu present")
+                print("Context menu is being presented")
             }
-            
+
             menu.willDismiss = {
-                print("menu dismiss")
+                print("Context menu is being dismissed")
             }
             
         }
-        
-        self.contextMenuView
-            .addContextMenu(self.contextMenu)
         
     }
     

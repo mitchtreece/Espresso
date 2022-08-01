@@ -14,4 +14,18 @@ public extension UIBarButtonItem {
         self.menu = menu.buildMenu()
     }
     
+    @available(iOS 14, *)
+    func addContextMenu(_ block: (inout ContextMenuRootBuilder)->()) -> UIContextMenu {
+        
+        var builder = ContextMenuRootBuilder()
+        block(&builder)
+        
+        let menu = UIContextMenu(builder: builder)
+        
+        addContextMenu(menu)
+        
+        return menu
+        
+    }
+    
 }

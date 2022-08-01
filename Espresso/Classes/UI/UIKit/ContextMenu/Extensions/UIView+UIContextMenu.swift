@@ -31,4 +31,17 @@ public extension UIView {
         
     }
     
+    func addContextMenu(_ block: (inout ContextMenuRootBuilder)->()) -> UIContextMenu {
+        
+        var builder = ContextMenuRootBuilder()
+        block(&builder)
+        
+        let menu = UIContextMenu(builder: builder)
+        
+        addContextMenu(menu)
+        
+        return menu
+        
+    }
+    
 }
