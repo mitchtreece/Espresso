@@ -15,15 +15,15 @@ class ContextMenuView: UIView {
     init() {
         
         super.init(frame: .zero)
-        
         self.backgroundColor = .systemGroupedBackground
+        roundCorners(radius: 12)
         
         self.label = UILabel()
         self.label.textColor = .darkGray
         self.label.numberOfLines = 0
         self.label.textAlignment = .center
         self.label.font = .systemFont(ofSize: 13)
-        self.label.text = "Press on me!"
+        self.label.text = "Press me"
         self.addSubview(self.label)
         self.label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)

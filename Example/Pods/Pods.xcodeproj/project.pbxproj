@@ -99,22 +99,22 @@
 		25EFF58BF3554924D5C7AE34B3D4A6CA /* Array+UIAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6C9D60EE9425206D24F2214A9F6D1B /* Array+UIAnimation.swift */; };
 		260199DDDC1DDB10CAD3529A0921015C /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBF0C1F689F0197698521B95527C64B /* BackgroundTask.swift */; };
 		260B984B2894C31100DD63D8 /* UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B984A2894C31100DD63D8 /* UIContextMenu.swift */; };
-		260B984D2894C3C100DD63D8 /* UIView+UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B984C2894C3C100DD63D8 /* UIView+UIContextMenu.swift */; };
-		260B98522894DD1B00DD63D8 /* UIBarButtonItem+UIContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98512894DD1B00DD63D8 /* UIBarButtonItem+UIContextMenu.swift */; };
 		260B98552894FF1A00DD63D8 /* ContextMenuActionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98542894FF1A00DD63D8 /* ContextMenuActionBuilder.swift */; };
 		260B98592895005C00DD63D8 /* ContextMenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98582895005C00DD63D8 /* ContextMenuAction.swift */; };
 		260B985B2895010400DD63D8 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B985A2895010400DD63D8 /* ContextMenu.swift */; };
 		260B985F2895051F00DD63D8 /* ContextMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */; };
-		260B986328950AC300DD63D8 /* ContextMenuBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */; };
+		260B986328950AC300DD63D8 /* ContextMenuElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B986228950AC300DD63D8 /* ContextMenuElementContainer.swift */; };
 		260B98652895141800DD63D8 /* ContextMenuRootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */; };
-		260B98682895B4C500DD63D8 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98672895B4C500DD63D8 /* Builder.swift */; };
-		260B986A2895B51100DD63D8 /* AsyncBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98692895B51100DD63D8 /* AsyncBuilder.swift */; };
 		260B986F2895FF7100DD63D8 /* UITableViewContextMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B986E2895FF7100DD63D8 /* UITableViewContextMenuDelegate.swift */; };
 		260B98732897A66400DD63D8 /* UIContextMenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98722897A66400DD63D8 /* UIContextMenuTableView.swift */; };
 		260B98752897A69000DD63D8 /* UIContextMenuTableViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98742897A69000DD63D8 /* UIContextMenuTableViewDelegateProxy.swift */; };
 		260B98772897A81F00DD63D8 /* UICollectionViewContextMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98762897A81F00DD63D8 /* UICollectionViewContextMenuDelegate.swift */; };
 		260B98792897A82800DD63D8 /* UIContextMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98782897A82800DD63D8 /* UIContextMenuCollectionView.swift */; };
 		260B987B2897A84200DD63D8 /* UIContextMenuCollectionViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B987A2897A84200DD63D8 /* UIContextMenuCollectionViewDelegateProxy.swift */; };
+		260B987F289870B200DD63D8 /* UIContextMenu+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B987E289870B200DD63D8 /* UIContextMenu+UITableView.swift */; };
+		260B98812898731200DD63D8 /* UIContextMenu+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98802898731200DD63D8 /* UIContextMenu+UICollectionView.swift */; };
+		260B98832898A4A000DD63D8 /* ContextMenuElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98822898A4A000DD63D8 /* ContextMenuElementBuilder.swift */; };
+		260B98862898B59000DD63D8 /* ContextMenuTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B98852898B59000DD63D8 /* ContextMenuTarget.swift */; };
 		261AE8BFFC520617D4C4340F6F789EA1 /* ConcurrentDispatchQueueScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07048039C51CB9B55B89C8EF0A4FEDB5 /* ConcurrentDispatchQueueScheduler.swift */; };
 		270D19B4402F4C819EAB2E822F1EFA2D /* NSObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9C927FE98F2F311485E73F3D69523C /* NSObject+Rx.swift */; };
 		27629CE3169307739B865F428D34A869 /* BinaryDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F429C233E52724244C045B1DB84110 /* BinaryDisposable.swift */; };
@@ -772,22 +772,22 @@
 		25B8DDCFCCD74DB189685B975D999BEB /* GuaranteePublisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GuaranteePublisher.swift; path = Espresso/Classes/Combine/Core/GuaranteePublisher.swift; sourceTree = "<group>"; };
 		25EA5FA6BCAFE5238FC7987CD2D12070 /* RxCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxCocoa.release.xcconfig; sourceTree = "<group>"; };
 		260B984A2894C31100DD63D8 /* UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenu.swift; sourceTree = "<group>"; };
-		260B984C2894C3C100DD63D8 /* UIView+UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+UIContextMenu.swift"; sourceTree = "<group>"; };
-		260B98512894DD1B00DD63D8 /* UIBarButtonItem+UIContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+UIContextMenu.swift"; sourceTree = "<group>"; };
 		260B98542894FF1A00DD63D8 /* ContextMenuActionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuActionBuilder.swift; sourceTree = "<group>"; };
 		260B98582895005C00DD63D8 /* ContextMenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuAction.swift; sourceTree = "<group>"; };
 		260B985A2895010400DD63D8 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuBuilder.swift; sourceTree = "<group>"; };
-		260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuBuildable.swift; sourceTree = "<group>"; };
+		260B986228950AC300DD63D8 /* ContextMenuElementContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuElementContainer.swift; sourceTree = "<group>"; };
 		260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuRootBuilder.swift; sourceTree = "<group>"; };
-		260B98672895B4C500DD63D8 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
-		260B98692895B51100DD63D8 /* AsyncBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBuilder.swift; sourceTree = "<group>"; };
 		260B986E2895FF7100DD63D8 /* UITableViewContextMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewContextMenuDelegate.swift; sourceTree = "<group>"; };
 		260B98722897A66400DD63D8 /* UIContextMenuTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuTableView.swift; sourceTree = "<group>"; };
 		260B98742897A69000DD63D8 /* UIContextMenuTableViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuTableViewDelegateProxy.swift; sourceTree = "<group>"; };
 		260B98762897A81F00DD63D8 /* UICollectionViewContextMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewContextMenuDelegate.swift; sourceTree = "<group>"; };
 		260B98782897A82800DD63D8 /* UIContextMenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuCollectionView.swift; sourceTree = "<group>"; };
 		260B987A2897A84200DD63D8 /* UIContextMenuCollectionViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContextMenuCollectionViewDelegateProxy.swift; sourceTree = "<group>"; };
+		260B987E289870B200DD63D8 /* UIContextMenu+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContextMenu+UITableView.swift"; sourceTree = "<group>"; };
+		260B98802898731200DD63D8 /* UIContextMenu+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContextMenu+UICollectionView.swift"; sourceTree = "<group>"; };
+		260B98822898A4A000DD63D8 /* ContextMenuElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuElementBuilder.swift; sourceTree = "<group>"; };
+		260B98852898B59000DD63D8 /* ContextMenuTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuTarget.swift; sourceTree = "<group>"; };
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
 		26F788DA1CC5C588DE42217A7106401E /* Date+Dispatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Dispatch.swift"; path = "RxSwift/Date+Dispatch.swift"; sourceTree = "<group>"; };
@@ -1555,7 +1555,7 @@
 		260B98532894FEE600DD63D8 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				260B986228950AC300DD63D8 /* ContextMenuBuildable.swift */,
+				260B98822898A4A000DD63D8 /* ContextMenuElementBuilder.swift */,
 				260B98642895141800DD63D8 /* ContextMenuRootBuilder.swift */,
 				260B98542894FF1A00DD63D8 /* ContextMenuActionBuilder.swift */,
 				260B985E2895051F00DD63D8 /* ContextMenuBuilder.swift */,
@@ -1563,37 +1563,22 @@
 			path = Builders;
 			sourceTree = "<group>";
 		};
-		260B98562894FF4C00DD63D8 /* Extensions */ = {
+		260B98572895004D00DD63D8 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				260B984C2894C3C100DD63D8 /* UIView+UIContextMenu.swift */,
-				260B98512894DD1B00DD63D8 /* UIBarButtonItem+UIContextMenu.swift */,
+				2390BDE07BA4B3F64801B3D66F71D342 /* ContextMenuElement.swift */,
+				260B986228950AC300DD63D8 /* ContextMenuElementContainer.swift */,
+				260B98582895005C00DD63D8 /* ContextMenuAction.swift */,
+				260B985A2895010400DD63D8 /* ContextMenu.swift */,
+				260B98842898A51A00DD63D8 /* Implementation */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		260B98572895004D00DD63D8 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				10E8D2725CEF78E3C23B53A03FA5A00E /* UIContextMenuAction.swift */,
-				76D6A3A60FE5905E74290C0E06ED9EBC /* UIContextMenuSubMenu.swift */,
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
-		260B98662895B48400DD63D8 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				260B98672895B4C500DD63D8 /* Builder.swift */,
-				260B98692895B51100DD63D8 /* AsyncBuilder.swift */,
-			);
-			name = Builders;
-			path = Espresso/Classes/Core/Core/Builders;
+			path = Elements;
 			sourceTree = "<group>";
 		};
 		260B98702897A62400DD63D8 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				260B987E289870B200DD63D8 /* UIContextMenu+UITableView.swift */,
 				260B986E2895FF7100DD63D8 /* UITableViewContextMenuDelegate.swift */,
 				260B98722897A66400DD63D8 /* UIContextMenuTableView.swift */,
 				260B98742897A69000DD63D8 /* UIContextMenuTableViewDelegateProxy.swift */,
@@ -1604,11 +1589,21 @@
 		260B98712897A63100DD63D8 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				260B98802898731200DD63D8 /* UIContextMenu+UICollectionView.swift */,
 				260B98762897A81F00DD63D8 /* UICollectionViewContextMenuDelegate.swift */,
 				260B98782897A82800DD63D8 /* UIContextMenuCollectionView.swift */,
 				260B987A2897A84200DD63D8 /* UIContextMenuCollectionViewDelegateProxy.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		260B98842898A51A00DD63D8 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				10E8D2725CEF78E3C23B53A03FA5A00E /* UIContextMenuAction.swift */,
+				76D6A3A60FE5905E74290C0E06ED9EBC /* UIContextMenuSubMenu.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		294B9AC7DEDC1983F2EC1809EDB18ED1 /* BlurHash */ = {
@@ -2169,14 +2164,11 @@
 			isa = PBXGroup;
 			children = (
 				260B984A2894C31100DD63D8 /* UIContextMenu.swift */,
-				2390BDE07BA4B3F64801B3D66F71D342 /* ContextMenuElement.swift */,
-				260B98582895005C00DD63D8 /* ContextMenuAction.swift */,
-				260B985A2895010400DD63D8 /* ContextMenu.swift */,
-				260B98572895004D00DD63D8 /* Items */,
+				260B98852898B59000DD63D8 /* ContextMenuTarget.swift */,
+				260B98572895004D00DD63D8 /* Elements */,
 				260B98532894FEE600DD63D8 /* Builders */,
 				260B98702897A62400DD63D8 /* TableView */,
 				260B98712897A63100DD63D8 /* CollectionView */,
-				260B98562894FF4C00DD63D8 /* Extensions */,
 			);
 			name = ContextMenu;
 			path = Espresso/Classes/UI/UIKit/ContextMenu;
@@ -2574,7 +2566,6 @@
 				B1CCD4ED6315E538F5956141B8957D72 /* NotificationObserver.swift */,
 				A80BB24CF751B6FEC1CE22AEF5A476A0 /* TimeDuration.swift */,
 				9D7370CF3AAA599A3FF580D8CC033E6C /* UserAuthenticator.swift */,
-				260B98662895B48400DD63D8 /* Builders */,
 				4D4E9890634A0FC57B20953F0F87A0FE /* Actions */,
 				592DC23280A2ED09066C1C34EA7D7417 /* Async */,
 				C674483C90AAD35D63FD2A351A6199D3 /* Crypto */,
@@ -3390,10 +3381,11 @@
 				8335B47C34126306FD5938ACAEE4E430 /* Date+Espresso.swift in Sources */,
 				3C7AEFA22DFF5E25D0462FBB73383B18 /* Dictionary+Espresso.swift in Sources */,
 				2DE8BFBE28D35E72CA111F8BE1179975 /* Direction.swift in Sources */,
+				260B987F289870B200DD63D8 /* UIContextMenu+UITableView.swift in Sources */,
 				5995E540AE5465EC5E9DD628EA14A1AE /* DispatchQueue+Espresso.swift in Sources */,
 				00B863FC88547B7BA8A20D330094C341 /* DynamicCodingKeys.swift in Sources */,
+				260B98812898731200DD63D8 /* UIContextMenu+UICollectionView.swift in Sources */,
 				AE01D04221F0665AC0B144079AF63B5A /* Edge.swift in Sources */,
-				260B986A2895B51100DD63D8 /* AsyncBuilder.swift in Sources */,
 				0D6CDE9DC58914D70E35025C087B20F0 /* ErrorRepresentable.swift in Sources */,
 				77E7BB34D5BAEF1815BD4BFBA50FA7DB /* Espresso-dummy.m in Sources */,
 				CA7B191587F9F72E2F91AA9E4E9B2654 /* Event.swift in Sources */,
@@ -3415,11 +3407,9 @@
 				6DF99FC694B7B9DA718DD2E93DB150FD /* ImageRepresentable.swift in Sources */,
 				36B9DB8EC502A08E7B0BA8CDCA048B83 /* IndexPath+Espresso.swift in Sources */,
 				0C2DCE6D3CFBED1D14789664A33E9D00 /* JSONRepresentable.swift in Sources */,
-				260B984D2894C3C100DD63D8 /* UIView+UIContextMenu.swift in Sources */,
 				DD4487B0A9BEE9DA561E654919C2F8A4 /* Key.swift in Sources */,
 				C83F2E56BABBDE9C456AB0D038F628C2 /* KeyboardManager.swift in Sources */,
 				14B835964B5D7304077BAF489A53B68B /* KeyStore.swift in Sources */,
-				260B98682895B4C500DD63D8 /* Builder.swift in Sources */,
 				4D5CE4FE69FB82BC13726455A32C2126 /* KeyStored.swift in Sources */,
 				260B986F2895FF7100DD63D8 /* UITableViewContextMenuDelegate.swift in Sources */,
 				E65DD9B6916E672242F215002089EEBF /* KeyStoredReadable.swift in Sources */,
@@ -3435,8 +3425,8 @@
 				F2256A0E51A7AD16E12C8268E67DB28C /* Optional+Espresso.swift in Sources */,
 				CEB18AE8CACB879847B73BA011E01AB6 /* OptionalType.swift in Sources */,
 				ADC151565BA93172CBBFD0C388146B68 /* Placeholder.swift in Sources */,
-				260B98522894DD1B00DD63D8 /* UIBarButtonItem+UIContextMenu.swift in Sources */,
 				2581DB6FF00DF4DBCC0EEE4B0AA684D2 /* Promise+Combine.swift in Sources */,
+				260B98862898B59000DD63D8 /* ContextMenuTarget.swift in Sources */,
 				EA250A31E621105A7D5D2A2491272136 /* Promise+Espresso.swift in Sources */,
 				0F1FF5E8C6B9AAFC2EFF8699C19E8166 /* Promise+Rx.swift in Sources */,
 				4776336FE01627A78E540E2B19C06DF4 /* Publisher+Espresso.swift in Sources */,
@@ -3495,7 +3485,7 @@
 				260B985B2895010400DD63D8 /* ContextMenu.swift in Sources */,
 				BF829F776B0DAD5DCA0A436CC8192B34 /* UIHairlineView.swift in Sources */,
 				8EA271464B5FE5D4938C250A734A9FBF /* UIHomeGrabber.swift in Sources */,
-				260B986328950AC300DD63D8 /* ContextMenuBuildable.swift in Sources */,
+				260B986328950AC300DD63D8 /* ContextMenuElementContainer.swift in Sources */,
 				924FD770E56DF036F6FB2C03E4847EE4 /* UIImage+Espresso.swift in Sources */,
 				260B98792897A82800DD63D8 /* UIContextMenuCollectionView.swift in Sources */,
 				77370F4779BD52EEA5DB2ADEC5C1D651 /* UINavigationController+Espresso.swift in Sources */,
@@ -3510,6 +3500,7 @@
 				A1954D0AF7849CFD02AE6E03FBCEED7F /* UIScreen+Espresso.swift in Sources */,
 				1E728CC61FC0C730658AB956214BAA16 /* UIScreenFeature.swift in Sources */,
 				D0986C4833F7793D3EA3938F87EE6D28 /* UIScrollingStackView.swift in Sources */,
+				260B98832898A4A000DD63D8 /* ContextMenuElementBuilder.swift in Sources */,
 				E9E8B156617101CEBF8081139894BC56 /* UIScrollView+Espresso.swift in Sources */,
 				7DC1B5A7CB2A8A83CCC3552FC31C8237 /* UISlideTransition.swift in Sources */,
 				1FE82E7C33DE64F4CA0A252E72A8B76A /* UISwapTransition.swift in Sources */,

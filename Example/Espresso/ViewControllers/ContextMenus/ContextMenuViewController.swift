@@ -19,6 +19,8 @@ class ContextMenuViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        setupContextMenus()
+        
         self.contextMenuView = ContextMenuView()
         self.view.addSubview(self.contextMenuView)
         self.contextMenuView.snp.makeConstraints { make in
@@ -26,50 +28,87 @@ class ContextMenuViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
-        setupContextMenus()
+        self.contextMenuView
+            .addContextMenu(self.contextMenu)
+        
+        if #available(iOS 14, *) {
+            
+            // Button
+            
+            let button = UIButton()
+            button.backgroundColor = .systemBlue
+            button.setTitle("Tap me", for: .normal)
+            button.showsMenuAsPrimaryAction = true
+            button.roundCorners(radius: 12)
+            self.view.addSubview(button)
+            button.snp.makeConstraints { make in
+                make.left.equalTo(20)
+                make.right.equalTo(-20)
+                make.bottom.equalTo(-30)
+                make.height.equalTo(50)
+            }
+            
+            button
+                .addContextMenu(self.contextMenu)
+            
+            
+            // Bar Button
+            
+            let barButtonItem = UIBarButtonItem(systemItem: .action)
+            self.navigationItem.rightBarButtonItem = barButtonItem
+            
+            barButtonItem
+                .addContextMenu(self.contextMenu)
+
+        }
         
     }
     
     private func setupContextMenus() {
-        
-        self.contextMenu = self.contextMenuView.addContextMenu { menu in
+
+        self.contextMenu = UIContextMenu { menu in
+                        
+            menu.title = "Make a choice"
             
-            menu.title = "Hello, context menu!"
-
             menu.addAction { action in
-
-                action.title = "Foo"
-                action.image = UIImage(systemName: "01.circle")
+                
+                action.title = "Tap me!"
+                action.image = UIImage(systemName: "hand.tap")
+                
                 action.action = { _ in
-                    self.alert("Foo")
+                    self.alert("Wow! You're pretty good at following orders")
                 }
 
             }
 
             menu.addAction { action in
 
-                action.title = "Bar"
-                action.image = UIImage(systemName: "02.circle")
+                action.title = "No, tap me!"
+                action.image = UIImage(systemName: "hand.tap.fill")
+                
                 action.action = { _ in
-                    self.alert("Bar")
+                    self.alert("You're not that good at following orders, are you?")
                 }
 
             }
 
             menu.addMenu { moreMenu in
-
-                moreMenu.title = "More..."
-
+                
+                moreMenu.title = "Actually, tap me!"
+                moreMenu.image = UIImage(systemName: "star")
+                
                 moreMenu.addMenu { moreMoreMenu in
 
-                    moreMoreMenu.title = "DJ Khaled says..."
-                    moreMoreMenu.image = UIImage(systemName: "star.filled")
+                    moreMoreMenu.title = "Just one more tap..."
+                    moreMoreMenu.image = UIImage(systemName: "star.fill")
+                    
                     moreMoreMenu.addAction { action in
 
-                        action.title = "Another one?"
-                        action.image = UIImage(systemName: "star.filled")
+                        action.title = "Tap me, I swear!"
+                        action.image = UIImage(systemName: "sparkles")
+                        
                         action.action = { _ in
-                            self.alert("Another one!")
+                            self.alert("Wow! I'm surprised you actually did all that. You're really good at following orders!")
                         }
 
                     }

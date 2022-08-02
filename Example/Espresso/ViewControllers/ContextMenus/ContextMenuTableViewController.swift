@@ -20,7 +20,7 @@ class ContextMenuTableViewController: UIViewController {
     
     private var tableView: UITableView!
 
-    private var cellContextMenu: UIContextMenu!
+    private var contextMenu: UIContextMenu!
     
     private let colors: [String: UIColor] = [
         "Red": .red,
@@ -81,65 +81,70 @@ class ContextMenuTableViewController: UIViewController {
     
     private func setupContextMenus() {
         
-        self.cellContextMenu = UIContextMenu { menu in
-            
-            menu.title = "Hello, world!"
-            
-            menu.addAction { action in
-                
-                action.title = "Foo"
-                action.image = UIImage(systemName: "01.circle")
-                action.action = { _ in
-                    self.alert("Foo")
-                }
-                
-            }
+        self.contextMenu = UIContextMenu { menu in
+                        
+            menu.title = "Make a choice"
             
             menu.addAction { action in
                 
-                action.title = "Bar"
-                action.image = UIImage(systemName: "02.circle")
-                action.action = { _ in
-                    self.alert("Bar")
-                }
+                action.title = "Tap me!"
+                action.image = UIImage(systemName: "hand.tap")
                 
+                action.action = { _ in
+                    self.alert("Wow! You're pretty good at following orders")
+                }
+
             }
-            
+
+            menu.addAction { action in
+
+                action.title = "No, tap me!"
+                action.image = UIImage(systemName: "hand.tap.fill")
+                
+                action.action = { _ in
+                    self.alert("You're not that good at following orders, are you?")
+                }
+
+            }
+
             menu.addMenu { moreMenu in
                 
-                moreMenu.title = "More..."
+                moreMenu.title = "Actually, tap me!"
+                moreMenu.image = UIImage(systemName: "star")
                 
                 moreMenu.addMenu { moreMoreMenu in
+
+                    moreMoreMenu.title = "Just one more tap..."
+                    moreMoreMenu.image = UIImage(systemName: "star.fill")
                     
-                    moreMoreMenu.title = "DJ Khaled says..."
-                    moreMoreMenu.image = UIImage(systemName: "star.filled")
                     moreMoreMenu.addAction { action in
+
+                        action.title = "Tap me, I swear!"
+                        action.image = UIImage(systemName: "sparkles")
                         
-                        action.title = "Another one?"
-                        action.image = UIImage(systemName: "star.filled")
                         action.action = { _ in
-                            self.alert("Another one!")
+                            self.alert("Wow! I'm surprised you actually did all that. You're really good at following orders!")
                         }
-                        
+
                     }
-                    
+
                 }
-                                
+
             }
             
-            menu.previewCommitter = { data, viewController in
+            menu.previewCommitter = { data, _ in
                 
                 guard let cell = data["cell"] as? ContextTableCell else { return }
                 self.didTapCell(cell)
                 
             }
-            
+
             menu.willPresent = {
-                print("menu present")
+                print("Context menu is being presented")
             }
-            
+
             menu.willDismiss = {
-                print("menu dismiss")
+                print("Context menu is being dismissed")
             }
             
         }
@@ -151,27 +156,6 @@ class ContextMenuTableViewController: UIViewController {
     }
     
 }
-
-//extension ContextMenuTableViewController: UITableViewContextMenuDelegate {
-//
-//    func tableView(_ tableView: UITableView,
-//                   contextMenuForCellAt indexPath: IndexPath,
-//                   point: CGPoint) -> UIContextMenu? {
-//
-//        if let cell = tableView.cellForRow(at: indexPath) {
-//
-//            self.cellContextMenu.setData(
-//                cell,
-//                forKey: "cell"
-//            )
-//
-//        }
-//
-//        return self.cellContextMenu
-//
-//    }
-//
-//}
 
 extension ContextMenuTableViewController: UITableViewDelegate,
                                           UITableViewDataSource {
@@ -221,12 +205,13 @@ extension ContextMenuTableViewController: UITableViewDelegate,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
 
-        guard let cell = tableView
-            .cellForRow(at: indexPath) as? ContextTableCell else { return nil }
-
-        return self.cellContextMenu
-            .setData(cell, forKey: "cell")
-            .buildConfiguration()
+        return self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                contextMenuConfigurationForRowAt: indexPath,
+                point: point
+            )
 
     }
 
@@ -234,33 +219,51 @@ extension ContextMenuTableViewController: UITableViewDelegate,
                    willDisplayContextMenu configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionAnimating?) {
 
-        self.cellContextMenu
-            .willPresent?()
-
+        self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                willDisplayContextMenu: configuration,
+                animator: animator
+            )
+        
     }
 
     func tableView(_ tableView: UITableView,
                    willEndContextMenuInteraction configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionAnimating?) {
 
-        self.cellContextMenu
-            .willDismiss?()
+        self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                willEndContextMenuInteraction: configuration,
+                animator: animator
+            )
 
     }
 
     func tableView(_ tableView: UITableView,
                    previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        return self.cellContextMenu
-            .targetedHighlightPreviewProvider?(self.cellContextMenu.data)
-
+        return self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                previewForHighlightingContextMenuWithConfiguration: configuration
+            )
+        
     }
 
     func tableView(_ tableView: UITableView,
                    previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-        self.cellContextMenu
-            .targetedDismissPreviewProvider?(self.cellContextMenu.data)
+        return self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                previewForDismissingContextMenuWithConfiguration: configuration
+            )
 
     }
 
@@ -268,18 +271,13 @@ extension ContextMenuTableViewController: UITableViewDelegate,
                    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionCommitAnimating) {
 
-        guard let committer = self.cellContextMenu.previewCommitter else { return }
-
-        animator.preferredCommitStyle = self.cellContextMenu.previewCommitStyle
-
-        animator.addCompletion {
-
-            committer(
-                self.cellContextMenu.data,
-                animator.previewViewController
+        self.contextMenu
+            .tableConfiguration
+            .tableView(
+                tableView,
+                willPerformPreviewActionForMenuWith: configuration,
+                animator: animator
             )
-
-        }
 
     }
     

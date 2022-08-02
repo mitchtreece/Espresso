@@ -7,11 +7,10 @@
 
 import UIKit
 
+/// A context menu sub-menu.
 public struct UIContextMenuSubMenu: ContextMenu {
-    
-    public typealias BuildType = UIMenuElement
-    
-    public var title: String
+        
+    public var title: String?
     public var subtitle: String?
     public var image: UIImage?
     public var identifier: String?
@@ -19,11 +18,19 @@ public struct UIContextMenuSubMenu: ContextMenu {
     public var options: UIMenu.Options
     public var elements: [ContextMenuElement]
 
+    /// Initializes a context menu sub-menu.
+    ///
+    /// - parameter title: The menu's title.
+    /// - parameter subtitle: The menu's subtitle; _defaults to `nil`_.
+    /// - parameter image: The menu's image; _defaults to `nil`_.
+    /// - parameter identifier: The menu's identifier; _defaults to `nil`_.
+    /// - parameter options: The menu's options; _defaults to none_.
+    /// - parameter elements: The menu's elements.
     public init(title: String,
-                subtitle: String?,
-                image: UIImage?,
-                identifier: String?,
-                options: UIMenu.Options,
+                subtitle: String? = nil,
+                image: UIImage? = nil,
+                identifier: String? = nil,
+                options: UIMenu.Options = [],
                 elements: [ContextMenuElement]) {
 
         self.title = title
@@ -36,14 +43,14 @@ public struct UIContextMenuSubMenu: ContextMenu {
 
     }
     
-    public func build() -> UIMenuElement {
+    public func buildMenuElement() -> UIMenuElement {
 
         let menu = UIMenu(
-            title: self.title,
+            title: self.title ?? "",
             image: self.image,
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
-            children: self.elements.map { $0.build() }
+            children: self.elements.map { $0.buildMenuElement() }
         )
 
         if #available(iOS 15, *) {
