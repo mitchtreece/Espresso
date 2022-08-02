@@ -19,16 +19,16 @@ public enum UIMenuElementSize {
     /// A large menu element size.
     case large
     
-//    /// Gets the `UIKit` menu element size.
-//    @available(iOS 16, *)
-//    public var size: UIMenu.ElementSize {
-//
-//        switch self {
-//        case .small: return .small
-//        case .medium: return .medium
-//        case .large: return .large
-//        }
-//
-//    }
+    /// Gets the `UIKit` menu element size.
+    @available(iOS 16, *)
+    public var size: UIMenu.ElementSize {
+
+        switch self {
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        }
+
+    }
     
 }
