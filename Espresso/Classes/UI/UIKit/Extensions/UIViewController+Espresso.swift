@@ -29,7 +29,7 @@ public extension StaticIdentifiable where Self: UIViewController /* Storyboard *
 
 public extension UIViewController /* Modal */ {
     
-    /// Presents a view controller modally.
+    /// Presents a view controller modally, awaiting presentation completion.
     /// - parameter viewController: The view controller to present.
     ///
     /// This is always performed with animations.
@@ -43,7 +43,8 @@ public extension UIViewController /* Modal */ {
         
     }
     
-    /// Dismisses the view controller that was presented modally by the view controller.
+    /// Dismisses the view controller that was presented modally by the
+    /// view controller, awaiting dismissal completion.
     ///
     /// This is always performed with animations.
     func dismiss() async {

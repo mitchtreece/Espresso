@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Updated for iOS 15:
+// Updated for iOS 16:
 // UIModalPresentationFullScreen = 0,
 // UIModalPresentationPageSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
 // UIModalPresentationFormSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
