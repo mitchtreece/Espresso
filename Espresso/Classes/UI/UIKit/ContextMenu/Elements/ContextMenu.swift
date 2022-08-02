@@ -10,7 +10,10 @@ import UIKit
 /// Protocol describing the attributes of a context menu.
 public protocol ContextMenu: ContextMenuElement, ContextMenuElementContainer {
     
-    /// The element's options.
+    /// The menu element's menu options.
     var options: UIMenu.Options { get set }
+    
+    /// The menu element's element size.
+    var elementSize: UIMenuElementSize { get set }
     
 }

@@ -22,11 +22,11 @@ public struct UIContextMenuAction: ContextMenuAction {
     /// Initializes a context menu action.
     ///
     /// - parameter title: The action's title.
-    /// - parameter subtitle: The action's subtitle; _defaults to `nil`_.
-    /// - parameter image: The action's image; _defaults to `nil`_.
-    /// - parameter identifier: The action's identifier; _defaults to `nil`_.
-    /// - parameter attributes: The action's attributes; _defaults to none_.
-    /// - parameter state: The action's state; _defaults to `off`_.
+    /// - parameter subtitle: The action's subtitle.
+    /// - parameter image: The action's image.
+    /// - parameter identifier: The action's identifier.
+    /// - parameter attributes: The action's attributes.
+    /// - parameter state: The action's state.
     /// - parameter image: The action's action handler.
     public init(title: String,
                 subtitle: String? = nil,

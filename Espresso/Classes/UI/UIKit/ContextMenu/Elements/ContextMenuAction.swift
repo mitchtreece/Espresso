@@ -10,13 +10,13 @@ import UIKit
 /// Protocol describing the attributes of context menu action.
 public protocol ContextMenuAction: ContextMenuElement {
     
-    /// The element's attributes.
+    /// The action element's attributes.
     var attributes: UIMenuElement.Attributes { get set }
     
-    /// The element's state.
+    /// The action element's state.
     var state: UIMenuElement.State { get set }
     
-    /// The element's action handler.
+    /// The action element's action handler.
     var action: UIActionHandler { get set }
     
 }

@@ -40,8 +40,14 @@ public class UIContextMenu: NSObject, ContextMenu {
     /// The context menu's identifier.
     public var identifier: String?
     
-    /// The contet menu's options.
+    /// The context menu's options.
     public var options: UIMenu.Options = []
+    
+    /// The context menu's element size.
+    ///
+    /// This is supported on iOS 16 and higher. This will be completely
+    /// ignored if running on a device on iOS 15 or lower.
+    public var elementSize: UIMenuElementSize = .large
 
     /// The context menu's elements.
     public var elements: [ContextMenuElement]
@@ -59,7 +65,7 @@ public class UIContextMenu: NSObject, ContextMenu {
     /// to the closure. Perform navigation or other tasks if needed.
     public var previewCommitter: PreviewCommitter?
 
-    /// The context menu's preferred preview commit style; _defaults to pop_.
+    /// The context menu's preferred preview commit style.
     public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
 
     /// The context menu's targeted highlight preview provider.
@@ -238,13 +244,23 @@ public class UIContextMenu: NSObject, ContextMenu {
     
     public func buildMenuElement() -> UIMenuElement {
                 
-        return UIMenu(
+        let menu = UIMenu(
             title: self.title ?? "",
             image: self.image,
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
             children: self.elements.map { $0.buildMenuElement() }
         )
+        
+        if #available(iOS 15, *) {
+            menu.subtitle = self.subtitle
+        }
+        
+        if #available(iOS 16, *) {
+            menu.preferredElementSize = self.elementSize.size
+        }
+        
+        return menu
         
     }
     
@@ -263,13 +279,23 @@ public class UIContextMenu: NSObject, ContextMenu {
             .map { $0.buildMenuElement() }
             .appending(contentsOf: additionalElements)
 
-        return UIMenu(
+        let menu = UIMenu(
             title: self.title ?? "",
             image: self.image,
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
             children: childElements
         )
+        
+        if #available(iOS 15, *) {
+            menu.subtitle = self.subtitle
+        }
+        
+        if #available(iOS 16, *) {
+            menu.preferredElementSize = self.elementSize.size
+        }
+        
+        return menu
         
     }
     

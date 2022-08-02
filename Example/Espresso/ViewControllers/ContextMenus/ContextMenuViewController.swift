@@ -80,7 +80,18 @@ class ContextMenuViewController: UIViewController {
                 }
 
             }
+            
+            menu.addAction { action in
 
+                action.title = "No, tap me!"
+                action.image = UIImage(systemName: "hand.tap.fill")
+                
+                action.action = { _ in
+                    self.alert("You're not that good at following orders, are you?")
+                }
+
+            }
+            
             menu.addAction { action in
 
                 action.title = "No, tap me!"
