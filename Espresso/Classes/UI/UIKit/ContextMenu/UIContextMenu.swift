@@ -256,9 +256,9 @@ public class UIContextMenu: NSObject, ContextMenu {
             menu.subtitle = self.subtitle
         }
         
-        if #available(iOS 16, *) {
-            menu.preferredElementSize = self.elementSize.size
-        }
+//        if #available(iOS 16, *) {
+//            menu.preferredElementSize = self.elementSize.size
+//        }
         
         return menu
         
@@ -291,9 +291,9 @@ public class UIContextMenu: NSObject, ContextMenu {
             menu.subtitle = self.subtitle
         }
         
-        if #available(iOS 16, *) {
-            menu.preferredElementSize = self.elementSize.size
-        }
+//        if #available(iOS 16, *) {
+//            menu.preferredElementSize = self.elementSize.size
+//        }
         
         return menu
         
