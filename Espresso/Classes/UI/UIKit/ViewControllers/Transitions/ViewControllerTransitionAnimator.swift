@@ -7,12 +7,12 @@
 
 import UIKit
 
-internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+internal class ViewControllerTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    private weak var transition: UIViewControllerTransition?
+    private weak var transition: ViewControllerTransition?
     var isPresentation = true
     
-    init(transition: UIViewControllerTransition) {
+    init(transition: ViewControllerTransition) {
         
         self.transition = transition
         super.init()
@@ -42,12 +42,12 @@ internal class UIViewControllerTransitionAnimator: NSObject, UIViewControllerAni
         
     }
     
-    func context(from transitionContext: UIViewControllerContextTransitioning) -> UIViewControllerTransition.Context? {
+    func context(from transitionContext: UIViewControllerContextTransitioning) -> ViewControllerTransition.Context? {
         
         guard let fromVC = transitionContext.viewController(forKey: .from) else { return nil }
         guard let toVC = transitionContext.viewController(forKey: .to) else { return nil }
         
-        return UIViewControllerTransition.Context(
+        return ViewControllerTransition.Context(
             operation: (self.isPresentation ? .presentation : .dismissal),
             containerView: transitionContext.containerView,
             sourceViewController: fromVC,

@@ -1,5 +1,5 @@
 //
-//  UIPushBackTransition.swift
+//  PushBackTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// A push-back view controller transition.
-public class UIPushBackTransition: UIViewControllerDirectionalTransition {
+public class PushBackTransition: ViewControllerDirectionalTransition {
     
     /// The scale to apply to the pushed-back view while transitioning; _defaults to 0.9_.
     public var pushedBackViewScale: CGFloat = 0.9
@@ -27,7 +27,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
 
         return (ctx.operation == .presentation) ?
             present(ctx) :
@@ -35,7 +35,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func present(_ ctx: Context) -> UIAnimationGroupController {
+    private func present(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -45,7 +45,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
         let previousSourceClipsToBounds = sourceVC.view.clipsToBounds
         let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             sourceVC.view.clipsToBounds = true
             
@@ -58,7 +58,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
                         
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.alpha = self.pushedBackViewAlpha
                 sourceVC.view.layer.cornerRadius = self.pushedBackViewCornerRadius
@@ -84,7 +84,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
+    private func dismiss(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -94,7 +94,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
         let previousDestinationClipsToBounds = destinationVC.view.clipsToBounds
         let previousDestinationCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.alpha = self.pushedBackViewAlpha
@@ -113,7 +113,7 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,

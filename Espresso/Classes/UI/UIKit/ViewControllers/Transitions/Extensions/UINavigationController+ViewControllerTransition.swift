@@ -1,5 +1,5 @@
 //
-//  UINavigationController+UIViewControllerTransition.swift
+//  UINavigationController+ViewControllerTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -17,7 +17,7 @@ public extension UINavigationController {
     ///
     /// This is always performed with animations.
     func pushViewController(_ viewController: UIViewController,
-                            using transition: UIViewControllerTransition,
+                            using transition: ViewControllerTransition,
                             completion: (()->())? = nil) {
         
         viewController.transition = transition
@@ -38,7 +38,7 @@ public extension UINavigationController {
     ///
     /// This is always performed with animations.
     func pushViewController(_ viewController: UIViewController,
-                            using transition: UIViewControllerTransition) async {
+                            using transition: ViewControllerTransition) async {
         
         await withCheckedContinuation { c in
             pushViewController(viewController, using: transition) {

@@ -129,20 +129,7 @@ extension AppDelegate: RootViewControllerDelegate {
     
     func rootViewController(_ vc: RootViewController,
                             didSelectSwiftUIRow row: RootViewController.SwiftUIRow) {
-                
-        var vc: UIViewController!
         
-        switch row {
-        case .views: vc = UIHostingController(rootView: ViewsContentView())
-        }
-        
-//        let nav = UINavigationController(rootViewController: vc)
-                
-        self.navController.pushViewController(
-            vc,
-            animated: true
-        )
-
     }
     
     func rootViewController(_ vc: RootViewController,

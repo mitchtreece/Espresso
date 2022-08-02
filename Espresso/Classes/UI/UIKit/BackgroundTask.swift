@@ -10,7 +10,7 @@ import UIKit
 /// Wrapper class over `UIApplication` background task execution.
 public class BackgroundTask {
 
-    /// Representation of the various states a `BackgroundTask` can be in.
+    /// Representation of the various states a background task can be in.
     public enum State {
 
         /// A pending state.
@@ -38,6 +38,7 @@ public class BackgroundTask {
     public private(set) var state: State = .pending
 
     /// Initializes a background task with given expiration & completion blocks.
+    ///
     /// - parameter expiration: An expiration block.
     /// - parameter completion: A completion block.
     public init(expiration: (()->())? = nil,
@@ -49,6 +50,7 @@ public class BackgroundTask {
     }
 
     /// Starts the background task.
+    ///
     /// - returns: The background task.
     @discardableResult
     public func start() -> Self {

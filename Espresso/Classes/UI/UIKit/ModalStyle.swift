@@ -20,7 +20,7 @@ import UIKit
 // UIModalPresentationNone API_AVAILABLE(ios(7.0)) = -1,
 // UIModalPresentationAutomatic API_AVAILABLE(ios(13.0)) = -2,
 
-/// `ModalStyle` is a declarative wrapper over `UIModalPresentationStyle`.
+/// Declarative wrapper over `UIModalPresentationStyle`.
 public enum ModalStyle {
     
     /// Representation of the various presenting view modes.
@@ -105,7 +105,8 @@ public enum ModalStyle {
     }
     
     /// Initializes a `ModalStyle` from a modal presentation style.
-    /// - Parameter modalPresentationStyle: The modal presentation style.
+    ///
+    /// - parameter modalPresentationStyle: The modal presentation style.
     public init(modalPresentationStyle: UIModalPresentationStyle) {
         
         switch modalPresentationStyle {

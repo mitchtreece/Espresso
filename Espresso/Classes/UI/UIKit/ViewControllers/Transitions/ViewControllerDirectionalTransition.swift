@@ -1,5 +1,5 @@
 //
-//  UIViewControllerDirectionalTransition.swift
+//  ViewControllerDirectionalTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/14/21.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// Directional view controller transition base class.
-public class UIViewControllerDirectionalTransition: UIViewControllerTransition  {
+public class ViewControllerDirectionalTransition: ViewControllerTransition  {
     
     /// The transition's presentation direction; _defaults to left_.
     public var presentationDirection: Direction = .left

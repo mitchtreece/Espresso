@@ -30,9 +30,6 @@
         ],
         "Espresso/Core-Types": [
 
-        ],
-        "Espresso/Core-MVVM": [
-
         ]
       }
     },
@@ -45,19 +42,12 @@
       "source_files": "Espresso/Classes/Core/Types/**/*"
     },
     {
-      "name": "Core-MVVM",
-      "source_files": "Espresso/Classes/Core/MVVM/**/*"
-    },
-    {
       "name": "UI",
       "dependencies": {
         "Espresso/UI-Core": [
 
         ],
         "Espresso/UI-UIKit": [
-
-        ],
-        "Espresso/UI-UIKit-MVVM": [
 
         ],
         "Espresso/UI-SwiftUI": [
@@ -87,19 +77,10 @@
       }
     },
     {
-      "name": "UI-UIKit-MVVM",
-      "source_files": "Espresso/Classes/UI/UIKit-MVVM/**/*",
-      "dependencies": {
-        "Espresso/UI-UIKit": [
-
-        ]
-      }
-    },
-    {
       "name": "UI-SwiftUI",
       "source_files": "Espresso/Classes/UI/SwiftUI/**/*",
       "dependencies": {
-        "Espresso/UI-UIKit": [
+        "Espresso/UI-Core": [
 
         ]
       }
@@ -134,7 +115,7 @@
         "Espresso/Combine-Core": [
 
         ],
-        "Espresso/UI-UIKit-MVVM": [
+        "Espresso/UI-UIKit": [
 
         ]
       }
@@ -187,7 +168,7 @@
         "Espresso/Rx-Core": [
 
         ],
-        "Espresso/UI-UIKit-MVVM": [
+        "Espresso/UI-UIKit": [
 
         ]
       }
@@ -216,6 +197,9 @@
       "name": "PromiseKit-Core",
       "source_files": "Espresso/Classes/PromiseKit/Core/**/*",
       "dependencies": {
+        "Espresso/Core": [
+
+        ],
         "PromiseKit": [
           "~> 6.0"
         ]
@@ -278,7 +262,7 @@
     {
       "name": "Recipe-Combine-UIKit",
       "dependencies": {
-        "Espresso/UI-UIKit-MVVM": [
+        "Espresso/UI-UIKit": [
 
         ],
         "Espresso/Combine-UIKit": [
@@ -298,7 +282,7 @@
     {
       "name": "Recipe-Rx-UIKit",
       "dependencies": {
-        "Espresso/UI-UIKit-MVVM": [
+        "Espresso/UI-UIKit": [
 
         ],
         "Espresso/Rx-UIKit": [

@@ -1,5 +1,5 @@
 //
-//  UIBaseViewController.swift
+//  BaseViewController.swift
 //  Director
 //
 //  Created by Mitch Treece on 9/16/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// `UIViewController` subclass that provides common helper functions & properties.
+/// `UIBaseViewController` subclass that provides common helper functions & properties.
 open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
     /// Flag indicating if this is the view controller's first appearance.

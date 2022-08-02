@@ -1,5 +1,5 @@
 //
-//  UISlideTransition.swift
+//  SlideTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -8,9 +8,9 @@
 import UIKit
 
 /// A sliding view controller transition.
-public class UISlideTransition: UIViewControllerDirectionalTransition {
+public class SlideTransition: ViewControllerDirectionalTransition {
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -21,7 +21,7 @@ public class UISlideTransition: UIViewControllerDirectionalTransition {
             self.presentationDirection :
             self.dismissalDirection
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             
@@ -34,7 +34,7 @@ public class UISlideTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,

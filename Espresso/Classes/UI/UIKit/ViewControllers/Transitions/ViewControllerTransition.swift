@@ -1,5 +1,5 @@
 //
-//  UIViewControllerTransition.swift
+//  ViewControllerTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -8,9 +8,9 @@
 import UIKit
 
 /// View controller transition base class.
-@objc open class UIViewControllerTransition: NSObject,
-                                             UIViewControllerTransitioningDelegate,
-                                             UINavigationControllerDelegate {
+@objc open class ViewControllerTransition: NSObject,
+                                           UIViewControllerTransitioningDelegate,
+                                           UINavigationControllerDelegate {
     
     /// Transitioning context object containing the various attributes of a view controller transition.
     public struct Context {
@@ -67,8 +67,8 @@ import UIKit
         return self.isPresentationControllerBacked ? .custom : .fullScreen
     }
     
-    private var animator: UIViewControllerTransitionAnimator?
-    private var interactor: UIViewControllerTransitionInteractor?
+    private var animator: ViewControllerTransitionAnimator?
+    private var interactor: ViewControllerTransitionInteractor?
     
     // MARK: UIViewControllerTransitioningDelegate
     
@@ -78,14 +78,14 @@ import UIKit
         
         if self.isInteractive {
                 
-            self.interactor = UIViewControllerTransitionInteractor(
+            self.interactor = ViewControllerTransitionInteractor(
                 viewController: presented,
                 navigationController: nil
             )
                 
         }
         
-        self.animator = UIViewControllerTransitionAnimator(transition: self)
+        self.animator = ViewControllerTransitionAnimator(transition: self)
         return self.animator
         
     }
@@ -114,14 +114,14 @@ import UIKit
                 
             if self.isInteractive {
                 
-                self.interactor = UIViewControllerTransitionInteractor(
+                self.interactor = ViewControllerTransitionInteractor(
                     viewController: toVC,
                     navigationController: navigationController
                 )
                 
             }
             
-            self.animator = UIViewControllerTransitionAnimator(transition: self)
+            self.animator = ViewControllerTransitionAnimator(transition: self)
                 
         }
         else if (operation == .pop) {
@@ -135,7 +135,7 @@ import UIKit
     public func navigationController(_ navigationController: UINavigationController,
                                      interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
-        guard let animationController = animationController as? UIViewControllerTransitionAnimator,
+        guard let animationController = animationController as? ViewControllerTransitionAnimator,
             !animationController.isPresentation else { return nil }
         
         guard let interactor = self.interactor,
@@ -155,18 +155,18 @@ import UIKit
     
     // MARK: Public
     
-    /// Asks the transition for a `UIAnimationGroupController` containing one or more animations to run while transitioning.
+    /// Asks the transition for a `AnimationGroupController` containing one or more animations to run while transitioning.
     ///
     /// **This should not be called directly**. Instead, override this function within a `UIViewControllerTransition` subclass and provide custom animations.
     /// - parameter ctx: The transition's context.
     /// - returns: A new animation group controller.
-    open func animations(using ctx: Context) -> UIAnimationGroupController {
+    open func animations(using ctx: Context) -> AnimationGroupController {
         fatalError("UIViewControllerTransition subclasses must override animations(using:)")
     }
     
 }
 
-public extension UIViewControllerTransition /* Helpers */ {
+public extension ViewControllerTransition /* Helpers */ {
     
     /// Calculates a bounds translation-transform in a given view.
     /// - parameter container: The view.

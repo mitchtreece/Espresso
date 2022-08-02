@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// `Taptic` is a wrapper class over `UIFeedbackGenerator`.
+/// Wrapper class over `UIFeedbackGenerator`.
 public class Taptic {
     
     /// Representation of the various taptic styles.
@@ -27,8 +27,9 @@ public class Taptic {
     private var style: Style
     private var generator: UIFeedbackGenerator
     
-    /// Initializes a `UITaptic` with a specified style.
-    /// - Parameter style: The taptic style.
+    /// Initializes a taptic with a specified style.
+    ///
+    /// - parameter style: The taptic style.
     public init(style: Style) {
         
         switch style {

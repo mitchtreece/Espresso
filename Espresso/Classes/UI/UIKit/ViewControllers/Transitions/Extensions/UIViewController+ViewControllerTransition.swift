@@ -22,13 +22,13 @@ public extension UIViewController {
     ///
     /// Setting this to a `nil` value sets the view controller's
     /// modal presentation style back to the system default.
-    @objc var transition: UIViewControllerTransition? {
+    @objc var transition: ViewControllerTransition? {
         get {
             
             return objc_getAssociatedObject(
                 self,
                 &AssociatedKey.transition
-            ) as? UIViewControllerTransition
+            ) as? ViewControllerTransition
             
         }
         set {
@@ -66,7 +66,7 @@ public extension UIViewController {
     ///
     /// This is always performed with animations.
     func present(_ viewController: UIViewController,
-                 using transition: UIViewControllerTransition,
+                 using transition: ViewControllerTransition,
                  completion: (()->())? = nil) {
         
         viewController.transition = transition
@@ -86,7 +86,7 @@ public extension UIViewController {
     ///
     /// This is always performed with animations.
     func present(_ viewController: UIViewController,
-                 using transition: UIViewControllerTransition) async {
+                 using transition: ViewControllerTransition) async {
         
         await withCheckedContinuation { c in
             present(viewController, using: transition) {

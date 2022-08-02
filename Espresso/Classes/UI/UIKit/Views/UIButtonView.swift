@@ -191,7 +191,7 @@ public class UIButtonView: UIBaseView {
 
             if self.isAnimated {
                 
-                UIAnimation(.spring(damping: 0.5, velocity: 1), duration: 0.5) {
+                Animation(.spring(damping: 0.5, velocity: 1), duration: 0.5) {
                     self.transform = .identity
                 }.start()
                 
@@ -216,7 +216,7 @@ public class UIButtonView: UIBaseView {
         switch state {
         case .began:
 
-            UIAnimation(.material(.standard), duration: 0.1) {
+            Animation(.material(.standard), duration: 0.1) {
                 self.transform = .init(scaleX: 0.97, y: 0.97)
             }.start()
 

@@ -126,16 +126,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case zoom
         case custom
         
-        var transition: UIViewControllerTransition {
+        var transition: ViewControllerTransition {
             
             switch self {
-            case .fade: return UIFadeTransition()
-            case .slide: return UISlideTransition()
-            case .cover: return UICoverTransition()
-            case .reveal: return UIRevealTransition()
-            case .swap: return UISwapTransition()
-            case .pushBack: return UIPushBackTransition()
-            case .zoom: return UIZoomTransition()
+            case .fade: return FadeTransition()
+            case .slide: return SlideTransition()
+            case .cover: return CoverTransition()
+            case .reveal: return RevealTransition()
+            case .swap: return SwapTransition()
+            case .pushBack: return PushBackTransition()
+            case .zoom: return ZoomTransition()
             case .custom: return CustomTransition()
             }
             
@@ -144,13 +144,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var title: String {
             
             switch self {
-            case .fade: return "UIFadeTransition"
-            case .slide: return "UISlideTransition"
-            case .cover: return "UICoverTransition"
-            case .reveal: return "UIRevealTransition"
-            case .swap: return "UISwapTransition"
-            case .pushBack: return "UIPushBackTransition"
-            case .zoom: return "UIZoomTransition"
+            case .fade: return "FadeTransition"
+            case .slide: return "SlideTransition"
+            case .cover: return "CoverTransition"
+            case .reveal: return "RevealTransition"
+            case .swap: return "SwapTransition"
+            case .pushBack: return "PushBackTransition"
+            case .zoom: return "ZoomTransition"
             case .custom: return "Custom"
             }
             

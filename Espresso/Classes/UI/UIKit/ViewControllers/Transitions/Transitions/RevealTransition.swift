@@ -1,5 +1,5 @@
 //
-//  UIRevealTransition.swift
+//  RevealTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 11/26/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// A revealing view controller transition.
-public class UIRevealTransition: UIViewControllerDirectionalTransition {
+public class RevealTransition: ViewControllerDirectionalTransition {
         
     /// The alpha to apply to the revealed view while transitioning; _defaults to 0.7_.
     public var revealedViewAlpha: CGFloat = 0.7
@@ -16,7 +16,7 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
     /// The parallax amount to move the revealed view by while transitioning; _defaults to 100_.
     public var revealedViewParallaxAmount: CGFloat = 100
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
                 
         return (ctx.operation == .presentation) ?
             present(ctx) :
@@ -24,14 +24,14 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func present(_ ctx: Context) -> UIAnimationGroupController {
+    private func present(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.alpha = self.revealedViewAlpha
             destinationVC.view.transform = self.translation(
@@ -46,7 +46,7 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,
@@ -67,14 +67,14 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
+    private func dismiss(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
@@ -85,7 +85,7 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.alpha = self.revealedViewAlpha
                 sourceVC.view.transform = self.translation(

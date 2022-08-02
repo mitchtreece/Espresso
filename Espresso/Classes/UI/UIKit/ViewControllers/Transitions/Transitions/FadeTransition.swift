@@ -1,5 +1,5 @@
 //
-//  UIFadeTransition.swift
+//  FadeTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// A fading view controller transition.
-public class UIFadeTransition: UIViewControllerTransition {
+public class FadeTransition: ViewControllerTransition {
 
     /// Representation of various fading methods.
     public enum FadeType {
@@ -24,14 +24,14 @@ public class UIFadeTransition: UIViewControllerTransition {
     /// The transition's fade type; _defaults to over_.
     public var fadeType: FadeType = .over
 
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.alpha = 0
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
@@ -39,7 +39,7 @@ public class UIFadeTransition: UIViewControllerTransition {
             
         }, animations: {
             
-            UIAnimation(duration: self.duration) {
+            Animation(duration: self.duration) {
                 
                 if self.fadeType == .cross {
                     sourceVC.view.alpha = 0

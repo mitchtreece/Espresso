@@ -32,16 +32,4 @@ public struct HorizontalEdgeInsets {
         
     }
     
-    /// A traditional `UIEdgeInsets` representation.
-    public func asEdgeInsets() -> UIEdgeInsets {
-        
-        return UIEdgeInsets(
-            top: 0,
-            left: self.left,
-            bottom: 0,
-            right: self.right
-        )
-        
-    }
-    
 }

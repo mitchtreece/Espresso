@@ -1,5 +1,5 @@
 //
-//  UIAnimation.swift
+//  Animation.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/28/18.
@@ -7,24 +7,24 @@
 
 import UIKit
 
-/// `UIAnimation` is a wrapper over `UIView` property animation.
+/// `Animation` is a wrapper over `UIView` property animation.
 ///
 /// ```
 /// let view = UIView()
 /// view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
 /// view.alpha = 0
 ///
-/// UIAnimation {
+/// Animation {
 ///     view.alpha = 1
 ///     view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-/// }.run()
+/// }.start()
 /// ```
-public class UIAnimation {
+public class Animation {
     
-    /// A `UIAnimation` animation closure.
+    /// An animation closure.
     public typealias Animations = ()->()
     
-    /// A `UIAnimation` completion closure.
+    /// An animation completion closure.
     public typealias Completion = ()->()
     
     /// Representation of the various animation timing curves.
@@ -106,9 +106,9 @@ public class UIAnimation {
     /// - Parameter duration: The animation's duration; _defaults to defaultDuration_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
     /// - Parameter animations: The animation closure.
-    /// - Returns: A new `UIAnimation` instance.
+    /// - Returns: A new `Animation` instance.
     public init(_ timingCurve: TimingCurve = .simple(.easeInOut),
-                duration: TimeInterval = UIAnimation.defaultDuration,
+                duration: TimeInterval = Animation.defaultDuration,
                 delay: TimeInterval = 0,
                 _ animations: @escaping Animations) {
         
@@ -125,20 +125,20 @@ public class UIAnimation {
     /// - Parameter duration: The animation's duration; _defaults to defaultDuration_.
     /// - Parameter delay: The animation's start delay; _defaults to 0_.
     /// - Parameter animations: The animation closure.
-    /// - Returns: A new `UIAnimationGroup` containing the current animation & chaining a new animation to the end.
+    /// - Returns: A new `AnimationGroup` containing the current animation & chaining a new animation to the end.
     public func then(_ timingCurve: TimingCurve = .simple(.easeInOut),
-                     duration: TimeInterval = UIAnimation.defaultDuration,
+                     duration: TimeInterval = Animation.defaultDuration,
                      delay: TimeInterval = 0,
-                     _ animations: @escaping Animations) -> UIAnimationGroup {
+                     _ animations: @escaping Animations) -> AnimationGroup {
         
-        let next = UIAnimation(
+        let next = Animation(
             timingCurve,
             duration: duration,
             delay: delay,
             animations
         )
         
-        return UIAnimationGroup(animations: [
+        return AnimationGroup(animations: [
             self,
             next
         ])
@@ -267,15 +267,15 @@ public class UIAnimation {
     
 }
 
-extension UIAnimation: UIAnimationGroupRepresentable {
+extension Animation: AnimationGroupRepresentable {
     
-    public func asAnimationGroup() -> UIAnimationGroup {
-        return UIAnimationGroup(animations: [self])
+    public func asAnimationGroup() -> AnimationGroup {
+        return AnimationGroup(animations: [self])
     }
     
 }
 
-extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
+extension Animation: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         
@@ -299,7 +299,7 @@ extension UIAnimation: CustomStringConvertible, CustomDebugStringConvertible {
         case .custom: curveString = "custom"
         }
 
-        return "<UIAnimation: \(curveString), duration: \(duration), delay: \(delay)>"
+        return "<Animation: \(curveString), duration: \(duration), delay: \(delay)>"
         
     }
     

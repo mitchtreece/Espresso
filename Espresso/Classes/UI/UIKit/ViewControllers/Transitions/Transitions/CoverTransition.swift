@@ -1,5 +1,5 @@
 //
-//  UICoverTransition.swift
+//  CoverTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// A covering view controller transition.
-public class UICoverTransition: UIViewControllerDirectionalTransition {
+public class CoverTransition: ViewControllerDirectionalTransition {
     
     /// The alpha to apply to the covered view while transitioning; _defaults to 0.7_.
     public var coveredViewAlpha: CGFloat = 0.7
@@ -16,7 +16,7 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
     /// The parallax amount to move the covered view by while transitioning; _defaults to 100_.
     public var coveredViewParallaxAmount: CGFloat = 100
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
         
         return (ctx.operation == .presentation) ?
             present(ctx) :
@@ -24,14 +24,14 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func present(_ ctx: Context) -> UIAnimationGroupController {
+    private func present(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.transform = self.boundsTransform(
                 in: container,
@@ -42,7 +42,7 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 sourceVC.view.alpha = self.coveredViewAlpha
                 sourceVC.view.transform = self.translation(
@@ -64,14 +64,14 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    private func dismiss(_ ctx: Context) -> UIAnimationGroupController {
+    private func dismiss(_ ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.alpha = self.coveredViewAlpha
@@ -87,7 +87,7 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring) {
+            Animation(.defaultSpring) {
                 
                 sourceVC.view.transform = self.boundsTransform(
                     in: container,

@@ -1,5 +1,5 @@
 //
-//  UIZoomTransition.swift
+//  ZoomTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 5/10/19.
@@ -8,12 +8,12 @@
 import UIKit
 
 /// A zooming view controller transition.
-public class UIZoomTransition: UIViewControllerTransition {
+public class ZoomTransition: ViewControllerTransition {
     
     /// The scale to apply to the zoomed view while transitioning; _defaults to 0.9_.
     public var zoomedViewScale: CGFloat = 0.9
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
                 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -22,7 +22,7 @@ public class UIZoomTransition: UIViewControllerTransition {
         
         let isPresentation = (ctx.operation == .presentation)
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             if isPresentation {
                 
@@ -49,7 +49,7 @@ public class UIZoomTransition: UIViewControllerTransition {
             
         }, animations: {
             
-            UIAnimation(.defaultSpring, duration: self.duration) {
+            Animation(.defaultSpring, duration: self.duration) {
                 
                 if isPresentation {
                     

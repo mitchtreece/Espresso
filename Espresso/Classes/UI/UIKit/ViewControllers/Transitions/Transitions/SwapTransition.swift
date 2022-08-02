@@ -1,14 +1,14 @@
 //
-//  UISwapTransition.swift
+//  SwapTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/27/18.
 //
 
-import Foundation
+import UIKit
 
 /// A swapping view controller transition.
-public class UISwapTransition: UIViewControllerDirectionalTransition {
+public class SwapTransition: ViewControllerDirectionalTransition {
     
     /// The scale to apply to swapped views while transitioning; _defaults to 0.95_.
     public var swappedViewScale: CGFloat = 0.95
@@ -26,7 +26,7 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
         
     }
     
-    override public func animations(using ctx: Context) -> UIAnimationGroupController {
+    override public func animations(using ctx: Context) -> AnimationGroupController {
                 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -43,7 +43,7 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
         let previousDestinationClipsToBounds = destinationVC.view.clipsToBounds
         let previousDestinationCornerRadius = destinationVC.view.layer.cornerRadius
         
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
             
             sourceVC.view.clipsToBounds = true
             
@@ -57,7 +57,7 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
             
         }, animations: {
             
-            UIAnimation(duration: (self.duration * 0.4)) {
+            Animation(duration: (self.duration * 0.4)) {
                 
                 // Source
                 

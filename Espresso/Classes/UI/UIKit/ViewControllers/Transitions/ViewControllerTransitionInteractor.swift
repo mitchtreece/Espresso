@@ -1,5 +1,5 @@
 //
-//  UIViewControllerTransitionInteractor.swift
+//  ViewControllerTransitionInteractor.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/26/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-internal class UIViewControllerTransitionInteractor: UIPercentDrivenInteractiveTransition {
+internal class ViewControllerTransitionInteractor: UIPercentDrivenInteractiveTransition {
     
     private var viewController: UIViewController
     private var navigationController: UINavigationController?

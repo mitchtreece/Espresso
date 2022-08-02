@@ -1,5 +1,5 @@
 //
-//  UIAnimationGroupController.swift
+//  AnimationGroupController.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/28/18.
@@ -9,11 +9,11 @@ import UIKit
 
 /// Wrapper over an animation group that makes it simple to execute
 /// setup & completion actions.
-public class UIAnimationGroupController {
+public class AnimationGroupController {
     
     private var setup: (()->())?
-    private var group: UIAnimationGroup
-    private var completion: UIAnimation.Completion?
+    private var group: AnimationGroup
+    private var completion: Animation.Completion?
     
     /// The underlying animation group's total duration.
     ///
@@ -35,14 +35,15 @@ public class UIAnimationGroupController {
     }
     
     /// Initializes a new animation group controller.
+    ///
     /// - parameter setup: An optional setup closure to run before animations start; _defaults to nil_.
-    /// - parameter animations: A set of animations that can be represented as a `UIAnimationGroup`.
+    /// - parameter animations: A set of animations that can be represented as a `AnimationGroup`.
     /// - parameter completion: An optional completion closure; _defaults to nil_.
     ///
     /// Setup closures are forced to run without animation using `UIView.performWithoutAnimation(_:)`.
     public init(setup: (()->())? = nil,
-                animations: ()->(UIAnimationGroupRepresentable),
-                completion: UIAnimation.Completion? = nil) {
+                animations: ()->(AnimationGroupRepresentable),
+                completion: Animation.Completion? = nil) {
         
         self.setup = setup
         self.group = animations().asAnimationGroup()

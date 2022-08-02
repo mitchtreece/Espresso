@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */; };
-		262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E0288B4505009FBD15 /* ViewsContentView.swift */; };
-		262848E7288B79B2009FBD15 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262848E6288B79B2009FBD15 /* TitleView.swift */; };
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
 		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
@@ -44,8 +42,6 @@
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewsViewController.swift; sourceTree = "<group>"; };
-		262848E0288B4505009FBD15 /* ViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsContentView.swift; sourceTree = "<group>"; };
-		262848E6288B79B2009FBD15 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
 		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +121,6 @@
 		262848DD288B4493009FBD15 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				262848E6288B79B2009FBD15 /* TitleView.swift */,
-				262848E0288B4505009FBD15 /* ViewsContentView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -445,14 +439,12 @@
 				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
 				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
 				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
-				262848E1288B4505009FBD15 /* ViewsContentView.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
 				269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */,
 				269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */,
 				269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */,
-				262848E7288B79B2009FBD15 /* TitleView.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

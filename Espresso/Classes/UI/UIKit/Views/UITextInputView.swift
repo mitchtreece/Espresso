@@ -502,7 +502,7 @@ public class UITextInputView: UIBaseView {
 
         constraintChanges()
         
-        UIAnimation(.defaultSpring, duration: 0.2) {
+        Animation(.defaultSpring, duration: 0.2) {
             
             styleChanges()
             self.fieldContentView.layoutIfNeeded()
