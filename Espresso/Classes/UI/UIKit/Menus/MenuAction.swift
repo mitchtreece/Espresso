@@ -1,25 +1,25 @@
 //
-//  ContextMenuActionItem.swift
+//  UIMenuAction.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 5/2/21.
+//  Created by Mitch Treece on 8/2/22.
 //
 
 import UIKit
 
-/// A context menu action.
-public struct UIContextMenuAction: ContextMenuAction {
-        
+public struct MenuAction: MenuActionElement {
+    
+    public typealias MenuElementType = UIAction
+    
     public var title: String?
     public var subtitle: String?
     public var image: UIImage?
     public var identifier: String?
+    public var attributes: UIMenuElement.Attributes = []
+    public var state: UIMenuElement.State = .off
+    public var action: UIActionHandler = { _ in }
     
-    public var attributes: UIMenuElement.Attributes
-    public var state: UIMenuElement.State
-    public var action: UIActionHandler
-
-    /// Initializes a context menu action.
+    /// Initializes a menu action.
     ///
     /// - parameter title: The action's title.
     /// - parameter subtitle: The action's subtitle.
@@ -47,7 +47,31 @@ public struct UIContextMenuAction: ContextMenuAction {
 
     }
     
-    public func buildMenuElement() -> UIMenuElement {
+    internal init(builder: MenuActionBuilder) {
+        
+        self.init(
+            title: builder.title,
+            subtitle: builder.subtitle,
+            image: builder.image,
+            identifier: builder.identifier,
+            attributes: builder.attributes,
+            state: builder.state,
+            action: builder.action ?? { _ in }
+        )
+        
+    }
+    
+    public init(_ block: (inout MenuActionBuilder)->()) {
+        
+        var builder = MenuActionBuilder()
+        
+        block(&builder)
+        
+        self.init(builder: builder)
+        
+    }
+    
+    public func build() -> UIAction {
      
         let action = UIAction(
             title: self.title ?? "",

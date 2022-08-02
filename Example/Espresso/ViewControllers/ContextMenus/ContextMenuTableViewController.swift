@@ -20,7 +20,7 @@ class ContextMenuTableViewController: UIViewController {
     
     private var tableView: UITableView!
 
-    private var contextMenu: UIContextMenu!
+    private var contextMenu: ContextMenu!
     
     private let colors: [String: UIColor] = [
         "Red": .red,
@@ -81,10 +81,8 @@ class ContextMenuTableViewController: UIViewController {
     
     private func setupContextMenus() {
         
-        self.contextMenu = UIContextMenu { menu in
-                        
-            menu.title = "Make a choice"
-            
+        self.contextMenu = ContextMenu { menu in
+                                    
             menu.addAction { action in
                 
                 action.title = "Tap me!"

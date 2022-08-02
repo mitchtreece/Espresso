@@ -1,28 +1,26 @@
 //
-//  ContextMenuElementContainer.swift
+//  MenuElementContainer.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 7/29/22.
+//  Created by Mitch Treece on 8/2/22.
 //
 
 import Foundation
 
-/// Protocol describing the attributes of a context menu element container.
-public protocol ContextMenuElementContainer {
+public protocol MenuElementContainer {
     
-    /// The container's elements.
-    var elements: [ContextMenuElement] { get set }
+    var elements: [any MenuElement] { get set }
     
 }
 
-public extension ContextMenuElementContainer {
+public extension MenuElementContainer {
     
     /// Adds an element to the container.
     ///
     /// - parameter element: The element to add.
     /// - returns: This element container.
     @discardableResult
-    mutating func addElement(_ element: ContextMenuElement) -> Self {
+    mutating func addElement(_ element: any MenuElement) -> Self {
         
         self.elements
             .append(element)
@@ -30,37 +28,41 @@ public extension ContextMenuElementContainer {
         return self
         
     }
-        
+            
     /// Adds an action-element to the container using a building closure.
     ///
     /// - parameter block: The action-element building closure.
     /// - returns: This element container.
     @discardableResult
-    mutating func addAction(_ block: (inout ContextMenuActionBuilder)->()) -> Self {
-        
-        var builder = ContextMenuActionBuilder()
+    mutating func addAction(_ block: (inout MenuActionBuilder)->()) -> Self {
+
+        var builder = MenuActionBuilder()
         block(&builder)
-        
-        addElement(builder.buildElement())
-        
+
+        addElement(builder.build())
+
         return self
-        
+
     }
-    
+
     /// Adds a menu-element to the container using a building closure.
     ///
     /// - parameter block: The menu-building closure.
     /// - returns: This element container.
     @discardableResult
-    mutating func addMenu(_ block: (inout ContextMenuBuilder)->()) -> Self {
-        
-        var builder = ContextMenuBuilder()
+    mutating func addMenu(_ block: (inout MenuBuilder)->()) -> Self {
+
+        var builder = MenuBuilder()
         block(&builder)
-        
-        addElement(builder.buildElement())
-        
+
+        addElement(builder.build())
+
         return self
-        
+
     }
-    
+
+//    func addDeferredElement(_ block: (inout ContextMenuDeferredElementBuilder)->()) -> Self {
+//
+//    }
+        
 }

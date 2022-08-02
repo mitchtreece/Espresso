@@ -1,5 +1,5 @@
 //
-//  UIContextMenu+UITableView.swift
+//  ContextMenu+UITableView.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 8/1/22.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-public extension UIContextMenu {
+public extension ContextMenu {
     
     /// A `UITableView` context menu configuration used to forward
     /// handling of relevant delegate calls to the context menu.
     struct TableConfiguration {
         
-        private weak var contextMenu: UIContextMenu!
+        private weak var menu: ContextMenu!
         
-        internal init(contextMenu: UIContextMenu) {
-            self.contextMenu = contextMenu
+        internal init(menu: ContextMenu) {
+            self.menu = menu
         }
         
         /// Asks the configuration for a context menu configuration.
@@ -31,14 +31,14 @@ public extension UIContextMenu {
             
             if let cell = tableView.cellForRow(at: indexPath) {
                 
-                self.contextMenu?.setData(
+                self.menu?.setData(
                     cell,
                     forKey: "cell"
                 )
                 
             }
             
-            return self.contextMenu
+            return self.menu
                 .buildConfiguration()
             
         }
@@ -48,7 +48,7 @@ public extension UIContextMenu {
                               willDisplayContextMenu configuration: UIContextMenuConfiguration,
                               animator: UIContextMenuInteractionAnimating?) {
 
-            self.contextMenu
+            self.menu
                 .willPresent?()
 
         }
@@ -58,7 +58,7 @@ public extension UIContextMenu {
                               willEndContextMenuInteraction configuration: UIContextMenuConfiguration,
                               animator: UIContextMenuInteractionAnimating?) {
 
-            self.contextMenu
+            self.menu
                 .willDismiss?()
 
         }
@@ -67,8 +67,8 @@ public extension UIContextMenu {
         public func tableView(_ tableView: UITableView,
                               previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-            return self.contextMenu
-                .targetedHighlightPreviewProvider?(self.contextMenu.data)
+            return self.menu
+                .targetedHighlightPreviewProvider?(self.menu.data)
 
         }
 
@@ -76,8 +76,8 @@ public extension UIContextMenu {
         public func tableView(_ tableView: UITableView,
                               previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
 
-            self.contextMenu
-                .targetedDismissPreviewProvider?(self.contextMenu.data)
+            self.menu
+                .targetedDismissPreviewProvider?(self.menu.data)
 
         }
 
@@ -86,14 +86,14 @@ public extension UIContextMenu {
                               willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
                               animator: UIContextMenuInteractionCommitAnimating) {
 
-            guard let committer = self.contextMenu.previewCommitter else { return }
+            guard let committer = self.menu.previewCommitter else { return }
 
-            animator.preferredCommitStyle = self.contextMenu.previewCommitStyle
+            animator.preferredCommitStyle = self.menu.previewCommitStyle
 
             animator.addCompletion {
 
                 committer(
-                    self.contextMenu.data,
+                    self.menu.data,
                     animator.previewViewController
                 )
 

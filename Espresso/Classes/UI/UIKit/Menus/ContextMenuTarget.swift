@@ -29,7 +29,7 @@ public extension ContextMenuTarget {
     /// hold a strong reference to the context menu.
     ///
     /// For a `UIBarButtonItem`, this sets the item's `menu` property.
-    func addContextMenu(_ menu: UIContextMenu) {
+    func addContextMenu(_ menu: ContextMenu) {
         
         if let button = self as? UIButton {
             
@@ -88,12 +88,12 @@ public extension ContextMenuTarget {
     ///
     /// For a `UIBarButtonItem`, this sets the item's `menu` property.
     @discardableResult
-    func addContextMenu(_ block: (inout ContextMenuRootBuilder)->()) -> UIContextMenu {
+    func addContextMenu(_ block: (inout ContextMenuBuilder)->()) -> ContextMenu {
     
-        var builder = ContextMenuRootBuilder()
+        var builder = ContextMenuBuilder()
         block(&builder)
     
-        let menu = UIContextMenu(builder: builder)
+        let menu = ContextMenu(builder: builder)
     
         addContextMenu(menu)
     
@@ -102,7 +102,7 @@ public extension ContextMenuTarget {
     }
     
     private func addContextMenuToView(_ view: UIView,
-                                      menu: UIContextMenu) {
+                                      menu: ContextMenu) {
         
         view.addInteraction(UIContextMenuInteraction(delegate: menu))
         
@@ -110,18 +110,18 @@ public extension ContextMenuTarget {
     
     @available(iOS 14, *)
     private func addContextMenuToButton(_ button: UIButton,
-                                         menu: UIContextMenu) {
+                                         menu: ContextMenu) {
         
-        button.menu = menu.buildMenu()
+        button.menu = menu.build()
         button.showsMenuAsPrimaryAction = true
         
     }
     
     @available(iOS 14, *)
     private func addContextMenuToBarButtonItem(_ item: UIBarButtonItem,
-                                               menu: UIContextMenu) {
+                                               menu: ContextMenu) {
         
-        item.menu = menu.buildMenu()
+        item.menu = menu.build()
         
     }
     

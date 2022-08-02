@@ -1,51 +1,53 @@
 //
-//  ContextMenuRootBuilder.swift
+//  ContextMenuBuilder.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 7/30/22.
+//  Created by Mitch Treece on 8/2/22.
 //
 
 import UIKit
 
-/// A root context menu builder.
-public struct ContextMenuRootBuilder: ContextMenuElementContainer {
-            
+/// A context menu builder.
+public struct ContextMenuBuilder: MenuElementBuilder, MenuElementContainer {
+    
+    typealias ElementType = ContextMenu
+    
     /// The context menu's title.
     public var title: String?
-        
+
     /// The context menu's identifier.
     public var identifier: String?
-    
+
     /// The context menu's options.
     public var options: UIMenu.Options = []
-    
+
     /// The context menu's element size.
     ///
     /// This is supported on iOS 16 and higher. This will be completely
     /// ignored if running on a device on iOS 15 or lower.
-    public var elementSize: UIMenuElementSize = .large
-    
+    public var elementSize: Menu.ElementSize = .large
+
     /// The context menu's elements.
-    public var elements: [ContextMenuElement] = []
-    
+    public var elements: [any MenuElement] = []
+
     /// The context menu's preview provider.
-    public var previewProvider: UIContextMenu.PreviewProvider?
-    
+    public var previewProvider: ContextMenu.PreviewProvider?
+
     /// The context menu's preview committer.
-    public var previewCommitter: UIContextMenu.PreviewCommitter?
-    
+    public var previewCommitter: ContextMenu.PreviewCommitter?
+
     /// The context menu's preview commit style.
     public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
-    
+
     /// The context menu's targeted highlight preview provider.
-    public var targetedHighlightPreviewProvider: UIContextMenu.TargetedPreviewProvider?
-    
+    public var targetedHighlightPreviewProvider: ContextMenu.TargetedPreviewProvider?
+
     /// The context menu's targeted dismiss preview provider.
-    public var targetedDismissPreviewProvider: UIContextMenu.TargetedPreviewProvider?
-    
+    public var targetedDismissPreviewProvider: ContextMenu.TargetedPreviewProvider?
+
     /// Flag indicating if suggested system elements should be displayed.
     public var includeSuggestedElements: Bool = false
-    
+
     /// Closure called when the context menu is about to be presented.
     ///
     /// Depending on what kind of target the context menu is added to,
@@ -73,34 +75,29 @@ public struct ContextMenuRootBuilder: ContextMenuElementContainer {
     ///
     /// When added to a `UIBarButtonItem` this closure will **not** be called.
     public var willDismiss: (()->())?
-    
+
     internal init() {
         //
     }
-    
-    internal func buildContextMenu() -> UIContextMenu {
+
+    public func build() -> ContextMenu {
         
-        return UIContextMenu { menu in
-            
-            menu.title = self.title
-            menu.identifier = self.identifier
-            menu.options = self.options
-            menu.elementSize = self.elementSize
-            menu.elements = self.elements
-            
-            menu.previewProvider = self.previewProvider
-            menu.previewCommitter = self.previewCommitter
-            menu.previewCommitStyle = self.previewCommitStyle
-            menu.targetedHighlightPreviewProvider = self.targetedHighlightPreviewProvider
-            menu.targetedDismissPreviewProvider = self.targetedDismissPreviewProvider
-            
-            menu.includeSuggestedElements = self.includeSuggestedElements
-            
-            menu.willPresent = self.willPresent
-            menu.willDismiss = self.willDismiss
-            
-        }
-        
+        return ContextMenu(
+            title: self.title,
+            identifier: self.identifier,
+            options: self.options,
+            elementSize: self.elementSize,
+            elements: self.elements,
+            previewProvider: self.previewProvider,
+            previewCommitter: self.previewCommitter,
+            previewCommitStyle: self.previewCommitStyle,
+            targetedHighlightPreviewProvider: self.targetedHighlightPreviewProvider,
+            targetedDismissPreviewProvider: self.targetedDismissPreviewProvider,
+            includeSuggestedElements: self.includeSuggestedElements,
+            willPresent: self.willPresent,
+            willDismiss: self.willDismiss
+        )
+
     }
-    
+
 }

@@ -20,7 +20,7 @@ class ContextMenuCollectionViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     
-    private var contextMenu: UIContextMenu!
+    private var contextMenu: ContextMenu!
     
     private let colors: [String: UIColor] = [
         "Red": .red,
@@ -93,10 +93,8 @@ class ContextMenuCollectionViewController: UIViewController {
     
     private func setupContextMenus() {
         
-        self.contextMenu = UIContextMenu { menu in
-                        
-            menu.title = "Make a choice"
-            
+        self.contextMenu = ContextMenu { menu in
+                                    
             menu.addAction { action in
                 
                 action.title = "Tap me!"

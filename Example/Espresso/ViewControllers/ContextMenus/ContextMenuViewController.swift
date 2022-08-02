@@ -12,7 +12,7 @@ class ContextMenuViewController: UIViewController {
     
     private var contextMenuView: ContextMenuView!
     
-    private var contextMenu: UIContextMenu!
+    private var contextMenu: ContextMenu!
     
     override func viewDidLoad() {
         
@@ -66,10 +66,8 @@ class ContextMenuViewController: UIViewController {
     
     private func setupContextMenus() {
 
-        self.contextMenu = UIContextMenu { menu in
+        self.contextMenu = ContextMenu { menu in
                         
-            menu.title = "Make a choice"
-            
             menu.addAction { action in
                 
                 action.title = "Tap me!"
@@ -77,17 +75,6 @@ class ContextMenuViewController: UIViewController {
                 
                 action.action = { _ in
                     self.alert("Wow! You're pretty good at following orders")
-                }
-
-            }
-            
-            menu.addAction { action in
-
-                action.title = "No, tap me!"
-                action.image = UIImage(systemName: "hand.tap.fill")
-                
-                action.action = { _ in
-                    self.alert("You're not that good at following orders, are you?")
                 }
 
             }

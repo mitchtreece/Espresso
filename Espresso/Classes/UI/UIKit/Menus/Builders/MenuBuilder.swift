@@ -1,15 +1,17 @@
 //
-//  ContextMenuBuilder.swift
+//  MenuChildMenuBuilder.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 7/29/22.
+//  Created by Mitch Treece on 8/2/22.
 //
 
 import UIKit
 
-/// A context menu sub-menu builder.
-public struct ContextMenuBuilder: ContextMenuElementBuilder, ContextMenuElementContainer {
+/// A menu builder.
+public struct MenuBuilder: MenuElementBuilder, MenuElementContainer {
             
+    typealias ElementType = Menu
+    
     /// The menu's title.
     public var title: String = .empty
     
@@ -29,18 +31,18 @@ public struct ContextMenuBuilder: ContextMenuElementBuilder, ContextMenuElementC
     ///
     /// This is supported on iOS 16 and higher. This will be completely
     /// ignored if running on a device on iOS 15 or lower.
-    public var elementSize: UIMenuElementSize = .large
+    public var elementSize: Menu.ElementSize = .large
     
     /// The menu's elements.
-    public var elements: [ContextMenuElement] = []
+    public var elements: [any MenuElement] = []
     
     internal init() {
         //
     }
     
-    internal func buildElement() -> ContextMenuElement {
+    internal func build() -> Menu {
         
-        return UIContextMenuSubMenu(
+        return Menu(
             title: self.title,
             subtitle: self.subtitle,
             image: self.image,

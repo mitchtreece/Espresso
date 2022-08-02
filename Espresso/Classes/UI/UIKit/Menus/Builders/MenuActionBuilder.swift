@@ -1,14 +1,16 @@
 //
-//  ContextMenuActionBuilder.swift
+//  MenuActionBuilder.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 7/29/22.
+//  Created by Mitch Treece on 8/2/22.
 //
 
 import UIKit
 
-/// A context menu action builder.
-public struct ContextMenuActionBuilder: ContextMenuElementBuilder {
+/// A menu action builder.
+public struct MenuActionBuilder: MenuElementBuilder {
+    
+    typealias ElementType = MenuAction
         
     /// The action's title.
     public var title: String = .empty
@@ -35,9 +37,9 @@ public struct ContextMenuActionBuilder: ContextMenuElementBuilder {
         //
     }
         
-    internal func buildElement() -> ContextMenuElement {
+    internal func build() -> MenuAction {
         
-        return UIContextMenuAction(
+        return MenuAction(
             title: self.title,
             subtitle: self.subtitle,
             image: self.image,
