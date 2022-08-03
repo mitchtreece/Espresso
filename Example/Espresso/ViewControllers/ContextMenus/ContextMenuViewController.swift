@@ -89,7 +89,29 @@ class ContextMenuViewController: UIViewController {
                 }
 
             }
+            
+            if #available(iOS 14, *) {
+                
+                menu.addDeferredElements { completion in
+                    
+                    let action = UIAction { a in
+                        
+                        a.title = "Deferred Action"
+                        a.handler = { _ in print("deferred tap") }
+                        
+                    }
+                    
+                    Task {
+                        
+                        await Task.sleep(duration:.seconds(2))
+                        completion([action])
 
+                    }
+                    
+                }
+                
+            }
+            
             menu.addMenu { moreMenu in
                 
                 moreMenu.title = "Actually, tap me!"

@@ -12,7 +12,6 @@ public protocol ContextMenuBuildable: UIMenuElementContainer {
     var title: String? { get set }
     var identifier: String? { get set }
     var options: UIMenu.Options { get set }
-    var elementSize: UIMenuElementSize { get set }
     var previewProvider: ContextMenu.PreviewProvider? { get set }
     var previewCommitter: ContextMenu.PreviewCommitter? { get set }
     var previewCommitStyle: UIContextMenuInteractionCommitStyle { get set }
@@ -21,6 +20,9 @@ public protocol ContextMenuBuildable: UIMenuElementContainer {
     var includeSuggestedElements: Bool { get set }
     var willPresent: (()->())? { get set }
     var willDismiss: (()->())? { get set }
+    
+    @available(iOS 16, *)
+    var elementSize: UIMenu.ElementSize { get set }
     
 }
 
@@ -31,7 +33,6 @@ internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
     public var title: String?
     public var identifier: String?
     public var options: UIMenu.Options = []
-    public var elementSize: UIMenuElementSize = .large
     public var elements: [UIMenuElement] = []
     
     public var previewProvider: ContextMenu.PreviewProvider?
@@ -42,7 +43,19 @@ internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
     public var includeSuggestedElements: Bool = false
     public var willPresent: (()->())?
     public var willDismiss: (()->())?
-
+    
+    @available(iOS 16, *)
+    public var elementSize: UIMenu.ElementSize {
+        get {
+            return (self._elementSize as? UIMenu.ElementSize) ?? .large
+        }
+        set {
+            self._elementSize = newValue
+        }
+    }
+    
+    private var _elementSize: Any?
+    
     public func build() -> ContextMenu {
         return ContextMenu(buildable: self)
     }
