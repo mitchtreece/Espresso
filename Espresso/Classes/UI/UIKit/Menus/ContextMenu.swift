@@ -7,13 +7,30 @@
 
 import UIKit
 
+public enum UIMenuElementSize {
+    
+    case small
+    case medium
+    case large
+    
+    @available(iOS 16, *)
+    public func asMenuElementSize() -> UIMenu.ElementSize {
+        
+        switch self {
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        }
+        
+    }
+    
+}
+
 /// Provides a previewing `UIViewController` used while a context menu preview is being committed.
 public typealias UIContextMenuContentPreviewCommitter = (UIViewController?)->()
 
-public class ContextMenu: NSObject, ContextMenuElement {
-    
-    public typealias MenuElementType = UIMenu
-    
+public class ContextMenu: NSObject, ContextMenuBuildable {
+        
     /// Provides context menu data, and returns a view controller for previewing.
     public typealias PreviewProvider = ([String: Any])->UIViewController?
     
@@ -26,8 +43,8 @@ public class ContextMenu: NSObject, ContextMenuElement {
     public var title: String?
     public var identifier: String?
     public var options: UIMenu.Options = []
-    public var elementSize: Menu.ElementSize = .large
-    public var elements: [any MenuElement] = []
+    public var elementSize: UIMenuElementSize = .large
+    public var elements: [UIMenuElement] = []
 
     public var previewProvider: PreviewProvider?
     public var previewCommitter: PreviewCommitter?
@@ -58,8 +75,8 @@ public class ContextMenu: NSObject, ContextMenuElement {
     public init(title: String? = nil,
                 identifier: String? = nil,
                 options: UIMenu.Options = [],
-                elementSize: Menu.ElementSize = .large,
-                elements: [any MenuElement] = [],
+                elementSize: UIMenuElementSize = .large,
+                elements: [UIMenuElement] = [],
                 previewProvider: PreviewProvider?,
                 previewCommitter: PreviewCommitter?,
                 previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop,
@@ -86,32 +103,33 @@ public class ContextMenu: NSObject, ContextMenuElement {
         
     }
     
-    internal convenience init(builder: ContextMenuBuilder) {
+    public convenience init(builder: (inout ContextMenuBuildable)->()) {
         
-        self.init(
-            title: builder.title,
-            identifier: builder.identifier,
-            options: builder.options,
-            elementSize: builder.elementSize,
-            elements: builder.elements,
-            previewProvider: builder.previewProvider,
-            previewCommitter: builder.previewCommitter,
-            previewCommitStyle: builder.previewCommitStyle,
-            targetedHighlightPreviewProvider: builder.targetedHighlightPreviewProvider,
-            targetedDismissPreviewProvider: builder.targetedDismissPreviewProvider,
-            includeSuggestedElements: builder.includeSuggestedElements,
-            willPresent: builder.willPresent,
-            willDismiss: builder.willDismiss
-        )
+        var buildable: ContextMenuBuildable = ContextMenuBuilder()
+
+        builder(&buildable)
+                
+        self.init(buildable: buildable)
         
     }
     
-    public convenience init(_ block: (inout ContextMenuBuilder)->()) {
+    internal convenience init(buildable: ContextMenuBuildable) {
         
-        var builder = ContextMenuBuilder()
-        block(&builder)
-        
-        self.init(builder: builder)
+        self.init(
+            title: buildable.title,
+            identifier: buildable.identifier,
+            options: buildable.options,
+            elementSize: buildable.elementSize,
+            elements: buildable.elements,
+            previewProvider: buildable.previewProvider,
+            previewCommitter: buildable.previewCommitter,
+            previewCommitStyle: buildable.previewCommitStyle,
+            targetedHighlightPreviewProvider: buildable.targetedHighlightPreviewProvider,
+            targetedDismissPreviewProvider: buildable.targetedDismissPreviewProvider,
+            includeSuggestedElements: buildable.includeSuggestedElements,
+            willPresent: buildable.willPresent,
+            willDismiss: buildable.willDismiss
+        )
         
     }
     
@@ -152,43 +170,18 @@ public class ContextMenu: NSObject, ContextMenuElement {
         return self.data[key]
     }
     
-    public func build() -> UIMenu {
-
-        let menu = UIMenu(
-            title: self.title ?? "",
-            identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
-            options: self.options,
-            children: self.elements.map { $0.build() }
-        )
-        
-        if #available(iOS 16, *) {
-            menu.preferredElementSize = self.elementSize.asMenuElementSize()
-        }
-
-        return menu
-        
-    }
-
     /// Builds a `UIMenu` from this context menu.
     ///
     /// - parameter additionalElements: Additional elements to append to this context menu's
     /// existing elements while building; _defaults to none_.
     /// - returns: A new `UIMenu`.
-    public func build(additionalElements: [UIMenuElement]) -> UIMenu {
-
-        guard !additionalElements.isEmpty else {
-            return build()
-        }
-
-        let childElements = self.elements
-            .map { $0.build() }
-            .appending(contentsOf: additionalElements)
-
+    public func buildMenu(additionalElements: [UIMenuElement] = []) -> UIMenu {
+        
         let menu = UIMenu(
             title: self.title ?? "",
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
-            children: childElements
+            children: self.elements.appending(contentsOf: additionalElements)
         )
 
         if #available(iOS 16, *) {
@@ -227,7 +220,7 @@ public class ContextMenu: NSObject, ContextMenuElement {
                     additionalElements.append(contentsOf: suggestedElements)
                 }
 
-                return self.build(additionalElements: additionalElements)
+                return self.buildMenu(additionalElements: additionalElements)
 
             }
 

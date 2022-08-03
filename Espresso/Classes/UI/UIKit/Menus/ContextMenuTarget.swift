@@ -88,12 +88,12 @@ public extension ContextMenuTarget {
     ///
     /// For a `UIBarButtonItem`, this sets the item's `menu` property.
     @discardableResult
-    func addContextMenu(_ block: (inout ContextMenuBuilder)->()) -> ContextMenu {
+    func addContextMenu(builder: (inout ContextMenuBuildable)->()) -> ContextMenu {
     
-        var builder = ContextMenuBuilder()
-        block(&builder)
+        var buildable: ContextMenuBuildable = ContextMenuBuilder()
+        builder(&buildable)
     
-        let menu = ContextMenu(builder: builder)
+        let menu = ContextMenu(buildable: buildable)
     
         addContextMenu(menu)
     
@@ -112,7 +112,7 @@ public extension ContextMenuTarget {
     private func addContextMenuToButton(_ button: UIButton,
                                          menu: ContextMenu) {
         
-        button.menu = menu.build()
+        button.menu = menu.buildMenu()
         button.showsMenuAsPrimaryAction = true
         
     }
@@ -121,7 +121,7 @@ public extension ContextMenuTarget {
     private func addContextMenuToBarButtonItem(_ item: UIBarButtonItem,
                                                menu: ContextMenu) {
         
-        item.menu = menu.build()
+        item.menu = menu.buildMenu()
         
     }
     

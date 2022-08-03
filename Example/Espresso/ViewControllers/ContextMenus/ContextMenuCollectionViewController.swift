@@ -100,7 +100,7 @@ class ContextMenuCollectionViewController: UIViewController {
                 action.title = "Tap me!"
                 action.image = UIImage(systemName: "hand.tap")
                 
-                action.action = { _ in
+                action.handler = { _ in
                     self.alert("Wow! You're pretty good at following orders")
                 }
 
@@ -111,7 +111,7 @@ class ContextMenuCollectionViewController: UIViewController {
                 action.title = "No, tap me!"
                 action.image = UIImage(systemName: "hand.tap.fill")
                 
-                action.action = { _ in
+                action.handler = { _ in
                     self.alert("You're not that good at following orders, are you?")
                 }
 
@@ -132,7 +132,7 @@ class ContextMenuCollectionViewController: UIViewController {
                         action.title = "Tap me, I swear!"
                         action.image = UIImage(systemName: "sparkles")
                         
-                        action.action = { _ in
+                        action.handler = { _ in
                             self.alert("Wow! I'm surprised you actually did all that. You're really good at following orders!")
                         }
 

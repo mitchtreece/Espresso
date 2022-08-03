@@ -5,99 +5,46 @@
 //  Created by Mitch Treece on 8/2/22.
 //
 
-import UIKit
+import Foundation
 
-/// A context menu builder.
-public struct ContextMenuBuilder: MenuElementBuilder, MenuElementContainer {
+public protocol ContextMenuBuildable: UIMenuElementContainer {
     
-    typealias ElementType = ContextMenu
+    var title: String? { get set }
+    var identifier: String? { get set }
+    var options: UIMenu.Options { get set }
+    var elementSize: UIMenuElementSize { get set }
+    var previewProvider: ContextMenu.PreviewProvider? { get set }
+    var previewCommitter: ContextMenu.PreviewCommitter? { get set }
+    var previewCommitStyle: UIContextMenuInteractionCommitStyle { get set }
+    var targetedHighlightPreviewProvider: ContextMenu.TargetedPreviewProvider? { get set }
+    var targetedDismissPreviewProvider: ContextMenu.TargetedPreviewProvider? { get set }
+    var includeSuggestedElements: Bool { get set }
+    var willPresent: (()->())? { get set }
+    var willDismiss: (()->())? { get set }
     
-    /// The context menu's title.
+}
+
+internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
+    
+    public typealias BuildType = ContextMenu
+    
     public var title: String?
-
-    /// The context menu's identifier.
     public var identifier: String?
-
-    /// The context menu's options.
     public var options: UIMenu.Options = []
-
-    /// The context menu's element size.
-    ///
-    /// This is supported on iOS 16 and higher. This will be completely
-    /// ignored if running on a device on iOS 15 or lower.
-    public var elementSize: Menu.ElementSize = .large
-
-    /// The context menu's elements.
-    public var elements: [any MenuElement] = []
-
-    /// The context menu's preview provider.
+    public var elementSize: UIMenuElementSize = .large
+    public var elements: [UIMenuElement] = []
+    
     public var previewProvider: ContextMenu.PreviewProvider?
-
-    /// The context menu's preview committer.
     public var previewCommitter: ContextMenu.PreviewCommitter?
-
-    /// The context menu's preview commit style.
     public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
-
-    /// The context menu's targeted highlight preview provider.
     public var targetedHighlightPreviewProvider: ContextMenu.TargetedPreviewProvider?
-
-    /// The context menu's targeted dismiss preview provider.
     public var targetedDismissPreviewProvider: ContextMenu.TargetedPreviewProvider?
-
-    /// Flag indicating if suggested system elements should be displayed.
     public var includeSuggestedElements: Bool = false
-
-    /// Closure called when the context menu is about to be presented.
-    ///
-    /// Depending on what kind of target the context menu is added to,
-    /// this closure _may_ or _may not_ be called. Under certain circumstances,
-    /// `UIKit` "hijacks" the underlying interaction delegate, causing
-    /// presentation & dismissal delegate functions to not be called.
-    ///
-    /// When added to a `UIView`, this closure is called as expected.
-    ///
-    /// When added to a `UIButton`, this closure will **not** be called.
-    ///
-    /// When added to a `UIBarButtonItem` this closure will **not** be called.
     public var willPresent: (()->())?
-
-    /// Closure called when the context menu is about to be dismissed.
-    ///
-    /// Depending on what kind of target the context menu is added to,
-    /// this closure _may_ or _may not_ be called. Under certain circumstances,
-    /// `UIKit` "hijacks" the underlying interaction delegate, causing
-    /// presentation & dismissal delegate functions to not be called.
-    ///
-    /// When added to a `UIView`, this closure is called as expected.
-    ///
-    /// When added to a `UIButton`, this closure will **not** be called.
-    ///
-    /// When added to a `UIBarButtonItem` this closure will **not** be called.
     public var willDismiss: (()->())?
 
-    internal init() {
-        //
-    }
-
     public func build() -> ContextMenu {
-        
-        return ContextMenu(
-            title: self.title,
-            identifier: self.identifier,
-            options: self.options,
-            elementSize: self.elementSize,
-            elements: self.elements,
-            previewProvider: self.previewProvider,
-            previewCommitter: self.previewCommitter,
-            previewCommitStyle: self.previewCommitStyle,
-            targetedHighlightPreviewProvider: self.targetedHighlightPreviewProvider,
-            targetedDismissPreviewProvider: self.targetedDismissPreviewProvider,
-            includeSuggestedElements: self.includeSuggestedElements,
-            willPresent: self.willPresent,
-            willDismiss: self.willDismiss
-        )
-
+        return ContextMenu(buildable: self)
     }
-
+    
 }
