@@ -104,7 +104,12 @@ public extension ContextMenuTarget {
     private func addContextMenuToView(_ view: UIView,
                                       menu: ContextMenu) {
         
-        view.addInteraction(UIContextMenuInteraction(delegate: menu))
+        let interaction = UIContextMenuInteraction(delegate: menu)
+        
+        // interaction.updateVisibleMenu(...)
+        // interaction.dismissMenu()
+        
+        view.addInteraction(interaction)
         
     }
     

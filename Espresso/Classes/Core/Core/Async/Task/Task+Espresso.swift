@@ -9,20 +9,18 @@ import Foundation
 
 public extension Task where Success == Never, Failure == Never {
     
-    static func sleep(duration: TimeDuration) async {
+    /// Suspends the current task for at least the given duration.
+    ///
+    /// - parameter duration: The sleep duration.
+    ///
+    /// If the task is canceled before the time ends, this function throws CancellationError.
+    /// This function doesn’t block the underlying thread.
+    static func sleep(duration: TimeDuration) async throws {
+
+        let nanoseconds = duration
+            .convert(to: .nanoseconds)
+            .value
         
-        do {
-            try await sleepThrowing(duration: duration)
-        }
-        catch {
-            //
-        }
-        
-    }
-    
-    static func sleepThrowing(duration: TimeDuration) async throws {
-        
-        let nanoseconds = duration.convert(to: .nanoseconds)
         try await Task.sleep(nanoseconds: UInt64(nanoseconds))
         
     }

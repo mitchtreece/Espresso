@@ -13,7 +13,7 @@ public typealias UIDeferredMenuElementCompletion = ([UIMenuElement])->()
 @available(iOS 14, *)
 public protocol UIDeferredMenuElementBuildable {
     
-    var elementProvider: ((UIDeferredMenuElementCompletion)->())? { get set }
+    var elementProvider: ((@escaping UIDeferredMenuElementCompletion)->())? { get set }
     
 }
 
@@ -22,7 +22,7 @@ internal struct UIDeferredMenuElementBuilder: Builder, UIDeferredMenuElementBuil
     
     typealias BuildType = UIDeferredMenuElement
     
-    var elementProvider: ((UIDeferredMenuElementCompletion)->())?
+    var elementProvider: ((@escaping UIDeferredMenuElementCompletion)->())?
 
     func build() -> UIDeferredMenuElement {
         return UIDeferredMenuElement(buildable: self)

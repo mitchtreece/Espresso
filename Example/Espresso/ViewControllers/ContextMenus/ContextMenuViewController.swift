@@ -96,14 +96,16 @@ class ContextMenuViewController: UIViewController {
                     
                     let action = UIAction { a in
                         
-                        a.title = "Deferred Action"
-                        a.handler = { _ in print("deferred tap") }
+                        a.title = "Thanks for waiting, tap me!"
+                        a.handler = { _ in
+                            self.alert("Wow! You're so patient.")
+                        }
                         
                     }
                     
                     Task {
                         
-                        await Task.sleep(duration:.seconds(2))
+                        try! await Task.sleep(duration: .seconds(3))
                         completion([action])
 
                     }

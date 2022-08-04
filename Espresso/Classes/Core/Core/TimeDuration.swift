@@ -7,107 +7,135 @@
 
 import Foundation
 
-/// A number of seconds, millisconds, microseconds, or nanoseconds.
+/// A duration of seconds, millisconds, microseconds, or nanoseconds.
 public typealias TimeDuration = DispatchTimeInterval
 
 public extension TimeDuration {
     
-    /// Representation of the various second scales.
-    enum Representation {
+    /// Representation of the various time duration units.
+    enum Unit {
         
-        /// A second representation.
+        /// A second unit.
         ///
-        /// Seconds * 1
+        /// `Seconds * 1`
         case seconds
         
-        /// A millisecond representation.
+        /// A millisecond unit.
         ///
-        /// Seconds * 0.001
+        /// `Seconds * 1,000`
         case milliseconds
         
-        /// A microsecond representation.
+        /// A microsecond unit.
         ///
-        /// Seconds * 0.000001
+        /// `Seconds * 1,000,000`
         case microseconds
         
-        /// A nanosecond representation.
+        /// A nanosecond unit.
         ///
-        /// Seconds *  0.000000001
+        /// `Seconds * 1,000,000,000`
         case nanoseconds
         
     }
     
-    /// Converts a time duration to a different representation.
-    /// - Parameters representation: The representation to convert to.
-    /// _ Returns: A converted time duration as a `TimeInterval`.
-    func convert(to representation: Representation) -> TimeInterval {
+    /// The duration's value.
+    ///
+    /// `seconds(1) = 1`
+    ///
+    /// `milliseconds(1000) = 1000`
+    ///
+    /// `microseconds(1000000) = 1000000`
+    ///
+    /// `nanoseconds(1000000000) = 1000000000`
+    var value: Int {
         
-        switch representation {
-        case .seconds:
-                        
-            switch self {
-            case .seconds(let sec): return TimeInterval(sec)
-            case .milliseconds(let milli): return TimeInterval(milli) * 0.001
-            case .microseconds(let micro): return TimeInterval(micro) * 0.000001
-            case .nanoseconds(let nano): return TimeInterval(nano) * 0.000000001
-            case .never: return 0
-            @unknown default: return 0
-            }
-        
-        case .milliseconds:
-            
-            switch self {
-            case .seconds(let sec): return TimeInterval(sec) * 1_000
-            case .milliseconds(let milli): return TimeInterval(milli)
-            case .microseconds(let micro): return (TimeInterval(micro) / 1_000)
-            case .nanoseconds(let nano): return (TimeInterval(nano) / 1_000_000)
-            case .never: return 0
-            @unknown default: return 0
-            }
-            
-        case .microseconds:
-            
-            switch self {
-            case .seconds(let sec): return (TimeInterval(sec) * 1_000_000)
-            case .milliseconds(let milli): return (TimeInterval(milli) * 1_000)
-            case .microseconds(let micro): return TimeInterval(micro)
-            case .nanoseconds(let nano): return (TimeInterval(nano) / 1_000)
-            case .never: return 0
-            @unknown default: return 0
-            }
-            
-        case .nanoseconds:
-            
-            switch self {
-            case .seconds(let sec): return (TimeInterval(sec) * 1_000_000_0000)
-            case .milliseconds(let milli): return (TimeInterval(milli) * 1_000_000)
-            case .microseconds(let micro): return (TimeInterval(micro) * 1_000)
-            case .nanoseconds(let nano): return TimeInterval(nano)
-            case .never: return 0
-            @unknown default: return 0
-            }
-            
+        switch self {
+        case .seconds(let value): return value
+        case .milliseconds(let value): return value
+        case .microseconds(let value): return value
+        case .nanoseconds(let value): return value
+        default: return 0
         }
         
     }
     
-}
-
-public extension TimeInterval {
-    
-    /// Initializes a time interval with a time duration.
-    /// - Parameter duration: A time duration.
-    init(duration: TimeDuration) {
+    /// Converts the duration to a new duration using a given unit.
+    ///
+    /// - parameter unit: The unit to convert the duration to.
+    /// - returns: A unit-converted `TimeDuration`.
+    ///
+    /// ```
+    /// seconds(1).convert(to: .milliseconds) -> milliseconds(1000)
+    /// milliseconds(1000).convert(to: .seconds) -> seconds(1)
+    /// ```
+    func convert(to unit: Unit) -> TimeDuration {
         
-        switch duration {
-        case .seconds(let sec): self = TimeInterval(sec)
-        case .milliseconds(let milli): self = (TimeInterval(milli) / 1_000)
-        case .microseconds(let micro): self = (TimeInterval(micro) / 1_000_000)
-        case .nanoseconds(let nano): self = (TimeInterval(nano) / 1_000_000_000)
-        case .never: self = 0
-        @unknown default: self = 0
+        switch self {
+        case .seconds(let value):
+                        
+            switch unit {
+            case .seconds:      return self
+            case .milliseconds: return .milliseconds(value * 1_000)
+            case .microseconds: return .microseconds(value * 1_000_000)
+            case .nanoseconds:  return .nanoseconds(value * 1_000_000_000)
+            }
+            
+        case .milliseconds(let value):
+            
+            switch unit {
+            case .seconds:      return .seconds(value / 1_000)
+            case .milliseconds: return self
+            case .microseconds: return .microseconds(value * 1_000)
+            case .nanoseconds:  return .nanoseconds(value * 1_000_000)
+            }
+            
+        case .microseconds(let value):
+            
+            switch unit {
+            case .seconds:      return .seconds(value / 1_000_000)
+            case .milliseconds: return .milliseconds(value / 1_000)
+            case .microseconds: return self
+            case .nanoseconds:  return .nanoseconds(value * 1_000)
+            }
+            
+        case .nanoseconds(let value):
+            
+            switch unit {
+            case .seconds:      return .seconds(value / 1_000_000_000)
+            case .milliseconds: return .milliseconds(value / 1_000_000)
+            case .microseconds: return .microseconds(value / 1_000)
+            case .nanoseconds:  return self
+            }
+            
+        default: return .never
         }
         
+    }
+    
+    /// A `TimeInterval` representation of this duration.
+    ///
+    /// - returns: A `TimeInterval` value.
+    ///
+    /// `TimeInterval` is a seconds-relative representation of time measurement.
+    /// Converting a duration to an interval will reframe the duration's value
+    /// in terms of seconds.
+    ///
+    /// ```
+    /// seconds(1).asInterval()      -> TimeInterval(1)
+    /// milliseconds(1).asInterval() -> TimeInterval(0.001)
+    /// microseconds(1).asInterval() -> TimeInterval(0.00001)
+    /// nanoseconds(1).asInterval()  -> TimeInterval(0.000000001)
+    /// ```
+    func asInterval() -> TimeInterval {
+        
+        switch self {
+        case .seconds(let value):      return TimeInterval(value)
+        case .milliseconds(let value): return TimeInterval(value) / 1_000
+        case .microseconds(let value): return TimeInterval(value) / 1_000_000
+        case .nanoseconds(let value):  return TimeInterval(value) / 1_000_000_000
+        case .never: fallthrough
+        @unknown default: return 0
+        }
+
     }
     
 }

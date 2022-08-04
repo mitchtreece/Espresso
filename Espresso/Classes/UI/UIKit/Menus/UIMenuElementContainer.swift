@@ -40,7 +40,7 @@ public extension UIMenuElementContainer {
     }
     
     @available(iOS 14, *)
-    mutating func addDeferredElements(block: @escaping (UIDeferredMenuElementCompletion)->()) {
+    mutating func addDeferredElements(block: @escaping (@escaping UIDeferredMenuElementCompletion)->()) {
         
         let builder = UIDeferredMenuElementBuilder(elementProvider: block)
         addElement(builder.build())
