@@ -90,7 +90,6 @@
 		26F61D1E289A07BB009C4962 /* UIMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1D289A07BB009C4962 /* UIMenuBuilder.swift */; };
 		26F61D20289A09BE009C4962 /* ContextMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1F289A09BE009C4962 /* ContextMenuBuilder.swift */; };
 		26F61D22289A6647009C4962 /* UIMenuElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D21289A6647009C4962 /* UIMenuElementContainer.swift */; };
-		26F61D26289AF21F009C4962 /* UIDeferredMenuElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D25289AF21F009C4962 /* UIDeferredMenuElementBuilder.swift */; };
 		27805E3E2E5D2163EE6E8D1FEB7D3CE6 /* Guarantee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D512F8CA61CDD82BB2A406BCEA4D8B9E /* Guarantee.swift */; };
 		28CF45F000364A89D3640E137DCE38C8 /* ObservableType+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27837DCD17D7A8AD768AC9415383998B /* ObservableType+Espresso.swift */; };
 		292F739FE0A2AE5B45819A91C4ACC6B3 /* UIScreen+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F950D5919AE875F191168A1EE8A807 /* UIScreen+Espresso.swift */; };
@@ -800,7 +799,6 @@
 		26F61D1D289A07BB009C4962 /* UIMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuBuilder.swift; sourceTree = "<group>"; };
 		26F61D1F289A09BE009C4962 /* ContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuBuilder.swift; sourceTree = "<group>"; };
 		26F61D21289A6647009C4962 /* UIMenuElementContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuElementContainer.swift; sourceTree = "<group>"; };
-		26F61D25289AF21F009C4962 /* UIDeferredMenuElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeferredMenuElementBuilder.swift; sourceTree = "<group>"; };
 		26F788DA1CC5C588DE42217A7106401E /* Date+Dispatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Dispatch.swift"; path = "RxSwift/Date+Dispatch.swift"; sourceTree = "<group>"; };
 		27837DCD17D7A8AD768AC9415383998B /* ObservableType+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableType+Espresso.swift"; path = "Espresso/Classes/Rx/Core/ObservableType+Espresso.swift"; sourceTree = "<group>"; };
 		27A37C503DFAAF2FD1859A9CDAE4892D /* Skip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Skip.swift; path = RxSwift/Observables/Skip.swift; sourceTree = "<group>"; };
@@ -2465,7 +2463,6 @@
 			children = (
 				26F61D192899F039009C4962 /* UIActionBuilder.swift */,
 				26F61D1D289A07BB009C4962 /* UIMenuBuilder.swift */,
-				26F61D25289AF21F009C4962 /* UIDeferredMenuElementBuilder.swift */,
 				26F61D1F289A09BE009C4962 /* ContextMenuBuilder.swift */,
 			);
 			path = Builders;
@@ -3074,7 +3071,6 @@
 				0229A7D1CB112564D125D51CD2BA3BEE /* GuaranteePublisher.swift in Sources */,
 				4B9B77A5EF5E36BF8ED3AD65BE12B7CE /* GuaranteeResult.swift in Sources */,
 				159FA4A405567B7FF6CF11796CB20058 /* GuaranteeTask.swift in Sources */,
-				26F61D26289AF21F009C4962 /* UIDeferredMenuElementBuilder.swift in Sources */,
 				B7A0FBBCDD865DEA53FA3C88E58B4CB5 /* HorizontalEdgeInsets.swift in Sources */,
 				EC0961BFBCEC39457FF72C6D3C7055D3 /* HorizontalEdgeInsets+UIKit.swift in Sources */,
 				022F9E3F848D726173470FDF68FBA58A /* ImageRepresentable.swift in Sources */,

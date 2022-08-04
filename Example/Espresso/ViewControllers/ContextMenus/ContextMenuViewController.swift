@@ -90,9 +90,9 @@ class ContextMenuViewController: UIViewController {
 
             }
             
-            if #available(iOS 14, *) {
+            if #available(iOS 15, *) {
                 
-                menu.addDeferredElements { completion in
+                menu.addUncachedDeferredElements { completion in
                     
                     let action = UIAction { a in
                         
@@ -105,7 +105,7 @@ class ContextMenuViewController: UIViewController {
                     
                     Task {
                         
-                        try! await Task.sleep(duration: .seconds(3))
+                        try! await Task.sleep(duration: .seconds(1))
                         completion([action])
 
                     }

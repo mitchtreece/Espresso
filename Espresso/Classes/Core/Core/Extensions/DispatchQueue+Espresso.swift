@@ -20,7 +20,7 @@ public extension DispatchQueue {
                     execute work: @escaping ()->()) {
 
         asyncAfter(
-            deadline: .now() + delay,
+            deadline: .now() + delay.asDispatchInterval(),
             qos: qos,
             flags: flags,
             execute: work

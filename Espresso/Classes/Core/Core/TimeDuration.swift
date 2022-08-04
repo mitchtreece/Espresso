@@ -8,9 +8,7 @@
 import Foundation
 
 /// A duration of seconds, millisconds, microseconds, or nanoseconds.
-public typealias TimeDuration = DispatchTimeInterval
-
-public extension TimeDuration {
+public enum TimeDuration {
     
     /// Representation of the various time duration units.
     enum Unit {
@@ -37,6 +35,18 @@ public extension TimeDuration {
         
     }
     
+    /// A number of seconds.
+    case seconds(Double)
+    
+    /// A number of milliseconds.
+    case milliseconds(Double)
+    
+    /// A number of microseconds.
+    case microseconds(Double)
+    
+    /// A number of nanoseconds.
+    case nanoseconds(Double)
+    
     /// The duration's value.
     ///
     /// `seconds(1) = 1`
@@ -46,14 +56,13 @@ public extension TimeDuration {
     /// `microseconds(1000000) = 1000000`
     ///
     /// `nanoseconds(1000000000) = 1000000000`
-    var value: Int {
+    var value: Double {
         
         switch self {
         case .seconds(let value): return value
         case .milliseconds(let value): return value
         case .microseconds(let value): return value
         case .nanoseconds(let value): return value
-        default: return 0
         }
         
     }
@@ -106,7 +115,6 @@ public extension TimeDuration {
             case .nanoseconds:  return self
             }
             
-        default: return .never
         }
         
     }
@@ -128,14 +136,46 @@ public extension TimeDuration {
     func asInterval() -> TimeInterval {
         
         switch self {
-        case .seconds(let value):      return TimeInterval(value)
-        case .milliseconds(let value): return TimeInterval(value) / 1_000
-        case .microseconds(let value): return TimeInterval(value) / 1_000_000
-        case .nanoseconds(let value):  return TimeInterval(value) / 1_000_000_000
-        case .never: fallthrough
-        @unknown default: return 0
+        case .seconds(let value):      return value
+        case .milliseconds(let value): return value / 1_000
+        case .microseconds(let value): return value / 1_000_000
+        case .nanoseconds(let value):  return value / 1_000_000_000
         }
 
+    }
+    
+    /// A `DispatchTimeInterval` representation of this duration.
+    ///
+    /// - returns: A `DispatchTimeInterval` value.
+    ///
+    /// This casts the duration's value to an `Int` in order to be
+    /// compatible with `DispatchTimeInterval`. Floating point
+    /// precision will be lost.
+    ///
+    /// ```
+    /// seconds(1).asDispatchInterval()              -> seconds(1)
+    /// milliseconds(1000).asDispatchInterval()      -> milliseconds(1000)
+    /// microseconds(1000000).asDispatchInterval()   -> microseconds(1000000)
+    /// nanoseconds(1000000000).asDispatchInterval() -> nanoseconds(1000000000)
+    /// ```
+    func asDispatchInterval() -> DispatchTimeInterval {
+        
+        switch self {
+        case .seconds(let value):      return .seconds(Int(value))
+        case .milliseconds(let value): return .milliseconds(Int(value))
+        case .microseconds(let value): return .microseconds(Int(value))
+        case .nanoseconds(let value):  return .nanoseconds(Int(value))
+        }
+        
+    }
+    
+}
+
+public extension TimeInterval {
+    
+    /// A `TimeDuration` representation of this interval.
+    func asDuration() -> TimeDuration {
+        return .seconds(self)
     }
     
 }

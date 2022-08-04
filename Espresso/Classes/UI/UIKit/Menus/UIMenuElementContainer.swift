@@ -7,6 +7,9 @@
 
 import UIKit
 
+@available(iOS 14, *)
+public typealias UIDeferredMenuElementCompletion = ([UIMenuElement])->()
+
 public protocol UIMenuElementContainer {
     
     var elements: [UIMenuElement] { get set }
@@ -42,8 +45,22 @@ public extension UIMenuElementContainer {
     @available(iOS 14, *)
     mutating func addDeferredElements(block: @escaping (@escaping UIDeferredMenuElementCompletion)->()) {
         
-        let builder = UIDeferredMenuElementBuilder(elementProvider: block)
-        addElement(builder.build())
+        // Not using builders here because we only pass in one (required) thing.
+        // Also, the way to init an `uncached` deferred element is a static function,
+        // so the builder pattern `init(buildable:)` won't work.
+        
+        addElement(UIDeferredMenuElement(block))
+        
+    }
+    
+    @available(iOS 15, *)
+    mutating func addUncachedDeferredElements(block: @escaping (@escaping UIDeferredMenuElementCompletion)->()) {
+        
+        // Not using builders here because we only pass in one (required) thing.
+        // Also, the way to init an `uncached` deferred element is a static function,
+        // so the builder pattern `init(buildable:)` won't work.
+        
+        addElement(UIDeferredMenuElement.uncached(block))
         
     }
     
