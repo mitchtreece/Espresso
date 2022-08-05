@@ -22,10 +22,9 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     public typealias TargetedPreviewProvider = ([String: Any])->UITargetedPreview?
     
     public var title: String?
-    public var identifier: String?
+    public var identifier: UIMenuElementIdentifier?
     public var options: UIMenu.Options = []
-    public var elements: [UIMenuElement] = []
-
+    public var children: [UIMenuElement] = []
     public var previewProvider: PreviewProvider?
     public var previewCommitter: PreviewCommitter?
     public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
@@ -63,11 +62,14 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     public private(set) lazy var collectionConfiguration: CollectionConfiguration = {
         return CollectionConfiguration(menu: self)
     }()
-
+    
+    internal weak var interaction: UIContextMenuInteraction?
+    private var menu: UIMenu?
+    
     public init(title: String? = nil,
                 identifier: String? = nil,
                 options: UIMenu.Options = [],
-                elements: [UIMenuElement] = [],
+                children: [UIMenuElement] = [],
                 previewProvider: PreviewProvider?,
                 previewCommitter: PreviewCommitter?,
                 previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop,
@@ -80,8 +82,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         self.title = title
         self.identifier = identifier
         self.options = options
-        self.elements = elements
-        
+        self.children = children
         self.previewProvider = previewProvider
         self.previewCommitter = previewCommitter
         self.previewCommitStyle = previewCommitStyle
@@ -98,7 +99,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
                             identifier: String? = nil,
                             options: UIMenu.Options = [],
                             elementSize: UIMenu.ElementSize = .large,
-                            elements: [UIMenuElement] = [],
+                            children: [UIMenuElement] = [],
                             previewProvider: PreviewProvider?,
                             previewCommitter: PreviewCommitter?,
                             previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop,
@@ -112,7 +113,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
             title: title,
             identifier: identifier,
             options: options,
-            elements: elements,
+            children: children,
             previewProvider: previewProvider,
             previewCommitter: previewCommitter,
             previewCommitStyle: previewCommitStyle,
@@ -127,81 +128,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
 
     }
     
-    public convenience init(builder: (inout ContextMenuBuildable)->()) {
-        
-        var buildable: ContextMenuBuildable = ContextMenuBuilder()
-
-        builder(&buildable)
-                
-        self.init(buildable: buildable)
-        
-    }
-    
-    internal convenience init(buildable: ContextMenuBuildable) {
-        
-        if #available(iOS 16, *) {
-            
-            self.init(
-                title: buildable.title,
-                identifier: buildable.identifier,
-                options: buildable.options,
-                elementSize: buildable.elementSize,
-                elements: buildable.elements,
-                previewProvider: buildable.previewProvider,
-                previewCommitter: buildable.previewCommitter,
-                previewCommitStyle: buildable.previewCommitStyle,
-                targetedHighlightPreviewProvider: buildable.targetedHighlightPreviewProvider,
-                targetedDismissPreviewProvider: buildable.targetedDismissPreviewProvider,
-                includeSuggestedElements: buildable.includeSuggestedElements,
-                willPresent: buildable.willPresent,
-                willDismiss: buildable.willDismiss
-            )
-            
-        }
-        else {
-            
-            self.init(
-                title: buildable.title,
-                identifier: buildable.identifier,
-                options: buildable.options,
-                elements: buildable.elements,
-                previewProvider: buildable.previewProvider,
-                previewCommitter: buildable.previewCommitter,
-                previewCommitStyle: buildable.previewCommitStyle,
-                targetedHighlightPreviewProvider: buildable.targetedHighlightPreviewProvider,
-                targetedDismissPreviewProvider: buildable.targetedDismissPreviewProvider,
-                includeSuggestedElements: buildable.includeSuggestedElements,
-                willPresent: buildable.willPresent,
-                willDismiss: buildable.willDismiss
-            )
-            
-        }
-        
-    }
-    
-    /// Adds the context menu to a target.
-    ///
-    /// - parameter target: The target to add the context menu to.
-    /// - returns: This context menu.
-    ///
-    /// This function acts differently depending on the type of the target.
-    ///
-    /// For a `UIView`, this calls `addInteraction(interaction:)`
-    /// and does **not** hold a strong reference to the context menu.
-    ///
-    /// For a `UIButton` on iOS 14 or higher, this sets the button's `menu` property.
-    /// On iOS 13 and lower, this treats the button like a `UIView` and does **not**
-    /// hold a strong reference to the context menu.
-    ///
-    /// For a `UIBarButtonItem` on iOS 14 or higher, this sets the item's `menu` property.
-    /// On iOS 13 or lower, this is ignored.
-    @discardableResult
-    public func addTo(_ target: ContextMenuTarget) -> Self {
-
-        target.addContextMenu(self)
-        return self
-
-    }
+    // MARK: Data
     
     @discardableResult
     public func setData(_ data: Any,
@@ -216,6 +143,14 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         return self.data[key]
     }
     
+    // MARK: Add To
+    
+    public func dismiss() {
+        self.interaction?.dismissMenu()
+    }
+    
+    // MARK: Building
+    
     /// Builds a `UIMenu` from this context menu.
     ///
     /// - parameter additionalElements: Additional elements to append to this context menu's
@@ -227,12 +162,14 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
             title: self.title ?? "",
             identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
             options: self.options,
-            children: self.elements.appending(contentsOf: additionalElements)
+            children: self.children.appending(contentsOf: additionalElements)
         )
 
         if #available(iOS 16, *) {
             menu.preferredElementSize = self.elementSize
         }
+        
+        self.menu = menu
 
         return menu
 
@@ -252,7 +189,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
 
         }
 
-        if !self.elements.isEmpty {
+        if !self.children.isEmpty {
 
             // Only assign an action provider if we have elements.
             // If we don't have elements, we only want to show

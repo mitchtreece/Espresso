@@ -12,7 +12,9 @@ class ContextMenuViewController: UIViewController {
     
     private var contextMenuView: ContextMenuView!
     
-    private var contextMenu: ContextMenu!
+    private var viewMenu: ContextMenu!
+    private var buttonMenu: ContextMenu!
+    private var barItemMenu: ContextMenu!
     
     override func viewDidLoad() {
         
@@ -29,7 +31,7 @@ class ContextMenuViewController: UIViewController {
         }
         
         self.contextMenuView
-            .addContextMenu(self.contextMenu)
+            .addContextMenu(self.viewMenu)
         
         if #available(iOS 14, *) {
             
@@ -49,7 +51,7 @@ class ContextMenuViewController: UIViewController {
             }
             
             button
-                .addContextMenu(self.contextMenu)
+                .addContextMenu(self.buttonMenu)
             
             
             // Bar Button
@@ -58,21 +60,23 @@ class ContextMenuViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = barButtonItem
                         
             barButtonItem
-                .addContextMenu(self.contextMenu)
+                .addContextMenu(self.barItemMenu)
 
         }
-        
+
     }
     
     private func setupContextMenus() {
-
-        self.contextMenu = ContextMenu { menu in
-                        
+        
+        self.viewMenu = ContextMenu { menu in
+            
+            menu.title = "View Menu"
+                                                
             menu.addAction { action in
-                
+                                
                 action.title = "Tap me!"
                 action.image = UIImage(systemName: "hand.tap")
-                
+                                
                 action.handler = { _ in
                     self.alert("Wow! You're pretty good at following orders")
                 }
@@ -94,18 +98,18 @@ class ContextMenuViewController: UIViewController {
                 
                 menu.addUncachedDeferredElements { completion in
                     
-                    let action = UIAction { a in
+                    let action = UIAction { action in
                         
-                        a.title = "Thanks for waiting, tap me!"
-                        a.handler = { _ in
-                            self.alert("Wow! You're so patient.")
+                        action.title = "Thanks for waiting, tap me instead!"
+                        action.handler = { _ in
+                            self.alert("Wow! You're so patient, and pretty good at following orders!")
                         }
                         
                     }
                     
                     Task {
                         
-                        try! await Task.sleep(duration: .seconds(1))
+                        try! await Task.sleep(duration: .seconds(2))
                         completion([action])
 
                     }
@@ -116,6 +120,7 @@ class ContextMenuViewController: UIViewController {
             
             menu.addMenu { moreMenu in
                 
+                moreMenu.identifier = "menu_more"
                 moreMenu.title = "Actually, tap me!"
                 moreMenu.image = UIImage(systemName: "star")
                 
@@ -126,6 +131,7 @@ class ContextMenuViewController: UIViewController {
                     
                     moreMoreMenu.addAction { action in
 
+                        action.identifier = "action_i_swear"
                         action.title = "Tap me, I swear!"
                         action.image = UIImage(systemName: "sparkles")
                         
@@ -145,6 +151,34 @@ class ContextMenuViewController: UIViewController {
 
             menu.willDismiss = {
                 print("Context menu is being dismissed")
+            }
+            
+        }
+        
+        self.buttonMenu = ContextMenu { menu in
+                        
+            menu.addAction { action in
+                
+                action.title = "Tap me!"
+                action.image = UIImage(systemName: "hand.tap")
+                action.handler = { _ in
+                    self.alert("You tapped the button menu's action!")
+                }
+                
+            }
+            
+        }
+        
+        self.barItemMenu = ContextMenu { menu in
+                        
+            menu.addAction { action in
+                
+                action.title = "Tap me!"
+                action.image = UIImage(systemName: "hand.tap")
+                action.handler = { _ in
+                    self.alert("You tapped the bar item menu's action!")
+                }
+                
             }
             
         }

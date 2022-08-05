@@ -35,7 +35,7 @@ public extension ContextMenuTarget {
             
             if #available(iOS 14, *) {
                 
-                addContextMenuToButton(
+                _addContextMenuToButton(
                     button,
                     menu: menu
                 )
@@ -43,7 +43,7 @@ public extension ContextMenuTarget {
             }
             else {
                 
-                addContextMenuToView(
+                _addContextMenuToView(
                     button,
                     menu: menu
                 )
@@ -53,7 +53,7 @@ public extension ContextMenuTarget {
         }
         else if let view = self as? UIView {
             
-            addContextMenuToView(
+            _addContextMenuToView(
                 view,
                 menu: menu
             )
@@ -63,7 +63,7 @@ public extension ContextMenuTarget {
 
             guard #available(iOS 14, *) else { return }
             
-            addContextMenuToBarButtonItem(
+            _addContextMenuToBarButtonItem(
                 item,
                 menu: menu
             )
@@ -101,33 +101,49 @@ public extension ContextMenuTarget {
     
     }
     
-    private func addContextMenuToView(_ view: UIView,
-                                      menu: ContextMenu) {
+    private func _addContextMenuToView(_ view: UIView,
+                                       menu: ContextMenu) {
         
         let interaction = UIContextMenuInteraction(delegate: menu)
         
-        // interaction.updateVisibleMenu(...)
-        // interaction.dismissMenu()
+        menu.interaction = interaction
         
         view.addInteraction(interaction)
         
     }
     
     @available(iOS 14, *)
-    private func addContextMenuToButton(_ button: UIButton,
+    private func _addContextMenuToButton(_ button: UIButton,
                                          menu: ContextMenu) {
         
         button.menu = menu.buildMenu()
         button.showsMenuAsPrimaryAction = true
         
+        let interaction = button
+            .interactions
+            .first(where: { $0 is UIContextMenuInteraction })
+            .map { $0 as! UIContextMenuInteraction }
+        
+        menu.interaction = interaction
+        
     }
     
     @available(iOS 14, *)
-    private func addContextMenuToBarButtonItem(_ item: UIBarButtonItem,
-                                               menu: ContextMenu) {
+    private func _addContextMenuToBarButtonItem(_ item: UIBarButtonItem,
+                                                menu: ContextMenu) {
         
         item.menu = menu.buildMenu()
         
+//        let selector = NSSelectorFromString("_interactions")
+//        let unmanaged = item.perform(selector)
+//        let interactions = (unmanaged?.takeRetainedValue() as? [UIInteraction]) ?? []
+//
+//        let interaction = interactions
+//            .first(where: { $0 is UIContextMenuInteraction })
+//            .map { $0 as! UIContextMenuInteraction }
+//
+//        menu.interaction = interaction
+                
     }
     
 }

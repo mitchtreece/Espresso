@@ -11,7 +11,7 @@ public protocol UIMenuBuildable: UIMenuElementContainer {
     
     var title: String { get set }
     var image: UIImage? { get set }
-    var identifier: String? { get set }
+    var identifier: UIMenuElementIdentifier? { get set }
     var options: UIMenu.Options { get set }
     
     @available(iOS 15, *)
@@ -28,9 +28,9 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     
     public var title: String = .empty
     public var image: UIImage?
-    public var identifier: String?
+    public var identifier: UIMenuElementIdentifier?
     public var options: UIMenu.Options = []
-    public var elements: [UIMenuElement] = []
+    public var children: [UIMenuElement] = []
     
     @available(iOS 15, *)
     public var subtitle: String? {
@@ -55,6 +55,28 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     private var _subtitle: String?
     private var _elementSize: Any?
     
+    init() {
+        //
+    }
+    
+    init(menu: UIMenu) {
+        
+        self.title = menu.title
+        self.image = menu.image
+        self.identifier = menu.identifier.rawValue
+        self.options = menu.options
+        self.children = menu.children
+        
+        if #available(iOS 15, *) {
+            self.subtitle = menu.subtitle
+        }
+        
+        if #available(iOS 16, *) {
+            self.elementSize = menu.preferredElementSize
+        }
+        
+    }
+    
     public func build() -> UIMenu {
         return UIMenu(buildable: self)
     }
@@ -68,50 +90,33 @@ public extension UIMenu {
         var buildable: UIMenuBuildable = UIMenuBuilder()
         
         builder(&buildable)
-
+        
         self.init(buildable: buildable)
         
     }
-    
-    internal convenience init(buildable: UIMenuBuildable) {
 
+}
+
+internal extension UIMenu {
+    
+    convenience init(buildable: UIMenuBuildable) {
+
+        self.init(
+            title: buildable.title,
+            image: buildable.image,
+            identifier: (buildable.identifier != nil) ? .init(buildable.identifier!) : nil,
+            options: buildable.options,
+            children: buildable.children
+        )
+        
+        if #available(iOS 15, *) {
+            self.subtitle = buildable.subtitle
+        }
+        
         if #available(iOS 16, *) {
-            
-            self.init(
-                title: buildable.title,
-                subtitle: buildable.subtitle,
-                image: buildable.image,
-                identifier: (buildable.identifier != nil) ? .init(buildable.identifier!) : nil,
-                options: buildable.options,
-                preferredElementSize: buildable.elementSize,
-                children: buildable.elements
-            )
-            
-        }
-        else if #available(iOS 15, *) {
-            
-            self.init(
-                title: buildable.title,
-                subtitle: buildable.subtitle,
-                image: buildable.image,
-                identifier: (buildable.identifier != nil) ? .init(buildable.identifier!) : nil,
-                options: buildable.options,
-                children: buildable.elements
-            )
-            
-        }
-        else {
-            
-            self.init(
-                title: buildable.title,
-                image: buildable.image,
-                identifier: (buildable.identifier != nil) ? .init(buildable.identifier!) : nil,
-                options: buildable.options,
-                children: buildable.elements
-            )
-            
+            self.preferredElementSize = buildable.elementSize
         }
         
     }
-
+    
 }

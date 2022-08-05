@@ -2,7 +2,7 @@
 //  UIMenuElementContainer.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 8/3/22.
+//  Created by Mitch Treece on 8/4/22.
 //
 
 import UIKit
@@ -12,17 +12,20 @@ public typealias UIDeferredMenuElementCompletion = ([UIMenuElement])->()
 
 public protocol UIMenuElementContainer {
     
-    var elements: [UIMenuElement] { get set }
+    var children: [UIMenuElement] { get set }
     
 }
 
 public extension UIMenuElementContainer {
     
+    // MARK: Add
+    
     mutating func addElement(_ element: UIMenuElement) {
-        self.elements.append(element)
+        self.children.append(element)
     }
     
-    mutating func addAction(builder: (inout UIActionBuildable)->()) {
+    @discardableResult
+    mutating func addAction(builder: (inout UIActionBuildable)->()) -> UIMenuElementIdentifier {
         
         var buildable: UIActionBuildable = UIActionBuilder()
         builder(&buildable)
@@ -30,15 +33,20 @@ public extension UIMenuElementContainer {
         let action = (buildable as! UIActionBuilder).build()
         addElement(action)
         
+        return action.identifier.rawValue
+        
     }
     
-    mutating func addMenu(builder: (inout UIMenuBuildable)->()) {
+    @discardableResult
+    mutating func addMenu(builder: (inout UIMenuBuildable)->()) -> UIMenuElementIdentifier {
         
         var buildable: UIMenuBuildable = UIMenuBuilder()
         builder(&buildable)
         
         let menu = (buildable as! UIMenuBuilder).build()
         addElement(menu)
+        
+        return menu.identifier.rawValue
         
     }
     

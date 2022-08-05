@@ -10,7 +10,7 @@ import Foundation
 public protocol ContextMenuBuildable: UIMenuElementContainer {
     
     var title: String? { get set }
-    var identifier: String? { get set }
+    var identifier: UIMenuElementIdentifier? { get set }
     var options: UIMenu.Options { get set }
     var previewProvider: ContextMenu.PreviewProvider? { get set }
     var previewCommitter: ContextMenu.PreviewCommitter? { get set }
@@ -31,10 +31,9 @@ internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
     public typealias BuildType = ContextMenu
     
     public var title: String?
-    public var identifier: String?
+    public var identifier: UIMenuElementIdentifier?
     public var options: UIMenu.Options = []
-    public var elements: [UIMenuElement] = []
-    
+    public var children: [UIMenuElement] = []
     public var previewProvider: ContextMenu.PreviewProvider?
     public var previewCommitter: ContextMenu.PreviewCommitter?
     public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
@@ -56,8 +55,74 @@ internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
     
     private var _elementSize: Any?
     
+    init() {
+        //
+    }
+    
+    init(contextMenu: ContextMenu) {
+        
+        self.title = contextMenu.title
+        self.identifier = contextMenu.identifier
+        self.options = contextMenu.options
+        self.children = contextMenu.children
+        self.previewProvider = contextMenu.previewProvider
+        self.previewCommitter = contextMenu.previewCommitter
+        self.previewCommitStyle = contextMenu.previewCommitStyle
+        self.targetedHighlightPreviewProvider = contextMenu.targetedHighlightPreviewProvider
+        self.targetedDismissPreviewProvider = contextMenu.targetedDismissPreviewProvider
+        self.includeSuggestedElements = contextMenu.includeSuggestedElements
+        self.willPresent = contextMenu.willPresent
+        self.willDismiss = contextMenu.willDismiss
+        
+        if #available(iOS 16, *) {
+            self.elementSize = contextMenu.elementSize
+        }
+        
+    }
+    
     public func build() -> ContextMenu {
         return ContextMenu(buildable: self)
+    }
+    
+}
+
+public extension ContextMenu {
+    
+    convenience init(builder: (inout ContextMenuBuildable)->()) {
+        
+        var buildable: ContextMenuBuildable = ContextMenuBuilder()
+
+        builder(&buildable)
+                
+        self.init(buildable: buildable)
+        
+    }
+    
+}
+
+internal extension ContextMenu {
+    
+    convenience init(buildable: ContextMenuBuildable) {
+        
+        self.init(
+            title: buildable.title,
+            identifier: buildable.identifier,
+            options: buildable.options,
+            children: buildable.children,
+            previewProvider: buildable.previewProvider,
+            previewCommitter: buildable.previewCommitter,
+            previewCommitStyle: buildable.previewCommitStyle,
+            targetedHighlightPreviewProvider: buildable.targetedHighlightPreviewProvider,
+            targetedDismissPreviewProvider: buildable.targetedDismissPreviewProvider,
+            includeSuggestedElements: buildable.includeSuggestedElements,
+            willPresent: buildable.willPresent,
+            willDismiss: buildable.willDismiss
+        )
+        
+        if #available(iOS 16, *) {
+            self.elementSize = buildable.elementSize
+        }
+        
     }
     
 }
