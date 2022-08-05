@@ -1,5 +1,5 @@
 //
-//  UIMenuElementContainer.swift
+//  MenuElementContainer.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 8/4/22.
@@ -8,15 +8,15 @@
 import UIKit
 
 @available(iOS 14, *)
-public typealias UIDeferredMenuElementCompletion = ([UIMenuElement])->()
+public typealias DeferredMenuElementCompletion = ([UIMenuElement])->()
 
-public protocol UIMenuElementContainer {
+public protocol MenuElementContainer {
     
     var children: [UIMenuElement] { get set }
     
 }
 
-public extension UIMenuElementContainer {
+public extension MenuElementContainer {
     
     // MARK: Add
     
@@ -25,7 +25,7 @@ public extension UIMenuElementContainer {
     }
     
     @discardableResult
-    mutating func addAction(builder: (inout UIActionBuildable)->()) -> UIMenuElementIdentifier {
+    mutating func addAction(builder: (inout UIActionBuildable)->()) -> MenuElementIdentifier {
         
         var buildable: UIActionBuildable = UIActionBuilder()
         builder(&buildable)
@@ -38,7 +38,7 @@ public extension UIMenuElementContainer {
     }
     
     @discardableResult
-    mutating func addMenu(builder: (inout UIMenuBuildable)->()) -> UIMenuElementIdentifier {
+    mutating func addMenu(builder: (inout UIMenuBuildable)->()) -> MenuElementIdentifier {
         
         var buildable: UIMenuBuildable = UIMenuBuilder()
         builder(&buildable)
@@ -51,7 +51,7 @@ public extension UIMenuElementContainer {
     }
     
     @available(iOS 14, *)
-    mutating func addDeferredElements(block: @escaping (@escaping UIDeferredMenuElementCompletion)->()) {
+    mutating func addDeferredElements(block: @escaping (@escaping DeferredMenuElementCompletion)->()) {
         
         // Not using builders here because we only pass in one (required) thing.
         // Also, the way to init an `uncached` deferred element is a static function,
@@ -62,7 +62,7 @@ public extension UIMenuElementContainer {
     }
     
     @available(iOS 15, *)
-    mutating func addUncachedDeferredElements(block: @escaping (@escaping UIDeferredMenuElementCompletion)->()) {
+    mutating func addUncachedDeferredElements(block: @escaping (@escaping DeferredMenuElementCompletion)->()) {
         
         // Not using builders here because we only pass in one (required) thing.
         // Also, the way to init an `uncached` deferred element is a static function,

@@ -28,6 +28,8 @@ class ContextMenuCollectionViewController: UIViewController {
         "Blue": .blue
     ]
     
+    private var isLoved: Bool = false
+    
     private weak var delegate: ContextMenuCollectionViewControllerDelegate?
     
     init(delegate: ContextMenuCollectionViewControllerDelegate) {
@@ -91,9 +93,34 @@ class ContextMenuCollectionViewController: UIViewController {
         
     }
     
+    private func toggleLoved() {
+        
+        self.isLoved.toggle()
+        
+        self.contextMenu = buildContextMenu(loved: self.isLoved)
+        
+    }
+    
     private func setupContextMenus() {
         
-        self.contextMenu = ContextMenu { menu in
+        self.contextMenu = buildContextMenu(loved: self.isLoved)
+        
+    }
+    
+    private func buildContextMenu(loved: Bool) -> ContextMenu {
+        
+        return ContextMenu { menu in
+            
+            menu.addAction { action in
+                
+                action.title = loved ? "You love me!" : "Do you love me?"
+                action.image = loved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+                
+                action.handler = { [weak self] _ in
+                    self?.toggleLoved()
+                }
+                
+            }
                                     
             menu.addAction { action in
                 
@@ -160,7 +187,7 @@ class ContextMenuCollectionViewController: UIViewController {
                 self.didTapCell(cell)
                 
             }
-
+            
             menu.willPresent = {
                 print("Context menu is being presented")
             }

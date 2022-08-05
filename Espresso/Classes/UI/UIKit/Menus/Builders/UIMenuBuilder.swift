@@ -7,11 +7,11 @@
 
 import UIKit
 
-public protocol UIMenuBuildable: UIMenuElementContainer {
+public protocol UIMenuBuildable: MenuElementContainer {
     
     var title: String { get set }
     var image: UIImage? { get set }
-    var identifier: UIMenuElementIdentifier? { get set }
+    var identifier: MenuElementIdentifier? { get set }
     var options: UIMenu.Options { get set }
     
     @available(iOS 15, *)
@@ -28,7 +28,7 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     
     public var title: String = .empty
     public var image: UIImage?
-    public var identifier: UIMenuElementIdentifier?
+    public var identifier: MenuElementIdentifier?
     public var options: UIMenu.Options = []
     public var children: [UIMenuElement] = []
     
@@ -54,28 +54,6 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     
     private var _subtitle: String?
     private var _elementSize: Any?
-    
-    init() {
-        //
-    }
-    
-    init(menu: UIMenu) {
-        
-        self.title = menu.title
-        self.image = menu.image
-        self.identifier = menu.identifier.rawValue
-        self.options = menu.options
-        self.children = menu.children
-        
-        if #available(iOS 15, *) {
-            self.subtitle = menu.subtitle
-        }
-        
-        if #available(iOS 16, *) {
-            self.elementSize = menu.preferredElementSize
-        }
-        
-    }
     
     public func build() -> UIMenu {
         return UIMenu(buildable: self)

@@ -11,17 +11,21 @@ import Espresso
 class ContextMenuViewController: UIViewController {
     
     private var contextMenuView: ContextMenuView!
+    private var buttonView: UIButton!
+    private var barButtonItem: UIBarButtonItem!
     
     private var viewMenu: ContextMenu!
-    private var buttonMenu: ContextMenu!
-    private var barItemMenu: ContextMenu!
+    private var buttonMenu: UIMenu?
+    private var barItemMenu: UIMenu?
     
+    private var isLoved: Bool = false
+     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        setupContextMenus()
+        // Views
         
         self.contextMenuView = ContextMenuView()
         self.view.addSubview(self.contextMenuView)
@@ -30,48 +34,108 @@ class ContextMenuViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
-        self.contextMenuView
-            .addContextMenu(self.viewMenu)
-        
-        if #available(iOS 14, *) {
-            
-            // Button
-            
-            let button = UIButton()
-            button.backgroundColor = .systemBlue
-            button.setTitle("Tap me", for: .normal)
-            button.showsMenuAsPrimaryAction = true
-            button.roundCorners(radius: 12)
-            self.view.addSubview(button)
-            button.snp.makeConstraints { make in
-                make.left.equalTo(20)
-                make.right.equalTo(-20)
-                make.bottom.equalTo(-30)
-                make.height.equalTo(50)
-            }
-            
-            button
-                .addContextMenu(self.buttonMenu)
-            
-            
-            // Bar Button
-            
-            let barButtonItem = UIBarButtonItem(systemItem: .action)
-            self.navigationItem.rightBarButtonItem = barButtonItem
-                        
-            barButtonItem
-                .addContextMenu(self.barItemMenu)
-
+        self.buttonView = UIButton()
+        self.buttonView.backgroundColor = .systemBlue
+        self.buttonView.setTitle("Tap me", for: .normal)
+        self.buttonView.roundCorners(radius: 12)
+        self.view.addSubview(self.buttonView)
+        self.buttonView.snp.makeConstraints { make in
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
+            make.bottom.equalTo(-30)
+            make.height.equalTo(50)
         }
+        
+        self.barButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: nil,
+            action: nil
+        )
+        
+        self.navigationItem.rightBarButtonItem = self.barButtonItem
+        
+        // Context Menus
+        
+        setupContextMenus()
+        
+    }
+    
+    private func toggleLoved() {
+        
+        self.isLoved.toggle()
 
+        self.viewMenu = buildContextMenu(loved: self.isLoved)
+            .add(to: self.contextMenuView)
+        
     }
     
     private func setupContextMenus() {
         
-        self.viewMenu = ContextMenu { menu in
+        // View
+        
+        self.viewMenu = buildContextMenu(loved: self.isLoved)
+            .add(to: self.contextMenuView)
+
+        if #available(iOS 14, *) {
             
-            menu.title = "View Menu"
-                                                
+            // Button
+            
+            self.buttonMenu = UIMenu { menu in
+                            
+                menu.addAction { action in
+                    
+                    action.title = "This is a button action"
+                    action.image = UIImage(systemName: "hand.tap")
+                    
+                    action.handler = { _ in
+                        self.alert("You tapped the button action!")
+                    }
+                    
+                }
+                
+            }
+            
+            self.buttonView.menu = self.buttonMenu
+            self.buttonView.showsMenuAsPrimaryAction = true
+
+            // Bar
+            
+            self.barItemMenu = UIMenu { menu in
+                            
+                menu.addAction { action in
+                    
+                    action.title = "This is bar item action"
+                    action.image = UIImage(systemName: "hand.tap")
+                    
+                    action.handler = { _ in
+                        self.alert("You tapped the bar item action!")
+                    }
+                    
+                }
+                
+            }
+            
+            self.barButtonItem.menu = self.barItemMenu
+            
+        }
+        
+    }
+    
+    private func buildContextMenu(loved: Bool) -> ContextMenu {
+        
+        return ContextMenu { menu in
+            
+            menu.addAction { action in
+                
+                action.title = loved ? "You love me!" : "Do you love me?"
+                action.image = loved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+                
+                action.handler = { [weak self] _ in
+                    self?.toggleLoved()
+                }
+                
+            }
+            
             menu.addAction { action in
                                 
                 action.title = "Tap me!"
@@ -100,7 +164,9 @@ class ContextMenuViewController: UIViewController {
                     
                     let action = UIAction { action in
                         
-                        action.title = "Thanks for waiting, tap me instead!"
+                        action.title = "Thanks for waiting"
+                        action.image = UIImage(systemName: "clock")
+                        
                         action.handler = { _ in
                             self.alert("Wow! You're so patient, and pretty good at following orders!")
                         }
@@ -120,19 +186,17 @@ class ContextMenuViewController: UIViewController {
             
             menu.addMenu { moreMenu in
                 
-                moreMenu.identifier = "menu_more"
                 moreMenu.title = "Actually, tap me!"
                 moreMenu.image = UIImage(systemName: "star")
                 
                 moreMenu.addMenu { moreMoreMenu in
 
-                    moreMoreMenu.title = "Just one more tap..."
+                    moreMoreMenu.title = "Just one more tap"
                     moreMoreMenu.image = UIImage(systemName: "star.fill")
                     
                     moreMoreMenu.addAction { action in
-
-                        action.identifier = "action_i_swear"
-                        action.title = "Tap me, I swear!"
+                        
+                        action.title = "You did it!"
                         action.image = UIImage(systemName: "sparkles")
                         
                         action.handler = { _ in
@@ -146,39 +210,11 @@ class ContextMenuViewController: UIViewController {
             }
 
             menu.willPresent = {
-                print("Context menu is being presented")
+                print("🟢 Context menu is being presented")
             }
 
             menu.willDismiss = {
-                print("Context menu is being dismissed")
-            }
-            
-        }
-        
-        self.buttonMenu = ContextMenu { menu in
-                        
-            menu.addAction { action in
-                
-                action.title = "Tap me!"
-                action.image = UIImage(systemName: "hand.tap")
-                action.handler = { _ in
-                    self.alert("You tapped the button menu's action!")
-                }
-                
-            }
-            
-        }
-        
-        self.barItemMenu = ContextMenu { menu in
-                        
-            menu.addAction { action in
-                
-                action.title = "Tap me!"
-                action.image = UIImage(systemName: "hand.tap")
-                action.handler = { _ in
-                    self.alert("You tapped the bar item menu's action!")
-                }
-                
+                print("🔴 Context menu is being dismissed")
             }
             
         }

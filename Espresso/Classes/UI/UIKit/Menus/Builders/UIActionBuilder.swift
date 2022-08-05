@@ -11,7 +11,7 @@ public protocol UIActionBuildable {
     
     var title: String { get set }
     var image: UIImage? { get set }
-    var identifier: UIMenuElementIdentifier? { get set }
+    var identifier: MenuElementIdentifier? { get set }
     var discoverabilityTitle: String? { get set }
     var attributes: UIMenuElement.Attributes { get set }
     var state: UIMenuElement.State { get set }
@@ -28,7 +28,7 @@ internal struct UIActionBuilder: Builder, UIActionBuildable {
     
     var title: String = .empty
     var image: UIImage?
-    var identifier: UIMenuElementIdentifier?
+    var identifier: MenuElementIdentifier?
     var discoverabilityTitle: String?
     var attributes: UIMenuElement.Attributes = []
     var state: UIMenuElement.State = .off
@@ -45,25 +45,6 @@ internal struct UIActionBuilder: Builder, UIActionBuildable {
     }
     
     private var _subtitle: String?
-    
-    init() {
-        //
-    }
-    
-    init(action: UIAction) {
-        
-        self.title = action.title
-        self.image = action.image
-        self.identifier = action.identifier.rawValue
-        self.discoverabilityTitle = action.discoverabilityTitle
-        self.attributes = action.attributes
-        self.state = action.state
-        
-        if #available(iOS 15, *) {
-            self.subtitle = action.subtitle
-        }
-        
-    }
     
     func build() -> UIAction {
         return UIAction(buildable: self)

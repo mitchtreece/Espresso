@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Provides a previewing `UIViewController` used while a context menu preview is being committed.
+/// Provides a previewing `UIViewController` used while a context menu's preview is being committed.
 public typealias UIContextMenuContentPreviewCommitter = (UIViewController?)->()
 
 public class ContextMenu: NSObject, ContextMenuBuildable {
@@ -15,14 +15,15 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     /// Provides context menu data, and returns a view controller for previewing.
     public typealias PreviewProvider = ([String: Any])->UIViewController?
     
-    /// Provides context menu data and a previewing view controller used while a context menu preview is being committed.
+    /// Provides context menu data and a previewing view controller used while a context menu's preview is being committed.
     public typealias PreviewCommitter = ([String: Any], UIViewController?)->()
     
     /// Provides context menu data, and returns a targeted preview for the context menu.
     public typealias TargetedPreviewProvider = ([String: Any])->UITargetedPreview?
     
     public var title: String?
-    public var identifier: UIMenuElementIdentifier?
+    public var identifier: MenuElementIdentifier?
+    public var configurationIdentifier: NSCopying?
     public var options: UIMenu.Options = []
     public var children: [UIMenuElement] = []
     public var previewProvider: PreviewProvider?
@@ -52,22 +53,24 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     /// The context menu's table view configuration.
     ///
     /// Use this to forward handling of relevant table view delegate calls to the context menu.
-    public private(set) lazy var tableConfiguration: TableConfiguration = {
-        return TableConfiguration(menu: self)
+    public private(set) lazy var tableConfiguration: ContextMenuTableConfiguration = {
+        return ContextMenuTableConfiguration(contextMenu: self)
     }()
 
     /// The context menu's collection view configuration.
     ///
     /// Use this to forward handling of relevant collection view delegate calls to the context menu.
-    public private(set) lazy var collectionConfiguration: CollectionConfiguration = {
-        return CollectionConfiguration(menu: self)
+    public private(set) lazy var collectionConfiguration: ContextMenuCollectionConfiguration = {
+        return ContextMenuCollectionConfiguration(contextMenu: self)
     }()
     
     internal weak var interaction: UIContextMenuInteraction?
-    private var menu: UIMenu?
+    
+    // MARK: Initializers
     
     public init(title: String? = nil,
                 identifier: String? = nil,
+                configurationIdentifier: NSCopying? = nil,
                 options: UIMenu.Options = [],
                 children: [UIMenuElement] = [],
                 previewProvider: PreviewProvider?,
@@ -81,6 +84,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
 
         self.title = title
         self.identifier = identifier
+        self.configurationIdentifier = configurationIdentifier
         self.options = options
         self.children = children
         self.previewProvider = previewProvider
@@ -97,6 +101,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     @available(iOS 16, *)
     public convenience init(title: String? = nil,
                             identifier: String? = nil,
+                            configurationIdentifier: NSCopying? = nil,
                             options: UIMenu.Options = [],
                             elementSize: UIMenu.ElementSize = .large,
                             children: [UIMenuElement] = [],
@@ -112,6 +117,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         self.init(
             title: title,
             identifier: identifier,
+            configurationIdentifier: configurationIdentifier,
             options: options,
             children: children,
             previewProvider: previewProvider,
@@ -128,6 +134,22 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
 
     }
     
+    @discardableResult
+    public func add(to target: ContextMenuTarget) -> Self {
+        
+        target.addContextMenu(self)
+        return self
+        
+    }
+    
+    public func removeFromTarget() {
+        
+        self.interaction?
+            .view?
+            .removeContextMenu(self)
+        
+    }
+    
     // MARK: Data
     
     @discardableResult
@@ -139,44 +161,19 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         
     }
     
-    public func getDataForKey(_ key: String) -> Any? {
-        return self.data[key]
-    }
-    
-    // MARK: Add To
-    
-    public func dismiss() {
-        self.interaction?.dismissMenu()
-    }
-    
     // MARK: Building
     
-    /// Builds a `UIMenu` from this context menu.
+    /// Builds a `UIMenu` for this context menu.
     ///
-    /// - parameter additionalElements: Additional elements to append to this context menu's
-    /// existing elements while building; _defaults to none_.
     /// - returns: A new `UIMenu`.
-    public func buildMenu(additionalElements: [UIMenuElement] = []) -> UIMenu {
-        
-        let menu = UIMenu(
-            title: self.title ?? "",
-            identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
-            options: self.options,
-            children: self.children.appending(contentsOf: additionalElements)
-        )
-
-        if #available(iOS 16, *) {
-            menu.preferredElementSize = self.elementSize
-        }
-        
-        self.menu = menu
-
-        return menu
-
+    public func menu() -> UIMenu {
+        return menu(additionalElements: [])
     }
-
-    /// Builds a context menu configuration.
-    public func buildConfiguration() -> UIContextMenuConfiguration {
+    
+    /// Builds a `UIContextMenuConfiguration` for this context menu.
+    ///
+    /// - returns: A new `UIContextMenuConfiguration`.
+    public func configuration() -> UIContextMenuConfiguration {
 
         var previewProvider: UIContextMenuContentPreviewProvider?
         var actionProvider: UIContextMenuActionProvider?
@@ -203,17 +200,57 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
                     additionalElements.append(contentsOf: suggestedElements)
                 }
 
-                return self.buildMenu(additionalElements: additionalElements)
+                return self.menu(additionalElements: additionalElements)
 
             }
 
         }
 
         return UIContextMenuConfiguration(
-            identifier: nil,
+            identifier: self.configurationIdentifier,
             previewProvider: previewProvider,
             actionProvider: actionProvider
         )
+
+    }
+    
+    public func getDataForKey(_ key: String) -> Any? {
+        return self.data[key]
+    }
+    
+    // MARK: UIContextMenuInteraction
+    
+    @available(iOS 14, *)
+    public func updateVisibleMenu(block: (UIMenu)->(UIMenu)) {
+        
+        self.interaction?
+            .updateVisibleMenu(block)
+        
+    }
+    
+    public func dismiss() {
+        
+        self.interaction?
+            .dismissMenu()
+        
+    }
+    
+    // MARK: Private
+    
+    private func menu(additionalElements: [UIMenuElement]) -> UIMenu {
+        
+        let menu = UIMenu(
+            title: self.title ?? "",
+            identifier: (self.identifier != nil) ? UIMenu.Identifier(self.identifier!) : nil,
+            options: self.options,
+            children: self.children.appending(contentsOf: additionalElements)
+        )
+
+        if #available(iOS 16, *) {
+            menu.preferredElementSize = self.elementSize
+        }
+        
+        return menu
 
     }
     
@@ -226,7 +263,7 @@ extension ContextMenu: UIContextMenuInteractionDelegate {
     public func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                        configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 
-        return buildConfiguration()
+        return configuration()
 
     }
 
