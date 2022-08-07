@@ -17,7 +17,7 @@ public protocol MenuElementContainer {
 }
 
 public extension MenuElementContainer {
-    
+        
     // MARK: Add
     
     mutating func addElement(_ element: UIMenuElement) {
@@ -36,6 +36,7 @@ public extension MenuElementContainer {
         return action.identifier.rawValue
         
     }
+    
     
     @discardableResult
     mutating func addMenu(builder: (inout UIMenuBuildable)->()) -> MenuElementIdentifier {

@@ -83,6 +83,7 @@
 		25A5737E935AD652B4B4D2AE264288CB /* TakeWithPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7535A5B197459B9BF043A7B757075 /* TakeWithPredicate.swift */; };
 		26390C23289CEC5600AB6818 /* MenuElementIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C22289CEC5600AB6818 /* MenuElementIdentifier.swift */; };
 		26390C27289CF5EA00AB6818 /* MenuElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */; };
+		26D3509728A0638800139905 /* MenuTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3509628A0638800139905 /* MenuTarget.swift */; };
 		26F61D1A2899F039009C4962 /* UIActionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D192899F039009C4962 /* UIActionBuilder.swift */; };
 		26F61D1C2899F09C009C4962 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1B2899F09C009C4962 /* Builder.swift */; };
 		26F61D1E289A07BB009C4962 /* UIMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1D289A07BB009C4962 /* UIMenuBuilder.swift */; };
@@ -773,6 +774,7 @@
 		26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuElementContainer.swift; sourceTree = "<group>"; };
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
+		26D3509628A0638800139905 /* MenuTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTarget.swift; sourceTree = "<group>"; };
 		26F61D192899F039009C4962 /* UIActionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionBuilder.swift; sourceTree = "<group>"; };
 		26F61D1B2899F09C009C4962 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		26F61D1D289A07BB009C4962 /* UIMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuBuilder.swift; sourceTree = "<group>"; };
@@ -2427,6 +2429,7 @@
 			children = (
 				26390C22289CEC5600AB6818 /* MenuElementIdentifier.swift */,
 				26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */,
+				26D3509628A0638800139905 /* MenuTarget.swift */,
 				26EA0833289DDC2F009727F2 /* ContextMenu */,
 				C4A9571F0C92C578E1749C727C40C802 /* Builders */,
 			);
@@ -2919,6 +2922,7 @@
 				4B0493CB258A52B5A7215B8385834254 /* AppleDevice.swift in Sources */,
 				F6CF66B556419CCA1B73154B33D571D3 /* AppleDevice+DeviceType.swift in Sources */,
 				5749F3249F4870068776B3D4C88E5396 /* AppleDevice+Helpers.swift in Sources */,
+				26D3509728A0638800139905 /* MenuTarget.swift in Sources */,
 				09CDE327F24621CCAE0102082749FE0D /* Array+Espresso.swift in Sources */,
 				8918B1C2B7973BE41DDBD61F342CD1CE /* Array+Animation.swift in Sources */,
 				3EBF313A2DB75098474C653B48ED38A4 /* AsyncOperation.swift in Sources */,

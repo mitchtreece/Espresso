@@ -10,7 +10,10 @@ import UIKit
 /// Provides a previewing `UIViewController` used while a context menu's preview is being committed.
 public typealias UIContextMenuContentPreviewCommitter = (UIViewController?)->()
 
-public class ContextMenu: NSObject, ContextMenuBuildable {
+public class ContextMenu: NSObject {
+
+    /// Provides a buildable context menu used to configure an actual context menu.
+    public typealias Provider = (inout ContextMenuBuildable)->()
         
     /// Provides context menu data, and returns a view controller for previewing.
     public typealias PreviewProvider = ([String: Any])->UIViewController?
@@ -21,24 +24,22 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     /// Provides context menu data, and returns a targeted preview for the context menu.
     public typealias TargetedPreviewProvider = ([String: Any])->UITargetedPreview?
     
-    public var title: String?
-    public var identifier: MenuElementIdentifier?
-    public var configurationIdentifier: NSCopying?
-    public var options: UIMenu.Options = []
-    public var children: [UIMenuElement] = []
-    public var previewProvider: PreviewProvider?
-    public var previewCommitter: PreviewCommitter?
-    public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
-    public var targetedHighlightPreviewProvider: TargetedPreviewProvider?
-    public var targetedDismissPreviewProvider: TargetedPreviewProvider?
-    public var includeSuggestedElements: Bool = false
-    public var willPresent: (()->())?
-    public var willDismiss: (()->())?
-    
-    private var _elementSize: Any?
-    
+    public private(set) var title: String?
+    public private(set) var identifier: MenuElementIdentifier?
+    public private(set) var configurationIdentifier: NSCopying?
+    public private(set) var options: UIMenu.Options = []
+    public private(set) var children: [UIMenuElement] = []
+    public private(set) var previewProvider: PreviewProvider?
+    public private(set) var previewCommitter: PreviewCommitter?
+    public private(set) var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
+    public private(set) var targetedHighlightPreviewProvider: TargetedPreviewProvider?
+    public private(set) var targetedDismissPreviewProvider: TargetedPreviewProvider?
+    public private(set) var includeSuggestedElements: Bool = false
+    public private(set) var willPresent: (()->())?
+    public private(set) var willDismiss: (()->())?
+
     @available(iOS 16, *)
-    public var elementSize: UIMenu.ElementSize {
+    public private(set) var elementSize: UIMenu.ElementSize {
         get {
             return (self._elementSize as? UIMenu.ElementSize) ?? .large
         }
@@ -46,7 +47,9 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
             self._elementSize = newValue
         }
     }
-    
+
+    private var _elementSize: Any?
+            
     /// The context menu's associated data dictionary.
     public private(set) var data = [String: Any]()
 
@@ -63,76 +66,46 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     public private(set) lazy var collectionConfiguration: ContextMenuCollectionConfiguration = {
         return ContextMenuCollectionConfiguration(contextMenu: self)
     }()
-    
+        
     internal weak var interaction: UIContextMenuInteraction?
     
     // MARK: Initializers
-    
-    public init(title: String? = nil,
-                identifier: String? = nil,
-                configurationIdentifier: NSCopying? = nil,
-                options: UIMenu.Options = [],
-                children: [UIMenuElement] = [],
-                previewProvider: PreviewProvider?,
-                previewCommitter: PreviewCommitter?,
-                previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop,
-                targetedHighlightPreviewProvider: TargetedPreviewProvider? = nil,
-                targetedDismissPreviewProvider: TargetedPreviewProvider? = nil,
-                includeSuggestedElements: Bool = false,
-                willPresent: (()->())? = nil,
-                willDismiss: (()->())? = nil) {
 
-        self.title = title
-        self.identifier = identifier
-        self.configurationIdentifier = configurationIdentifier
-        self.options = options
-        self.children = children
-        self.previewProvider = previewProvider
-        self.previewCommitter = previewCommitter
-        self.previewCommitStyle = previewCommitStyle
-        self.targetedHighlightPreviewProvider = targetedHighlightPreviewProvider
-        self.targetedDismissPreviewProvider = targetedDismissPreviewProvider
-        self.includeSuggestedElements = includeSuggestedElements
-        self.willPresent = willPresent
-        self.willDismiss = willDismiss
+    public convenience init(builder: Provider) {
+        
+        var buildable: ContextMenuBuildable = ContextMenuBuilder()
+        
+        builder(&buildable)
+
+        self.init(buildable: buildable)
+        
+    }
+
+    private init(buildable: ContextMenuBuildable) {
+        
+        self.title = buildable.title
+        self.identifier = buildable.identifier
+        self.configurationIdentifier = buildable.configurationIdentifier
+        self.options = buildable.options
+        self.children = buildable.children
+        self.previewProvider = buildable.previewProvider
+        self.previewCommitter = buildable.previewCommitter
+        self.previewCommitStyle = buildable.previewCommitStyle
+        self.targetedHighlightPreviewProvider = buildable.targetedHighlightPreviewProvider
+        self.targetedDismissPreviewProvider = buildable.targetedDismissPreviewProvider
+        self.includeSuggestedElements = buildable.includeSuggestedElements
+        self.willPresent = buildable.willPresent
+        self.willDismiss = buildable.willDismiss
+        
+        super.init()
+        
+        if #available(iOS 16, *) {
+            self.elementSize = buildable.elementSize
+        }
         
     }
     
-    @available(iOS 16, *)
-    public convenience init(title: String? = nil,
-                            identifier: String? = nil,
-                            configurationIdentifier: NSCopying? = nil,
-                            options: UIMenu.Options = [],
-                            elementSize: UIMenu.ElementSize = .large,
-                            children: [UIMenuElement] = [],
-                            previewProvider: PreviewProvider?,
-                            previewCommitter: PreviewCommitter?,
-                            previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop,
-                            targetedHighlightPreviewProvider: TargetedPreviewProvider? = nil,
-                            targetedDismissPreviewProvider: TargetedPreviewProvider? = nil,
-                            includeSuggestedElements: Bool = false,
-                            willPresent: (()->())? = nil,
-                            willDismiss: (()->())? = nil) {
-        
-        self.init(
-            title: title,
-            identifier: identifier,
-            configurationIdentifier: configurationIdentifier,
-            options: options,
-            children: children,
-            previewProvider: previewProvider,
-            previewCommitter: previewCommitter,
-            previewCommitStyle: previewCommitStyle,
-            targetedHighlightPreviewProvider: targetedHighlightPreviewProvider,
-            targetedDismissPreviewProvider: targetedDismissPreviewProvider,
-            includeSuggestedElements: includeSuggestedElements,
-            willPresent: willPresent,
-            willDismiss: willDismiss
-        )
-        
-        self.elementSize = elementSize
-
-    }
+    // MARK: Add & Remove
     
     @discardableResult
     public func add(to target: ContextMenuTarget) -> Self {
@@ -161,15 +134,12 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         
     }
     
-    // MARK: Building
-    
-    /// Builds a `UIMenu` for this context menu.
-    ///
-    /// - returns: A new `UIMenu`.
-    public func menu() -> UIMenu {
-        return menu(additionalElements: [])
+    public func getDataForKey(_ key: String) -> Any? {
+        return self.data[key]
     }
     
+    // MARK: UIContextMenuConfiguration
+
     /// Builds a `UIContextMenuConfiguration` for this context menu.
     ///
     /// - returns: A new `UIContextMenuConfiguration`.
@@ -205,17 +175,13 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
             }
 
         }
-
+        
         return UIContextMenuConfiguration(
             identifier: self.configurationIdentifier,
             previewProvider: previewProvider,
             actionProvider: actionProvider
         )
 
-    }
-    
-    public func getDataForKey(_ key: String) -> Any? {
-        return self.data[key]
     }
     
     // MARK: UIContextMenuInteraction
@@ -236,7 +202,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
     }
     
     // MARK: Private
-    
+
     private func menu(additionalElements: [UIMenuElement]) -> UIMenu {
         
         let menu = UIMenu(
@@ -249,7 +215,7 @@ public class ContextMenu: NSObject, ContextMenuBuildable {
         if #available(iOS 16, *) {
             menu.preferredElementSize = self.elementSize
         }
-        
+                
         return menu
 
     }

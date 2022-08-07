@@ -52,7 +52,7 @@ class ContextMenuCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollection()
-        setupContextMenus()
+        setupContextMenu()
         
     }
     
@@ -92,34 +92,25 @@ class ContextMenuCollectionViewController: UIViewController {
             .register(in: self.collectionView)
         
     }
-    
-    private func toggleLoved() {
+
+    private func setupContextMenu() {
         
-        self.isLoved.toggle()
-        
-        self.contextMenu = buildContextMenu(loved: self.isLoved)
-        
-    }
-    
-    private func setupContextMenus() {
-        
-        self.contextMenu = buildContextMenu(loved: self.isLoved)
-        
-    }
-    
-    private func buildContextMenu(loved: Bool) -> ContextMenu {
-        
-        return ContextMenu { menu in
+        self.contextMenu = ContextMenu { [weak self] menu in
+            
+            guard let self = self else { return }
             
             menu.addAction { action in
                 
-                action.title = loved ? "You love me!" : "Do you love me?"
-                action.image = loved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-                
-                action.handler = { [weak self] _ in
-                    self?.toggleLoved()
+                action.title = self.isLoved ? "You love me!" : "Do you love me?"
+                action.image = self.isLoved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+
+                action.handler = { _ in
+
+                    self.isLoved.toggle()
+                    self.setupContextMenu()
+
                 }
-                
+
             }
                                     
             menu.addAction { action in
@@ -199,7 +190,7 @@ class ContextMenuCollectionViewController: UIViewController {
         }
         
     }
-    
+
     private func alert(_ message: String) {
         (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }

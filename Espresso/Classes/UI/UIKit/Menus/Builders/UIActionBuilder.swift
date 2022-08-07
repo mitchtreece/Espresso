@@ -35,7 +35,7 @@ internal struct UIActionBuilder: Builder, UIActionBuildable {
     var handler: UIActionHandler = { _ in }
         
     @available(iOS 15, *)
-    public var subtitle: String? {
+    var subtitle: String? {
         get {
             return self._subtitle
         }
@@ -45,6 +45,26 @@ internal struct UIActionBuilder: Builder, UIActionBuildable {
     }
     
     private var _subtitle: String?
+    
+    init() {
+        //
+    }
+    
+    init(buildable: UIActionBuildable) {
+        
+        self.title = buildable.title
+        self.image = buildable.image
+        self.identifier = buildable.identifier
+        self.discoverabilityTitle = buildable.discoverabilityTitle
+        self.attributes = buildable.attributes
+        self.state = buildable.state
+        self.handler = buildable.handler
+        
+        if #available(iOS 15, *) {
+            self.subtitle = buildable.subtitle
+        }
+        
+    }
     
     func build() -> UIAction {
         return UIAction(buildable: self)
@@ -67,9 +87,9 @@ public extension UIAction {
 }
 
 internal extension UIAction {
-    
+
     convenience init(buildable: UIActionBuildable) {
-        
+
         self.init(
             title: buildable.title,
             image: buildable.image,
@@ -79,11 +99,11 @@ internal extension UIAction {
             state: buildable.state,
             handler: buildable.handler
         )
-        
+
         if #available(iOS 15, *) {
             self.subtitle = buildable.subtitle
         }
-        
+
     }
-    
+
 }

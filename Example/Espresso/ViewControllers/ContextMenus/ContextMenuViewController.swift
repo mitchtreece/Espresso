@@ -19,7 +19,9 @@ class ContextMenuViewController: UIViewController {
     private var barItemMenu: UIMenu?
     
     private var isLoved: Bool = false
-     
+    private var isShared: Bool = false
+    private var isFavorite: Bool = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -54,108 +56,67 @@ class ContextMenuViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = self.barButtonItem
         
-        // Context Menus
+        // Menus
         
-        setupContextMenus()
+        setupContextMenu()
         
-    }
-    
-    private func toggleLoved() {
-        
-        self.isLoved.toggle()
-
-        self.viewMenu = buildContextMenu(loved: self.isLoved)
-            .add(to: self.contextMenuView)
-        
-    }
-    
-    private func setupContextMenus() {
-        
-        // View
-        
-        self.viewMenu = buildContextMenu(loved: self.isLoved)
-            .add(to: self.contextMenuView)
-
         if #available(iOS 14, *) {
-            
-            // Button
-            
-            self.buttonMenu = UIMenu { menu in
-                            
-                menu.addAction { action in
-                    
-                    action.title = "This is a button action"
-                    action.image = UIImage(systemName: "hand.tap")
-                    
-                    action.handler = { _ in
-                        self.alert("You tapped the button action!")
-                    }
-                    
-                }
-                
-            }
-            
-            self.buttonView.menu = self.buttonMenu
-            self.buttonView.showsMenuAsPrimaryAction = true
-
-            // Bar
-            
-            self.barItemMenu = UIMenu { menu in
-                            
-                menu.addAction { action in
-                    
-                    action.title = "This is bar item action"
-                    action.image = UIImage(systemName: "hand.tap")
-                    
-                    action.handler = { _ in
-                        self.alert("You tapped the bar item action!")
-                    }
-                    
-                }
-                
-            }
-            
-            self.barButtonItem.menu = self.barItemMenu
+                        
+            setupShareMenu()
+            setupFavoriteMenu()
             
         }
         
     }
-    
-    private func buildContextMenu(loved: Bool) -> ContextMenu {
-        
-        return ContextMenu { menu in
+
+    private func setupContextMenu() {
+                
+        self.viewMenu = self.contextMenuView.addContextMenu { [weak self] menu in
+            
+            guard let self = self else { return }
+            
+            menu.willPresent = {
+                print("🟢 Context menu is being presented")
+            }
+            
+            menu.willDismiss = {
+                print("🔴 Context menu is being dismissed")
+            }
             
             menu.addAction { action in
                 
-                action.title = loved ? "You love me!" : "Do you love me?"
-                action.image = loved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+                action.title = self.isLoved ? "You love me!" : "Do you love me?"
+                action.image = self.isLoved ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
                 
-                action.handler = { [weak self] _ in
-                    self?.toggleLoved()
+                action.handler = { _ in
+                    
+                    self.isLoved.toggle()
+                    self.setupContextMenu()
+                    
                 }
                 
             }
             
             menu.addAction { action in
-                                
+                
                 action.title = "Tap me!"
                 action.image = UIImage(systemName: "hand.tap")
-                                
+                
                 action.handler = { _ in
                     self.alert("Wow! You're pretty good at following orders")
                 }
-
+                
             }
             
             menu.addAction { action in
-
+                
                 action.title = "No, tap me!"
                 action.image = UIImage(systemName: "hand.tap.fill")
                 
                 action.handler = { _ in
                     self.alert("You're not that good at following orders, are you?")
                 }
-
+                
             }
             
             if #available(iOS 15, *) {
@@ -177,7 +138,7 @@ class ContextMenuViewController: UIViewController {
                         
                         try! await Task.sleep(duration: .seconds(2))
                         completion([action])
-
+                        
                     }
                     
                 }
@@ -190,7 +151,7 @@ class ContextMenuViewController: UIViewController {
                 moreMenu.image = UIImage(systemName: "star")
                 
                 moreMenu.addMenu { moreMoreMenu in
-
+                    
                     moreMoreMenu.title = "Just one more tap"
                     moreMoreMenu.image = UIImage(systemName: "star.fill")
                     
@@ -202,25 +163,72 @@ class ContextMenuViewController: UIViewController {
                         action.handler = { _ in
                             self.alert("Wow! I'm surprised you actually did all that. You're really good at following orders!")
                         }
-
+                        
                     }
-
+                    
                 }
-
+                
             }
-
-            menu.willPresent = {
-                print("🟢 Context menu is being presented")
-            }
-
-            menu.willDismiss = {
-                print("🔴 Context menu is being dismissed")
+            
+        }
+                
+    }
+    
+    @available(iOS 14, *)
+    private func setupShareMenu() {
+        
+        self.barItemMenu = self.barButtonItem.addMenu { [weak self] menu in
+            
+            guard let self = self else { return }
+                        
+            menu.addAction { action in
+                
+                action.title = self.isShared ? "Shared" : "Share"
+                action.image = self.isShared ? nil : UIImage(systemName: "square.and.arrow.up")
+                action.state = self.isShared ? .on : .off
+                
+                action.handler = { _ in
+                    
+                    self.isShared.toggle()
+                    self.alert("Shared: \(self.isShared)")
+                    self.setupShareMenu()
+                    
+                }
+                
             }
             
         }
         
     }
     
+    @available(iOS 14, *)
+    private func setupFavoriteMenu() {
+        
+        self.buttonView.showsMenuAsPrimaryAction = true
+                
+        self.buttonMenu = self.buttonView.addMenu { [weak self] menu in
+            
+            guard let self = self else { return }
+                        
+            menu.addAction { action in
+                
+                action.title = self.isFavorite ? "Remove favorite" : "Add favorite"
+                action.image = self.isFavorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                
+                action.handler = { _ in
+                    
+                    self.isFavorite.toggle()
+                    self.alert("Favorite: \(self.isFavorite)")
+                    self.setupFavoriteMenu()
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+
     private func alert(_ message: String) {
         (UIApplication.shared.delegate as! AppDelegate).alert(message)
     }

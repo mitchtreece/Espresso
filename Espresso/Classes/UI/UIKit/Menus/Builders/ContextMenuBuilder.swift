@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 8/2/22.
 //
 
-import Foundation
+import UIKit
 
 public protocol ContextMenuBuildable: MenuElementContainer {
     
@@ -21,32 +21,30 @@ public protocol ContextMenuBuildable: MenuElementContainer {
     var includeSuggestedElements: Bool { get set }
     var willPresent: (()->())? { get set }
     var willDismiss: (()->())? { get set }
-    
+
     @available(iOS 16, *)
     var elementSize: UIMenu.ElementSize { get set }
-    
+        
 }
 
-internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
-    
-    public typealias BuildType = ContextMenu
-    
-    public var title: String?
-    public var identifier: MenuElementIdentifier?
-    public var configurationIdentifier: NSCopying?
-    public var options: UIMenu.Options = []
-    public var children: [UIMenuElement] = []
-    public var previewProvider: ContextMenu.PreviewProvider?
-    public var previewCommitter: ContextMenu.PreviewCommitter?
-    public var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
-    public var targetedHighlightPreviewProvider: ContextMenu.TargetedPreviewProvider?
-    public var targetedDismissPreviewProvider: ContextMenu.TargetedPreviewProvider?
-    public var includeSuggestedElements: Bool = false
-    public var willPresent: (()->())?
-    public var willDismiss: (()->())?
+internal struct ContextMenuBuilder: ContextMenuBuildable {
+        
+    var title: String?
+    var identifier: MenuElementIdentifier?
+    var configurationIdentifier: NSCopying?
+    var options: UIMenu.Options = []
+    var children: [UIMenuElement] = []
+    var previewProvider: ContextMenu.PreviewProvider?
+    var previewCommitter: ContextMenu.PreviewCommitter?
+    var previewCommitStyle: UIContextMenuInteractionCommitStyle = .pop
+    var targetedHighlightPreviewProvider: ContextMenu.TargetedPreviewProvider?
+    var targetedDismissPreviewProvider: ContextMenu.TargetedPreviewProvider?
+    var includeSuggestedElements: Bool = false
+    var willPresent: (()->())?
+    var willDismiss: (()->())?
     
     @available(iOS 16, *)
-    public var elementSize: UIMenu.ElementSize {
+    var elementSize: UIMenu.ElementSize {
         get {
             return (self._elementSize as? UIMenu.ElementSize) ?? .large
         }
@@ -56,51 +54,31 @@ internal struct ContextMenuBuilder: Builder, ContextMenuBuildable {
     }
     
     private var _elementSize: Any?
-
-    public func build() -> ContextMenu {
-        return ContextMenu(buildable: self)
+    
+    init() {
+        //
     }
     
-}
-
-public extension ContextMenu {
-    
-    convenience init(builder: (inout ContextMenuBuildable)->()) {
+    init(buildable: ContextMenuBuildable) {
         
-        var buildable: ContextMenuBuildable = ContextMenuBuilder()
-
-        builder(&buildable)
-                
-        self.init(buildable: buildable)
-        
-    }
-    
-}
-
-internal extension ContextMenu {
-    
-    convenience init(buildable: ContextMenuBuildable) {
-        
-        self.init(
-            title: buildable.title,
-            identifier: buildable.identifier,
-            configurationIdentifier: buildable.configurationIdentifier,
-            options: buildable.options,
-            children: buildable.children,
-            previewProvider: buildable.previewProvider,
-            previewCommitter: buildable.previewCommitter,
-            previewCommitStyle: buildable.previewCommitStyle,
-            targetedHighlightPreviewProvider: buildable.targetedHighlightPreviewProvider,
-            targetedDismissPreviewProvider: buildable.targetedDismissPreviewProvider,
-            includeSuggestedElements: buildable.includeSuggestedElements,
-            willPresent: buildable.willPresent,
-            willDismiss: buildable.willDismiss
-        )
+        self.title = buildable.title
+        self.identifier = buildable.identifier
+        self.configurationIdentifier = buildable.configurationIdentifier
+        self.options = buildable.options
+        self.children = buildable.children
+        self.previewProvider = buildable.previewProvider
+        self.previewCommitter = buildable.previewCommitter
+        self.previewCommitStyle = buildable.previewCommitStyle
+        self.targetedHighlightPreviewProvider = buildable.targetedHighlightPreviewProvider
+        self.targetedDismissPreviewProvider = buildable.targetedDismissPreviewProvider
+        self.includeSuggestedElements = buildable.includeSuggestedElements
+        self.willPresent = buildable.willPresent
+        self.willDismiss = buildable.willDismiss
         
         if #available(iOS 16, *) {
             self.elementSize = buildable.elementSize
         }
         
     }
-    
+
 }

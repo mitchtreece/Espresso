@@ -24,16 +24,16 @@ public protocol UIMenuBuildable: MenuElementContainer {
 
 internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     
-    public typealias BuildType = UIMenu
+    typealias BuildType = UIMenu
     
-    public var title: String = .empty
-    public var image: UIImage?
-    public var identifier: MenuElementIdentifier?
-    public var options: UIMenu.Options = []
-    public var children: [UIMenuElement] = []
+    var title: String = .empty
+    var image: UIImage?
+    var identifier: MenuElementIdentifier?
+    var options: UIMenu.Options = []
+    var children: [UIMenuElement] = []
     
     @available(iOS 15, *)
-    public var subtitle: String? {
+    var subtitle: String? {
         get {
             return self._subtitle
         }
@@ -43,7 +43,7 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     }
     
     @available(iOS 16, *)
-    public var elementSize: UIMenu.ElementSize {
+    var elementSize: UIMenu.ElementSize {
         get {
             return (self._elementSize as? UIMenu.ElementSize) ?? .large
         }
@@ -55,7 +55,29 @@ internal struct UIMenuBuilder: Builder, UIMenuBuildable {
     private var _subtitle: String?
     private var _elementSize: Any?
     
-    public func build() -> UIMenu {
+    init() {
+        //
+    }
+    
+    init(buildable: UIMenuBuildable) {
+        
+        self.title = buildable.title
+        self.image = buildable.image
+        self.identifier = buildable.identifier
+        self.options = buildable.options
+        self.children = buildable.children
+        
+        if #available(iOS 15, *) {
+            self.subtitle = buildable.subtitle
+        }
+        
+        if #available(iOS 16, *) {
+            self.elementSize = buildable.elementSize
+        }
+        
+    }
+    
+    func build() -> UIMenu {
         return UIMenu(buildable: self)
     }
     

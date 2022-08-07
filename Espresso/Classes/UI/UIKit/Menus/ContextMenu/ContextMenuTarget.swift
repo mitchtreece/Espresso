@@ -40,12 +40,9 @@ public extension ContextMenuTarget {
     // Adds or replaces a context menu
     // Doesn't hold strong ref
     @discardableResult
-    func addContextMenu(builder: (inout ContextMenuBuildable)->()) -> ContextMenu { // -> ContextMenuInteractable
+    func addContextMenu(builder: @escaping ContextMenu.Provider) -> ContextMenu {
     
-        var buildable: ContextMenuBuildable = ContextMenuBuilder()
-        builder(&buildable)
-
-        let contextMenu = ContextMenu(buildable: buildable)
+        let contextMenu = ContextMenu(builder: builder)
     
         addContextMenu(contextMenu)
     
