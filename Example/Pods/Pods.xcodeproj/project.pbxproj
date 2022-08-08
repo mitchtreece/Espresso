@@ -84,6 +84,7 @@
 		26390C23289CEC5600AB6818 /* MenuElementIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C22289CEC5600AB6818 /* MenuElementIdentifier.swift */; };
 		26390C27289CF5EA00AB6818 /* MenuElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */; };
 		26C7DEC228A098EF00BD6515 /* UIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7DEC128A098EF00BD6515 /* UIViewModel.swift */; };
+		26C7DEC828A09ED900BD6515 /* ViewModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7DEC728A09ED900BD6515 /* ViewModelView.swift */; };
 		26D3509728A0638800139905 /* MenuTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3509628A0638800139905 /* MenuTarget.swift */; };
 		26F61D1A2899F039009C4962 /* UIActionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D192899F039009C4962 /* UIActionBuilder.swift */; };
 		26F61D1C2899F09C009C4962 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1B2899F09C009C4962 /* Builder.swift */; };
@@ -775,6 +776,7 @@
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
 		26C7DEC128A098EF00BD6515 /* UIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewModel.swift; sourceTree = "<group>"; };
+		26C7DEC728A09ED900BD6515 /* ViewModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModelView.swift; path = Espresso/Classes/UI/SwiftUI/ViewModelView.swift; sourceTree = "<group>"; };
 		26D3509628A0638800139905 /* MenuTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTarget.swift; sourceTree = "<group>"; };
 		26F61D192899F039009C4962 /* UIActionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionBuilder.swift; sourceTree = "<group>"; };
 		26F61D1B2899F09C009C4962 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
@@ -2450,6 +2452,7 @@
 			isa = PBXGroup;
 			children = (
 				458A00F52DD14BD0C18EFE19DDDB6B16 /* Binding+Espresso.swift */,
+				26C7DEC728A09ED900BD6515 /* ViewModelView.swift */,
 				481F9C5D3755DD70D9EA7792A30B8AE0 /* Views */,
 			);
 			name = "UI-SwiftUI";
@@ -2932,6 +2935,7 @@
 				F6CF66B556419CCA1B73154B33D571D3 /* AppleDevice+DeviceType.swift in Sources */,
 				5749F3249F4870068776B3D4C88E5396 /* AppleDevice+Helpers.swift in Sources */,
 				26D3509728A0638800139905 /* MenuTarget.swift in Sources */,
+				26C7DEC828A09ED900BD6515 /* ViewModelView.swift in Sources */,
 				09CDE327F24621CCAE0102082749FE0D /* Array+Espresso.swift in Sources */,
 				8918B1C2B7973BE41DDBD61F342CD1CE /* Array+Animation.swift in Sources */,
 				3EBF313A2DB75098474C653B48ED38A4 /* AsyncOperation.swift in Sources */,

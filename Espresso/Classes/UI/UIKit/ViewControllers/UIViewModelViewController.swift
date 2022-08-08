@@ -21,7 +21,7 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     public init(viewModel: V,
                 nibName: String? = nil,
                 bundle: Bundle? = nil) {
-                        
+        
         super.init(
             nibName: nibName,
             bundle: bundle
