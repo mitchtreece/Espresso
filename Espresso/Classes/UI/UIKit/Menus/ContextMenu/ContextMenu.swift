@@ -70,17 +70,17 @@ public class ContextMenu: NSObject {
     internal weak var interaction: UIContextMenuInteraction?
     
     // MARK: Initializers
-
+    
     public convenience init(builder: Provider) {
-        
+
         var buildable: ContextMenuBuildable = ContextMenuBuilder()
         
         builder(&buildable)
-
+                
         self.init(buildable: buildable)
         
     }
-
+    
     private init(buildable: ContextMenuBuildable) {
         
         self.title = buildable.title
@@ -96,7 +96,7 @@ public class ContextMenu: NSObject {
         self.includeSuggestedElements = buildable.includeSuggestedElements
         self.willPresent = buildable.willPresent
         self.willDismiss = buildable.willDismiss
-        
+                
         super.init()
         
         if #available(iOS 16, *) {
@@ -144,7 +144,7 @@ public class ContextMenu: NSObject {
     ///
     /// - returns: A new `UIContextMenuConfiguration`.
     public func configuration() -> UIContextMenuConfiguration {
-
+        
         var previewProvider: UIContextMenuContentPreviewProvider?
         var actionProvider: UIContextMenuActionProvider?
 
@@ -202,6 +202,28 @@ public class ContextMenu: NSObject {
     }
     
     // MARK: Private
+    
+    private func update(using buildable: ContextMenuBuildable) {
+        
+        self.title = buildable.title
+        self.identifier = buildable.identifier
+        self.configurationIdentifier = buildable.configurationIdentifier
+        self.options = buildable.options
+        self.children = buildable.children
+        self.previewProvider = buildable.previewProvider
+        self.previewCommitter = buildable.previewCommitter
+        self.previewCommitStyle = buildable.previewCommitStyle
+        self.targetedHighlightPreviewProvider = buildable.targetedHighlightPreviewProvider
+        self.targetedDismissPreviewProvider = buildable.targetedDismissPreviewProvider
+        self.includeSuggestedElements = buildable.includeSuggestedElements
+        self.willPresent = buildable.willPresent
+        self.willDismiss = buildable.willDismiss
+                
+        if #available(iOS 16, *) {
+            self.elementSize = buildable.elementSize
+        }
+        
+    }
 
     private func menu(additionalElements: [UIMenuElement]) -> UIMenu {
         

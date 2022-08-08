@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol MenuTarget {
+public protocol MenuTarget: AnyObject {
     
     var menu: UIMenu? { get set }
     
@@ -21,12 +21,12 @@ extension UIBarButtonItem: MenuTarget {}
 
 public extension MenuTarget {
     
-    mutating func addMenu(_ menu: UIMenu) {
+    func addMenu(_ menu: UIMenu) {
         self.menu = menu
     }
     
     @discardableResult
-    mutating func addMenu(builder: (inout UIMenuBuildable)->()) -> UIMenu {
+    func addMenu(builder: (inout UIMenuBuildable)->()) -> UIMenu {
         
         var buildable: UIMenuBuildable = UIMenuBuilder()
         builder(&buildable)
@@ -38,7 +38,7 @@ public extension MenuTarget {
         
     }
     
-    mutating func removeMenu(_ menu: UIMenu) {
+    func removeMenu(_ menu: UIMenu) {
     
         guard self.menu?.identifier == menu.identifier else { return }
         self.menu = nil

@@ -83,6 +83,7 @@
 		25A5737E935AD652B4B4D2AE264288CB /* TakeWithPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7535A5B197459B9BF043A7B757075 /* TakeWithPredicate.swift */; };
 		26390C23289CEC5600AB6818 /* MenuElementIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C22289CEC5600AB6818 /* MenuElementIdentifier.swift */; };
 		26390C27289CF5EA00AB6818 /* MenuElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */; };
+		26C7DEC228A098EF00BD6515 /* UIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7DEC128A098EF00BD6515 /* UIViewModel.swift */; };
 		26D3509728A0638800139905 /* MenuTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3509628A0638800139905 /* MenuTarget.swift */; };
 		26F61D1A2899F039009C4962 /* UIActionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D192899F039009C4962 /* UIActionBuilder.swift */; };
 		26F61D1C2899F09C009C4962 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F61D1B2899F09C009C4962 /* Builder.swift */; };
@@ -190,7 +191,6 @@
 		4D32CE429793CD79E010AF6E24B4BF9A /* UITableViewCell+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89E2648B55DFC4564ECDB23EEADD2C /* UITableViewCell+Espresso.swift */; };
 		4D811D6C74E92417EFD724A6C6501D81 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AFFD8F100304F5284B27F94C6696B /* KeyboardManager.swift */; };
 		4DB042966F64E1737DB2E3612F330B4A /* UITabBar+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC91563DFD15103C7FA7DB77881A6 /* UITabBar+Rx.swift */; };
-		4DC5DD6ADA75A81FD0F1BE1B1855FB52 /* ViewModel in Sources */ = {isa = PBXBuildFile; fileRef = 47261DBFD410ABC65EDBEB44EEEA5C7E /* ViewModel */; };
 		4E9A785A7DD082D3538F5A43B00C47DD /* Clampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941F13058CB6B9172A1E37D8032A5D0 /* Clampable.swift */; };
 		4F68122858B9EBEFD7D69A852C9C2E17 /* UIRefreshControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368CC0924B76F4570C8386DA8B641B6 /* UIRefreshControl+Rx.swift */; };
 		4FABD505CFBE2197C17442428980CF4D /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7885C3F2F778AE9D7EE920A1C9CD1EDF /* ConstraintPriority.swift */; };
@@ -774,6 +774,7 @@
 		26390C26289CF5EA00AB6818 /* MenuElementContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuElementContainer.swift; sourceTree = "<group>"; };
 		263E3E84EF12ADE505E887203CA38A71 /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Timer.swift; sourceTree = "<group>"; };
 		264E0C1456E6DA79F12162F6B7A6FB1F /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
+		26C7DEC128A098EF00BD6515 /* UIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewModel.swift; sourceTree = "<group>"; };
 		26D3509628A0638800139905 /* MenuTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTarget.swift; sourceTree = "<group>"; };
 		26F61D192899F039009C4962 /* UIActionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionBuilder.swift; sourceTree = "<group>"; };
 		26F61D1B2899F09C009C4962 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
@@ -844,7 +845,6 @@
 		455CD6D036FA4A0688A245B8BDA9DCE0 /* Timeout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = RxSwift/Observables/Timeout.swift; sourceTree = "<group>"; };
 		458A00F52DD14BD0C18EFE19DDDB6B16 /* Binding+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Binding+Espresso.swift"; path = "Espresso/Classes/UI/SwiftUI/Binding+Espresso.swift"; sourceTree = "<group>"; };
 		4694DB7BEBEB6D1830BD96ADFDDE318F /* RxRelay-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxRelay-dummy.m"; sourceTree = "<group>"; };
-		47261DBFD410ABC65EDBEB44EEEA5C7E /* ViewModel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ViewModel; path = Espresso/Classes/UI/UIKit/ViewModel; sourceTree = "<group>"; };
 		47AA3E94F7B8E450A76968BC2988836D /* SynchronizedOnType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedOnType.swift; path = RxSwift/Concurrency/SynchronizedOnType.swift; sourceTree = "<group>"; };
 		47DB1FD011CAEB0EBFD92892CF080B30 /* AnonymousObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousObserver.swift; path = RxSwift/Observers/AnonymousObserver.swift; sourceTree = "<group>"; };
 		4859768A252675CC9612F17F096498AC /* UIViewPropertyAnimator+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewPropertyAnimator+Promise.swift"; path = "Extensions/UIKit/Sources/UIViewPropertyAnimator+Promise.swift"; sourceTree = "<group>"; };
@@ -1476,6 +1476,15 @@
 			path = Espresso/Classes/UI/UIKit/ScreenFeatures;
 			sourceTree = "<group>";
 		};
+		26C7DEC028A098EF00BD6515 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26C7DEC128A098EF00BD6515 /* UIViewModel.swift */,
+			);
+			name = ViewModel;
+			path = Espresso/Classes/UI/UIKit/ViewModel;
+			sourceTree = "<group>";
+		};
 		26EA0833289DDC2F009727F2 /* ContextMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1878,13 +1887,13 @@
 		8688F576098546B648275B84F5C4FE4F /* UI-UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				26C7DEC028A098EF00BD6515 /* ViewModel */,
 				050AFFD8F100304F5284B27F94C6696B /* KeyboardManager.swift */,
 				92F33069F195BB8C1F56FB4D42760055 /* ModalStyle.swift */,
 				A9325386DA4BAB7FDA6E7683870ADBA4 /* Taptic.swift */,
 				0B17F26318E5492BC1BAF93975200041 /* BackgroundTask.swift */,
 				5BA6FBB45BD6332B577523A83B732320 /* ImageRepresentable.swift */,
 				F95CD2E47ABA14B71D1597107C46583A /* UserInterfaceStyleAdaptable.swift */,
-				47261DBFD410ABC65EDBEB44EEEA5C7E /* ViewModel */,
 				6A943CB95DBE2CD0FDC8B0BB9C3D6BDF /* Animation */,
 				8B654D7818F78E515A2E52B6DA00E783 /* AppleDevice */,
 				EAB327E65AD12F591486608A3A4F31CE /* BlurHash */,
@@ -3061,6 +3070,7 @@
 				0EF36A5A79A97AD91537B625C900DCE2 /* UIScreenFeature.swift in Sources */,
 				FB86683B17095C880F29390F49FA6853 /* UIScrollingStackView.swift in Sources */,
 				55C08E0D7B855D25375308F68A51B4D2 /* UIScrollView+Espresso.swift in Sources */,
+				26C7DEC228A098EF00BD6515 /* UIViewModel.swift in Sources */,
 				61EF7A0AD5241B416508365969C825F9 /* SlideTransition.swift in Sources */,
 				E59F547B28EA1DC18609392B671ABB45 /* SwapTransition.swift in Sources */,
 				7CEC906807F9CDCE6A532CCF87F0BAFC /* UITableView+Espresso.swift in Sources */,
@@ -3077,7 +3087,6 @@
 				E0C3422BB6F548C2C8431C8914087290 /* ViewControllerTransition.swift in Sources */,
 				DAD20D83687A643DD5D7184410672825 /* ViewControllerTransitionAnimator.swift in Sources */,
 				9A2B12E850CFAAE153FC715B1AE645B1 /* ViewControllerTransitionInteractor.swift in Sources */,
-				4DC5DD6ADA75A81FD0F1BE1B1855FB52 /* ViewModel in Sources */,
 				B5180C8B73299370FBEB5D6BB2B2A044 /* UIViewModelCollectionViewCell.swift in Sources */,
 				8D651D65DCFFAD0C78544C1085D46E1E /* UIViewModelTableViewCell.swift in Sources */,
 				788453820C0D59AFE0E5CA22EA0493F6 /* UIViewModelViewController.swift in Sources */,
