@@ -21,9 +21,6 @@ protocol RootViewControllerDelegate: AnyObject {
     func rootViewController(_ vc: RootViewController,
                             didSelectTransitionRow row: RootViewController.TransitionRow)
     
-    func rootViewController(_ vc: RootViewController,
-                            didSelectMenuRow row: RootViewController.MenuRow)
-    
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
 
@@ -83,7 +80,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case combine
         case taptics
         case helpers
-        case menus
         
     }
     
@@ -152,24 +148,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             case .pushBack: return "PushBackTransition"
             case .zoom: return "ZoomTransition"
             case .custom: return "Custom"
-            }
-            
-        }
-        
-    }
-    
-    enum MenuRow: Int, CaseIterable {
-        
-        case view
-        case table
-        case collection
-        
-        var title: String {
-            
-            switch self {
-            case .view: return "UIView"
-            case .table: return "UITableViewCell"
-            case .collection: return "UICollectionViewCell"
             }
             
         }
@@ -264,7 +242,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .uikit: return "UIKit"
         case .swiftui: return "SwiftUI"
         case .transition: return "Transitions"
-        case .menus: return "Menus"
         case .rxMvvm: return "Rx / MVVM"
         case .combine: return "Combine"
         case .taptics: return "Taptics"
@@ -281,7 +258,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .uikit: return UIKitRow.allCases.count
         case .swiftui: return SwiftUIRow.allCases.count
         case .transition: return TransitionRow.allCases.count
-        case .menus: return MenuRow.allCases.count
         case .rxMvvm: return RxMvvmRow.allCases.count
         case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
@@ -312,11 +288,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
-        case .menus:
-            
-            guard let row = MenuRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            cell.textLabel?.text = row.title
-        
         case .rxMvvm:
             
             guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -371,11 +342,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
             self.delegate?.rootViewController(self, didSelectTransitionRow: row)
 
-        case .menus:
-            
-            guard let row = MenuRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectMenuRow: row)
-            
         case .rxMvvm:
             
             guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }

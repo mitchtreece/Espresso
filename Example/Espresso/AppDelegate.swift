@@ -151,38 +151,6 @@ extension AppDelegate: RootViewControllerDelegate {
         
     }
     
-    func rootViewController(_ vc: RootViewController,
-                            didSelectMenuRow row: RootViewController.MenuRow) {
-        
-        var vc: UIViewController
-        
-        switch row {
-        case .view:
-            
-            vc = ContextMenuViewController()
-            vc.title = row.title
-            
-        case .table:
-            
-            let contextTableVC = ContextMenuTableViewController(delegate: self)
-            contextTableVC.title = row.title
-            vc = contextTableVC
-            
-        case .collection:
-            
-            let contextCollectionVC = ContextMenuCollectionViewController(delegate: self)
-            contextCollectionVC.title = row.title
-            vc = contextCollectionVC
-            
-        }
-        
-        self.navController.pushViewController(
-            vc,
-            animated: true
-        )
-        
-    }
-    
     func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController) {
                 
         self.navController.pushViewController(
@@ -207,44 +175,6 @@ extension AppDelegate: DetailViewControllerDelegate {
     
     func detailViewControllerDidTapDone(_ viewController: DetailViewController) {
         viewController.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-extension AppDelegate: ContextMenuTableViewControllerDelegate {
-    
-    func contextMenuTableViewController(_ vc: ContextMenuTableViewController,
-                                        didSelectColor color: UIColor,
-                                        withTitle title: String) {
-        
-        let viewController = DetailViewController()
-        viewController.view.backgroundColor = color
-        viewController.title = title
-        
-        self.navController.pushViewController(
-            viewController,
-            animated: true
-        )
-        
-    }
-    
-}
-
-extension AppDelegate: ContextMenuCollectionViewControllerDelegate {
-    
-    func contextMenuCollectionViewController(_ vc: ContextMenuCollectionViewController,
-                                             didSelectColor color: UIColor,
-                                             withTitle title: String) {
-        
-        let viewController = DetailViewController()
-        viewController.view.backgroundColor = color
-        viewController.title = title
-        
-        self.navController.pushViewController(
-            viewController,
-            animated: true
-        )
-        
     }
     
 }

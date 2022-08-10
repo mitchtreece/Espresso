@@ -13,12 +13,6 @@
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
 		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
 		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
-		269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */; };
-		269114C12344318F00A4A5F6 /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7637023403EDF000C9746 /* ContextMenuView.swift */; };
-		269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */; };
-		269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76373234042C0000C9746 /* ContextTableCell.swift */; };
-		26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */; };
-		26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
@@ -47,13 +41,7 @@
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
-		269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
-		269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuTableViewController.swift; sourceTree = "<group>"; };
-		26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuCollectionViewController.swift; sourceTree = "<group>"; };
-		26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCollectionCell.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
-		26D7637023403EDF000C9746 /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
-		26D76373234042C0000C9746 /* ContextTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableCell.swift; sourceTree = "<group>"; };
 		26F2DC62232C782900168F38 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,15 +89,6 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		260B986B2895BC0700DD63D8 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				26D76373234042C0000C9746 /* ContextTableCell.swift */,
-				26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		2628056F21F68E8200FDF34D /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,18 +123,6 @@
 			path = "Rx : Mvvm";
 			sourceTree = "<group>";
 		};
-		269114BE2344302F00A4A5F6 /* ContextMenus */ = {
-			isa = PBXGroup;
-			children = (
-				26D7637023403EDF000C9746 /* ContextMenuView.swift */,
-				269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */,
-				269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */,
-				26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */,
-				260B986B2895BC0700DD63D8 /* Cells */,
-			);
-			path = ContextMenus;
-			sourceTree = "<group>";
-		};
 		26CC8AE621E52F6C00AE6F94 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +130,6 @@
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
 				260B98192891BE4200DD63D8 /* UIKit */,
 				262848DD288B4493009FBD15 /* SwiftUI */,
-				269114BE2344302F00A4A5F6 /* ContextMenus */,
 				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 				2629FFD7280653B50053FB82 /* Combine */,
 			);
@@ -435,16 +401,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
-				269114C12344318F00A4A5F6 /* ContextMenuView.swift in Sources */,
-				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
-				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
 				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
 				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
-				269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */,
-				269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */,
-				269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
 				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
