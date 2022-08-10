@@ -67,7 +67,7 @@ class RootViewController: UIViewController {
         self.tableView.register(cells: [
             UITableViewCell.self
         ])
-
+        
     }
     
 }
@@ -414,47 +414,49 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 
             case .displayFeatureInsets:
                 
-                let v = UIView()
-                v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                self.navigationController?.view.addSubview(v)
-                v.snp.makeConstraints { (make) in
-                    
-                    let insets = UIScreen.main.featureInsets
-                    
-                    make.top.equalTo(0).offset(insets.top)
-                    make.left.equalTo(0).offset(insets.left)
-                    make.right.equalTo(0).offset(-insets.right)
-                    make.bottom.equalTo(0).offset(-insets.bottom)
-                    
-                }
+//                let v = UIView()
+//                v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+//                self.navigationController?.view.addSubview(v)
+//                v.snp.makeConstraints { (make) in
+//
+//                    let insets = UIScreen.main.featureInsets
+//
+//                    make.top.equalTo(0).offset(insets.top)
+//                    make.left.equalTo(0).offset(insets.left)
+//                    make.right.equalTo(0).offset(-insets.right)
+//                    make.bottom.equalTo(0).offset(-insets.bottom)
+//
+//                }
+//
+//                let label = UILabel()
+//                label.backgroundColor = UIColor.clear
+//                label.textColor = UIColor.white
+//                label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+//                label.text = """
+//                This overlay view is constrained to your device's display feature insets.
+//
+//                This takes into account things like: status bars, home grabbers, etc...
+//
+//                Tap to dismiss 😊
+//                """
+//                label.textAlignment = .center
+//                label.numberOfLines = 0
+//                label.isUserInteractionEnabled = true
+//                v.addSubview(label)
+//                label.snp.makeConstraints { (make) in
+//                    make.top.equalTo(14)
+//                    make.bottom.equalTo(-14)
+//                    make.left.equalTo(44)
+//                    make.right.equalTo(-44)
+//                }
+//
+//                let tap = UITapGestureRecognizer(action: { (recognizer) in
+//                    v.removeFromSuperview()
+//                })
+//
+//                label.addGestureRecognizer(tap)
                 
-                let label = UILabel()
-                label.backgroundColor = UIColor.clear
-                label.textColor = UIColor.white
-                label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                label.text = """
-                This overlay view is constrained to your device's display feature insets.
-                
-                This takes into account things like: status bars, home grabbers, etc...
-                
-                Tap to dismiss 😊
-                """
-                label.textAlignment = .center
-                label.numberOfLines = 0
-                label.isUserInteractionEnabled = true
-                v.addSubview(label)
-                label.snp.makeConstraints { (make) in
-                    make.top.equalTo(14)
-                    make.bottom.equalTo(-14)
-                    make.left.equalTo(44)
-                    make.right.equalTo(-44)
-                }
-                
-                let tap = UITapGestureRecognizer(action: { (recognizer) in
-                    v.removeFromSuperview()
-                })
-                
-                label.addGestureRecognizer(tap)
+                break
                 
             case .authentication:
                 

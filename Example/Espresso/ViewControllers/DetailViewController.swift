@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
+                
     }
     
     override func viewWillAppear(_ animated: Bool) {

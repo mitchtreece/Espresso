@@ -22,6 +22,19 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         return false
     }
     
+    /// Flag indicating if tapping the view controller's view should call
+    /// `resignFirstResponder()` on all editable subviews; _defaults to false_.
+    open var endsEditingOnTap: Bool {
+        return false
+    }
+    
+    /// Flag indicating if ending editing should be done forcefully or not; _defaults to false_.
+    ///
+    /// This flag is ignored if `endsEditingOnTap` is `false`.
+    open var endsEditingForcefully: Bool {
+        return false
+    }
+    
     /// The view controller's modal style.
     public var modalStyle: ModalStyle {
         get {
@@ -39,6 +52,22 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         }
         
         return ModalStyle(modalPresentationStyle: nav.modalPresentationStyle).isModalCard
+        
+    }
+    
+    open override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.view.addTapGesture { [weak self] _ in
+            
+            guard let self = self else { return }
+            guard self.endsEditingOnTap else { return }
+            
+            self.view
+                .endEditing(self.endsEditingForcefully)
+            
+        }
         
     }
         
