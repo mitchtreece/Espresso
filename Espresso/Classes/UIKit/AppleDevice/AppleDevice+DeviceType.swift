@@ -46,6 +46,10 @@ public extension AppleDevice /* Device Type */ {
         case iPhone13Pro
         case iPhone13ProMax
         case iPhoneSE_3
+        case iPhone14
+        case iPhone14Plus
+        case iPhone14Pro
+        case iPhone14ProMax
                 
         case iPodTouch
         case iPodTouch_2
@@ -95,7 +99,10 @@ public extension AppleDevice /* Device Type */ {
         case appleWatchSE
         case appleWatchS6
         case appleWatchS7
-                
+        case appleWatchSE_2
+        case appleWatchS8
+        case appleWatchUltra
+        
         case appleTV
         case appleTV_2
         case appleTV_3
@@ -110,7 +117,8 @@ public extension AppleDevice /* Device Type */ {
         case airpods_3
         case airpodsPro
         case airpodsMax
-                
+        case airpodsPro_2
+        
         case homepod
         case homepodMini
                 
@@ -334,6 +342,14 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "iPhone SE"
                 generationalName = "iPhone SE (3rd Gen)"
                 identifiers = ["iPhone14,6"]
+                
+            case .iPhone14:
+                
+            case .iPhone14Plus:
+                
+            case .iPhone14Pro:
+                
+            case .iPhone14ProMax:
                 
             // MARK: iPod
                                 
@@ -645,6 +661,12 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "Apple Watch Series 7"
                 identifiers = ["Watch6,6", "Watch6,7", "Watch6,8", "Watch6,9"]
                 
+            case .appleWatchSE_2:
+                
+            case .appleWatchS8:
+                
+            case .appleWatchUltra:
+                
             // MARK: Apple TV
                  
             case .appleTV:
@@ -727,6 +749,8 @@ public extension AppleDevice /* Device Type */ {
                 family = .airPods
                 marketingName = "AirPods Max"
                 identifiers = ["iProd8,6", "AirPodsMax1,1"]
+                
+            case .airpodsPro_2:
                 
             // MARK: HomePod
 
