@@ -48,21 +48,11 @@ public extension AppleDevice /* Helpers */ {
     var isModernPhone: Bool {
 
         return (
-            self.type == .iPhoneX ||
-            self.type == .iPhoneXR ||
-            self.type == .iPhoneXS ||
-            self.type == .iPhoneXSMax ||
-            self.type == .iPhone11 ||
-            self.type == .iPhone11Pro ||
-            self.type == .iPhone11ProMax ||
-            self.type == .iPhone12 ||
-            self.type == .iPhone12Mini ||
-            self.type == .iPhone12Pro ||
-            self.type == .iPhone12ProMax ||
-            self.type == .iPhone13 ||
-            self.type == .iPhone13Mini ||
-            self.type == .iPhone13Pro ||
-            self.type == .iPhone13ProMax
+            self.type == .iPhoneX || self.type == .iPhoneXR || self.type == .iPhoneXS || self.type == .iPhoneXSMax ||
+            self.type == .iPhone11 || self.type == .iPhone11Pro || self.type == .iPhone11ProMax ||
+            self.type == .iPhone12 || self.type == .iPhone12Mini || self.type == .iPhone12Pro || self.type == .iPhone12ProMax ||
+            self.type == .iPhone13 || self.type == .iPhone13Mini || self.type == .iPhone13Pro || self.type == .iPhone13ProMax ||
+            self.type == .iPhone14 || self.type == .iPhone14Plus || self.type == .iPhone14Pro || self.type == .iPhone14ProMax
         )
 
     }
@@ -76,12 +66,8 @@ public extension AppleDevice /* Helpers */ {
     var isModernPad: Bool {
 
         return (
-            self.type == .iPadPro11 ||
-            self.type == .iPadPro11_2 ||
-            self.type == .iPadPro11_3 ||
-            self.type == .iPadPro12_3 ||
-            self.type == .iPadPro12_4 ||
-            self.type == .iPadPro12_5 ||
+            self.type == .iPadPro11 || self.type == .iPadPro11_2 || self.type == .iPadPro11_3 ||
+            self.type == .iPadPro12_3 || self.type == .iPadPro12_4 || self.type == .iPadPro12_5 ||
             self.type == .iPadMini_6
         )
 
