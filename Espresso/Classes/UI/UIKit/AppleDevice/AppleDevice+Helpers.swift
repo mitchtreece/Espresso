@@ -28,6 +28,11 @@ public extension AppleDevice /* Helpers */ {
     var isPod: Bool {
         return self.family == .iPod
     }
+    
+    /// Flag indicating whether this device is an Apple Watch.
+    var isWatch: Bool {
+        return self.family == .appleWatch
+    }
 
     /// Flag indicating whether this device is an Apple TV.
     var isTV: Bool {

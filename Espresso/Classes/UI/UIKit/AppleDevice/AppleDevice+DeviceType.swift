@@ -345,11 +345,27 @@ public extension AppleDevice /* Device Type */ {
                 
             case .iPhone14:
                 
+                family = .iPhone
+                marketingName = "iPhone 14"
+                identifiers = ["iPhone14,7"]
+                
             case .iPhone14Plus:
+                
+                family = .iPhone
+                marketingName = "iPhone 14 Plus"
+                identifiers = ["iPhone14,8"]
                 
             case .iPhone14Pro:
                 
+                family = .iPhone
+                marketingName = "iPhone 14 Pro"
+                identifiers = ["iPhone15,2"]
+                
             case .iPhone14ProMax:
+                
+                family = .iPhone
+                marketingName = "iPhone 14 Pro Max"
+                identifiers = ["iPhone15,3"]
                 
             // MARK: iPod
                                 
@@ -663,9 +679,22 @@ public extension AppleDevice /* Device Type */ {
                 
             case .appleWatchSE_2:
                 
+                family = .appleWatch
+                marketingName = "Apple Watch SE"
+                generationalName = "Apple Watch SE (2nd Gen)"
+                identifiers = ["Watch6,10", "Watch6,11", "Watch6,12", "Watch6,13"]
+                
             case .appleWatchS8:
-            
+                
+                family = .appleWatch
+                marketingName = "Apple Watch Series 8"
+                identifiers = ["Watch6,14", "Watch6,15", "Watch6,16", "Watch6,17"]
+                
             case .appleWatchUltra:
+                
+                family = .appleWatch
+                marketingName = "Apple Watch Ultra"
+                identifiers = ["Watch6,18"]
                 
             // MARK: Apple TV
                  
@@ -751,6 +780,11 @@ public extension AppleDevice /* Device Type */ {
                 identifiers = ["iProd8,6", "AirPodsMax1,1"]
                 
             case .airpodsPro_2:
+                
+                family = .airPods
+                marketingName = "AirPods Pro"
+                generationalName = "AirPods Pro (2nd Gen)"
+                identifiers = ["AirPodsPro1,2"]
                 
             // MARK: HomePod
 
