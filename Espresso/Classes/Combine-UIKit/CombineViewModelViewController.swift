@@ -49,7 +49,7 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
     public var componentBag: CancellableBag!
     
     /// The view controller's keyboard cancellable bag.
-    private var keyboardBag: CancellableBag!
+    public var keyboardBag: CancellableBag!
     
     /// Flag indicating if binding functions have been called yet.
     /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
