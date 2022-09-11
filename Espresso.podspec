@@ -29,16 +29,6 @@ Pod::Spec.new do |s|
     #     - UI-UIKit
     #     - UI-SwiftUI
     #
-    # - Combine
-    #     - Combine-Core
-    #     - Combine-UIKit
-    #     - Combine-PromiseKit
-    #
-    # - Rx
-    #     - Rx-Core
-    #     - Rx-UIKit
-    #     - Rx-PromiseKit
-    #
     # - PromiseKit
     #     - PromiseKit-Core
     # 
@@ -46,16 +36,9 @@ Pod::Spec.new do |s|
     # - SwiftUI
     # - All
     # 
-    # - Recipe-Combine-UIKit
+    # - Recipe-Modern-UIKit
     #     - Espresso/UI-UIKit
-    #     - Espresso/Combine-UIKit
-    #     - Spider-Web
-    #     - Director
-    #     - Swinject
-    # 
-    #  - Recipe-Rx-UIKit
-    #     - Espresso/UI-UIKit
-    #     - Espresso/Rx-UIKit
+    #     - Espresso/PromiseKit
     #     - Spider-Web
     #     - Director
     #     - Swinject
@@ -116,75 +99,6 @@ Pod::Spec.new do |s|
 
     end
 
-    ## Combine
-
-    s.subspec 'Combine' do |ss|
-
-        ss.dependency     'Espresso/Combine-Core'
-        ss.dependency     'Espresso/Combine-UIKit'
-        ss.dependency     'Espresso/Combine-PromiseKit'
-
-    end
-
-    s.subspec 'Combine-Core' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Combine/Core/**/*'
-        ss.dependency     'Espresso/Core'
-
-    end
-
-    s.subspec 'Combine-UIKit' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Combine/UIKit/**/*'
-        ss.dependency     'Espresso/Combine-Core'
-        ss.dependency     'Espresso/UI-UIKit'
-
-    end
-
-    s.subspec 'Combine-PromiseKit' do |ss|
-        
-        ss.source_files = 'Espresso/Classes/Combine/PromiseKit/**/*'
-        ss.dependency     'Espresso/Combine-Core'
-        ss.dependency     'Espresso/PromiseKit-Core'
-
-    end
-
-    ## Rx
-
-    s.subspec 'Rx' do |ss|
-
-        ss.dependency     'Espresso/Rx-Core'
-        ss.dependency     'Espresso/Rx-UIKit'
-        ss.dependency     'Espresso/Rx-PromiseKit'
-
-    end
-
-    s.subspec 'Rx-Core' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Rx/Core/**/*'
-        ss.dependency     'Espresso/Core'
-
-        ss.dependency     'RxSwift', '~> 6.0'
-        ss.dependency     'RxCocoa', '~> 6.0'
-
-    end
-
-    s.subspec 'Rx-UIKit' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Rx/UIKit/**/*'
-        ss.dependency     'Espresso/Rx-Core'
-        ss.dependency     'Espresso/UI-UIKit'
-
-    end
-
-    s.subspec 'Rx-PromiseKit' do |ss|
-        
-        ss.source_files = 'Espresso/Classes/Rx/PromiseKit/**/*'
-        ss.dependency     'Espresso/Rx-Core'
-        ss.dependency     'Espresso/PromiseKit-Core'
-
-    end
-
     ## Promise
 
     s.subspec 'PromiseKit' do |ss|
@@ -208,8 +122,6 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'Espresso/UI-UIKit'
-        ss.dependency     'Espresso/Combine-UIKit'
-        ss.dependency     'Espresso/Rx-UIKit'
 
     end
 
@@ -217,8 +129,6 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'Espresso/UI-SwiftUI'
-        ss.dependency     'Espresso/Combine-Core'
-        ss.dependency     'Espresso/Rx-Core'
 
     end
 
@@ -226,29 +136,16 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'Espresso/UI'
-        ss.dependency     'Espresso/Combine'
-        ss.dependency     'Espresso/Rx'
         ss.dependency     'Espresso/PromiseKit'
 
     end
 
     ## Recipes
 
-    s.subspec 'Recipe-Combine-UIKit' do |ss|
+    s.subspec 'Recipe-Modern-UIKit' do |ss|
 
         ss.dependency     'Espresso/UI-UIKit'
-        ss.dependency     'Espresso/Combine-UIKit'
-
-        ss.dependency     'Spider-Web', '~> 2.0'
-        ss.dependency     'Director',   '~> 1.0'
-        ss.dependency     'Swinject',   '~> 2.0'
-
-    end
-
-    s.subspec 'Recipe-Rx-UIKit' do |ss|
-
-        ss.dependency     'Espresso/UI-UIKit'
-        ss.dependency     'Espresso/Rx-UIKit'
+        ss.dependency     'Espresso/PromiseKit'
 
         ss.dependency     'Spider-Web', '~> 2.0'
         ss.dependency     'Director',   '~> 1.0'

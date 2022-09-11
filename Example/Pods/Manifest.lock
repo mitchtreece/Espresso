@@ -1,22 +1,8 @@
 PODS:
   - Espresso/All (3.0.0):
-    - Espresso/Combine
     - Espresso/Core
     - Espresso/PromiseKit
-    - Espresso/Rx
     - Espresso/UI
-  - Espresso/Combine (3.0.0):
-    - Espresso/Combine-Core
-    - Espresso/Combine-PromiseKit
-    - Espresso/Combine-UIKit
-  - Espresso/Combine-Core (3.0.0):
-    - Espresso/Core
-  - Espresso/Combine-PromiseKit (3.0.0):
-    - Espresso/Combine-Core
-    - Espresso/PromiseKit-Core
-  - Espresso/Combine-UIKit (3.0.0):
-    - Espresso/Combine-Core
-    - Espresso/UI-UIKit
   - Espresso/Core (3.0.0):
     - Espresso/Core-Core
     - Espresso/Core-Types
@@ -27,20 +13,6 @@ PODS:
   - Espresso/PromiseKit-Core (3.0.0):
     - Espresso/Core
     - PromiseKit (~> 6.0)
-  - Espresso/Rx (3.0.0):
-    - Espresso/Rx-Core
-    - Espresso/Rx-PromiseKit
-    - Espresso/Rx-UIKit
-  - Espresso/Rx-Core (3.0.0):
-    - Espresso/Core
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - Espresso/Rx-PromiseKit (3.0.0):
-    - Espresso/PromiseKit-Core
-    - Espresso/Rx-Core
-  - Espresso/Rx-UIKit (3.0.0):
-    - Espresso/Rx-Core
-    - Espresso/UI-UIKit
   - Espresso/UI (3.0.0):
     - Espresso/UI-Core
     - Espresso/UI-SwiftUI
@@ -61,12 +33,6 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.17.1):
     - PromiseKit/CorePromise
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
@@ -75,9 +41,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - PromiseKit
-    - RxCocoa
-    - RxRelay
-    - RxSwift
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -85,11 +48,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: e074f08ee7f925e6b8038efef43b8c5b43873fdb
+  Espresso: 8d8092b1f0d02c64e6b98075cdfeb7a2e47d6b8a
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
 PODFILE CHECKSUM: 23087355445a3b8e0e8ca6fc1135b156118e4431

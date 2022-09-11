@@ -86,106 +86,6 @@
       }
     },
     {
-      "name": "Combine",
-      "dependencies": {
-        "Espresso/Combine-Core": [
-
-        ],
-        "Espresso/Combine-UIKit": [
-
-        ],
-        "Espresso/Combine-PromiseKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "Combine-Core",
-      "source_files": "Espresso/Classes/Combine/Core/**/*",
-      "dependencies": {
-        "Espresso/Core": [
-
-        ]
-      }
-    },
-    {
-      "name": "Combine-UIKit",
-      "source_files": "Espresso/Classes/Combine/UIKit/**/*",
-      "dependencies": {
-        "Espresso/Combine-Core": [
-
-        ],
-        "Espresso/UI-UIKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "Combine-PromiseKit",
-      "source_files": "Espresso/Classes/Combine/PromiseKit/**/*",
-      "dependencies": {
-        "Espresso/Combine-Core": [
-
-        ],
-        "Espresso/PromiseKit-Core": [
-
-        ]
-      }
-    },
-    {
-      "name": "Rx",
-      "dependencies": {
-        "Espresso/Rx-Core": [
-
-        ],
-        "Espresso/Rx-UIKit": [
-
-        ],
-        "Espresso/Rx-PromiseKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "Rx-Core",
-      "source_files": "Espresso/Classes/Rx/Core/**/*",
-      "dependencies": {
-        "Espresso/Core": [
-
-        ],
-        "RxSwift": [
-          "~> 6.0"
-        ],
-        "RxCocoa": [
-          "~> 6.0"
-        ]
-      }
-    },
-    {
-      "name": "Rx-UIKit",
-      "source_files": "Espresso/Classes/Rx/UIKit/**/*",
-      "dependencies": {
-        "Espresso/Rx-Core": [
-
-        ],
-        "Espresso/UI-UIKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "Rx-PromiseKit",
-      "source_files": "Espresso/Classes/Rx/PromiseKit/**/*",
-      "dependencies": {
-        "Espresso/Rx-Core": [
-
-        ],
-        "Espresso/PromiseKit-Core": [
-
-        ]
-      }
-    },
-    {
       "name": "PromiseKit",
       "dependencies": {
         "Espresso/PromiseKit-Core": [
@@ -213,12 +113,6 @@
         ],
         "Espresso/UI-UIKit": [
 
-        ],
-        "Espresso/Combine-UIKit": [
-
-        ],
-        "Espresso/Rx-UIKit": [
-
         ]
       }
     },
@@ -229,12 +123,6 @@
 
         ],
         "Espresso/UI-SwiftUI": [
-
-        ],
-        "Espresso/Combine-Core": [
-
-        ],
-        "Espresso/Rx-Core": [
 
         ]
       }
@@ -248,44 +136,18 @@
         "Espresso/UI": [
 
         ],
-        "Espresso/Combine": [
-
-        ],
-        "Espresso/Rx": [
-
-        ],
         "Espresso/PromiseKit": [
 
         ]
       }
     },
     {
-      "name": "Recipe-Combine-UIKit",
+      "name": "Recipe-Modern-UIKit",
       "dependencies": {
         "Espresso/UI-UIKit": [
 
         ],
-        "Espresso/Combine-UIKit": [
-
-        ],
-        "Spider-Web": [
-          "~> 2.0"
-        ],
-        "Director": [
-          "~> 1.0"
-        ],
-        "Swinject": [
-          "~> 2.0"
-        ]
-      }
-    },
-    {
-      "name": "Recipe-Rx-UIKit",
-      "dependencies": {
-        "Espresso/UI-UIKit": [
-
-        ],
-        "Espresso/Rx-UIKit": [
+        "Espresso/PromiseKit": [
 
         ],
         "Spider-Web": [

@@ -11,8 +11,6 @@
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
 		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
-		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
-		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
@@ -39,8 +37,6 @@
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
 		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
-		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		26F2DC62232C782900168F38 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,16 +109,6 @@
 			path = Combine;
 			sourceTree = "<group>";
 		};
-		26854DD7218E73E600B3ABBB /* Rx / Mvvm */ = {
-			isa = PBXGroup;
-			children = (
-				26854DDA218E748D00B3ABBB /* RxViewModel.swift */,
-				26854DD8218E746C00B3ABBB /* RxViewController.swift */,
-			);
-			name = "Rx / Mvvm";
-			path = "Rx : Mvvm";
-			sourceTree = "<group>";
-		};
 		26CC8AE621E52F6C00AE6F94 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +116,6 @@
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
 				260B98192891BE4200DD63D8 /* UIKit */,
 				262848DD288B4493009FBD15 /* SwiftUI */,
-				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
 				2629FFD7280653B50053FB82 /* Combine */,
 			);
 			path = ViewControllers;
@@ -374,18 +359,12 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,11 +381,9 @@
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
 				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
-				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
-				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */,
 			);

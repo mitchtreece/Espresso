@@ -21,7 +21,6 @@ protocol RootViewControllerDelegate: AnyObject {
     func rootViewController(_ vc: RootViewController,
                             didSelectTransitionRow row: RootViewController.TransitionRow)
     
-    func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
 
 }
@@ -76,7 +75,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case uikit
         case swiftui
         case transition
-        case rxMvvm
         case combine
         case taptics
         case helpers
@@ -153,21 +151,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
-    private enum RxMvvmRow: Int, CaseIterable {
-        
-        case viewController
-        
-        var title: String {
-            
-            switch self {
-            case .viewController: return "UIViewController"
-            }
-            
-        }
-        
-    }
-    
+
     private enum CombineRow: Int, CaseIterable {
         
         case viewController
@@ -242,7 +226,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .uikit: return "UIKit"
         case .swiftui: return "SwiftUI"
         case .transition: return "Transitions"
-        case .rxMvvm: return "Rx / MVVM"
         case .combine: return "Combine"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
@@ -258,7 +241,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .uikit: return UIKitRow.allCases.count
         case .swiftui: return SwiftUIRow.allCases.count
         case .transition: return TransitionRow.allCases.count
-        case .rxMvvm: return RxMvvmRow.allCases.count
         case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
@@ -287,12 +269,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
-        case .rxMvvm:
-            
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            cell.textLabel?.text = row.title
-            
+              
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -342,14 +319,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = TransitionRow(rawValue: indexPath.row) else { return }
             self.delegate?.rootViewController(self, didSelectTransitionRow: row)
 
-        case .rxMvvm:
-            
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }
-
-            switch row {
-            case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
-            }
-            
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return }

@@ -150,16 +150,7 @@ extension AppDelegate: RootViewControllerDelegate {
         )
         
     }
-    
-    func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController) {
-                
-        self.navController.pushViewController(
-            RxViewController(viewModel: RxViewModel()),
-            animated: true
-        )
-        
-    }
-    
+
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController) {
              
         self.navController.pushViewController(

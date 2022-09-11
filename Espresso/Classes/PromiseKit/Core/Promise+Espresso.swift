@@ -5,7 +5,32 @@
 //  Created by Mitch Treece on 7/25/22.
 //
 
+import Combine
 import PromiseKit
+
+// MARK: Combine
+
+public extension Promise {
+    
+    /// Creates a publisher over this promise.
+    /// - returns: A new publisher.
+    func asPublisher() -> FailablePublisher<T> {
+        
+        return FailableFuture<T>{ promise in
+            
+            self.done { value in
+                promise(.success(value))
+            }
+            .catch { error in
+                promise(.failure(error))
+            }
+            
+        }
+        .eraseToAnyPublisher()
+        
+    }
+    
+}
 
 // MARK: Async
 
