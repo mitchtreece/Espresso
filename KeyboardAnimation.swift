@@ -18,7 +18,7 @@ public struct KeyboardAnimation {
         
         return CGVector(
             dx: 0,
-            dy: (self.endFrame.height - self.beginFrame.height)
+            dy: (self.beginFrame.origin.y - self.endFrame.origin.y)
         )
         
     }
