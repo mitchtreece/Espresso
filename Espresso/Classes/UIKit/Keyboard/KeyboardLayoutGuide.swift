@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-/// Layout guide that is attached to the keyboard's top anchor.
+/// A layout guide that tracks the keyboard's position.
 @available(iOS 13, *)
 public class KeyboardLayoutGuide: UILayoutGuide {
     
