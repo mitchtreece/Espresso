@@ -32,18 +32,27 @@ open class UIBaseViewController: UIViewController {
         }
     }
     
-    public var isInModalCardPresentation: Bool {
+    public var isInModalSheetPresentation: Bool {
         
         guard #available(iOS 13, *) else { return false }
         
         guard let nav = self.navigationController else {
-            return self.modalStyle.isModalCard
+            return self.modalStyle.isModalSheet
         }
         
-        return UIModalStyle(presentationStyle: nav.modalPresentationStyle).isModalCard
+        return UIModalStyle(presentationStyle: nav.modalPresentationStyle).isModalSheet
         
     }
     
+    /// Flag indicating if the view controller enforces modal-behavior,
+    /// or supports interactive dismissal.
+    @available(iOS 13, *)
+    public var isInteractiveDismissEnabled: Bool {
+        get { return !self.isModalInPresentation }
+        set { self.isModalInPresentation = !newValue }
+    }
+    
+    /// The view controller's user interface style.
     @available(iOS 12, *)
     public var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
@@ -57,6 +66,8 @@ open class UIBaseViewController: UIViewController {
             self.hidesNavigationBarOnAppearance,
             animated: true
         )
+
+        addKeyboardObservers()
                 
     }
     
@@ -64,6 +75,13 @@ open class UIBaseViewController: UIViewController {
         
         super.viewDidAppear(animated)
         self.isFirstAppearance = false
+        
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        removeKeyboardObservers()
         
     }
     
@@ -89,6 +107,155 @@ open class UIBaseViewController: UIViewController {
     @available(iOS 12, *)
     open func userInterfaceStyleDidChange() {
         // Override
+    }
+    
+    /// Called when the keyboard is about to be presented.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardWillShow(_ animation: KeyboardAnimation) {}
+    
+    /// Called when the keyboard finishes presenting.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardDidShow(_ animation: KeyboardAnimation) {}
+    
+    /// Called when the keyboard's frame is about to change.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardWillChangeFrame(_ animation: KeyboardAnimation) {}
+    
+    /// Called when the keyboard's frame finishes changing.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardDidChangeFrame(_ animation: KeyboardAnimation) {}
+    
+    /// Called when the keyboard is about to be dismissed.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardWillHide(_ animation: KeyboardAnimation) {}
+    
+    
+    /// Called when the keyboard finishes dismissing.
+    /// Override this function to update your layout as needed.
+    ///
+    /// - parameter animation: The keyboard's animation info.
+    open func keyboardDidHide(_ animation: KeyboardAnimation) {}
+    
+    // MARK: Private
+    
+    private func addKeyboardObservers() {
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardWillShow(animation)
+                
+            })
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardDidShowNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardDidShow(animation)
+                
+            })
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardWillChangeFrame(animation)
+                
+            })
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardDidChangeFrameNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardDidChangeFrame(animation)
+                
+            })
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardWillHide(animation)
+                
+            })
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardDidHideNotification,
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                
+                guard let animation = KeyboardAnimation(notification: notification) else { return }
+                self.keyboardDidHide(animation)
+                
+            })
+        
+    }
+    
+    private func removeKeyboardObservers() {
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardDidShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardDidChangeFrameNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardDidHideNotification,
+            object: nil
+        )
+        
     }
     
 }

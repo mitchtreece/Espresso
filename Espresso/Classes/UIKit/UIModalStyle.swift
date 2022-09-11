@@ -131,16 +131,16 @@ public enum UIModalStyle {
         
     }
     
-    /// Flag indicating if the modal style represents a card-like presentation style.
+    /// Flag indicating if the modal style represents a sheet presentation style.
     ///
     /// This is **always** `false` on iOS 12 or lower.
-    public var isModalCard: Bool {
+    public var isModalSheet: Bool {
         
         if #available(iOS 13, *) {
             
             switch self {
             case .default: fallthrough
-            case .sheet(type: .page): return true
+            case .sheet: return true
             default: return false
             }
             
