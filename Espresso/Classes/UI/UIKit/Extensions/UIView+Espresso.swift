@@ -68,6 +68,19 @@ public extension UIView /* Gestures */ {
                 
     }
     
+    /// Adds a tap gesture recognizer to the view
+    /// that ends editing in itself, or any of it's subviews.
+    ///
+    /// - parameter force: Flag indicating if editing should be forced to end,
+    ///  regardless of whether it wants to do so.
+    func addEndEditingTapGesture(force: Bool = false) {
+        
+        addTapGesture { [weak self] _ in
+            self?.endEditing(force)
+        }
+        
+    }
+    
     /// Adds a long-press gesture recognizer to the receiver.
     ///
     /// - parameter setup: An optional `UILongPressGestureRecognizer` setup block.

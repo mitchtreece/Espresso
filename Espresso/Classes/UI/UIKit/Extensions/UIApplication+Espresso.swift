@@ -58,6 +58,11 @@ public extension UIApplication {
 
 public extension UIApplication /* Version & Build */ {
     
+    /// The application's bundle identifier _(CFBundleIdentifier)_.
+    var bundleId: String? {
+        return Bundle.main.bundleIdentifier
+    }
+    
     /// The application's version string _(CFBundleShortVersionString)_.
     var version: String? {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String

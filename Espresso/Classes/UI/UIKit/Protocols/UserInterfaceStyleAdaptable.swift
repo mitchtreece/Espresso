@@ -20,7 +20,7 @@ public protocol UserInterfaceStyleAdaptable: UITraitEnvironment {
 
 public extension UserInterfaceStyleAdaptable {
     
-    /// The trait environment's current user interface style.
+    /// The trait environment's user interface style.
     var userInterfaceStyle: UIUserInterfaceStyle {
         return self.traitCollection.userInterfaceStyle
     }
