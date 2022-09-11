@@ -151,70 +151,46 @@ open class UIBaseViewController: UIViewController {
     private func addKeyboardObservers() {
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillShowNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardWillShow(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardDidShowNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardDidShow(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardDidShow),
+            name: UIResponder.keyboardDidShowNotification,
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardWillChangeFrame(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardDidChangeFrameNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardDidChangeFrame(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardDidChangeFrame),
+            name: UIResponder.keyboardDidChangeFrameNotification,
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardWillHide(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardDidHideNotification,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                
-                guard let animation = KeyboardAnimation(notification: notification) else { return }
-                self.keyboardDidHide(animation)
-                
-            })
+            self,
+            selector: #selector(_keyboardDidHide),
+            name: UIResponder.keyboardDidHideNotification,
+            object: nil
+        )
         
     }
     
@@ -255,6 +231,48 @@ open class UIBaseViewController: UIViewController {
             name: UIResponder.keyboardDidHideNotification,
             object: nil
         )
+        
+    }
+    
+    @objc private func _keyboardWillShow(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardWillShow(animation)
+        
+    }
+    
+    @objc private func _keyboardDidShow(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardDidShow(animation)
+        
+    }
+    
+    @objc private func _keyboardWillChangeFrame(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardWillChangeFrame(animation)
+        
+    }
+    
+    @objc private func _keyboardDidChangeFrame(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardDidChangeFrame(animation)
+        
+    }
+    
+    @objc private func _keyboardWillHide(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardWillHide(animation)
+        
+    }
+    
+    @objc private func _keyboardDidHide(_ notification: Notification) {
+        
+        guard let animation = KeyboardAnimation(notification: notification) else { return }
+        keyboardDidHide(animation)
         
     }
     
