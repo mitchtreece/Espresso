@@ -65,7 +65,7 @@ public extension UIView /* Shadow */ {
 
 public extension UIView /* Gestures */ {
     
-    /// Adds a tap gesture recognizer to the receiver.
+    /// Adds a tap gesture recognizer to the view.
     /// - parameter setup: An optional `UITapGestureRecognizer` setup block.
     /// - parameter action: The gesture recognizer's action handler.
     func addTapGesture(setup: ((UITapGestureRecognizer)->())? = nil,
@@ -77,7 +77,20 @@ public extension UIView /* Gestures */ {
                 
     }
     
-    /// Adds a long-press gesture recognizer to the receiver.
+    /// Adds a tap gesture recognizer to the view
+    /// that ends editing editing in itself, or any of it's subviews.
+    ///
+    /// - parameter force: Flag indicating if editing should be forced to end,
+    ///  regardless of whether it wants to do so.
+    func addEndEditingTapGesture(force: Bool = false) {
+        
+        addTapGesture { [weak self] _ in
+            self?.endEditing(force)
+        }
+        
+    }
+    
+    /// Adds a long-press gesture recognizer to the view.
     /// - parameter setup: An optional `UILongPressGestureRecognizer` setup block.
     /// - parameter action: The gesture recognizer's action handler.
     func addLongPressGesture(setup: ((UILongPressGestureRecognizer)->())? = nil,
@@ -94,7 +107,8 @@ public extension UIView /* Gestures */ {
 public extension UIView /* Motion */ {
     
     /// Adds an accelerometer-based parallax motion effect to the view.
-    /// - Parameter:
+    ///
+    /// - parameter movement: The amount of parallax movement.
     func addParallaxMotionEffect(movement: CGVector) {
         
         var effects = [UIInterpolatingMotionEffect]()
