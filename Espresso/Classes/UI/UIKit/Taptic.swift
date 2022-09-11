@@ -38,18 +38,19 @@ public class Taptic {
         case .notification: self.generator = UINotificationFeedbackGenerator()
         }
         
-        self.generator.prepare()
         self.style = style
         
+        prepare()
+
     }
     
-    /// Tells the taptic that it's about to be triggered.
+    /// Tells the taptic that it's about to begin.
     public func prepare() {
         self.generator.prepare()
     }
     
-    /// Triggers the taptic's feedback.
-    public func trigger() {
+    /// Plays the taptic.
+    public func play() {
         
         switch style {
         case .selection: (generator as! UISelectionFeedbackGenerator).selectionChanged()
