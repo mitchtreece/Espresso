@@ -1,5 +1,5 @@
 //
-//  KeyboardAnimationInfo.swift
+//  KeyboardAnimation.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 9/11/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct KeyboardAnimationInfo {
+public struct KeyboardAnimation {
     
     public let beginFrame: CGRect
     public let endFrame: CGRect
@@ -39,6 +39,19 @@ public struct KeyboardAnimationInfo {
             endFrame: endFrame,
             duration: duration,
             options: UIView.AnimationOptions(rawValue: curve.uintValue << 16)
+        )
+        
+    }
+    
+    public func animate(_ animations: @escaping ()->(),
+                        completion: (()->())? = nil) {
+        
+        UIView.animate(
+            withDuration: self.duration,
+            delay: 0,
+            options: self.options,
+            animations: animations,
+            completion: { _ in completion?() }
         )
         
     }

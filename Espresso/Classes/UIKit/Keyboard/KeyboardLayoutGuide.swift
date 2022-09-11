@@ -106,10 +106,10 @@ public class KeyboardLayoutGuide: UILayoutGuide {
     private func keyboardWillChangeFrame(_ notification: Notification) {
         
         guard let window = UIApplication.shared.activeWindow,
-              let info = KeyboardAnimationInfo(notification: notification) else { return }
+              let animation = KeyboardAnimation(notification: notification) else { return }
                 
         animate(
-            using: info,
+            using: animation,
             in: window
         )
         
@@ -158,13 +158,13 @@ public class KeyboardLayoutGuide: UILayoutGuide {
         
     }
     
-    private func animate(using info: KeyboardAnimationInfo,
+    private func animate(using animation: KeyboardAnimation,
                          in coordinateSpace: UICoordinateSpace) {
         
-        guard info.duration > 0 else {
+        guard animation.duration > 0 else {
             
             layout(
-                forKeyboardFrame: info.endFrame,
+                forKeyboardFrame: animation.endFrame,
                 in: coordinateSpace
             )
             
@@ -173,22 +173,18 @@ public class KeyboardLayoutGuide: UILayoutGuide {
         }
         
         layout(
-            forKeyboardFrame: info.beginFrame,
+            forKeyboardFrame: animation.beginFrame,
             in: coordinateSpace
         )
         
-        UIView.animate(
-            withDuration: info.duration,
-            delay: 0,
-            options: info.options,
-            animations: { [unowned self] in
-               
-                self.layout(
-                    forKeyboardFrame: info.endFrame,
-                    in: coordinateSpace
-                )
-                
-            })
+        animation.animate { [unowned self] in
+            
+            self.layout(
+                forKeyboardFrame: animation.endFrame,
+                in: coordinateSpace
+            )
+            
+        }
         
     }
     
