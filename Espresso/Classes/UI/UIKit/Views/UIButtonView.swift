@@ -185,7 +185,7 @@ public class UIButtonView: UIBaseView {
             guard let self = self else { return }
             
             Taptic(style: .selection)
-                .trigger()
+                .play()
 
             self.action?()
 

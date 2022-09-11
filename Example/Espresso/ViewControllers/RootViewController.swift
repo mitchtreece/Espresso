@@ -330,7 +330,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return }
-            row.taptic.trigger()
+            row.taptic.play()
             
         case .helpers:
             
