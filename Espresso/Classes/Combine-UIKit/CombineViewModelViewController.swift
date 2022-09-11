@@ -48,7 +48,12 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
     /// The view controller's component cancellable bag.
     public var componentBag: CancellableBag!
     
+    /// The view controller's keyboard cancellable bag.
     private var keyboardBag: CancellableBag!
+    
+    /// Flag indicating if binding functions have been called yet.
+    /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
+    private(set) var isBinded: Bool = false
     
     private let _keyboardWillShowPublisher = GuaranteePassthroughSubject<KeyboardAnimationInfo>()
     private let _keyboardDidShowPublisher = GuaranteePassthroughSubject<KeyboardAnimationInfo>()
@@ -56,10 +61,6 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
     private let _keyboardDidChangeFramePublisher = GuaranteePassthroughSubject<KeyboardAnimationInfo>()
     private let _keyboardWillHidePublisher = GuaranteePassthroughSubject<KeyboardAnimationInfo>()
     private let _keyboardDidHidePublisher = GuaranteePassthroughSubject<KeyboardAnimationInfo>()
-    
-    /// Flag indicating if binding functions have been called yet.
-    /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
-    private(set) var isBinded: Bool = false
     
     open override func viewWillAppear(_ animated: Bool) {
         
@@ -95,7 +96,12 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
         self.componentBag = CancellableBag()
     }
     
-    private func bindKeyboard() {
+    /// Binding function called once in `viewWillAppear(animated:)`.
+    /// Override this to setup custom keyboard bindings.
+    ///
+    /// The view controller's keyboard cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bindKeyboard()` **before** accessing the `keyboardBag`.
+    open func bindKeyboard() {
         
         self.keyboardBag = CancellableBag()
         
