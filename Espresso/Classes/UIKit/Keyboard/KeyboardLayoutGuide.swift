@@ -106,20 +106,11 @@ public class KeyboardLayoutGuide: UILayoutGuide {
     private func keyboardWillChangeFrame(_ notification: Notification) {
         
         guard let window = UIApplication.shared.activeWindow,
-              let info = notification.userInfo,
-              let beginFrame = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-              let endFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-              let duration = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue,
-              let curve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
-        
-        let options  = UIView.AnimationOptions(rawValue: curve.uintValue << 16)
-        
+              let info = KeyboardAnimationInfo(notification: notification) else { return }
+                
         animate(
-            from: beginFrame,
-            to: endFrame,
-            in: window,
-            duration: duration,
-            options: options
+            using: info,
+            in: window
         )
         
     }
@@ -167,16 +158,13 @@ public class KeyboardLayoutGuide: UILayoutGuide {
         
     }
     
-    private func animate(from: CGRect,
-                         to: CGRect,
-                         in coordinateSpace: UICoordinateSpace,
-                         duration: Double = 0,
-                         options: UIView.AnimationOptions = []) {
+    private func animate(using info: KeyboardAnimationInfo,
+                         in coordinateSpace: UICoordinateSpace) {
         
-        guard duration > 0 else {
+        guard info.duration > 0 else {
             
             layout(
-                forKeyboardFrame: to,
+                forKeyboardFrame: info.endFrame,
                 in: coordinateSpace
             )
             
@@ -185,18 +173,18 @@ public class KeyboardLayoutGuide: UILayoutGuide {
         }
         
         layout(
-            forKeyboardFrame: from,
+            forKeyboardFrame: info.beginFrame,
             in: coordinateSpace
         )
         
         UIView.animate(
-            withDuration: duration,
+            withDuration: info.duration,
             delay: 0,
-            options: options,
+            options: info.options,
             animations: { [unowned self] in
                
                 self.layout(
-                    forKeyboardFrame: to,
+                    forKeyboardFrame: info.endFrame,
                     in: coordinateSpace
                 )
                 

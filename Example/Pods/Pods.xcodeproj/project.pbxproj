@@ -97,6 +97,7 @@
 		2677B6A428CDD1C5009EC185 /* NSObject+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */; };
 		2677B6A628CDD8C5009EC185 /* CGRect+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */; };
 		2677B6A828CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */; };
+		2677B6AA28CDDFC8009EC185 /* KeyboardAnimationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A928CDDFC8009EC185 /* KeyboardAnimationInfo.swift */; };
 		26BC2BB0287763FA002F672F /* KeyStoreWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */; };
 		26BC2BB2287764CD002F672F /* KeyStoreReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */; };
 		26BC2BB528776818002F672F /* KeyStoredReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB428776818002F672F /* KeyStoredReadable.swift */; };
@@ -721,6 +722,7 @@
 		2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Espresso.swift"; sourceTree = "<group>"; };
 		2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Espresso.swift"; sourceTree = "<group>"; };
 		2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+KeyboardLayoutGuide.swift"; sourceTree = "<group>"; };
+		2677B6A928CDDFC8009EC185 /* KeyboardAnimationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnimationInfo.swift; sourceTree = "<group>"; };
 		26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreReadable.swift; sourceTree = "<group>"; };
 		26BC2BB428776818002F672F /* KeyStoredReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
@@ -1386,6 +1388,7 @@
 			isa = PBXGroup;
 			children = (
 				2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */,
+				2677B6A928CDDFC8009EC185 /* KeyboardAnimationInfo.swift */,
 				2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */,
 				2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */,
 				2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */,
@@ -3018,6 +3021,7 @@
 				2E99356241E75826324811BA3C95DFB2 /* UIModalStyle.swift in Sources */,
 				12B07923F1F47C9436BF060F57A45BB0 /* UINavigationController+Espresso.swift in Sources */,
 				1821511B577ECFB0D9A3394CDDE4AA3C /* UINavigationController+UIViewControllerTransition.swift in Sources */,
+				2677B6AA28CDDFC8009EC185 /* KeyboardAnimationInfo.swift in Sources */,
 				CA0934DFB1D3DDF71C66709A2F87CA5E /* UINibView.swift in Sources */,
 				42D9DE3D5BF9A8BFAA04B5B77F62D257 /* UINotch.swift in Sources */,
 				263AC43E2859B7C70069102C /* Version+Range.swift in Sources */,
