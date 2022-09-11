@@ -714,7 +714,7 @@
 		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
 		2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Espresso.swift"; sourceTree = "<group>"; };
 		2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Espresso.swift"; sourceTree = "<group>"; };
-		2677B6A928CDDFC8009EC185 /* KeyboardAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnimation.swift; sourceTree = "<group>"; };
+		2677B6A928CDDFC8009EC185 /* KeyboardAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyboardAnimation.swift; path = Espresso/Classes/UIKit/KeyboardAnimation.swift; sourceTree = "<group>"; };
 		26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreReadable.swift; sourceTree = "<group>"; };
 		26BC2BB428776818002F672F /* KeyStoredReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
