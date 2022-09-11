@@ -91,7 +91,7 @@
 		263AC436285947E50069102C /* AppleDevice+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC435285947E50069102C /* AppleDevice+Helpers.swift */; };
 		263AC43E2859B7C70069102C /* Version+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43D2859B7C70069102C /* Version+Range.swift */; };
 		263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* Version+Codable.swift */; };
-		2677B69E28CDCBB5009EC185 /* OrientationObservingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */; };
+		2677B69E28CDCBB5009EC185 /* OrientationProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B69D28CDCBB5009EC185 /* OrientationProxyViewController.swift */; };
 		2677B6A028CDCE42009EC185 /* KeyboardLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */; };
 		2677B6A228CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */; };
 		2677B6A428CDD1C5009EC185 /* NSObject+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */; };
@@ -716,7 +716,7 @@
 		263AC435285947E50069102C /* AppleDevice+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleDevice+Helpers.swift"; sourceTree = "<group>"; };
 		263AC43D2859B7C70069102C /* Version+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Range.swift"; sourceTree = "<group>"; };
 		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
-		2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObservingViewController.swift; sourceTree = "<group>"; };
+		2677B69D28CDCBB5009EC185 /* OrientationProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationProxyViewController.swift; sourceTree = "<group>"; };
 		2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutGuide.swift; sourceTree = "<group>"; };
 		2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeAreaInsetsDidChange.swift"; sourceTree = "<group>"; };
 		2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Espresso.swift"; sourceTree = "<group>"; };
@@ -1389,7 +1389,7 @@
 			children = (
 				2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */,
 				2677B6A928CDDFC8009EC185 /* KeyboardAnimation.swift */,
-				2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */,
+				2677B69D28CDCBB5009EC185 /* OrientationProxyViewController.swift */,
 				2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */,
 				2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */,
 			);
@@ -3010,7 +3010,7 @@
 				B7DA4D3F79B46574B3B883ECDBCEF3A7 /* UICoverTransition.swift in Sources */,
 				2629FFF02806BAFF0053FB82 /* Event+Combine.swift in Sources */,
 				E8AF4348343C15B607BC7B96B6910BCC /* UIFadeTransition.swift in Sources */,
-				2677B69E28CDCBB5009EC185 /* OrientationObservingViewController.swift in Sources */,
+				2677B69E28CDCBB5009EC185 /* OrientationProxyViewController.swift in Sources */,
 				263AC4292857FD090069102C /* UIDevice+Espresso.swift in Sources */,
 				4CCA8C3F37352540F276FA1CCF5AF24D /* UIGestureRecognizer+Espresso.swift in Sources */,
 				646FEEC4BE75E000665A0A4033C1BC33 /* UIGradientView.swift in Sources */,

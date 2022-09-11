@@ -28,7 +28,7 @@ public class KeyboardLayoutGuide: UILayoutGuide {
         view.addLayoutGuide(self)
         
         // Constraints
-        
+                
         self.topConstraint = self.topAnchor.constraint(
             equalTo: view.topAnchor,
             constant: view.layoutMarginsGuide.layoutFrame.size.height
@@ -87,7 +87,7 @@ public class KeyboardLayoutGuide: UILayoutGuide {
             .sink { [unowned self] _ in self.isKeyboardShown = false }
             .store(in: &self.bag)
         
-        OrientationObservingViewController.shared
+        OrientationProxyViewController.shared
             .viewTransitionPublisher
             .sink { [unowned self] size, transitionCoordinator in
                 

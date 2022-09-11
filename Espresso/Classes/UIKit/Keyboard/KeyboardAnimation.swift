@@ -14,6 +14,15 @@ public struct KeyboardAnimation {
     public let duration: TimeInterval
     public let options: UIView.AnimationOptions
     
+    public var movement: CGVector {
+        
+        return CGVector(
+            dx: 0,
+            dy: (self.endFrame.height - self.beginFrame.height)
+        )
+        
+    }
+    
     internal init(beginFrame: CGRect,
                   endFrame: CGRect,
                   duration: TimeInterval,
