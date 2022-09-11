@@ -1,0 +1,207 @@
+//
+//  KeyboardLayoutGuide.swift
+//  Espresso
+//
+//  Created by Mitch Treece on 9/11/22.
+//
+
+import UIKit
+import Combine
+
+/// Layout guide that is attached to the keyboard's top anchor.
+@available(iOS 13, *)
+public class KeyboardLayoutGuide: UILayoutGuide {
+    
+    private var topConstraint: NSLayoutConstraint!
+    private var bottomConstraint: NSLayoutConstraint!
+    private var leftConstraint: NSLayoutConstraint!
+    private var rightConstraint: NSLayoutConstraint!
+    
+    private(set) var isKeyboardShown: Bool = false
+    
+    private var bag: CancellableBag!
+    
+    init(view: UIView) {
+        
+        super.init()
+        
+        view.addLayoutGuide(self)
+        
+        // Constraints
+        
+        self.topConstraint = self.topAnchor.constraint(
+            equalTo: view.topAnchor,
+            constant: view.layoutMarginsGuide.layoutFrame.size.height
+        )
+        
+        self.bottomConstraint = self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        self.leftConstraint = self.leftAnchor.constraint(equalTo: view.leftAnchor)
+        self.rightConstraint = self.rightAnchor.constraint(equalTo: view.rightAnchor)
+        
+        NSLayoutConstraint.activate([
+            self.topConstraint,
+            self.bottomConstraint,
+            self.leftConstraint,
+            self.rightConstraint
+        ])
+        
+        // Safe Area Observer
+        
+        view.onSafeAreaInsetsDidChange = { [weak self] in
+            
+            guard let window = UIApplication.shared.activeWindow else { return }
+            
+            self?.layout(
+                forKeyboardFrame: window.bounds.bottomEdgeRect,
+                in: window
+            )
+            
+        }
+        
+        // Bindings
+        
+        setupBindings()
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupBindings() {
+        
+        self.bag = CancellableBag()
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
+            .sink { [unowned self] notification in self.keyboardWillChangeFrame(notification) }
+            .store(in: &self.bag)
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [unowned self] _ in self.isKeyboardShown = true }
+            .store(in: &self.bag)
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [unowned self] _ in self.isKeyboardShown = false }
+            .store(in: &self.bag)
+        
+        OrientationObservingViewController.shared
+            .viewTransitionPublisher
+            .sink { [unowned self] size, transitionCoordinator in
+                
+                guard !self.isKeyboardShown else { return }
+                
+                self.viewWillTransition(
+                    to: size,
+                    with: transitionCoordinator
+                )
+                
+            }
+            .store(in: &self.bag)
+        
+    }
+    
+    private func keyboardWillChangeFrame(_ notification: Notification) {
+        
+        guard let window = UIApplication.shared.activeWindow,
+              let info = notification.userInfo,
+              let beginFrame = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+              let endFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+              let duration = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue,
+              let curve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
+        
+        let options  = UIView.AnimationOptions(rawValue: curve.uintValue << 16)
+        
+        animate(
+            from: beginFrame,
+            to: endFrame,
+            in: window,
+            duration: duration,
+            options: options
+        )
+        
+    }
+    
+    private func viewWillTransition(to size: CGSize,
+                                    with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate { [unowned self] coordinator in
+                        
+            self.layout(
+                forKeyboardFrame: .init(
+                    origin: .zero,
+                    size: size
+                ),
+                in: coordinator.containerView
+            )
+            
+        }
+        
+    }
+    
+    private func layout(forKeyboardFrame keyboardFrame: CGRect,
+                        in coordinateSpace: UICoordinateSpace) {
+        
+        guard let view = self.owningView else { return }
+        
+        let keyboardFrameInView = view.convert(
+            keyboardFrame,
+            from: coordinateSpace
+        )
+        
+        let intersection = view
+            .layoutMarginsGuide
+            .layoutFrame
+            .intersection(keyboardFrameInView)
+        
+        let frame = intersection.isNull ? view.layoutMarginsGuide.layoutFrame.bottomEdgeRect : intersection
+        
+        self.topConstraint.constant = frame.minY
+        self.bottomConstraint.constant = frame.maxY
+        self.leftConstraint.constant = frame.minX
+        self.rightConstraint.constant = frame.maxX
+        
+        view.layoutIfNeeded()
+        
+    }
+    
+    private func animate(from: CGRect,
+                         to: CGRect,
+                         in coordinateSpace: UICoordinateSpace,
+                         duration: Double = 0,
+                         options: UIView.AnimationOptions = []) {
+        
+        guard duration > 0 else {
+            
+            layout(
+                forKeyboardFrame: to,
+                in: coordinateSpace
+            )
+            
+            return
+            
+        }
+        
+        layout(
+            forKeyboardFrame: from,
+            in: coordinateSpace
+        )
+        
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: options,
+            animations: { [unowned self] in
+               
+                self.layout(
+                    forKeyboardFrame: to,
+                    in: coordinateSpace
+                )
+                
+            })
+        
+    }
+    
+}

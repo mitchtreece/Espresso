@@ -91,6 +91,12 @@
 		263AC436285947E50069102C /* AppleDevice+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC435285947E50069102C /* AppleDevice+Helpers.swift */; };
 		263AC43E2859B7C70069102C /* Version+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43D2859B7C70069102C /* Version+Range.swift */; };
 		263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AC43F285A5F6B0069102C /* Version+Codable.swift */; };
+		2677B69E28CDCBB5009EC185 /* OrientationObservingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */; };
+		2677B6A028CDCE42009EC185 /* KeyboardLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */; };
+		2677B6A228CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */; };
+		2677B6A428CDD1C5009EC185 /* NSObject+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */; };
+		2677B6A628CDD8C5009EC185 /* CGRect+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */; };
+		2677B6A828CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */; };
 		26BC2BB0287763FA002F672F /* KeyStoreWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */; };
 		26BC2BB2287764CD002F672F /* KeyStoreReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */; };
 		26BC2BB528776818002F672F /* KeyStoredReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC2BB428776818002F672F /* KeyStoredReadable.swift */; };
@@ -709,6 +715,12 @@
 		263AC435285947E50069102C /* AppleDevice+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleDevice+Helpers.swift"; sourceTree = "<group>"; };
 		263AC43D2859B7C70069102C /* Version+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Range.swift"; sourceTree = "<group>"; };
 		263AC43F285A5F6B0069102C /* Version+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Codable.swift"; sourceTree = "<group>"; };
+		2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObservingViewController.swift; sourceTree = "<group>"; };
+		2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutGuide.swift; sourceTree = "<group>"; };
+		2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeAreaInsetsDidChange.swift"; sourceTree = "<group>"; };
+		2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Espresso.swift"; sourceTree = "<group>"; };
+		2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Espresso.swift"; sourceTree = "<group>"; };
+		2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+KeyboardLayoutGuide.swift"; sourceTree = "<group>"; };
 		26BC2BAF287763FA002F672F /* KeyStoreWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreWritable.swift; sourceTree = "<group>"; };
 		26BC2BB1287764CD002F672F /* KeyStoreReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreReadable.swift; sourceTree = "<group>"; };
 		26BC2BB428776818002F672F /* KeyStoredReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
@@ -1370,6 +1382,18 @@
 			path = Espresso/Classes/UIKit/AppleDevice;
 			sourceTree = "<group>";
 		};
+		2677B69C28CDCB2D009EC185 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2677B69F28CDCE42009EC185 /* KeyboardLayoutGuide.swift */,
+				2677B69D28CDCBB5009EC185 /* OrientationObservingViewController.swift */,
+				2677B6A728CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift */,
+				2677B6A128CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift */,
+			);
+			name = Keyboard;
+			path = Espresso/Classes/UIKit/Keyboard;
+			sourceTree = "<group>";
+		};
 		26BC2BB328776559002F672F /* Key */ = {
 			isa = PBXGroup;
 			children = (
@@ -1832,6 +1856,7 @@
 				7D08EDC00EADFFA177FB18C3F6BD6352 /* UINibView.swift */,
 				84AC47F396F950D4AC29955ADA2A9EA9 /* UITaptic.swift */,
 				19DB58FFAA8A28B024A1A8D69E448412 /* UIVerticalEdgeInsets.swift */,
+				2677B69C28CDCB2D009EC185 /* Keyboard */,
 				263AC42A285803B20069102C /* AppleDevice */,
 				5A3CDA25EF4F8031903185E436BDABF9 /* Base */,
 				F050A6E89A06ACF1B6A260DDE5FC0646 /* Extensions */,
@@ -2148,6 +2173,7 @@
 		F814876BB143CF5CF441E5F4E245730D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2677B6A328CDD1C5009EC185 /* NSObject+Espresso.swift */,
 				A06F207E28795ABC7570AD081AF232DA /* Array+Espresso.swift */,
 				42E5E71F1903B52793E96552D53B6AC0 /* Bool+Espresso.swift */,
 				5758B041C4D7427221BC17D922503035 /* Collection+Espresso.swift */,
@@ -2158,6 +2184,7 @@
 				F8D89DB2FE8A290E9E3A7173544B9F55 /* IndexPath+Espresso.swift */,
 				16C03FC2F8734442E5349B7796FAE5EE /* String+Espresso.swift */,
 				263AC431285878E60069102C /* Scanner+Espresso.swift */,
+				2677B6A528CDD8C5009EC185 /* CGRect+Espresso.swift */,
 			);
 			name = Extensions;
 			path = Espresso/Classes/Core/Extensions;
@@ -2913,6 +2940,7 @@
 				BAC4B3C94DE74E76F28BC79F3D00D83B /* Dictionary+Espresso.swift in Sources */,
 				34BA0A9339D40A1885217F9A4CBBDE40 /* Direction.swift in Sources */,
 				2629FFEE2806B7AB0053FB82 /* CancellableBag.swift in Sources */,
+				2677B6A028CDCE42009EC185 /* KeyboardLayoutGuide.swift in Sources */,
 				104FAD833B8A7F863171F7A2428183C2 /* Edge.swift in Sources */,
 				0A82C9CAF56670D6953378661A657F10 /* ErrorType.swift in Sources */,
 				95E970505808ED9E50DD605F37CE66A2 /* Espresso-dummy.m in Sources */,
@@ -2954,7 +2982,9 @@
 				263AC432285878E60069102C /* Scanner+Espresso.swift in Sources */,
 				13D64518E9AF5898BEC6781672E57A7F /* UIApplication+Events.swift in Sources */,
 				4EFAA7525ED84D5F0BD3AF22ABEF7FA1 /* UIApplicationEvents.swift in Sources */,
+				2677B6A628CDD8C5009EC185 /* CGRect+Espresso.swift in Sources */,
 				27A10232B075D033E1825AA7856D57A9 /* UIBaseCollectionViewCell.swift in Sources */,
+				2677B6A228CDD179009EC185 /* UIView+SafeAreaInsetsDidChange.swift in Sources */,
 				7794FED2E7158EC4E5E64A3CA60CB69F /* UIBaseTableViewCell.swift in Sources */,
 				263AC4272857D2F10069102C /* VersionParser.swift in Sources */,
 				A9673CA36D26ECADE4A601240491EAE0 /* UIBaseView.swift in Sources */,
@@ -2969,6 +2999,7 @@
 				263AC436285947E50069102C /* AppleDevice+Helpers.swift in Sources */,
 				4272740BF1F150B61822E097A136F5DA /* UIColor+Espresso.swift in Sources */,
 				28CA33F1DAFA139E2C4BCC8B98907DCA /* UIContainerView.swift in Sources */,
+				2677B6A828CDDC0E009EC185 /* UIView+KeyboardLayoutGuide.swift in Sources */,
 				C327A00993A7FEECAEC6C92FDA16962A /* UIContextMenu.swift in Sources */,
 				933A2873531D3D8C352BBBE01394E8BE /* UIContextMenuActionItem.swift in Sources */,
 				68986CBC8BE1BB112D105EABB8B113CC /* UIContextMenuGroupItem.swift in Sources */,
@@ -2976,6 +3007,7 @@
 				B7DA4D3F79B46574B3B883ECDBCEF3A7 /* UICoverTransition.swift in Sources */,
 				2629FFF02806BAFF0053FB82 /* Event+Combine.swift in Sources */,
 				E8AF4348343C15B607BC7B96B6910BCC /* UIFadeTransition.swift in Sources */,
+				2677B69E28CDCBB5009EC185 /* OrientationObservingViewController.swift in Sources */,
 				263AC4292857FD090069102C /* UIDevice+Espresso.swift in Sources */,
 				4CCA8C3F37352540F276FA1CCF5AF24D /* UIGestureRecognizer+Espresso.swift in Sources */,
 				646FEEC4BE75E000665A0A4033C1BC33 /* UIGradientView.swift in Sources */,
@@ -2997,6 +3029,7 @@
 				16528908C7DC9C17BF104E1E5D6CCFC5 /* UISlideTransition.swift in Sources */,
 				263AC440285A5F6B0069102C /* Version+Codable.swift in Sources */,
 				26BC2BB0287763FA002F672F /* KeyStoreWritable.swift in Sources */,
+				2677B6A428CDD1C5009EC185 /* NSObject+Espresso.swift in Sources */,
 				6A3A1CBA26AB57DB850D31DC88D10910 /* UISwapTransition.swift in Sources */,
 				DDE9B95BCDDB06A4D7AB4120F4AF0872 /* UITableView+Espresso.swift in Sources */,
 				2629FFD4280652620053FB82 /* CombineTableViewCell.swift in Sources */,
