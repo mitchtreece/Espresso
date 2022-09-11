@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
     # - Recipe-Modern-UIKit
     #     - Espresso/UI-UIKit
     #     - Espresso/PromiseKit
-    #     - Spider-Web
-    #     - Director
+    #     - Spider-Web/All
+    #     - Director/All
     #     - Swinject
 
     s.default_subspec = 'UIKit'
@@ -147,9 +147,9 @@ Pod::Spec.new do |s|
         ss.dependency     'Espresso/UI-UIKit'
         ss.dependency     'Espresso/PromiseKit'
 
-        ss.dependency     'Spider-Web', '~> 2.0'
-        ss.dependency     'Director',   '~> 1.0'
-        ss.dependency     'Swinject',   '~> 2.0'
+        ss.dependency     'Spider-Web/All', '~> 2.0'
+        ss.dependency     'Director/All',   '~> 1.0'
+        ss.dependency     'Swinject',       '~> 2.0'
 
     end
 
