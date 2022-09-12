@@ -58,6 +58,8 @@ Pod::Spec.new do |s|
 
         ss.source_files = 'Espresso/Classes/Core/Core/**/*'
 
+        ss.dependency     'CombineExt', '~> 1.0'
+
     end
 
     s.subspec 'Core-Types' do |ss|
