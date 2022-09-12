@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-/// `UIBaseViewController` subclass that provides common helper functions & properties.
+/// `UIViewController` subclass that provides common helper functions & properties.
 open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
     /// A publisher that sends when the view finishes loading.

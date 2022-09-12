@@ -36,6 +36,8 @@
 		23F876E29E26FCF5B15F0B7491B8FB3C /* UIView+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C2775A4978782A8BF846C5D2035D9 /* UIView+Espresso.swift */; };
 		243854E91E221656EFDC4387C793F99A /* Array+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAB5616F90E5DF1F7EA69022F23324 /* Array+Espresso.swift */; };
 		261B24F0687DAD6D9CE68ADB6D2FFFFD /* AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFDA99DFD87C7355C8AF860E6DB29D /* AnyPromise.m */; };
+		2677B6B628CEF0CD009EC185 /* UIBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */; };
+		2677B6B828CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */; };
 		269D2ECB20FFB91785D53A50CA5B438B /* UINavigationController+ViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F23277576198883F19961E7D0A03DF /* UINavigationController+ViewControllerTransition.swift */; };
 		272FF52B66E9D15EA09E5AA6718AF411 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B5147CA6B722E8B133C09CDEB28AE /* ConstraintAttributes.swift */; };
 		27A707C1FB92BBBD2BB091CDC05E6212 /* Data+Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C376F2CE7A5AA4463D39464F7457F08 /* Data+Digest.swift */; };
@@ -348,6 +350,8 @@
 		232BF0E5B3E601800E9CC16F141EC955 /* NSTask+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTask+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSTask+AnyPromise.h"; sourceTree = "<group>"; };
 		23642C4DDC4739810B648D0E9EB74B0F /* NSURLSession+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSession+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSURLSession+AnyPromise.h"; sourceTree = "<group>"; };
 		25C27E90A1188AD3DE1DE8BE35496657 /* after.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = after.swift; path = Sources/after.swift; sourceTree = "<group>"; };
+		2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBaseNavigationController.swift; sourceTree = "<group>"; };
+		2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavBarInteractivePopDelegate.swift; sourceTree = "<group>"; };
 		290E0FC3BBEAD862287B091DEAA0445C /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		2AA375896A73CC602A651EEFEC4F858F /* UIViewModelViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewModelViewController.swift; sourceTree = "<group>"; };
 		2AC72A6119816FAD72BC78CDCCE8EB2A /* UIViewController+ViewControllerTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewControllerTransition.swift"; sourceTree = "<group>"; };
@@ -872,7 +876,9 @@
 			isa = PBXGroup;
 			children = (
 				4875BE35FD55C45FD4ACA6BC4C4C4039 /* UIBaseViewController.swift */,
+				2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */,
 				2AA375896A73CC602A651EEFEC4F858F /* UIViewModelViewController.swift */,
+				2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */,
 				10F57BF67F3AAAD49F7AFF0244FE63CB /* Transitions */,
 			);
 			name = ViewControllers;
@@ -1727,12 +1733,14 @@
 				E94D4D768BB0C976E0A712ADCCC25EB4 /* UIControl+Espresso.swift in Sources */,
 				6B7E3DB763132299D42509146E742204 /* UIDevice+Espresso.swift in Sources */,
 				01B42DF38CB3511C280F831D5E226110 /* UIGestureRecognizer+Espresso.swift in Sources */,
+				2677B6B828CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift in Sources */,
 				4282F9A924D2D5302F707CE1BEF23D3A /* UIGradientView.swift in Sources */,
 				F4A2DA222605D95BD42DAEAD34DF1D75 /* UIHairlineView.swift in Sources */,
 				9925355A05B317586A6AAE15A0ECA74C /* UIImage+Espresso.swift in Sources */,
 				97E79047278984C883972B6311BCAD8B /* UINavigationController+Espresso.swift in Sources */,
 				269D2ECB20FFB91785D53A50CA5B438B /* UINavigationController+ViewControllerTransition.swift in Sources */,
 				D08C522DD084D12E466B1841FACC6A4C /* UINibView.swift in Sources */,
+				2677B6B628CEF0CD009EC185 /* UIBaseNavigationController.swift in Sources */,
 				80461B966E5722BE8F2C92E0328209D3 /* UIParallaxView.swift in Sources */,
 				70A8ADAEE942590C8EF00689C91E4F3C /* UIRectCorner+Espresso.swift in Sources */,
 				ECA0C3D2469C25B80066B64EEF400781 /* UIResponder+Espresso.swift in Sources */,
