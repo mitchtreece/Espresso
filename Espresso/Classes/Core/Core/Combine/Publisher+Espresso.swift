@@ -7,6 +7,32 @@
 
 import Combine
 
+public extension Publisher {
+    
+    /// Specifies `DispatchQueue.main` as the publisher's
+    /// subscribe, cancel, & request operation scheduler.
+    func subscribeOnMain(options: DispatchQueue.SchedulerOptions? = nil) -> Publishers.SubscribeOn<Self, DispatchQueue> {
+        
+        return subscribe(
+            on: .main,
+            options: options
+        )
+        
+    }
+    
+    /// Specifies `DispatchQueue.main` as the receiving
+    /// scheduler for published elements.
+    func receiveOnMain(options: DispatchQueue.SchedulerOptions? = nil) -> Publishers.ReceiveOn<Self, DispatchQueue> {
+                
+        return receive(
+            on: .main,
+            options: options
+        )
+        
+    }
+    
+}
+
 public extension Publisher where Failure == Never {
     
     /// Latest value of the publisher's output sequence.

@@ -8,13 +8,14 @@
 
 import UIKit
 import Espresso
-import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     private var navController: UINavigationController!
+    
+    private var bag = CancellableBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,13 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = self.navController
         self.window!.makeKeyAndVisible()
         
-        application.events.didBecomeActive.addObserver {
-            print("☕️ application did become active")
-        }
+        application
+            .publishers
+            .didBecomeActive
+            .sink { print("☕️ application did become active") }
+            .store(in: &self.bag)
         
-        application.events.willResignActive.addObserver {
-            print("☕️ application will resign active")
-        }
+        application
+            .publishers
+            .willResignActive
+            .sink { print("☕️ application did resign active") }
+            .store(in: &self.bag)
                 
         return true
         

@@ -11,6 +11,9 @@ import Combine
 /// A Combine-based `UIViewController` subclass that provides common properties & functions when backed by a view model.
 open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewController<V> {
     
+    /// The view controller's generic cancellable bag.
+    public var bag: CancellableBag!
+    
     /// The view controller's model cancellable bag.
     public var modelBag: CancellableBag!
     
@@ -26,7 +29,8 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
         super.viewWillAppear(animated)
         
         if !self.isBinded {
-                        
+                   
+            bind()
             bindModel()
             bindComponents()
             
@@ -34,6 +38,15 @@ open class CombineViewModelViewController<V: ViewModel>: UIViewModelViewControll
             
         }
         
+    }
+    
+    /// Binding function called once in `viewWillAppear(animated:)`.
+    /// Override this to setup custom bindings.
+    ///
+    /// The view controller's cancellable bag is created when this is called.
+    /// Subclasses that override this function should call `super.bind()` **before** accessing the `bag`.
+    open func bind() {
+        self.bag = CancellableBag()
     }
     
     /// Binding function called once in `viewWillAppear(animated:)`.

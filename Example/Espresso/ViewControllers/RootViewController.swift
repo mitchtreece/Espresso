@@ -29,7 +29,7 @@ class RootViewController: UIViewController {
     
     private var tableView: UITableView!
     private weak var delegate: RootViewControllerDelegate?
-    
+        
     init(delegate: RootViewControllerDelegate) {
         
         super.init(nibName: nil, bundle: nil)
@@ -45,11 +45,7 @@ class RootViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Espresso ☕️"
-                
-        self.events.viewDidAppear.addObserver {
-            print("☕️ RootViewController did appear")
-        }
-                
+            
         self.tableView = UITableView(frame: .zero, style: .grouped)
         self.tableView.backgroundColor = .systemGroupedBackground
         self.tableView.tableFooterView = UIView()

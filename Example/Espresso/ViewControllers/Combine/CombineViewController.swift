@@ -36,17 +36,22 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
 
     }
     
+    override func bind() {
+        
+        super.bind()
+        
+        self.viewDidAppearPublisher
+            .sink { animated in print("☕️ CombineViewController did appear, animated: \(animated)") }
+            .store(in: &self.bag)
+ 
+    }
+    
     override func bindModel() {
         
         super.bindModel()
-        
-        self.events.viewDidAppear
-            .asPublisher()
-            .sink { print("☕️ CombineViewController did appear") }
-            .store(in: &self.modelBag)
-        
+
         self.viewModel.$labelText
-            .receive(on: DispatchQueue.main)
+            .receiveOnMain()
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)
             .store(in: &self.modelBag)

@@ -6,9 +6,40 @@
 //
 
 import UIKit
+import Combine
 
 /// `UIBaseViewController` subclass that provides common helper functions & properties.
 open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
+    
+    /// A publisher that sends when the view finishes loading.
+    public var viewDidLoadPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLoadPublisher.asPublisher()
+    }
+    
+    /// A publisher that sends when the view is about to appear.
+    public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
+        return self._viewWillAppearPublisher.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view finishes appearing.
+    public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
+        return self._viewDidAppearPublisher.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view is about to disappear.
+    public var viewWillDisappearPublisher: GuaranteePublisher<Bool> {
+        return self._viewWillDisappearPublisher.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view finishes disappearing.
+    public var viewDidDisappearPublisher: GuaranteePublisher<Bool> {
+        return self._viewDidDisappearPublisher.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view receives a memory warning.
+    public var didRecieveMemoryWarningPublisher: GuaranteePublisher<Void> {
+        return self._didReceiveMemoryWarningPublisher.asPublisher()
+    }
     
     /// Flag indicating if this is the view controller's first appearance.
     ///
@@ -50,7 +81,24 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         get { return !self.isModalInPresentation }
         set { self.isModalInPresentation = !newValue }
     }
+    
+    private var _viewDidLoadPublisher = TriggerPublisher()
+    private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
+    
+    private var keyboardBag: CancellableBag!
  
+    open override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self._viewDidLoadPublisher.fire()
+        
+    }
+    
     open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -60,21 +108,45 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
             animated: true
         )
         
-        addKeyboardObservers()
+        bindKeyboardEvents()
+        
+        self._viewWillAppearPublisher.send(animated)
                 
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
+        
         self.isFirstAppearance = false
+        
+        self._viewDidAppearPublisher.send(animated)
+        
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        self._viewWillDisappearPublisher.send(animated)
         
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         
         super.viewDidDisappear(animated)
-        removeKeyboardObservers()
+        
+        unbindKeyboardEvents()
+        
+        self._viewDidDisappearPublisher.send(animated)
+        
+    }
+    
+    open override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        
+        self._didReceiveMemoryWarningPublisher.fire()
         
     }
     
@@ -135,132 +207,50 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
     // MARK: Private
     
-    private func addKeyboardObservers() {
+    private func bindKeyboardEvents() {
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
+        self.keyboardBag = CancellableBag()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardDidShow),
-            name: UIResponder.keyboardDidShowNotification,
-            object: nil
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardWillShow($0) }
+            .store(in: &self.keyboardBag)
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardWillChangeFrame),
-            name: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardDidShowNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardDidShow($0) }
+            .store(in: &self.keyboardBag)
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardDidChangeFrame),
-            name: UIResponder.keyboardDidChangeFrameNotification,
-            object: nil
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardWillChangeFrame($0) }
+            .store(in: &self.keyboardBag)
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardDidChangeFrameNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardDidChangeFrame($0) }
+            .store(in: &self.keyboardBag)
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(_keyboardDidHide),
-            name: UIResponder.keyboardDidHideNotification,
-            object: nil
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardWillHide($0) }
+            .store(in: &self.keyboardBag)
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardDidHideNotification)
+            .compactMap { KeyboardAnimation(notification: $0) }
+            .sink { [weak self] in self?.keyboardDidHide($0) }
+            .store(in: &self.keyboardBag)
         
     }
     
-    private func removeKeyboardObservers() {
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardDidShowNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardDidChangeFrameNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardDidHideNotification,
-            object: nil
-        )
-        
-    }
-    
-    @objc private func _keyboardWillShow(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardWillShow(animation)
-        
-    }
-    
-    @objc private func _keyboardDidShow(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardDidShow(animation)
-        
-    }
-    
-    @objc private func _keyboardWillChangeFrame(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardWillChangeFrame(animation)
-        
-    }
-    
-    @objc private func _keyboardDidChangeFrame(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardDidChangeFrame(animation)
-        
-    }
-    
-    @objc private func _keyboardWillHide(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardWillHide(animation)
-        
-    }
-    
-    @objc private func _keyboardDidHide(_ notification: Notification) {
-        
-        guard let animation = KeyboardAnimation(notification: notification) else { return }
-        keyboardDidHide(animation)
-        
+    private func unbindKeyboardEvents() {
+        self.keyboardBag.removeAll()
     }
     
 }

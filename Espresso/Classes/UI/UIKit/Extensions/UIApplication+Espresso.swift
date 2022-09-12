@@ -5,17 +5,44 @@
 //  Created by Mitch Treece on 12/15/17.
 //
 
-import Foundation
+import UIKit
 
 private struct AssociatedKeys {
+    
+    static var publishers: UInt8 = 0
     static var environmentOverride: UInt8 = 0
+    
 }
 
-public extension UIApplication {
+public extension UIApplication /* Publishers */ {
+    
+    /// The application's publishers.
+    var publishers: UIApplicationPublishers {
+        
+        if let publishers = objc_getAssociatedObject(self, &AssociatedKeys.publishers) as? UIApplicationPublishers {
+            return publishers
+        }
+
+        let publishers = UIApplicationPublishers()
+
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.publishers,
+            publishers,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+        )
+
+        return publishers
+        
+    }
+    
+}
+
+public extension UIApplication /* Windows & View Controllers */ {
     
     /// The application's key windows.
     var keyWindows: [UIWindow] {
-        
+    
         return self.windows
             .filter { $0.isKeyWindow }
         
