@@ -7,6 +7,10 @@
 
 import UIKit
 
+private struct AssociatedKeys {
+    static var nibs: UInt8 = 0
+}
+
 extension UIView: StaticIdentifiable {}
 
 public extension UIView /* Corners */ {
@@ -156,10 +160,6 @@ public extension UIView /* Subviews */ {
 }
 
 public extension UIView /* Nib Loading */ {
-    
-    private struct AssociatedKeys {
-        static var nibs: UInt8 = 0
-    }
     
     /// Load's a view from a nib with a specified name & bundle. If no name is provided, the class name will be used.
     /// If no bundle is provided, the main bundle will be used.
