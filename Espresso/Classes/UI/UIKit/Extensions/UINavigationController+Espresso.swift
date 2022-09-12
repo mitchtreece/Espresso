@@ -9,180 +9,195 @@ import UIKit
 
 public extension UINavigationController /* Push */ {
     
-    /// Sets the navigation controller's view controllers with a given completion handler.
-    /// - parameter viewControllers: The view controllers.
-    /// - parameter completion: The completion handler to call after the view controllers have been set.
+    /// Sets the navigation controller's view controllers.
     ///
-    /// This is always performed with animations.
+    /// - parameter viewControllers: The view controllers.
+    /// - parameter animated: Flag indicating if the operation should be performed with an animation.
+    /// - parameter completion: The completion handler to call after the view controllers have been set.
     func setViewControllers(_ viewControllers: [UIViewController],
-                            completion: @escaping ()->()) {
+                            animated: Bool,
+                            completion: (()->())?) {
         
         setViewControllers(
             viewControllers,
-            animated: true
+            animated: animated
         )
-                
+        
         if let coordinator = self.transitionCoordinator {
             coordinator.animate(alongsideTransition: nil) { _ in
-                completion()
+                self.viewControllers = viewControllers
+                completion?()
             }
         }
         else {
-            completion()
+            self.viewControllers = viewControllers
+            completion?()
         }
         
     }
-    
+
     /// Sets the navigation controller's view controllers.
-    /// - parameter viewControllers: The view controllers.
     ///
-    /// This is always performed with animations.
-    func setViewControllers(_ viewControllers: [UIViewController]) async {
+    /// - parameter viewControllers: The view controllers.
+    /// - parameter animated: Flag indicating if the operation should be performed with an animation.
+    func setViewControllers(_ viewControllers: [UIViewController],
+                            animated: Bool) async {
         
         await withCheckedContinuation { c in
-            setViewControllers(viewControllers) {
+            
+            setViewControllers(viewControllers,
+                               animated: animated) {
                 c.resume()
             }
+            
         }
         
     }
     
-    /// Push a view controller onto the navigation stack with a given completion handler.
-    /// - parameter viewController: The view controller to push.
-    /// - parameter completion: The completion handler to call after the view controller has been pushed.
+    /// Pushes a view controller onto the navigation stack.
     ///
-    /// This is always performed with animations.
-    func pushViewController(_ viewController: UIViewController, completion: @escaping ()->()) {
-        
+    /// - parameter viewController: The view controller to push.
+    /// - parameter animated: Flag indicating if the push should be animated.
+    /// - parameter completion: The completion handler to call after the view controller has been pushed.
+    func pushViewController(_ viewController: UIViewController,
+                            animated: Bool,
+                            completion: (()->())?) {
+
         pushViewController(
             viewController,
-            animated: true
+            animated: animated
         )
         
         if let coordinator = self.transitionCoordinator {
             coordinator.animate(alongsideTransition: nil) { _ in
-                completion()
+                completion?()
             }
         }
         else {
-            completion()
+            completion?()
         }
         
     }
     
-    /// Push a view controller onto the navigation stack.
-    /// - parameter viewController: The view controller to push.
+    /// Pushes a view controller onto the navigation stack.
     ///
-    /// This is always performed with animations.
-    func pushViewController(_ viewController: UIViewController) async {
+    /// - parameter viewController: The view controller to push.
+    func pushViewController(_ viewController: UIViewController,
+                            animated: Bool) async {
         
         await withCheckedContinuation { c in
-            pushViewController(viewController) {
+            
+            pushViewController(viewController,
+                               animated: animated) {
                 c.resume()
             }
+            
         }
         
     }
     
-    /// Pop the top view controller off the navigation stack with a given completion handler.
-    /// - parameter completion: The completion handler to call after popping.
+    /// Pops the top view controller off the navigation stack.
     ///
-    /// This is always performed with animations.
-    func popViewController(completion: @escaping (UIViewController?)->()) {
+    /// - parameter animated: Flag indicating if the pop should be animated.
+    /// - parameter completion: The completion handler to call after the view controller has been popped.
+    func popViewController(animated: Bool,
+                           completion: (()->())?) {
         
-        let poppedViewController = popViewController(animated: true)
+        popViewController(animated: animated)
         
         if let coordinator = self.transitionCoordinator {
             coordinator.animate(alongsideTransition: nil) { _ in
-                completion(poppedViewController)
+                completion?()
             }
         }
         else {
-            completion(poppedViewController)
+            completion?()
         }
         
     }
-    
-    /// Pop the top view controller off the navigation stack.
-    /// - returns: The popped view controller.
-    ///
-    /// This is always performed with animations.
-    func popViewController() async -> UIViewController? {
+
+    /// Pops the top view controller off the navigation stack.
+    func popViewController(animated: Bool) async {
         
         await withCheckedContinuation { c in
-            popViewController { viewController in
-                c.resume(returning: viewController)
+            popViewController(animated: animated) {
+                c.resume()
             }
-        }
-        
-    }
-    
-    /// Pops all view controllers above the root off the navigation stack with a given completion handler.
-    /// - parameter completion: The completion handler to call after popping.
-    ///
-    /// This is always performed with animations.
-    func popToRootViewController(completion: @escaping ([UIViewController]?)->()) {
-        
-        let poppedViewControllers = popToRootViewController(animated: true)
-        
-        if let coordinator = self.transitionCoordinator {
-            coordinator.animate(alongsideTransition: nil) { _ in
-                completion(poppedViewControllers)
-            }
-        }
-        else {
-            completion(poppedViewControllers)
         }
         
     }
     
     /// Pops all view controllers above the root off the navigation stack.
-    /// - returns: The popped view controllers.
     ///
-    /// This is always performed with animations.
-    func popToRootViewController() async -> [UIViewController]? {
-        
-        await withCheckedContinuation { c in
-            popToRootViewController { viewControllers in
-                c.resume(returning: viewControllers)
-            }
-        }
-        
-    }
-    
-    /// Pops to a view controller lower in the navigation stack with a given completion handler.
+    /// - parameter animated: Flag indicating if the pop should be animated.
     /// - parameter completion: The completion handler to call after popping.
-    ///
-    /// This is always performed with animations.
-    func popToViewController(_ viewController: UIViewController,
-                             completion: @escaping ([UIViewController]?)->()) {
+    func popToRootViewController(animated: Bool,
+                                 completion: (()->())?) {
         
-        let poppedViewControllers = popToViewController(
-            viewController,
-            animated: true
-        )
+        popToRootViewController(animated: animated)
 
         if let coordinator = self.transitionCoordinator {
             coordinator.animate(alongsideTransition: nil) { _ in
-                completion(poppedViewControllers)
+                completion?()
             }
         }
         else {
-            completion(poppedViewControllers)
+            completion?()
+        }
+        
+    }
+
+    /// Pops all view controllers above the root off the navigation stack.
+    ///
+    /// - parameter animated: Flag indicating if the pop should be animated.
+    func popToRootViewController(animated: Bool) async {
+        
+        await withCheckedContinuation { c in
+            popToRootViewController(animated: animated) {
+                c.resume()
+            }
         }
         
     }
     
     /// Pops to a view controller lower in the navigation stack.
-    /// - returns: The popped view controllers.
     ///
-    /// This is always performed with animations.
-    func popToViewController(_ viewController: UIViewController) async -> [UIViewController]? {
+    /// - parameter animated: Flag indicating if the pop should be animated.
+    /// - parameter completion: The completion handler to call after popping.
+    func popToViewController(_ viewController: UIViewController,
+                             animated: Bool,
+                             completion: (()->())?) {
+        
+        popToViewController(
+            viewController,
+            animated: animated
+        )
+        
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion?()
+            }
+        }
+        else {
+            completion?()
+        }
+        
+    }
+
+    /// Pops to a view controller lower in the navigation stack.
+    ///
+    /// - parameter viewController: The view controller to pop to.
+    /// - parameter animated: Flag indicating if the pop should be animated.
+    func popToViewController(_ viewController: UIViewController,
+                             animated: Bool) async {
         
         await withCheckedContinuation { c in
-            popToViewController(viewController) { viewControllers in
-                c.resume(returning: viewControllers)
+            
+            popToViewController(viewController,
+                                animated: animated) {
+                c.resume()
             }
+            
         }
         
     }

@@ -9,13 +9,11 @@ import UIKit
 
 public extension UINavigationController {
     
-    /// Push a view controller onto the navigation stack using a transition.
+    /// Pushes a view controller onto the navigation stack using a transition.
     ///
     /// - parameter viewController: The view controller to push.
     /// - parameter transition: The view controller transition.
-    /// - parameter completion: An optional completion closure to run after the transition finishes; _defaults to nil_.
-    ///
-    /// This is always performed with animations.
+    /// - parameter completion: An optional completion closure to run after the transition finishes.
     func pushViewController(_ viewController: UIViewController,
                             using transition: ViewControllerTransition,
                             completion: (()->())? = nil) {
@@ -25,18 +23,19 @@ public extension UINavigationController {
         let oldDelegate = self.delegate
         self.delegate = viewController.transition
         
-        pushViewController(viewController) {
-            self.delegate = oldDelegate
-        }
-                
+        pushViewController(
+            viewController,
+            animated: true,
+            completion: {
+                self.delegate = oldDelegate
+            })
+              
     }
     
-    /// Push a view controller onto the navigation stack using a transition.
+    /// Pushes a view controller onto the navigation stack using a transition.
     ///
     /// - parameter viewController: The view controller to push.
     /// - parameter transition: The view controller transition.
-    ///
-    /// This is always performed with animations.
     func pushViewController(_ viewController: UIViewController,
                             using transition: ViewControllerTransition) async {
         
