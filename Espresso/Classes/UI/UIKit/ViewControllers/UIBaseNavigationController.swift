@@ -50,7 +50,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
     /// pop gesture recognizer is enabled.
     public var isSwipeBackGestureEnabled: Bool = true {
         didSet {
-            self.interactivePopDelegate.isSwipeBackGestureEnabled = isInteractiveDismissEnabled
+            self.interactivePopDelegate.isSwipeBackGestureEnabled = isSwipeBackGestureEnabled
         }
     }
     
@@ -72,7 +72,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
     /// Flag indicating if the view controller enforces modal-behavior,
     /// or supports interactive dismissal.
     @available(iOS 13, *)
-    public var isInteractiveDismissEnabled: Bool {
+    public var isInteractiveModalDismissEnabled: Bool {
         get { return !self.isModalInPresentation }
         set { self.isModalInPresentation = !newValue }
     }

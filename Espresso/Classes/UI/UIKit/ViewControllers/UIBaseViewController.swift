@@ -77,7 +77,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     /// Flag indicating if the view controller enforces modal-behavior,
     /// or supports interactive dismissal.
     @available(iOS 13, *)
-    public var isInteractiveDismissEnabled: Bool {
+    public var isInteractiveModalDismissEnabled: Bool {
         get { return !self.isModalInPresentation }
         set { self.isModalInPresentation = !newValue }
     }
