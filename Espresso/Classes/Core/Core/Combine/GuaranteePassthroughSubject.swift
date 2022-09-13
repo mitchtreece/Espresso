@@ -7,5 +7,5 @@
 
 import Combine
 
-/// A subject that broadcasts elements to downstream subscribers without failure.
+/// A subject that outputs elements to downstream subscribers, and can never fail.
 public typealias GuaranteePassthroughSubject<Output> = PassthroughSubject<Output, Never>

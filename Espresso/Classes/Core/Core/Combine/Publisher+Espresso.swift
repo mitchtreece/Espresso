@@ -7,7 +7,7 @@
 
 import Combine
 
-public extension Publisher {
+public extension Publisher /* Main Queue */ {
     
     /// Specifies `DispatchQueue.main` as the publisher's
     /// subscribe, cancel, & request operation scheduler.
@@ -33,7 +33,15 @@ public extension Publisher {
     
 }
 
-public extension Publisher where Failure == Never {
+//public extension Publisher {
+//    
+//    func inject(_ block: ()->()) -> Self {
+//        
+//    }
+//    
+//}
+
+public extension Publisher where Failure == Never /* Value */ {
     
     /// Latest value of the publisher's output sequence.
     var value: Self.Output {
@@ -48,6 +56,10 @@ public extension Publisher where Failure == Never {
         
     }
     
+}
+
+public extension Publisher where Failure == Never /* Weak Assign */ {
+    
     /// Republishes elements received from a publisher,
     /// by weakly assigning them to a property marked as a publisher.
     func weakAssign<T: AnyObject>(to keyPath: ReferenceWritableKeyPath<T, Output>,
@@ -61,7 +73,7 @@ public extension Publisher where Failure == Never {
     
 }
 
-public extension Publisher where Output == Bool {
+public extension Publisher where Output == Bool /* Bool Operators */ {
 
     /// Filters `false` outputs out of a publisher sequence.
     func isTrue() -> AnyPublisher<Output, Failure> {

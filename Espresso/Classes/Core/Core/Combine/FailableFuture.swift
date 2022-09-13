@@ -7,5 +7,5 @@
 
 import Combine
 
-/// A publisher that produces a single value and then finishes or fails.
+/// A publisher that eventually produces a single value, and then finishes or fails.
 public typealias FailableFuture<T> = Future<T, Error>

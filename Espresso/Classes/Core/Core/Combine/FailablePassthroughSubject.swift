@@ -7,5 +7,5 @@
 
 import Combine
 
-/// A subject that broadcasts elements to downstream subscribers & can fail.
+/// A subject that outputs elements to downstream subscribers, and can fail.
 public typealias FailablePassthroughSubject<Output> = PassthroughSubject<Output, Error>
