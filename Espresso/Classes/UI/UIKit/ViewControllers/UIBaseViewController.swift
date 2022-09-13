@@ -89,7 +89,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
     private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
     
-    private var keyboardBag: CancellableBag!
+    private var keyboardBag = CancellableBag()
  
     open override func viewDidLoad() {
         
@@ -209,7 +209,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
     private func bindKeyboardEvents() {
         
-        self.keyboardBag = CancellableBag()
+        unbindKeyboardEvents()
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
