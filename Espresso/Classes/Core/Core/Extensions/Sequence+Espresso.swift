@@ -20,3 +20,39 @@ public extension Sequence /* Any Satisfy */ {
     }
 
 }
+
+public extension Sequence where Element: BooleanRepresentable {
+    
+    /// Returns a boolean value indicating whether
+    /// all elements are truthy.
+    ///
+    /// - returns: `true` if the sequence contains only truthy elements; otherwise, `false`.
+    func allTrue() -> Bool {
+        return allSatisfy { $0.asBool() }
+    }
+    
+    /// Returns a boolean value indicating whether
+    /// all elements are falsy.
+    ///
+    /// - returns: `true` if the sequence contains only falsy elements; otherwise, `false`.
+    func allFalse() -> Bool {
+        return allSatisfy { !$0.asBool() }
+    }
+    
+    /// Returns a boolean value indicating whether
+    /// any elements are truthy.
+    ///
+    /// - returns: `true` if the sequence contains any truthy elements; otherwise, `false`.
+    func anyTrue() -> Bool {
+        return anySatisfy { $0.asBool() }
+    }
+    
+    /// Returns a boolean value indicating whether
+    /// any elements are falsy.
+    ///
+    /// - returns: `true` if the sequence contains any falsy elements; otherwise, `false`.
+    func anyFalse() -> Bool {
+        return anySatisfy { !$0.asBool() }
+    }
+    
+}
