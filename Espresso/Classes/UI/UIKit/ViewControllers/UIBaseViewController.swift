@@ -41,17 +41,17 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         return self._didReceiveMemoryWarningPublisher.asPublisher()
     }
     
+    /// Flag indicating if the view controller should hide it's
+    /// navigation bar on appearance; _defaults to false_.
+    open var prefersNavigationBarHidden: Bool {
+        return false
+    }
+    
     /// Flag indicating if this is the view controller's first appearance.
     ///
     /// This will only be `true` until the view controller's
     /// `viewDidAppear(_:)` function is called for the first time.
     public private(set) var isFirstAppearance: Bool = true
-    
-    /// Flag indicating if the view controller should hide it's
-    /// navigation bar on appearance; _defaults to false_.
-    open var hidesNavigationBarOnAppearance: Bool {
-        return false
-    }
     
     /// The view controller's modal style.
     public var modalStyle: ModalStyle {
@@ -104,7 +104,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(
-            self.hidesNavigationBarOnAppearance,
+            self.prefersNavigationBarHidden,
             animated: true
         )
         

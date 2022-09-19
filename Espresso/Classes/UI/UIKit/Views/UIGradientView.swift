@@ -77,10 +77,12 @@ open class UIGradientView: UIBaseView {
         return CAGradientLayer.self
     }
     
-//    public override func userInterfaceStyleDidChange() {
-//        super.userInterfaceStyleDidChange()
-//        update()
-//    }
+    public override func userInterfaceStyleDidChange() {
+
+        super.userInterfaceStyleDidChange()
+        update()
+
+    }
     
     /// Initializes a new `UIGradientView` with colors & a specified direction.
     /// - Parameter colors: The gradient colors; _defaults to [black, clear]_.
@@ -112,7 +114,7 @@ open class UIGradientView: UIBaseView {
     /// Updates & draws the view's gradient.
     func update() {
         
-        self.gradientLayer.colors = colors.map({ $0.cgColor })
+        self.gradientLayer.colors = colors.map { $0.cgColor }
         self.gradientLayer.startPoint = points(for: self.direction).start
         self.gradientLayer.endPoint = points(for: self.direction).end
                 
