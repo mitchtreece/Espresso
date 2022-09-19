@@ -38,6 +38,7 @@
 		261B24F0687DAD6D9CE68ADB6D2FFFFD /* AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EFDA99DFD87C7355C8AF860E6DB29D /* AnyPromise.m */; };
 		261DDE9D28D149BE0059B6C8 /* FailableValueSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DDE9C28D149BE0059B6C8 /* FailableValueSubject.swift */; };
 		261DDE9F28D14CD60059B6C8 /* GuaranteeValueSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DDE9E28D14CD60059B6C8 /* GuaranteeValueSubject.swift */; };
+		262FA2EF28D8D31B00450CA3 /* UIViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA2EE28D8D31B00450CA3 /* UIViewControllerModel.swift */; };
 		264E034728D0104E00CD0090 /* Sequence+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E034628D0104E00CD0090 /* Sequence+Espresso.swift */; };
 		2677B6B628CEF0CD009EC185 /* UIBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */; };
 		2677B6B828CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */; };
@@ -355,6 +356,7 @@
 		25C27E90A1188AD3DE1DE8BE35496657 /* after.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = after.swift; path = Sources/after.swift; sourceTree = "<group>"; };
 		261DDE9C28D149BE0059B6C8 /* FailableValueSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailableValueSubject.swift; sourceTree = "<group>"; };
 		261DDE9E28D14CD60059B6C8 /* GuaranteeValueSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuaranteeValueSubject.swift; sourceTree = "<group>"; };
+		262FA2EE28D8D31B00450CA3 /* UIViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerModel.swift; sourceTree = "<group>"; };
 		264E034628D0104E00CD0090 /* Sequence+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Espresso.swift"; sourceTree = "<group>"; };
 		2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBaseNavigationController.swift; sourceTree = "<group>"; };
 		2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavBarInteractivePopDelegate.swift; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				59E313F0980A2D845FD86348BC7AED17 /* UIViewModel.swift */,
+				262FA2EE28D8D31B00450CA3 /* UIViewControllerModel.swift */,
 			);
 			name = ViewModel;
 			path = Espresso/Classes/UI/UIKit/ViewModel;
@@ -1693,6 +1696,7 @@
 				CE025315BE85DE9FCD8823AEC334CCB2 /* Key.swift in Sources */,
 				AE8D02DB3E019FEC6CB0F2906F175042 /* KeyboardAnimation.swift in Sources */,
 				A642F55B72EFD105FBC0C3D1B8AF4A8A /* KeyStore.swift in Sources */,
+				262FA2EF28D8D31B00450CA3 /* UIViewControllerModel.swift in Sources */,
 				758AF3715ABC6249228E8423E6461174 /* KeyStored.swift in Sources */,
 				30E3C90B58290F2416F32187A6E2E710 /* KeyStoredReadable.swift in Sources */,
 				FD954F071D27AD9E51F6572556E41679 /* KeyStoreReadable.swift in Sources */,

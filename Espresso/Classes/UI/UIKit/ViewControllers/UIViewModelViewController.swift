@@ -56,7 +56,10 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
         
         self.viewModel = viewModel
         
-        if let uiViewModel = viewModel as? UIViewModel {
+        if let uiViewControllerModel = viewModel as? UIViewControllerModel {
+            uiViewControllerModel.set(viewController: self)
+        }
+        else if let uiViewModel = viewModel as? UIViewModel {
             uiViewModel.set(view: self.view)
         }
         
