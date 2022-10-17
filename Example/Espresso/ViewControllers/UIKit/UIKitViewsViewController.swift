@@ -16,6 +16,8 @@ class UIKitViewsViewController: DetailViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.title = "UIKit Views"
+        
         setupSubviews()
         
     }

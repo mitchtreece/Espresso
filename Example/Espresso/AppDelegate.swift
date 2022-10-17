@@ -25,6 +25,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = self.navController
         self.window!.makeKeyAndVisible()
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        
+        UINavigationBar
+            .appearance()
+            .standardAppearance = appearance
+        
+        UINavigationBar
+            .appearance()
+            .scrollEdgeAppearance = appearance
+        
+        UINavigationBar
+            .appearance()
+            .compactAppearance = appearance
+        
         application
             .publishers
             .didBecomeActive
@@ -134,6 +149,22 @@ extension AppDelegate: RootViewControllerDelegate {
     
     func rootViewController(_ vc: RootViewController,
                             didSelectSwiftUIRow row: RootViewController.SwiftUIRow) {
+        
+        var vc: UIViewController!
+        
+        switch row {
+        case .views:
+            
+            vc = SwiftUIViewsContentView().asHostingController()
+            vc.title = "SwiftUI Views"
+            
+        case .hostingView: vc = SwiftUIHostingViewController()
+        }
+        
+        self.navController.pushViewController(
+            vc,
+            animated: true
+        )
         
     }
     

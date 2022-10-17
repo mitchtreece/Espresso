@@ -11,6 +11,9 @@
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
 		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
+		266E96C028FDE4A2002927A9 /* SwiftUIViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */; };
+		266E96C228FDE568002927A9 /* SwiftUIHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */; };
+		266E96C628FDEC4D002927A9 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96C528FDEC4D002927A9 /* ColorView.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
@@ -37,6 +40,9 @@
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
 		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewsContentView.swift; sourceTree = "<group>"; };
+		266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingViewController.swift; sourceTree = "<group>"; };
+		266E96C528FDEC4D002927A9 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		26F2DC62232C782900168F38 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 		262848DD288B4493009FBD15 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */,
+				266E96BE28FDE463002927A9 /* Views */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -107,6 +115,15 @@
 				2629FFDA280653CE0053FB82 /* CombineViewController.swift */,
 			);
 			path = Combine;
+			sourceTree = "<group>";
+		};
+		266E96BE28FDE463002927A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */,
+				266E96C528FDEC4D002927A9 /* ColorView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		26CC8AE621E52F6C00AE6F94 /* ViewControllers */ = {
@@ -381,11 +398,14 @@
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
 				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
+				266E96C628FDEC4D002927A9 /* ColorView.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */,
+				266E96C028FDE4A2002927A9 /* SwiftUIViewsContentView.swift in Sources */,
+				266E96C228FDE568002927A9 /* SwiftUIHostingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

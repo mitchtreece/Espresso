@@ -40,6 +40,8 @@
 		261DDE9F28D14CD60059B6C8 /* GuaranteeValueSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DDE9E28D14CD60059B6C8 /* GuaranteeValueSubject.swift */; };
 		262FA2EF28D8D31B00450CA3 /* UIViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA2EE28D8D31B00450CA3 /* UIViewControllerModel.swift */; };
 		264E034728D0104E00CD0090 /* Sequence+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E034628D0104E00CD0090 /* Sequence+Espresso.swift */; };
+		266E96B928FDE29D002927A9 /* UIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96B828FDE29D002927A9 /* UIHostingView.swift */; };
+		266E96BB28FDE391002927A9 /* View+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96BA28FDE391002927A9 /* View+Espresso.swift */; };
 		2677B6B628CEF0CD009EC185 /* UIBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */; };
 		2677B6B828CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */; };
 		269D2ECB20FFB91785D53A50CA5B438B /* UINavigationController+ViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F23277576198883F19961E7D0A03DF /* UINavigationController+ViewControllerTransition.swift */; };
@@ -358,6 +360,8 @@
 		261DDE9E28D14CD60059B6C8 /* GuaranteeValueSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuaranteeValueSubject.swift; sourceTree = "<group>"; };
 		262FA2EE28D8D31B00450CA3 /* UIViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerModel.swift; sourceTree = "<group>"; };
 		264E034628D0104E00CD0090 /* Sequence+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Espresso.swift"; sourceTree = "<group>"; };
+		266E96B828FDE29D002927A9 /* UIHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingView.swift; sourceTree = "<group>"; };
+		266E96BA28FDE391002927A9 /* View+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Espresso.swift"; sourceTree = "<group>"; };
 		2677B6B528CEF0CD009EC185 /* UIBaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBaseNavigationController.swift; sourceTree = "<group>"; };
 		2677B6B728CEF8F1009EC185 /* HiddenNavBarInteractivePopDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavBarInteractivePopDelegate.swift; sourceTree = "<group>"; };
 		290E0FC3BBEAD862287B091DEAA0445C /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
@@ -1318,8 +1322,10 @@
 		EF790D635779F20C34BCA76B21279CF9 /* UI-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				8B8FE117DA55832B8CDA9DE4A922F0DB /* Binding+Espresso.swift */,
+				266E96B828FDE29D002927A9 /* UIHostingView.swift */,
 				5FA3D379BC2C18E96AD214B4494ED69D /* ViewModelView.swift */,
+				266E96BA28FDE391002927A9 /* View+Espresso.swift */,
+				8B8FE117DA55832B8CDA9DE4A922F0DB /* Binding+Espresso.swift */,
 				A6B01103AEBEEE2078023ABE83DC0D7B /* Views */,
 			);
 			name = "UI-SwiftUI";
@@ -1674,6 +1680,7 @@
 				376390B555A23CC6FD2CDC0DB4BDB2BB /* DynamicCodingKeys.swift in Sources */,
 				B245D7D6774FCC6FC3137F5A5BCCCD7E /* Edge.swift in Sources */,
 				177E248F68D4933CF286019FF5C321AA /* ErrorRepresentable.swift in Sources */,
+				266E96BB28FDE391002927A9 /* View+Espresso.swift in Sources */,
 				ED0FF1FFA3D79707DCB963B1C4959DD9 /* Espresso-dummy.m in Sources */,
 				FB89F0DD152E85E3E6713CC3F70F94F0 /* FadeTransition.swift in Sources */,
 				2CE0D15B971920DDBAC3325E99E4D244 /* FailableFuture.swift in Sources */,
@@ -1752,6 +1759,7 @@
 				F4A2DA222605D95BD42DAEAD34DF1D75 /* UIHairlineView.swift in Sources */,
 				9925355A05B317586A6AAE15A0ECA74C /* UIImage+Espresso.swift in Sources */,
 				97E79047278984C883972B6311BCAD8B /* UINavigationController+Espresso.swift in Sources */,
+				266E96B928FDE29D002927A9 /* UIHostingView.swift in Sources */,
 				269D2ECB20FFB91785D53A50CA5B438B /* UINavigationController+ViewControllerTransition.swift in Sources */,
 				D08C522DD084D12E466B1841FACC6A4C /* UINibView.swift in Sources */,
 				2677B6B628CEF0CD009EC185 /* UIBaseNavigationController.swift in Sources */,

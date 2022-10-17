@@ -32,7 +32,11 @@ class RootViewController: UIViewController {
         
     init(delegate: RootViewControllerDelegate) {
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
+        
         self.delegate = delegate
         
     }
@@ -45,7 +49,7 @@ class RootViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Espresso ☕️"
-            
+                    
         self.tableView = UITableView(frame: .zero, style: .grouped)
         self.tableView.backgroundColor = .systemGroupedBackground
         self.tableView.tableFooterView = UIView()
@@ -94,11 +98,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     enum SwiftUIRow: Int, CaseIterable {
         
         case views
+        case hostingView
         
         var title: String {
             
             switch self {
             case .views: return "Views"
+            case .hostingView: return "UIHostingView"
             }
             
         }
