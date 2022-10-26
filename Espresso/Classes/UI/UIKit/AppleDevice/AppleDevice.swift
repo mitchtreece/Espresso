@@ -36,7 +36,6 @@ public class AppleDevice {
         /// An AirPods device family.
         case airPods = "AirPods"
         
-        
         /// A HomePod device family.
         case homePod = "HomePod"
         
@@ -55,7 +54,7 @@ public class AppleDevice {
             case .airTag: return .firmware
             case .airPods: return .firmware
             case .homePod: return .audioOS
-            case .unknown: return .firmware
+            case .unknown: return .unknown
             }
             
         }
@@ -82,6 +81,9 @@ public class AppleDevice {
         
         /// A generic firmware software type.
         case firmware = "Firmware"
+        
+        /// An unknown software type.
+        case unknown
         
     }
     
