@@ -89,6 +89,9 @@ public extension AppleDevice /* Device Type */ {
         case iPad_9
         case iPadMini_6
         case iPadAir_5
+        case iPad_10
+        case iPadPro11_4
+        case iPadPro12_6
         
         case appleWatch
         case appleWatchS1
@@ -109,7 +112,8 @@ public extension AppleDevice /* Device Type */ {
         case appleTVHD
         case appleTV4K
         case appleTV4K_2
-                
+        case appleTV4K_3
+
         case airtag
                 
         case airpods
@@ -621,6 +625,43 @@ public extension AppleDevice /* Device Type */ {
                 generationalName = "iPad Air (5th Gen)"
                 identifiers = ["iPad13,6", "iPad13,7"]
                 
+            case .iPad_10:
+                
+                family = .iPad
+                marketingName = "iPad"
+                generationalName = "iPad (10th Gen)"
+                identifiers = ["iPad13,18", "iPad13,19"]
+                
+            case .iPadPro11_4:
+                
+                family = .iPad
+                marketingName = "iPad Pro"
+                generationalName = "iPad Pro (11-inch) (4th Gen)"
+                
+                identifiers = [
+                    "iPad14,3",
+                    "iPad14,3-A",
+                    "iPad14,3-B",
+                    "iPad14,4",
+                    "iPad14,4-A",
+                    "iPad14,4-B"
+                ]
+                
+            case .iPadPro12_6:
+                
+                family = .iPad
+                marketingName = "iPad Pro"
+                generationalName = "iPad Pro (12.9-inch) (6th Gen)"
+                
+                identifiers = [
+                    "iPad14,5",
+                    "iPad14,5-A",
+                    "iPad14,5-B",
+                    "iPad14,6",
+                    "iPad14,6-A",
+                    "iPad14,6-B"
+                ]
+                
             // MARK: Apple Watch
                 
             case .appleWatch:
@@ -736,6 +777,13 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "Apple TV 4K"
                 generationalName = "Apple TV 4K (2nd Gen)"
                 identifiers = ["AppleTV11,1"]
+                
+            case .appleTV4K_3:
+                
+                family = .appleTV
+                marketingName = "Apple TV 4K"
+                generationalName = "Apple TV 4K (3rd Gen)"
+                identifiers = ["AppleTV14,1"]
                   
             // MARK: AirTag
                 
