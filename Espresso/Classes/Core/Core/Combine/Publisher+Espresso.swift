@@ -58,17 +58,28 @@ public extension Publisher where Failure == Never /* Value */ {
     
 }
 
-public extension Publisher where Failure == Never /* Weak Assign */ {
+public extension Publisher where Failure == Never /* Weak */ {
+    
+    /// Attaches a weak subscriber with closure-based
+    /// behavior to a publisher that never fails.
+    func weakSink<T: AnyObject>(capturing object: T,
+                                receiveValue: @escaping (T?, Output)->Void) -> AnyCancellable {
+        
+        return sink { [weak object] value in
+            receiveValue(object, value)
+        }
+        
+    }
     
     /// Republishes elements received from a publisher,
     /// by weakly assigning them to a property marked as a publisher.
     func weakAssign<T: AnyObject>(to keyPath: ReferenceWritableKeyPath<T, Output>,
                                   on object: T) -> AnyCancellable {
-
-        sink { [weak object] value in
-            object?[keyPath: keyPath] = value
+        
+        return weakSink(capturing: object) { wObject, value in
+            wObject?[keyPath: keyPath] = value
         }
-
+        
     }
     
 }
