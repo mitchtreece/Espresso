@@ -104,6 +104,22 @@ public extension UIDevice {
         
     }
     
+    /// Flag indicating whether this device is compact (small-screen).
+    var isCompact: Bool {
+        
+        return asAppleDevice()
+            .isCompact
+        
+    }
+    
+    /// Flag indicating whether this device is a compact iPhone (4.7" or lower screen-size).
+    var isCompactPhone: Bool {
+        
+        return asAppleDevice()
+            .isCompactPhone
+        
+    }
+    
     /// Flag indicating whether this device is jailbroken.
     ///
     /// This is a simple check and **not** guaranteed to be accurate.

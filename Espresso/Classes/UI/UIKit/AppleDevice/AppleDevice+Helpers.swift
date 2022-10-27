@@ -46,42 +46,69 @@ public extension AppleDevice /* Helpers */ {
 
     /// Flag indicating whether this device is legacy (non-edge-to-edge screen with a home button).
     var isLegacy: Bool {
-        return (self.isLegacyPhone || self.isLegacyPad)
+        return (self.isLegacyPhone || self.isLegacyPad || self.isPod)
     }
 
     /// Flag indicating whether this device is a modern iPhone (edge-to-edge screen without a home button).
     var isModernPhone: Bool {
-
-        return (
-            self.type == .iPhoneX || self.type == .iPhoneXR || self.type == .iPhoneXS || self.type == .iPhoneXSMax ||
-            self.type == .iPhone11 || self.type == .iPhone11Pro || self.type == .iPhone11ProMax ||
-            self.type == .iPhone12 || self.type == .iPhone12Mini || self.type == .iPhone12Pro || self.type == .iPhone12ProMax ||
-            self.type == .iPhone13 || self.type == .iPhone13Mini || self.type == .iPhone13Pro || self.type == .iPhone13ProMax ||
-            self.type == .iPhone14 || self.type == .iPhone14Plus || self.type == .iPhone14Pro || self.type == .iPhone14ProMax
-        )
-
+        return !self.isLegacyPhone
     }
 
     /// Flag indicating whether this device is a legacy iPhone (non-edge-to-edge screen with a home button).
     var isLegacyPhone: Bool {
-        return !self.isModernPhone
+
+        return (
+            self.type == .iPhone ||
+            self.type == .iPhone3G || self.type == .iPhone3GS ||
+            self.type == .iPhone4 || self.type == .iPhone4S ||
+            self.type == .iPhone5 || self.type == .iPhone5C || self.type == .iPhone5S ||
+            self.type == .iPhone6 || self.type == .iPhone6Plus || self.type == .iPhone6S || self.type == .iPhone6SPlus ||
+            self.type == .iPhone7 || self.type == .iPhone7Plus ||
+            self.type == .iPhone8 || self.type == .iPhone8Plus ||
+            self.type == .iPhoneSE || self.type == .iPhoneSE_2 || self.type == .iPhoneSE_3
+        )
+                
     }
 
     /// Flag indicating whether this device is a modern iPad (edge-to-edge screen without a home button).
     var isModernPad: Bool {
-
-        return (
-            self.type == .iPadPro11 || self.type == .iPadPro11_2 || self.type == .iPadPro11_3 ||
-            self.type == .iPadPro12_3 || self.type == .iPadPro12_4 || self.type == .iPadPro12_5 ||
-            self.type == .iPadMini_6 ||
-            self.type == .iPad_10 || self.type == .iPadPro11_4 || self.type == .iPadPro12_6
-        )
-
+        return !self.isLegacyPad
     }
 
     /// Flag indicating whether this device is a legacy iPad (non-edge-to-edge screen with a home button).
     var isLegacyPad: Bool {
-        return !self.isModernPad
+
+        return (
+            self.type == .iPad || self.type == .iPad2 ||
+            self.type == .iPad_3 || self.type == .iPad_4 || self.type == .iPad_5 || self.type == .iPad_6 ||
+            self.type == .iPad_7 || self.type == .iPad_8 || self.type == .iPad_9 ||
+            self.type == .iPadMini || self.type == .iPadMini2 || self.type == .iPadMini3 || self.type == .iPadMini4 ||
+            self.type == .iPadMini_5 ||
+            self.type == .iPadAir || self.type == .iPadAir2 || self.type == .iPadAir_3 ||
+            self.type == .iPadPro9 || self.type == .iPadPro12 || self.type == .iPadPro12_2 || self.type == .iPadPro10
+        )
+        
+    }
+    
+    /// Flag indicating whether this device is compact (small-screen).
+    var isCompact: Bool {
+        return self.isCompactPhone
+    }
+    
+    /// Flag indicating whether this device is a compact iPhone (4.7" or lower screen-size).
+    var isCompactPhone: Bool {
+        
+        return (
+            self.type == .iPhone ||
+            self.type == .iPhone3G || self.type == .iPhone3GS ||
+            self.type == .iPhone4 || self.type == .iPhone4S ||
+            self.type == .iPhone5 || self.type == .iPhone5C || self.type == .iPhone5S ||
+            self.type == .iPhone6 || self.type == .iPhone6S ||
+            self.type == .iPhone7 ||
+            self.type == .iPhone8 ||
+            self.type == .iPhoneSE || self.type == .iPhoneSE_2 || self.type == .iPhoneSE_3
+        )
+        
     }
 
     /// Flag indicating whether this device is jailbroken.
