@@ -72,7 +72,10 @@ public extension AppleDevice /* Helpers */ {
             self.type == .iPadPro12_3 ||
             self.type == .iPadPro12_4 ||
             self.type == .iPadPro12_5 ||
-            self.type == .iPadMini_6
+            self.type == .iPadMini_6 ||
+            self.type == .iPad_10 ||
+            self.type == .iPadPro11_4 ||
+            self.type == .iPadPro12_6
         )
 
     }
