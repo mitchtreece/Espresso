@@ -51,13 +51,13 @@ public extension AppleDevice /* Helpers */ {
 
     /// Flag indicating whether this device is a modern iPhone (edge-to-edge screen without a home button).
     var isModernPhone: Bool {
-        return !self.isLegacyPhone
+        return (self.family == .iPhone && !self.isLegacyPhone)
     }
 
     /// Flag indicating whether this device is a legacy iPhone (non-edge-to-edge screen with a home button).
     var isLegacyPhone: Bool {
 
-        return (
+        return self.family == .iPhone && (
             self.type == .iPhone ||
             self.type == .iPhone3G || self.type == .iPhone3GS ||
             self.type == .iPhone4 || self.type == .iPhone4S ||
@@ -72,13 +72,13 @@ public extension AppleDevice /* Helpers */ {
 
     /// Flag indicating whether this device is a modern iPad (edge-to-edge screen without a home button).
     var isModernPad: Bool {
-        return !self.isLegacyPad
+        return (self.family == .iPad && !self.isLegacyPad)
     }
 
     /// Flag indicating whether this device is a legacy iPad (non-edge-to-edge screen with a home button).
     var isLegacyPad: Bool {
 
-        return (
+        return self.family == .iPad && (
             self.type == .iPad || self.type == .iPad2 ||
             self.type == .iPad_3 || self.type == .iPad_4 || self.type == .iPad_5 || self.type == .iPad_6 ||
             self.type == .iPad_7 || self.type == .iPad_8 || self.type == .iPad_9 ||
@@ -98,7 +98,7 @@ public extension AppleDevice /* Helpers */ {
     /// Flag indicating whether this device is a compact iPhone (4.7" or lower screen-size).
     var isCompactPhone: Bool {
         
-        return (
+        return self.family == .iPhone && (
             self.type == .iPhone ||
             self.type == .iPhone3G || self.type == .iPhone3GS ||
             self.type == .iPhone4 || self.type == .iPhone4S ||
