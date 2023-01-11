@@ -16,7 +16,7 @@ public class CoverTransition: ViewControllerDirectionalTransition {
     /// The parallax amount to move the covered view by while transitioning; _defaults to 100_.
     public var coveredViewParallaxAmount: CGFloat = 100
     
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
         
         return (ctx.operation == .presentation) ?
             present(ctx) :

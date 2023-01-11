@@ -13,7 +13,7 @@ public class ZoomTransition: ViewControllerTransition {
     /// The scale to apply to the zoomed view while transitioning; _defaults to 0.9_.
     public var zoomedViewScale: CGFloat = 0.9
     
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
                 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController

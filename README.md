@@ -9,16 +9,8 @@
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
-<br>TODO: Add better overview....
-
-## Table of Contents
-TODO
 
 ## Installation
-
-### SPM
-
-TODO
 
 ### CocoaPods
 
@@ -37,18 +29,18 @@ pod 'Espresso', '~> 3.0'
 
 Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
 
-- `Core`: Core classes, helpers, extensions, & dependencies
+- `Core`: Core classes, extensions, & dependencies
 - `UI`
     - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
     - `SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
 - `Combine`
-    - `Core`: Core [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
+    - `Core`: [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
     - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit)-specific [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
 - `Rx`
-    - `Core`: Core [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
+    - `Core`: [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
     - `UIKit` [UIKit](https://developer.apple.com/documentation/uikit)-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
-- `UIKit`: Aggregate subspec that includes **everything** related to [UIKit](https://developer.apple.com/documentation/uikit)
-- `SwiftUI`: Aggregate subspec that includes **everything** related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- `UIKit`: Aggregate subspec that includes everything related to [UIKit](https://developer.apple.com/documentation/uikit)
+- `SwiftUI`: Aggregate subspec that includes everything related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
 - `All`: Aggregate subspec that includes **everything**
 
 ## Espresso
@@ -56,16 +48,17 @@ Espresso is broken down into several subspecs making it quick & easy to pick and
 Espresso adds a bunch of useful features and extensions to components commonly used while developing for Apple platforms.
 
 Some of the more interesting things include:
-- `UIAnimation` classes with promise-like chaining system
-- `UIViewControllerTransition` system for easy custom `UIViewController` transitions
+- `Animation` classes with promise-like chaining system
+- `ViewControllerTransition` system for easy custom `UIViewController` transitions
 - `UIDevice` identification & information
 - `MVVM` base classes (i.e. `ViewModel`, `UIViewModel`)
+- **[Combine](https://developer.apple.com/documentation/combine)** helper classes & extensions
 - **[RxSwift](https://github.com/ReactiveX/RxSwift)** helper classes & extensions
 - Easy dependency injection setup helpers
 - Crypto & digest hashing helpers
 - _+ much more!_
 
-### UIAnimation
+### Animation
 
 Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
 
@@ -75,27 +68,27 @@ view.alpha = 0
 
 // Simple curve (default timing + default values)
 
-UIAnimation {
+Animation {
     view.alpha = 1
-}.run()
+}.start()
 
 // Simple curve (default timing + custom values)
 
-UIAnimation(duration: 0.5, delay: 0) {
+Animation(duration: 0.5, delay: 0) {
     view.alpha = 1
-}.run()
+}.start()
 
 // Simple curve (custom)
 
-UIAnimation(.simple(.easeOut), duration: 0.4) {
+Animation(.simple(.easeOut), duration: 0.4) {
     view.alpha = 1
-}.run()
+}.start()
 
 // Spring curve
 
-UIAnimation(.spring(damping: 0.9, velocity: 0.25)) {
+Animation(.spring(damping: 0.9, velocity: 0.25)) {
     view.alpha = 1
-}.run {
+}.start {
     print("The animation is done!")
 }
 ```
@@ -109,57 +102,57 @@ The following timing curves are currently supported:
 - `material`
 - `custom`
 
-`UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
+`Animation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
 
 ```
-UIAnimation(duration: 0.3) {
+Animation(duration: 0.3) {
     view.alpha = 1
 }.then {
     view.backgroundColor = .red
-}.run()
+}.start()
 ```
 
-All parameters of a regular `UIAnimation` are available to you while chaining:
+All parameters of a regular `Animation` are available to you while chaining:
 
 ```
-UIAnimation(duration: 0.3) {
+Animation(duration: 0.3) {
     view.alpha = 1
 }.then(.defaultSpring, duration: 0.4) {
     view.backgroundColor = UIColor.red
-}.run()
+}.start()
 ```
 
 Animations can be created and executed at a later time! Running your animations directly from an array _without_ chaining is also supported.
 
 ```
-let a1 = UIAnimation {
+let a1 = Animation {
     view.alpha = 1
 }
 
-let a2 = UIAnimation(.simple(.easeIn), duration: 0.5) {
+let a2 = Animation(.simple(.easeIn), duration: 0.5) {
     view.backgroundColor = UIColor.red
 }
 
-[a1, a2].run {
+[a1, a2].start {
     print("The animations are done!")
 }
 ```
 
-### UIViewControllerTransition
+### ViewControllerTransition
 
-Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `UIViewControllerTransition` implementation might look something like this:
+Built on top of `Animation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `ViewControllerTransition` implementation might look something like this:
 
 ```
-class FadeTransition: UIViewControllerTransition {
+class FadeTransition: ViewControllerTransition {
 
-    override func animations(using ctx: Context) -> UIAnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
 
-        return UIAnimationGroupController(setup: {
+        return AnimationGroupController(setup: {
 
             destinationVC.view.alpha = 0
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
@@ -167,7 +160,7 @@ class FadeTransition: UIViewControllerTransition {
 
         }, animations: {
 
-            UIAnimation {
+            Animation {
                 destinationVC.view.alpha = 1
             }
 
@@ -182,7 +175,7 @@ class FadeTransition: UIViewControllerTransition {
 }
 ```
 
-There's only one function that _needs_ to be overridden from a transition subclass, `animations(using:)`. This function provides you with contextual information about the transition, and expects you to return a `UIAnimationGroupController` containing setup, animation, & completion closures.
+There's only one function that _needs_ to be overridden from a transition subclass, `animations(using:)`. This function provides you with contextual information about the transition, and expects you to return a `AnimationGroupController` containing setup, animation, & completion closures.
 
 To present your view controller using a transition, set it's `transition` property before presentation. Helper functions on `UIViewController` & `UINavigationController` have also been added:
 
@@ -201,13 +194,13 @@ navigationController.push(
 ```
 
 The following view controller transitions are included with Espresso:
-- `UIFadeTransition`
-- `UISlideTransition`
-- `UICoverTransition`
-- `UIRevealTransition`
-- `UISwapTransition`
-- `UIPushBackTransition`
-- `UIZoomTransition`
+- `FadeTransition`
+- `SlideTransition`
+- `CoverTransition`
+- `RevealTransition`
+- `SwapTransition`
+- `PushBackTransition`
+- `ZoomTransition`
 
 ### User Authentication
 

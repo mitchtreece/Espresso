@@ -26,7 +26,7 @@ public class SwapTransition: ViewControllerDirectionalTransition {
         
     }
     
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
                 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController

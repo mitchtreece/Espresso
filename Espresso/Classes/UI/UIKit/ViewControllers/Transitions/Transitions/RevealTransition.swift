@@ -16,7 +16,7 @@ public class RevealTransition: ViewControllerDirectionalTransition {
     /// The parallax amount to move the revealed view by while transitioning; _defaults to 100_.
     public var revealedViewParallaxAmount: CGFloat = 100
     
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
                 
         return (ctx.operation == .presentation) ?
             present(ctx) :

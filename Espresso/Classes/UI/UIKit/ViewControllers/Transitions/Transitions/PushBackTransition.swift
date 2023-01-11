@@ -27,7 +27,7 @@ public class PushBackTransition: ViewControllerDirectionalTransition {
         
     }
     
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
 
         return (ctx.operation == .presentation) ?
             present(ctx) :

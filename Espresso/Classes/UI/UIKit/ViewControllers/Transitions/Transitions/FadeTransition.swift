@@ -24,7 +24,7 @@ public class FadeTransition: ViewControllerTransition {
     /// The transition's fade type; _defaults to over_.
     public var fadeType: FadeType = .over
 
-    override public func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> AnimationGroupController {
         
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
