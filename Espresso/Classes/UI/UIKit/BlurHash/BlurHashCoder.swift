@@ -10,7 +10,10 @@ import UIKit
 internal struct BlurHashCoder {
     
     fileprivate static let encodeCharacters: [String] = {
-        return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".map { String($0) }
+        
+        return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~"
+            .map { String($0) }
+        
     }()
     
     fileprivate static let decodeCharacters: [String: Int] = {
@@ -25,8 +28,8 @@ internal struct BlurHashCoder {
         
     }()
     
-    static func encode(image: UIImage,
-                       components: BlurHash.Components = .defaultSquare) -> String? {
+    func encode(image: UIImage,
+                components: BlurHashComponents = .defaultSquare) -> BlurHash? {
         
         let pixelWidth = Int(round(image.size.width * image.scale))
         let pixelHeight = Int(round(image.size.height * image.scale))
@@ -129,32 +132,32 @@ internal struct BlurHashCoder {
         
     }
     
-    static func decode(string: String,
-                       size: CGSize,
-                       punch: Float = 1) -> UIImage? {
+    func decode(hash: BlurHash,
+                size: CGSize,
+                punch: Float = 1) -> UIImage? {
         
-        guard string.count >= 6 else { return nil }
+        guard hash.count >= 6 else { return nil }
 
-        let sizeFlag = String(string[0]).decode83()
+        let sizeFlag = String(hash[0]).decode83()
         let numY = (sizeFlag / 9) + 1
         let numX = (sizeFlag % 9) + 1
 
-        let quantisedMaximumValue = String(string[1]).decode83()
+        let quantisedMaximumValue = String(hash[1]).decode83()
         let maximumValue = Float(quantisedMaximumValue + 1) / 166
 
-        guard string.count == 4 + 2 * numX * numY else { return nil }
+        guard hash.count == 4 + 2 * numX * numY else { return nil }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             
             if i == 0 {
                 
-                let value = String(string[2 ..< 6]).decode83()
+                let value = String(hash[2 ..< 6]).decode83()
                 return decodeDC(value)
                 
             }
             else {
                 
-                let value = String(string[4 + i * 2 ..< 4 + i * 2 + 2]).decode83()
+                let value = String(hash[4 + i * 2 ..< 4 + i * 2 + 2]).decode83()
                 return decodeAC(value, maximumValue: maximumValue * punch)
                 
             }
@@ -231,13 +234,13 @@ internal struct BlurHashCoder {
     
     // MARK: Private
     
-    private static func multiplyBasisFunction(pixels: UnsafePointer<UInt8>,
-                                              width: Int,
-                                              height: Int,
-                                              bytesPerRow: Int,
-                                              bytesPerPixel: Int,
-                                              pixelOffset: Int,
-                                              basisFunction: (Float, Float)->Float) -> (Float, Float, Float) {
+    private func multiplyBasisFunction(pixels: UnsafePointer<UInt8>,
+                                       width: Int,
+                                       height: Int,
+                                       bytesPerRow: Int,
+                                       bytesPerPixel: Int,
+                                       pixelOffset: Int,
+                                       basisFunction: (Float, Float)->Float) -> (Float, Float, Float) {
         
         var r: Float = 0
         var g: Float = 0
@@ -271,7 +274,7 @@ internal struct BlurHashCoder {
         
     }
     
-    private static func encodeDC(_ value: (Float, Float, Float)) -> Int {
+    private func encodeDC(_ value: (Float, Float, Float)) -> Int {
         
         let roundedR = linearTosRGB(value.0)
         let roundedG = linearTosRGB(value.1)
@@ -281,8 +284,8 @@ internal struct BlurHashCoder {
         
     }
 
-    private static func encodeAC(_ value: (Float, Float, Float),
-                                 maximumValue: Float) -> Int {
+    private func encodeAC(_ value: (Float, Float, Float),
+                          maximumValue: Float) -> Int {
         
         let quantR = Int(max(0, min(18, floor(signPow(value.0 / maximumValue, 0.5) * 9 + 9.5))))
         let quantG = Int(max(0, min(18, floor(signPow(value.1 / maximumValue, 0.5) * 9 + 9.5))))
@@ -292,11 +295,11 @@ internal struct BlurHashCoder {
         
     }
     
-    private static func signPow(_ value: Float, _ exp: Float) -> Float {
+    private func signPow(_ value: Float, _ exp: Float) -> Float {
         return copysign(pow(abs(value), exp), value)
     }
 
-    private static func linearTosRGB(_ value: Float) -> Int {
+    private func linearTosRGB(_ value: Float) -> Int {
         
         let v = max(0, min(1, value))
         
@@ -309,7 +312,7 @@ internal struct BlurHashCoder {
         
     }
 
-    private static func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
+    private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
         
         let v = Float(Int64(value)) / 255
         
@@ -322,7 +325,7 @@ internal struct BlurHashCoder {
         
     }
     
-    private static func decodeDC(_ value: Int) -> (Float, Float, Float) {
+    private func decodeDC(_ value: Int) -> (Float, Float, Float) {
         
         let intR = value >> 16
         let intG = (value >> 8) & 255
@@ -332,7 +335,7 @@ internal struct BlurHashCoder {
         
     }
 
-    private static func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
+    private func decodeAC(_ value: Int, maximumValue: Float) -> (Float, Float, Float) {
         
         let quantR = value / (19 * 19)
         let quantG = (value / 19) % 19
@@ -350,8 +353,11 @@ internal struct BlurHashCoder {
     
 }
 
-private func pow(_ base: Int, _ exponent: Int) -> Int {
+private func pow(_ base: Int,
+                 _ exponent: Int) -> Int {
+    
     return (0 ..< exponent).reduce(1) { value, _ in value * base }
+    
 }
 
 private extension BinaryInteger {

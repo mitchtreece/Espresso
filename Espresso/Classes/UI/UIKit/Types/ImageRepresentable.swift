@@ -35,10 +35,10 @@ extension UIImage: ImageRepresentable {
     
 }
 
-extension String: ImageRepresentable {
+extension Data: ImageRepresentable {
     
     public func asImage() -> UIImage? {
-        return UIImage(named: self)
+        return UIImage(data: self)
     }
     
 }

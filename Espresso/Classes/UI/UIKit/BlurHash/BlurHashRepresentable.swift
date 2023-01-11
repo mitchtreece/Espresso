@@ -17,7 +17,7 @@ public protocol BlurHashRepresentable {
     /// A `BlurHash` representation.
     /// - parameter components: The components to use when generating the hash.
     /// - returns: A new `BlurHash`.
-    func asBlurHash(components: BlurHash.Components) -> BlurHash?
+    func asBlurHash(components: BlurHashComponents) -> BlurHash?
     
 }
 
@@ -31,29 +31,15 @@ public extension BlurHashRepresentable {
     
 }
 
-extension BlurHash: BlurHashRepresentable {
-    
-    /// A `BlurHash` representation.
-    /// - parameter components: The components to use when generating the hash.
-    /// - returns: A new `BlurHash`.
-    ///
-    /// **Note**: Calling this function on a concrete `BlurHash` instance
-    /// will ignore passed in components, and return `self`.
-    public func asBlurHash(components: Components) -> BlurHash? {
-        return self
-    }
-    
-}
-
 extension UIImage: BlurHashRepresentable {
     
-    public func asBlurHash(components: BlurHash.Components) -> BlurHash? {
+    public func asBlurHash(components: BlurHashComponents) -> BlurHash? {
         
-        return BlurHash(
+        return BlurHashCoder().encode(
             image: self,
             components: components
         )
-        
+
     }
     
 }

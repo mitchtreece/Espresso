@@ -249,20 +249,3 @@ public extension UIImage { /* JPEG */
     }
 
 }
-
-public extension UIImage { /* Blur Hash */
-    
-    
-    /// Initializes a new image from a blur-hash string.
-    /// - parameter size: The requested output size. You should keep this small, and let the system scale it up for you.
-    convenience init?(blurHash: String,
-                      size: CGSize = .init(width: 32, height: 32)) {
-        
-        guard let image = BlurHashCoder.decode(string: blurHash, size: size),
-              let cgImage = image.cgImage else { return nil }
-        
-        self.init(cgImage: cgImage)
-        
-    }
-    
-}
