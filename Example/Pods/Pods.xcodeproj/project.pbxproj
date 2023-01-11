@@ -57,6 +57,8 @@
 		2350412E2E80F62A6C1E248EBAB8A4BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26471181EB735F3706503912CC4222F /* Optional.swift */; };
 		243497875AF10A94DEBBBD2C65418687 /* ViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18EEF57BAA6A071957B9B99497A944B /* ViewControllerTransition.swift */; };
 		261DD83D296E64330034EBED /* VoidAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD83C296E64330034EBED /* VoidAction.swift */; };
+		261DD83F296E6F3B0034EBED /* CGPoint+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD83E296E6F3B0034EBED /* CGPoint+Espresso.swift */; };
+		261DD841296E6FAF0034EBED /* UIButton+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD840296E6FAF0034EBED /* UIButton+Espresso.swift */; };
 		269923B14C739F3B8D3F308C1AFD3070 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF9E4FE3AEAD417BFECF7E860C4E2 /* ConstraintRelatableTarget.swift */; };
 		26E2F07C7BF5AE8F9DA655BF2084CD84 /* UIView+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BC421003F66AF3928C1D9CAC97866 /* UIView+AnyPromise.m */; };
 		26E524B3305AD8F6E3508FF394454BF6 /* UIZeroSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD47F57E65E058ABF39214CAB1E049 /* UIZeroSizeView.swift */; };
@@ -429,6 +431,8 @@
 		2507C1BBEDF40026943FD5AF34ED790F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		25264D9214A0D09488017428AF75E0B2 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		261DD83C296E64330034EBED /* VoidAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidAction.swift; sourceTree = "<group>"; };
+		261DD83E296E6F3B0034EBED /* CGPoint+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Espresso.swift"; sourceTree = "<group>"; };
+		261DD840296E6FAF0034EBED /* UIButton+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Espresso.swift"; sourceTree = "<group>"; };
 		2629959748C3F4B177CD205A7F3ECEB2 /* KeyStoredReadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
 		2674C409C18A48CE3990B0F07509A056 /* ViewControllerDirectionalTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewControllerDirectionalTransition.swift; sourceTree = "<group>"; };
 		26D03C9458C5EC3B7B6748CA8BAD6355 /* RemoveAllDuplicates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoveAllDuplicates.swift; path = Sources/Operators/RemoveAllDuplicates.swift; sourceTree = "<group>"; };
@@ -1095,6 +1099,7 @@
 				18B44B5CC4514D790332508FFE89FEDC /* UIView+Espresso.swift */,
 				8892E530469F9B7939EE147A44C2BEF5 /* UIViewController+Espresso.swift */,
 				E783F024ACFC653E495A8609E9C83515 /* VerticalEdgeInsets+Espresso.swift */,
+				261DD840296E6FAF0034EBED /* UIButton+Espresso.swift */,
 			);
 			name = Extensions;
 			path = Espresso/Classes/UI/UIKit/Extensions;
@@ -1257,6 +1262,7 @@
 				EB12313B4D809F21818EDF468962D1DD /* Optional+Espresso.swift */,
 				A8510513AD1A00CAD7F432F53B3F98CD /* Sequence+Espresso.swift */,
 				0270C009C051909C61D7D3325D432A6E /* String+Espresso.swift */,
+				261DD83E296E6F3B0034EBED /* CGPoint+Espresso.swift */,
 			);
 			name = Extensions;
 			path = Espresso/Classes/Core/Extensions;
@@ -2033,6 +2039,7 @@
 				C8722D55B22990CE6304FB422610550E /* Date+Espresso.swift in Sources */,
 				4457D4EC222714F6105B6B275563FCCE /* Dictionary+Espresso.swift in Sources */,
 				C59F48BA9A9AB2B634B3370D50C4B9C5 /* Direction.swift in Sources */,
+				261DD841296E6FAF0034EBED /* UIButton+Espresso.swift in Sources */,
 				E3A9672F188DE32412FFD4DF24C36D9F /* DispatchQueue+Espresso.swift in Sources */,
 				AE3DD924835DD05D32CC1218BD8D0DDF /* DynamicCodingKeys.swift in Sources */,
 				9DAFA52E5751D72250D7F0DE01AC4CA0 /* Edge.swift in Sources */,
@@ -2149,6 +2156,7 @@
 				5557F138847260492B746630CFEFBB42 /* VerticalEdgeInsets+Espresso.swift in Sources */,
 				6BC3DE2DA3EF1F03BCB703C335A64D96 /* View+Espresso.swift in Sources */,
 				F3DDABB3AD053C9FBAFD6BDCAD9A12EA /* ViewControllerDirectionalTransition.swift in Sources */,
+				261DD83F296E6F3B0034EBED /* CGPoint+Espresso.swift in Sources */,
 				243497875AF10A94DEBBBD2C65418687 /* ViewControllerTransition.swift in Sources */,
 				0F7A5E88060BAE30129A6BEE310134D6 /* ViewControllerTransitionAnimator.swift in Sources */,
 				261DD83D296E64330034EBED /* VoidAction.swift in Sources */,

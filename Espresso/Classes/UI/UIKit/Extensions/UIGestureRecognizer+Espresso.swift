@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIGestureRecognizer {
+public extension UIGestureRecognizer /* Actions */ {
     
     typealias Action = (UIGestureRecognizer)->()
     
@@ -43,6 +43,20 @@ public extension UIGestureRecognizer {
     
     @objc private func handleAction(_ recognizer: UIGestureRecognizer) {
         action?(self)
+    }
+    
+}
+
+public extension UIGestureRecognizer /* Cancel */ {
+    
+    /// Cancels the gesture recognizer.
+    func cancel() {
+        
+        guard self.isEnabled else { return }
+        
+        self.isEnabled = false
+        self.isEnabled = true
+        
     }
     
 }

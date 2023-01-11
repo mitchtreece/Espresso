@@ -22,6 +22,12 @@ public extension Optional where Wrapped == String {
         return self?.isEmpty ?? true
     }
     
+    /// Flag indicating if the optional string is not `nil` or empty.
+    /// - returns: `Bool` indicating if the string is not `nil` or empty.
+    var isNotNilOrEmpty: Bool {
+        return !self.isNilOrEmpty
+    }
+    
 }
 
 public extension String /* Size */ {
