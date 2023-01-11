@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Protocol that describes the way something can be represented as a legacy type.
+/// Protocol that describes something that can be represented as a legacy type.
 public protocol LegacyRepresentable {
 
     associatedtype LegacyType
