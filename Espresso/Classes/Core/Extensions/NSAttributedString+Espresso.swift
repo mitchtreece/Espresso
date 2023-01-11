@@ -100,6 +100,26 @@ public extension NSMutableAttributedString /* Style */ {
         
     }
     
+    /// Adds centered paragraph styling to the string.
+    /// - returns: This attributed string object.
+    @discardableResult
+    func addCenterParagraphStyle() -> Self {
+        
+        guard let range = rangeOfSubstring(self.string) else { return self }
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        paragraph.lineSpacing = 4
+        
+        addAttributes(
+            [.paragraphStyle: paragraph],
+            range: range
+        )
+
+        return self
+
+    }
+    
     private func rangeOfSubstring(_ substring: String) -> NSRange? {
         
         let range = self.mutableString
