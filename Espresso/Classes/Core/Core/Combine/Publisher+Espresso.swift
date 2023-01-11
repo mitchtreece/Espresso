@@ -90,14 +90,6 @@ public extension Publisher where Failure == Never /* Weak */ {
 
 public extension Publisher where Output == Bool /* Bool */ {
     
-    /// Toggles boolean outputs from a publisher sequence.
-    func toggle() -> AnyPublisher<Output, Failure> {
-        
-        return map { !$0 }
-            .eraseToAnyPublisher()
-        
-    }
-
     /// Filters `false` outputs out of a publisher sequence.
     func isTrue() -> AnyPublisher<Output, Failure> {
         
