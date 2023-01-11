@@ -12,18 +12,19 @@ public typealias JSON = [String: Any]
 
 public extension JSON /* Print */ {
     
-    /// Pretty prints the json object to the console.
-    func prettyPrint() {
+    /// Debug prints the json object to the console.
+    func debugPrint() {
+        
         
         guard let data = asJsonData(options: [.prettyPrinted]),
               let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
             
-            debugPrint(self)
+            Swift.debugPrint(self)
             return
             
         }
         
-        debugPrint(string)
+        Swift.debugPrint(string)
         
     }
     
