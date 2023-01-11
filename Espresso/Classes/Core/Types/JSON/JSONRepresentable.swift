@@ -7,28 +7,6 @@
 
 import Foundation
 
-/// A json object type representation.
-public typealias JSON = [String: Any]
-
-public extension JSON /* Print */ {
-    
-    /// Pretty prints the json object to the console.
-    func prettyPrint() {
-        
-        guard let data = asJsonData(options: [.prettyPrinted]),
-              let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
-            
-            debugPrint(self)
-            return
-            
-        }
-        
-        debugPrint(string)
-        
-    }
-    
-}
-
 /// Protocol describing something that can be represented as a JSON object.
 public protocol JSONRepresentable {
     
@@ -75,7 +53,8 @@ public extension JSONArrayRepresentable {
     
 }
 
-extension Dictionary: JSONRepresentable where Key == String, Value == Any {
+extension Dictionary: JSONRepresentable,
+                      JSONArrayRepresentable where Key == JSON.Key, Value == JSON.Value {
     
     public func asJson() -> JSON? {
         
@@ -93,6 +72,24 @@ extension Dictionary: JSONRepresentable where Key == String, Value == Any {
             options: options
         )
         
+    }
+    
+    public func asJsonArray() -> [JSON]? {
+
+        guard let json = asJson() else { return nil }
+        return [json]
+
+    }
+
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+
+        guard let array = asJsonArray() else { return nil }
+
+        return try? JSONSerialization.data(
+            withJSONObject: array,
+            options: options
+        )
+
     }
     
 }
@@ -119,10 +116,14 @@ extension Array: JSONArrayRepresentable where Element == JSON {
     
 }
 
-extension Data: JSONRepresentable, JSONArrayRepresentable {
+extension Data: JSONRepresentable,
+                JSONArrayRepresentable {
     
     public func asJson() -> JSON? {
-        return try? JSONSerialization.jsonObject(with: self) as? JSON
+        
+        return try? JSONSerialization
+            .jsonObject(with: self) as? JSON
+        
     }
     
     public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
@@ -133,12 +134,16 @@ extension Data: JSONRepresentable, JSONArrayRepresentable {
             return self
         }
         
-        return json.asJsonData(options: options)
+        return json
+            .asJsonData(options: options)
         
     }
     
     public func asJsonArray() -> [JSON]? {
-        return try? JSONSerialization.jsonObject(with: self) as? [JSON]
+        
+        return try? JSONSerialization
+            .jsonObject(with: self) as? [JSON]
+        
     }
     
     public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
@@ -149,7 +154,8 @@ extension Data: JSONRepresentable, JSONArrayRepresentable {
             return self
         }
         
-        return array.asJsonArrayData(options: options)
+        return array
+            .asJsonArrayData(options: options)
         
     }
     

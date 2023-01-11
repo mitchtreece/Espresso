@@ -59,6 +59,7 @@
 		261DD83D296E64330034EBED /* VoidAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD83C296E64330034EBED /* VoidAction.swift */; };
 		261DD83F296E6F3B0034EBED /* CGPoint+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD83E296E6F3B0034EBED /* CGPoint+Espresso.swift */; };
 		261DD841296E6FAF0034EBED /* UIButton+Espresso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD840296E6FAF0034EBED /* UIButton+Espresso.swift */; };
+		261DD843296F6AE60034EBED /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD842296F6AE60034EBED /* JSON.swift */; };
 		269923B14C739F3B8D3F308C1AFD3070 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF9E4FE3AEAD417BFECF7E860C4E2 /* ConstraintRelatableTarget.swift */; };
 		26E2F07C7BF5AE8F9DA655BF2084CD84 /* UIView+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BC421003F66AF3928C1D9CAC97866 /* UIView+AnyPromise.m */; };
 		26E524B3305AD8F6E3508FF394454BF6 /* UIZeroSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD47F57E65E058ABF39214CAB1E049 /* UIZeroSizeView.swift */; };
@@ -433,6 +434,7 @@
 		261DD83C296E64330034EBED /* VoidAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidAction.swift; sourceTree = "<group>"; };
 		261DD83E296E6F3B0034EBED /* CGPoint+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Espresso.swift"; sourceTree = "<group>"; };
 		261DD840296E6FAF0034EBED /* UIButton+Espresso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Espresso.swift"; sourceTree = "<group>"; };
+		261DD842296F6AE60034EBED /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		2629959748C3F4B177CD205A7F3ECEB2 /* KeyStoredReadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyStoredReadable.swift; sourceTree = "<group>"; };
 		2674C409C18A48CE3990B0F07509A056 /* ViewControllerDirectionalTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewControllerDirectionalTransition.swift; sourceTree = "<group>"; };
 		26D03C9458C5EC3B7B6748CA8BAD6355 /* RemoveAllDuplicates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoveAllDuplicates.swift; path = Sources/Operators/RemoveAllDuplicates.swift; sourceTree = "<group>"; };
@@ -834,6 +836,15 @@
 			);
 			name = Crypto;
 			path = Espresso/Classes/Core/Crypto;
+			sourceTree = "<group>";
+		};
+		261DD844296F6B2B0034EBED /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				261DD842296F6AE60034EBED /* JSON.swift */,
+				BF4422BE4357333FA739E7FFC00A022A /* JSONRepresentable.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		269EF3715C118282AE81FCA4AE136B83 /* Async */ = {
@@ -1481,8 +1492,8 @@
 			children = (
 				DB8D4B9C8862BC94EFD1514EE87ED030 /* BooleanRepresentable.swift */,
 				38DEE406CE375DA2A4A702EFE1155A08 /* ErrorRepresentable.swift */,
-				BF4422BE4357333FA739E7FFC00A022A /* JSONRepresentable.swift */,
 				1B5B358495738AD4CF996A21AAFFD900 /* OptionalType.swift */,
+				261DD844296F6B2B0034EBED /* JSON */,
 			);
 			name = Types;
 			path = Espresso/Classes/Core/Types;
@@ -2085,6 +2096,7 @@
 				4502C7401437B2A50D632C431399543C /* OptionalType.swift in Sources */,
 				42B64F6297B30A91169BD7935414E8D2 /* Promise+Espresso.swift in Sources */,
 				AA1FD323BD9B0B3620F14B703778E0C4 /* Publisher+Espresso.swift in Sources */,
+				261DD843296F6AE60034EBED /* JSON.swift in Sources */,
 				F73992EAE52D7F9265EE12970D2B06B4 /* PushBackTransition.swift in Sources */,
 				615A4CA9119731377A22204F10D3B5C0 /* RevealTransition.swift in Sources */,
 				A86064BC4A0EDD879C3C1CA7E92BC7B8 /* Sequence+Espresso.swift in Sources */,
