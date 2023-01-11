@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CGPoint {
+public extension CGPoint {
     
     /// Returns the point-based difference from another point.
     /// - parameter point: The other point.
