@@ -8,7 +8,8 @@
 [![Cocoapods](https://img.shields.io/badge/Pod-3.0.0-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
-Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
+Espresso is a Swift convenience library for iOS.<br>
+Everything is better with a little coffee. ☕️
 
 ## Installation
 
