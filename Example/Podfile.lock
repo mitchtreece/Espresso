@@ -1,13 +1,11 @@
 PODS:
+  - CombineExt (1.8.0)
   - Espresso/All (3.0.0):
     - Espresso/Core
     - Espresso/PromiseKit
     - Espresso/UI
   - Espresso/Core (3.0.0):
-    - Espresso/Core-Core
-    - Espresso/Core-Types
-  - Espresso/Core-Core (3.0.0)
-  - Espresso/Core-Types (3.0.0)
+    - CombineExt (~> 1.0)
   - Espresso/PromiseKit (3.0.0):
     - Espresso/PromiseKit-Core
   - Espresso/PromiseKit-Core (3.0.0):
@@ -40,6 +38,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CombineExt
     - PromiseKit
     - SnapKit
 
@@ -48,7 +47,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Espresso: 8d8092b1f0d02c64e6b98075cdfeb7a2e47d6b8a
+  CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
+  Espresso: 2f7b4562358a733fa153c6d847237a6dbfc50ebf
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 

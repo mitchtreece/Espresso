@@ -15,7 +15,6 @@ public protocol OptionalType {
     /// The optional's value.
     var wrappedValue: Wrapped? { get }
     
-    
 }
 
 extension Optional: OptionalType {

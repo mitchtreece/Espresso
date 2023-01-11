@@ -24,22 +24,12 @@
   "subspecs": [
     {
       "name": "Core",
+      "source_files": "Espresso/Classes/Core/**/*",
       "dependencies": {
-        "Espresso/Core-Core": [
-
-        ],
-        "Espresso/Core-Types": [
-
+        "CombineExt": [
+          "~> 1.0"
         ]
       }
-    },
-    {
-      "name": "Core-Core",
-      "source_files": "Espresso/Classes/Core/Core/**/*"
-    },
-    {
-      "name": "Core-Types",
-      "source_files": "Espresso/Classes/Core/Types/**/*"
     },
     {
       "name": "UI",
@@ -150,10 +140,10 @@
         "Espresso/PromiseKit": [
 
         ],
-        "Spider-Web": [
+        "Spider-Web/All": [
           "~> 2.0"
         ],
-        "Director": [
+        "Director/All": [
           "~> 1.0"
         ],
         "Swinject": [

@@ -21,8 +21,6 @@ Pod::Spec.new do |s|
     # Subspecs
 
     # - Core
-    #     - Core-Core
-    #     - Core-Types
     #
     # - UI
     #     - UI-Core
@@ -49,22 +47,9 @@ Pod::Spec.new do |s|
 
     s.subspec 'Core' do |ss|
 
-        ss.dependency     'Espresso/Core-Core'
-        ss.dependency     'Espresso/Core-Types'
-
-    end
-
-    s.subspec 'Core-Core' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Core/Core/**/*'
+        ss.source_files = 'Espresso/Classes/Core/**/*'
 
         ss.dependency     'CombineExt', '~> 1.0'
-
-    end
-
-    s.subspec 'Core-Types' do |ss|
-
-        ss.source_files = 'Espresso/Classes/Core/Types/**/*'
 
     end
 

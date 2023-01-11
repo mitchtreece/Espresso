@@ -37,9 +37,7 @@ pod 'Espresso', '~> 3.0'
 
 Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
 
-- `Core`
-    - `Core`: Core classes, helpers, extensions, & dependencies
-    - `Types`: Core types
+- `Core`: Core classes, helpers, extensions, & dependencies
 - `UI`
     - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
     - `SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
