@@ -50,8 +50,9 @@ public extension Publisher /* Scheduling */ {
     
 }
 
-extension Publisher where Output: OptionalType /* Optional */ {
+public extension Publisher where Output: OptionalType /* Optional */ {
     
+    /// Filters `nil` outputs out of a publisher sequence.
     func `guard`() -> AnyPublisher<Output.Wrapped, Failure> {
         
         return filter { $0.wrappedValue != nil }
