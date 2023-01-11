@@ -8,9 +8,26 @@
 import Combine
 import PromiseKit
 
-// MARK: Combine
+public extension Resolver where T == Void /* Void */ {
+    
+    /// Fulfills the promise without a value.
+    func fulfill() {
+        fulfill(())
+    }
+    
+}
 
-public extension Promise {
+public extension Promise /* Optional */ {
+
+    /// Maps the promise to new one over an optional-version of it's value type.
+    /// - returns: A promise over an optional value.
+    func asOptional() -> Promise<T?> {
+        map { $0 as T? }
+    }
+
+}
+
+public extension Promise /* Combine */ {
     
     /// Creates a publisher over this promise.
     /// - returns: A new publisher.
@@ -32,9 +49,7 @@ public extension Promise {
     
 }
 
-// MARK: Async
-
-public extension Promise {
+public extension Promise /* Async */ {
     
     /// Creates an async task over this promise.
     /// - returns: An async value.
@@ -149,16 +164,4 @@ public extension Promise {
 
     }
     
-}
-
-// MARK: Optional
-
-public extension Promise {
-
-    /// Maps the promise to new one over an optional-version of it's value type.
-    /// - returns: A promise over an optional value.
-    func asOptional() -> Promise<T?> {
-        map { $0 as T? }
-    }
-
 }

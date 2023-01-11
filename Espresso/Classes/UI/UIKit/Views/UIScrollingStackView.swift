@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import SnapKit
 
 public class UIScrollingStackView: UIScrollView {
     
     private var stackView = UIStackView()
     private var axisConstraint: NSLayoutConstraint?
+    
+    public class var spacingUseDefault: CGFloat {
+        return UIStackView.spacingUseDefault        
+    }
+
+    public class var spacingUseSystem: CGFloat {
+        return UIStackView.spacingUseSystem
+    }
     
     public var alignment: UIStackView.Alignment {
         get { return self.stackView.alignment }
@@ -60,14 +69,6 @@ public class UIScrollingStackView: UIScrollView {
         }
     }
     
-    public class var spacingUseDefault: CGFloat {
-        return UIStackView.spacingUseDefault
-    }
-
-    public class var spacingUseSystem: CGFloat {
-        return UIStackView.spacingUseSystem
-    }
-    
     public override var layoutMargins: UIEdgeInsets {
         get { return self.stackView.layoutMargins }
         set { self.stackView.layoutMargins = newValue }
@@ -78,10 +79,10 @@ public class UIScrollingStackView: UIScrollView {
         set { self.stackView.directionalLayoutMargins = newValue }
     }
     
-    private var stackViewLeftConstraint: NSLayoutConstraint!
-    private var stackViewRightConstraint: NSLayoutConstraint!
-    private var stackViewTopConstraint: NSLayoutConstraint!
-    private var stackViewBottomConstraint: NSLayoutConstraint!
+    private var stackViewLeftConstraint: Constraint!
+    private var stackViewRightConstraint: Constraint!
+    private var stackViewTopConstraint: Constraint!
+    private var stackViewBottomConstraint: Constraint!
 
     public required init?(coder decoder: NSCoder) {
 
@@ -115,28 +116,86 @@ public class UIScrollingStackView: UIScrollView {
     }
 
     public func addArrangedSubview(_ view: UIView) {
-        self.stackView.addArrangedSubview(view)
+        
+        self.stackView
+            .addArrangedSubview(view)
+        
+    }
+    
+    @discardableResult
+    public func addArrangedInsetSubview(_ view: UIView,
+                                 insets: UIEdgeInsets) -> UIView {
+        
+        return self.stackView.addArrangedInsetSubview(
+            view,
+            insets: insets
+        )
+                
+    }
+    
+    @discardableResult
+    public func addArrangedSpaceSubview(size: CGFloat) -> UIView {
+        
+        return self.stackView
+            .addArrangedSpaceSubview(size: size)
+        
     }
 
     public func insertArrangedSubview(_ view: UIView,
-                                      at stackIndex: Int) {
+                                      at index: Int) {
         
-        self.stackView.insertArrangedSubview(view, at: stackIndex)
+        self.stackView.insertArrangedSubview(
+            view,
+            at: index
+        )
+        
+    }
+    
+    @discardableResult
+    public func insertArrangedWrappedSubview(_ view: UIView,
+                                             at index: Int,
+                                             insets: UIEdgeInsets) -> UIView {
+        
+        return self.stackView.insertArrangedInsetSubview(
+            view,
+            at: index,
+            insets: insets
+        )
+        
+    }
+    
+    @discardableResult
+    public func insertArrangedSpaceSubview(size: CGFloat,
+                                           at index: Int) -> UIView {
+        
+        return self.stackView.insertArrangedSpaceSubview(
+            size: size,
+            at: index
+        )
         
     }
 
     public func removeArrangedSubview(_ view: UIView) {
-        self.stackView.removeArrangedSubview(view)
+        
+        self.stackView
+            .removeArrangedSubview(view)
+        
     }
     
     public func customSpacing(after arrangedSubview: UIView) -> CGFloat {
-        return self.stackView.customSpacing(after: arrangedSubview)
+        
+        return self.stackView
+            .customSpacing(after: arrangedSubview)
+        
     }
 
     public func setCustomSpacing(_ spacing: CGFloat,
                                  after arrangedSubview: UIView) {
         
-        self.stackView.setCustomSpacing(spacing, after: arrangedSubview)
+        self.stackView.setCustomSpacing(
+            spacing,
+            after: arrangedSubview
+        )
         
     }
     
@@ -148,18 +207,13 @@ public class UIScrollingStackView: UIScrollView {
         
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.stackView)
-        
-        self.stackViewLeftConstraint = self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor)
-        self.stackViewRightConstraint = self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor)
-        self.stackViewTopConstraint = self.stackView.topAnchor.constraint(equalTo: self.topAnchor)
-        self.stackViewBottomConstraint = self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        self.stackView.snp.makeConstraints { make in
+            self.stackViewTopConstraint = make.top.equalTo(0).constraint
+            self.stackViewLeftConstraint = make.left.equalTo(0).constraint
+            self.stackViewBottomConstraint = make.bottom.equalTo(0).constraint
+            self.stackViewRightConstraint = make.right.equalTo(0).constraint
 
-        NSLayoutConstraint.activate([
-            self.stackViewLeftConstraint,
-            self.stackViewRightConstraint,
-            self.stackViewTopConstraint,
-            self.stackViewBottomConstraint
-        ])
+        }
         
         self.axis = axis
         
@@ -187,10 +241,10 @@ public class UIScrollingStackView: UIScrollView {
         default: break
         }
         
-        self.stackViewLeftConstraint.constant = edgeInsets.left
-        self.stackViewRightConstraint.constant = -edgeInsets.right
-        self.stackViewTopConstraint.constant = edgeInsets.top
-        self.stackViewBottomConstraint.constant = -edgeInsets.bottom
+        self.stackViewTopConstraint.update(offset: edgeInsets.top)
+        self.stackViewLeftConstraint.update(offset: edgeInsets.left)
+        self.stackViewBottomConstraint.update(offset: -edgeInsets.bottom)
+        self.stackViewRightConstraint.update(offset: -edgeInsets.right)
         
         self.axisConstraint?.isActive = true
         self.stackView.axis = axis

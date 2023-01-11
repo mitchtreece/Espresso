@@ -13,7 +13,7 @@ protocol DetailViewControllerDelegate: AnyObject {
     func detailViewControllerDidTapDone(_ viewController: DetailViewController)
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIBaseViewController {
     
     var showsDismissButton: Bool = false
     weak var delegate: DetailViewControllerDelegate?

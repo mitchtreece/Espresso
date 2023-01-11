@@ -19,13 +19,13 @@ class SwiftUIHostingViewController: DetailViewController {
         
         super.viewDidLoad()
         self.title = "UIHostingView"
-        
-        setupSubviews()
-        
+                
     }
     
-    private func setupSubviews() {
-             
+    override func viewWillSetupSubviews() {
+        
+        super.viewWillSetupSubviews()
+        
         self.edgesForExtendedLayout = []
         
         self.contentView = UIView()
@@ -65,7 +65,7 @@ class SwiftUIHostingViewController: DetailViewController {
         setupCenterViews()
         
     }
-    
+
     private func setupCenterViews() {
         
         self.centerContentView = UIView()

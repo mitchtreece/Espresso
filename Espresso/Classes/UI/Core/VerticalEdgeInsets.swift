@@ -32,4 +32,15 @@ public struct VerticalEdgeInsets {
         
     }
     
+    /// Initializes `VerticalEdgeInsets` with a value.
+    /// - paramter value: The value.
+    public init(_ value: CGFloat) {
+        
+        self.init(
+            top: value,
+            bottom: value
+        )
+        
+    }
+    
 }

@@ -18,6 +18,13 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         
         super.viewDidLoad()
         self.title = self.viewModel.title
+
+    }
+    
+    override func viewWillSetupSubviews() {
+        
+        super.viewWillSetupSubviews()
+        
         self.view.backgroundColor = UIColor.white
         
         self.barItem = UIBarButtonItem()
@@ -33,7 +40,7 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         self.label.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
-
+        
     }
     
     override func bind() {

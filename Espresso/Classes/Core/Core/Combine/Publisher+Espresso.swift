@@ -7,7 +7,24 @@
 
 import Combine
 
-public extension Publisher /* Main Queue */ {
+public extension Publisher where Failure == Never /* Value */ {
+    
+    /// Latest value of the publisher's output sequence.
+    var value: Self.Output {
+        
+        var value: Self.Output!
+        var bag = CancellableBag()
+        
+        sink { value = $0 }
+            .store(in: &bag)
+        
+        return value
+        
+    }
+    
+}
+
+public extension Publisher /* Scheduling */ {
     
     /// Specifies `DispatchQueue.main` as the publisher's
     /// subscribe, cancel, & request operation scheduler.
@@ -33,27 +50,14 @@ public extension Publisher /* Main Queue */ {
     
 }
 
-//public extension Publisher {
-//    
-//    func inject(_ block: ()->()) -> Self {
-//        
-//    }
-//    
-//}
-
-public extension Publisher where Failure == Never /* Value */ {
+extension Publisher where Output: OptionalType /* Optional */ {
     
-    /// Latest value of the publisher's output sequence.
-    var value: Self.Output {
+    func `guard`() -> AnyPublisher<Output.Wrapped, Failure> {
         
-        var value: Self.Output!
-        var bag = CancellableBag()
-        
-        sink { value = $0 }
-            .store(in: &bag)
-        
-        return value
-        
+        return filter { $0.wrappedValue != nil }
+            .map { $0.wrappedValue! }
+            .eraseToAnyPublisher()
+                
     }
     
 }
@@ -84,7 +88,15 @@ public extension Publisher where Failure == Never /* Weak */ {
     
 }
 
-public extension Publisher where Output == Bool /* Bool Operators */ {
+public extension Publisher where Output == Bool /* Bool */ {
+    
+    /// Toggles boolean outputs from a publisher sequence.
+    func toggle() -> AnyPublisher<Output, Failure> {
+        
+        return map { !$0 }
+            .eraseToAnyPublisher()
+        
+    }
 
     /// Filters `false` outputs out of a publisher sequence.
     func isTrue() -> AnyPublisher<Output, Failure> {
@@ -94,7 +106,7 @@ public extension Publisher where Output == Bool /* Bool Operators */ {
         
     }
 
-    /// Filters `true` outputs out of a publisher ssequence.
+    /// Filters `true` outputs out of a publisher sequence.
     func isFalse() -> AnyPublisher<Output, Failure> {
         
         return filter { !$0 }

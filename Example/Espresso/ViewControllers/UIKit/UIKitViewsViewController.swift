@@ -17,13 +17,13 @@ class UIKitViewsViewController: DetailViewController {
         
         super.viewDidLoad()
         self.title = "UIKit Views"
-        
-        setupSubviews()
-        
+                
     }
     
-    private func setupSubviews() {
-            
+    override func viewWillSetupSubviews() {
+        
+        super.viewWillSetupSubviews()
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Dismiss KB",
             style: .done,
@@ -94,19 +94,8 @@ class UIKitViewsViewController: DetailViewController {
                 rightGradientView
             ]))
         
-        // UITextInputView
-        
-        let textInputView = UITextInputView()
-        textInputView.title = "UITextInputView"
-        
-        self.stackView.addArrangedSubview(buildSection(
-            title: "UITextInputView",
-            subviews: [
-                textInputView
-            ]))
-        
     }
-    
+
     @objc private func dismissKB(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
     }

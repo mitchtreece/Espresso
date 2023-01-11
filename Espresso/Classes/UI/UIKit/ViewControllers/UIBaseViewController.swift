@@ -11,9 +11,28 @@ import Combine
 /// `UIViewController` subclass that provides common helper functions & properties.
 open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
+    private var _viewDidLoadPublisher = TriggerPublisher()
+    private var _viewWillSetupSubviews = TriggerPublisher()
+    private var _viewDidSetupSubviews = TriggerPublisher()
+    private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
+    private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
+    
     /// A publisher that sends when the view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
         return self._viewDidLoadPublisher.asPublisher()
+    }
+    
+    /// A publisher that sends when the view is about to setup it's subviews.
+    public var viewWillSetupSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewWillSetupSubviews.asPublisher()
+    }
+    
+    /// A publisher that sends when the view finishes setting up it's subviews.
+    public var viewDidSetupSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewDidSetupSubviews.asPublisher()
     }
     
     /// A publisher that sends when the view is about to appear.
@@ -82,20 +101,15 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         set { self.isModalInPresentation = !newValue }
     }
     
-    private var _viewDidLoadPublisher = TriggerPublisher()
-    private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
-    
     private var keyboardBag = CancellableBag()
  
     open override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+                
         self._viewDidLoadPublisher.fire()
+        
+        viewWillSetupSubviews()
         
     }
     
@@ -148,6 +162,30 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         self._didReceiveMemoryWarningPublisher.fire()
         
+    }
+    
+    /// Called when the view is about to setup it's subviews.
+    /// Override this function to provide custom subview setup logic.
+    ///
+    /// This function is called from `viewDidLoad`. Subview frames
+    /// are not guaranteed to have accurate values at this point.
+    open func viewWillSetupSubviews() {
+        
+        self._viewWillSetupSubviews.fire()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewDidSetupSubviews()
+        }
+        
+    }
+    
+    /// Called when the view finishes setting up it's subviews.
+    /// Override this function to provide custom subview-frame setup logic.
+    ///
+    /// This function is scheduled on the main-thread from `viewWillSetupSubviews`.
+    /// Subview frames should have accurate values at this point.
+    open func viewDidSetupSubviews() {
+        self._viewDidSetupSubviews.fire()
     }
     
     // MARK: Traits

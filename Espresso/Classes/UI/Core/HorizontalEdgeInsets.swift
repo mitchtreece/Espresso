@@ -32,4 +32,15 @@ public struct HorizontalEdgeInsets {
         
     }
     
+    /// Initializes `HorizontalEdgeInsets` with a value.
+    /// - paramter value: The value.
+    public init(_ value: CGFloat) {
+        
+        self.init(
+            left: value,
+            right: value
+        )
+        
+    }
+    
 }
