@@ -52,9 +52,9 @@ class RootViewController: UIBaseViewController {
         
     }
     
-    override func viewWillSetupSubviews() {
+    override func viewWillSetup() {
         
-        super.viewWillSetupSubviews()
+        super.viewWillSetup()
         
         self.tableView = UITableView(frame: .zero, style: .grouped)
         self.tableView.backgroundColor = .systemGroupedBackground
@@ -217,7 +217,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     private enum HelpersRow: Int, CaseIterable {
         
         case deviceInfo
-        case displayFeatureInsets
         case authentication
         
     }
@@ -294,7 +293,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
             switch row {
             case .deviceInfo: cell.textLabel?.text = "Device Info"
-            case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
             case .authentication: cell.textLabel?.text = "Authentication"
             }
             
@@ -354,53 +352,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                 let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                
-            case .displayFeatureInsets:
-                
-//                let v = UIView()
-//                v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-//                self.navigationController?.view.addSubview(v)
-//                v.snp.makeConstraints { (make) in
-//
-//                    let insets = UIScreen.main.featureInsets
-//
-//                    make.top.equalTo(0).offset(insets.top)
-//                    make.left.equalTo(0).offset(insets.left)
-//                    make.right.equalTo(0).offset(-insets.right)
-//                    make.bottom.equalTo(0).offset(-insets.bottom)
-//
-//                }
-//
-//                let label = UILabel()
-//                label.backgroundColor = UIColor.clear
-//                label.textColor = UIColor.white
-//                label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-//                label.text = """
-//                This overlay view is constrained to your device's display feature insets.
-//
-//                This takes into account things like: status bars, home grabbers, etc...
-//
-//                Tap to dismiss 😊
-//                """
-//                label.textAlignment = .center
-//                label.numberOfLines = 0
-//                label.isUserInteractionEnabled = true
-//                v.addSubview(label)
-//                label.snp.makeConstraints { (make) in
-//                    make.top.equalTo(14)
-//                    make.bottom.equalTo(-14)
-//                    make.left.equalTo(44)
-//                    make.right.equalTo(-44)
-//                }
-//
-//                let tap = UITapGestureRecognizer(action: { (recognizer) in
-//                    v.removeFromSuperview()
-//                })
-//
-//                label.addGestureRecognizer(tap)
-                
-                break
-                
+
             case .authentication:
                 
                 UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { [weak self] (success, error) in

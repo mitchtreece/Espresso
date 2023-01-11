@@ -43,9 +43,9 @@ open class UIParallaxView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func setupView() {
+    open override func willSetup() {
         
-        super.setupView()
+        super.willSetup()
         
         self.backgroundColor = .clear
         self.clipsToBounds = false

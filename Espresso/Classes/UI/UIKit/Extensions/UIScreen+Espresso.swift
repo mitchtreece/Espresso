@@ -49,7 +49,10 @@ public extension UIScreen /* Features */ {
     /// The screen's corner radius.
     var cornerRadius: CGFloat {
         
-        guard AppleDevice.current.isModern else { return 0 }
+        guard AppleDevice
+            .current
+            .isModern else { return 0 }
+        
         return (value(forKey: Self.cornerRadiusKey) as? CGFloat) ?? 0
                 
     }

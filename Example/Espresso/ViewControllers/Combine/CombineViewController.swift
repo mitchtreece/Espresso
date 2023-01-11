@@ -21,9 +21,9 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
 
     }
     
-    override func viewWillSetupSubviews() {
+    override func viewWillSetup() {
         
-        super.viewWillSetupSubviews()
+        super.viewWillSetup()
         
         self.view.backgroundColor = UIColor.white
         

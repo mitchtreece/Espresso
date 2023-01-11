@@ -43,9 +43,9 @@ open class UIBlurView: UIBaseView {
         super.init(coder: coder)
     }
 
-    open override func setupView() {
+    open override func willSetup() {
         
-        super.setupView()
+        super.willSetup()
         
         self.clipsToBounds = true
         

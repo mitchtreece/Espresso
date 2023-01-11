@@ -36,9 +36,9 @@ public class UIBackgroundView: UIBaseView {
         super.init(coder: coder)
     }
     
-    public override func setupView() {
+    public override func willSetup() {
         
-        super.setupView()
+        super.willSetup()
         
         self.backgroundColor = .clear
         self.clipsToBounds = true

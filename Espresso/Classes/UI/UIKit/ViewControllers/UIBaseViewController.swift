@@ -12,50 +12,58 @@ import Combine
 open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     
     private var _viewDidLoadPublisher = TriggerPublisher()
-    private var _viewWillSetupSubviews = TriggerPublisher()
-    private var _viewDidSetupSubviews = TriggerPublisher()
+    private var _viewWillSetupPublisher = TriggerPublisher()
+    private var _viewDidSetupPublisher = TriggerPublisher()
     private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
     private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
     private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
     private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
     
-    /// A publisher that sends when the view finishes loading.
+    /// A publisher that sends when the view controller's
+    /// view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
         return self._viewDidLoadPublisher.asPublisher()
     }
     
-    /// A publisher that sends when the view is about to setup it's subviews.
-    public var viewWillSetupSubviewsPublisher: GuaranteePublisher<Void> {
-        return self._viewWillSetupSubviews.asPublisher()
+    /// A publisher that sends when the view controller's
+    /// view is about to perform setup actions.
+    public var viewWillSetupPublisher: GuaranteePublisher<Void> {
+        return self._viewWillSetupPublisher.asPublisher()
     }
     
-    /// A publisher that sends when the view finishes setting up it's subviews.
-    public var viewDidSetupSubviewsPublisher: GuaranteePublisher<Void> {
-        return self._viewDidSetupSubviews.asPublisher()
+    /// A publisher that sends when the view controller's
+    /// view finishes setup actions.
+    public var viewDidSetupPublisher: GuaranteePublisher<Void> {
+        return self._viewDidSetupPublisher.asPublisher()
     }
     
-    /// A publisher that sends when the view is about to appear.
+    /// A publisher that sends when the view controller's
+    /// view is about to appear.
     public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewWillAppearPublisher.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view finishes appearing.
+    /// A publisher that sends when the view controller's
+    /// view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidAppearPublisher.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view is about to disappear.
+    /// A publisher that sends when the view controller's
+    /// view is about to disappear.
     public var viewWillDisappearPublisher: GuaranteePublisher<Bool> {
         return self._viewWillDisappearPublisher.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view finishes disappearing.
+    /// A publisher that sends when the view controller's
+    /// view finishes disappearing.
     public var viewDidDisappearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidDisappearPublisher.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view receives a memory warning.
+    /// A publisher that sends when the view controller
+    /// receives a memory warning.
     public var didRecieveMemoryWarningPublisher: GuaranteePublisher<Void> {
         return self._didReceiveMemoryWarningPublisher.asPublisher()
     }
@@ -109,7 +117,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
                 
         self._viewDidLoadPublisher.fire()
         
-        viewWillSetupSubviews()
+        viewWillSetup()
         
     }
     
@@ -164,28 +172,28 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
     }
     
-    /// Called when the view is about to setup it's subviews.
-    /// Override this function to provide custom subview setup logic.
+    /// Called when the view controller's view is about to perform setup actions.
+    /// Override this function to provide custom setup logic.
     ///
-    /// This function is called from `viewDidLoad`. Subview frames
-    /// are not guaranteed to have accurate values at this point.
-    open func viewWillSetupSubviews() {
+    /// This function is called from `viewDidLoad`.
+    /// View frames are not guaranteed to have accurate values at this point.
+    open func viewWillSetup() {
         
-        self._viewWillSetupSubviews.fire()
+        self._viewWillSetupPublisher.fire()
         
         DispatchQueue.main.async { [weak self] in
-            self?.viewDidSetupSubviews()
+            self?.viewDidSetup()
         }
         
     }
     
-    /// Called when the view finishes setting up it's subviews.
-    /// Override this function to provide custom subview-frame setup logic.
+    /// Called when the view controller's view finishes setup actions.
+    /// Override this function to provide custom frame setup logic.
     ///
-    /// This function is scheduled on the main-thread from `viewWillSetupSubviews`.
-    /// Subview frames should have accurate values at this point.
-    open func viewDidSetupSubviews() {
-        self._viewDidSetupSubviews.fire()
+    /// This function is scheduled on the main-thread from `viewWillSetup`.
+    /// View frames should have accurate values at this point.
+    open func viewDidSetup() {
+        self._viewDidSetupPublisher.fire()
     }
     
     // MARK: Traits

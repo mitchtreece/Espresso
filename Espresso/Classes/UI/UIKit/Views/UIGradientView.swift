@@ -101,9 +101,9 @@ open class UIGradientView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func setupView() {
+    open override func willSetup() {
         
-        super.setupView()
+        super.willSetup()
         
         self.backgroundColor = .clear
         
