@@ -20,27 +20,6 @@ Pod::Spec.new do |s|
 
     # Subspecs
 
-    # - Core
-    #
-    # - UI
-    #     - UI-Core
-    #     - UI-UIKit
-    #     - UI-SwiftUI
-    #
-    # - PromiseKit
-    #     - PromiseKit-Core
-    # 
-    # - UIKit
-    # - SwiftUI
-    # - All
-    # 
-    # - Recipe-Modern-UIKit
-    #     - Espresso/UI-UIKit
-    #     - Espresso/PromiseKit
-    #     - Spider-Web/All
-    #     - Director/All
-    #     - Swinject
-
     s.default_subspec = 'UIKit'
 
     ## Core
@@ -88,7 +67,7 @@ Pod::Spec.new do |s|
 
     end
 
-    ## Promise
+    ## PromiseKit
 
     s.subspec 'PromiseKit' do |ss|
 

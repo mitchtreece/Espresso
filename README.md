@@ -15,16 +15,10 @@ Everything is better with a little coffee. ☕️
 
 ### CocoaPods
 
-Espresso is integrated with CocoaPods!
-
-1. Add the following to your `Podfile`:
 ```
 use_frameworks!
 pod 'Espresso', '~> 3.0'
 ```
-2. In your project directory, run `pod install`
-3. Import the `Espresso` module wherever you need it
-4. Profit
 
 #### Subspecs
 
@@ -32,62 +26,67 @@ Espresso is broken down into several subspecs making it quick & easy to pick and
 
 - `Core`: Core classes, extensions, & dependencies
 - `UI`
-    - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
-    - `SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
-- `Combine`
-    - `Core`: [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
-    - `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit)-specific [Combine](https://developer.apple.com/documentation/combine) classes, extensions, & dependencies
-- `Rx`
-    - `Core`: [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
-    - `UIKit` [UIKit](https://developer.apple.com/documentation/uikit)-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes, extensions, & dependencies
+    - `UI-Core`: General UI classes, extensions, & dependencies.
+    - `UI-UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
+    - `UI-SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
+- `PromiseKit`
+    - `PromiseKit-Core`: TODO
 - `UIKit`: Aggregate subspec that includes everything related to [UIKit](https://developer.apple.com/documentation/uikit)
 - `SwiftUI`: Aggregate subspec that includes everything related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
 - `All`: Aggregate subspec that includes **everything**
+
+If you're unsure of what you want/need, we also some "recipe" subspecs that provide a good starting point with bundled Espresso classes & common third-party dependecies.
+
+- `Recipe-Modern-UIKit`
+    - `Espresso/UI-UIKit`
+    - `Espresso/PromiseKit`
+    - [Spider-Web](https://github.com/mitchtreece/Spider)`/All`
+    - [Director](https://github.com/mitchtreece/Director)/`All`
+    - [Swinject](https://github.com/Swinject/Swinject)
 
 ## Espresso
 
 Espresso adds a bunch of useful features and extensions to components commonly used while developing for Apple platforms.
 
 Some of the more interesting things include:
-- `Animation` classes with promise-like chaining system
-- `ViewControllerTransition` system for easy custom `UIViewController` transitions
-- `UIDevice` identification & information
-- `MVVM` base classes (i.e. `ViewModel`, `UIViewModel`)
-- **[Combine](https://developer.apple.com/documentation/combine)** helper classes & extensions
-- **[RxSwift](https://github.com/ReactiveX/RxSwift)** helper classes & extensions
-- Easy dependency injection setup helpers
+- `UIAnimation` classes with a promise-like chaining system
+- `UIViewControllerTransition` system for easy custom `UIViewController` transitions
+- `AppleDevice` identification & information
+- `MVVM` base classes (i.e. `ViewModel`, `UIViewModelView`, `UIViewModelViewController`)
+- `Combine` helper classes & extensions
 - Crypto & digest hashing helpers
+- User authentication (Face ID, Touch ID, Passcode) helpers
 - _+ much more!_
 
-### Animation
+### UIAnimation
 
-Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
+Espresso includes a robust animation system built on top of `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
 
-```
+```swift
 let view = UIView()
 view.alpha = 0
 
 // Simple curve (default timing + default values)
 
-Animation {
+UIAnimation {
     view.alpha = 1
 }.start()
 
 // Simple curve (default timing + custom values)
 
-Animation(duration: 0.5, delay: 0) {
+UIAnimation(duration: 0.5, delay: 0) {
     view.alpha = 1
 }.start()
 
 // Simple curve (custom)
 
-Animation(.simple(.easeOut), duration: 0.4) {
+UIAnimation(.simple(.easeOut), duration: 0.4) {
     view.alpha = 1
 }.start()
 
 // Spring curve
 
-Animation(.spring(damping: 0.9, velocity: 0.25)) {
+UIAnimation(.spring(damping: 0.9, velocity: 0.25)) {
     view.alpha = 1
 }.start {
     print("The animation is done!")
@@ -103,20 +102,20 @@ The following timing curves are currently supported:
 - `material`
 - `custom`
 
-`Animation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
+`UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
 
-```
-Animation(duration: 0.3) {
+```swift
+UIAnimation(duration: 0.3) {
     view.alpha = 1
 }.then {
     view.backgroundColor = .red
 }.start()
 ```
 
-All parameters of a regular `Animation` are available to you while chaining:
+All parameters of a regular `UIAnimation` are available to you while chaining:
 
-```
-Animation(duration: 0.3) {
+```swift
+UIAnimation(duration: 0.3) {
     view.alpha = 1
 }.then(.defaultSpring, duration: 0.4) {
     view.backgroundColor = UIColor.red
@@ -125,12 +124,12 @@ Animation(duration: 0.3) {
 
 Animations can be created and executed at a later time! Running your animations directly from an array _without_ chaining is also supported.
 
-```
-let a1 = Animation {
+```swift
+let a1 = UIAnimation {
     view.alpha = 1
 }
 
-let a2 = Animation(.simple(.easeIn), duration: 0.5) {
+let a2 = UIAnimation(.simple(.easeIn), duration: 0.5) {
     view.backgroundColor = UIColor.red
 }
 
@@ -139,21 +138,21 @@ let a2 = Animation(.simple(.easeIn), duration: 0.5) {
 }
 ```
 
-### ViewControllerTransition
+### UIViewControllerTransition
 
-Built on top of `Animation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `ViewControllerTransition` implementation might look something like this:
+Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `UIViewControllerTransition` implementation might look something like this:
 
-```
-class FadeTransition: ViewControllerTransition {
+```swift
+class CustomFadeTransition: UIViewControllerTransition {
 
-    public override func animations(using ctx: Context) -> AnimationGroupController {
+    public override func animations(using ctx: Context) -> UIAnimationGroupController {
 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
 
-        return AnimationGroupController(setup: {
+        return UIAnimationGroupController(setup: {
 
             destinationVC.view.alpha = 0
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
@@ -161,7 +160,7 @@ class FadeTransition: ViewControllerTransition {
 
         }, animations: {
 
-            Animation {
+            UIAnimation {
                 destinationVC.view.alpha = 1
             }
 
@@ -176,12 +175,12 @@ class FadeTransition: ViewControllerTransition {
 }
 ```
 
-There's only one function that _needs_ to be overridden from a transition subclass, `animations(using:)`. This function provides you with contextual information about the transition, and expects you to return a `AnimationGroupController` containing setup, animation, & completion closures.
+There's only one function that _needs_ to be overridden from a transition subclass, `animations(using:)`. This function provides you with contextual information about the transition, and expects you to return a `UIAnimationGroupController` containing setup, animation, & completion closures.
 
 To present your view controller using a transition, set it's `transition` property before presentation. Helper functions on `UIViewController` & `UINavigationController` have also been added:
 
-```
-let transition = FadeTransition()
+```swift
+let transition = CustomFadeTransition()
 
 present(
     viewController, 
@@ -195,19 +194,19 @@ navigationController.push(
 ```
 
 The following view controller transitions are included with Espresso:
-- `FadeTransition`
-- `SlideTransition`
-- `CoverTransition`
-- `RevealTransition`
-- `SwapTransition`
-- `PushBackTransition`
-- `ZoomTransition`
+- `UIFadeTransition`
+- `UISlideTransition`
+- `UICoverTransition`
+- `UIRevealTransition`
+- `UISwapTransition`
+- `UIPushBackTransition`
+- `UIZoomTransition`
 
 ### User Authentication
 
-The `UserAuthenticator` class helps with authenticating a user via Touch ID, Face ID, or a password. An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID. Devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, password authentication will be used.
+The `UserAuthenticator` class helps with authenticating a user via Face ID, Touch ID, or a passcode. An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID, devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, passcode authentication will be used.
 
-```
+```swift
 UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.") { (success, error) in
     print("Authenticated: \(success)")
 }
@@ -219,7 +218,7 @@ UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.")
 
 Hashing extensions are available on both `Data` & `String`:
 
-```
+```swift
 let data = Data()
 let hashedData = data.hashed(using: .md5)
 
@@ -237,4 +236,4 @@ The following hash types are included with Espresso:
 
 ## Contributing
 
-Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in! 🎉

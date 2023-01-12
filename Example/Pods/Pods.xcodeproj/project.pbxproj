@@ -59,6 +59,7 @@
 		225439845B2D7E60E7FB12D1ACE91C04 /* ShareReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6CAABF3B9A757AB74E5B2CBD202D5 /* ShareReplay.swift */; };
 		227DD0DF52887269F39151365721844D /* SetOutputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B1EDAC179C018071CA9B5A5289EA4 /* SetOutputType.swift */; };
 		2350412E2E80F62A6C1E248EBAB8A4BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26471181EB735F3706503912CC4222F /* Optional.swift */; };
+		261DD85A2970D01C0034EBED /* UIViewModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DD8592970D01C0034EBED /* UIViewModelView.swift */; };
 		27114CC9F57646617E7F420799B23E7B /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC20DF25D960736049C6C8EAB2E12F /* Version.swift */; };
 		28EFA3387C4AF8C53484B00FDC577774 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E619EC4785603B41BADFDA2F877411A9 /* Store.swift */; };
 		28F127E96013BDA0EE20638AFE13BD3C /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A9929A627C08900022F6A3206E5FEF /* ConstraintInsets.swift */; };
@@ -405,7 +406,7 @@
 		115E5DEED5563B488D795BA7FDABC36D /* GradientView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		11AAC7F26F6AACDA8157C1A59A7ED1C9 /* ObjectOwnership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectOwnership.swift; path = Sources/Models/ObjectOwnership.swift; sourceTree = "<group>"; };
 		11E9CA35CB41EA461AD7DE1B69914EE3 /* Pods-Espresso_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Espresso_Tests-dummy.m"; sourceTree = "<group>"; };
-		12F01362705754146684F36CF4153C4B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		12F01362705754146684F36CF4153C4B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		15E745DF26FACFA3F83ACD9A2D24AC11 /* UIView+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Promise.swift"; path = "Extensions/UIKit/Sources/UIView+Promise.swift"; sourceTree = "<group>"; };
 		15EC8E09FA1B51BA11AA74F3C46FBBBF /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Sources/LayoutConstraint.swift; sourceTree = "<group>"; };
 		164E6EE77B29BE41F759F46BAFABD9AC /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
@@ -429,6 +430,7 @@
 		25264D9214A0D09488017428AF75E0B2 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		25A305F8DB19F157EA848641B1EF759B /* JSONRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
 		25B400C45484A3497E2626DC614D3343 /* UIScreen+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScreen+Espresso.swift"; sourceTree = "<group>"; };
+		261DD8592970D01C0034EBED /* UIViewModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewModelView.swift; sourceTree = "<group>"; };
 		26ACF991E84E19EE8DE11535FCE8CA92 /* UIViewControllerDirectionalTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerDirectionalTransition.swift; sourceTree = "<group>"; };
 		26D03C9458C5EC3B7B6748CA8BAD6355 /* RemoveAllDuplicates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoveAllDuplicates.swift; path = Sources/Operators/RemoveAllDuplicates.swift; sourceTree = "<group>"; };
 		270D45D2FFB5EE52E899276A7ACA5A56 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
@@ -518,7 +520,7 @@
 		65B5D8F424C3DBE8F4ED91CBA2AF4ED0 /* Builder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		660D05F2BB61574A07486DD90510B147 /* FailablePassthroughSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FailablePassthroughSubject.swift; sourceTree = "<group>"; };
 		666011372EAC90C124FBD0C6F04D79C7 /* UIHostingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIHostingView.swift; path = Espresso/Classes/UI/SwiftUI/UIHostingView.swift; sourceTree = "<group>"; };
-		6799BAD186907E8F7727868AE73F5DCB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		6799BAD186907E8F7727868AE73F5DCB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6864E642B82EA58C16DFC7D8FE656F89 /* PromiseKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PromiseKit.h; path = Sources/PromiseKit.h; sourceTree = "<group>"; };
 		687C7F5C9BD1CEC2BA2A3380B2E165E8 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Sources/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		68D4163CF0447EA2AAA7B79314A64F88 /* Espresso-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Espresso-Info.plist"; sourceTree = "<group>"; };
@@ -548,7 +550,7 @@
 		74AFBD65E7B1FD3C169EC51F27222876 /* UIFadeTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIFadeTransition.swift; sourceTree = "<group>"; };
 		7502189A647193EADB00A75DD6CDE371 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		7515F4ACE7B2EF53E3E102B1F3C4C814 /* PrefixWhileBehavior.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrefixWhileBehavior.swift; path = Sources/Operators/PrefixWhileBehavior.swift; sourceTree = "<group>"; };
-		765BD7D8F26730337B926B17EB7A1B68 /* Espresso.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Espresso.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		765BD7D8F26730337B926B17EB7A1B68 /* Espresso.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Espresso.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		77170A0E6EC874B97E1C5A514AA71C82 /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Sources/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
 		785AABBC3782B85973E2F79C4676A73C /* Guarantee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Guarantee.swift; path = Sources/Guarantee.swift; sourceTree = "<group>"; };
 		78BBEC6290C3ED7C59E0F99C2AF12B89 /* Pods-Espresso_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Espresso_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -605,7 +607,7 @@
 		9BB6D86FE220DB7DC2D62F2909C8BDC1 /* UITableViewCell+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Espresso.swift"; sourceTree = "<group>"; };
 		9C826F1A31F3EE529D8CB06EA88E80F7 /* CombineExt */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CombineExt; path = CombineExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8E61BC216A714DAA8A9D8A4B39871F /* UIViewController+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AnyPromise.m"; path = "Extensions/UIKit/Sources/UIViewController+AnyPromise.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DD1563BF5AFC31AB863FA7C191D817F /* UIBaseCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E566598E0BC507148E47A2085ADFDE2 /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Sources/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		9E82A03D9F5B101E5F49AADFFA916A86 /* Pods-Espresso_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Espresso_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -929,7 +931,6 @@
 				717CE7397EFC961A279698B85D623009 /* JSON.swift */,
 				25A305F8DB19F157EA848641B1EF759B /* JSONRepresentable.swift */,
 			);
-			name = JSON;
 			path = JSON;
 			sourceTree = "<group>";
 		};
@@ -1069,7 +1070,6 @@
 				D105A10C94B71E958435ADF049E66486 /* Support Files */,
 				541669B12C720C721267E7D1C9E22CC5 /* UIKit */,
 			);
-			name = PromiseKit;
 			path = PromiseKit;
 			sourceTree = "<group>";
 		};
@@ -1078,7 +1078,6 @@
 			children = (
 				9493625AE20800A92239D666DBB2D65D /* Array+UIAnimation.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1093,7 +1092,6 @@
 				8BCDEF52303EC708661FDB1B3E2564ED /* UISwapTransition.swift */,
 				6A33E32192FD58D2966EC31926E8AFDC /* UIZoomTransition.swift */,
 			);
-			name = Transitions;
 			path = Transitions;
 			sourceTree = "<group>";
 		};
@@ -1228,7 +1226,6 @@
 				E71D828072C7DB58BF78252AFC6D138D /* ZipMany.swift */,
 				831D36138D4748DD32F5E0B5A7F38C2C /* Support Files */,
 			);
-			name = CombineExt;
 			path = CombineExt;
 			sourceTree = "<group>";
 		};
@@ -1326,7 +1323,6 @@
 				655723B7061FE7AD336881E55633D491 /* GuaranteeTask.swift */,
 				078FB9B59B3E34A943C2D14AC2C2D2C9 /* Task+Espresso.swift */,
 			);
-			name = Task;
 			path = Task;
 			sourceTree = "<group>";
 		};
@@ -1382,7 +1378,6 @@
 				9E566598E0BC507148E47A2085ADFDE2 /* UILayoutSupport+Extensions.swift */,
 				447B48F8EBB18AA60D510A337EE82499 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1401,7 +1396,6 @@
 				433893D80A0546699A5B9C348F49DEBE /* KeyStoreReadable.swift */,
 				DDC18B8401832A8E4A346B7F4DFBCB0D /* KeyStoreWritable.swift */,
 			);
-			name = Key;
 			path = Key;
 			sourceTree = "<group>";
 		};
@@ -1432,6 +1426,7 @@
 				8A62A12CE11C2EB19E04454B613CD30D /* UIParallaxView.swift */,
 				33C47F8A5D7E64A6F826733C86D38344 /* UIScrollingStackView.swift */,
 				2A516E3A8B06BFE6C85B307093C11033 /* UIZeroSizeView.swift */,
+				261DD8592970D01C0034EBED /* UIViewModelView.swift */,
 				CF83C6E8E84F020589F0FAEF9C8A68DE /* Cells */,
 			);
 			name = Views;
@@ -1454,7 +1449,6 @@
 				2BDD707424D361B97C8A8C7963640677 /* UINavigationController+UIViewControllerTransition.swift */,
 				93E1B6EC08337C3A81E1ABA1E4EA5F89 /* UIViewController+UIViewControllerTransition.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1464,7 +1458,6 @@
 				0B52B4DDC3A4B449070B71CD1EE2FF05 /* FailableResult.swift */,
 				59623CA8BAD5A8C74BC3A11BC0A3E85D /* GuaranteeResult.swift */,
 			);
-			name = Result;
 			path = Result;
 			sourceTree = "<group>";
 		};
@@ -1522,7 +1515,6 @@
 				5063463CC6786FDA001E4624AB8953EF /* UIViewModelCollectionViewCell.swift */,
 				AC988BDF470557468271C2A65A36A5E6 /* UIViewModelTableViewCell.swift */,
 			);
-			name = Cells;
 			path = Cells;
 			sourceTree = "<group>";
 		};
@@ -1563,7 +1555,6 @@
 				4162FC3DCC64ABF1B576BBF3A140A798 /* Data+Digest.swift */,
 				974D5AD6A3EE5C31366CC85EB9F3E4E8 /* String+Digest.swift */,
 			);
-			name = Digest;
 			path = Digest;
 			sourceTree = "<group>";
 		};
@@ -1577,7 +1568,6 @@
 				C642814925338C3908990697C4C2E27C /* Extensions */,
 				5DD3E08E466B8A693BA044847F5D0D99 /* Transitions */,
 			);
-			name = Transitions;
 			path = Transitions;
 			sourceTree = "<group>";
 		};
@@ -2017,6 +2007,7 @@
 				178E22644D324430AA74D17EAD799DBA /* Optional+Espresso.swift in Sources */,
 				DE1AB61261631FE78964E0700D28D5BA /* OptionalType.swift in Sources */,
 				14119282DA1ABFDC0735303164F148FA /* Promise+Espresso.swift in Sources */,
+				261DD85A2970D01C0034EBED /* UIViewModelView.swift in Sources */,
 				968AEA567C140AB79281E0699515CDAD /* Publisher+Espresso.swift in Sources */,
 				0CCBBABCB7987F765253683926405CA6 /* Sequence+Espresso.swift in Sources */,
 				F04857F1A73FDCCA0AC79C738DEF947F /* StaticIdentifiable.swift in Sources */,
@@ -2544,8 +2535,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
