@@ -9,7 +9,7 @@ import Foundation
 
 /// Dynamic coding keys that can be used to extract raw key values.
 ///
-/// Useful when data is "keyed" using a value you need access to, such as an object ID.
+/// Useful when data is "keyed" using a value you need access to, such as an ID.
 ///
 ///     let childContainer = rootContainer.nestedContainer(
 ///         keyedBy: DynamicCodingKeys.self,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Protocol describing the characteristics of an `Optional`.
+/// Protocol describing something that has an optional value.
 public protocol OptionalType {
     
     associatedtype Wrapped

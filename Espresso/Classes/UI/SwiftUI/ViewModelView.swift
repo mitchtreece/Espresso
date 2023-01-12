@@ -8,12 +8,16 @@
 import UIKit
 import SwiftUI
 
+/// Protocol describing a view that is backed by a view model.
 public protocol ViewModelView: View {
     
-    associatedtype ViewModelType: ViewModel
+    associatedtype V: ViewModel
     
-    var viewModel: ViewModelType { get }
+    /// The view's backing view model.
+    var viewModel: V { get }
     
-    init(viewModel: ViewModelType)
+    /// Initializes a view with a view model.
+    /// - parameter viewModel: The view model.
+    init(viewModel: V)
     
 }

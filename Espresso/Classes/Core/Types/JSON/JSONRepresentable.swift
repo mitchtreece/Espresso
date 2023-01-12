@@ -47,6 +47,8 @@ public protocol JSONArrayRepresentable {
 
 public extension JSONArrayRepresentable {
     
+    /// a json-array data representation.
+    /// - returns: `JSON` array data.
     func asJsonArrayData() -> Data? {
         return asJsonArrayData(options: [])
     }

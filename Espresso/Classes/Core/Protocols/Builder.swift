@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Protocol describing something that builds something else.
 public protocol Builder {
     
     associatedtype BuildType
