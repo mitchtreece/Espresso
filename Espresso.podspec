@@ -66,6 +66,7 @@ Pod::Spec.new do |s|
     s.subspec 'UI-Core' do |ss|
 
         ss.source_files = 'Espresso/Classes/UI/Core/**/*'
+
         ss.dependency     'Espresso/Core'
 
     end
@@ -73,8 +74,8 @@ Pod::Spec.new do |s|
     s.subspec 'UI-UIKit' do |ss|
 
         ss.source_files = 'Espresso/Classes/UI/UIKit/**/*'
-        ss.dependency     'Espresso/UI-Core'
 
+        ss.dependency     'Espresso/UI-Core'
         ss.dependency     'SnapKit', '~> 5.0'
 
     end
@@ -82,6 +83,7 @@ Pod::Spec.new do |s|
     s.subspec 'UI-SwiftUI' do |ss|
 
         ss.source_files = 'Espresso/Classes/UI/SwiftUI/**/*'
+
         ss.dependency     'Espresso/UI-Core'
 
     end
@@ -97,8 +99,8 @@ Pod::Spec.new do |s|
     s.subspec 'PromiseKit-Core' do |ss|
 
         ss.source_files = 'Espresso/Classes/PromiseKit/Core/**/*'
-        ss.dependency     'Espresso/Core'
 
+        ss.dependency     'Espresso/Core'
         ss.dependency     'PromiseKit', '~> 6.0'
 
     end
@@ -133,7 +135,6 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/UI-UIKit'
         ss.dependency     'Espresso/PromiseKit'
-
         ss.dependency     'Spider-Web/All', '~> 2.0'
         ss.dependency     'Director/All',   '~> 1.0'
         ss.dependency     'Swinject',       '~> 2.0'
