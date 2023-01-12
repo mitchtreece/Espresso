@@ -71,13 +71,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'PromiseKit' do |ss|
 
-        ss.dependency     'Espresso/PromiseKit-Core'
-
-    end
-
-    s.subspec 'PromiseKit-Core' do |ss|
-
-        ss.source_files = 'Espresso/Classes/PromiseKit/Core/**/*'
+        ss.source_files = 'Espresso/Classes/PromiseKit/**/*'
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'PromiseKit', '~> 6.0'

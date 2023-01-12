@@ -77,15 +77,7 @@
     },
     {
       "name": "PromiseKit",
-      "dependencies": {
-        "Espresso/PromiseKit-Core": [
-
-        ]
-      }
-    },
-    {
-      "name": "PromiseKit-Core",
-      "source_files": "Espresso/Classes/PromiseKit/Core/**/*",
+      "source_files": "Espresso/Classes/PromiseKit/**/*",
       "dependencies": {
         "Espresso/Core": [
 

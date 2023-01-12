@@ -7,8 +7,6 @@ PODS:
   - Espresso/Core (3.0.0):
     - CombineExt (~> 1.0)
   - Espresso/PromiseKit (3.0.0):
-    - Espresso/PromiseKit-Core
-  - Espresso/PromiseKit-Core (3.0.0):
     - Espresso/Core
     - PromiseKit (~> 6.0)
   - Espresso/UI (3.0.0):
@@ -48,7 +46,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
-  Espresso: 2f7b4562358a733fa153c6d847237a6dbfc50ebf
+  Espresso: 083538e2f7a3db6f015db8ed36a4fe389b5d706a
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 

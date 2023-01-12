@@ -29,8 +29,7 @@ Espresso is broken down into several subspecs making it quick & easy to pick and
     - `UI-Core`: General UI classes, extensions, & dependencies.
     - `UI-UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
     - `UI-SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
-- `PromiseKit`
-    - `PromiseKit-Core`: TODO
+- `PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
 - `UIKit`: Aggregate subspec that includes everything related to [UIKit](https://developer.apple.com/documentation/uikit)
 - `SwiftUI`: Aggregate subspec that includes everything related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
 - `All`: Aggregate subspec that includes **everything**
