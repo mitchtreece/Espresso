@@ -128,16 +128,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case zoom
         case custom
         
-        var transition: ViewControllerTransition {
+        var transition: UIViewControllerTransition {
             
             switch self {
-            case .fade: return FadeTransition()
-            case .slide: return SlideTransition()
-            case .cover: return CoverTransition()
-            case .reveal: return RevealTransition()
-            case .swap: return SwapTransition()
-            case .pushBack: return PushBackTransition()
-            case .zoom: return ZoomTransition()
+            case .fade: return UIFadeTransition()
+            case .slide: return UISlideTransition()
+            case .cover: return UICoverTransition()
+            case .reveal: return UIRevealTransition()
+            case .swap: return UISwapTransition()
+            case .pushBack: return UIPushBackTransition()
+            case .zoom: return UIZoomTransition()
             case .custom: return CustomTransition()
             }
             
@@ -198,16 +198,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        var taptic: Taptic {
+        var taptic: UITaptic {
             
             switch self {
-            case .selection: return Taptic(style: .selection)
-            case .impactLight: return Taptic(style: .impact(.light))
-            case .impactMedium: return Taptic(style: .impact(.medium))
-            case .impactHeavy: return Taptic(style: .impact(.heavy))
-            case .notificationSuccess: return Taptic(style: .notification(.success))
-            case .notificationWarning: return Taptic(style: .notification(.warning))
-            case .notificationError: return Taptic(style: .notification(.error))
+            case .selection: return .init(style: .selection)
+            case .impactLight: return .init(style: .impact(.light))
+            case .impactMedium: return .init(style: .impact(.medium))
+            case .impactHeavy: return .init(style: .impact(.heavy))
+            case .notificationSuccess: return .init(style: .notification(.success))
+            case .notificationWarning: return .init(style: .notification(.warning))
+            case .notificationError: return .init(style: .notification(.error))
             }
             
         }

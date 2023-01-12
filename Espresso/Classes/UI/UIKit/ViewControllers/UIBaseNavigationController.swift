@@ -7,37 +7,39 @@
 
 import UIKit
 
-/// `UINavigationController` subclass that provides common helper functions & properties.
-open class UIBaseNavigationController: UINavigationController, UserInterfaceStyleAdaptable {
+/// `UINavigationController` subclass that provides
+/// common helper functions & properties.
+open class UIBaseNavigationController: UINavigationController,
+                                       UIUserInterfaceStyleAdaptable {
     
     /// A publisher that sends when the view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
-        return self._viewDidLoadPublisher.asPublisher()
+        return self._viewDidLoad.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view is about to appear.
     public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
-        return self._viewWillAppearPublisher.eraseToAnyPublisher()
+        return self._viewWillAppear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
-        return self._viewDidAppearPublisher.eraseToAnyPublisher()
+        return self._viewDidAppear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view is about to disappear.
     public var viewWillDisappearPublisher: GuaranteePublisher<Bool> {
-        return self._viewWillDisappearPublisher.eraseToAnyPublisher()
+        return self._viewWillDisappear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view finishes disappearing.
     public var viewDidDisappearPublisher: GuaranteePublisher<Bool> {
-        return self._viewDidDisappearPublisher.eraseToAnyPublisher()
+        return self._viewDidDisappear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view receives a memory warning.
     public var didRecieveMemoryWarningPublisher: GuaranteePublisher<Void> {
-        return self._didReceiveMemoryWarningPublisher.asPublisher()
+        return self._didReceiveMemoryWarning.eraseToAnyPublisher()
     }
     
     /// Flag indicating if this is the view controller's first appearance.
@@ -50,14 +52,14 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
     /// pop gesture recognizer is enabled.
     public var isSwipeBackGestureEnabled: Bool = true {
         didSet {
-            self.interactivePopDelegate.isSwipeBackGestureEnabled = isSwipeBackGestureEnabled
+            self.swipeBackDelegate.isGestureEnabled = isSwipeBackGestureEnabled
         }
     }
     
     /// The view controller's modal style.
-    public var modalStyle: ModalStyle {
+    public var modalStyle: UIModalStyle {
         get {
-            return ModalStyle(modalPresentationStyle: self.modalPresentationStyle)
+            return UIModalStyle(modalPresentationStyle: self.modalPresentationStyle)
         }
         set {
             self.modalPresentationStyle = newValue.asModalPresentationStyle()
@@ -77,14 +79,14 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         set { self.isModalInPresentation = !newValue }
     }
     
-    private var _viewDidLoadPublisher = TriggerPublisher()
-    private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
+    private var _viewDidLoad = TriggerPublisher()
+    private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidDisappear = GuaranteePassthroughSubject<Bool>()
+    private var _didReceiveMemoryWarning = TriggerPublisher()
     
-    private let interactivePopDelegate = HiddenNavBarInteractivePopDelegate()
+    private let swipeBackDelegate = UIInteractiveSwipeBackDelegate()
     
     open override var childForStatusBarStyle: UIViewController? {
         self.topViewController
@@ -106,11 +108,11 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         super.viewDidLoad()
         
-        self.interactivePopDelegate.originalGestureDelegate = self.interactivePopGestureRecognizer?.delegate
-        self.interactivePopDelegate.navigationController = self
-        self.interactivePopGestureRecognizer?.delegate = self.interactivePopDelegate
+        self.swipeBackDelegate.originalGestureDelegate = self.interactivePopGestureRecognizer?.delegate
+        self.swipeBackDelegate.navigationController = self
+        self.interactivePopGestureRecognizer?.delegate = self.swipeBackDelegate
         
-        self._viewDidLoadPublisher.fire()
+        self._viewDidLoad.send()
         
     }
 
@@ -118,7 +120,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         super.viewWillAppear(animated)
         
-        self._viewWillAppearPublisher.send(animated)
+        self._viewWillAppear.send(animated)
                 
     }
     
@@ -128,7 +130,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         self.isFirstAppearance = false
         
-        self._viewDidAppearPublisher.send(animated)
+        self._viewDidAppear.send(animated)
         
     }
     
@@ -136,7 +138,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         super.viewWillDisappear(animated)
         
-        self._viewWillDisappearPublisher.send(animated)
+        self._viewWillDisappear.send(animated)
         
     }
     
@@ -144,7 +146,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         super.viewDidDisappear(animated)
                 
-        self._viewDidDisappearPublisher.send(animated)
+        self._viewDidDisappear.send(animated)
         
     }
     
@@ -152,7 +154,7 @@ open class UIBaseNavigationController: UINavigationController, UserInterfaceStyl
         
         super.didReceiveMemoryWarning()
         
-        self._didReceiveMemoryWarningPublisher.fire()
+        self._didReceiveMemoryWarning.send()
         
     }
     

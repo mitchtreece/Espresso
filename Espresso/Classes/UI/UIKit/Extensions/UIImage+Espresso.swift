@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: Color
+
 public extension UIImage /* Color */ {
     
     enum AverageColorAlgorithm {
@@ -192,6 +194,8 @@ public extension UIImage /* Color */ {
     
 }
 
+// MARK: Scale
+
 public extension UIImage /* Scale */ {
     
     /// Creates a new image from the reciever scaled to a specific size.
@@ -219,7 +223,9 @@ public extension UIImage /* Scale */ {
     
 }
 
-public extension UIImage { /* JPEG */
+// MARK: JPEG
+
+public extension UIImage /* JPEG */ {
 
     /// Representation of the various JPEG quality types.
     enum JPEGQuality: CGFloat {
@@ -248,4 +254,34 @@ public extension UIImage { /* JPEG */
         jpegData(compressionQuality: quality.rawValue)
     }
 
+}
+
+// MARK: Blur Hash
+
+extension UIImage: BlurHashRepresentable /* Blur Hash */ {
+
+    /// Initializes an image from a blur hash.
+    /// - parameter hash: The blur hash.
+    /// - parameter size: The requested output size.
+    ///
+    /// You should keep the size small, and let the system scale it up for you.
+    public convenience init?(hash: BlurHash,
+                             size: CGSize = .init(width: 32, height: 32)) {
+        
+        guard let image = UIBlurHashCoder().decode(hash: hash, size: size),
+              let cgImage = image.cgImage else { return nil }
+        
+        self.init(cgImage: cgImage)
+        
+    }
+    
+    public func asBlurHash(components: BlurHashComponents) -> BlurHash? {
+        
+        return UIBlurHashCoder().encode(
+            image: self,
+            components: components
+        )
+
+    }
+    
 }

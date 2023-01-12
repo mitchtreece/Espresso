@@ -8,7 +8,7 @@
 import UIKit
 
 /// `UIView` subclass that provides common helper functions & properties.
-open class UIBaseView: UIView, UserInterfaceStyleAdaptable {
+open class UIBaseView: UIView, UIUserInterfaceStyleAdaptable {
     
     public override init(frame: CGRect) {
         

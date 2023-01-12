@@ -12,17 +12,21 @@ public class TriggerPublisher {
     
     private let subject = GuaranteePassthroughSubject<Void>()
     
+    /// Initializes a new `TriggerPublisher`.
     public init() {
         //
     }
     
-    public func fire() {
+    /// Sends an event to subscribers.
+    public func send() {
         self.subject.send(())
     }
     
-    public func asPublisher() -> GuaranteePublisher<Void> {
+    /// Wraps the publisher with a type eraser.
+    /// - returns: An ``AnyPublisher`` wrapping this publisher.
+    public func eraseToAnyPublisher() -> AnyPublisher<Void, Never> {
         return self.subject.eraseToAnyPublisher()
     }
-    
+
 }
 

@@ -8,64 +8,57 @@
 import UIKit
 import Combine
 
-/// `UIViewController` subclass that provides common helper functions & properties.
-open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
-    
-    private var _viewDidLoadPublisher = TriggerPublisher()
-    private var _viewWillSetupPublisher = TriggerPublisher()
-    private var _viewDidSetupPublisher = TriggerPublisher()
-    private var _viewWillAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidAppearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewWillDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _viewDidDisappearPublisher = GuaranteePassthroughSubject<Bool>()
-    private var _didReceiveMemoryWarningPublisher = TriggerPublisher()
+/// `UIViewController` subclass that provides
+/// common helper functions & properties.
+open class UIBaseViewController: UIViewController,
+                                 UIUserInterfaceStyleAdaptable {
     
     /// A publisher that sends when the view controller's
     /// view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
-        return self._viewDidLoadPublisher.asPublisher()
+        return self._viewDidLoad.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view is about to perform setup actions.
     public var viewWillSetupPublisher: GuaranteePublisher<Void> {
-        return self._viewWillSetupPublisher.asPublisher()
+        return self._viewWillSetup.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view finishes setup actions.
     public var viewDidSetupPublisher: GuaranteePublisher<Void> {
-        return self._viewDidSetupPublisher.asPublisher()
+        return self._viewDidSetup.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view is about to appear.
     public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
-        return self._viewWillAppearPublisher.eraseToAnyPublisher()
+        return self._viewWillAppear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
-        return self._viewDidAppearPublisher.eraseToAnyPublisher()
+        return self._viewDidAppear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view is about to disappear.
     public var viewWillDisappearPublisher: GuaranteePublisher<Bool> {
-        return self._viewWillDisappearPublisher.eraseToAnyPublisher()
+        return self._viewWillDisappear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view finishes disappearing.
     public var viewDidDisappearPublisher: GuaranteePublisher<Bool> {
-        return self._viewDidDisappearPublisher.eraseToAnyPublisher()
+        return self._viewDidDisappear.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller
     /// receives a memory warning.
     public var didRecieveMemoryWarningPublisher: GuaranteePublisher<Void> {
-        return self._didReceiveMemoryWarningPublisher.asPublisher()
+        return self._didReceiveMemoryWarning.eraseToAnyPublisher()
     }
     
     /// Flag indicating if the view controller should hide it's
@@ -81,9 +74,9 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     public private(set) var isFirstAppearance: Bool = true
     
     /// The view controller's modal style.
-    public var modalStyle: ModalStyle {
+    public var modalStyle: UIModalStyle {
         get {
-            return ModalStyle(modalPresentationStyle: self.modalPresentationStyle)
+            return UIModalStyle(modalPresentationStyle: self.modalPresentationStyle)
         }
         set {
             self.modalPresentationStyle = newValue.asModalPresentationStyle()
@@ -97,7 +90,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
             return self.modalStyle.isModalSheet
         }
         
-        return ModalStyle(modalPresentationStyle: nav.modalPresentationStyle).isModalSheet
+        return UIModalStyle(modalPresentationStyle: nav.modalPresentationStyle).isModalSheet
         
     }
     
@@ -109,13 +102,22 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         set { self.isModalInPresentation = !newValue }
     }
     
+    private var _viewDidLoad = TriggerPublisher()
+    private var _viewWillSetup = TriggerPublisher()
+    private var _viewDidSetup = TriggerPublisher()
+    private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidDisappear = GuaranteePassthroughSubject<Bool>()
+    private var _didReceiveMemoryWarning = TriggerPublisher()
+    
     private var keyboardBag = CancellableBag()
  
     open override func viewDidLoad() {
         
         super.viewDidLoad()
                 
-        self._viewDidLoadPublisher.fire()
+        self._viewDidLoad.send()
         
         viewWillSetup()
         
@@ -132,7 +134,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         bindKeyboardEvents()
         
-        self._viewWillAppearPublisher.send(animated)
+        self._viewWillAppear.send(animated)
                 
     }
     
@@ -142,7 +144,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         self.isFirstAppearance = false
         
-        self._viewDidAppearPublisher.send(animated)
+        self._viewDidAppear.send(animated)
         
     }
     
@@ -150,7 +152,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         super.viewWillDisappear(animated)
         
-        self._viewWillDisappearPublisher.send(animated)
+        self._viewWillDisappear.send(animated)
         
     }
     
@@ -160,7 +162,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         unbindKeyboardEvents()
         
-        self._viewDidDisappearPublisher.send(animated)
+        self._viewDidDisappear.send(animated)
         
     }
     
@@ -168,7 +170,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         super.didReceiveMemoryWarning()
         
-        self._didReceiveMemoryWarningPublisher.fire()
+        self._didReceiveMemoryWarning.send()
         
     }
     
@@ -179,7 +181,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     /// View frames are not guaranteed to have accurate values at this point.
     open func viewWillSetup() {
         
-        self._viewWillSetupPublisher.fire()
+        self._viewWillSetup.send()
         
         DispatchQueue.main.async { [weak self] in
             self?.viewDidSetup()
@@ -193,7 +195,7 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     /// This function is scheduled on the main-thread from `viewWillSetup`.
     /// View frames should have accurate values at this point.
     open func viewDidSetup() {
-        self._viewDidSetupPublisher.fire()
+        self._viewDidSetup.send()
     }
     
     // MARK: Traits
@@ -218,38 +220,38 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillShow(_ animation: KeyboardAnimation) {}
+    open func keyboardWillShow(_ animation: UIKeyboardAnimation) {}
     
     /// Called when the keyboard finishes presenting.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidShow(_ animation: KeyboardAnimation) {}
+    open func keyboardDidShow(_ animation: UIKeyboardAnimation) {}
     
     /// Called when the keyboard's frame is about to change.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillChangeFrame(_ animation: KeyboardAnimation) {}
+    open func keyboardWillChangeFrame(_ animation: UIKeyboardAnimation) {}
     
     /// Called when the keyboard's frame finishes changing.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidChangeFrame(_ animation: KeyboardAnimation) {}
+    open func keyboardDidChangeFrame(_ animation: UIKeyboardAnimation) {}
     
     /// Called when the keyboard is about to be dismissed.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillHide(_ animation: KeyboardAnimation) {}
+    open func keyboardWillHide(_ animation: UIKeyboardAnimation) {}
     
     
     /// Called when the keyboard finishes dismissing.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidHide(_ animation: KeyboardAnimation) {}
+    open func keyboardDidHide(_ animation: UIKeyboardAnimation) {}
     
     // MARK: Private
     
@@ -259,37 +261,37 @@ open class UIBaseViewController: UIViewController, UserInterfaceStyleAdaptable {
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardWillShow($0) }
             .store(in: &self.keyboardBag)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardDidShowNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardDidShow($0) }
             .store(in: &self.keyboardBag)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardWillChangeFrame($0) }
             .store(in: &self.keyboardBag)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardDidChangeFrameNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardDidChangeFrame($0) }
             .store(in: &self.keyboardBag)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardWillHide($0) }
             .store(in: &self.keyboardBag)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardDidHideNotification)
-            .compactMap { KeyboardAnimation(notification: $0) }
+            .compactMap { UIKeyboardAnimation(notification: $0) }
             .sink { [weak self] in self?.keyboardDidHide($0) }
             .store(in: &self.keyboardBag)
         

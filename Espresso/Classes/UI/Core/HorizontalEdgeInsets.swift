@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 5/2/21.
 //
 
-import UIKit
+import Foundation
 
 /// A set of horizontal edge insets.
 public struct HorizontalEdgeInsets {

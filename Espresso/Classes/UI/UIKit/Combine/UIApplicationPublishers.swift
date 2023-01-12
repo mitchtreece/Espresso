@@ -11,65 +11,65 @@ import UIKit
 public class UIApplicationPublishers {
     
     /// A publisher that sends when the application finishes becoming active.
-    public var didBecomeActive: GuaranteePublisher<Void> {
-        return self._didBecomeActive.asPublisher()
+    public var didBecomeActivePublisher: GuaranteePublisher<Void> {
+        return self.didBecomeActive.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application is about to become inactive.
-    public var willResignActive: GuaranteePublisher<Void> {
-        return self._willResignActive.asPublisher()
+    public var willResignActivePublisher: GuaranteePublisher<Void> {
+        return self.willResignActive.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application finishes entering the background.
-    public var didEnterBackground: GuaranteePublisher<Void> {
-        return self._didEnterBackground.asPublisher()
+    public var didEnterBackgroundPublisher: GuaranteePublisher<Void> {
+        return self.didEnterBackground.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application is about to enter the foreground.
-    public var willEnterForeground: GuaranteePublisher<Void> {
-        return self._willEnterForeground.asPublisher()
+    public var willEnterForegroundPublisher: GuaranteePublisher<Void> {
+        return self.willEnterForeground.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application is about to terminate.
-    public var willTerminate: GuaranteePublisher<Void> {
-        return self._willTerminate.asPublisher()
+    public var willTerminatePublisher: GuaranteePublisher<Void> {
+        return self.willTerminate.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application's protected data availability is about to change.
-    public var protectedDataAvailabilityWillChange: GuaranteePublisher<Bool> {
-        return self._protectedDataAvailabilityWillChange.eraseToAnyPublisher()
+    public var protectedDataAvailabilityWillChangePublisher: GuaranteePublisher<Bool> {
+        return self.protectedDataAvailabilityWillChange.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application receives a significant time change.
-    public var significantTimeChange: GuaranteePublisher<Void> {
-        return self._significantTimeChange.asPublisher()
+    public var significantTimeChangePublisher: GuaranteePublisher<Void> {
+        return self.significantTimeChange.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application receives a background-refresh status change.
-    public var backgroundRefreshStatusChange: GuaranteePublisher<Void> {
-        return self._backgroundRefreshStatusChange.asPublisher()
+    public var backgroundRefreshStatusChangePublisher: GuaranteePublisher<Void> {
+        return self.backgroundRefreshStatusChange.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application is screenshot by the user.
-    public var userDidTakeScreenshot: GuaranteePublisher<Void> {
-        return self._userDidTakeScreenshot.asPublisher()
+    public var userDidTakeScreenshotPublisher: GuaranteePublisher<Void> {
+        return self.userDidTakeScreenshot.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the application receives a memory warning.
-    public var didReceiveMemoryWarning: GuaranteePublisher<Void> {
-        return self._didReceiveMemoryWarning.asPublisher()
+    public var didReceiveMemoryWarningPublisher: GuaranteePublisher<Void> {
+        return self.didReceiveMemoryWarning.eraseToAnyPublisher()
     }
     
-    private var _didBecomeActive = TriggerPublisher()
-    private var _willResignActive = TriggerPublisher()
-    private var _didEnterBackground = TriggerPublisher()
-    private var _willEnterForeground = TriggerPublisher()
-    private var _willTerminate = TriggerPublisher()
-    private var _protectedDataAvailabilityWillChange = GuaranteePassthroughSubject<Bool>()
-    private var _significantTimeChange = TriggerPublisher()
-    private var _backgroundRefreshStatusChange = TriggerPublisher()
-    private var _userDidTakeScreenshot = TriggerPublisher()
-    private var _didReceiveMemoryWarning = TriggerPublisher()
+    private var didBecomeActive = TriggerPublisher()
+    private var willResignActive = TriggerPublisher()
+    private var didEnterBackground = TriggerPublisher()
+    private var willEnterForeground = TriggerPublisher()
+    private var willTerminate = TriggerPublisher()
+    private var protectedDataAvailabilityWillChange = GuaranteePassthroughSubject<Bool>()
+    private var significantTimeChange = TriggerPublisher()
+    private var backgroundRefreshStatusChange = TriggerPublisher()
+    private var userDidTakeScreenshot = TriggerPublisher()
+    private var didReceiveMemoryWarning = TriggerPublisher()
     
     private var bag = CancellableBag()
     
@@ -82,67 +82,67 @@ public class UIApplicationPublishers {
         NotificationCenter.default
             .publisher(for: UIApplication.didBecomeActiveNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._didBecomeActive.fire() }
+            .sink { [unowned self] _ in self.didBecomeActive.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.willResignActiveNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._willResignActive.fire() }
+            .sink { [unowned self] _ in self.willResignActive.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.didEnterBackgroundNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._didEnterBackground.fire() }
+            .sink { [unowned self] _ in self.didEnterBackground.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.willEnterForegroundNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._willEnterForeground.fire() }
+            .sink { [unowned self] _ in self.willEnterForeground.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.willTerminateNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._willTerminate.fire() }
+            .sink { [unowned self] _ in self.willTerminate.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.protectedDataDidBecomeAvailableNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._protectedDataAvailabilityWillChange.send(true) }
+            .sink { [unowned self] _ in self.protectedDataAvailabilityWillChange.send(true) }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.protectedDataWillBecomeUnavailableNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._protectedDataAvailabilityWillChange.send(false) }
+            .sink { [unowned self] _ in self.protectedDataAvailabilityWillChange.send(false) }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.significantTimeChangeNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._significantTimeChange.fire() }
+            .sink { [unowned self] _ in self.significantTimeChange.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.backgroundRefreshStatusDidChangeNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._backgroundRefreshStatusChange.fire() }
+            .sink { [unowned self] _ in self.backgroundRefreshStatusChange.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.userDidTakeScreenshotNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._userDidTakeScreenshot.fire() }
+            .sink { [unowned self] _ in self.userDidTakeScreenshot.send() }
             .store(in: &self.bag)
         
         NotificationCenter.default
             .publisher(for: UIApplication.didReceiveMemoryWarningNotification)
             .receiveOnMain()
-            .sink { [unowned self] _ in self._didReceiveMemoryWarning.fire() }
+            .sink { [unowned self] _ in self.didReceiveMemoryWarning.send() }
             .store(in: &self.bag)
         
     }

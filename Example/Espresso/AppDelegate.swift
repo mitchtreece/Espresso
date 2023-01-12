@@ -42,13 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application
             .publishers
-            .didBecomeActive
+            .didBecomeActivePublisher
             .sink { print("☕️ application did become active") }
             .store(in: &self.bag)
         
         application
             .publishers
-            .willResignActive
+            .willResignActivePublisher
             .sink { print("☕️ application did resign active") }
             .store(in: &self.bag)
                 

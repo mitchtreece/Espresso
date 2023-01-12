@@ -7,14 +7,14 @@
 
 import UIKit
 
-/// `UIViewController` subclass that provides common properties & functions when backed by a view model.
+/// `UIViewController` subclass that provides common
+/// properties & functions when backed by a view model.
 open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     
     /// The view controller's backing view model.
     public private(set) var viewModel: V!
     
     /// Initializes a view controller with a view model.
-    ///
     /// - parameter viewModel: The view model.
     /// - parameter nibName: The nib name.
     /// - parameter bundle: The bundle to load from.
@@ -36,7 +36,6 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     }
     
     /// Configures the view controller with a view model.
-    ///
     /// - parameter viewModel: The view model.
     ///
     /// This setup function is useful when initilizing the view controller in a 2-step fashion.

@@ -7,8 +7,10 @@
 
 import UIKit
 
-/// `UICollectionViewCell` subclass that provides common helper functions & properties.
-open class UIBaseCollectionViewCell: UICollectionViewCell, UserInterfaceStyleAdaptable {
+/// `UICollectionViewCell` subclass that provides
+/// common helper functions & properties.
+open class UIBaseCollectionViewCell: UICollectionViewCell,
+                                     UIUserInterfaceStyleAdaptable {
     
     // MARK: Traits
     

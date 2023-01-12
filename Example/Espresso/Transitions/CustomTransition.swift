@@ -9,15 +9,15 @@
 import UIKit
 import Espresso
 
-class CustomTransition: ViewControllerTransition {
+class CustomTransition: UIViewControllerTransition {
     
-    override func animations(using ctx: ViewControllerTransition.Context) -> AnimationGroupController {
+    override func animations(using ctx: UIViewControllerTransition.Context) -> UIAnimationGroupController {
         
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
         
-        return AnimationGroupController(setup: {
+        return UIAnimationGroupController(setup: {
             
             destinationVC.view.frame = context.finalFrame(for: destinationVC)
             destinationVC.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -26,7 +26,7 @@ class CustomTransition: ViewControllerTransition {
             
         }, animations: {
         
-            Animation(.defaultSpring) {
+            UIAnimation(.defaultSpring) {
                 destinationVC.view.transform = .identity
                 destinationVC.view.alpha = 1
             }

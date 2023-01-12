@@ -7,8 +7,10 @@
 
 import UIKit
 
-/// `UITableViewCell` subclass that provides common helper functions & properties.
-open class UIBaseTableViewCell: UITableViewCell, UserInterfaceStyleAdaptable {
+/// `UITableViewCell` subclass that provides
+/// common helper functions & properties.
+open class UIBaseTableViewCell: UITableViewCell,
+                                UIUserInterfaceStyleAdaptable {
     
     // MARK: Traits
     

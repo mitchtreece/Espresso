@@ -184,14 +184,14 @@ public class UIButtonView: UIBaseView {
             
             guard let self = self else { return }
             
-            Taptic(style: .selection)
+            UITaptic(style: .selection)
                 .play()
 
             self.action?()
 
             if self.isAnimated {
                 
-                Animation(.spring(damping: 0.5, velocity: 1), duration: 0.5) {
+                UIAnimation(.spring(damping: 0.5, velocity: 1), duration: 0.5) {
                     self.transform = .identity
                 }.start()
                 
@@ -216,7 +216,7 @@ public class UIButtonView: UIBaseView {
         switch state {
         case .began:
 
-            Animation(.material(.standard), duration: 0.1) {
+            UIAnimation(.material(.standard), duration: 0.1) {
                 self.transform = .init(scaleX: 0.97, y: 0.97)
             }.start()
 
