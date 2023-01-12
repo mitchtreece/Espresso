@@ -13,6 +13,28 @@ private struct AssociatedKeys {
 
 extension UIView: StaticIdentifiable {}
 
+public extension UIView /* Visible */ {
+    
+    /// A Boolean value that determines whether the view is visible.
+    var isVisible: Bool {
+        get { return !self.isHidden }
+        set { self.isHidden = !newValue }
+    }
+    
+}
+
+public extension UIView /* Subviews */ {
+    
+    /// Removes all subviews from the view.
+    func removeAllSubviews() {
+        
+        self.subviews
+            .forEach { $0.removeFromSuperview() }
+        
+    }
+    
+}
+
 public extension UIView /* Corners */ {
     
     /// Rounds the view's corners using a radius & curve.
@@ -142,18 +164,6 @@ public extension UIView /* Motion */ {
         
         self.motionEffects
             .forEach { self.removeMotionEffect($0) }
-        
-    }
-    
-}
-
-public extension UIView /* Subviews */ {
-    
-    /// Removes all subviews from the view.
-    func removeAllSubviews() {
-        
-        self.subviews
-            .forEach { $0.removeFromSuperview() }
         
     }
     
