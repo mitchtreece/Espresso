@@ -145,7 +145,7 @@ public extension NSMutableAttributedString /* Append */ {
                 font: UIFont? = nil,
                 color: UIColor? = nil) -> Self {
 
-        var attributedString = NSMutableAttributedString(string: string)
+        let attributedString = NSMutableAttributedString(string: string)
         
         if let font {
             
