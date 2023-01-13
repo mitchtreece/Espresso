@@ -49,27 +49,6 @@ public extension Promise /* Combine */ {
     
 }
 
-public extension Promise /* Async */ {
-    
-    /// Creates an async task over this promise.
-    /// - returns: An async value.
-    func asAsync() async throws -> T {
-        
-        return try await withCheckedThrowingContinuation { c in
-            
-            self.done { value in
-                c.resume(returning: value)
-            }
-            .catch { error in
-                c.resume(throwing: error)
-            }
-            
-        }
-        
-    }
-    
-}
-
 // MARK: Retry
 
 /// Retries a promise using a given behavior.

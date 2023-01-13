@@ -4,6 +4,7 @@ use_frameworks!
 target 'Espresso_Example' do
 
   pod 'Espresso/All', :path => '../'
+  pod 'SFSafeSymbols'
 
   target 'Espresso_Tests' do
     inherit! :search_paths

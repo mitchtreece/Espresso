@@ -51,9 +51,6 @@
       "dependencies": {
         "Espresso/Core": [
 
-        ],
-        "SFSafeSymbols": [
-
         ]
       }
     },
