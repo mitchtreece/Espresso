@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = 'Espresso'
-    s.version          = '2.4.1'
+    s.version          = '3.0.0'
     s.summary          = 'Swift convenience library for iOS.'
 
     s.description      = <<-DESC
@@ -16,50 +16,102 @@ Pod::Spec.new do |s|
     s.social_media_url          = 'https://twitter.com/mitchtreece'
 
     s.swift_version             = '5'
-    s.ios.deployment_target     = '11.0'
+    s.ios.deployment_target     = '13.0'
 
     # Subspecs
 
     s.default_subspec = 'UIKit'
 
-    s.subspec 'Core' do |core|
+    ## Core
 
-        core.source_files       = 'Espresso/Classes/Core/**/*'
-        core.dependency         'Swinject', '~> 2.0'
+    s.subspec 'Core' do |ss|
 
-    end
+        ss.source_files = 'Espresso/Classes/Core/**/*'
 
-    s.subspec 'UIKit' do |uikit|
-
-        uikit.source_files      = 'Espresso/Classes/UIKit/**/*'
-        uikit.dependency        'Espresso/Core'
-        uikit.dependency        'SnapKit', '~> 5.0'
+        ss.dependency     'CombineExt', '~> 1.0'
 
     end
 
-    s.subspec 'Rx' do |rx|
+    ## UI
 
-        rx.source_files         = 'Espresso/Classes/Rx/**/*'
-        rx.dependency           'Espresso/Core'
-        rx.dependency           'RxSwift', '~> 6.0'
-        rx.dependency           'RxCocoa', '~> 6.0'
+    s.subspec 'UI' do |ss|
 
-    end
-
-    s.subspec 'Rx-UIKit' do |rxuikit|
-
-        rxuikit.source_files    = 'Espresso/Classes/Rx-UIKit/**/*'
-        rxuikit.dependency      'Espresso/Rx'
-        rxuikit.dependency      'Espresso/UIKit'
+        ss.dependency     'Espresso/UI-Core'
+        ss.dependency     'Espresso/UI-UIKit'
+        ss.dependency     'Espresso/UI-SwiftUI'
 
     end
 
-    s.subspec 'All' do |all|
+    s.subspec 'UI-Core' do |ss|
 
-        all.dependency          'Espresso/Core'
-        all.dependency          'Espresso/UIKit'
-        all.dependency          'Espresso/Rx'
-        all.dependency          'Espresso/Rx-UIKit'
+        ss.source_files = 'Espresso/Classes/UI/Core/**/*'
+
+        ss.dependency     'Espresso/Core'
+        ss.dependency     'SFSafeSymbols'
+
+    end
+
+    s.subspec 'UI-UIKit' do |ss|
+
+        ss.source_files = 'Espresso/Classes/UI/UIKit/**/*'
+
+        ss.dependency     'Espresso/UI-Core'
+        ss.dependency     'SnapKit', '~> 5.0'
+
+    end
+
+    s.subspec 'UI-SwiftUI' do |ss|
+
+        ss.source_files = 'Espresso/Classes/UI/SwiftUI/**/*'
+
+        ss.dependency     'Espresso/UI-UIKit'
+
+    end
+
+    ## PromiseKit
+
+    s.subspec 'PromiseKit' do |ss|
+
+        ss.source_files = 'Espresso/Classes/PromiseKit/**/*'
+
+        ss.dependency     'Espresso/Core'
+        ss.dependency     'PromiseKit', '~> 6.0'
+
+    end
+
+    ## Aggregates
+
+    s.subspec 'UIKit' do |ss|
+
+        ss.dependency     'Espresso/Core'
+        ss.dependency     'Espresso/UI-UIKit'
+
+    end
+
+    s.subspec 'SwiftUI' do |ss|
+
+        ss.dependency     'Espresso/Core'
+        ss.dependency     'Espresso/UI-SwiftUI'
+
+    end
+
+    s.subspec 'All' do |ss|
+
+        ss.dependency     'Espresso/Core'
+        ss.dependency     'Espresso/UI'
+        ss.dependency     'Espresso/PromiseKit'
+
+    end
+
+    ## Recipes
+
+    s.subspec 'Recipe-Modern-UIKit' do |ss|
+
+        ss.dependency     'Espresso/UI-UIKit'
+        ss.dependency     'Espresso/PromiseKit'
+        ss.dependency     'Spider-Web/All', '~> 2.0'
+        ss.dependency     'Director/All',   '~> 1.0'
+        ss.dependency     'Swinject',       '~> 2.0'
 
     end
 

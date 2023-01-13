@@ -14,6 +14,22 @@ public extension String /* Empty */ {
     
 }
 
+public extension Optional where Wrapped == String {
+    
+    /// Flag indicating if the optional string is `nil` or empty.
+    /// - returns: `Bool` indicating if the string is `nil` or empty.
+    var isNilOrEmpty: Bool {
+        return self?.isEmpty ?? true
+    }
+    
+    /// Flag indicating if the optional string is not `nil` or empty.
+    /// - returns: `Bool` indicating if the string is not `nil` or empty.
+    var isNotNilOrEmpty: Bool {
+        return !self.isNilOrEmpty
+    }
+    
+}
+
 public extension String /* Size */ {
     
     /// Calculates the display size for the string using a constraint & attributes.
@@ -150,6 +166,87 @@ public extension String /* Random */ {
         
         self.init(randomCharacters)
         
+    }
+    
+}
+
+public extension String /* Number */ {
+    
+    /// Flag indicating whether the string can be represented as a whole number.
+    var isNumber: Bool {
+        
+        guard let regex = try? NSRegularExpression(pattern: "[0-9]+") else { return false }
+        
+        return firstMatch(for: regex)
+            .map { $0 == self } ?? false
+        
+    }
+    
+}
+
+public extension String /* Regex */ {
+    
+    /// Returns the range of the first match of a regular expression within the string.
+    /// - parameter regex: The regular expression.
+    /// - returns: The range of the first match. Returns {NSNotFound, 0} if no match is found.
+    func rangeOfFirstMatch(for regex: NSRegularExpression) -> NSRange {
+        
+        return regex.rangeOfFirstMatch(
+            in: self,
+            range: NSRange(location: 0, length: self.count)
+        )
+        
+    }
+
+    /// Returns the first match of the regular expression within the string.
+    /// - parameter regex: The regular expression.
+    /// - returns: The first match.
+    func firstMatch(for regex: NSRegularExpression) -> String? {
+        
+        return regex
+            .firstMatch(
+                in: self,
+                range: NSRange(
+                    location: 0,
+                    length: self.count
+                ))
+                .map { Range($0.range, in: self)! }
+                .map { String(self[$0]) }
+        
+    }
+    
+}
+
+public extension String /* Padding */ {
+    
+    /// Applies padding using a given string & count.
+    /// - parameter string: The string to use for padding; _default to " "_.
+    /// - parameter count: The number of times to apply padding to the string.
+    mutating func pad(using string: String = " ",
+                      count: Int) {
+        
+        self = padding(
+            using: string,
+            count: count
+        )
+        
+    }
+    
+    /// Returns a new string by applying padding using a given string & count.
+    /// - parameter string: The string to use for padding; _default to " "_.
+    /// - parameter count: The number of times to apply padding to the string.
+    /// - returns: A padded string.
+    func padding(using string: String = " ",
+                 count: Int) -> String {
+        
+        var padding = ""
+
+        for _ in 0..<count {
+            padding += string
+        }
+        
+        return "\(padding)\(self)\(padding)"
+
     }
     
 }

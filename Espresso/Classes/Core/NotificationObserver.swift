@@ -16,29 +16,52 @@ public class NotificationObserver {
     /// Initializes a new `NotificationObserver` with specified parameters.
     /// - Parameter name: The observed notification's name.
     /// - Parameter object: The object whose notifications the observer wants to receive.
+    /// - parameter queue: The operation queue where the `block` runs.
+    /// When nil, the block runs synchronously on the posting thread.; _defaults to main_.
     /// - Parameter block: The observation handler block.
-    public init(name: Notification.Name, object: Any?, block: @escaping (Notification)->()) {
+    public init(name: Notification.Name,
+                object: Any?,
+                queue: OperationQueue? = .main,
+                block: @escaping (Notification)->()) {
         
-        self.observer = NotificationCenter.default.addObserver(forName: name, object: object, queue: OperationQueue.main, using: block)
         self.name = name
         
+        self.observer = NotificationCenter.default.addObserver(
+            forName: name,
+            object: object,
+            queue: queue,
+            using: block
+        )
+                
     }
     
     /// Initializes a new `NotificationObserver` with specified parameters.
     /// - Parameter name: The observed notification's name.
     /// - Parameter object: The object whose notifications the observer wants to receive.
+    /// - parameter queue: The operation queue where the `block` runs.
+    /// When nil, the block runs synchronously on the posting thread.; _defaults to main_.
     /// - Parameter block: The observation handler block.
-    public convenience init(name: String, object: Any?, block: @escaping (Notification)->()) {
+    public convenience init(name: String,
+                            object: Any?,
+                            queue: OperationQueue? = .main,
+                            block: @escaping (Notification)->()) {
         
-        let _name = Notification.Name(name)
-        self.init(name: _name, object: object, block: block)
+        self.init(
+            name: Notification.Name(name),
+            object: object,
+            queue: queue,
+            block: block
+        )
         
     }
     
     deinit {
         
-        guard let observer = observer else { return }
-        NotificationCenter.default.removeObserver(observer)
+        guard let observer = self.observer else { return }
+        
+        NotificationCenter
+            .default
+            .removeObserver(observer)
         
     }
     

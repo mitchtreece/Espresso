@@ -9,11 +9,11 @@
 import UIKit
 import Espresso
 
-protocol DetailViewControllerDelegate: class {
+protocol DetailViewControllerDelegate: AnyObject {
     func detailViewControllerDidTapDone(_ viewController: DetailViewController)
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIBaseViewController {
     
     var showsDismissButton: Bool = false
     weak var delegate: DetailViewControllerDelegate?
@@ -21,8 +21,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        
+        self.view.backgroundColor = .systemBackground
+                
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +42,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func didTapDismiss(_ sender: UIBarButtonItem) {
-        self.delegate?.detailViewControllerDidTapDone(self)
+        
+        self.delegate?
+            .detailViewControllerDidTapDone(self)
+        
     }
     
 }

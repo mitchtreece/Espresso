@@ -1,6 +1,6 @@
 {
   "name": "Espresso",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "summary": "Swift convenience library for iOS.",
   "description": "Espresso is a Swift convenience library for iOS.\nEverything is better with a little coffee.",
   "homepage": "https://github.com/mitchtreece/Espresso",
@@ -13,12 +13,12 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Espresso.git",
-    "tag": "2.3.0"
+    "tag": "3.0.0"
   },
   "social_media_url": "https://twitter.com/mitchtreece",
   "swift_versions": "5",
   "platforms": {
-    "ios": "11.0"
+    "ios": "13.0"
   },
   "default_subspecs": "UIKit",
   "subspecs": [
@@ -26,16 +26,42 @@
       "name": "Core",
       "source_files": "Espresso/Classes/Core/**/*",
       "dependencies": {
-        "Swinject": [
-          "~> 2.0"
+        "CombineExt": [
+          "~> 1.0"
         ]
       }
     },
     {
-      "name": "UIKit",
-      "source_files": "Espresso/Classes/UIKit/**/*",
+      "name": "UI",
+      "dependencies": {
+        "Espresso/UI-Core": [
+
+        ],
+        "Espresso/UI-UIKit": [
+
+        ],
+        "Espresso/UI-SwiftUI": [
+
+        ]
+      }
+    },
+    {
+      "name": "UI-Core",
+      "source_files": "Espresso/Classes/UI/Core/**/*",
       "dependencies": {
         "Espresso/Core": [
+
+        ],
+        "SFSafeSymbols": [
+
+        ]
+      }
+    },
+    {
+      "name": "UI-UIKit",
+      "source_files": "Espresso/Classes/UI/UIKit/**/*",
+      "dependencies": {
+        "Espresso/UI-Core": [
 
         ],
         "SnapKit": [
@@ -44,28 +70,44 @@
       }
     },
     {
-      "name": "Rx",
-      "source_files": "Espresso/Classes/Rx/**/*",
+      "name": "UI-SwiftUI",
+      "source_files": "Espresso/Classes/UI/SwiftUI/**/*",
+      "dependencies": {
+        "Espresso/UI-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "PromiseKit",
+      "source_files": "Espresso/Classes/PromiseKit/**/*",
       "dependencies": {
         "Espresso/Core": [
 
         ],
-        "RxSwift": [
-          "~> 6.0"
-        ],
-        "RxCocoa": [
+        "PromiseKit": [
           "~> 6.0"
         ]
       }
     },
     {
-      "name": "Rx-UIKit",
-      "source_files": "Espresso/Classes/Rx-UIKit/**/*",
+      "name": "UIKit",
       "dependencies": {
-        "Espresso/Rx": [
+        "Espresso/Core": [
 
         ],
-        "Espresso/UIKit": [
+        "Espresso/UI-UIKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "SwiftUI",
+      "dependencies": {
+        "Espresso/Core": [
+
+        ],
+        "Espresso/UI-SwiftUI": [
 
         ]
       }
@@ -76,14 +118,31 @@
         "Espresso/Core": [
 
         ],
-        "Espresso/UIKit": [
+        "Espresso/UI": [
 
         ],
-        "Espresso/Rx": [
+        "Espresso/PromiseKit": [
+
+        ]
+      }
+    },
+    {
+      "name": "Recipe-Modern-UIKit",
+      "dependencies": {
+        "Espresso/UI-UIKit": [
 
         ],
-        "Espresso/Rx-UIKit": [
+        "Espresso/PromiseKit": [
 
+        ],
+        "Spider-Web/All": [
+          "~> 2.0"
+        ],
+        "Director/All": [
+          "~> 1.0"
+        ],
+        "Swinject": [
+          "~> 2.0"
         ]
       }
     }
