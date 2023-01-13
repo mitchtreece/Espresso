@@ -25,14 +25,13 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
         super.viewWillSetup()
         
-        self.view.backgroundColor = UIColor.white
-        
+        self.view.backgroundColor = .systemBackground
+                
         self.barItem = UIBarButtonItem()
         self.barItem.title = self.viewModel.barButtonTitle
         self.navigationItem.rightBarButtonItem = self.barItem
         
         self.label = UILabel()
-        self.label.backgroundColor = .clear
         self.label.textAlignment = .center
         self.label.font = UIFont.boldSystemFont(ofSize: 20)
         self.label.numberOfLines = 0
