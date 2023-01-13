@@ -4,7 +4,7 @@
 
 ![iOS](https://img.shields.io/badge/iOS-13+-green.svg?style=for-the-badge)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-[![Cocoapods](https://img.shields.io/badge/Pod-3.0.0-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
+[![Cocoapods](https://img.shields.io/badge/Pod-3.0.1-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
 Espresso is a Swift convenience library for iOS.<br>
