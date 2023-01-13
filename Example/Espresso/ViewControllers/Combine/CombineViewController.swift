@@ -9,8 +9,7 @@
 import Espresso
 import SnapKit
 
-@available(iOS 13, *)
-class CombineViewController: CombineViewModelViewController<CombineViewModel> {
+class CombineViewController: UICombineViewModelViewController<CombineViewModel> {
     
     private var barItem: UIBarButtonItem!
     private var label: UILabel!
@@ -19,35 +18,46 @@ class CombineViewController: CombineViewModelViewController<CombineViewModel> {
         
         super.viewDidLoad()
         self.title = self.viewModel.title
-        self.view.backgroundColor = UIColor.white
+
+    }
+    
+    override func viewWillSetup() {
         
+        super.viewWillSetup()
+        
+        self.view.backgroundColor = .systemBackground
+                
         self.barItem = UIBarButtonItem()
         self.barItem.title = self.viewModel.barButtonTitle
         self.navigationItem.rightBarButtonItem = self.barItem
         
         self.label = UILabel()
-        self.label.backgroundColor = .clear
         self.label.textAlignment = .center
         self.label.font = UIFont.boldSystemFont(ofSize: 20)
         self.label.numberOfLines = 0
         self.view.addSubview(self.label)
         self.label.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
-
+        
+    }
+    
+    override func bind() {
+        
+        super.bind()
+        
+        self.viewDidAppearPublisher
+            .sink { animated in print("☕️ CombineViewController did appear, animated: \(animated)") }
+            .store(in: &self.bag)
+ 
     }
     
     override func bindModel() {
         
         super.bindModel()
-        
-        self.events.viewDidAppear
-            .asPublisher()
-            .sink { print("☕️ CombineViewController did appear") }
-            .store(in: &self.modelBag)
-        
+
         self.viewModel.$labelText
-            .receive(on: DispatchQueue.main)
+            .receiveOnMain()
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)
             .store(in: &self.modelBag)

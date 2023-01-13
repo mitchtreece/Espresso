@@ -57,3 +57,38 @@ public extension Collection /* Safety */ {
     }
     
 }
+
+public extension Collection /* Chunk */ {
+
+    /// Returns a chunked version of the collection using a given chunk size.
+    /// - parameter size: The chunk size.
+    /// - returns: An array of chunked sub-sequences.
+    func chunked(size: Int) -> [SubSequence] {
+
+        var chunks = [SubSequence]()
+        var i = self.startIndex
+        var j: Index
+
+        while i != self.endIndex {
+
+            j = index(i, offsetBy: size, limitedBy: self.endIndex) ?? self.endIndex
+            chunks.append(self[i..<j])
+            i = j
+
+        }
+
+        return chunks
+
+    }
+
+}
+
+public extension Collection /* Nil */ {
+    
+    /// Returns the collection *or* nil if empty.
+    /// - returns: An optional collection.
+    func nilIfEmpty() -> Self? {
+        self.isEmpty ? nil : self
+    }
+    
+}

@@ -30,11 +30,11 @@ public class AsyncOperation: Operation {
     public var state: State = .ready {
         
         willSet {
-            willChangeValue(forKey: state.keyPath)
+            willChangeValue(forKey: self.state.keyPath)
             willChangeValue(forKey: newValue.keyPath)
         }
         didSet {
-            didChangeValue(forKey: state.keyPath)
+            didChangeValue(forKey: self.state.keyPath)
             didChangeValue(forKey: oldValue.keyPath)
         }
         
@@ -45,20 +45,20 @@ public class AsyncOperation: Operation {
     }
     
     public override var isExecuting: Bool {
-        return state == .executing
+        return self.state == .executing
     }
     
     public override var isFinished: Bool {
-        return state == .finished
+        return self.state == .finished
     }
     
     public override func start() {
         
         if self.isCancelled {
-            state = .finished
+            self.state = .finished
         }
         else {
-            state = .ready
+            self.state = .ready
             main()
         }
         
@@ -67,10 +67,10 @@ public class AsyncOperation: Operation {
     public override func main() {
         
         if self.isCancelled {
-            state = .finished
+            self.state = .finished
         }
         else {
-            state = .executing
+            self.state = .executing
         }
         
     }

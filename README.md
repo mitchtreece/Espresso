@@ -1,63 +1,66 @@
-![Espresso](Resources/banner.png)
+![Espresso](Assets/Banner.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
+# Espresso
+
+![iOS](https://img.shields.io/badge/iOS-13+-green.svg?style=for-the-badge)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-![iOS](https://img.shields.io/badge/iOS-11--15-green.svg?style=for-the-badge)
+[![Cocoapods](https://img.shields.io/badge/Pod-3.0.0-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 [![License](https://img.shields.io/cocoapods/l/Espresso.svg?style=for-the-badge)](http://cocoapods.org/pods/Espresso)
 
-## Overview
-Espresso is a Swift convenience library for iOS. Everything is better with a little coffee. ☕️
+Espresso is a Swift convenience library for iOS.<br>
+Everything is better with a little coffee. ☕️
 
 ## Installation
 
-- **Swift 4**: Version **<= 2.1.1**<br>
-- **Swift 5**: Version **>= 2.2.0**
-
 ### CocoaPods
-Espresso is integrated with CocoaPods!
 
-1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Espresso', '~> 2.0'
+pod 'Espresso', '~> 3.0'
 ```
-2. In your project directory, run `pod install`
-3. Import the `Espresso` module wherever you need it
-4. Profit
 
-Espresso is broken down into several subspecs:
-- **Core**: `Foundation` classes & extensions
-- **UIKit (default)**: `UIKit` classes & extensions
-- **Combine**: `Combine` classes & extensions
-- **Combine-UIKit**: `UIKit`-specific Combine classes & extensions. This includes the `Combine` & `UIKit` subspecs.
-- **Rx**: [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions
-- **Rx-UIKit**: `UIKit`-specific [RxSwift](https://github.com/ReactiveX/RxSwift) classes & extensions. This includes the `Rx` & `UIKit` subspecs
-- **All**: Includes all of the above subspecs
+#### Subspecs
 
-### Manually
-You can also manually add the source files to your project.
+Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
 
-1. Clone this git repo
-2. Add all the Swift files in the `Espresso/` subdirectory to your project
-3. Profit
+- `Core`: Core classes, extensions, & dependencies
+- `UI`
+    - `UI-Core`: General UI classes, extensions, & dependencies.
+    - `UI-UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
+    - `UI-SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
+- `PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
+- `UIKit`: Aggregate subspec that includes everything related to [UIKit](https://developer.apple.com/documentation/uikit)
+- `SwiftUI`: Aggregate subspec that includes everything related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- `All`: Aggregate subspec that includes **everything**
+
+If you're unsure of what you want/need, we also some "recipe" subspecs that provide a good starting point with bundled Espresso classes & common third-party dependecies.
+
+- `Recipe-Modern-UIKit`
+    - `Espresso/UI-UIKit`
+    - `Espresso/PromiseKit`
+    - [Spider-Web](https://github.com/mitchtreece/Spider)`/All`
+    - [Director](https://github.com/mitchtreece/Director)/`All`
+    - [Swinject](https://github.com/Swinject/Swinject)
 
 ## Espresso
+
 Espresso adds a bunch of useful features and extensions to components commonly used while developing for Apple platforms.
 
 Some of the more interesting things include:
-- `UIAnimation` classes with promise-like chaining system
+- `UIAnimation` classes with a promise-like chaining system
 - `UIViewControllerTransition` system for easy custom `UIViewController` transitions
-- `UIDevice` identification & information
-- `MVVM` base classes (i.e. `ViewModel`, `UIViewModel`)
-- **[RxSwift](https://github.com/ReactiveX/RxSwift)** helper classes & extensions
-- Easy dependency injection setup helpers
+- `AppleDevice` identification & information
+- `MVVM` base classes (i.e. `ViewModel`, `UIViewModelView`, `UIViewModelViewController`)
+- `Combine` helper classes & extensions
 - Crypto & digest hashing helpers
+- User authentication (Face ID, Touch ID, Passcode) helpers
 - _+ much more!_
 
 ### UIAnimation
-Espresso includes a robust animation system built on `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
 
-```
+Espresso includes a robust animation system built on top of `UIViewPropertyAnimator`. An animation is created with a timing curve, duration, delay, & animation closure.
+
+```swift
 let view = UIView()
 view.alpha = 0
 
@@ -65,25 +68,25 @@ view.alpha = 0
 
 UIAnimation {
     view.alpha = 1
-}.run()
+}.start()
 
 // Simple curve (default timing + custom values)
 
 UIAnimation(duration: 0.5, delay: 0) {
     view.alpha = 1
-}.run()
+}.start()
 
 // Simple curve (custom)
 
 UIAnimation(.simple(.easeOut), duration: 0.4) {
     view.alpha = 1
-}.run()
+}.start()
 
 // Spring curve
 
 UIAnimation(.spring(damping: 0.9, velocity: 0.25)) {
     view.alpha = 1
-}.run {
+}.start {
     print("The animation is done!")
 }
 ```
@@ -99,27 +102,27 @@ The following timing curves are currently supported:
 
 `UIAnimation` also supports animation _chaining_. This let's you easily define a series of animations to run in succession (similar to a key-frame animation) using a promise-like syntax.
 
-```
+```swift
 UIAnimation(duration: 0.3) {
     view.alpha = 1
 }.then {
     view.backgroundColor = .red
-}.run()
+}.start()
 ```
 
 All parameters of a regular `UIAnimation` are available to you while chaining:
 
-```
+```swift
 UIAnimation(duration: 0.3) {
     view.alpha = 1
 }.then(.defaultSpring, duration: 0.4) {
     view.backgroundColor = UIColor.red
-}.run()
+}.start()
 ```
 
 Animations can be created and executed at a later time! Running your animations directly from an array _without_ chaining is also supported.
 
-```
+```swift
 let a1 = UIAnimation {
     view.alpha = 1
 }
@@ -128,18 +131,19 @@ let a2 = UIAnimation(.simple(.easeIn), duration: 0.5) {
     view.backgroundColor = UIColor.red
 }
 
-[a1, a2].run {
+[a1, a2].start {
     print("The animations are done!")
 }
 ```
 
 ### UIViewControllerTransition
+
 Built on top of `UIAnimation`, Espresso's view controller transition system makes it easy to build beautiful custom transitions into your app. A simple `UIViewControllerTransition` implementation might look something like this:
 
-```
-class FadeTransition: UIViewControllerTransition {
+```swift
+class CustomFadeTransition: UIViewControllerTransition {
 
-    override func animations(using ctx: Context) -> UIAnimationGroupController {
+    public override func animations(using ctx: Context) -> UIAnimationGroupController {
 
         let sourceVC = ctx.sourceViewController
         let destinationVC = ctx.destinationViewController
@@ -173,8 +177,8 @@ There's only one function that _needs_ to be overridden from a transition subcla
 
 To present your view controller using a transition, set it's `transition` property before presentation. Helper functions on `UIViewController` & `UINavigationController` have also been added:
 
-```
-let transition = FadeTransition()
+```swift
+let transition = CustomFadeTransition()
 
 present(
     viewController, 
@@ -197,9 +201,10 @@ The following view controller transitions are included with Espresso:
 - `UIZoomTransition`
 
 ### User Authentication
-The `UserAuthenticator` class helps with authenticating a user via Touch ID, Face ID, or a password. An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID. Devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, password authentication will be used.
 
-```
+The `UserAuthenticator` class helps with authenticating a user via Face ID, Touch ID, or a passcode. An appropriate authentication type will be chosen automatically (i.e. devices that support Face ID will prefer Face ID, devices with Touch ID will use Touch ID). If Face ID & Touch ID are unavailable, passcode authentication will be used.
+
+```swift
 UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.") { (success, error) in
     print("Authenticated: \(success)")
 }
@@ -208,9 +213,10 @@ UserAuthenticator.authenticate(withReason: "The app needs to authenticate you.")
 **NOTE:** `NSFaceIDUsageDescription` key _must_ be added to your **Info.plist** if you intend to authenticate via Face ID.
 
 ### Digest Hashing
+
 Hashing extensions are available on both `Data` & `String`:
 
-```
+```swift
 let data = Data()
 let hashedData = data.hashed(using: .md5)
 
@@ -227,4 +233,5 @@ The following hash types are included with Espresso:
 - `sha512`
 
 ## Contributing
-Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
+
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in! 🎉

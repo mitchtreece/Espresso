@@ -13,6 +13,7 @@ public extension NSObject /* Associated Object */ {
         static var associatedObjects: UInt8 = 0
     }
     
+    /// The object's associated object dictionary.
     var associatedObjects: NSMutableDictionary {
         
         if let objects = objc_getAssociatedObject(self, &AssociatedKeys.associatedObjects) as? NSMutableDictionary {
@@ -28,34 +29,44 @@ public extension NSObject /* Associated Object */ {
         
     }
     
+    /// Gets an associated object for a given key.
+    ///
+    /// - parameter key: An object association key.
+    /// - returns: The associated object, or `nil`.
     func associatedObject(forKey key: AnyHashable) -> Any? {
         return self.associatedObjects[key]
     }
     
+    /// Sets an associated object for a given key.
+    ///
+    /// - parameter object: The associated object.
+    /// - parameter key: An object association key.
     func setAssociatedObject(_ object: Any?,
-                                    forKey key: AnyHashable) {
+                             forKey key: AnyHashable) {
         
         if let object = object {
             self.associatedObjects[key] = object
         }
         else {
-            removeAssociatedObject(forKey: key)
+            self.associatedObjects.removeObject(forKey: key)
         }
         
-    }
-    
-    func removeAssociatedObject(forKey key: AnyHashable) {
-        self.associatedObjects.removeObject(forKey: key)
     }
     
 }
 
 public extension NSObject /* Swizzle */ {
     
+    /// Exchanges a classes method implementation with a new one.
+    ///
+    /// - parameter method: The method name.
+    /// - parameter selector: The original selector.
+    /// - parameter newSelector: The new selector.
+    /// - parameter target: The target class.
     static func swizzle(method name: String,
                         selector: Selector,
                         newSelector: Selector,
-                        forClass cls: AnyClass) {
+                        target cls: AnyClass) {
         
         let selector = Selector(name)
         
@@ -68,6 +79,11 @@ public extension NSObject /* Swizzle */ {
         
     }
     
+    /// Exchanges a method implementation with a new one.
+    ///
+    /// - parameter method: The method name.
+    /// - parameter selector: The original selector.
+    /// - parameter newSelector: The new selector.
     static func swizzle(method name: String,
                         selector: Selector,
                         newSelector: Selector) {
@@ -76,7 +92,7 @@ public extension NSObject /* Swizzle */ {
             method: name,
             selector: selector,
             newSelector: newSelector,
-            forClass: Self.self
+            target: Self.self
         )
         
     }

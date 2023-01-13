@@ -60,27 +60,11 @@ public final class UserAuthenticator {
             // If we get this far, then we know authentication will
             // happen either with biometrics or a password.
             
-            if #available(iOS 11.0, *) {
-                
-                switch context.biometryType {
-                case .none: return .password
-                case .touchID: return .touchId
-                case .faceID: return .faceId
-                @unknown default: return .password
-                }
-                
-            }
-            else {
-                
-                // iOS < 11, the only supported biometric method is Touch ID.
-                // If we can evaluate biometrics, use that. Otherwise we're using password authentication.
-                
-                if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-                    return .touchId
-                }
-                
-                return .password
-                
+            switch context.biometryType {
+            case .none: return .password
+            case .touchID: return .touchId
+            case .faceID: return .faceId
+            @unknown default: return .password
             }
             
         }
@@ -91,13 +75,14 @@ public final class UserAuthenticator {
     /// - parameter completion: The authentication completion handler.
     /// - parameter success: Flag indicating if the authentication was successful.
     /// - parameter error: An optional error returned from the authentication attempt.
+    /// - returns: A bool indicating if authentication was successful.
     ///
     /// If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
     /// be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
     public static func authenticate(withReason reason: String, completion: @escaping (_ success: Bool, _ error: Error?)->()) {
         
         guard let context = self.authenticationContext else {
-            completion(false, "Authentication not supported on this device".errorValue)
+            completion(false, "Authentication not supported on this device".asError())
             return
         }
         
@@ -107,6 +92,33 @@ public final class UserAuthenticator {
             reply: { (success: Bool, error: Error?) -> Void in
                 completion(success, error)
             })
+        
+    }
+    
+    /// Authenticate's the user using the device's preferred authentication method.
+    /// - parameter reason: The reason string to be displayed during authentication.
+    /// - returns: A bool indicating if authentication was successful.
+    ///
+    /// If you are attempting to authenticate with Face ID, the `NSFaceIDUsageDescription` key **must**
+    /// be added to the `Info.plist`. If the key is missing, authentication will fallback to `password` if possible.
+    public static func authenticate(withReason reason: String) async throws -> Bool {
+        
+        return try await withCheckedThrowingContinuation { c in
+            
+            authenticate(withReason: reason) { success, error in
+                
+                if let error = error {
+                    
+                    c.resume(throwing: error)
+                    return
+                    
+                }
+                
+                c.resume(returning: success)
+                
+            }
+            
+        }
         
     }
     

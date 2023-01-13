@@ -8,7 +8,6 @@
 
 import Espresso
 
-@available(iOS 13, *)
 class CombineViewModel: UIViewModel {
     
     let title = "Combine"

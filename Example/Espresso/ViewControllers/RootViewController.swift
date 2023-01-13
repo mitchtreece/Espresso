@@ -8,25 +8,36 @@
 
 import UIKit
 import Espresso
+import SFSafeSymbols
 import SnapKit
 
 protocol RootViewControllerDelegate: AnyObject {
     
-    func rootViewController(_ vc: RootViewController, didSelectTransitionRow row: RootViewController.TransitionRow)
-    func rootViewController(_ vc: RootViewController, didSelectMenuRow row: RootViewController.MenuRow)
-    func rootViewControllerWantsToPresentRxViewController(_ vc: RootViewController)
+    func rootViewController(_ vc: RootViewController,
+                            didSelectUIKitRow row: RootViewController.UIKitRow)
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectSwiftUIRow row: RootViewController.SwiftUIRow)
+    
+    func rootViewController(_ vc: RootViewController,
+                            didSelectTransitionRow row: RootViewController.VCTransitionRow)
+    
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
 
 }
 
-class RootViewController: UIViewController {
+class RootViewController: UIBaseViewController {
     
     private var tableView: UITableView!
     private weak var delegate: RootViewControllerDelegate?
-    
+        
     init(delegate: RootViewControllerDelegate) {
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
+        
         self.delegate = delegate
         
     }
@@ -39,13 +50,15 @@ class RootViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Espresso ☕️"
-                
-        self.events.viewDidAppear.addObserver {
-            print("☕️ RootViewController did appear")
-        }
-                
-        self.tableView = UITableView(frame: .zero, style: .grouped)
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        
+    }
+    
+    override func viewWillSetup() {
+        
+        super.viewWillSetup()
+        
+        self.tableView = UITableView(frame: .zero, style: .insetGrouped)
+        self.tableView.backgroundColor = .systemGroupedBackground
         self.tableView.tableFooterView = UIView()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -53,31 +66,77 @@ class RootViewController: UIViewController {
         self.tableView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }
-                        
-        UITableViewCell.register(in: self.tableView)
         
-        if #available(iOS 13, *) {
-            ContextTableCell.register(in: self.tableView)
-        }
+        self.tableView.register(cells: [
+            UITableViewCell.self
+        ])
         
     }
     
 }
 
-extension RootViewController: UITableViewDelegate, UITableViewDataSource {
+extension RootViewController: UITableViewDelegate,
+                              UITableViewDataSource {
     
     private enum Section: Int, CaseIterable {
         
-        case transition
-        case rxMvvm
+        case uikit
+        case swiftui
+        case vcTransitions
         case combine
         case taptics
         case helpers
-        case menus
         
     }
     
-    enum TransitionRow: Int, CaseIterable {
+    enum UIKitRow: Int, CaseIterable {
+        
+        case views
+        
+        var title: String {
+            
+            switch self {
+            case .views: return "Views"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            case .views: return UIImage(systemSymbol: .viewfinder)
+            }
+            
+        }
+        
+    }
+    
+    enum SwiftUIRow: Int, CaseIterable {
+        
+        // case views
+        case hostingView
+        
+        var title: String {
+            
+            switch self {
+            // case .views: return "Views"
+            case .hostingView: return "UIHostingView"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            // case .views: return UIImage(systemSymbol: .viewfinder)
+            case .hostingView: return UIImage(systemSymbol: .squareStack3dDownRight)
+            }
+            
+        }
+        
+    }
+    
+    enum VCTransitionRow: Int, CaseIterable {
         
         case fade
         case slide
@@ -106,52 +165,35 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var title: String {
             
             switch self {
-            case .fade: return "UIFadeTransition"
-            case .slide: return "UISlideTransition"
-            case .cover: return "UICoverTransition"
-            case .reveal: return "UIRevealTransition"
-            case .swap: return "UISwapTransition"
-            case .pushBack: return "UIPushBackTransition"
-            case .zoom: return "UIZoomTransition"
+            case .fade: return "Fade"
+            case .slide: return "Slide"
+            case .cover: return "Cover"
+            case .reveal: return "Reveal"
+            case .swap: return "Swap"
+            case .pushBack: return "Push Back"
+            case .zoom: return "Zoom"
             case .custom: return "Custom"
             }
             
         }
         
-    }
-    
-    enum MenuRow: Int, CaseIterable {
-        
-        case view
-        case table
-        case collection
-        
-        var title: String {
+        var image: UIImage {
             
             switch self {
-            case .view: return "UIView"
-            case .table: return "UITableViewCell"
-            case .collection: return "UICollectionViewCell"
+            case .fade: return UIImage(systemSymbol: .squareStack3dDownDottedline)
+            case .slide: return UIImage(systemSymbol: .arrowLeft)
+            case .cover: return UIImage(systemSymbol: .arrowLeftCircle)
+            case .reveal: return UIImage(systemSymbol: .squareRighthalfFill)
+            case .swap: return UIImage(systemSymbol: .arrowRightArrowLeft)
+            case .pushBack: return UIImage(systemSymbol: .handRaised)
+            case .zoom: return UIImage(systemSymbol: .arrowLeftAndRight)
+            case .custom: return UIImage(systemSymbol: .person)
             }
             
         }
         
     }
-    
-    private enum RxMvvmRow: Int, CaseIterable {
-        
-        case viewController
-        
-        var title: String {
-            
-            switch self {
-            case .viewController: return "UIViewController"
-            }
-            
-        }
-        
-    }
-    
+
     private enum CombineRow: Int, CaseIterable {
         
         case viewController
@@ -159,7 +201,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var title: String {
             
             switch self {
-            case .viewController: return "UIViewController"
+            case .viewController: return "UICombineViewModelViewController"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            case .viewController: return UIImage(systemSymbol: .docPlaintext)
             }
             
         }
@@ -190,16 +240,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
         
+        var image: UIImage {
+            return UIImage(systemSymbol: .waveform)
+        }
+        
         var taptic: UITaptic {
             
             switch self {
-            case .selection: return UITaptic(style: .selection)
-            case .impactLight: return UITaptic(style: .impact(.light))
-            case .impactMedium: return UITaptic(style: .impact(.medium))
-            case .impactHeavy: return UITaptic(style: .impact(.heavy))
-            case .notificationSuccess: return UITaptic(style: .notification(.success))
-            case .notificationWarning: return UITaptic(style: .notification(.warning))
-            case .notificationError: return UITaptic(style: .notification(.error))
+            case .selection: return .init(style: .selection)
+            case .impactLight: return .init(style: .impact(.light))
+            case .impactMedium: return .init(style: .impact(.medium))
+            case .impactHeavy: return .init(style: .impact(.heavy))
+            case .notificationSuccess: return .init(style: .notification(.success))
+            case .notificationWarning: return .init(style: .notification(.warning))
+            case .notificationError: return .init(style: .notification(.error))
             }
             
         }
@@ -208,30 +262,42 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum HelpersRow: Int, CaseIterable {
         
-        case deviceInfo
-        case displayFeatureInsets
-        case authentication
+        case appleDevice
+        case userAuthentication
+        
+        var title: String {
+            
+            switch self {
+            case .appleDevice: return "AppleDevice Info"
+            case .userAuthentication: return "User Authentication"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            case .appleDevice: return UIImage(systemSymbol: .infoCircle)
+            case .userAuthentication: return UIImage(systemSymbol: .lock)
+            }
+            
+        }
         
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if #available(iOS 13, *) {
-            return Section.allCases.count
-        }
-        
-        return (Section.allCases.count - 1)
-        
+        return Section.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
-        case .transition: return "Transitions"
-        case .menus: return "Menus"
-        case .rxMvvm: return "Rx / MVVM"
+        case .uikit: return "UIKit"
+        case .swiftui: return "SwiftUI"
+        case .vcTransitions: return "VC Transitions"
         case .combine: return "Combine"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
@@ -239,14 +305,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
-        case .transition: return TransitionRow.allCases.count
-        case .menus: return MenuRow.allCases.count
-        case .rxMvvm: return RxMvvmRow.allCases.count
+        case .uikit: return UIKitRow.allCases.count
+        case .swiftui: return SwiftUIRow.allCases.count
+        case .vcTransitions: return VCTransitionRow.allCases.count
         case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
@@ -254,155 +321,140 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let _section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
                 
-        let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
+        let cell = UITableViewCell
+            .dequeue(for: tableView, at: indexPath)
 
         switch _section {
-        case .transition:
+        case .uikit:
             
-            guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = UIKitRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
+            cell.imageView?.image = row.image
             
-        case .menus:
+        case .swiftui:
             
-            guard let row = MenuRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = SwiftUIRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-        
-        case .rxMvvm:
+            cell.imageView?.image = row.image
+
+        case .vcTransitions:
             
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = VCTransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
+            cell.imageView?.image = row.image
+
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-        
+            cell.imageView?.image = row.image
+
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
+            cell.imageView?.image = row.image
+
         case .helpers:
             
             guard let row = HelpersRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            
-            switch row {
-            case .deviceInfo: cell.textLabel?.text = "Device Info"
-            case .displayFeatureInsets: cell.textLabel?.text = "Display Feature Insets"
-            case .authentication: cell.textLabel?.text = "Authentication"
-            }
-            
+            cell.textLabel?.text = row.title
+            cell.imageView?.image = row.image
+
         }
         
+        cell.imageView?.tintColor = UIColor(hex: "#8E5F45")
         cell.accessoryType = .disclosureIndicator
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView
+            .deselectRow(at: indexPath, animated: true)
         
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
         switch _section {
-        case .transition:
+        case .uikit:
             
-            guard let row = TransitionRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectTransitionRow: row)
+            guard let row = UIKitRow(rawValue: indexPath.row) else { return }
+            
+            self.delegate?
+                .rootViewController(self, didSelectUIKitRow: row)
+            
+        case .swiftui:
+            
+            guard let row = SwiftUIRow(rawValue: indexPath.row) else { return }
+            
+            self.delegate?
+                .rootViewController(self, didSelectSwiftUIRow: row)
+            
+        case .vcTransitions:
+            
+            guard let row = VCTransitionRow(rawValue: indexPath.row) else { return }
+            
+            self.delegate?
+                .rootViewController(self, didSelectTransitionRow: row)
 
-        case .menus:
-            
-            guard let row = MenuRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectMenuRow: row)
-            
-        case .rxMvvm:
-            
-            guard let row = RxMvvmRow(rawValue: indexPath.row) else { return }
-
-            switch row {
-            case .viewController: self.delegate?.rootViewControllerWantsToPresentRxViewController(self)
-            }
-            
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return }
 
             switch row {
-            case .viewController: self.delegate?.rootViewControllerWantsToPresentCombineViewController(self)
+            case .viewController:
+                
+                self.delegate?
+                    .rootViewControllerWantsToPresentCombineViewController(self)
+                
             }
             
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return }
-            row.taptic.trigger()
+            row.taptic.play()
             
         case .helpers:
             
             guard let row = HelpersRow(rawValue: indexPath.row) else { return }
             
             switch row {
-            case .deviceInfo:
+            case .appleDevice:
                 
                 let device = AppleDevice.current
                 let title = device.isSimulator ? "\(device.generationalName) (Simulator)" : device.generationalName
                 let message = "\(device.softwareName): \(device.softwareVersion)\nJailbroken: \(device.isJailbroken)"
                 
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                let alert = UIAlertController(
+                    title: title,
+                    message: message,
+                    preferredStyle: .alert
+                )
                 
-            case .displayFeatureInsets:
+                alert.addAction(UIAlertAction(
+                    title: "Okay",
+                    style: .cancel,
+                    handler: nil
+                ))
                 
-                let v = UIView()
-                v.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                self.navigationController?.view.addSubview(v)
-                v.snp.makeConstraints { (make) in
-                    
-                    let insets = UIScreen.main.featureInsets
-                    
-                    make.top.equalTo(0).offset(insets.top)
-                    make.left.equalTo(0).offset(insets.left)
-                    make.right.equalTo(0).offset(-insets.right)
-                    make.bottom.equalTo(0).offset(-insets.bottom)
-                    
-                }
+                present(
+                    alert,
+                    animated: true,
+                    completion: nil
+                )
+
+            case .userAuthentication:
                 
-                let label = UILabel()
-                label.backgroundColor = UIColor.clear
-                label.textColor = UIColor.white
-                label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-                label.text = """
-                This overlay view is constrained to your device's display feature insets.
+                let reason = "Espresso needs to authenticate you."
                 
-                This takes into account things like: status bars, home grabbers, etc...
-                
-                Tap to dismiss 😊
-                """
-                label.textAlignment = .center
-                label.numberOfLines = 0
-                label.isUserInteractionEnabled = true
-                v.addSubview(label)
-                label.snp.makeConstraints { (make) in
-                    make.top.equalTo(14)
-                    make.bottom.equalTo(-14)
-                    make.left.equalTo(44)
-                    make.right.equalTo(-44)
-                }
-                
-                let tap = UITapGestureRecognizer(action: { (recognizer) in
-                    v.removeFromSuperview()
-                })
-                
-                label.addGestureRecognizer(tap)
-                
-            case .authentication:
-                
-                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { [weak self] (success, error) in
+                UserAuthenticator.authenticate(withReason: reason) { [weak self] (success, error) in
                     
                     let alert = UIAlertController(
                         title: success ? "Success 😎" : "Failure 😢",
@@ -410,10 +462,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                         preferredStyle: .alert
                     )
                     
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(
+                        title: "Okay",
+                        style: .default,
+                        handler: nil
+                    ))
                     
                     DispatchQueue.main.async {
-                        self?.present(alert, animated: true, completion: nil)
+                        
+                        self?.present(
+                            alert,
+                            animated: true,
+                            completion: nil
+                        )
+                        
                     }
                     
                 }

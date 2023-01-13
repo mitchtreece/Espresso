@@ -7,18 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */; };
 		2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFD8280653C40053FB82 /* CombineViewModel.swift */; };
 		2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629FFDA280653CE0053FB82 /* CombineViewController.swift */; };
 		263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2634170F1FE8AF79000E7D40 /* RootViewController.swift */; };
-		26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DD8218E746C00B3ABBB /* RxViewController.swift */; };
-		26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26854DDA218E748D00B3ABBB /* RxViewModel.swift */; };
-		269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */; };
-		269114C12344318F00A4A5F6 /* ContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D7637023403EDF000C9746 /* ContextView.swift */; };
-		269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */; };
-		269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D76373234042C0000C9746 /* ContextTableCell.swift */; };
-		269114C62344341500A4A5F6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269114C52344341500A4A5F6 /* Color.swift */; };
-		26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */; };
-		26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */; };
+		266E96C028FDE4A2002927A9 /* SwiftUIViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */; };
+		266E96C228FDE568002927A9 /* SwiftUIHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */; };
+		266E96C628FDEC4D002927A9 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E96C528FDEC4D002927A9 /* ColorView.swift */; };
 		26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDD00220E442E800BE58A1 /* CustomTransition.swift */; };
 		26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F2DC62232C782900168F38 /* DetailViewController.swift */; };
 		42116F41E7E80F171E6FF129 /* Pods_Espresso_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92300862BE26E732C0D7F1C /* Pods_Espresso_Example.framework */; };
@@ -41,19 +36,14 @@
 
 /* Begin PBXFileReference section */
 		10899A89F9DA1DF065DAB132 /* Pods_Espresso_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Espresso_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewsViewController.swift; sourceTree = "<group>"; };
 		2629FFD8280653C40053FB82 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
 		2629FFDA280653CE0053FB82 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2634170F1FE8AF79000E7D40 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		26854DD8218E746C00B3ABBB /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
-		26854DDA218E748D00B3ABBB /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
-		269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
-		269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuTableViewController.swift; sourceTree = "<group>"; };
-		269114C52344341500A4A5F6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuCollectionViewController.swift; sourceTree = "<group>"; };
-		26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCollectionCell.swift; sourceTree = "<group>"; };
+		266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewsContentView.swift; sourceTree = "<group>"; };
+		266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingViewController.swift; sourceTree = "<group>"; };
+		266E96C528FDEC4D002927A9 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		26CDD00220E442E800BE58A1 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
-		26D7637023403EDF000C9746 /* ContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextView.swift; sourceTree = "<group>"; };
-		26D76373234042C0000C9746 /* ContextTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableCell.swift; sourceTree = "<group>"; };
 		26F2DC62232C782900168F38 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Espresso_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Espresso_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Espresso_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,12 +83,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260B98192891BE4200DD63D8 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				260B981A2891BE7900DD63D8 /* UIKitViewsViewController.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		2628056F21F68E8200FDF34D /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
 				26CDD00220E442E800BE58A1 /* CustomTransition.swift */,
 			);
 			path = Transitions;
+			sourceTree = "<group>";
+		};
+		262848DD288B4493009FBD15 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				266E96C128FDE568002927A9 /* SwiftUIHostingViewController.swift */,
+				266E96BE28FDE463002927A9 /* Views */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		2629FFD7280653B50053FB82 /* Combine */ = {
@@ -110,28 +117,13 @@
 			path = Combine;
 			sourceTree = "<group>";
 		};
-		26854DD7218E73E600B3ABBB /* Rx / Mvvm */ = {
+		266E96BE28FDE463002927A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				26854DDA218E748D00B3ABBB /* RxViewModel.swift */,
-				26854DD8218E746C00B3ABBB /* RxViewController.swift */,
+				266E96BF28FDE4A2002927A9 /* SwiftUIViewsContentView.swift */,
+				266E96C528FDEC4D002927A9 /* ColorView.swift */,
 			);
-			name = "Rx / Mvvm";
-			path = "Rx : Mvvm";
-			sourceTree = "<group>";
-		};
-		269114BE2344302F00A4A5F6 /* Menus */ = {
-			isa = PBXGroup;
-			children = (
-				269114C52344341500A4A5F6 /* Color.swift */,
-				269114BF234430B900A4A5F6 /* ContextMenuViewController.swift */,
-				26D7637023403EDF000C9746 /* ContextView.swift */,
-				269114C2234432BC00A4A5F6 /* ContextMenuTableViewController.swift */,
-				26D76373234042C0000C9746 /* ContextTableCell.swift */,
-				26AA0D4F23453FEE003E9CE3 /* ContextMenuCollectionViewController.swift */,
-				26AA0D512345416D003E9CE3 /* ContextCollectionCell.swift */,
-			);
-			path = Menus;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		26CC8AE621E52F6C00AE6F94 /* ViewControllers */ = {
@@ -139,8 +131,8 @@
 			children = (
 				2634170F1FE8AF79000E7D40 /* RootViewController.swift */,
 				26F2DC62232C782900168F38 /* DetailViewController.swift */,
-				269114BE2344302F00A4A5F6 /* Menus */,
-				26854DD7218E73E600B3ABBB /* Rx / Mvvm */,
+				260B98192891BE4200DD63D8 /* UIKit */,
+				262848DD288B4493009FBD15 /* SwiftUI */,
 				2629FFD7280653B50053FB82 /* Combine */,
 			);
 			path = ViewControllers;
@@ -382,21 +374,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Espresso_Example/Pods-Espresso_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CombineExt/CombineExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SFSafeSymbols/SFSafeSymbols.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CombineExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SFSafeSymbols.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -411,20 +401,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				263417101FE8AF79000E7D40 /* RootViewController.swift in Sources */,
-				269114C12344318F00A4A5F6 /* ContextView.swift in Sources */,
-				26AA0D5023453FEE003E9CE3 /* ContextMenuCollectionViewController.swift in Sources */,
-				26AA0D522345416D003E9CE3 /* ContextCollectionCell.swift in Sources */,
-				269114C62344341500A4A5F6 /* Color.swift in Sources */,
-				26854DD9218E746C00B3ABBB /* RxViewController.swift in Sources */,
+				260B981B2891BE7900DD63D8 /* UIKitViewsViewController.swift in Sources */,
+				266E96C628FDEC4D002927A9 /* ColorView.swift in Sources */,
 				26CDD00320E442E800BE58A1 /* CustomTransition.swift in Sources */,
 				2629FFDB280653CE0053FB82 /* CombineViewController.swift in Sources */,
-				269114C4234432C700A4A5F6 /* ContextTableCell.swift in Sources */,
-				269114C0234430B900A4A5F6 /* ContextMenuViewController.swift in Sources */,
-				269114C3234432BC00A4A5F6 /* ContextMenuTableViewController.swift in Sources */,
 				2629FFD9280653C40053FB82 /* CombineViewModel.swift in Sources */,
-				26854DDB218E748D00B3ABBB /* RxViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				26F2DC63232C782900168F38 /* DetailViewController.swift in Sources */,
+				266E96C028FDE4A2002927A9 /* SwiftUIViewsContentView.swift in Sources */,
+				266E96C228FDE568002927A9 /* SwiftUIHostingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -553,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -566,14 +551,20 @@
 			baseConfigurationReference = E3883CD188C6843ED5F2EE71 /* Pods-Espresso_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Espresso/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Espresso;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -582,14 +573,20 @@
 			baseConfigurationReference = 31C8ABCE74A259E9F408CC31 /* Pods-Espresso_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Espresso/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Espresso;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -607,11 +604,15 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Espresso_Example.app/Espresso_Example";
 			};
 			name = Debug;
 		};
@@ -625,11 +626,15 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Espresso_Example.app/Espresso_Example";
 			};
 			name = Release;
 		};
