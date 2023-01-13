@@ -377,6 +377,7 @@
 				"${BUILT_PRODUCTS_DIR}/CombineExt/CombineExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SFSafeSymbols/SFSafeSymbols.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -384,6 +385,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CombineExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Espresso.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SFSafeSymbols.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

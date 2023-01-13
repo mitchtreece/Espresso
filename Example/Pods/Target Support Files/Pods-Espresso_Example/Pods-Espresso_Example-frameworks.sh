@@ -179,12 +179,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CombineExt/CombineExt.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SFSafeSymbols/SFSafeSymbols.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CombineExt/CombineExt.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Espresso/Espresso.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SFSafeSymbols/SFSafeSymbols.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
