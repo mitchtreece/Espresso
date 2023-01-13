@@ -23,8 +23,8 @@ open class UICombineViewModelViewController<V: ViewModel>: UIViewModelViewContro
 
     /// Flag indicating if binding functions have been called yet.
     /// This is used to determine if the binding should should happen when `viewWillAppear(animated:)` is called.
-    private var isBinded: Bool = false
-    
+    private(set) var isBinded: Bool = false
+
     open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)

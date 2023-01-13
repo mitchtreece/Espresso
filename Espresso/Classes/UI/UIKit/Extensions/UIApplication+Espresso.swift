@@ -53,6 +53,18 @@ public extension UIApplication /* Windows & View Controllers */ {
         return self.keyWindows.first
     }
     
+    /// The application's first active window.
+    var activeWindow: UIWindow? {
+        
+        if #available(iOS 15, *) {
+            return (self.connectedScenes.first as? UIWindowScene)?.windows.first
+        }
+        else {
+            return self.windows.first
+        }
+        
+    }
+    
     /// The application's active keyboard window.
     var keyboardWindow: UIWindow? {
         
