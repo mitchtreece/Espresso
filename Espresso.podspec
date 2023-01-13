@@ -47,6 +47,7 @@ Pod::Spec.new do |s|
         ss.source_files = 'Espresso/Classes/UI/Core/**/*'
 
         ss.dependency     'Espresso/Core'
+        ss.dependency     'SFSafeSymbols'
 
     end
 
