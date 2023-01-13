@@ -8,6 +8,7 @@
 
 import UIKit
 import Espresso
+import SFSafeSymbols
 import SnapKit
 
 protocol RootViewControllerDelegate: AnyObject {
@@ -100,6 +101,14 @@ extension RootViewController: UITableViewDelegate,
             
         }
         
+        var image: UIImage {
+            
+            switch self {
+            case .views: return UIImage(systemSymbol: .viewfinder)
+            }
+            
+        }
+        
     }
     
     enum SwiftUIRow: Int, CaseIterable {
@@ -112,6 +121,15 @@ extension RootViewController: UITableViewDelegate,
             switch self {
             // case .views: return "Views"
             case .hostingView: return "UIHostingView"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            // case .views: return UIImage(systemSymbol: .viewfinder)
+            case .hostingView: return UIImage(systemSymbol: .squareStack3dDownRight)
             }
             
         }
@@ -159,6 +177,21 @@ extension RootViewController: UITableViewDelegate,
             
         }
         
+        var image: UIImage {
+            
+            switch self {
+            case .fade: return UIImage(systemSymbol: .squareStack3dDownDottedline)
+            case .slide: return UIImage(systemSymbol: .arrowLeft)
+            case .cover: return UIImage(systemSymbol: .arrowLeftCircle)
+            case .reveal: return UIImage(systemSymbol: .squareRighthalfFill)
+            case .swap: return UIImage(systemSymbol: .arrowRightArrowLeft)
+            case .pushBack: return UIImage(systemSymbol: .handRaised)
+            case .zoom: return UIImage(systemSymbol: .arrowLeftAndRight)
+            case .custom: return UIImage(systemSymbol: .person)
+            }
+            
+        }
+        
     }
 
     private enum CombineRow: Int, CaseIterable {
@@ -169,6 +202,14 @@ extension RootViewController: UITableViewDelegate,
             
             switch self {
             case .viewController: return "CombineViewController"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            case .viewController: return UIImage(systemSymbol: .docPlaintext)
             }
             
         }
@@ -199,6 +240,10 @@ extension RootViewController: UITableViewDelegate,
             
         }
         
+        var image: UIImage {
+            return UIImage(systemSymbol: .waveform)
+        }
+        
         var taptic: UITaptic {
             
             switch self {
@@ -225,6 +270,15 @@ extension RootViewController: UITableViewDelegate,
             switch self {
             case .appleDevice: return "AppleDevice Info"
             case .userAuthentication: return "User Authentication"
+            }
+            
+        }
+        
+        var image: UIImage {
+            
+            switch self {
+            case .appleDevice: return UIImage(systemSymbol: .infoCircle)
+            case .userAuthentication: return UIImage(systemSymbol: .lock)
             }
             
         }
@@ -280,34 +334,41 @@ extension RootViewController: UITableViewDelegate,
             
             guard let row = UIKitRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
+            cell.imageView?.image = row.image
             
         case .swiftui:
             
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
+            cell.imageView?.image = row.image
+
         case .vcTransitions:
             
             guard let row = VCTransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-              
+            cell.imageView?.image = row.image
+
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-        
+            cell.imageView?.image = row.image
+
         case .taptics:
             
             guard let row = TapticRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
+            cell.imageView?.image = row.image
+
         case .helpers:
             
             guard let row = HelpersRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
-            
+            cell.imageView?.image = row.image
+
         }
         
+        cell.imageView?.tintColor = UIColor(hex: "#8E5F45")
         cell.accessoryType = .disclosureIndicator
         return cell
         
