@@ -1,23 +1,23 @@
 PODS:
   - CombineExt (1.8.0)
-  - Espresso/All (3.0.0):
+  - Espresso/All (3.0.1):
     - Espresso/Core
     - Espresso/PromiseKit
     - Espresso/UI
-  - Espresso/Core (3.0.0):
+  - Espresso/Core (3.0.1):
     - CombineExt (~> 1.0)
-  - Espresso/PromiseKit (3.0.0):
+  - Espresso/PromiseKit (3.0.1):
     - Espresso/Core
     - PromiseKit (~> 6.0)
-  - Espresso/UI (3.0.0):
+  - Espresso/UI (3.0.1):
     - Espresso/UI-Core
     - Espresso/UI-SwiftUI
     - Espresso/UI-UIKit
-  - Espresso/UI-Core (3.0.0):
+  - Espresso/UI-Core (3.0.1):
     - Espresso/Core
-  - Espresso/UI-SwiftUI (3.0.0):
+  - Espresso/UI-SwiftUI (3.0.1):
     - Espresso/UI-UIKit
-  - Espresso/UI-UIKit (3.0.0):
+  - Espresso/UI-UIKit (3.0.1):
     - Espresso/UI-Core
     - SnapKit (~> 5.0)
   - PromiseKit (6.18.1):
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
-  Espresso: 2f5fb09e2287bc09946da39b77c1b82341c70d99
+  Espresso: 931093c3379ecd53d62ad4c5fe4ea9f139fdf331
   PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
   SFSafeSymbols: 7909d54c12b3c10af747686cf91b9d2789fecc7c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
