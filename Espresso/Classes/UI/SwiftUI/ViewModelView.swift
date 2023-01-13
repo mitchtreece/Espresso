@@ -5,7 +5,6 @@
 //  Created by Mitch Treece on 8/7/22.
 //
 
-import UIKit
 import SwiftUI
 
 /// Protocol describing a view that is backed by a view model.

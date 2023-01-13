@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
 
         ss.source_files = 'Espresso/Classes/UI/SwiftUI/**/*'
 
-        ss.dependency     'Espresso/UI-Core'
+        ss.dependency     'Espresso/UI-UIKit'
 
     end
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SnapKit
 
 /// A `UIView` subclass that manages a SwiftUI view.
 public class UIHostingView<Content: View>: UIView {
@@ -59,13 +60,10 @@ public class UIHostingView<Content: View>: UIView {
         self.viewController!.view.backgroundColor = .clear
         self.viewController!.view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(self.viewController!.view)
-        
-        NSLayoutConstraint.activate([
-            self.viewController!.view.topAnchor.constraint(equalTo: self.topAnchor),
-            self.viewController!.view.leftAnchor.constraint(equalTo: self.leftAnchor),
-            self.viewController!.view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.viewController!.view.rightAnchor.constraint(equalTo: self.rightAnchor)
-        ])
+        self.viewController!.view!.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
     }
+    
 }
