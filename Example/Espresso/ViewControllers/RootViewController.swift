@@ -201,7 +201,7 @@ extension RootViewController: UITableViewDelegate,
         var title: String {
             
             switch self {
-            case .viewController: return "CombineViewController"
+            case .viewController: return "UICombineViewModelViewController"
             }
             
         }
