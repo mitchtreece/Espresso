@@ -7,6 +7,14 @@
 
 import Foundation
 
+/// Representation of the various json errors.
+public enum JSONError: Error {
+    
+    /// An invalid json object error.
+    case invalidObject
+    
+}
+
 /// Protocol describing something that can be represented as a JSON object.
 public protocol JSONRepresentable {
     
@@ -14,10 +22,19 @@ public protocol JSONRepresentable {
     /// - returns: A `JSON` object.
     func asJson() -> JSON?
     
+    /// A json representation.
+    /// - returns: A `JSON` object, or a thrown error.
+    func asJsonThrowing() throws -> JSON
+    
     /// A json data representation.
     /// - parameter options: Options to use when writing json data.
     /// - returns: `JSON` data.
     func asJsonData(options: JSONSerialization.WritingOptions) -> Data?
+    
+    /// A json data representation.
+    /// - parameter options: Options to use when writing json data.
+    /// - returns: `JSON` data, or a thrown error.
+    func asJsonDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data
     
 }
 
@@ -29,6 +46,12 @@ public extension JSONRepresentable {
         return asJsonData(options: [])
     }
     
+    /// A json data representation.
+    /// - returns: `JSON` data, or a thrown error.
+    func asJsonDataThrowing() throws -> Data {
+        return try asJsonDataThrowing(options: [])
+    }
+    
 }
 
 /// Protocol describing something that can be represented as a JSON object array.
@@ -38,10 +61,19 @@ public protocol JSONArrayRepresentable {
     /// - returns: A `JSON` array.
     func asJsonArray() -> [JSON]?
     
+    /// A json-array representation.
+    /// - returns: A `JSON` array, or a thrown error.
+    func asJsonArrayThrowing() throws -> [JSON]
+    
     /// a json-array data representation.
     /// - parameter options: Options to use when writing json data.
     /// - returns: `JSON` array data.
     func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data?
+    
+    /// A json-array data representation.
+    /// - parameter options: Options to use when writing json data.
+    /// - returns: `JSON` array data, or a thrown error.
+    func asJsonArrayDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data
     
 }
 
@@ -53,67 +85,97 @@ public extension JSONArrayRepresentable {
         return asJsonArrayData(options: [])
     }
     
+    /// A json-array data representation.
+    /// - returns: `JSON` array data, or a thrown error.
+    func asJsonArrayDataThrowing() throws -> Data {
+        return try asJsonArrayDataThrowing(options: [])
+    }
+    
 }
 
 extension Dictionary: JSONRepresentable,
                       JSONArrayRepresentable where Key == JSON.Key, Value == JSON.Value {
     
-    public func asJson() -> JSON? {
+    public func asJsonThrowing() throws -> JSON {
         
-        guard JSONSerialization.isValidJSONObject(self) else { return nil }
+        guard JSONSerialization.isValidJSONObject(self) else { throw JSONError.invalidObject }
         return self
         
     }
     
-    public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
+    public func asJson() -> JSON? {
+        return try? asJsonThrowing()
+    }
+    
+    public func asJsonDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data {
+                
+        let json = try asJsonThrowing()
         
-        guard let json = asJson() else { return nil }
-        
-        return try? JSONSerialization.data(
+        return try JSONSerialization.data(
             withJSONObject: json,
             options: options
         )
         
     }
     
-    public func asJsonArray() -> [JSON]? {
-
-        guard let json = asJson() else { return nil }
-        return [json]
-
+    public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
+        return try? asJsonDataThrowing(options: options)
     }
-
-    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
-
-        guard let array = asJsonArray() else { return nil }
-
-        return try? JSONSerialization.data(
+    
+    public func asJsonArrayThrowing() throws -> [JSON] {
+        
+        let json = try asJsonThrowing()
+        return [json]
+        
+    }
+    
+    public func asJsonArray() -> [JSON]? {
+        return try? asJsonArrayThrowing()
+    }
+    
+    public func asJsonArrayDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data {
+        
+        let array = try asJsonArrayThrowing()
+        
+        return try JSONSerialization.data(
             withJSONObject: array,
             options: options
         )
+        
+    }
 
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+        return try? asJsonArrayDataThrowing(options: options)
     }
     
 }
 
 extension Array: JSONArrayRepresentable where Element == JSON {
     
-    public func asJsonArray() -> [JSON]? {
+    public func asJsonArrayThrowing() throws -> [JSON] {
         
-        guard JSONSerialization.isValidJSONObject(self) else { return nil }
+        guard JSONSerialization.isValidJSONObject(self) else { throw JSONError.invalidObject }
         return self
         
     }
     
-    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+    public func asJsonArray() -> [JSON]? {
+        return try? asJsonArrayThrowing()
+    }
+    
+    public func asJsonArrayDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data {
         
-        guard let array = asJsonArray() else { return nil }
+        let array = try asJsonArrayThrowing()
         
-        return try? JSONSerialization.data(
+        return try JSONSerialization.data(
             withJSONObject: array,
             options: options
         )
         
+    }
+    
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+        return try? asJsonArrayDataThrowing(options: options)
     }
     
 }
@@ -121,44 +183,72 @@ extension Array: JSONArrayRepresentable where Element == JSON {
 extension Data: JSONRepresentable,
                 JSONArrayRepresentable {
     
-    public func asJson() -> JSON? {
+    public func asJsonThrowing() throws -> JSON {
         
-        return try? JSONSerialization
-            .jsonObject(with: self) as? JSON
+        let object = try JSONSerialization
+            .jsonObject(with: self)
+        
+        guard let json = object as? JSON else {
+            throw JSONError.invalidObject
+        }
+        
+        return json
+        
+    }
+    
+    public func asJson() -> JSON? {
+        return try? asJsonThrowing()
+    }
+    
+    public func asJsonDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data {
+        
+        let json = try asJsonThrowing()
+        
+        if options.isEmpty {
+            return self
+        }
+        
+        return try json
+            .asJsonDataThrowing(options: options)
         
     }
     
     public func asJsonData(options: JSONSerialization.WritingOptions) -> Data? {
+        return try? asJsonDataThrowing(options: options)
+    }
+    
+    public func asJsonArrayThrowing() throws -> [JSON] {
         
-        guard let json = asJson() else { return nil }
+        let object = try JSONSerialization
+            .jsonObject(with: self)
         
-        if options.isEmpty {
-            return self
+        guard let array = object as? [JSON] else {
+            throw JSONError.invalidObject
         }
         
-        return json
-            .asJsonData(options: options)
+        return array
         
     }
     
     public func asJsonArray() -> [JSON]? {
-        
-        return try? JSONSerialization
-            .jsonObject(with: self) as? [JSON]
-        
+        return try? asJsonArrayThrowing()
     }
     
-    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+    public func asJsonArrayDataThrowing(options: JSONSerialization.WritingOptions) throws -> Data {
         
-        guard let array = asJsonArray() else { return nil }
+        let array = try asJsonArrayThrowing()
         
         if options.isEmpty {
             return self
         }
         
-        return array
-            .asJsonArrayData(options: options)
+        return try array
+            .asJsonArrayDataThrowing(options: options)
         
+    }
+    
+    public func asJsonArrayData(options: JSONSerialization.WritingOptions) -> Data? {
+        return try? asJsonArrayDataThrowing(options: options)
     }
     
 }
@@ -168,6 +258,23 @@ extension Data: JSONRepresentable,
 // the semantics the same everywhere.
 
 public extension Encodable {
+    
+    /// A json representation.
+    /// - returns: A `JSON` object, or a thrown error.
+    func asJsonThrowing() throws -> JSON {
+        
+        let data = try asJsonDataThrowing()
+        
+        let object = try JSONSerialization
+            .jsonObject(with: data)
+        
+        guard let json = object as? JSON else {
+            throw JSONError.invalidObject
+        }
+        
+        return json
+        
+    }
     
     /// A json representation.
     /// - returns: A `JSON` object.
@@ -181,26 +288,53 @@ public extension Encodable {
     }
     
     /// A json data representation.
+    /// - returns: `JSON` data, or a thrown error.
+    func asJsonDataThrowing() throws -> Data {
+        
+        return try JSONEncoder()
+            .encode(self)
+        
+    }
+    
+    /// A json data representation.
     /// - returns: `JSON` data.
     func asJsonData() -> Data? {
-        return try? JSONEncoder().encode(self)
+        return try? asJsonDataThrowing()
     }
     
     /// A json-array representation.
-    /// - returns: A `JSON` array.
-    func asJsonArray() -> [JSON]? {
+    /// - returns: A `JSON` array, or a thrown error.
+    func asJsonArrayThrowing() throws -> [JSON] {
         
-        guard let data = asJsonArrayData(),
-              let array = try? JSONSerialization.jsonObject(with: data) as? [JSON] else { return nil }
+        let data = try asJsonArrayDataThrowing()
+        
+        let object = try JSONSerialization
+            .jsonObject(with: data)
+        
+        guard let array = object as? [JSON] else {
+            throw JSONError.invalidObject
+        }
         
         return array
         
     }
     
+    /// A json-array representation.
+    /// - returns: A `JSON` array.
+    func asJsonArray() -> [JSON]? {
+        return try? asJsonArrayThrowing()
+    }
+    
+    /// A json-array data representation.
+    /// - returns: `JSON` array data, or a thrown error.
+    func asJsonArrayDataThrowing() throws -> Data {
+        return try asJsonDataThrowing()
+    }
+    
     /// A json-array data representation.
     /// - returns: `JSON` array data.
     func asJsonArrayData() -> Data? {
-        return asJsonData()
+        return try? asJsonArrayDataThrowing()
     }
     
 }
