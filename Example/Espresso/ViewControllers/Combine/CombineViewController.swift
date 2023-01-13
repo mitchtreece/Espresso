@@ -38,7 +38,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         self.label.numberOfLines = 0
         self.view.addSubview(self.label)
         self.label.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
         
     }

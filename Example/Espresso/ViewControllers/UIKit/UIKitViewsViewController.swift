@@ -39,19 +39,20 @@ class UIKitViewsViewController: DetailViewController {
         self.stackView.showsVerticalScrollIndicator = false
         self.view.addSubview(self.stackView)
         self.stackView.snp.makeConstraints { make in
-            
             make.top.bottom.equalToSuperview()
             make.left.equalTo(8)
             make.right.equalTo(-8)
-
         }
         
         // UIButtonView
         
-        let disabledFillButton = UIButtonView(title: "Filled (Disabled)", action: {})
+        let disabledFillButton = UIButtonView()
+        disabledFillButton.title = "Filled (Disabled)"
         disabledFillButton.isEnabled = false
         
-        let disabledOutlineButton = UIButtonView(title: "Outline (Disabled)", style: .outline, action: {print("h")})
+        let disabledOutlineButton = UIButtonView()
+        disabledOutlineButton.style = .outline
+        disabledOutlineButton.title = "Outline (Disabled)"
         disabledOutlineButton.isEnabled = false
                                               
         self.stackView.addArrangedSubview(buildSection(
@@ -70,17 +71,29 @@ class UIKitViewsViewController: DetailViewController {
             make.height.equalTo(50)
         }
         
-        let leftGradientView = UIGradientView(colors: [.green, .clear], direction: .left)
+        let leftGradientView = UIGradientView(
+            colors: [.green, .clear],
+            direction: .left
+        )
+        
         leftGradientView.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
         
-        let downGradientView = UIGradientView(colors: [.blue, .clear], direction: .down)
+        let downGradientView = UIGradientView(
+            colors: [.blue, .clear],
+            direction: .down
+        )
+        
         downGradientView.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
         
-        let rightGradientView = UIGradientView(colors: [.black, .clear], direction: .right)
+        let rightGradientView = UIGradientView(
+            colors: [.black, .clear],
+            direction: .right
+        )
+        
         rightGradientView.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
@@ -116,7 +129,7 @@ class UIKitViewsViewController: DetailViewController {
         titleLabel.font = .preferredFont(forTextStyle: .headline)
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.top.horizontalEdges.equalToSuperview()
         }
         
         let divider = UIHairlineView()
@@ -124,7 +137,7 @@ class UIKitViewsViewController: DetailViewController {
         headerView.addSubview(divider)
         divider.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.left.bottom.right.equalToSuperview()
+            make.bottom.horizontalEdges.equalToSuperview()
         }
         
         stackView

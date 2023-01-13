@@ -153,11 +153,11 @@ extension AppDelegate: RootViewControllerDelegate {
         var vc: UIViewController!
         
         switch row {
-        case .views:
-            
-            vc = SwiftUIViewsContentView().asHostingController()
-            vc.title = "SwiftUI Views"
-            
+//        case .views:
+//
+//            vc = SwiftUIViewsContentView().asHostingController()
+//            vc.title = "SwiftUI Views"
+//
         case .hostingView: vc = SwiftUIHostingViewController()
         }
         
@@ -169,7 +169,7 @@ extension AppDelegate: RootViewControllerDelegate {
     }
     
     func rootViewController(_ vc: RootViewController,
-                            didSelectTransitionRow row: RootViewController.TransitionRow) {
+                            didSelectTransitionRow row: RootViewController.VCTransitionRow) {
             
         let vc = DetailViewController()
         vc.title = row.title

@@ -42,7 +42,10 @@ class DetailViewController: UIBaseViewController {
     }
     
     @objc private func didTapDismiss(_ sender: UIBarButtonItem) {
-        self.delegate?.detailViewControllerDidTapDone(self)
+        
+        self.delegate?
+            .detailViewControllerDidTapDone(self)
+        
     }
     
 }

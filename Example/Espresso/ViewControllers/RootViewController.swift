@@ -19,7 +19,7 @@ protocol RootViewControllerDelegate: AnyObject {
                             didSelectSwiftUIRow row: RootViewController.SwiftUIRow)
     
     func rootViewController(_ vc: RootViewController,
-                            didSelectTransitionRow row: RootViewController.TransitionRow)
+                            didSelectTransitionRow row: RootViewController.VCTransitionRow)
     
     func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
 
@@ -56,7 +56,7 @@ class RootViewController: UIBaseViewController {
         
         super.viewWillSetup()
         
-        self.tableView = UITableView(frame: .zero, style: .grouped)
+        self.tableView = UITableView(frame: .zero, style: .insetGrouped)
         self.tableView.backgroundColor = .systemGroupedBackground
         self.tableView.tableFooterView = UIView()
         self.tableView.delegate = self
@@ -74,13 +74,14 @@ class RootViewController: UIBaseViewController {
     
 }
 
-extension RootViewController: UITableViewDelegate, UITableViewDataSource {
+extension RootViewController: UITableViewDelegate,
+                              UITableViewDataSource {
     
     private enum Section: Int, CaseIterable {
         
         case uikit
         case swiftui
-        case transition
+        case vcTransitions
         case combine
         case taptics
         case helpers
@@ -103,13 +104,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     enum SwiftUIRow: Int, CaseIterable {
         
-        case views
+        // case views
         case hostingView
         
         var title: String {
             
             switch self {
-            case .views: return "Views"
+            // case .views: return "Views"
             case .hostingView: return "UIHostingView"
             }
             
@@ -117,7 +118,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    enum TransitionRow: Int, CaseIterable {
+    enum VCTransitionRow: Int, CaseIterable {
         
         case fade
         case slide
@@ -146,13 +147,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var title: String {
             
             switch self {
-            case .fade: return "FadeTransition"
-            case .slide: return "SlideTransition"
-            case .cover: return "CoverTransition"
-            case .reveal: return "RevealTransition"
-            case .swap: return "SwapTransition"
-            case .pushBack: return "PushBackTransition"
-            case .zoom: return "ZoomTransition"
+            case .fade: return "Fade"
+            case .slide: return "Slide"
+            case .cover: return "Cover"
+            case .reveal: return "Reveal"
+            case .swap: return "Swap"
+            case .pushBack: return "Push Back"
+            case .zoom: return "Zoom"
             case .custom: return "Custom"
             }
             
@@ -167,7 +168,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         var title: String {
             
             switch self {
-            case .viewController: return "UIViewController"
+            case .viewController: return "CombineViewController"
             }
             
         }
@@ -216,8 +217,17 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum HelpersRow: Int, CaseIterable {
         
-        case deviceInfo
-        case authentication
+        case appleDevice
+        case userAuthentication
+        
+        var title: String {
+            
+            switch self {
+            case .appleDevice: return "AppleDevice Info"
+            case .userAuthentication: return "User Authentication"
+            }
+            
+        }
         
     }
     
@@ -225,14 +235,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         return Section.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         
         guard let _section = Section(rawValue: section) else { return nil }
         
         switch _section {
         case .uikit: return "UIKit"
         case .swiftui: return "SwiftUI"
-        case .transition: return "Transitions"
+        case .vcTransitions: return "VC Transitions"
         case .combine: return "Combine"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
@@ -240,14 +251,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         
         guard let _section = Section(rawValue: section) else { return 0 }
         
         switch _section {
         case .uikit: return UIKitRow.allCases.count
         case .swiftui: return SwiftUIRow.allCases.count
-        case .transition: return TransitionRow.allCases.count
+        case .vcTransitions: return VCTransitionRow.allCases.count
         case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
@@ -255,11 +267,13 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let _section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
                 
-        let cell = UITableViewCell.dequeue(for: tableView, at: indexPath)
+        let cell = UITableViewCell
+            .dequeue(for: tableView, at: indexPath)
 
         switch _section {
         case .uikit:
@@ -272,9 +286,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             
-        case .transition:
+        case .vcTransitions:
             
-            guard let row = TransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            guard let row = VCTransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
               
         case .combine:
@@ -290,11 +304,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .helpers:
             
             guard let row = HelpersRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            
-            switch row {
-            case .deviceInfo: cell.textLabel?.text = "Device Info"
-            case .authentication: cell.textLabel?.text = "Authentication"
-            }
+            cell.textLabel?.text = row.title
             
         }
         
@@ -303,9 +313,11 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView
+            .deselectRow(at: indexPath, animated: true)
         
         guard let _section = Section(rawValue: indexPath.section) else { return }
         
@@ -313,24 +325,34 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         case .uikit:
             
             guard let row = UIKitRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectUIKitRow: row)
+            
+            self.delegate?
+                .rootViewController(self, didSelectUIKitRow: row)
             
         case .swiftui:
             
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectSwiftUIRow: row)
             
-        case .transition:
+            self.delegate?
+                .rootViewController(self, didSelectSwiftUIRow: row)
             
-            guard let row = TransitionRow(rawValue: indexPath.row) else { return }
-            self.delegate?.rootViewController(self, didSelectTransitionRow: row)
+        case .vcTransitions:
+            
+            guard let row = VCTransitionRow(rawValue: indexPath.row) else { return }
+            
+            self.delegate?
+                .rootViewController(self, didSelectTransitionRow: row)
 
         case .combine:
             
             guard let row = CombineRow(rawValue: indexPath.row) else { return }
 
             switch row {
-            case .viewController: self.delegate?.rootViewControllerWantsToPresentCombineViewController(self)
+            case .viewController:
+                
+                self.delegate?
+                    .rootViewControllerWantsToPresentCombineViewController(self)
+                
             }
             
         case .taptics:
@@ -343,19 +365,35 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
             guard let row = HelpersRow(rawValue: indexPath.row) else { return }
             
             switch row {
-            case .deviceInfo:
+            case .appleDevice:
                 
                 let device = AppleDevice.current
                 let title = device.isSimulator ? "\(device.generationalName) (Simulator)" : device.generationalName
                 let message = "\(device.softwareName): \(device.softwareVersion)\nJailbroken: \(device.isJailbroken)"
                 
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-
-            case .authentication:
+                let alert = UIAlertController(
+                    title: title,
+                    message: message,
+                    preferredStyle: .alert
+                )
                 
-                UserAuthenticator.authenticate(withReason: "Espresso needs to authenticate you.") { [weak self] (success, error) in
+                alert.addAction(UIAlertAction(
+                    title: "Okay",
+                    style: .cancel,
+                    handler: nil
+                ))
+                
+                present(
+                    alert,
+                    animated: true,
+                    completion: nil
+                )
+
+            case .userAuthentication:
+                
+                let reason = "Espresso needs to authenticate you."
+                
+                UserAuthenticator.authenticate(withReason: reason) { [weak self] (success, error) in
                     
                     let alert = UIAlertController(
                         title: success ? "Success 😎" : "Failure 😢",
@@ -363,10 +401,20 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
                         preferredStyle: .alert
                     )
                     
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(
+                        title: "Okay",
+                        style: .default,
+                        handler: nil
+                    ))
                     
                     DispatchQueue.main.async {
-                        self?.present(alert, animated: true, completion: nil)
+                        
+                        self?.present(
+                            alert,
+                            animated: true,
+                            completion: nil
+                        )
+                        
                     }
                     
                 }
