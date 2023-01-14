@@ -15,7 +15,6 @@ public extension JSON /* Print */ {
     /// Debug prints the json object to the console.
     func debugPrint() {
         
-        
         guard let data = asJsonData(options: [.prettyPrinted]),
               let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
             

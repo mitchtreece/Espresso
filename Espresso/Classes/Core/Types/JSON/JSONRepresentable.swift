@@ -7,14 +7,6 @@
 
 import Foundation
 
-/// Representation of the various json errors.
-public enum JSONError: Error {
-    
-    /// An invalid json object error.
-    case invalidObject
-    
-}
-
 /// Protocol describing something that can be represented as a JSON object.
 public protocol JSONRepresentable {
     

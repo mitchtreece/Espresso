@@ -23,6 +23,14 @@ extension Bool: BooleanRepresentable {
     
 }
 
+extension Int: BooleanRepresentable {
+    
+    public func asBool() -> Bool {
+        return (self <= 0) ? false : true
+    }
+    
+}
+
 extension String: BooleanRepresentable {
     
     public func asBool() -> Bool {
@@ -35,14 +43,6 @@ extension String: BooleanRepresentable {
         
         return false
         
-    }
-    
-}
-
-extension Int: BooleanRepresentable {
-    
-    public func asBool() -> Bool {
-        return (self <= 0) ? false : true
     }
     
 }
