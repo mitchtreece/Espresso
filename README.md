@@ -39,7 +39,7 @@ If you're unsure of what you want/need, we also some "recipe" subspecs that prov
     - `Espresso/UI-UIKit`
     - `Espresso/PromiseKit`
     - [Spider-Web](https://github.com/mitchtreece/Spider)`/All`
-    - [Director](https://github.com/mitchtreece/Director)/`All`
+    - [Director](https://github.com/mitchtreece/Director)`/All`
     - [Swinject](https://github.com/Swinject/Swinject)
 
 ## Espresso
