@@ -11,9 +11,11 @@ public extension UIStackView /* Subviews */ {
     
     @discardableResult
     func addArrangedInsetSubview(_ view: UIView,
-                                 insets: UIEdgeInsets) -> UIView {
+                                 insets: UIEdgeInsets,
+                                 backgroundColor: UIColor = .clear) -> UIView {
         
         let container = UIView()
+        container.backgroundColor = backgroundColor
         container.addSubview(view)
         view.snp.makeConstraints { make in
             make.top.equalTo(insets.top)
@@ -32,7 +34,8 @@ public extension UIStackView /* Subviews */ {
     @discardableResult
     func insertArrangedInsetSubview(_ view: UIView,
                                     at index: Int,
-                                    insets: UIEdgeInsets) -> UIView {
+                                    insets: UIEdgeInsets,
+                                    backgroundColor: UIColor = .clear) -> UIView {
         
         let container = UIView()
         container.addSubview(view)
@@ -53,12 +56,13 @@ public extension UIStackView /* Subviews */ {
     }
         
     @discardableResult
-    func addArrangedSpaceSubview(size: CGFloat) -> UIView {
+    func addArrangedSpaceSubview(size: CGFloat,
+                                 backgroundColor: UIColor = .clear) -> UIView {
         
         let vertical = (self.axis == .vertical)
         
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = backgroundColor
         view.snp.makeConstraints { make in
             
             if vertical {
@@ -78,12 +82,13 @@ public extension UIStackView /* Subviews */ {
     
     @discardableResult
     func insertArrangedSpaceSubview(size: CGFloat,
-                                    at index: Int) -> UIView {
+                                    at index: Int,
+                                    backgroundColor: UIColor = .clear) -> UIView {
         
         let vertical = (self.axis == .vertical)
         
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = backgroundColor
         view.snp.makeConstraints { make in
             
             if vertical {

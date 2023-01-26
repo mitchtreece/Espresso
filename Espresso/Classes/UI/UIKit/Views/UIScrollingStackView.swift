@@ -122,25 +122,6 @@ public class UIScrollingStackView: UIScrollView {
         
     }
     
-    @discardableResult
-    public func addArrangedInsetSubview(_ view: UIView,
-                                 insets: UIEdgeInsets) -> UIView {
-        
-        return self.stackView.addArrangedInsetSubview(
-            view,
-            insets: insets
-        )
-                
-    }
-    
-    @discardableResult
-    public func addArrangedSpaceSubview(size: CGFloat) -> UIView {
-        
-        return self.stackView
-            .addArrangedSpaceSubview(size: size)
-        
-    }
-
     public func insertArrangedSubview(_ view: UIView,
                                       at index: Int) {
         
@@ -152,25 +133,53 @@ public class UIScrollingStackView: UIScrollView {
     }
     
     @discardableResult
-    public func insertArrangedWrappedSubview(_ view: UIView,
-                                             at index: Int,
-                                             insets: UIEdgeInsets) -> UIView {
+    public func addArrangedInsetSubview(_ view: UIView,
+                                        insets: UIEdgeInsets,
+                                        backgroundColor: UIColor = .clear) -> UIView {
+        
+        return self.stackView.addArrangedInsetSubview(
+            view,
+            insets: insets,
+            backgroundColor: backgroundColor
+        )
+                
+    }
+    
+    @discardableResult
+    public func insertArrangedInsetSubview(_ view: UIView,
+                                           at index: Int,
+                                           insets: UIEdgeInsets,
+                                           backgroundColor: UIColor = .clear) -> UIView {
         
         return self.stackView.insertArrangedInsetSubview(
             view,
             at: index,
-            insets: insets
+            insets: insets,
+            backgroundColor: backgroundColor
+        )
+        
+    }
+    
+    @discardableResult
+    public func addArrangedSpaceSubview(size: CGFloat,
+                                        backgroundColor: UIColor = .clear) -> UIView {
+        
+        return self.stackView.addArrangedSpaceSubview(
+            size: size,
+            backgroundColor: backgroundColor
         )
         
     }
     
     @discardableResult
     public func insertArrangedSpaceSubview(size: CGFloat,
-                                           at index: Int) -> UIView {
+                                           at index: Int,
+                                           backgroundColor: UIColor = .clear) -> UIView {
         
         return self.stackView.insertArrangedSpaceSubview(
             size: size,
-            at: index
+            at: index,
+            backgroundColor: backgroundColor
         )
         
     }
