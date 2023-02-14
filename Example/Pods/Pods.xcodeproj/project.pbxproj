@@ -69,6 +69,7 @@
 		2485818C07FD7B38E09AF0A094C1A99F /* UIAnimationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757916FD40A40F587E386E4F5ABAA430 /* UIAnimationGroup.swift */; };
 		252679F07E30D5D4AE0D5A86EB555A98 /* Espresso-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F0F4B10522AFDB002AF53A1D7FD81F5 /* Espresso-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2603052DE7BE4E009C0B8126A52626E0 /* PromiseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 76E032C82FBDEB2F248193DCF33AA4D6 /* PromiseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2638CF82299C3812007E854A /* Emptyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2638CF81299C3812007E854A /* Emptyable.swift */; };
 		26F2DAF0F13178ACB5838F808EFF04E3 /* Clampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E1033D0B8B362E48627DA7772528DB /* Clampable.swift */; };
 		26F6908E29722CC30009A937 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6908D29722CC30009A937 /* JSONError.swift */; };
 		280C9A2851B2BA2F9256D8A25D42EC0E /* SFSymbol+2.1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E556846EAD245D23C2443036F191B2D2 /* SFSymbol+2.1.swift */; };
@@ -465,6 +466,7 @@
 		24EC4F69440C23CF18DD5845CFF1CA4D /* UIViewController+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AnyPromise.h"; path = "Extensions/UIKit/Sources/UIViewController+AnyPromise.h"; sourceTree = "<group>"; };
 		25555C762D8FB1F2CCBA49B9F6DE343E /* UIGestureRecognizer+Espresso.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Espresso.swift"; sourceTree = "<group>"; };
 		2589C206DA216D4D185524A040825DC6 /* SwiftUIImageExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftUIImageExtension.swift; path = Sources/SFSafeSymbols/Initializers/SwiftUI/SwiftUIImageExtension.swift; sourceTree = "<group>"; };
+		2638CF81299C3812007E854A /* Emptyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emptyable.swift; sourceTree = "<group>"; };
 		268BFB93EA4788FC341F74FCDF17AA46 /* AppleDevice+DeviceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppleDevice+DeviceType.swift"; sourceTree = "<group>"; };
 		26C4DDA09A026B6F701076869D433711 /* Version.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		26F6908D29722CC30009A937 /* JSONError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
@@ -1500,6 +1502,7 @@
 				F02EAF9EFA3436FECD5F9191F4CAC9AC /* LegacyRepresentable.swift */,
 				A3D12CE0A0E567224AFC0C7F46080209 /* Lerpable.swift */,
 				47DFA0F04FC52AC21875827CEEBD43CD /* Mockable.swift */,
+				2638CF81299C3812007E854A /* Emptyable.swift */,
 				46B6121DF07B9A318936ADFA67483D1F /* StaticIdentifiable.swift */,
 			);
 			name = Protocols;
@@ -2175,6 +2178,7 @@
 				3120090AF639BFC43E32442D686B8BD8 /* JSON.swift in Sources */,
 				0B2AF08F4D86FD86959C59B0617CD7E8 /* JSONRepresentable.swift in Sources */,
 				48F28DBF474AF6E727F4AFC1A8A4CBC3 /* Key.swift in Sources */,
+				2638CF82299C3812007E854A /* Emptyable.swift in Sources */,
 				2CAA9320420FD9E56908A3D0D0835E24 /* KeyStore.swift in Sources */,
 				0E8E36314B3806B54D72650F827EF107 /* KeyStored.swift in Sources */,
 				F83949962B21ED08B52229EE251598D4 /* KeyStoredReadable.swift in Sources */,

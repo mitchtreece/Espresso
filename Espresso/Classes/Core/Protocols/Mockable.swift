@@ -14,6 +14,14 @@ public protocol Mockable {
     static func mock() -> Self
     
     /// Creates a mock-array of this type.
-    static func mocks() -> [Self]
+    static func mocks(count: Int) -> [Self]
 
+}
+
+public extension Mockable {
+    
+    static func mocks() -> [Self] {
+        return mocks(count: 3)
+    }
+    
 }
