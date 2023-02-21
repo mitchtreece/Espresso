@@ -19,11 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // Environment
+        
+        let env = application.environment
+        var envString = "☕️ application environment: \(env.longName)"
+        
+        if application.isDebugSessionAttached {
+            envString += " [debug]"
+        }
+        
+        print(envString)
+        
+        // Window
                 
         self.window = self.window ?? UIWindow(frame: UIScreen.main.bounds)
         self.navController = UINavigationController(rootViewController: RootViewController(delegate: self))
         self.window!.rootViewController = self.navController
         self.window!.makeKeyAndVisible()
+        
+        // Appearance
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -40,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .appearance()
             .compactAppearance = appearance
         
+        // Publishers
+        
         application
             .publishers
             .didBecomeActivePublisher
@@ -51,6 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .willResignActivePublisher
             .sink { print("☕️ application did resign active") }
             .store(in: &self.bag)
+        
+        // Done
                 
         return true
         

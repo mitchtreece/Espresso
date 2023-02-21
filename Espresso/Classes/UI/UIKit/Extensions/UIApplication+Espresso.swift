@@ -122,6 +122,9 @@ public extension UIApplication /* Environment */ {
         /// A development environment.
         case development = "dev"
         
+        /// A testing environment.
+        case testing = "test"
+        
         /// A staging environment.
         case staging = "stg"
         
@@ -141,9 +144,32 @@ public extension UIApplication /* Environment */ {
             
             switch self {
             case .development: return "development"
+            case .testing: return "testing"
             case .staging: return "staging"
             case .preproduction: return "pre-production"
             case .production: return "production"
+            }
+            
+        }
+        
+        // MARK: Environment Flags
+        
+        /// Flag indicating if the environment is `production`.
+        public var isProduction: Bool {
+            
+            switch self {
+            case .production: return true
+            default: return false
+            }
+            
+        }
+        
+        /// Flag indicating if the environment is `testing`.
+        public var isTesting: Bool {
+            
+            switch self {
+            case .testing: return true
+            default: return false
             }
             
         }
@@ -158,29 +184,46 @@ public extension UIApplication /* Environment */ {
             
         }
         
-        /// Flag indicating if the environment is `production`.
-        public var isProduction: Bool {
-            
-            switch self {
-            case .production: return true
-            default: return false
-            }
-            
+        // MARK: Environment Aggregate Flags
+        
+        /// Flag indicating if the environment is `development`
+        /// _or_ `testing`.
+        public var isDevelopmentOrTesting: Bool {
+            return self.isDevelopment || self.isTesting
         }
         
-        /// Flag indicating if the environment is running in debug mode.
-        ///
-        /// This searches the processes command-line arguments for
-        /// a `DEBUG` flag.
-        public var isDebug: Bool {
-            
-            if CommandLine.arguments.contains("DEBUG") {
-                return true
-            }
-            
-            return false
-            
+        /// Flag indicating if the environment is `development`,
+        /// `testing`, _or_ connected to a debug session.
+        public var isDevelopmentOrTestingOrDebug: Bool {
+            return self.isDevelopment || self.isTesting || UIApplication.shared.isDebugSessionAttached
         }
+        
+        /// Flag indicating if the environment is `development`
+        /// _or_ connected to a debug session.
+        public var isDevelopmentOrDebug: Bool {
+            return self.isDevelopment || UIApplication.shared.isDebugSessionAttached
+        }
+        
+    }
+    
+    /// The application's current environment.
+    var environment: Environment {
+        
+        if let override = self.environmentOverride {
+            return override
+        }
+        
+        #if DEV || DEVELOP || DEVELOPMENT || DEBUG
+        return .development
+        #elseif TEST || TESTING || QA || UAT
+        return .testing
+        #elseif STG || STAGE || STAGING
+        return .staging
+        #elseif PRE || PREPROD
+        return .preproduction
+        #else
+        return .production
+        #endif
         
     }
     
@@ -197,22 +240,40 @@ public extension UIApplication /* Environment */ {
         }
     }
     
-    /// The application's current environment.
-    var environment: Environment {
+}
+
+public extension UIApplication /* Debug */ {
+    
+    /// Flag indicating if the application is currently attached to a debug session.
+    ///
+    /// This will likely (but not always) be an Xcode debug session.
+    var isDebugSessionAttached: Bool {
+                    
+        var isAttached: Bool = false
         
-        if let override = self.environmentOverride {
-            return override
+        var name: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
+        var info: kinfo_proc = kinfo_proc()
+        var infoSize = MemoryLayout<kinfo_proc>.size
+        
+        let success = name.withUnsafeMutableBytes { ptr -> Bool in
+            
+            guard let address = ptr
+                .bindMemory(to: Int32.self)
+                .baseAddress else { return false }
+            
+            return (sysctl(address, 4, &info, &infoSize, nil, 0) != -1)
+            
         }
         
-        #if DEVELOPMENT || DEBUG
-        return .development
-        #elseif STAGING
-        return .staging
-        #elseif PREPROD
-        return .preproduction
-        #else
-        return .production
-        #endif
+        if !success {
+            isAttached = false
+        }
+        
+        if !isAttached && (info.kp_proc.p_flag & P_TRACED) != 0 {
+            isAttached = true
+        }
+
+        return isAttached
         
     }
     
