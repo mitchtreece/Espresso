@@ -10,6 +10,10 @@ import Combine
 public extension Publisher where Failure == Never /* Value */ {
     
     /// Latest value of the publisher's output sequence.
+    ///
+    /// **Note**: This assumes the publisher has values
+    /// in it's stream. If it doesn't, calling this
+    /// will throw an exception.
     var value: Self.Output {
         
         var value: Self.Output!
@@ -19,6 +23,21 @@ public extension Publisher where Failure == Never /* Value */ {
             .store(in: &bag)
         
         return value
+        
+    }
+        
+    /// Latest value of the publisher's output sequence
+    /// _or_ a fallback value if the publisher has no
+    /// values in it's stream.
+    func value(or fallback: Self.Output) -> Self.Output {
+        
+        var value: Self.Output?
+        var bag = CancellableBag()
+        
+        sink { value = $0 }
+            .store(in: &bag)
+        
+        return value ?? fallback
         
     }
     

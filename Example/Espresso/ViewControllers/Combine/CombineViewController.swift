@@ -42,6 +42,23 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
     }
     
+    func didTapButton() {
+        
+        self.viewModel
+            .updateText()
+        
+        let numberString = self.viewModel
+            .numberStringPublisher
+            .value
+        
+        let number = self.viewModel
+            .numberPublisher
+            .value
+        
+        print("string: \"\(numberString ?? "nil")\"\nnumber: \(number ?? -1)")
+        
+    }
+    
     override func bind() {
         
         super.bind()
@@ -56,7 +73,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
         super.bindModel()
 
-        self.viewModel.$labelText
+        self.viewModel.$text
             .receiveOnMain()
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)
@@ -69,7 +86,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         super.bindComponents()
         
         self.barItem.actionPublisher
-            .sink { self.viewModel.updateText() }
+            .sink { [weak self] in self?.didTapButton() }
             .store(in: &self.componentBag)
         
     }
