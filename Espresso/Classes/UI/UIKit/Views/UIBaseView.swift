@@ -13,36 +13,36 @@ open class UIBaseView: UIView, UIUserInterfaceStyleAdaptable {
     public override init(frame: CGRect) {
         
         super.init(frame: frame)
-        willSetup()
+        willLoadLayout()
         
     }
     
     public required init?(coder: NSCoder) {
         
         super.init(coder: coder)
-        willSetup()
+        willLoadLayout()
         
     }
     
-    /// Called when the view is about to perform setup actions.
-    /// Override this function to provide custom setup logic.
+    /// Called when the view is about to load its layout.
     ///
     /// This function is called from `init(frame:)` *or* `init(coder:)`.
-    /// View frames are not guaranteed to have accurate values at this point.
-    open func willSetup() {
+    /// Subview frames are not guaranteed to have accurate values at this point.
+    open func willLoadLayout() {
         
         DispatchQueue.main.async { [weak self] in
-            self?.didSetup()
+            self?.didLoadLayout()
         }
         
     }
     
-    /// Called when the view finishes setup actions.
-    /// Override this function to provide custom frame setup logic.
+    /// Called when the view finishes loading its layout.
+    /// Override this function to provide custom setup logic that depends
+    /// on subview frames, positions, etc.
     ///
-    /// This function is scheduled on the main-thread from `willSetup`.
-    /// View frames should have accurate values at this point.
-    open func didSetup() {
+    /// This function is scheduled on the main-thread from `willLoadLayout`.
+    /// Subview frames should have accurate values at this point.
+    open func didLoadLayout() {
         // Override
     }
     

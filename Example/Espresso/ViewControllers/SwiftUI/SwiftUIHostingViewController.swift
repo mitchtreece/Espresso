@@ -22,9 +22,9 @@ class SwiftUIHostingViewController: DetailViewController {
                 
     }
     
-    override func viewWillSetup() {
+    override func viewWillLoadLayout() {
         
-        super.viewWillSetup()
+        super.viewWillLoadLayout()
         
         self.edgesForExtendedLayout = []
         

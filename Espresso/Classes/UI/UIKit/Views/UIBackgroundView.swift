@@ -36,9 +36,9 @@ public class UIBackgroundView: UIBaseView {
         super.init(coder: coder)
     }
     
-    public override func willSetup() {
+    public override func willLoadLayout() {
         
-        super.willSetup()
+        super.willLoadLayout()
         
         self.backgroundColor = .clear
         self.clipsToBounds = true

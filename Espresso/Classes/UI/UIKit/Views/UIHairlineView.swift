@@ -45,9 +45,9 @@ public class UIHairlineView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func willSetup() {
+    open override func willLoadLayout() {
         
-        super.willSetup()
+        super.willLoadLayout()
 
         self.backgroundColor = .lightGray
 

@@ -8,6 +8,16 @@
 import UIKit
 import Combine
 
+// NOTE: UIBaseViewController Lifecycle
+//
+// 1. viewDidLoad
+// 2. viewWillLoadLayout
+// 3. viewWillAppear
+// 4. viewWillLayoutSubviews
+// 5. viewDidLayoutSubviews
+// 6. viewDidLoadLayout
+// 7. viewDidAppear
+
 /// `UIViewController` subclass that provides
 /// common helper functions & properties.
 open class UIBaseViewController: UIViewController,
@@ -20,15 +30,27 @@ open class UIBaseViewController: UIViewController,
     }
     
     /// A publisher that sends when the view controller's
-    /// view is about to perform setup actions.
-    public var viewWillSetupPublisher: GuaranteePublisher<Void> {
-        return self._viewWillSetup.eraseToAnyPublisher()
+    /// view is about to load its layout.
+    public var viewWillLoadLayoutPublisher: GuaranteePublisher<Void> {
+        return self._viewWillLoadLayout.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
-    /// view finishes setup actions.
-    public var viewDidSetupPublisher: GuaranteePublisher<Void> {
-        return self._viewDidSetup.eraseToAnyPublisher()
+    /// view finishes loading its layout.
+    public var viewDidLoadLayoutPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLoadLayout.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view is about to layout its subviews.
+    public var viewWillLayoutSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewWillLayoutSubviews.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view finishes laying out its subviews.
+    public var viewDidLayoutSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLayoutSubviews.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
@@ -61,7 +83,7 @@ open class UIBaseViewController: UIViewController,
         return self._didReceiveMemoryWarning.eraseToAnyPublisher()
     }
     
-    /// Flag indicating if the view controller should hide it's
+    /// Flag indicating if the view controller should hide its
     /// navigation bar on appearance; _defaults to false_.
     open var prefersNavigationBarHidden: Bool {
         return false
@@ -103,8 +125,10 @@ open class UIBaseViewController: UIViewController,
     }
     
     private var _viewDidLoad = TriggerPublisher()
-    private var _viewWillSetup = TriggerPublisher()
-    private var _viewDidSetup = TriggerPublisher()
+    private var _viewWillLayoutSubviews = TriggerPublisher()
+    private var _viewDidLayoutSubviews = TriggerPublisher()
+    private var _viewWillLoadLayout = TriggerPublisher()
+    private var _viewDidLoadLayout = TriggerPublisher()
     private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
@@ -115,15 +139,64 @@ open class UIBaseViewController: UIViewController,
  
     open override func viewDidLoad() {
         
+        print("viewDidLoad")
+        
         super.viewDidLoad()
                 
         self._viewDidLoad.send()
         
-        viewWillSetup()
+        viewWillLoadLayout()
+                
+    }
+    
+    open override func viewWillLayoutSubviews() {
+        
+        print("viewWillLayoutSubviews")
+        
+        super.viewWillLayoutSubviews()
+        self._viewWillLayoutSubviews.send()
+                
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        
+        print("viewDidLayoutSubviews")
+        
+        super.viewDidLayoutSubviews()
+        self._viewDidLayoutSubviews.send()
         
     }
     
+    /// Called when the view controller's view is about to load its layout.
+    ///
+    /// This function is called from `viewDidLoad`.
+    /// Subview frames are not guaranteed to have accurate values at this point.
+    open func viewWillLoadLayout() {
+        
+        print("viewWillLoadLayout")
+
+        self._viewWillLoadLayout.send()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewDidLoadLayout()
+        }
+        
+    }
+    
+    /// Called when the view controller's view finishes loading its layout.
+    /// Override this function to provide custom setup logic that depends
+    /// on subview frames, positions, etc.
+    ///
+    /// This function is scheduled on the main-thread from `viewWillLoadLayout`.
+    /// Subview frames should have accurate values at this point.
+    open func viewDidLoadLayout() {
+        print("viewDidLoadLayout")
+        self._viewDidLoadLayout.send()
+    }
+    
     open override func viewWillAppear(_ animated: Bool) {
+        
+        print("viewWillAppear")
         
         super.viewWillAppear(animated)
         
@@ -139,6 +212,8 @@ open class UIBaseViewController: UIViewController,
     }
     
     open override func viewDidAppear(_ animated: Bool) {
+        
+        print("viewDidAppear")
         
         super.viewDidAppear(animated)
         
@@ -172,30 +247,6 @@ open class UIBaseViewController: UIViewController,
         
         self._didReceiveMemoryWarning.send()
         
-    }
-    
-    /// Called when the view controller's view is about to perform setup actions.
-    /// Override this function to provide custom setup logic.
-    ///
-    /// This function is called from `viewDidLoad`.
-    /// View frames are not guaranteed to have accurate values at this point.
-    open func viewWillSetup() {
-        
-        self._viewWillSetup.send()
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.viewDidSetup()
-        }
-        
-    }
-    
-    /// Called when the view controller's view finishes setup actions.
-    /// Override this function to provide custom frame setup logic.
-    ///
-    /// This function is scheduled on the main-thread from `viewWillSetup`.
-    /// View frames should have accurate values at this point.
-    open func viewDidSetup() {
-        self._viewDidSetup.send()
     }
     
     // MARK: Traits

@@ -53,9 +53,9 @@ class RootViewController: UIBaseViewController {
         
     }
     
-    override func viewWillSetup() {
+    override func viewWillLoadLayout() {
         
-        super.viewWillSetup()
+        super.viewWillLoadLayout()
         
         self.tableView = UITableView(frame: .zero, style: .insetGrouped)
         self.tableView.backgroundColor = .systemGroupedBackground

@@ -21,9 +21,9 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
 
     }
     
-    override func viewWillSetup() {
+    override func viewWillLoadLayout() {
         
-        super.viewWillSetup()
+        super.viewWillLoadLayout()
         
         self.view.backgroundColor = .systemBackground
                 

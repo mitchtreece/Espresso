@@ -20,9 +20,9 @@ class UIKitViewsViewController: DetailViewController {
                 
     }
     
-    override func viewWillSetup() {
+    override func viewWillLoadLayout() {
         
-        super.viewWillSetup()
+        super.viewWillLoadLayout()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Dismiss KB",

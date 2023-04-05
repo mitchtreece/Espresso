@@ -7,37 +7,77 @@
 
 import UIKit
 
+// NOTE: UIBaseNavigationController Lifecycle
+//
+// 1. viewDidLoad
+// 2. viewWillLoadLayout
+// 3. viewWillAppear
+// 4. viewWillLayoutSubviews
+// 5. viewDidLayoutSubviews
+// 6. viewDidLoadLayout
+// 7. viewDidAppear
+
 /// `UINavigationController` subclass that provides
 /// common helper functions & properties.
 open class UIBaseNavigationController: UINavigationController,
                                        UIUserInterfaceStyleAdaptable {
     
-    /// A publisher that sends when the view finishes loading.
+    /// A publisher that sends when the view controller's
+    /// view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
         return self._viewDidLoad.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view is about to appear.
+    /// A publisher that sends when the view controller's
+    /// view is about to load its layout.
+    public var viewWillLoadLayoutPublisher: GuaranteePublisher<Void> {
+        return self._viewWillLoadLayout.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view finishes loading its layout.
+    public var viewDidLoadLayoutPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLoadLayout.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view is about to layout its subviews.
+    public var viewWillLayoutSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewWillLayoutSubviews.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view finishes laying out its subviews.
+    public var viewDidLayoutSubviewsPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLayoutSubviews.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view is about to appear.
     public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewWillAppear.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view finishes appearing.
+    /// A publisher that sends when the view controller's
+    /// view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidAppear.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view is about to disappear.
+    /// A publisher that sends when the view controller's
+    /// view is about to disappear.
     public var viewWillDisappearPublisher: GuaranteePublisher<Bool> {
         return self._viewWillDisappear.eraseToAnyPublisher()
     }
     
-    /// A publisher that sends when the view finishes disappearing.
+    /// A publisher that sends when the view controller's
+    /// view finishes disappearing.
     public var viewDidDisappearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidDisappear.eraseToAnyPublisher()
     }
-    
-    /// A publisher that sends when the view receives a memory warning.
+
+    /// A publisher that sends when the view controller
+    /// receives a memory warning.
     public var didRecieveMemoryWarningPublisher: GuaranteePublisher<Void> {
         return self._didReceiveMemoryWarning.eraseToAnyPublisher()
     }
@@ -80,6 +120,10 @@ open class UIBaseNavigationController: UINavigationController,
     }
     
     private var _viewDidLoad = TriggerPublisher()
+    private var _viewWillLayoutSubviews = TriggerPublisher()
+    private var _viewDidLayoutSubviews = TriggerPublisher()
+    private var _viewWillLoadLayout = TriggerPublisher()
+    private var _viewDidLoadLayout = TriggerPublisher()
     private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
@@ -114,6 +158,46 @@ open class UIBaseNavigationController: UINavigationController,
         
         self._viewDidLoad.send()
         
+        viewWillLoadLayout()
+        
+    }
+    
+    open override func viewWillLayoutSubviews() {
+        
+        super.viewWillLayoutSubviews()
+        self._viewWillLayoutSubviews.send()
+        
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        self._viewDidLayoutSubviews.send()
+        
+    }
+    
+    /// Called when the view controller's view is about to load its layout.
+    ///
+    /// This function is called from `viewDidLoad`.
+    /// Subview frames are not guaranteed to have accurate values at this point.
+    open func viewWillLoadLayout() {
+        
+        self._viewWillLoadLayout.send()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewDidLoadLayout()
+        }
+        
+    }
+    
+    /// Called when the view controller's view finishes loading its layout.
+    /// Override this function to provide custom setup logic that depends
+    /// on subview frames, positions, etc.
+    ///
+    /// This function is scheduled on the main-thread from `viewWillLoadLayout`.
+    /// Subview frames should have accurate values at this point.
+    open func viewDidLoadLayout() {
+        self._viewDidLoadLayout.send()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
