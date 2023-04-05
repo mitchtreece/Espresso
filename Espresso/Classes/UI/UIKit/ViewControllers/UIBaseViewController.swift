@@ -138,9 +138,7 @@ open class UIBaseViewController: UIViewController,
     private var keyboardBag = CancellableBag()
  
     open override func viewDidLoad() {
-        
-        print("viewDidLoad")
-        
+                
         super.viewDidLoad()
                 
         self._viewDidLoad.send()
@@ -150,18 +148,14 @@ open class UIBaseViewController: UIViewController,
     }
     
     open override func viewWillLayoutSubviews() {
-        
-        print("viewWillLayoutSubviews")
-        
+                
         super.viewWillLayoutSubviews()
         self._viewWillLayoutSubviews.send()
                 
     }
     
     open override func viewDidLayoutSubviews() {
-        
-        print("viewDidLayoutSubviews")
-        
+                
         super.viewDidLayoutSubviews()
         self._viewDidLayoutSubviews.send()
         
@@ -173,8 +167,6 @@ open class UIBaseViewController: UIViewController,
     /// Subview frames are not guaranteed to have accurate values at this point.
     open func viewWillLoadLayout() {
         
-        print("viewWillLoadLayout")
-
         self._viewWillLoadLayout.send()
         
         DispatchQueue.main.async { [weak self] in
@@ -190,14 +182,11 @@ open class UIBaseViewController: UIViewController,
     /// This function is scheduled on the main-thread from `viewWillLoadLayout`.
     /// Subview frames should have accurate values at this point.
     open func viewDidLoadLayout() {
-        print("viewDidLoadLayout")
         self._viewDidLoadLayout.send()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
-        
-        print("viewWillAppear")
-        
+                
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(
@@ -212,9 +201,7 @@ open class UIBaseViewController: UIViewController,
     }
     
     open override func viewDidAppear(_ animated: Bool) {
-        
-        print("viewDidAppear")
-        
+                
         super.viewDidAppear(animated)
         
         self.isFirstAppearance = false
