@@ -114,4 +114,22 @@ Pod::Spec.new do |s|
 
     end
 
+    ## Vendors
+
+    ### Spider
+
+    s.subspec 'Vendor-SpiderCore' do |ss|
+
+        ss.source_files = 'Espresso/Classes/Core/Types/JSON/**/*', 
+                          'Espresso/Classes/Core/Types/URLRepresentable.swift'
+
+    end
+
+    # s.subspec 'Vendor-SpiderUIKit' do |ss|
+
+    #     ss.dependency 'Espresso/Vendor-SpiderCore'
+    #     ss.source_files = ''
+
+    # end
+
 end
