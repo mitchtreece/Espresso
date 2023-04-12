@@ -126,11 +126,4 @@ Pod::Spec.new do |s|
 
     end
 
-    # s.subspec 'Vendor-SpiderUIKit' do |ss|
-
-    #     ss.dependency 'Espresso/Vendor-SpiderCore'
-    #     ss.source_files = ''
-
-    # end
-
 end
