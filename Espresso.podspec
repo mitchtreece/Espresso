@@ -121,7 +121,8 @@ Pod::Spec.new do |s|
     s.subspec 'Vendor-SpiderCore' do |ss|
 
         ss.source_files = 'Espresso/Classes/Core/Types/JSON/**/*',
-                          'Espresso/Classes/Core/Types/URLRepresentable.swift'
+                          'Espresso/Classes/Core/Types/URLRepresentable.swift',
+                          'Espresso/Classes/Core/Extensions/NSObject+Espresso.swift'
 
     end
 
