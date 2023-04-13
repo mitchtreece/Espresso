@@ -7,6 +7,13 @@
 
 import UIKit
 
+// Ignore this import warning
+//
+// We need to import this so SPM modules
+// have access to 'Core' classes
+import Espresso
+////////////////////////////////////////
+
 internal class UIAnimationOperation: AsyncOperation {
     
     private var animation: UIAnimation
