@@ -28,20 +28,15 @@ pod 'Espresso', '~> 3.0'
 Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
 
 - `Core`: Core classes, extensions, & dependencies
-- `UI`
-    - `UI-Core`: General UI classes, extensions, & dependencies.
-    - `UI-UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
-    - `UI-SwiftUI`: [SwiftUI](https://developer.apple.com/documentation/swiftui) classes, extensions, & dependencies
-- `PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
-- `UIKit`: Aggregate subspec that includes everything related to [UIKit](https://developer.apple.com/documentation/uikit)
-- `SwiftUI`: Aggregate subspec that includes everything related to [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- `UI`: UI (UIKit & SwiftUI) classes, extension, & dependencies
+- `Promise`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
 - `All`: Aggregate subspec that includes **everything**
 
-If you're unsure of what you want/need, we also some "recipe" subspecs that provide a good starting point with bundled Espresso classes & common third-party dependecies.
+If you're unsure of what you want/need, we also some "recipe" subspecs that provide a good starting point with bundled Espresso modules & common third-party dependecies.
 
 - `Recipe-Modern-UIKit`
-    - `Espresso/UI-UIKit`
-    - `Espresso/PromiseKit`
+    - `Espresso/UI`
+    - `Espresso/Promise`
     - [Spider-Web](https://github.com/mitchtreece/Spider)`/All`
     - [Director](https://github.com/mitchtreece/Director)`/All`
     - [Swinject](https://github.com/Swinject/Swinject)

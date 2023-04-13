@@ -20,7 +20,7 @@
   "platforms": {
     "ios": "13.0"
   },
-  "default_subspecs": "UIKit",
+  "default_subspecs": "UI",
   "subspecs": [
     {
       "name": "Core",
@@ -33,45 +33,13 @@
     },
     {
       "name": "UI",
-      "dependencies": {
-        "Espresso/UI-Core": [
-
-        ],
-        "Espresso/UI-UIKit": [
-
-        ],
-        "Espresso/UI-SwiftUI": [
-
-        ]
-      }
-    },
-    {
-      "name": "UI-Core",
-      "source_files": "Sources/UI/Core/**/*",
+      "source_files": "Sources/UI/**/*",
       "dependencies": {
         "Espresso/Core": [
-
-        ]
-      }
-    },
-    {
-      "name": "UI-UIKit",
-      "source_files": "Sources/UI/UIKit/**/*",
-      "dependencies": {
-        "Espresso/UI-Core": [
 
         ],
         "SnapKit": [
           "~> 5.0"
-        ]
-      }
-    },
-    {
-      "name": "UI-SwiftUI",
-      "source_files": "Sources/UI/SwiftUI/**/*",
-      "dependencies": {
-        "Espresso/UI-UIKit": [
-
         ]
       }
     },
@@ -84,28 +52,6 @@
         ],
         "PromiseKit": [
           "~> 6.0"
-        ]
-      }
-    },
-    {
-      "name": "UIKit",
-      "dependencies": {
-        "Espresso/Core": [
-
-        ],
-        "Espresso/UI-UIKit": [
-
-        ]
-      }
-    },
-    {
-      "name": "SwiftUI",
-      "dependencies": {
-        "Espresso/Core": [
-
-        ],
-        "Espresso/UI-SwiftUI": [
-
         ]
       }
     },
@@ -124,9 +70,9 @@
       }
     },
     {
-      "name": "Recipe-Modern-UIKit",
+      "name": "Recipe-Modern",
       "dependencies": {
-        "Espresso/UI-UIKit": [
+        "Espresso/UI": [
 
         ],
         "Espresso/Promise": [
@@ -144,7 +90,7 @@
       }
     },
     {
-      "name": "Vendor-SpiderCore",
+      "name": "LibSupport-Spider",
       "source_files": [
         "Sources/Core/Types/JSON/**/*",
         "Sources/Core/Types/URLRepresentable.swift",

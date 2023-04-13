@@ -20,9 +20,7 @@ Pod::Spec.new do |s|
 
     # Subspecs
 
-    s.default_subspec = 'UIKit'
-
-    ## Core
+    s.default_subspec = 'UI'
 
     s.subspec 'Core' do |ss|
 
@@ -32,42 +30,14 @@ Pod::Spec.new do |s|
 
     end
 
-    ## UI
-
     s.subspec 'UI' do |ss|
 
-        ss.dependency     'Espresso/UI-Core'
-        ss.dependency     'Espresso/UI-UIKit'
-        ss.dependency     'Espresso/UI-SwiftUI'
-
-    end
-
-    s.subspec 'UI-Core' do |ss|
-
-        ss.source_files = 'Sources/UI/Core/**/*'
+        ss.source_files = 'Sources/UI/**/*'
 
         ss.dependency     'Espresso/Core'
-
-    end
-
-    s.subspec 'UI-UIKit' do |ss|
-
-        ss.source_files = 'Sources/UI/UIKit/**/*'
-
-        ss.dependency     'Espresso/UI-Core'
         ss.dependency     'SnapKit', '~> 5.0'
 
     end
-
-    s.subspec 'UI-SwiftUI' do |ss|
-
-        ss.source_files = 'Sources/UI/SwiftUI/**/*'
-
-        ss.dependency     'Espresso/UI-UIKit'
-
-    end
-
-    ## PromiseKit
 
     s.subspec 'Promise' do |ss|
 
@@ -80,20 +50,6 @@ Pod::Spec.new do |s|
 
     ## Aggregates
 
-    s.subspec 'UIKit' do |ss|
-
-        ss.dependency     'Espresso/Core'
-        ss.dependency     'Espresso/UI-UIKit'
-
-    end
-
-    s.subspec 'SwiftUI' do |ss|
-
-        ss.dependency     'Espresso/Core'
-        ss.dependency     'Espresso/UI-SwiftUI'
-
-    end
-
     s.subspec 'All' do |ss|
 
         ss.dependency     'Espresso/Core'
@@ -104,9 +60,9 @@ Pod::Spec.new do |s|
 
     ## Recipes
 
-    s.subspec 'Recipe-Modern-UIKit' do |ss|
+    s.subspec 'Recipe-Modern' do |ss|
 
-        ss.dependency     'Espresso/UI-UIKit'
+        ss.dependency     'Espresso/UI'
         ss.dependency     'Espresso/Promise'
         ss.dependency     'Spider-Web/All', '~> 2.0'
         ss.dependency     'Director/All',   '~> 1.0'
