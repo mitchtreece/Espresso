@@ -52,7 +52,7 @@ public class AsyncOperation: Operation {
         return self.state == .finished
     }
     
-    public override func start() {
+    open override func start() {
         
         if self.isCancelled {
             self.state = .finished
@@ -64,7 +64,7 @@ public class AsyncOperation: Operation {
         
     }
     
-    public override func main() {
+    open override func main() {
         
         if self.isCancelled {
             self.state = .finished
