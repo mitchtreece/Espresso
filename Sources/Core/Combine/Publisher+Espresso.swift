@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Dispatch
 
 public extension Publisher where Failure == Never /* Value */ {
     
