@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Espresso // Ignore warning, we need this for SPM modules
 
 /// `UIView` subclass that provides common
 /// properties & functions when backed by a view model.
