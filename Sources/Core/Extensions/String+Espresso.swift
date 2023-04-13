@@ -36,7 +36,8 @@ public extension String /* Size */ {
     /// - Parameter size: The constrained size.
     /// - Parameter attributes: The string attributes to use while calculating the size.
     /// - Returns: The string's display size.
-    func size(constrainedTo size: CGSize, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
+    func size(constrainedTo size: CGSize,
+              attributes: [NSAttributedString.Key: Any]?) -> CGSize {
         
         return (self as NSString).boundingRect(
             with: size,
@@ -52,38 +53,30 @@ public extension String /* Size */ {
     /// - Parameter height: The constrained height.
     /// - Parameter attributes: The string attributes to use while calculating the width.
     /// - Returns: The string's display width.
-    func width(forHeight height: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
+    func width(forHeight height: CGFloat,
+               attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
-        let constraint = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
-        return size(constrainedTo: constraint, attributes: attributes).width
+        return size(
+            constrainedTo: CGSize(width: CGFloat.greatestFiniteMagnitude, height: height),
+            attributes: attributes
+        )
+        .width
         
-    }
-    
-    /// Calculates the display width for the string using a constrained height & font.
-    /// - Parameter height: The constrained height.
-    /// - Parameter font: The font to use while calculating the width.
-    /// - Returns: The string's display width.
-    func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
-        return width(forHeight: height, attributes: [.font: font])
     }
     
     /// Calculates the display height for the string using a constrained width & attributes.
     /// - Parameter width: The constrained width.
     /// - Parameter attributes: The string attributes to use while calculating the height.
     /// - Returns: The string's display height.
-    func height(forWidth width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
+    func height(forWidth width: CGFloat,
+                attributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         
-        let constraint = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        return size(constrainedTo: constraint, attributes: attributes).height
+        return size(
+            constrainedTo: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+            attributes: attributes
+        )
+        .height
         
-    }
-    
-    /// Calculates the display height for the string using a constrained width & font.
-    /// - Parameter width: The constrained width.
-    /// - Parameter font: The font to use while calculating the height.
-    /// - Returns: The string's display height.
-    func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
-        return height(forWidth: width, attributes: [.font: font])
     }
     
 }
@@ -158,7 +151,8 @@ public extension String /* Random */ {
     /// Initializes a string with a random length & allowed character type.
     /// - Parameter length: The random string length.
     /// - Parameter allowedCharacters: The allowed character type; _defaults to alphanumeric_.
-    init(randomWithLength length: Int, allowedCharacters: CharacterType = .alphanumeric) {
+    init(randomWithLength length: Int,
+         allowedCharacters: CharacterType = .alphanumeric) {
         
         let randomCharacters = (0..<length).compactMap { _ in
             allowedCharacters.set.randomElement()
