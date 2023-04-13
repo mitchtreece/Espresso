@@ -39,6 +39,12 @@ let package = Package(
         ),
 
         .package(
+            name: "SnapKit",
+            url: "https://github.com/SnapKit/SnapKit",
+            .upToNextMajor(from: .init(5, 6, 0))
+        ),
+
+        .package(
             name: "Kingfisher",
             url: "https://github.com/onevcat/Kingfisher",
             .upToNextMajor(from: .init(7, 0, 0))
@@ -71,6 +77,11 @@ let package = Package(
             dependencies: [
 
                 .target(name: "Espresso"), // Core
+
+                .product(
+                    name: "SnapKit", 
+                    package: "SnapKit"
+                ),
 
                 .product(
                     name: "Kingfisher", 
