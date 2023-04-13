@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Dispatch
 import PromiseKit
 
 public extension Resolver where T == Void /* Void */ {
