@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Espresso // Ignore warning, we need this for SPM modules
 
 /// View controller transition base class.
 @objc open class UIViewControllerTransition: NSObject,

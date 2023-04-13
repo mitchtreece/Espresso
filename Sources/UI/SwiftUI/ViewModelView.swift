@@ -6,13 +6,7 @@
 //
 
 import SwiftUI
-
-// Ignore this import warning
-//
-// We need to import this so SPM modules
-// have access to 'Core' classes
-import Espresso
-////////////////////////////////////////
+import Espresso // Ignore warning, we need this for SPM modules
 
 /// Protocol describing a view that is backed by a view model.
 public protocol ViewModelView: View {
