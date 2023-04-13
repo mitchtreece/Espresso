@@ -27,7 +27,7 @@ public enum Direction {
     /// `up <-> down`
     ///
     /// `left <-> right`
-    func inverted() -> Direction {
+    public func inverted() -> Direction {
                 
         switch self {
         case .up: return .down
