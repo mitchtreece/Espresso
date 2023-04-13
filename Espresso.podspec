@@ -114,11 +114,11 @@ Pod::Spec.new do |s|
 
     end
 
-    ## Vendors
+    ## Library Support
 
     ### Spider
 
-    s.subspec 'Vendor-SpiderCore' do |ss|
+    s.subspec 'LibSupport-Spider' do |ss|
 
         ss.source_files = 'Sources/Core/Types/JSON/**/*',
                           'Sources/Core/Types/URLRepresentable.swift',
