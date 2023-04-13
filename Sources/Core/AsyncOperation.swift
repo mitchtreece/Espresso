@@ -8,7 +8,7 @@
 import Foundation
 
 /// An async `Operation` subclass.
-public class AsyncOperation: Operation {
+open class AsyncOperation: Operation {
     
     /// Representation of the various async operation states.
     public enum State: String {
@@ -40,15 +40,15 @@ public class AsyncOperation: Operation {
         
     }
     
-    public override var isAsynchronous: Bool {
+    open override var isAsynchronous: Bool {
         return true
     }
     
-    public override var isExecuting: Bool {
+    open override var isExecuting: Bool {
         return self.state == .executing
     }
     
-    public override var isFinished: Bool {
+    open override var isFinished: Bool {
         return self.state == .finished
     }
     
