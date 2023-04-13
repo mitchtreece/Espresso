@@ -7,6 +7,13 @@
 
 import UIKit
 
+// Ignore this import warning
+//
+// We need to import this so SPM modules
+// have access to 'Core' classes
+import Espresso
+////////////////////////////////////////
+
 /// `UICollectionViewCell` subclass that provides
 /// common properties & functions when backed by a view model.
 open class UIViewModelCollectionViewCell<V: ViewModel>: UIBaseCollectionViewCell {

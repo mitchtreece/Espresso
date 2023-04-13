@@ -7,6 +7,13 @@
 
 import UIKit
 
+// Ignore this import warning
+//
+// We need to import this so SPM modules
+// have access to 'Core' classes
+import Espresso
+////////////////////////////////////////
+
 /// Specialized base view-model class that manages a `UIViewController`.
 ///
 /// This should never be used directly. Instead, create a specialized `UIViewControllerModel` by subclassing it.
