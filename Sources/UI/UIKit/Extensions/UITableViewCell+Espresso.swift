@@ -7,6 +7,13 @@
 
 import UIKit
 
+// Ignore this import warning
+//
+// We need to import this so SPM modules
+// have access to 'Core' classes
+import Espresso
+////////////////////////////////////////
+
 public extension UITableViewCell /* Register */ {
         
     /// Registers a cell's nib in a table view with a specified name.

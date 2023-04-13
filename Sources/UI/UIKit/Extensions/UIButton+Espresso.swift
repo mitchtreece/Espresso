@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 private struct AssociatedKeys {
     static var extendedEdgeInset: UInt8 = 0
