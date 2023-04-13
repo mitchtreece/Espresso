@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'Core' do |ss|
 
-        ss.source_files = 'Espresso/Classes/Core/**/*'
+        ss.source_files = 'Sources/Core/**/*'
 
         ss.dependency     'CombineExt', '~> 1.0'
 
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'UI-Core' do |ss|
 
-        ss.source_files = 'Espresso/Classes/UI/Core/**/*'
+        ss.source_files = 'Sources/UI/Core/**/*'
 
         ss.dependency     'Espresso/Core'
 
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'UI-UIKit' do |ss|
 
-        ss.source_files = 'Espresso/Classes/UI/UIKit/**/*'
+        ss.source_files = 'Sources/UI/UIKit/**/*'
 
         ss.dependency     'Espresso/UI-Core'
         ss.dependency     'SnapKit', '~> 5.0'
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'UI-SwiftUI' do |ss|
 
-        ss.source_files = 'Espresso/Classes/UI/SwiftUI/**/*'
+        ss.source_files = 'Sources/UI/SwiftUI/**/*'
 
         ss.dependency     'Espresso/UI-UIKit'
 
@@ -69,9 +69,9 @@ Pod::Spec.new do |s|
 
     ## PromiseKit
 
-    s.subspec 'PromiseKit' do |ss|
+    s.subspec 'Promise' do |ss|
 
-        ss.source_files = 'Espresso/Classes/PromiseKit/**/*'
+        ss.source_files = 'Sources/Promise/**/*'
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'PromiseKit', '~> 6.0'
@@ -98,7 +98,7 @@ Pod::Spec.new do |s|
 
         ss.dependency     'Espresso/Core'
         ss.dependency     'Espresso/UI'
-        ss.dependency     'Espresso/PromiseKit'
+        ss.dependency     'Espresso/Promise'
 
     end
 
@@ -107,7 +107,7 @@ Pod::Spec.new do |s|
     s.subspec 'Recipe-Modern-UIKit' do |ss|
 
         ss.dependency     'Espresso/UI-UIKit'
-        ss.dependency     'Espresso/PromiseKit'
+        ss.dependency     'Espresso/Promise'
         ss.dependency     'Spider-Web/All', '~> 2.0'
         ss.dependency     'Director/All',   '~> 1.0'
         ss.dependency     'Swinject',       '~> 2.0'
@@ -120,9 +120,9 @@ Pod::Spec.new do |s|
 
     s.subspec 'Vendor-SpiderCore' do |ss|
 
-        ss.source_files = 'Espresso/Classes/Core/Types/JSON/**/*',
-                          'Espresso/Classes/Core/Types/URLRepresentable.swift',
-                          'Espresso/Classes/Core/Extensions/NSObject+Espresso.swift'
+        ss.source_files = 'Sources/Core/Types/JSON/**/*',
+                          'Sources/Core/Types/URLRepresentable.swift',
+                          'Sources/Core/Extensions/NSObject+Espresso.swift'
 
     end
 
