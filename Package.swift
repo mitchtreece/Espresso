@@ -8,29 +8,25 @@ let package = Package(
     products: [
 
         .library(
-            name: "Espresso",
-            targets: ["Core"]
+            name: "Core",
+            targets: ["Espresso"]
         ),
 
         .library(
-            name: "EspressoUI",
-            targets: [
-                "UICore",
-                "UIKit",
-                "SwiftUI"
-            ]
+            name: "UI",
+            targets: ["EspressoUI"]
         ),
 
         .library(
-            name: "EspressoPromise", 
-            targets: ["Promise"]
+            name: "Promise", 
+            targets: ["EspressoPromise"]
         ),
 
         // MARK: Library Support
 
         .library(
-            name: "EspressoLibSupport_Spider", 
-            targets: ["LibSupport_Spider"]
+            name: "LibSupport_Spider", 
+            targets: ["EspressoLibSupport_Spider"]
         )
 
     ],
@@ -58,7 +54,7 @@ let package = Package(
     targets: [
 
         .target(
-            name: "Core",
+            name: "Espresso",
             dependencies: [
 
                 .product(
@@ -71,18 +67,10 @@ let package = Package(
         ),
 
         .target(
-            name: "UICore",
-            dependencies: [
-                .target(name: "Core")
-            ],
-            path: "Sources/UI/Core"
-        ),
-
-        .target(
-            name: "UIKit",
+            name: "EspressoUI",
             dependencies: [
 
-                .target(name: "UICore"),
+                .target(name: "Core"),
 
                 .product(
                     name: "Kingfisher", 
@@ -90,19 +78,11 @@ let package = Package(
                 )
 
             ],
-            path: "Sources/UI/UIKit"
+            path: "Sources/UI"
         ),
 
         .target(
-            name: "SwiftUI",
-            dependencies: [
-                .target(name: "UIKit")
-            ],
-            path: "Sources/UI/SwiftUI"
-        ),
-
-        .target(
-            name: "Promise",
+            name: "EspressoPromise",
             dependencies: [
 
                 .target(name: "Core"),
@@ -119,7 +99,7 @@ let package = Package(
         // MARK: Library Support
 
         .target(
-            name: "LibSupport_Spider",
+            name: "EspressoLibSupport_Spider",
             dependencies: [],
             path: "Sources/LibSupport/Spider"
         )
