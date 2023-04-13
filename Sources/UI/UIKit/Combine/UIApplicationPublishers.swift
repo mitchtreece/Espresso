@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Espresso // Ignore warning, we need this for SPM modules
 
 /// Application publisher collection class.
 public class UIApplicationPublishers {
