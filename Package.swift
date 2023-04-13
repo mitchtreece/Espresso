@@ -70,7 +70,7 @@ let package = Package(
             name: "EspressoUI",
             dependencies: [
 
-                .target(name: "Core"),
+                .target(name: "Espresso"), // Core
 
                 .product(
                     name: "Kingfisher", 
@@ -85,7 +85,7 @@ let package = Package(
             name: "EspressoPromise",
             dependencies: [
 
-                .target(name: "Core"),
+                .target(name: "Espresso"), // Core
 
                 .product(
                     name: "PromiseKit", 
