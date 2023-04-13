@@ -125,8 +125,7 @@ public extension AppleDevice /* Helpers */ {
             fm.fileExists(atPath: "/bin/bash") ||
             fm.fileExists(atPath: "/usr/sbin/sshd") ||
             fm.fileExists(atPath: "/etc/apt") ||
-            fm.fileExists(atPath: "/private/var/lib/apt/") ||
-            UIApplication.shared.canOpenURL(URL(string: "cydia://package/com.example.package")!) {
+            fm.fileExists(atPath: "/private/var/lib/apt/") {
 
                 return true
 
@@ -135,8 +134,15 @@ public extension AppleDevice /* Helpers */ {
         // Check for sandbox violation
 
         do {
-            try "jailbroken".write(toFile: "/private/jailbroken.txt", atomically: true, encoding: .utf8)
+            
+            try "jailbroken".write(
+                toFile: "/private/jailbroken.txt",
+                atomically: true,
+                encoding: .utf8
+            )
+            
             return true
+            
         }
         catch {
             return false
