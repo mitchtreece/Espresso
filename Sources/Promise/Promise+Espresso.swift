@@ -5,6 +5,7 @@
 //  Created by Mitch Treece on 7/25/22.
 //
 
+import Foundation
 import Combine
 import Dispatch
 import PromiseKit
