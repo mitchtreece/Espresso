@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Espresso // Ignore warning, we need this for SPM modules
 
 private struct AssociatedKeys {
     static var nibs: UInt8 = 0
