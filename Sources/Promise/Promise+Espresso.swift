@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Dispatch
+import Espresso
 import PromiseKit
 
 public extension Resolver where T == Void /* Void */ {
