@@ -8,24 +8,24 @@ let package = Package(
     products: [
 
         .library(
-            name: "Core",
+            name: "Espresso",
             targets: ["Espresso"]
         ),
 
         .library(
-            name: "UI",
+            name: "EspressoUI",
             targets: ["EspressoUI"]
         ),
 
         .library(
-            name: "Promise", 
+            name: "EspressoPromise", 
             targets: ["EspressoPromise"]
         ),
 
         // MARK: Library Support
 
         .library(
-            name: "LibSupport_Spider", 
+            name: "EspressoLibSupport_Spider", 
             targets: ["EspressoLibSupport_Spider"]
         )
 
