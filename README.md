@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/Version-3.0.3-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
+![Version](https://img.shields.io/badge/Version-3.1.0-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![iOS](https://img.shields.io/badge/iOS-13--16-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![Swift](https://img.shields.io/badge/Swift-5-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![Xcode](https://img.shields.io/badge/Xcode-14-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
@@ -16,32 +16,29 @@ Everything is better with a little coffee. ☕️
 
 ## Installation
 
-### CocoaPods
+### SPM
+
+The easiest way to get started is by installing via Xcode. Just add Espresso as a Swift package & choose the modules you want.
+
+If you're adding Espresso as a dependency of your own Swift package, just add a package entry like the one below.
 
 ```
-use_frameworks!
-pod 'Espresso', '~> 3.0'
+.package(
+    name: "Espresso",
+    url: "https://github.com/mitchtreece/Espresso",
+    .upToNextMajor(from: .init(3, 0, 0))
+)
 ```
 
-#### Subspecs
+#### Modules
 
-Espresso is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `UIKit` subspec is installed.
+Espresso is broken down into several modules making it quick & easy to pick and choose exactly what you need.
 
-- `Core`: Core classes, extensions, & dependencies
-- `UI`: UI (UIKit & SwiftUI) classes, extension, & dependencies
-- `Promise`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
-- `All`: Aggregate subspec that includes **everything**
+- `Espresso`: Core classes, extensions, & dependencies
+- `EspressoUI`: UIKit & SwiftUI classes, extension, & dependencies
+- `EspressoPromise`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
 
-If you're unsure of what you want/need, we also some "recipe" subspecs that provide a good starting point with bundled Espresso modules & common third-party dependecies.
-
-- `Recipe-Modern-UIKit`
-    - `Espresso/UI`
-    - `Espresso/Promise`
-    - [Spider-Web](https://github.com/mitchtreece/Spider)`/All`
-    - [Director](https://github.com/mitchtreece/Director)`/All`
-    - [Swinject](https://github.com/Swinject/Swinject)
-
-## Espresso
+## Usage
 
 Espresso adds a bunch of useful features and extensions to components commonly used while developing for Apple platforms.
 
