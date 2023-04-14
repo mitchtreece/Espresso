@@ -11,8 +11,8 @@
 
 # Espresso
 
-Espresso is a Swift convenience library for iOS.<br>
-Everything is better with a little coffee. ☕️
+Swift convenience library for iOS 📱<br>
+Everything is better with a little coffee ☕️
 
 ## Installation
 
@@ -20,7 +20,7 @@ Everything is better with a little coffee. ☕️
 
 The easiest way to get started is by installing via Xcode. Just add Espresso as a Swift package & choose the modules you want.
 
-If you're adding Espresso as a dependency of your own Swift package, just add a package entry like the one below.
+If you're adding Espresso as a dependency of your own Swift package, just add a package entry to your dependencies.
 
 ```
 .package(
@@ -30,13 +30,19 @@ If you're adding Espresso as a dependency of your own Swift package, just add a 
 )
 ```
 
-#### Modules
-
 Espresso is broken down into several modules making it quick & easy to pick and choose exactly what you need.
 
 - `Espresso`: Core classes, extensions, & dependencies
 - `EspressoUI`: UIKit & SwiftUI classes, extension, & dependencies
 - `EspressoPromise`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
+
+### CocoaPods
+
+As of Espresso `3.1.0`, CocoaPods support has been dropped in favor of SPM. If you're depending on an Espresso version prior to `3.1.0`, you can still integrate using CocoaPods.
+
+```
+pod 'Espresso', '~> 3.1.0'
+```
 
 ## Usage
 
