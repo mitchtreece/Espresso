@@ -1,6 +1,0 @@
-framework module Espresso {
-  umbrella header "Espresso-umbrella.h"
-
-  export *
-  module * { export * }
-}
