@@ -51,12 +51,16 @@ public enum Environment: String {
     /// The current environment.
     ///
     /// The environment is determined using the current process's
-    /// launch arguments & compiler flags. Launch arguments will
-    /// be evaluated first, followed by compiler flags. If an
-    /// environment isn't specified, `production` will be returned.
+    /// launch arguments, environment variables, & compiler flags.
+    /// Launch arguments will be evaluated first, followed by
+    /// environment variables & compiler flags. If an environment isn't specified,
+    /// `production` will be returned.
     ///
-    /// Launch arguments can be specified using the following format
-    /// `-env={e}`, where `{e}` is replaced by your desired environment.
+    /// Launch arguments can be specified using the following format:
+    /// `-environment={e}`, where `{e}` is replaced by your desired environment.
+    ///
+    /// Environment variables can be specified using the following key/value format:
+    /// `environment: {e}`, where `{e}` is replaced by your desired environment
     ///
     /// Compiler flags can be specified by adding an entry to your
     /// project's Build Settings → Swift Compiler - Custom Flags →
@@ -75,67 +79,74 @@ public enum Environment: String {
         if let override {
             return override
         }
-        
-        // We first check the process args for a
-        // specified environment
-        
-        var env: Environment?
+                
+        // Environment Variables & Launch Args
 
-        let args = ProcessInfo
-            .processInfo
-            .arguments
+        var envString: String?
         
-        guard let envArg = args
-            .first(where: { $0.contains("-env=") }) else { return .production }
+        if let envVar = ProcessInfo.processInfo.environment["environment"] {
+            envString = envVar.lowercased()
+        }
         
-        let components = envArg
-            .replacingOccurrences(of: " ", with: "")
-            .components(separatedBy: "=")
-        
-        guard components.count > 1 else { return .production }
-        
-        let envString = components[1]
-            .lowercased()
-        
-        switch envString {
-        case "dev",
-             "develop",
-             "development",
-             "debug":
+        if let envArg = ProcessInfo.processInfo.arguments
+            .first(where: { $0.contains("-environment=") }) {
             
-            env = .development
+            let components = envArg
+                .replacingOccurrences(of: " ", with: "")
+                .components(separatedBy: "=")
             
-        case "test",
-             "testing",
-             "qa",
-             "uat":
-            
-            env = .testing
-            
-        case "stg",
-             "stage",
-             "staging":
-            
-            env = .staging
-            
-        case "pre",
-             "preprod":
-            
-            env = .preproduction
-            
-        default:
-            
-            break
+            if components.count > 1 {
+                
+                envString = components[1]
+                    .lowercased()
+                
+            }
             
         }
         
-        if let env {
-            return env
+        if let string = envString {
+            
+            var env: Environment?
+            
+            switch string {
+            case "dev",
+                 "develop",
+                 "development",
+                 "debug":
+
+                env = .development
+
+            case "test",
+                 "testing",
+                 "qa",
+                 "uat":
+
+                env = .testing
+
+            case "stg",
+                 "stage",
+                 "staging":
+
+                env = .staging
+
+            case "pre",
+                 "preprod":
+
+                env = .preproduction
+
+            default:
+                
+                break
+                
+            }
+            
+            if let env {
+                return env
+            }
+            
         }
         
-        // We couldn't find an environment process arg.
-        // Let's check our compiler flags. If we can't
-        // find an environment there, just return `production`.
+        // Compiler Flags
         
         #if DEV || DEVELOP || DEVELOPMENT || DEBUG
         return .development
