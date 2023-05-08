@@ -19,11 +19,11 @@ class AppDelegate: UIResponder,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Environment
-        
-        let env = application.environment
+                
+        let env = Environment.current
         var envString = "☕️ application environment: \(env.longName)"
         
-        if application.isDebugSessionAttached {
+        if ProcessInfo.processInfo.isDebugSessionAttached {
             envString += " [debug]"
         }
         
