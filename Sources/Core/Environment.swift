@@ -25,14 +25,6 @@ public enum Environment: String {
     /// A production environment.
     case production = "prod"
     
-    public static var infoPlist: [String: Any]? {
-        return Bundle.main.infoDictionary
-    }
-    
-    public static var infoPlistTestValue: Any? {
-        return self.infoPlist?["test_key"]
-    }
-    
     /// The environment's short name.
     public var shortName: String {
         return self.rawValue
@@ -136,10 +128,13 @@ public enum Environment: String {
     /// The current environment.
     ///
     /// The environment is determined using the current process's
-    /// launch arguments, environment variables, & compiler flags.
-    /// Launch arguments will be evaluated first, followed by
-    /// environment variables & compiler flags. If an environment
-    /// isn't specified, `production` will be returned.
+    /// bundled info plist, launch arguments, environment variables, & compiler flags.
+    /// Info plist entries are evaluated first, followed by launch arguments,
+    /// environment variables, & compiler flags. If an environment isn't specified,
+    /// `production` will be returned.
+    ///
+    /// An info plist entry can be added using the following key/value format:
+    /// `environment: {e}`, where `{e}` is replaced by your desired environment.
     ///
     /// Launch arguments can be specified using the following format:
     /// `-environment={e}`, where `{e}` is replaced by your desired environment.
@@ -163,31 +158,40 @@ public enum Environment: String {
     ///
     /// **Note**
     ///
-    /// {XXX} is the preferred method of specifying an environment.
-    ///
     /// Launch arguments & environment variables are stripped out of
     /// packaged builds. These will only work when building directly
     /// from an Xcode scheme.
     ///
     /// Compiler flags are *module* specific. Meaning, if you've integrated Espresso
     /// using SPM, they cannot be read at compile-time.
+    ///
+    /// **Adding an info plist entry is the preferred method of specifying an environment.**
+    /// This method works when building from Xcode, or when running via a packaged build.
     public static var current: Environment {
         
         if let override {
             return override
         }
+                
+        // Info plist
         
-        let info = ProcessInfo.processInfo
+        if let string = Bundle.main.infoDictionary?["environment"] as? String,
+           let env = environment(from: string) {
+            
+            return env
+            
+        }
                 
         // Environment Variables & Launch Args
 
+        let processInfo = ProcessInfo.processInfo
         var envString: String?
         
-        if let envVar = info.environment["environment"] {
+        if let envVar = processInfo.environment["environment"] {
             envString = envVar.lowercased()
         }
         
-        if let envArg = info.arguments
+        if let envArg = processInfo.arguments
             .first(where: { $0.contains("-environment=") }) {
             
             let components = envArg
@@ -203,56 +207,15 @@ public enum Environment: String {
             
         }
         
-        if let string = envString {
+        if let string = envString,
+           let env = environment(from: string) {
             
-            var env: Environment?
-            
-            switch string {
-            case "dev",
-                 "develop",
-                 "development",
-                 "debug":
-
-                env = .development
-
-            case "test",
-                 "testing",
-                 "qa",
-                 "uat":
-
-                env = .testing
-
-            case "stg",
-                 "stage",
-                 "staging":
-
-                env = .staging
-
-            case "pre",
-                 "pre_prod",
-                 "pre_production":
-
-                env = .preproduction
-                
-            case "prod",
-                 "production":
-                
-                env = .production
-
-            default:
-                
-                break
-                
-            }
-            
-            if let env {
-                return env
-            }
+            return env
             
         }
         
         // Compiler Flags
-        
+                
         #if DEV || DEVELOP || DEVELOPMENT || DEBUG
         return .development
         #elseif TEST || TESTING || QA || UAT
@@ -266,6 +229,48 @@ public enum Environment: String {
         #else
         return .production
         #endif
+        
+    }
+    
+    private static func environment(from string: String) -> Environment? {
+        
+        switch string {
+        case "dev",
+             "develop",
+             "development",
+             "debug":
+
+            return .development
+
+        case "test",
+             "testing",
+             "qa",
+             "uat":
+
+            return .testing
+
+        case "stg",
+             "stage",
+             "staging":
+
+            return .staging
+
+        case "pre",
+             "pre_prod",
+             "pre_production":
+
+            return .preproduction
+            
+        case "prod",
+             "production":
+            
+            return .production
+
+        default:
+            
+            return nil
+            
+        }
         
     }
     
