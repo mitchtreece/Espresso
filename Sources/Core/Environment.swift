@@ -134,7 +134,7 @@ public enum Environment: String {
     /// `production` will be returned.
     ///
     /// An info plist entry can be added using the following key/value format:
-    /// `environment: {e}`, where `{e}` is replaced by your desired environment.
+    /// `Environment: {e}`, where `{e}` is replaced by your desired environment.
     ///
     /// Launch arguments can be specified using the following format:
     /// `-environment={e}`, where `{e}` is replaced by your desired environment.
@@ -175,8 +175,14 @@ public enum Environment: String {
                 
         // Info plist
         
-        if let string = Bundle.main.infoDictionary?["environment"] as? String,
+        if let string = Bundle.main.infoDictionary?["Environment"] as? String,
            let env = environment(from: string) {
+            
+            return env
+            
+        }
+        else if let string = Bundle.main.infoDictionary?["environment"] as? String,
+                let env = environment(from: string) {
             
             return env
             
