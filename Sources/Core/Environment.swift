@@ -42,7 +42,84 @@ public enum Environment: String {
         }
         
     }
+    
+    /// The environment's launch arguments.
+    public var arguments: [String] {
         
+        return ProcessInfo
+            .processInfo
+            .arguments
+        
+    }
+    
+    /// The environment's variables.
+    public var variables: [String: String] {
+        
+        return ProcessInfo
+            .processInfo
+            .environment
+        
+    }
+    
+    /// Flag indicating if the process is currently attached to a debug session.
+    ///
+    /// This will likely (but not always) be an Xcode debug session.
+    public var isDebugSessionAttached: Bool {
+        
+        return ProcessInfo
+            .processInfo
+            .isDebugSessionAttached
+        
+    }
+    
+    /// Flag indicating if the environment is `production`.
+    public var isProduction: Bool {
+        
+        switch self {
+        case .production: return true
+        default: return false
+        }
+        
+    }
+    
+    /// Flag indicating if the environment is `testing`.
+    public var isTesting: Bool {
+        
+        switch self {
+        case .testing: return true
+        default: return false
+        }
+        
+    }
+    
+    /// Flag indicating if the environment is `development`.
+    public var isDevelopment: Bool {
+        
+        switch self {
+        case .development: return true
+        default: return false
+        }
+        
+    }
+        
+    /// Flag indicating if the environment is `development`
+    /// _or_ `testing`.
+    public var isDevelopmentOrTesting: Bool {
+        return self.isDevelopment || self.isTesting
+    }
+    
+    /// Flag indicating if the environment is `development`,
+    /// `testing`, _or_ connected to a debug session.
+    public var isDevelopmentOrTestingOrDebug: Bool {
+        return self.isDevelopment || self.isTesting || self.isDebugSessionAttached
+    }
+
+    /// Flag indicating if the environment is `development`
+    /// _or_ connected to a debug session.
+    public var isDevelopmentOrDebug: Bool {
+        return self.isDevelopment || self.isDebugSessionAttached
+    }
+    
     /// The environment override.
     ///
     /// Setting this will lock the environment to a specific value.
@@ -72,7 +149,7 @@ public enum Environment: String {
     /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
     /// Testing = (TEST, TESTING, QA, UAT)
     /// Staging = (STG, STAGE, STAGING)
-    /// Pre-Production = (PRE, PREPROD, PRE_PRODUCTION)
+    /// Pre-Production = (PRE, PRE_PROD, PRE_PRODUCTION)
     /// Production = (PROD, PRODUCTION)
     /// ```
     ///
@@ -91,16 +168,18 @@ public enum Environment: String {
         if let override {
             return override
         }
+        
+        let info = ProcessInfo.processInfo
                 
         // Environment Variables & Launch Args
 
         var envString: String?
         
-        if let envVar = ProcessInfo.processInfo.environment["environment"] {
+        if let envVar = info.environment["environment"] {
             envString = envVar.lowercased()
         }
         
-        if let envArg = ProcessInfo.processInfo.arguments
+        if let envArg = info.arguments
             .first(where: { $0.contains("-environment=") }) {
             
             let components = envArg
@@ -142,7 +221,7 @@ public enum Environment: String {
                 env = .staging
 
             case "pre",
-                 "preprod",
+                 "pre_prod",
                  "pre_production":
 
                 env = .preproduction
@@ -172,7 +251,7 @@ public enum Environment: String {
         return .testing
         #elseif STG || STAGE || STAGING
         return .staging
-        #elseif PRE || PREPROD || PRE_PRODUCTION
+        #elseif PRE || PRE_PROD || PRE_PRODUCTION
         return .preproduction
         #elseif PROD || PRODUCTION
         return .production
@@ -180,56 +259,6 @@ public enum Environment: String {
         return .production
         #endif
         
-    }
-    
-    // MARK: Flags
-    
-    /// Flag indicating if the environment is `production`.
-    public var isProduction: Bool {
-        
-        switch self {
-        case .production: return true
-        default: return false
-        }
-        
-    }
-    
-    /// Flag indicating if the environment is `testing`.
-    public var isTesting: Bool {
-        
-        switch self {
-        case .testing: return true
-        default: return false
-        }
-        
-    }
-    
-    /// Flag indicating if the environment is `development`.
-    public var isDevelopment: Bool {
-        
-        switch self {
-        case .development: return true
-        default: return false
-        }
-        
-    }
-        
-    /// Flag indicating if the environment is `development`
-    /// _or_ `testing`.
-    public var isDevelopmentOrTesting: Bool {
-        return self.isDevelopment || self.isTesting
-    }
-    
-    /// Flag indicating if the environment is `development`,
-    /// `testing`, _or_ connected to a debug session.
-    public var isDevelopmentOrTestingOrDebug: Bool {
-        return self.isDevelopment || self.isTesting || ProcessInfo.processInfo.isDebugSessionAttached
-    }
-
-    /// Flag indicating if the environment is `development`
-    /// _or_ connected to a debug session.
-    public var isDevelopmentOrDebug: Bool {
-        return self.isDevelopment || ProcessInfo.processInfo.isDebugSessionAttached
     }
     
 }
