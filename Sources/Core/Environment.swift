@@ -42,116 +42,35 @@ public enum Environment: String {
         }
         
     }
+    
+    /// The environment's launch arguments.
+    public var arguments: [String] {
         
-    /// The environment override.
-    ///
-    /// Setting this will lock the environment to a specific value.
-    public static var override: Environment?
-        
-    /// The current environment.
-    ///
-    /// The environment is determined using the current process's
-    /// launch arguments & compiler flags. Launch arguments will
-    /// be evaluated first, followed by compiler flags. If an
-    /// environment isn't specified, `production` will be returned.
-    ///
-    /// Launch arguments can be specified using the following format
-    /// `-env={e}`, where `{e}` is replaced by your desired environment.
-    ///
-    /// Compiler flags can be specified by adding an entry to your
-    /// project's Build Settings → Swift Compiler - Custom Flags →
-    /// Active Compilation Conditions.
-    ///
-    /// Supported environments:
-    ///
-    /// ```
-    /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
-    /// Testing = (TEST, TESTING, QA, UAT)
-    /// Staging = (STG, STAGE, STAGING)
-    /// Pre-Production = (PRE, PREPROD)
-    /// ```
-    public static var current: Environment {
-        
-        if let override {
-            return override
-        }
-        
-        // We first check the process args for a
-        // specified environment
-        
-        var env: Environment?
-
-        let args = ProcessInfo
+        return ProcessInfo
             .processInfo
             .arguments
         
-        guard let envArg = args
-            .first(where: { $0.contains("-env=") }) else { return .production }
+    }
+    
+    /// The environment's variables.
+    public var variables: [String: String] {
         
-        let components = envArg
-            .replacingOccurrences(of: " ", with: "")
-            .components(separatedBy: "=")
-        
-        guard components.count > 1 else { return .production }
-        
-        let envString = components[1]
-            .lowercased()
-        
-        switch envString {
-        case "dev",
-             "develop",
-             "development",
-             "debug":
-            
-            env = .development
-            
-        case "test",
-             "testing",
-             "qa",
-             "uat":
-            
-            env = .testing
-            
-        case "stg",
-             "stage",
-             "staging":
-            
-            env = .staging
-            
-        case "pre",
-             "preprod":
-            
-            env = .preproduction
-            
-        default:
-            
-            break
-            
-        }
-        
-        if let env {
-            return env
-        }
-        
-        // We couldn't find an environment process arg.
-        // Let's check our compiler flags. If we can't
-        // find an environment there, just return `production`.
-        
-        #if DEV || DEVELOP || DEVELOPMENT || DEBUG
-        return .development
-        #elseif TEST || TESTING || QA || UAT
-        return .testing
-        #elseif STG || STAGE || STAGING
-        return .staging
-        #elseif PRE || PREPROD
-        return .preproduction
-        #else
-        return .production
-        #endif
+        return ProcessInfo
+            .processInfo
+            .environment
         
     }
     
-    // MARK: Flags
+    /// Flag indicating if the process is currently attached to a debug session.
+    ///
+    /// This will likely (but not always) be an Xcode debug session.
+    public var isDebugSessionAttached: Bool {
+        
+        return ProcessInfo
+            .processInfo
+            .isDebugSessionAttached
+        
+    }
     
     /// Flag indicating if the environment is `production`.
     public var isProduction: Bool {
@@ -192,13 +111,173 @@ public enum Environment: String {
     /// Flag indicating if the environment is `development`,
     /// `testing`, _or_ connected to a debug session.
     public var isDevelopmentOrTestingOrDebug: Bool {
-        return self.isDevelopment || self.isTesting || ProcessInfo.processInfo.isDebugSessionAttached
+        return self.isDevelopment || self.isTesting || self.isDebugSessionAttached
     }
 
     /// Flag indicating if the environment is `development`
     /// _or_ connected to a debug session.
     public var isDevelopmentOrDebug: Bool {
-        return self.isDevelopment || ProcessInfo.processInfo.isDebugSessionAttached
+        return self.isDevelopment || self.isDebugSessionAttached
+    }
+    
+    /// The environment override.
+    ///
+    /// Setting this will lock the environment to a specific value.
+    public static var override: Environment?
+        
+    /// The current environment.
+    ///
+    /// The environment is determined using the current process's
+    /// bundled info plist, launch arguments, environment variables, & compiler flags.
+    /// Info plist entries are evaluated first, followed by launch arguments,
+    /// environment variables, & compiler flags. If an environment isn't specified,
+    /// `production` will be returned.
+    ///
+    /// An info plist entry can be added using the following key/value format:
+    /// `Environment: {e}`, where `{e}` is replaced by your desired environment.
+    ///
+    /// Launch arguments can be specified using the following format:
+    /// `-environment={e}`, where `{e}` is replaced by your desired environment.
+    ///
+    /// Environment variables can be specified using the following key/value format:
+    /// `environment: {e}`, where `{e}` is replaced by your desired environment
+    ///
+    /// Compiler flags can be specified by adding an entry to your
+    /// project's Build Settings → Swift Compiler - Custom Flags →
+    /// Active Compilation Conditions.
+    ///
+    /// Supported environments:
+    ///
+    /// ```
+    /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
+    /// Testing = (TEST, TESTING, QA, UAT)
+    /// Staging = (STG, STAGE, STAGING)
+    /// Pre-Production = (PRE, PRE_PROD, PRE_PRODUCTION)
+    /// Production = (PROD, PRODUCTION)
+    /// ```
+    ///
+    /// **Note**
+    ///
+    /// Launch arguments & environment variables are stripped out of
+    /// packaged builds. These will only work when building directly
+    /// from an Xcode scheme.
+    ///
+    /// Compiler flags are *module* specific. Meaning, if you've integrated Espresso
+    /// using SPM, they cannot be read at compile-time.
+    ///
+    /// **Adding an info plist entry is the preferred method of specifying an environment.**
+    /// This method works when building from Xcode, or when running via a packaged build.
+    public static var current: Environment {
+        
+        if let override {
+            return override
+        }
+                
+        // Info plist
+        
+        if let string = Bundle.main.infoDictionary?["Environment"] as? String,
+           let env = environment(from: string) {
+            
+            return env
+            
+        }
+        else if let string = Bundle.main.infoDictionary?["environment"] as? String,
+                let env = environment(from: string) {
+            
+            return env
+            
+        }
+                
+        // Environment Variables & Launch Args
+
+        let processInfo = ProcessInfo.processInfo
+        var envString: String?
+        
+        if let envVar = processInfo.environment["environment"] {
+            envString = envVar.lowercased()
+        }
+        
+        if let envArg = processInfo.arguments
+            .first(where: { $0.contains("-environment=") }) {
+            
+            let components = envArg
+                .replacingOccurrences(of: " ", with: "")
+                .components(separatedBy: "=")
+            
+            if components.count > 1 {
+                
+                envString = components[1]
+                    .lowercased()
+                
+            }
+            
+        }
+        
+        if let string = envString,
+           let env = environment(from: string) {
+            
+            return env
+            
+        }
+        
+        // Compiler Flags
+                
+        #if DEV || DEVELOP || DEVELOPMENT || DEBUG
+        return .development
+        #elseif TEST || TESTING || QA || UAT
+        return .testing
+        #elseif STG || STAGE || STAGING
+        return .staging
+        #elseif PRE || PRE_PROD || PRE_PRODUCTION
+        return .preproduction
+        #elseif PROD || PRODUCTION
+        return .production
+        #else
+        return .production
+        #endif
+        
+    }
+    
+    private static func environment(from string: String) -> Environment? {
+        
+        switch string {
+        case "dev",
+             "develop",
+             "development",
+             "debug":
+
+            return .development
+
+        case "test",
+             "testing",
+             "qa",
+             "uat":
+
+            return .testing
+
+        case "stg",
+             "stage",
+             "staging":
+
+            return .staging
+
+        case "pre",
+             "pre_prod",
+             "pre_production":
+
+            return .preproduction
+            
+        case "prod",
+             "production":
+            
+            return .production
+
+        default:
+            
+            return nil
+            
+        }
+        
     }
     
 }
