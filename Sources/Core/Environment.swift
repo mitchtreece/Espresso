@@ -25,6 +25,14 @@ public enum Environment: String {
     /// A production environment.
     case production = "prod"
     
+    public static var infoPlist: [String: Any]? {
+        return Bundle.main.infoDictionary
+    }
+    
+    public static var infoPlistTestValue: Any? {
+        return self.infoPlist?["test_key"]
+    }
+    
     /// The environment's short name.
     public var shortName: String {
         return self.rawValue
