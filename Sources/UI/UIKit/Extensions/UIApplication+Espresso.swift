@@ -213,6 +213,67 @@ public extension UIApplication /* Environment */ {
             return override
         }
         
+        // We first check the process args for a
+        // specified environment
+        
+        var env: Environment?
+
+        let args = ProcessInfo
+            .processInfo
+            .arguments
+        
+        guard let envArg = args
+            .first(where: { $0.contains("-env=") }) else { return .production }
+        
+        let components = envArg
+            .replacingOccurrences(of: " ", with: "")
+            .components(separatedBy: "=")
+        
+        guard components.count > 1 else { return .production }
+        
+        let envString = components[1]
+            .lowercased()
+        
+        switch envString {
+        case "dev",
+             "develop",
+             "development",
+             "debug":
+            
+            env = .development
+            
+        case "test",
+             "testing",
+             "qa",
+             "uat":
+            
+            env = .testing
+            
+        case "stg",
+             "stage",
+             "staging":
+            
+            env = .staging
+            
+        case "pre",
+             "preprod":
+            
+            env = .preproduction
+            
+        default:
+            
+            break
+            
+        }
+        
+        if let env {
+            return env
+        }
+        
+        // We couldn't find an environment process arg.
+        // Let's check our compiler flags. If we can't
+        // find an environment there, just return `production`.
+        
         #if DEV || DEVELOP || DEVELOPMENT || DEBUG
         return .development
         #elseif TEST || TESTING || QA || UAT
