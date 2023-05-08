@@ -53,8 +53,8 @@ public enum Environment: String {
     /// The environment is determined using the current process's
     /// launch arguments, environment variables, & compiler flags.
     /// Launch arguments will be evaluated first, followed by
-    /// environment variables & compiler flags. If an environment isn't specified,
-    /// `production` will be returned.
+    /// environment variables & compiler flags. If an environment
+    /// isn't specified, `production` will be returned.
     ///
     /// Launch arguments can be specified using the following format:
     /// `-environment={e}`, where `{e}` is replaced by your desired environment.
@@ -72,8 +72,20 @@ public enum Environment: String {
     /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
     /// Testing = (TEST, TESTING, QA, UAT)
     /// Staging = (STG, STAGE, STAGING)
-    /// Pre-Production = (PRE, PREPROD)
+    /// Pre-Production = (PRE, PREPROD, PRE_PRODUCTION)
+    /// Production = (PROD, PRODUCTION)
     /// ```
+    ///
+    /// **Note**
+    ///
+    /// {XXX} is the preferred method of specifying an environment.
+    ///
+    /// Launch arguments & environment variables are stripped out of
+    /// packaged builds. These will only work when building directly
+    /// from an Xcode scheme.
+    ///
+    /// Compiler flags are *module* specific. Meaning, if you've integrated Espresso
+    /// using SPM, they cannot be read at compile-time.
     public static var current: Environment {
         
         if let override {
@@ -130,9 +142,15 @@ public enum Environment: String {
                 env = .staging
 
             case "pre",
-                 "preprod":
+                 "preprod",
+                 "pre_production":
 
                 env = .preproduction
+                
+            case "prod",
+                 "production":
+                
+                env = .production
 
             default:
                 
@@ -154,8 +172,10 @@ public enum Environment: String {
         return .testing
         #elseif STG || STAGE || STAGING
         return .staging
-        #elseif PRE || PREPROD
+        #elseif PRE || PREPROD || PRE_PRODUCTION
         return .preproduction
+        #elseif PROD || PRODUCTION
+        return .production
         #else
         return .production
         #endif
