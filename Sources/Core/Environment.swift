@@ -49,6 +49,27 @@ public enum Environment: String {
     public static var override: Environment?
         
     /// The current environment.
+    ///
+    /// The environment is determined using the current process's
+    /// launch arguments & compiler flags. Launch arguments will
+    /// be evaluated first, followed by compiler flags. If an
+    /// environment isn't specified, `production` will be returned.
+    ///
+    /// Launch arguments can be specified using the following format
+    /// `-env={e}`, where `{e}` is replaced by your desired environment.
+    ///
+    /// Compiler flags can be specified by adding an entry to your
+    /// project's Build Settings → Swift Compiler - Custom Flags →
+    /// Active Compilation Conditions.
+    ///
+    /// Supported environments:
+    ///
+    /// ```
+    /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
+    /// Testing = (TEST, TESTING, QA, UAT)
+    /// Staging = (STG, STAGE, STAGING)
+    /// Pre-Production = (PRE, PREPROD)
+    /// ```
     public static var current: Environment {
         
         if let override {
