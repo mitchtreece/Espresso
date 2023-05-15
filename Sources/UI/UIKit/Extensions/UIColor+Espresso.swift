@@ -32,11 +32,11 @@ public extension UIColor /* Hex */ {
     convenience init(hex: String) {
         
         let _hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt32()
-        let r, g, b, a: UInt32
+        var int = UInt64()
+        let r, g, b, a: UInt64
             
         Scanner(string: _hex)
-            .scanHexInt32(&int)
+            .scanHexInt64(&int)
                 
         switch _hex.count {
         case 3: (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17) // RGB (12-bit)

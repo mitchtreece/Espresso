@@ -96,13 +96,19 @@ open class UIBaseViewController: UIViewController,
     /// `viewDidAppear(_:)` function is called for the first time.
     public private(set) var isFirstAppearance: Bool = true
     
+    /// Flag indicating if the system keyboard is currently visible.
+    public private(set) var isKeyboardVisible: Bool = false
+    
     /// The view controller's modal style.
     public var modalStyle: UIModalStyle {
         get {
             return UIModalStyle(modalPresentationStyle: self.modalPresentationStyle)
         }
         set {
-            self.modalPresentationStyle = newValue.asModalPresentationStyle()
+            
+            self.modalPresentationStyle = newValue
+                .asModalPresentationStyle()
+            
         }
     }
     
@@ -110,10 +116,16 @@ open class UIBaseViewController: UIViewController,
     public var isInModalSheetPresentation: Bool {
                 
         guard let nav = self.navigationController else {
-            return self.modalStyle.isModalSheet
+            
+            return self.modalStyle
+                .isModalSheet
+            
         }
         
-        return UIModalStyle(modalPresentationStyle: nav.modalPresentationStyle).isModalSheet
+        return UIModalStyle(
+            modalPresentationStyle: nav.modalPresentationStyle
+        )
+        .isModalSheet
         
     }
     
@@ -142,7 +154,8 @@ open class UIBaseViewController: UIViewController,
                 
         super.viewDidLoad()
                 
-        self._viewDidLoad.send()
+        self._viewDidLoad
+            .send()
         
         viewWillLoadLayout()
                 
@@ -151,14 +164,18 @@ open class UIBaseViewController: UIViewController,
     open override func viewWillLayoutSubviews() {
                 
         super.viewWillLayoutSubviews()
-        self._viewWillLayoutSubviews.send()
+        
+        self._viewWillLayoutSubviews
+            .send()
                 
     }
     
     open override func viewDidLayoutSubviews() {
                 
         super.viewDidLayoutSubviews()
-        self._viewDidLayoutSubviews.send()
+        
+        self._viewDidLayoutSubviews
+            .send()
         
     }
     
@@ -168,7 +185,11 @@ open class UIBaseViewController: UIViewController,
     /// Subview frames are not guaranteed to have accurate values at this point.
     open func viewWillLoadLayout() {
         
-        self._viewWillLoadLayout.send()
+        self._viewWillLoadLayout
+            .send()
+        
+        self.view
+            .layoutIfNeeded()
         
         DispatchQueue.main.async { [weak self] in
             self?.viewDidLoadLayout()
@@ -183,7 +204,10 @@ open class UIBaseViewController: UIViewController,
     /// This function is scheduled on the main-thread from `viewWillLoadLayout`.
     /// Subview frames should have accurate values at this point.
     open func viewDidLoadLayout() {
-        self._viewDidLoadLayout.send()
+        
+        self._viewDidLoadLayout
+            .send()
+        
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -197,7 +221,8 @@ open class UIBaseViewController: UIViewController,
         
         bindKeyboardEvents()
         
-        self._viewWillAppear.send(animated)
+        self._viewWillAppear
+            .send(animated)
                 
     }
     
@@ -207,7 +232,8 @@ open class UIBaseViewController: UIViewController,
         
         self.isFirstAppearance = false
         
-        self._viewDidAppear.send(animated)
+        self._viewDidAppear
+            .send(animated)
         
     }
     
@@ -215,7 +241,8 @@ open class UIBaseViewController: UIViewController,
         
         super.viewWillDisappear(animated)
         
-        self._viewWillDisappear.send(animated)
+        self._viewWillDisappear
+            .send(animated)
         
     }
     
@@ -225,7 +252,8 @@ open class UIBaseViewController: UIViewController,
         
         unbindKeyboardEvents()
         
-        self._viewDidDisappear.send(animated)
+        self._viewDidDisappear
+            .send(animated)
         
     }
     
@@ -233,7 +261,8 @@ open class UIBaseViewController: UIViewController,
         
         super.didReceiveMemoryWarning()
         
-        self._didReceiveMemoryWarning.send()
+        self._didReceiveMemoryWarning
+            .send()
         
     }
     
@@ -265,7 +294,9 @@ open class UIBaseViewController: UIViewController,
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidShow(_ animation: UIKeyboardAnimation) {}
+    open func keyboardDidShow(_ animation: UIKeyboardAnimation) {
+        self.isKeyboardVisible = true
+    }
     
     /// Called when the keyboard's frame is about to change.
     /// Override this function to update your layout as needed.
@@ -285,12 +316,13 @@ open class UIBaseViewController: UIViewController,
     /// - parameter animation: The keyboard's animation info.
     open func keyboardWillHide(_ animation: UIKeyboardAnimation) {}
     
-    
     /// Called when the keyboard finishes dismissing.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidHide(_ animation: UIKeyboardAnimation) {}
+    open func keyboardDidHide(_ animation: UIKeyboardAnimation) {
+        self.isKeyboardVisible = false
+    }
     
     // MARK: Private
     
@@ -337,7 +369,10 @@ open class UIBaseViewController: UIViewController,
     }
     
     private func unbindKeyboardEvents() {
-        self.keyboardBag.removeAll()
+        
+        self.keyboardBag
+            .removeAll()
+        
     }
     
 }
