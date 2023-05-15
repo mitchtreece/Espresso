@@ -288,21 +288,23 @@ open class UIBaseViewController: UIViewController,
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillShow(_ animation: UIKeyboardAnimation) {}
+    open func keyboardWillShow(_ animation: UIKeyboardAnimation) {
+        self.isKeyboardVisible = true
+    }
     
     /// Called when the keyboard finishes presenting.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidShow(_ animation: UIKeyboardAnimation) {
-        self.isKeyboardVisible = true
-    }
+    open func keyboardDidShow(_ animation: UIKeyboardAnimation) {}
     
     /// Called when the keyboard's frame is about to change.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillChangeFrame(_ animation: UIKeyboardAnimation) {}
+    open func keyboardWillChangeFrame(_ animation: UIKeyboardAnimation) {
+        self.isKeyboardVisible = true
+    }
     
     /// Called when the keyboard's frame finishes changing.
     /// Override this function to update your layout as needed.
@@ -314,15 +316,15 @@ open class UIBaseViewController: UIViewController,
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardWillHide(_ animation: UIKeyboardAnimation) {}
+    open func keyboardWillHide(_ animation: UIKeyboardAnimation) {
+        self.isKeyboardVisible = false
+    }
     
     /// Called when the keyboard finishes dismissing.
     /// Override this function to update your layout as needed.
     ///
     /// - parameter animation: The keyboard's animation info.
-    open func keyboardDidHide(_ animation: UIKeyboardAnimation) {
-        self.isKeyboardVisible = false
-    }
+    open func keyboardDidHide(_ animation: UIKeyboardAnimation) {}
     
     // MARK: Private
     
