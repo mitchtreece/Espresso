@@ -38,11 +38,6 @@ public extension UIApplication /* Windows */ {
         
     }
     
-    /// The application's key (first) window.
-    var keyWindow: UIWindow? {
-        return self.keyWindows.first
-    }
-    
     /// The application's key (first) scene window.
     var keySceneWindow: UIWindow? {
         
@@ -85,7 +80,7 @@ public extension UIApplication /* View Controllers */ {
     /// Gets the top-most (key) `UIViewController` in a given root view controller.
     /// - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keyWindow?.rootViewController_.
     /// - Returns: The top-most (key) view controller in the root view controller.
-    func keyViewController(in root: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    func keyViewController(in root: UIViewController? = UIApplication.shared.keySceneWindow?.rootViewController) -> UIViewController? {
         
         if let presented = root?.presentedViewController {
             return keyViewController(in: presented)
