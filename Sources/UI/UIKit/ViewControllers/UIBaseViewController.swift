@@ -188,9 +188,6 @@ open class UIBaseViewController: UIViewController,
         self._viewWillLoadLayout
             .send()
         
-        self.view
-            .layoutIfNeeded()
-        
         DispatchQueue.main.async { [weak self] in
             self?.viewDidLoadLayout()
         }
