@@ -9,7 +9,11 @@ import UIKit
 import Espresso // Ignore warning, we need this for SPM modules
 
 private struct AssociatedKeys {
+    
     static var nibs: UInt8 = 0
+//    static var templateSettings: UInt8 = 0
+//    static var templateView: UInt8 = 0
+    
 }
 
 extension UIView: StaticIdentifiable {}
@@ -169,6 +173,65 @@ public extension UIView /* Motion */ {
     }
     
 }
+
+//public extension UIView /* Template */ {
+//
+//    struct TemplateSettings {
+//
+//        public enum Mode {
+//
+//            case `static`
+//            case shimmer
+//            
+//        }
+//
+//        public var mode: Mode = .static
+//        public var color: UIColor = .systemGroupedBackground
+//        public var cornerRadius: CGFloat = 8
+//
+//    }
+//
+//    var template: TemplateSettings {
+//        get {
+//
+//            // WONT THIS JUST RETURN COPIES?
+//            // Need to think of a better way to do this
+//
+//            if var settings = associatedObject(forKey: AssociatedKeys.templateSettings) as? TemplateSettings {
+//                return settings
+//            }
+//
+//            var settings = TemplateSettings()
+//
+//            return associatedObject(
+//                forKey: AssociatedKeys.templateSettings
+//            ) as? TemplateSettings ?? TemplateSettings()
+//
+//        }
+//        set {
+//
+//        }
+//    }
+//
+//    var isTemplate: Bool {
+//        get {
+//            return associatedObject(forKey: AssociatedKeys.templateView) != nil
+//        }
+//        set {
+//
+//            let view = associatedObject(forKey: AssociatedKeys.templateView) as? UIView
+//
+//            if newValue {
+//                // TODO
+//            }
+//            else {
+//                // TODO
+//            }
+//
+//        }
+//    }
+//
+//}
 
 public extension UIView /* Nib Loading */ {
     

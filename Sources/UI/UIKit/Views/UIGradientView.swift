@@ -9,33 +9,7 @@ import UIKit
 
 /// `UIView` subclass that draws a gradient as its content.
 open class UIGradientView: UIBaseView {
-    
-    /// Representation of the various gradient directions.
-    public enum Direction {
         
-        /// An upwards direction.
-        case up
-        
-        /// A downwards direction.
-        case down
-        
-        /// A left direction.
-        case left
-        
-        /// A right direction
-        case right
-        
-        /// A custom angle direction (degrees)
-        case angle(CGFloat)
-        
-        /// A 45-degree angle direction from the bottom left, to the top right.
-        case bottomLeftToTopRight
-        
-        /// A 45-degree angle direction from the bottom right, to the top left.
-        case bottomRightToTopLeft
-        
-    }
-    
     /// Representation of the various gradient color stop modes.
     public enum StopMode: Hashable {
         
@@ -60,7 +34,7 @@ open class UIGradientView: UIBaseView {
     }
     
     /// The gradient direction; _defaults to up_.
-    public var direction: Direction = .up {
+    public var direction: RectDirection = .up {
         didSet {
             update()
         }
@@ -88,7 +62,7 @@ open class UIGradientView: UIBaseView {
     /// - Parameter colors: The gradient colors; _defaults to [black, clear]_.
     /// - Parameter direction: The gradient direction; _defaults to up_.
     public init(colors: [UIColor] = [.black, .clear],
-                direction: Direction = .up) {
+                direction: RectDirection = .up) {
         
         self.colors = colors
         self.direction = direction
@@ -115,8 +89,8 @@ open class UIGradientView: UIBaseView {
     func update() {
         
         self.gradientLayer.colors = colors.map { $0.cgColor }
-        self.gradientLayer.startPoint = points(for: self.direction).start
-        self.gradientLayer.endPoint = points(for: self.direction).end
+        self.gradientLayer.startPoint = self.direction.startPoint
+        self.gradientLayer.endPoint = self.direction.endPoint
                 
         switch self.stops {
         case .custom(let values):
@@ -127,78 +101,6 @@ open class UIGradientView: UIBaseView {
             
         default: self.gradientLayer.locations = nil
         }
-        
-    }
-    
-    // MARK: Private
-    
-    private func points(for direction: Direction) -> (start: CGPoint, end: CGPoint) {
-        
-        switch direction {
-        case .up: return (CGPoint(x: 0.5, y: 1), CGPoint(x: 0.5, y: 0))
-        case .down: return (CGPoint(x: 0.5, y: 0), CGPoint(x: 0.5, y: 1))
-        case .left: return (CGPoint(x: 1, y: 0.5), CGPoint(x: 0, y: 0.5))
-        case .right: return (CGPoint(x: 0, y: 0.5), CGPoint(x: 1, y: 0.5))
-        case .angle(let angle): return _gradientPointsForAngle(angle)
-        case .bottomLeftToTopRight: return _gradientPointsForAngle(45)
-        case .bottomRightToTopLeft: return _gradientPointsForAngle(135)
-        }
-        
-    }
-    
-    private func _gradientPointsForAngle(_ angle: CGFloat) -> (start: CGPoint, end: CGPoint) {
-        
-        let end = _pointsForAngle(angle)
-        let start = _oppositePoint(end)
-        let p0 = _translatePointToGradientSpace(start)
-        let p1 = _translatePointToGradientSpace(end)
-        return (p0, p1)
-        
-    }
-    
-    private func _pointsForAngle(_ angle: CGFloat) -> CGPoint {
-        
-        let radians = angle.convertAngle(to: .radian)
-        var x = cos(radians)
-        var y = sin(radians)
-        
-        // (x, y) is in terms of unit circle
-        // Extrapolate to unit square for full vector length
-        
-        if abs(x) > abs(y) {
-            
-            // Extrapolate x to unit length
-            
-            x = (x > 0) ? 1 : -1
-            y = x * tan(radians)
-            
-        }
-        else {
-            
-            // Extrapolate y to unit length
-            
-            y = (y > 0) ? 1 : -1
-            x = y / tan(radians)
-            
-        }
-        
-        return CGPoint(x: x, y: y)
-        
-    }
-    
-    private func _oppositePoint(_ point: CGPoint) -> CGPoint {
-        return CGPoint(x: -point.x, y: -point.y)
-    }
-    
-    private func _translatePointToGradientSpace(_ point: CGPoint) -> CGPoint {
-        
-        // Input point is in signed unit space: (-1, -1) to (1, 1)
-        // Convert to gradient space: (0, 0) to (1, 1) with flipped Y-axis
-        
-        return CGPoint(
-            x: (point.x + 1) * 0.5,
-            y: 1 - (point.y + 1) * 0.5
-        )
         
     }
     
