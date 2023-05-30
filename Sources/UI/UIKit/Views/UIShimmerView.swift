@@ -57,12 +57,8 @@ open class UIShimmerView: UIBaseView {
 
         super.didLoadLayout()
         
-        roundCorners(
-            radius: min(self.bounds.height / 2, 8),
-            curve: .continuous
-        )
-        
-        self.gradientLayer.frame = self.bounds
+        self.gradientLayer
+            .frame = self.bounds
 
     }
 
