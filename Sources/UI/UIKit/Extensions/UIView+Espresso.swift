@@ -200,7 +200,7 @@ public extension UIView /* Template */ {
         public var shimmerColor: UIColor = .systemGray6
         
         /// The view's template corner radius.
-        public var cornerRadius: CGFloat = 8
+        public var cornerRadius: CGFloat = 5
         
     }
     
