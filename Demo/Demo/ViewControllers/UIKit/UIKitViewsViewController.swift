@@ -106,6 +106,37 @@ class UIKitViewsViewController: DetailViewController {
                 rightGradientView
             ]))
         
+        // UIShimmerView
+        
+        let shimmerView = UIShimmerView()
+        shimmerView.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        let shimmerView2 = UIShimmerView()
+        shimmerView2.backgroundColor = .systemRed
+        shimmerView2.shimmerColor = .systemOrange
+        shimmerView2.shimmerDirection = .angle(45)
+        shimmerView2.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        let shimmerView3 = UIShimmerView()
+        shimmerView3.backgroundColor = .systemBlue
+        shimmerView3.shimmerColor = .systemTeal
+        shimmerView3.shimmerDirection = .angle(225)
+        shimmerView3.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        self.stackView.addArrangedSubview(buildSection(
+            title: "UIShimmerView",
+            subviews: [
+                shimmerView,
+                shimmerView2,
+                shimmerView3
+            ]))
+        
     }
 
     @objc private func dismissKB(_ sender: UIBarButtonItem) {

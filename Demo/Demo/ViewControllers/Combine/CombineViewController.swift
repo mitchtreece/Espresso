@@ -49,12 +49,6 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
             
         }
         
-        self.label.template.mode = .shimmer
-        self.label.template.shimmerColor = .red
-        self.label.isTemplate = true
-        
-        self.label.setNeedsTemplateLayout()
-        
     }
     
     func didTapButton() {

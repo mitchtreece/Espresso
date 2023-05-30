@@ -194,10 +194,10 @@ public extension UIView /* Template */ {
         public var mode: Mode = .static
         
         /// The view's template color.
-        public var color: UIColor = .systemGroupedBackground
+        public var color: UIColor = .systemGray5
         
         /// The view's template shimmer color.
-        public var shimmerColor: UIColor = .secondarySystemGroupedBackground
+        public var shimmerColor: UIColor = .systemGray6
         
         /// The view's template corner radius.
         public var cornerRadius: CGFloat = 8
@@ -288,7 +288,7 @@ public extension UIView /* Template */ {
                         shimmerView,
                         forKey: AssociatedKeys.templateView
                     )
-
+                    
                 }
                 
             }
@@ -303,7 +303,7 @@ public extension UIView /* Template */ {
                 )
                 
             }
-            
+                        
         }
     }
     

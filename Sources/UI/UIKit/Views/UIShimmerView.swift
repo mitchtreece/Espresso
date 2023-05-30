@@ -13,7 +13,7 @@ open class UIShimmerView: UIBaseView {
     private var gradientLayer: CAGradientLayer!
     
     /// The view's shimmer color.
-    public var shimmerColor: UIColor = .secondarySystemGroupedBackground {
+    public var shimmerColor: UIColor = .systemGray6 {
         didSet {
             updateColors()
         }
@@ -53,13 +53,13 @@ open class UIShimmerView: UIBaseView {
         
     }
     
-    public override func didLoadLayout() {
-
-        super.didLoadLayout()
-                
+    open override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        
         self.gradientLayer
             .frame = self.bounds
-
+        
     }
 
     /// Starts the view's shimmer animation.
@@ -95,13 +95,13 @@ open class UIShimmerView: UIBaseView {
     
     private func setup() {
                 
-        self.backgroundColor = .systemGroupedBackground
+        self.backgroundColor = .systemGray5
         self.layer.masksToBounds = true
                 
         self.gradientLayer = CAGradientLayer()
         self.gradientLayer.frame = CGRect(x: 0, y: 0, width: 1000, height: 1000) // fix animation
         self.gradientLayer.locations = [0.0, 0.5, 1.0]
-        self.gradientLayer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
+        self.gradientLayer.zPosition = .greatestFiniteMagnitude
         self.layer.addSublayer(self.gradientLayer)
         
         updateColors()
@@ -151,7 +151,7 @@ open class UIShimmerView: UIBaseView {
         )
         
     }
-    
+        
     private func removeAnimation() {
         
         self.gradientLayer
