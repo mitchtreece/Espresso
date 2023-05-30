@@ -37,8 +37,23 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         self.label.numberOfLines = 0
         self.view.addSubview(self.label)
         self.label.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+        
+            make.left
+                .greaterThanOrEqualTo(20)
+            
+            make.right
+                .lessThanOrEqualTo(-20)
+            
+            make.center
+                .equalToSuperview()
+            
         }
+        
+        self.label.template.mode = .shimmer
+        self.label.template.shimmerColor = .red
+        self.label.isTemplate = true
+        
+        self.label.setNeedsTemplateLayout()
         
     }
     

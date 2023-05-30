@@ -182,7 +182,10 @@ public extension UIView /* Template */ {
         /// Representation of the various view template modes.
         public enum Mode {
             
+            /// A static color template mode.
             case `static`
+            
+            /// An animated shimmer template mode.
             case shimmer
             
         }

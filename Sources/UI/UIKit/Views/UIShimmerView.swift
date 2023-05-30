@@ -56,7 +56,7 @@ open class UIShimmerView: UIBaseView {
     public override func didLoadLayout() {
 
         super.didLoadLayout()
-        
+                
         self.gradientLayer
             .frame = self.bounds
 
