@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Representation of the different 2D directions.
+/// Representation of the various 2D directions.
 public enum Direction {
     
     /// The upwards direction

@@ -9,7 +9,11 @@ import UIKit
 import Espresso // Ignore warning, we need this for SPM modules
 
 private struct AssociatedKeys {
+    
     static var nibs: UInt8 = 0
+    static var templateView: UInt8 = 0
+    static var templateSettings: UInt8 = 0
+    
 }
 
 extension UIView: StaticIdentifiable {}
@@ -165,6 +169,152 @@ public extension UIView /* Motion */ {
         
         self.motionEffects
             .forEach { self.removeMotionEffect($0) }
+        
+    }
+    
+}
+
+public extension UIView /* Template */ {
+    
+    /// Container object for the various view template settings.
+    class TemplateSettings {
+        
+        /// Representation of the various view template modes.
+        public enum Mode {
+            
+            /// A static color template mode.
+            case `static`
+            
+            /// An animated shimmer template mode.
+            case shimmer
+            
+        }
+        
+        /// The view's template mode.
+        public var mode: Mode = .static
+        
+        /// The view's template color.
+        public var color: UIColor = .systemGray5
+        
+        /// The view's template shimmer color.
+        public var shimmerColor: UIColor = .systemGray6
+        
+        /// The view's template corner radius.
+        public var cornerRadius: CGFloat = 5
+        
+    }
+    
+    /// The view's template settings.
+    var template: TemplateSettings {
+
+        if let settings = associatedObject(forKey: AssociatedKeys.templateSettings) as? TemplateSettings {
+            return settings
+        }
+        else {
+            
+            let settings = TemplateSettings()
+            
+            setAssociatedObject(
+                settings,
+                forKey: AssociatedKeys.templateSettings
+            )
+            
+            return settings
+            
+        }
+        
+    }
+    
+    /// Flag indicating if this view is currently being displayed as a template.
+    ///
+    /// Setting this property to `true` will add a template view to the hierarchy.
+    /// Template display properties can be configured via the `template` settings object.
+    ///
+    /// ```
+    /// let view = UIView()
+    /// view.template.mode = .static
+    /// view.template.color = .systemGray
+    /// view.isTemplate = true
+    /// ```
+    var isTemplate: Bool {
+        get {
+            return associatedObject(forKey: AssociatedKeys.templateView) != nil
+        }
+        set {
+            
+            let oldView = associatedObject(forKey: AssociatedKeys.templateView) as? UIView
+
+            if newValue {
+                
+                if oldView != nil {
+                    
+                    // Already have a template view.
+                    // Do nothing.
+                    
+                    return
+                    
+                }
+                
+                let settings = self.template
+                
+                switch settings.mode {
+                case .static:
+                    
+                    let view = UIView()
+                    view.backgroundColor = settings.color
+                    view.roundCorners(radius: settings.cornerRadius, curve: .continuous)
+                    addSubview(view)
+                    view.snp.makeConstraints { make in
+                        make.edges.equalToSuperview()
+                    }
+                    
+                    setAssociatedObject(
+                        view,
+                        forKey: AssociatedKeys.templateView
+                    )
+                    
+                case .shimmer:
+                    
+                    let shimmerView = UIShimmerView()
+                    shimmerView.backgroundColor = settings.color
+                    shimmerView.shimmerColor = settings.shimmerColor
+                    shimmerView.roundCorners(radius: settings.cornerRadius, curve: .continuous)
+                    addSubview(shimmerView)
+                    shimmerView.snp.makeConstraints { make in
+                        make.edges.equalToSuperview()
+                    }
+                    
+                    setAssociatedObject(
+                        shimmerView,
+                        forKey: AssociatedKeys.templateView
+                    )
+                    
+                }
+                
+            }
+            else if let oldView {
+                                
+                oldView
+                    .removeFromSuperview()
+                
+                setAssociatedObject(
+                    nil,
+                    forKey: AssociatedKeys.templateView
+                )
+                
+            }
+                        
+        }
+    }
+    
+    /// Invalidates the current template layout of the receiver
+    /// and triggers a layout update during the next update cycle.
+    func setNeedsTemplateLayout() {
+        
+        guard self.isTemplate else { return }
+
+        self.isTemplate = false
+        self.isTemplate = true
         
     }
     
