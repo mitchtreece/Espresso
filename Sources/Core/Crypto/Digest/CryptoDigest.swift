@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CommonCrypto
+import CryptoKit
 
 /// Representation of the various digest hashing functions.
 public enum CryptoDigest {
@@ -17,50 +17,98 @@ public enum CryptoDigest {
         case hex
         case base64
         
+        internal func string(for data: Data) -> String {
+            
+            switch self {
+            case .hex:
+                
+                return data
+                    .map { String(format: "%02hhx", $0) }
+                    .joined()
+                
+            case .base64:
+                
+                return data
+                    .base64EncodedString()
+                
+            }
+            
+        }
+        
     }
     
-    /// An `MD5` hashing method
+    /// Representation of the various RSA types.
+    public enum RSA {
+        
+        /// An RSA-1024 type.
+        case rsa1024
+        
+        /// An RSA-2048 type.
+        case rsa2048
+        
+        /// An RSA-3072 type.
+        case rsa3072
+        
+        internal var asn1Header: [UInt8] {
+            
+            switch self {
+            case .rsa1024:
+                
+                return [
+                    0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
+                    0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x81, 0x8D, 0x00
+                ]
+                
+            case .rsa2048:
+                
+                return [
+                    0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,
+                    0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00
+                ]
+                
+            case .rsa3072:
+                
+                return [
+                    0x30, 0x82, 0x01, 0xA2, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86,
+                    0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x8F, 0x00
+                ]
+                
+            }
+            
+        }
+        
+    }
+    
+    /// An `MD5` hashing function
     case md5
     
-    /// A `SHA1` hashing method
+    /// A `SHA1` hashing function
     case sha1
     
-    /// A `SHA224` hashing method
-    case sha224
-    
-    /// A `SHA256` hashing method
+    /// A `SHA256` hashing function
     case sha256
     
-    /// A `SHA384` hashing method
+    /// A `SHA384` hashing function
     case sha384
     
-    /// A `SHA512` hashing method
+    /// A `SHA512` hashing function
     case sha512
     
-    /// The hashing method's digest length in bytes.
-    var length: Int32 {
+    internal func hash(data: Data,
+                       format: Format) -> String {
+        
+        var digestData: Data!
         
         switch self {
-        case .md5: return CC_MD5_DIGEST_LENGTH
-        case .sha1: return CC_SHA1_DIGEST_LENGTH
-        case .sha224: return CC_SHA224_DIGEST_LENGTH
-        case .sha256: return CC_SHA256_DIGEST_LENGTH
-        case .sha384: return CC_SHA384_DIGEST_LENGTH
-        case .sha512: return CC_SHA384_DIGEST_LENGTH
+        case .md5: digestData = Data(Insecure.MD5.hash(data: data))
+        case .sha1: digestData = Data(Insecure.SHA1.hash(data: data))
+        case .sha256: digestData = Data(SHA256.hash(data: data))
+        case .sha384: digestData = Data(SHA384.hash(data: data))
+        case .sha512: digestData = Data(SHA512.hash(data: data))
         }
         
-    }
-    
-    internal func hash(data: UnsafeRawPointer, length: CC_LONG, md: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> {
-        
-        switch self {
-        case .md5: return CC_MD5(data, length, md)
-        case .sha1: return CC_SHA1(data, length, md)
-        case .sha224: return CC_SHA224(data, length, md)
-        case .sha256: return CC_SHA256(data, length, md)
-        case .sha384: return CC_SHA384(data, length, md)
-        case .sha512: return CC_SHA512(data, length, md)
-        }
+        return format
+            .string(for: digestData)
         
     }
     
