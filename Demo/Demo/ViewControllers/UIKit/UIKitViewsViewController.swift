@@ -33,15 +33,59 @@ class UIKitViewsViewController: DetailViewController {
         self.stackView = UIScrollingStackView()
         self.stackView.axis = .vertical
         self.stackView.distribution = .equalSpacing
-        self.stackView.spacing = 16
+        self.stackView.spacing = 32
         self.stackView.alwaysBounceVertical = true
         self.stackView.showsVerticalScrollIndicator = false
+        self.stackView.contentInset = .init(top: 16)
+        self.stackView.contentOffset.y = -self.stackView.contentInset.top
         self.view.addSubview(self.stackView)
         self.stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.left.equalTo(8)
             make.right.equalTo(-8)
         }
+        
+        // UIBlurView
+        
+        let blurContentView = UIView()
+        blurContentView.snp.makeConstraints { make in
+            make.height.equalTo(200)
+        }
+        
+        let blurImageView = UIImageView()
+        blurImageView.image = UIImage(named: "Logo")
+        blurImageView.contentMode = .scaleAspectFill
+        blurImageView.clipsToBounds = true
+        blurContentView.addSubview(blurImageView)
+        blurImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let blurStackView = UIStackView()
+        blurStackView.backgroundColor = .clear
+        blurStackView.axis = .vertical
+        blurStackView.distribution = .fillEqually
+        blurStackView.spacing = 8
+        blurContentView.addSubview(blurStackView)
+        blurStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let defaultBlurView = UIBlurView()
+        blurStackView.addArrangedSubview(defaultBlurView)
+        
+        let tintedBlurView = UIBlurView(style: .system(.systemUltraThinMaterial))
+        tintedBlurView.tintColor = .blue.withAlphaComponent(0.1)
+        blurStackView.addArrangedSubview(tintedBlurView)
+
+        let variableBlurView = UIBlurView(style: .variable())
+        blurStackView.addArrangedSubview(variableBlurView)
+        
+        stackView.addArrangedSubview(buildSection(
+            title: "UIBlurView",
+            subviews: [
+                blurContentView
+            ]))
         
         // UIButtonView
         
