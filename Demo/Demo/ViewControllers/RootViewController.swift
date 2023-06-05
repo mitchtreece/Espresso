@@ -49,13 +49,14 @@ class RootViewController: UIBaseViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.title = "Espresso ☕️"
+        
+        setupSubviews()
         
     }
     
-    override func viewWillLoadLayout() {
-        
-        super.viewWillLoadLayout()
+    private func setupSubviews() {
         
         self.tableView = UITableView(frame: .zero, style: .insetGrouped)
         self.tableView.backgroundColor = .systemGroupedBackground

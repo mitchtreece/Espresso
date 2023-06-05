@@ -15,13 +15,14 @@ class UIKitViewsViewController: DetailViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.title = "UIKit Views"
+        
+        setupSubviews()
                 
     }
     
-    override func viewWillLoadLayout() {
-        
-        super.viewWillLoadLayout()
+    private func setupSubviews() {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Dismiss KB",
@@ -77,7 +78,7 @@ class UIKitViewsViewController: DetailViewController {
         let tintedBlurView = UIBlurView(style: .system(.systemUltraThinMaterial))
         tintedBlurView.tintColor = .blue.withAlphaComponent(0.1)
         blurStackView.addArrangedSubview(tintedBlurView)
-
+        
         let variableBlurView = UIBlurView(style: .variable())
         blurStackView.addArrangedSubview(variableBlurView)
         
@@ -97,7 +98,7 @@ class UIKitViewsViewController: DetailViewController {
         disabledOutlineButton.style = .outline
         disabledOutlineButton.title = "Outline (Disabled)"
         disabledOutlineButton.isEnabled = false
-                                              
+        
         self.stackView.addArrangedSubview(buildSection(
             title: "UIButtonView",
             subviews: [
@@ -182,7 +183,7 @@ class UIKitViewsViewController: DetailViewController {
             ]))
         
     }
-
+    
     @objc private func dismissKB(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
     }
