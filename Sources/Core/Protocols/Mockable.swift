@@ -21,7 +21,7 @@ public extension Mockable {
     ///
     /// - parameter count: The number of mock values.
     /// - returns: An array of mock values.
-    static func newMocks(count: Int = 5) -> [Self] {
+    static func mocks(count: Int = 5) -> [Self] {
         
         var mocks = [Self]()
         
