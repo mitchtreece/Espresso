@@ -13,6 +13,9 @@ public enum Environment: String {
     /// A development environment.
     case development = "dev"
     
+    /// A local development environment.
+    case developmentLocal = "dev_local"
+    
     /// A testing environment.
     case testing = "test"
     
@@ -35,6 +38,7 @@ public enum Environment: String {
         
         switch self {
         case .development: return "development"
+        case .developmentLocal: return "development-local"
         case .testing: return "testing"
         case .staging: return "staging"
         case .preproduction: return "pre-production"
@@ -96,7 +100,11 @@ public enum Environment: String {
     public var isDevelopment: Bool {
         
         switch self {
-        case .development: return true
+        case .development,
+             .developmentLocal:
+            
+            return true
+            
         default: return false
         }
         
@@ -150,6 +158,7 @@ public enum Environment: String {
     ///
     /// ```
     /// Development = (DEV, DEVELOP, DEVELOPMENT, DEBUG)
+    /// Development-Local = (DEV_LOCAL, DEVELOP_LOCAL, DEVELOPMENT_LOCAL, DEBUG_LOCAL)
     /// Testing = (TEST, TESTING, QA, UAT)
     /// Staging = (STG, STAGE, STAGING)
     /// Pre-Production = (PRE, PRE_PROD, PRE_PRODUCTION)
@@ -224,6 +233,8 @@ public enum Environment: String {
                 
         #if DEV || DEVELOP || DEVELOPMENT || DEBUG
         return .development
+        #elseif DEV_LOCAL || DEVELOP_LOCAL || DEVELOPMENT_LOCAL || DEBUG_LOCAL
+        return .localDevelopment
         #elseif TEST || TESTING || QA || UAT
         return .testing
         #elseif STG || STAGE || STAGING
@@ -247,6 +258,13 @@ public enum Environment: String {
              "debug":
 
             return .development
+            
+        case "dev_local",
+             "develop_local",
+             "development_local",
+             "debug_local":
+            
+            return .developmentLocal
 
         case "test",
              "testing",
