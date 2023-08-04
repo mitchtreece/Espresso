@@ -903,7 +903,7 @@ public extension AppleDevice /* Device Type */ {
                 releaseYear = 2024
                 family = .vision
                 marketingName = "Vision Pro"
-                identifiers = ["VisionPro1,1"] // TODO: Replace with real value once it's public
+                identifiers = ["RealityDevice14,1"]
                   
             // MARK: AirTag
                 
