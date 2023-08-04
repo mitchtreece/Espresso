@@ -118,6 +118,8 @@ public extension AppleDevice /* Device Type */ {
         case appleTV4K
         case appleTV4K_2
         case appleTV4K_3
+        
+        case visionPro
                 
         case airtag
                 
@@ -893,6 +895,15 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "Apple TV 4K"
                 generationalName = "Apple TV 4K (3rd Gen)"
                 identifiers = ["AppleTV14,1"]
+                
+            // MARK: Vision
+                
+            case .visionPro:
+                
+                releaseYear = 2024
+                family = .vision
+                marketingName = "Vision Pro"
+                identifiers = ["VisionPro1,1"] // TODO: Replace with real value once it's public
                   
             // MARK: AirTag
                 
