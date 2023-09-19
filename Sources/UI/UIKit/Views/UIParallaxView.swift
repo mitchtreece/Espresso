@@ -43,13 +43,13 @@ open class UIParallaxView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func willLoadLayout() {
+    open override func willAppear() {
         
-        super.willLoadLayout()
+        super.willAppear()
         
         self.backgroundColor = .clear
         self.clipsToBounds = false
-
+        
     }
     
     public func setParallaxLayers(_ layers: [ParallaxLayer]) {

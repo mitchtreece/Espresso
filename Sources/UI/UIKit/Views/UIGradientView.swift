@@ -75,16 +75,16 @@ open class UIGradientView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func willLoadLayout() {
+    open override func willAppear() {
         
-        super.willLoadLayout()
+        super.willAppear()
         
         self.backgroundColor = .clear
         
         update()
         
     }
-    
+
     /// Updates & draws the view's gradient.
     func update() {
         

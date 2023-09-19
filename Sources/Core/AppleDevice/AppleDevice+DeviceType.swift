@@ -55,6 +55,10 @@ public extension AppleDevice /* Device Type */ {
         case iPhone14Plus
         case iPhone14Pro
         case iPhone14ProMax
+        case iPhone15
+        case iPhone15Plus
+        case iPhone15Pro
+        case iPhone15ProMax
         
         case iPodTouch
         case iPodTouch_2
@@ -110,6 +114,8 @@ public extension AppleDevice /* Device Type */ {
         case appleWatchSE_2
         case appleWatchS8
         case appleWatchUltra
+        case appleWatchS9
+        case appleWatchUltra_2
         
         case appleTV
         case appleTV_2
@@ -422,6 +428,34 @@ public extension AppleDevice /* Device Type */ {
                 family = .iPhone
                 marketingName = "iPhone 14 Pro Max"
                 identifiers = ["iPhone15,3"]
+                
+            case .iPhone15:
+                
+                releaseYear = 2023
+                family = .iPhone
+                marketingName = "iPhone 15"
+                identifiers = ["iPhone15,4"]
+                
+            case .iPhone15Plus:
+                
+                releaseYear = 2023
+                family = .iPhone
+                marketingName = "iPhone 15 Plus"
+                identifiers = ["iPhone15,5"]
+                
+            case .iPhone15Pro:
+                
+                releaseYear = 2023
+                family = .iPhone
+                marketingName = "iPhone 15 Pro"
+                identifiers = ["iPhone16,1"]
+                
+            case .iPhone15ProMax:
+                
+                releaseYear = 2023
+                family = .iPhone
+                marketingName = "iPhone 15 Pro Max"
+                identifiers = ["iPhone16,2"]
                 
             // MARK: iPod
                                 
@@ -841,6 +875,20 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "Apple Watch Ultra"
                 identifiers = ["Watch6,18"]
                 
+            case .appleWatchS9:
+                
+                releaseYear = 2023
+                family = .appleWatch
+                marketingName = "Apple Watch Series 9"
+                identifiers = ["Watch7,1", "Watch7,2", "Watch7,3", "Watch7,4"]
+                
+            case .appleWatchUltra_2:
+                
+                releaseYear = 2023
+                family = .appleWatch
+                marketingName = "Apple Watch Ultra 2"
+                identifiers = ["Watch7,5"]
+                
             // MARK: Apple TV
                  
             case .appleTV:
@@ -903,7 +951,7 @@ public extension AppleDevice /* Device Type */ {
                 releaseYear = 2024
                 family = .vision
                 marketingName = "Vision Pro"
-                identifiers = ["VisionPro1,1"] // TODO: Replace with real value once it's public
+                identifiers = ["RealityDevice14,1"]
                   
             // MARK: AirTag
                 

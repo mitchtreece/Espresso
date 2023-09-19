@@ -20,7 +20,7 @@ class DetailViewController: UIBaseViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .systemGroupedBackground
                 
     }
     

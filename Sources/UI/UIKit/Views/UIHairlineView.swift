@@ -45,16 +45,16 @@ public class UIHairlineView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func willLoadLayout() {
+    public override func willAppear() {
         
-        super.willLoadLayout()
-
+        super.willAppear()
+        
         self.backgroundColor = .lightGray
 
         self.snp.makeConstraints { make in
             self.heightConstraint = make.height.greaterThanOrEqualTo(self.height.value).constraint
         }
-
+        
     }
     
     // MARK: Private

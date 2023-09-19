@@ -54,17 +54,17 @@ open class UIBlurView: UIBaseView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
-    open override func willLoadLayout() {
+    
+    open override func willAppear() {
         
-        super.willLoadLayout()
+        super.willAppear()
         
         self.clipsToBounds = true
         
         setupBlurView()
         
     }
-    
+
     // MARK: Private
     
     private func setupBlurView() {
