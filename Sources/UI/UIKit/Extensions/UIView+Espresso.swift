@@ -176,6 +176,8 @@ public extension UIView /* Motion */ {
 
 public extension UIView /* Template */ {
     
+    private static let templateViewIndex: Int = .max
+    
     /// Container object for the various view template settings.
     class TemplateSettings {
         
@@ -263,7 +265,7 @@ public extension UIView /* Template */ {
                     let view = UIView()
                     view.backgroundColor = settings.color
                     view.roundCorners(radius: settings.cornerRadius, curve: .continuous)
-                    addSubview(view)
+                    insertSubview(view, at: Self.templateViewIndex)
                     view.snp.makeConstraints { make in
                         make.edges.equalToSuperview()
                     }
@@ -279,7 +281,7 @@ public extension UIView /* Template */ {
                     shimmerView.backgroundColor = settings.color
                     shimmerView.shimmerColor = settings.shimmerColor
                     shimmerView.roundCorners(radius: settings.cornerRadius, curve: .continuous)
-                    addSubview(shimmerView)
+                    insertSubview(shimmerView, at: Self.templateViewIndex)
                     shimmerView.snp.makeConstraints { make in
                         make.edges.equalToSuperview()
                     }

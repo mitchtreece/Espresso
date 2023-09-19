@@ -80,10 +80,10 @@ public class UIButtonView: UIBaseView {
         super.init(coder: coder)
     }
     
-    open override func willLoadLayout() {
+    public override func willAppear() {
         
-        super.willLoadLayout()
-
+        super.willAppear()
+        
         self.backgroundColor = .clear
         
         self.snp.makeConstraints { make in
@@ -121,9 +121,9 @@ public class UIButtonView: UIBaseView {
 
         updateStyle()
         updateTitleTextAndFont()
-
+        
     }
-    
+
     // MARK: Private
     
     private func updateTitleTextAndFont() {

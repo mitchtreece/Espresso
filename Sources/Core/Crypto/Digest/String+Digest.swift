@@ -9,17 +9,23 @@ import Foundation
 
 public extension String {
     
-    /// Hashes the string with a given digest method & format.
-    /// - Parameter digest: The digest hashing method.
-    /// - Parameter format: The digest hash output format; _defaults to hex_.
-    /// - Returns: A hashed string.
-    func hashed(using digest: CryptoDigest, format: CryptoDigest.Format = .hex) -> String? {
-
-        guard let data = self.data(using: .utf8) else { return nil }
+    /// Hashes the string using a crypto digest method,
+    /// format, & optional RSA ASN.1 header.
+    ///
+    /// - parameter digest: The digest hashing method.
+    /// - parameter format: The digest hash format; _defaults to hex_.
+    /// - parameter rsa: The RSA type to use; _defaults to nil_.
+    /// - returns: A hashed string.
+    func hashed(using digest: CryptoDigest,
+                format: CryptoDigest.Format = .hex,
+                rsa: CryptoDigest.RSA? = nil) -> String {
+        
+        let data = self.data(using: .utf8) ?? Data()
         
         return data.hashed(
             using: digest,
-            format: format
+            format: format,
+            rsa: rsa
         )
         
     }

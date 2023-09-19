@@ -17,13 +17,14 @@ class SwiftUIHostingViewController: DetailViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.title = "UIHostingView"
+        
+        setupSubviews()
                 
     }
     
-    override func viewWillLoadLayout() {
-        
-        super.viewWillLoadLayout()
+    private func setupSubviews() {
         
         self.edgesForExtendedLayout = []
         

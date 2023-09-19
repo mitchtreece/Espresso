@@ -43,8 +43,13 @@ public class Nonce {
     /// Creates a hashed hex nonce string using a given digest.
     /// - parameter digest: The crypto digest to use; _defaults to sha256_.
     /// - returns: A hashed hex nonce string.
-    public func hashed(using digest: CryptoDigest = .sha256) -> String? {
-        return self.data.hashed(using: digest)
+    public func hashed(using digest: CryptoDigest = .sha256) -> String {
+        
+        return self.data.hashed(
+            using: digest,
+            format: .hex
+        )
+        
     }
     
 }

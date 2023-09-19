@@ -17,15 +17,16 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.title = self.viewModel.title
+        
+        setupSubviews()
 
     }
     
-    override func viewWillLoadLayout() {
+    private func setupSubviews() {
         
-        super.viewWillLoadLayout()
-        
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .systemGroupedBackground
                 
         self.barItem = UIBarButtonItem()
         self.barItem.title = self.viewModel.barButtonTitle

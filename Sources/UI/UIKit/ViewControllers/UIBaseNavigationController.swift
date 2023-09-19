@@ -8,16 +8,6 @@
 import UIKit
 import Espresso // Ignore warning, we need this for SPM modules
 
-// NOTE: UIBaseNavigationController Lifecycle
-//
-// 1. viewDidLoad
-// 2. viewWillLoadLayout
-// 3. viewWillAppear
-// 4. viewWillLayoutSubviews
-// 5. viewDidLayoutSubviews
-// 6. viewDidLoadLayout
-// 7. viewDidAppear
-
 /// `UINavigationController` subclass that provides
 /// common helper functions & properties.
 open class UIBaseNavigationController: UINavigationController,
@@ -27,18 +17,6 @@ open class UIBaseNavigationController: UINavigationController,
     /// view finishes loading.
     public var viewDidLoadPublisher: GuaranteePublisher<Void> {
         return self._viewDidLoad.eraseToAnyPublisher()
-    }
-    
-    /// A publisher that sends when the view controller's
-    /// view is about to load its layout.
-    public var viewWillLoadLayoutPublisher: GuaranteePublisher<Void> {
-        return self._viewWillLoadLayout.eraseToAnyPublisher()
-    }
-    
-    /// A publisher that sends when the view controller's
-    /// view finishes loading its layout.
-    public var viewDidLoadLayoutPublisher: GuaranteePublisher<Void> {
-        return self._viewDidLoadLayout.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
@@ -63,6 +41,12 @@ open class UIBaseNavigationController: UINavigationController,
     /// view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidAppear.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view has finished its layout pass, and is appearing.
+    public var viewIsAppearing: GuaranteePublisher<Bool> {
+        return self._viewIsAppearing.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
@@ -123,14 +107,14 @@ open class UIBaseNavigationController: UINavigationController,
     private var _viewDidLoad = TriggerPublisher()
     private var _viewWillLayoutSubviews = TriggerPublisher()
     private var _viewDidLayoutSubviews = TriggerPublisher()
-    private var _viewWillLoadLayout = TriggerPublisher()
-    private var _viewDidLoadLayout = TriggerPublisher()
     private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewIsAppearing = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidDisappear = GuaranteePassthroughSubject<Bool>()
     private var _didReceiveMemoryWarning = TriggerPublisher()
     
+    private var traitChangeObserver: AnyObject?
     private let swipeBackDelegate = UIInteractiveSwipeBackDelegate()
     
     open override var childForStatusBarStyle: UIViewController? {
@@ -149,58 +133,39 @@ open class UIBaseNavigationController: UINavigationController,
         self.topViewController
     }
     
+    deinit {
+        destroy()
+    }
+    
     open override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.swipeBackDelegate.originalGestureDelegate = self.interactivePopGestureRecognizer?.delegate
-        self.swipeBackDelegate.navigationController = self
-        self.interactivePopGestureRecognizer?.delegate = self.swipeBackDelegate
+        setup()
         
-        self._viewDidLoad.send()
-        
-        viewWillLoadLayout()
-        
+        self._viewDidLoad
+            .send()
+                
     }
     
     open override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
-        self._viewWillLayoutSubviews.send()
+        
+        self._viewWillLayoutSubviews
+            .send()
         
     }
     
     open override func viewDidLayoutSubviews() {
         
         super.viewDidLayoutSubviews()
-        self._viewDidLayoutSubviews.send()
+        
+        self._viewDidLayoutSubviews
+            .send()
         
     }
     
-    /// Called when the view controller's view is about to load its layout.
-    ///
-    /// This function is called from `viewDidLoad`.
-    /// Subview frames are not guaranteed to have accurate values at this point.
-    open func viewWillLoadLayout() {
-        
-        self._viewWillLoadLayout.send()
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.viewDidLoadLayout()
-        }
-        
-    }
-    
-    /// Called when the view controller's view finishes loading its layout.
-    /// Override this function to provide custom setup logic that depends
-    /// on subview frames, positions, etc.
-    ///
-    /// This function is scheduled on the main-thread from `viewWillLoadLayout`.
-    /// Subview frames should have accurate values at this point.
-    open func viewDidLoadLayout() {
-        self._viewDidLoadLayout.send()
-    }
-
     open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -215,7 +180,17 @@ open class UIBaseNavigationController: UINavigationController,
         
         self.isFirstAppearance = false
         
-        self._viewDidAppear.send(animated)
+        self._viewDidAppear
+            .send(animated)
+        
+    }
+    
+    open override func viewIsAppearing(_ animated: Bool) {
+        
+        super.viewIsAppearing(animated)
+        
+        self._viewIsAppearing
+            .send(animated)
         
     }
     
@@ -223,7 +198,8 @@ open class UIBaseNavigationController: UINavigationController,
         
         super.viewWillDisappear(animated)
         
-        self._viewWillDisappear.send(animated)
+        self._viewWillDisappear
+            .send(animated)
         
     }
     
@@ -231,7 +207,8 @@ open class UIBaseNavigationController: UINavigationController,
         
         super.viewDidDisappear(animated)
                 
-        self._viewDidDisappear.send(animated)
+        self._viewDidDisappear
+            .send(animated)
         
     }
     
@@ -239,24 +216,59 @@ open class UIBaseNavigationController: UINavigationController,
         
         super.didReceiveMemoryWarning()
         
-        self._didReceiveMemoryWarning.send()
+        self._didReceiveMemoryWarning
+            .send()
         
     }
     
-    // MARK: Traits
+    @objc
+    open func userInterfaceStyleDidChange() {
+        // Override
+    }
+    
+    // MARK: Private
+    
+    private func setup() {
+        
+        self.swipeBackDelegate.originalGestureDelegate = self.interactivePopGestureRecognizer?.delegate
+        self.swipeBackDelegate.navigationController = self
+        self.interactivePopGestureRecognizer?.delegate = self.swipeBackDelegate
+        
+        if #available(iOS 17, *) {
+            
+            self.traitChangeObserver = registerForTraitChanges(
+                [UITraitUserInterfaceStyle.self],
+                action: #selector(userInterfaceStyleDidChange)
+            )
+
+        }
+        
+    }
+    
+    private func destroy() {
+        
+        if #available(iOS 17, *) {
+            
+            if let observer = self.traitChangeObserver as? UITraitChangeRegistration {
+                unregisterForTraitChanges(observer)
+            }
+            
+        }
+        
+    }
+    
+    // MARK: Traits (Deprecated - iOS 17)
     
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            userInterfaceStyleDidChange()
+        if #unavailable(iOS 17) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                userInterfaceStyleDidChange()
+            }
         }
         
-    }
-    
-    open func userInterfaceStyleDidChange() {
-        // Override
     }
     
 }
