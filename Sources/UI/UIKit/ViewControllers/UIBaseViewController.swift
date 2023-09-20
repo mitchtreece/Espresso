@@ -162,10 +162,6 @@ open class UIBaseViewController: UIViewController,
                 
         self._viewDidLoad
             .send()
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.viewDidLoadGeometry()
-        }
                         
     }
     
@@ -182,7 +178,15 @@ open class UIBaseViewController: UIViewController,
         
         self._viewWillAppear
             .send(animated)
-                
+        
+        if self.isFirstAppearance {
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.viewDidLoadGeometry()
+            }
+            
+        }
+        
     }
     
     open override func viewIsAppearing(_ animated: Bool) {
@@ -219,7 +223,12 @@ open class UIBaseViewController: UIViewController,
     /// Notifies the view controller that the system has finished
     /// loading its view's initial layout & geometry.
     ///
-    /// This is scheduled from `viewDidLoad`, and only ever called once.
+    /// This is scheduled from `viewWillAppear` on the view controller's
+    /// first-appearance, and is only ever called once.
+    ///
+    /// This is scheduled from `viewWillAppear` instead of `viewDidLoad`
+    /// so it can be grouped into the same appearance transaction as the other
+    /// appearance-based lifecycle functions.
     open func viewDidLoadGeometry() {
         
         self._viewDidLoadGeometry
