@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/Version-3.3.0-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
+![Version](https://img.shields.io/badge/Version-3.3.1-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![iOS](https://img.shields.io/badge/iOS-13+-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![Swift](https://img.shields.io/badge/Swift-5-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
 ![Xcode](https://img.shields.io/badge/Xcode-15-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
