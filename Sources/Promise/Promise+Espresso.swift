@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Dispatch
 import PromiseKit
-import Espresso // Ignore warning, we need this for SPM modules
+import Espresso
 
 public extension Resolver where T == Void /* Void */ {
     

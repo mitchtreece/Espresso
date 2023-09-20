@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-import Espresso // Ignore warning, we need this for SPM modules
+import Espresso
 
 public extension UIBarButtonItem {
     

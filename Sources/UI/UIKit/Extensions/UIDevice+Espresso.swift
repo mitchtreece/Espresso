@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Espresso // Ignore warning, we need this for SPM modules
+import Espresso
 
 public extension UIDevice {
 

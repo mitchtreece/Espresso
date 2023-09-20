@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-import Espresso // Ignore warning, we need this for SPM modules
+import Espresso
 
 /// `UIViewController` subclass that provides
 /// common helper functions & properties.

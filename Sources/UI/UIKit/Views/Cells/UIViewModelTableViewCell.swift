@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Espresso // Ignore warning, we need this for SPM modules
+import Espresso
 
 /// `UITableViewCell` subclass that provides common
 /// properties & functions when backed by a view model.
