@@ -21,6 +21,18 @@ open class UIBaseViewController: UIViewController,
     }
     
     /// A publisher that sends when the view controller's
+    /// view is about to appear.
+    public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
+        return self._viewWillAppear.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view has finished its layout pass, and is appearing.
+    public var viewIsAppearingPublisher: GuaranteePublisher<Bool> {
+        return self._viewIsAppearing.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
     /// view is about to layout its subviews.
     public var viewWillLayoutSubviewsPublisher: GuaranteePublisher<Void> {
         return self._viewWillLayoutSubviews.eraseToAnyPublisher()
@@ -33,21 +45,23 @@ open class UIBaseViewController: UIViewController,
     }
     
     /// A publisher that sends when the view controller's
-    /// view is about to appear.
-    public var viewWillAppearPublisher: GuaranteePublisher<Bool> {
-        return self._viewWillAppear.eraseToAnyPublisher()
+    /// view has finished its initial layout, and has fully
+    /// loaded its geometry.
+    public var viewDidLoadGeometryPublisher: GuaranteePublisher<Void> {
+        return self._viewDidLoadGeometry.eraseToAnyPublisher()
+    }
+    
+    /// A publisher that sends when the view controller's
+    /// view has updated its layout, and has fully loaded
+    /// its geometry.
+    public var viewDidUpdateGeometryPublisher: GuaranteePublisher<Void> {
+        return self._viewDidUpdateGeomtery.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
     /// view finishes appearing.
     public var viewDidAppearPublisher: GuaranteePublisher<Bool> {
         return self._viewDidAppear.eraseToAnyPublisher()
-    }
-    
-    /// A publisher that sends when the view controller's
-    /// view has finished its layout pass, and is appearing.
-    public var viewIsAppearing: GuaranteePublisher<Bool> {
-        return self._viewIsAppearing.eraseToAnyPublisher()
     }
     
     /// A publisher that sends when the view controller's
@@ -122,11 +136,13 @@ open class UIBaseViewController: UIViewController,
     }
     
     private var _viewDidLoad = TriggerPublisher()
+    private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewIsAppearing = GuaranteePassthroughSubject<Bool>()
     private var _viewWillLayoutSubviews = TriggerPublisher()
     private var _viewDidLayoutSubviews = TriggerPublisher()
-    private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
+    private var _viewDidLoadGeometry = TriggerPublisher()
+    private var _viewDidUpdateGeomtery = TriggerPublisher()
     private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
-    private var _viewIsAppearing = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidDisappear = GuaranteePassthroughSubject<Bool>()
     private var _didReceiveMemoryWarning = TriggerPublisher()
@@ -146,7 +162,40 @@ open class UIBaseViewController: UIViewController,
                 
         self._viewDidLoad
             .send()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewDidLoadGeometry()
+        }
                         
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+                
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(
+            self.prefersNavigationBarHidden,
+            animated: true
+        )
+        
+        bindKeyboardEvents()
+        
+        self._viewWillAppear
+            .send(animated)
+                
+    }
+    
+    open override func viewIsAppearing(_ animated: Bool) {
+        
+        super.viewIsAppearing(animated)
+        
+        self._viewIsAppearing
+            .send(animated)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewDidUpdateGeomtery()
+        }
+        
     }
     
     open override func viewWillLayoutSubviews() {
@@ -167,20 +216,27 @@ open class UIBaseViewController: UIViewController,
         
     }
     
-    open override func viewWillAppear(_ animated: Bool) {
-                
-        super.viewWillAppear(animated)
+    /// Notifies the view controller that the system has finished
+    /// loading its view's initial layout & geometry.
+    ///
+    /// This is scheduled from `viewDidLoad`, and only ever called once.
+    open func viewDidLoadGeometry() {
         
-        self.navigationController?.setNavigationBarHidden(
-            self.prefersNavigationBarHidden,
-            animated: true
-        )
+        self._viewDidLoadGeometry
+            .send()
         
-        bindKeyboardEvents()
+    }
+    
+    /// Notifies the view controller that the system has finished
+    /// updating its view's layout & geometry.
+    ///
+    /// This is scheduled from `viewIsAppearing`, and is called
+    /// during each appearance cycle.
+    open func viewDidUpdateGeomtery() {
         
-        self._viewWillAppear
-            .send(animated)
-                
+        self._viewDidUpdateGeomtery
+            .send()
+        
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -190,15 +246,6 @@ open class UIBaseViewController: UIViewController,
         self.isFirstAppearance = false
         
         self._viewDidAppear
-            .send(animated)
-        
-    }
-    
-    open override func viewIsAppearing(_ animated: Bool) {
-        
-        super.viewIsAppearing(animated)
-        
-        self._viewIsAppearing
             .send(animated)
         
     }
