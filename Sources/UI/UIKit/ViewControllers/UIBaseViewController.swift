@@ -54,7 +54,7 @@ open class UIBaseViewController: UIViewController,
     /// A publisher that sends when the view controller's
     /// view has updated its layout, and has fully loaded
     /// its geometry.
-    public var viewDidUpdateGeometryPublisher: GuaranteePublisher<Void> {
+    public var viewDidUpdateGeometryPublisher: GuaranteePublisher<Bool> {
         return self._viewDidUpdateGeomtery.eraseToAnyPublisher()
     }
     
@@ -141,7 +141,7 @@ open class UIBaseViewController: UIViewController,
     private var _viewWillLayoutSubviews = TriggerPublisher()
     private var _viewDidLayoutSubviews = TriggerPublisher()
     private var _viewDidLoadGeometry = TriggerPublisher()
-    private var _viewDidUpdateGeomtery = TriggerPublisher()
+    private var _viewDidUpdateGeomtery = GuaranteePassthroughSubject<Bool>()
     private var _viewDidAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewWillDisappear = GuaranteePassthroughSubject<Bool>()
     private var _viewDidDisappear = GuaranteePassthroughSubject<Bool>()
@@ -193,7 +193,7 @@ open class UIBaseViewController: UIViewController,
             .send(animated)
         
         DispatchQueue.main.async { [weak self] in
-            self?.viewDidUpdateGeomtery()
+            self?.viewDidUpdateGeomtery(animated)
         }
         
     }
@@ -232,10 +232,10 @@ open class UIBaseViewController: UIViewController,
     ///
     /// This is scheduled from `viewIsAppearing`, and is called
     /// during each appearance cycle.
-    open func viewDidUpdateGeomtery() {
+    open func viewDidUpdateGeomtery(_ animated: Bool) {
         
         self._viewDidUpdateGeomtery
-            .send()
+            .send(animated)
         
     }
     
