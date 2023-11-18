@@ -22,6 +22,12 @@ public enum Environment: String {
     /// A staging environment.
     case staging = "stg"
     
+    /// An alpha environment.
+    case alpha
+    
+    /// A beta environment.
+    case beta
+    
     /// A pre-production environment.
     case preproduction = "preprod"
     
@@ -41,6 +47,8 @@ public enum Environment: String {
         case .developmentLocal: return "development-local"
         case .testing: return "testing"
         case .staging: return "staging"
+        case .alpha: return "alpha"
+        case .beta: return "beta"
         case .preproduction: return "pre-production"
         case .production: return "production"
         }
@@ -161,6 +169,8 @@ public enum Environment: String {
     /// Development-Local = (DEV_LOCAL, DEVELOP_LOCAL, DEVELOPMENT_LOCAL, DEBUG_LOCAL)
     /// Testing = (TEST, TESTING, QA, UAT)
     /// Staging = (STG, STAGE, STAGING)
+    /// Alpha = (ALPHA)
+    /// Beta = (BETA)
     /// Pre-Production = (PRE, PRE_PROD, PRE_PRODUCTION)
     /// Production = (PROD, PRODUCTION)
     /// ```
@@ -239,6 +249,10 @@ public enum Environment: String {
         return .testing
         #elseif STG || STAGE || STAGING
         return .staging
+        #elseif ALPHA
+        return .alpha
+        #elseif BETA
+        return .beta
         #elseif PRE || PRE_PROD || PRE_PRODUCTION
         return .preproduction
         #elseif PROD || PRODUCTION
@@ -278,6 +292,14 @@ public enum Environment: String {
              "staging":
 
             return .staging
+            
+        case "alpha":
+            
+            return .alpha
+            
+        case "beta":
+            
+            return .beta
 
         case "pre",
              "pre_prod",
