@@ -10,6 +10,7 @@ import UIKit
 public extension UIColor /* Random */ {
     
     /// Creates a new color with random r, g, b values & a specified alpha.
+    ///
     /// - parameter alpha: The color's alpha value; _defaults to 1_.
     /// - returns: A random color.
     static func random(alpha: CGFloat = 1) -> UIColor {
@@ -28,6 +29,7 @@ public extension UIColor /* Random */ {
 public extension UIColor /* Hex */ {
     
     /// Initializes a new color from a hex code.
+    ///
     /// - parameter hex: The hex code string.
     convenience init(hex: String) {
         
@@ -53,12 +55,34 @@ public extension UIColor /* Hex */ {
         )
         
     }
+    
+    /// Returns the hex-color string representation of this color.
+    ///
+    /// - returns: A hex-color string.
+    func asHexString() -> String {
+        
+        let components = self.cgColor.components
+        let r: CGFloat = components?[0] ?? 0
+        let g: CGFloat = components?[1] ?? 0
+        let b: CGFloat = components?[2] ?? 0
+
+        let hex = String.init(
+            format: "#%02lX%02lX%02lX",
+            lroundf(Float(r * 255)),
+            lroundf(Float(g * 255)),
+            lroundf(Float(b * 255))
+        )
+        
+        return hex
+        
+     }
 
 }
 
 public extension UIColor /* Interpolation */ {
     
     /// Interpolates between two colors using a given percentage.
+    ///
     /// - parameter from: The source color.
     /// - parameter to: The destination color.
     /// - parameter percentage: The interpolation percentage to use.
@@ -75,6 +99,7 @@ public extension UIColor /* Interpolation */ {
     }
     
     /// Creates a new color by interpolating from this color to a destination color using a given percentage.
+    ///
     /// - parameter to: The destination color.
     /// - parameter percentage: The interpolation percentage to use.
     /// - returns: An interpolated color.
