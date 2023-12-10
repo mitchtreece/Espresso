@@ -33,6 +33,7 @@ public struct VerticalEdgeInsets {
     }
     
     /// Initializes `VerticalEdgeInsets` with a value.
+    ///
     /// - paramter value: The value.
     public init(_ value: CGFloat) {
         
@@ -40,6 +41,30 @@ public struct VerticalEdgeInsets {
             top: value,
             bottom: value
         )
+        
+    }
+    
+    /// Sets the inset's top value.
+    ///
+    /// - parameter value: The new value.
+    /// - returns: This insets object.
+    @discardableResult
+    public mutating func top(_ value: CGFloat) -> Self {
+        
+        self.top = value
+        return self
+        
+    }
+    
+    /// Sets the inset's bottom value.
+    ///
+    /// - parameter value: The new value.
+    /// - returns: This insets object.
+    @discardableResult
+    public mutating func bottom(_ value: CGFloat) -> Self {
+        
+        self.bottom = value
+        return self
         
     }
     

@@ -43,4 +43,28 @@ public struct HorizontalEdgeInsets {
         
     }
     
+    /// Sets the inset's left value.
+    ///
+    /// - parameter value: The new value.
+    /// - returns: This insets object.
+    @discardableResult
+    public mutating func left(_ value: CGFloat) -> Self {
+        
+        self.left = value
+        return self
+        
+    }
+    
+    /// Sets the inset's right value.
+    ///
+    /// - parameter value: The new value.
+    /// - returns: This insets object.
+    @discardableResult
+    public mutating func right(_ value: CGFloat) -> Self {
+        
+        self.right = value
+        return self
+        
+    }
+    
 }
