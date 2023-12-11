@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 
-public extension UIColor {
+public extension UIColorRepresentable {
     
     /// A SwiftUI `Color` representation.
     func asSwiftColor() -> Color {
-        return Color(self)
+        return Color(asColor())
     }
     
 }
