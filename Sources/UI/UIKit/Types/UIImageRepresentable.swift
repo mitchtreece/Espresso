@@ -11,7 +11,6 @@ import UIKit
 public protocol UIImageRepresentable {
     
     /// An image representation.
-    /// - returns: An image.
     func asImage() -> UIImage?
     
 }
@@ -20,13 +19,11 @@ public extension UIImageRepresentable {
     
     /// An image representation using a given rendering mode.
     /// - parameter renderingMode: The image rendering mode to use.
-    /// - returns: An image.
     func asImage(renderingMode: UIImage.RenderingMode) -> UIImage? {
         return asImage()?.withRenderingMode(renderingMode)
     }
     
     /// An image data representation.
-    /// - returns: Image data.
     func asImageData() -> Data? {
         return asImage()?.pngData()
     }

@@ -10,6 +10,7 @@ import UIKit
 public extension NSMutableAttributedString /* Style */ {
     
     /// Adds font styling to a substring.
+    ///
     /// - parameter substring: The substring.
     /// - parameter font: The font.
     /// - returns: This attributed string object.
@@ -29,6 +30,7 @@ public extension NSMutableAttributedString /* Style */ {
     }
     
     /// Adds color styling to a substring.
+    ///
     /// - parameter substring: The substring.
     /// - parameter color: The color.
     /// - returns: This attributed string object.
@@ -48,6 +50,7 @@ public extension NSMutableAttributedString /* Style */ {
     }
     
     /// Adds link styling to a substring.
+    ///
     /// - parameter substring: The substring to apply styling to.
     /// - parameter destination: The destination path.
     /// - parameter font: The font to use for the link.
@@ -101,6 +104,7 @@ public extension NSMutableAttributedString /* Style */ {
     }
     
     /// Adds centered paragraph styling to the string.
+    ///
     /// - returns: This attributed string object.
     @discardableResult
     func addCenterParagraphStyle() -> Self {
@@ -120,6 +124,27 @@ public extension NSMutableAttributedString /* Style */ {
 
     }
     
+    /// Adds justified paragraph styling to the string.
+    ///
+    /// - returns: This attributed string object.
+    @discardableResult
+    func addJustifiedParagraphStyle() -> Self {
+        
+        guard let range = rangeOfSubstring(self.string) else { return self }
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .justified
+        paragraph.lineSpacing = 4
+        
+        addAttributes(
+            [.paragraphStyle: paragraph],
+            range: range
+        )
+
+        return self
+        
+    }
+    
     private func rangeOfSubstring(_ substring: String) -> NSRange? {
         
         let range = self.mutableString
@@ -136,6 +161,7 @@ public extension NSMutableAttributedString /* Style */ {
 public extension NSMutableAttributedString /* Append */ {
     
     /// Appends a string using a font & color.
+    ///
     /// - parameter string: The string to append.
     /// - parameter font: The font.
     /// - parameter color: The color.
