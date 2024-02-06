@@ -11,15 +11,29 @@ import Foundation
 
 public extension Range where Bound == Float {
     
-    /// Lerps to a value in the range, given a percentage.
-    /// - parameter percentage: The lerp percentage (0.0 - 1.0).
-    /// - returns: The lerped value at the given percentage.
-    func lerpedValue(at percentage: Float) -> Float {
+    /// Lerps to a value in the range, given a progress value.
+    ///
+    /// - parameter progress: The lerp progress (0.0 - 1.0).
+    /// - returns: The lerped value at the given progress.
+    func lerpedValue(progress: Float) -> Float {
         
         let min = self.lowerBound
         let max = self.upperBound
         
-        return (min + (max - min) * percentage)
+        return (min + (max - min) * progress)
+        
+    }
+    
+    /// Gets the lerp progress in the range, given a value.
+    ///
+    /// - parameter value: The value to find progress for.
+    /// - returns: The progress for the given value (0.0 - 1.0).
+    func lerpedProgress(value: Float) -> Float {
+        
+        let min = self.lowerBound
+        let max = self.upperBound
+                
+        return ((value - min) / (max - min))
         
     }
     
@@ -27,17 +41,32 @@ public extension Range where Bound == Float {
 
 public extension Range where Bound == Double {
 
-    /// Lerps to a value in the range, given a percentage.
-    /// - parameter percentage: The lerp percentage (0.0 - 1.0).
-    /// - returns: The lerped value at the given percentage.
-    func lerpedValue(at percentage: Double) -> Double {
+    /// Lerps to a value in the range, given a progress value.
+    ///
+    /// - parameter progress: The lerp progress (0.0 - 1.0).
+    /// - returns: The lerped value at the given progress.
+    func lerpedValue(progress: Double) -> Double {
 
         let min = Float(self.lowerBound)
         let max = Float(self.upperBound)
 
         return Double((min..<max)
-            .lerpedValue(at: Float(percentage)))
+            .lerpedValue(progress: Float(progress)))
 
+    }
+    
+    /// Gets the lerp progress in the range, given a value.
+    ///
+    /// - parameter value: The value to find progress for.
+    /// - returns: The progress for the given value (0.0 - 1.0).
+    func lerpedProgress(value: Double) -> Double {
+        
+        let min = Float(self.lowerBound)
+        let max = Float(self.upperBound)
+        
+        return Double((min..<max)
+            .lerpedProgress(value: Float(value)))
+        
     }
 
 }
@@ -46,15 +75,29 @@ public extension Range where Bound == Double {
 
 public extension ClosedRange where Bound == Float {
     
-    /// Lerps to a value in the range, given a percentage.
-    /// - parameter percentage: The lerp percentage (0.0 - 1.0).
-    /// - returns: The lerped value at the given percentage.
-    func lerpedValue(at percentage: Float) -> Float {
+    /// Lerps to a value in the range, given a progress value.
+    ///
+    /// - parameter progress: The lerp progress (0.0 - 1.0).
+    /// - returns: The lerped value at the given progress.
+    func lerpedValue(progress: Float) -> Float {
         
         let min = self.lowerBound
         let max = self.upperBound
         
-        return (min + (max - min) * percentage)
+        return (min + (max - min) * progress)
+        
+    }
+    
+    /// Gets the lerp progress in the range, given a value.
+    ///
+    /// - parameter value: The value to find progress for.
+    /// - returns: The progress for the given value (0.0 - 1.0).
+    func lerpedProgress(value: Float) -> Float {
+        
+        let min = self.lowerBound
+        let max = self.upperBound
+                
+        return ((value - min) / (max - min))
         
     }
     
@@ -62,17 +105,32 @@ public extension ClosedRange where Bound == Float {
 
 public extension ClosedRange where Bound == Double {
 
-    /// Lerps to a value in the range, given a percentage.
-    /// - parameter percentage: The lerp percentage (0.0 - 1.0).
-    /// - returns: The lerped value at the given percentage.
-    func lerpedValue(at percentage: Double) -> Double {
+    /// Lerps to a value in the range, given a progress value.
+    ///
+    /// - parameter progress: The lerp progress (0.0 - 1.0).
+    /// - returns: The lerped value at the given progress.
+    func lerpedValue(progress: Double) -> Double {
 
         let min = Float(self.lowerBound)
         let max = Float(self.upperBound)
 
         return Double((min...max)
-            .lerpedValue(at: Float(percentage)))
+            .lerpedValue(progress: Float(progress)))
 
+    }
+    
+    /// Gets the lerp progress in the range, given a value.
+    ///
+    /// - parameter value: The value to find progress for.
+    /// - returns: The progress for the given value (0.0 - 1.0).
+    func lerpedProgress(value: Double) -> Double {
+        
+        let min = Float(self.lowerBound)
+        let max = Float(self.upperBound)
+        
+        return Double((min...max)
+            .lerpedProgress(value: Float(value)))
+        
     }
 
 }

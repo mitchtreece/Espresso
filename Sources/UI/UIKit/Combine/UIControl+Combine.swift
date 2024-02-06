@@ -128,7 +128,7 @@ public extension Publishers {
 
 public extension Publishers.UIControlEvent {
     
-    private final class Subscription<S: Subscriber, C: UIControl>: Combine.Subscription where S.Input == Void {
+    private final class Subscription<S: Subscriber>: Combine.Subscription where S.Input == Void {
         
         private var subscriber: S?
         private weak var control: C?
@@ -179,7 +179,7 @@ public extension Publishers.UIControlEvent {
 
 public extension Publishers.UIControlProperty {
 
-    private final class Subscription<S: Subscriber, C: UIControl, V>: Combine.Subscription where S.Input == V {
+    private final class Subscription<S: Subscriber>: Combine.Subscription where S.Input == V {
         
         private var subscriber: S?
         private weak var control: C?
@@ -245,7 +245,7 @@ public extension Publishers.UIControlProperty {
 
 public extension Publishers.TargetAction {
     
-    private final class Subscription<S: Subscriber, C: AnyObject>: Combine.Subscription where S.Input == Void {
+    private final class Subscription<S: Subscriber>: Combine.Subscription where S.Input == Void {
         
         public typealias AddTargetAction = (C, AnyObject, Selector)->()
         public typealias RemoveTargetAction = (C?, AnyObject, Selector)->()

@@ -24,14 +24,14 @@ public class AppleDevice {
         /// An iPad device family.
         case iPad
         
+        /// A Vision device family.
+        case vision = "Vision"
+        
         /// An Apple Watch device family.
         case appleWatch = "Apple Watch"
         
         /// An Apple TV device family.
         case appleTV = "Apple TV"
-        
-        /// A Vision device family.
-        case vision = "Vision"
         
         /// An AirTag device family.
         case airTag = "AirTag"
@@ -52,9 +52,9 @@ public class AppleDevice {
             case .iPhone: return .iOS
             case .iPod: return .iOS
             case .iPad: return .iPadOS
+            case .vision: return .visionOS
             case .appleWatch: return .watchOS
             case .appleTV: return .tvOS
-            case .vision: return .visionOS
             case .airTag: return .firmware
             case .airPods: return .firmware
             case .homePod: return .audioOS
@@ -74,14 +74,14 @@ public class AppleDevice {
         /// An iPadOS software type.
         case iPadOS
         
+        /// A visionOS software type.
+        case visionOS
+        
         /// A watchOS software type.
         case watchOS
         
         /// A tvOS software type.
         case tvOS
-        
-        /// A visionOS software type.
-        case visionOS
         
         /// An audioOS software type.
         case audioOS
