@@ -26,6 +26,9 @@ public final class UserAuthenticator {
         /// A biometric user-authentication method using Face ID.
         case faceId
         
+        /// A biometric user-authentication method using Optic ID.
+        case opticId
+        
         /// The user-authentication method's display name.
         ///
         /// This value will be `nil` if the user-authentication method is `none`.
@@ -35,6 +38,7 @@ public final class UserAuthenticator {
             case .password: return "Password"
             case .touchId: return "Touch ID"
             case .faceId: return "Face ID"
+            case .opticId: return "Optic ID"
             default: return nil
             }
             
@@ -64,6 +68,7 @@ public final class UserAuthenticator {
             case .none: return .password
             case .touchID: return .touchId
             case .faceID: return .faceId
+            case .opticID: return .opticId
             @unknown default: return .password
             }
             
