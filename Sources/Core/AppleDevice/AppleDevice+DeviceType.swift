@@ -102,6 +102,8 @@ public extension AppleDevice /* Device Type */ {
         case iPadPro11_4
         case iPadPro12_6
         
+        case visionPro
+        
         case appleWatch
         case appleWatchS1
         case appleWatchS2
@@ -125,8 +127,6 @@ public extension AppleDevice /* Device Type */ {
         case appleTV4K_2
         case appleTV4K_3
         
-        case visionPro
-                
         case airtag
                 
         case airpods
@@ -788,6 +788,15 @@ public extension AppleDevice /* Device Type */ {
                     "iPad14,6-B"
                 ]
                 
+            // MARK: Vision
+                
+            case .visionPro:
+                
+                releaseYear = 2024
+                family = .vision
+                marketingName = "Apple Vision Pro"
+                identifiers = ["RealityDevice14,1"]
+                
             // MARK: Apple Watch
                 
             case .appleWatch:
@@ -944,15 +953,6 @@ public extension AppleDevice /* Device Type */ {
                 generationalName = "Apple TV 4K (3rd Gen)"
                 identifiers = ["AppleTV14,1"]
                 
-            // MARK: Vision
-                
-            case .visionPro:
-                
-                releaseYear = 2024
-                family = .vision
-                marketingName = "Vision Pro"
-                identifiers = ["RealityDevice14,1"]
-                  
             // MARK: AirTag
                 
             case .airtag:

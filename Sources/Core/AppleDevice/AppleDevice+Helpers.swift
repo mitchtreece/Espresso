@@ -18,15 +18,20 @@ public extension AppleDevice /* Helpers */ {
     var isPhone: Bool {
         return self.family == .iPhone
     }
+    
+    /// Flag indicating whether this device is an iPod.
+    var isPod: Bool {
+        return self.family == .iPod
+    }
 
     /// Flag indicating whether this device is an iPad.
     var isPad: Bool {
         return self.family == .iPad
     }
 
-    /// Flag indicating whether this device is an iPod.
-    var isPod: Bool {
-        return self.family == .iPod
+    /// Flag indicating whether this is a Vision device.
+    var isVision: Bool {
+        return self.family == .vision
     }
     
     /// Flag indicating whether this device is an Apple Watch.
@@ -109,6 +114,11 @@ public extension AppleDevice /* Helpers */ {
             self.type == .iPhoneSE || self.type == .iPhoneSE_2 || self.type == .iPhoneSE_3
         )
         
+    }
+    
+    /// Flag indicating whether this device is handheld.
+    var isHandheld: Bool {
+        return self.isPhone || self.isPod || self.isPad
     }
 
     /// Flag indicating whether this device is jailbroken.
