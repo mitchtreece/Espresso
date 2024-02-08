@@ -28,9 +28,9 @@ public extension Publisher where Failure == Never /* Value */ {
     }
         
     /// Latest value of the publisher's output sequence
-    /// _or_ a fallback value if the publisher has no
+    /// _or_ a default value if the publisher has no
     /// values in it's stream.
-    func value(or fallback: Self.Output) -> Self.Output {
+    func value(or default: Self.Output) -> Self.Output {
         
         var value: Self.Output?
         var bag = CancellableBag()
@@ -38,7 +38,7 @@ public extension Publisher where Failure == Never /* Value */ {
         sink { value = $0 }
             .store(in: &bag)
         
-        return value ?? fallback
+        return value ?? `default`
         
     }
     

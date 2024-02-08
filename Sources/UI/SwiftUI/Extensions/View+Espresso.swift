@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+public extension View /* Any */ {
+    
+    /// Gets a type-erased representation of this view.
+    /// - returns: A type-erased `AnyView`.
+    func asAnyView() -> AnyView {
+        return AnyView(self)
+    }
+    
+}
+
 public extension View /* Hosting */ {
     
     /// Returns the view as a `UIKit`-hosted view representation.
@@ -49,6 +59,22 @@ public extension View /* Control Flow */ {
             
         }
         
+    }
+    
+    /// Shows the view based on a condition.
+    ///
+    /// - parameter condition: The show condition.
+    /// - returns: The view.
+    func visible(if condition: Bool) -> some View {
+        return opacity(condition ? 1 : 0)
+    }
+    
+    /// Hides the view based on a condition.
+    ///
+    /// - parameter condition: The hide condition.
+    /// - returns: The view.
+    func hidden(if condition: Bool) -> some View {
+        return opacity(condition ? 0 : 1)
     }
     
 }
