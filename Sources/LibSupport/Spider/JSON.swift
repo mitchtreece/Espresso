@@ -1,1 +1,1 @@
-../../Core/Types/JSON/JSON.swift
+../../Core/Representables/JSON/JSON.swift

@@ -181,11 +181,11 @@ extension RootViewController: UITableViewDelegate,
         var image: UIImage {
             
             switch self {
-            case .fade: return UIImage(systemSymbol: .squareStack3dDownDottedline)
+            case .fade: return UIImage(systemSymbol: .squareStack3dForwardDottedline)
             case .slide: return UIImage(systemSymbol: .arrowLeft)
             case .cover: return UIImage(systemSymbol: .arrowLeftCircle)
-            case .reveal: return UIImage(systemSymbol: .squareRighthalfFill)
-            case .swap: return UIImage(systemSymbol: .arrowRightArrowLeft)
+            case .reveal: return UIImage(systemSymbol: .squareRighthalfFilled)
+            case .swap: return UIImage(systemSymbol: .arrowLeftArrowRight)
             case .pushBack: return UIImage(systemSymbol: .handRaised)
             case .zoom: return UIImage(systemSymbol: .arrowLeftAndRight)
             case .custom: return UIImage(systemSymbol: .person)

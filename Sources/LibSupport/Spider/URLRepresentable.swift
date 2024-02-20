@@ -1,1 +1,1 @@
-../../Core/Types/URLRepresentable.swift
+../../Core/Representables/URLRepresentable.swift

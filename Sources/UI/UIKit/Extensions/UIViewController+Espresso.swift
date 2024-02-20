@@ -6,27 +6,6 @@
 //
 
 import UIKit
-import Espresso
-
-extension UIViewController: StaticIdentifiable {}
-
-public extension StaticIdentifiable where Self: UIViewController /* Storyboard */ {
-    
-    /// Initializes a new instance of the view controller from a storyboard.
-    ///
-    /// - parameter name: The storyboard's name; _defaults to \"Main\"_.
-    /// - parameter identifier: The view controller's storyboard identifier.
-    ///                         If no identifier is provided, the class name will be used; _defaults to nil_.
-    /// - returns: A typed storyboard-loaded view controller instance.
-    static func initFromStoryboard(named name: String = "Main", identifier: String? = nil) -> Self? {
-        
-        let storyboard = UIStoryboard(name: name, bundle: nil)
-        let identifier = identifier ?? self.staticIdentifier
-        return storyboard.instantiateViewController(withIdentifier: identifier) as? Self
-        
-    }
-    
-}
 
 public extension UIViewController /* Modal */ {
     
@@ -55,6 +34,134 @@ public extension UIViewController /* Modal */ {
                 c.resume()
             }
         }
+        
+    }
+    
+}
+
+public extension UIViewController /* Top (Highest) */ {
+    
+    /// The highest (top-most) view controller in the hierarchy,
+    /// starting from this view controller.
+    var highestViewController: UIViewController? {
+        
+        return Self.highestPresented(
+            from: self,
+            current: self
+        )
+        
+    }
+    
+    /// The highest (top-most) view controller in the hierarchy,
+    /// starting from a given view controller.
+    /// - returns: A view controller, or `nil`.
+    static func highestViewController(from viewController: UIViewController) -> UIViewController? {
+        
+        return Self.highestPresented(
+            from: viewController,
+            current: viewController
+        )
+        
+    }
+    
+    /// The highest (top-most) *presented* view controller in the hierarchy,
+    /// starting from this view controller.
+    var highestPresentedViewController: UIViewController? {
+        
+        return Self.highestPresented(
+            from: self,
+            current: nil
+        )
+        
+    }
+    
+    /// The highest (top-most) *presented* view controller in the hierarchy,
+    /// starting from a given view controller.
+    /// - returns: A view controller, or `nil`.
+    static func highestPresentedViewController(from viewController: UIViewController) -> UIViewController? {
+        
+        return Self.highestPresented(
+            from: viewController,
+            current: nil
+        )
+        
+    }
+    
+    fileprivate static func highestPresented(from vc: UIViewController,
+                                             current: UIViewController?) -> UIViewController? {
+        
+        guard let presented = vc.presentedViewController else {
+            return current
+        }
+        
+        return highestPresented(
+            from: presented,
+            current: presented
+        )
+        
+    }
+    
+}
+
+public extension UIViewController /* Lowest */ {
+    
+    /// The lowest (bottom-most) view controller in the hierarchy,
+    /// starting from this view controller.
+    var lowestViewController: UIViewController? {
+        
+        return Self.lowestPresenting(
+            from: self,
+            current: self
+        )
+        
+    }
+    
+    /// The lowest (bottom-most) view controller in the hierarchy,
+    /// starting from a given view controller.
+    /// - returns: A view controller, or `nil`.
+    static func lowestViewController(from viewController: UIViewController) -> UIViewController? {
+        
+        return Self.lowestPresenting(
+            from: viewController,
+            current: viewController
+        )
+        
+    }
+    
+    /// The lowest (bottom-most) *presenting* view controller in the hierarchy,
+    /// starting from this view controller.
+    var lowestPresentingViewController: UIViewController? {
+        
+        return Self.lowestPresenting(
+            from: self,
+            current: nil
+        )
+        
+    }
+    
+    /// The lowest (bottom-most) *presenting* view controller in the hierarchy,
+    /// starting from a given view controller.
+    /// - returns: A view controller, or `nil`.
+    static func lowestPresentingViewController(from viewController: UIViewController) -> UIViewController? {
+        
+        return Self.lowestPresenting(
+            from: viewController,
+            current: nil
+        )
+        
+    }
+    
+    fileprivate static func lowestPresenting(from vc: UIViewController,
+                                             current: UIViewController?) -> UIViewController? {
+        
+        guard let presenting = vc.presentingViewController else {
+            return current
+        }
+        
+        return lowestPresenting(
+            from: presenting,
+            current: presenting
+        )
         
     }
     

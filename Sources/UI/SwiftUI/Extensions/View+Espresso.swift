@@ -17,17 +17,9 @@ public extension View /* Any */ {
     
 }
 
-public extension View /* Hosting */ {
-    
-    /// Returns the view as a `UIKit`-hosted view representation.
-    ///
-    /// - returns: A `UIHostingView` instance over the receiver.
-    func asHostingView() -> UIHostingView<Self> {
-        return UIHostingView(content: self)
-    }
+public extension View /* Hosting Controller */ {
     
     /// Returns the view as a `UIKit`-hosted controller representation.
-    ///
     /// - returns: A `UIHostingController` instance over the receiver.
     func asHostingController() -> UIHostingController<Self> {
         return UIHostingController(rootView: self)
@@ -38,7 +30,6 @@ public extension View /* Hosting */ {
 public extension View /* Control Flow */ {
     
     /// Control-flow view-builder that executes actions based on a condition.
-    ///
     /// - parameter condition: The condition.
     /// - parameter onTrue: An optional action executed when the condition succeeds.
     /// - parameter onFalse: An optional action executed when the condition fails.
@@ -62,7 +53,6 @@ public extension View /* Control Flow */ {
     }
     
     /// Shows the view based on a condition.
-    ///
     /// - parameter condition: The show condition.
     /// - returns: The view.
     func visible(if condition: Bool) -> some View {
@@ -70,7 +60,6 @@ public extension View /* Control Flow */ {
     }
     
     /// Hides the view based on a condition.
-    ///
     /// - parameter condition: The hide condition.
     /// - returns: The view.
     func hidden(if condition: Bool) -> some View {
@@ -82,7 +71,6 @@ public extension View /* Control Flow */ {
 public extension View /* Notifications */ {
     
     /// View notification observer that executes an action when received.
-    ///
     /// - parameter name: The notification name to observe.
     /// - parameter object: An optional object to pass to the notification center.
     /// - parameter action: The action to execute when received.

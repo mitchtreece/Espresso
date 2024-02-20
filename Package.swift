@@ -1,10 +1,10 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "Espresso",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v15)],
     products: [
 
         .library(
@@ -27,33 +27,44 @@ let package = Package(
         .library(
             name: "EspressoLibSupport_Spider", 
             targets: ["EspressoLibSupport_Spider"]
+        ),
+        
+        .library(
+            name: "EspressoLibSupport_Pilot",
+            targets: ["EspressoLibSupport_Pilot"]
         )
 
     ],
     dependencies: [
-
+        
         .package(
-            name: "CombineExt",
             url: "https://github.com/CombineCommunity/CombineExt",
             .upToNextMajor(from: .init(1, 8, 0))
         ),
 
         .package(
-            name: "SnapKit",
             url: "https://github.com/SnapKit/SnapKit",
             .upToNextMajor(from: .init(5, 6, 0))
         ),
 
         .package(
-            name: "Kingfisher",
             url: "https://github.com/onevcat/Kingfisher",
             .upToNextMajor(from: .init(7, 0, 0))
         ),
 
         .package(
-            name: "PromiseKit",
             url: "https://github.com/mxcl/PromiseKit",
             .upToNextMajor(from: .init(6, 0, 0))
+        ),
+        
+        .package(
+            url: "https://github.com/mitchtreece/Lumberjack",
+            .upToNextMajor(from: .init(1, 0, 0))
+        ),
+        
+        .package(
+            url: "https://github.com/kean/Pulse",
+            .upToNextMajor(from: .init(4, 0, 0))
         )
 
     ],
@@ -62,10 +73,20 @@ let package = Package(
         .target(
             name: "Espresso",
             dependencies: [
-
+                
                 .product(
                     name: "CombineExt", 
                     package: "CombineExt"
+                ),
+                
+                .product(
+                    name: "Lumberjack",
+                    package: "Lumberjack"
+                ),
+                
+                .product(
+                    name: "Pulse",
+                    package: "Pulse"
                 )
 
             ],
@@ -113,6 +134,12 @@ let package = Package(
             name: "EspressoLibSupport_Spider",
             dependencies: [],
             path: "Sources/LibSupport/Spider"
+        ),
+        
+        .target(
+            name: "EspressoLibSupport_Pilot",
+            dependencies: [],
+            path: "Sources/LibSupport/Pilot"
         )
 
     ],

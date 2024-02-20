@@ -20,12 +20,30 @@
         }
       },
       {
+        "package": "Lumberjack",
+        "repositoryURL": "https://github.com/mitchtreece/Lumberjack",
+        "state": {
+          "branch": null,
+          "revision": "2db98ca1998212241ca1a6f72ecb46b1441a92a3",
+          "version": "1.4.1"
+        }
+      },
+      {
         "package": "PromiseKit",
         "repositoryURL": "https://github.com/mxcl/PromiseKit",
         "state": {
           "branch": null,
           "revision": "8a98e31a47854d3180882c8068cc4d9381bf382d",
           "version": "6.22.1"
+        }
+      },
+      {
+        "package": "Pulse",
+        "repositoryURL": "https://github.com/kean/Pulse",
+        "state": {
+          "branch": null,
+          "revision": "d647e99f06abc94d63579e335ad4ce368195c149",
+          "version": "4.0.5"
         }
       },
       {
