@@ -9,6 +9,12 @@ import UIKit
 import Espresso
 import EspressoUI
 
+struct TestStruct {
+    
+    let id: String
+    
+}
+
 @main
 class AppDelegate: UIResponder,
                    UIApplicationDelegate {
