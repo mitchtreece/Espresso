@@ -1,70 +1,59 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CombineExt",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineExt",
-        "state": {
-          "branch": null,
-          "revision": "d7b896fa9ca8b47fa7bcde6b43ef9b70bf8c1f56",
-          "version": "1.8.1"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher",
-        "state": {
-          "branch": null,
-          "revision": "af4be924ad984cf4d16f4ae4df424e79a443d435",
-          "version": "7.6.2"
-        }
-      },
-      {
-        "package": "Lumberjack",
-        "repositoryURL": "https://github.com/mitchtreece/Lumberjack",
-        "state": {
-          "branch": null,
-          "revision": "2db98ca1998212241ca1a6f72ecb46b1441a92a3",
-          "version": "1.4.1"
-        }
-      },
-      {
-        "package": "PromiseKit",
-        "repositoryURL": "https://github.com/mxcl/PromiseKit",
-        "state": {
-          "branch": null,
-          "revision": "8a98e31a47854d3180882c8068cc4d9381bf382d",
-          "version": "6.22.1"
-        }
-      },
-      {
-        "package": "Pulse",
-        "repositoryURL": "https://github.com/kean/Pulse",
-        "state": {
-          "branch": null,
-          "revision": "d647e99f06abc94d63579e335ad4ce368195c149",
-          "version": "4.0.5"
-        }
-      },
-      {
-        "package": "SFSafeSymbols",
-        "repositoryURL": "https://github.com/SFSafeSymbols/SFSafeSymbols",
-        "state": {
-          "branch": null,
-          "revision": "7cca2d60925876b5953a2cf7341cd80fbeac983c",
-          "version": "4.1.1"
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit",
-        "state": {
-          "branch": null,
-          "revision": "f222cbdf325885926566172f6f5f06af95473158",
-          "version": "5.6.0"
-        }
+  "pins" : [
+    {
+      "identity" : "combineext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineExt",
+      "state" : {
+        "revision" : "d7b896fa9ca8b47fa7bcde6b43ef9b70bf8c1f56",
+        "version" : "1.8.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "lumberjack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mitchtreece/Lumberjack",
+      "state" : {
+        "revision" : "2db98ca1998212241ca1a6f72ecb46b1441a92a3",
+        "version" : "1.4.1"
+      }
+    },
+    {
+      "identity" : "promisekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/PromiseKit",
+      "state" : {
+        "revision" : "8a98e31a47854d3180882c8068cc4d9381bf382d",
+        "version" : "6.22.1"
+      }
+    },
+    {
+      "identity" : "pulse",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Pulse",
+      "state" : {
+        "revision" : "d647e99f06abc94d63579e335ad4ce368195c149",
+        "version" : "4.0.5"
+      }
+    },
+    {
+      "identity" : "sfsafesymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SFSafeSymbols/SFSafeSymbols",
+      "state" : {
+        "revision" : "afd0a1da4ed62bab1413caa6dd6b60a7a7089ed2",
+        "version" : "5.2.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    }
+  ],
+  "version" : 2
 }

@@ -14,7 +14,6 @@
 		263405A329E9DA2900D109B3 /* Espresso in Frameworks */ = {isa = PBXBuildFile; productRef = 263405A229E9DA2900D109B3 /* Espresso */; };
 		263405A529E9DA2900D109B3 /* EspressoPromise in Frameworks */ = {isa = PBXBuildFile; productRef = 263405A429E9DA2900D109B3 /* EspressoPromise */; };
 		263405A729E9DA2900D109B3 /* EspressoUI in Frameworks */ = {isa = PBXBuildFile; productRef = 263405A629E9DA2900D109B3 /* EspressoUI */; };
-		263405AA29E9DA9500D109B3 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 263405A929E9DA9500D109B3 /* SFSafeSymbols */; };
 		263405AD29E9DC1200D109B3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405AC29E9DC1200D109B3 /* RootViewController.swift */; };
 		263405AF29E9DC1A00D109B3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405AE29E9DC1A00D109B3 /* DetailViewController.swift */; };
 		263405B529E9DC9B00D109B3 /* UIKitViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405B429E9DC9B00D109B3 /* UIKitViewsViewController.swift */; };
@@ -52,7 +51,6 @@
 			files = (
 				263405A529E9DA2900D109B3 /* EspressoPromise in Frameworks */,
 				263405A729E9DA2900D109B3 /* EspressoUI in Frameworks */,
-				263405AA29E9DA9500D109B3 /* SFSafeSymbols in Frameworks */,
 				263405A329E9DA2900D109B3 /* Espresso in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,7 +188,6 @@
 				263405A229E9DA2900D109B3 /* Espresso */,
 				263405A429E9DA2900D109B3 /* EspressoPromise */,
 				263405A629E9DA2900D109B3 /* EspressoUI */,
-				263405A929E9DA9500D109B3 /* SFSafeSymbols */,
 			);
 			productName = Demo;
 			productReference = 2634058029E9D78F00D109B3 /* Demo.app */;
@@ -221,7 +218,6 @@
 			);
 			mainGroup = 2634057729E9D78F00D109B3;
 			packageReferences = (
-				263405A829E9DA9500D109B3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = 2634058129E9D78F00D109B3 /* Products */;
 			projectDirPath = "";
@@ -476,17 +472,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		263405A829E9DA9500D109B3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		263405A229E9DA2900D109B3 /* Espresso */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -499,11 +484,6 @@
 		263405A629E9DA2900D109B3 /* EspressoUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EspressoUI;
-		};
-		263405A929E9DA9500D109B3 /* SFSafeSymbols */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 263405A829E9DA9500D109B3 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
-			productName = SFSafeSymbols;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

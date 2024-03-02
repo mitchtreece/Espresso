@@ -48,11 +48,6 @@ let package = Package(
         ),
 
         .package(
-            url: "https://github.com/onevcat/Kingfisher",
-            .upToNextMajor(from: .init(7, 0, 0))
-        ),
-
-        .package(
             url: "https://github.com/mxcl/PromiseKit",
             .upToNextMajor(from: .init(6, 0, 0))
         ),
@@ -65,6 +60,11 @@ let package = Package(
         .package(
             url: "https://github.com/kean/Pulse",
             .upToNextMajor(from: .init(4, 0, 0))
+        ),
+        
+        .package(
+            url: "https://github.com/SFSafeSymbols/SFSafeSymbols",
+            .upToNextMajor(from: .init(5, 0, 0))
         )
 
     ],
@@ -97,7 +97,7 @@ let package = Package(
             name: "EspressoUI",
             dependencies: [
 
-                .target(name: "Espresso"), // Core
+                .target(name: "Espresso"),
 
                 .product(
                     name: "SnapKit", 
@@ -105,8 +105,8 @@ let package = Package(
                 ),
 
                 .product(
-                    name: "Kingfisher", 
-                    package: "Kingfisher"
+                    name: "SFSafeSymbols",
+                    package: "SFSafeSymbols"
                 )
 
             ],
@@ -117,7 +117,7 @@ let package = Package(
             name: "EspressoPromise",
             dependencies: [
 
-                .target(name: "Espresso"), // Core
+                .target(name: "Espresso"),
 
                 .product(
                     name: "PromiseKit", 

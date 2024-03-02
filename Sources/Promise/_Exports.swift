@@ -1,2 +1,2 @@
-@_exported import PromiseKit
 @_exported import Espresso
+@_exported import PromiseKit
