@@ -11,7 +11,12 @@ public extension View /* Appear */ {
     
     /// Adds an action to perform after this view appears.
     /// - parameter action: The action to perform.
-    /// - returns: A view that triggers an `action` after it appears.
+    /// - returns: A view that triggers an action after it appears.
+    ///
+    /// The action is not *actually* triggered when the view finishes appearing.
+    /// The system does not provide us a hook for this event. Instead,
+    /// this simply waits a duration approximately the same as the system's
+    /// default appearance transition animation.
     func onDidAppear(_ action: @escaping ()->Void) -> some View {
         
         onAppear {
