@@ -7,6 +7,32 @@
 
 import SwiftUI
 
+public extension View /* Appear */ {
+    
+    /// Adds an action to perform after this view appears.
+    /// - parameter action: The action to perform.
+    /// - returns: A view that triggers an `action` after it appears.
+    func onDidAppear(_ action: @escaping ()->Void) -> some View {
+        
+        onAppear {
+            
+            Task {
+                
+                let duration = UInt64(0.5 * 1_000_000_000)
+                
+                try await Task
+                    .sleep(nanoseconds: duration)
+                
+                action()
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
 public extension View /* Any */ {
     
     /// Gets a type-erased representation of this view.
@@ -17,7 +43,7 @@ public extension View /* Any */ {
     
 }
 
-public extension View /* Hosting Controller */ {
+public extension View /* Hosting */ {
     
     /// Returns the view as a `UIKit`-hosted controller representation.
     /// - returns: A `UIHostingController` instance over the receiver.
