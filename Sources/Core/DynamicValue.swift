@@ -7,32 +7,26 @@
 
 import Foundation
 
-/// A dynamic value wrapper that represents potential
-/// concrete & placeholder values, as-well-as a default fallback value.
+/// A dynamic value wrapper that represents 
+/// concrete (or default) and placeholder values.
 public struct DynamicValue<T> {
     
     /// The current value.
-    public var value: T?
+    public var value: T
     
     /// the placeholder value.
-    public let placeholder: T?
-    
-    /// The default value.
-    public let `default`: T
+    public let placeholder: T
     
     /// Initializes a dynamic value with a
-    /// current value, placeholder value, & default value.
+    /// current and placeholder values.
     ///
     /// - parameter value: The current value.
     /// - parameter placeholder: The placeholder value.
-    /// - parameter default: The default value.
-    public init(value: T? = nil,
-                placeholder: T? = nil,
-                `default`: T) {
+    public init(value: T,
+                placeholder: T) {
         
         self.value = value
         self.placeholder = placeholder
-        self.default = `default`
         
     }
     
@@ -43,8 +37,8 @@ public struct DynamicValue<T> {
     public func value(placeholder: Bool = false) -> T {
         
         return placeholder ?
-            self.placeholder ?? self.default :
-            self.value ?? self.default
+            self.placeholder :
+            self.value
         
     }
     
