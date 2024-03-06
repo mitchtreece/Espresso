@@ -14,7 +14,7 @@ public struct DynamicValue<T> {
     /// The current value.
     public var value: T
     
-    /// the placeholder value.
+    /// The placeholder value.
     public let placeholder: T
     
     /// Initializes a dynamic value with a
@@ -30,10 +30,9 @@ public struct DynamicValue<T> {
         
     }
     
-    /// Gets the current/default, or a placeholder value.
-    ///
+    /// Gets the current or placeholder value.
     /// - parameter placeholder: Flag indicating if a placeholder value should be returned.
-    /// - returns: A current/default _or_ placeholder value.
+    /// - returns: A current _or_ placeholder value.
     public func value(placeholder: Bool = false) -> T {
         
         return placeholder ?
