@@ -6,44 +6,48 @@
 //
 
 import Foundation
+import Combine
 
-/// Marks a string as being backed by a localization table.
-///
-/// The value of the wrapped string is used as it's localization key. i.e.
-/// ```
-/// @Localized var title: String = "TITLE_KEY"
-/// "TITLE_KEY" → "My Localized Title"
-/// ```
+/// Localization property-wrapper that replaces
+/// a string-key with a localized value.
 @propertyWrapper
 public struct Localized {
-
+    
     private var key: String
     private var value: String!
     
-    private let _valuePublisher = GuaranteePassthroughSubject<String>()
-    public var valuePublisher: GuaranteePublisher<String> {
+    /// A localized value publisher.
+    public var valuePublisher: AnyPublisher<String, Never> {
         return self._valuePublisher.eraseToAnyPublisher()
     }
     
+    /// The wrapped localized value.
     public var wrappedValue: String {
         get { self.value }
         set {
             self.key = newValue
-            updateValue()
+            update()
         }
     }
     
+    private let _valuePublisher = PassthroughSubject<String, Never>()
+    
+    /// Initializes the property-wrapper with a
+    /// localization string-key.
+    ///
+    /// - parameter wrappedValue: The string-key to use
+    /// when looking up a localized value.
     public init(wrappedValue: String) {
         
         self.key = wrappedValue
         
-        updateValue()
+        update()
         
     }
     
     // MARK: Private
     
-    private mutating func updateValue() {
+    private mutating func update() {
         
         self.value = String(
             localized: .init(self.key)
