@@ -20,9 +20,9 @@ public struct Localized {
     private var key: String
     private var value: String!
     
-    private let _projectedValue = GuaranteePassthroughSubject<String>()
-    public var projectedValue: GuaranteePublisher<String> {
-        return self._projectedValue.eraseToAnyPublisher()
+    private let _valuePublisher = GuaranteePassthroughSubject<String>()
+    public var valuePublisher: GuaranteePublisher<String> {
+        return self._valuePublisher.eraseToAnyPublisher()
     }
     
     public var wrappedValue: String {
@@ -45,9 +45,11 @@ public struct Localized {
     
     private mutating func updateValue() {
         
-        self.value = String(localized: .init(self.key))
+        self.value = String(
+            localized: .init(self.key)
+        )
         
-        self._projectedValue
+        self._valuePublisher
             .send(self.value)
         
     }
