@@ -8,6 +8,16 @@
 import Combine
 import Dispatch
 
+public extension Publisher /* Any */ {
+    
+    /// Wraps this publisher with a type eraser.
+    /// - returns: An `AnyPublisher` wrapping this publisher.
+    func asAny() -> AnyPublisher<Self.Output, Self.Failure> {
+        return eraseToAnyPublisher()
+    }
+    
+}
+
 public extension Publisher where Failure == Never /* Value */ {
     
     /// Latest value of the publisher's output sequence.
