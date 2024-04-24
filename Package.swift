@@ -20,18 +20,6 @@ let package = Package(
         .library(
             name: "EspressoPromise", 
             targets: ["EspressoPromise"]
-        ),
-
-        // MARK: Library Support
-
-        .library(
-            name: "EspressoLibSupport_Spider", 
-            targets: ["EspressoLibSupport_Spider"]
-        ),
-        
-        .library(
-            name: "EspressoLibSupport_Pilot",
-            targets: ["EspressoLibSupport_Pilot"]
         )
 
     ],
@@ -126,20 +114,6 @@ let package = Package(
 
             ],
             path: "Sources/Promise"
-        ),
-
-        // MARK: Library Support
-
-        .target(
-            name: "EspressoLibSupport_Spider",
-            dependencies: [],
-            path: "Sources/LibSupport/Spider"
-        ),
-        
-        .target(
-            name: "EspressoLibSupport_Pilot",
-            dependencies: [],
-            path: "Sources/LibSupport/Pilot"
         )
 
     ],
