@@ -66,7 +66,7 @@ public class AppleDevice {
     }
     
     /// Representation of the various Apple device softwares.
-    public enum Software: String {
+    public enum Software: String, CaseIterable {
         
         /// An iOS software type.
         case iOS
@@ -90,7 +90,77 @@ public class AppleDevice {
         case firmware = "Firmware"
         
         /// An unknown software type.
-        case unknown
+        case unknown = "Unknown"
+        
+    }
+    
+    /// Representation of the various Apple device processors.
+    public enum Processor: String, CaseIterable {
+        
+        case intelPentiumM_1ghz = "Intel Pentium M (1GHz)"
+        
+        case apl0098 = "APL0098"
+        case apl0278 = "APL0278"
+        case apl0298 = "APL0298"
+        case apl2298 = "APL2298"
+        
+        case a4 = "Apple A4"
+        case a5 = "Apple A5"
+        case a5x = "Apple A5X"
+        case a6 = "Apple A6"
+        case a6x = "Apple A6X"
+        case a7 = "Apple A7"
+        case a8 = "Apple A8"
+        case a8x = "Apple A8X"
+        case a9 = "Apple A9"
+        case a9x = "Apple A9X"
+        case a10 = "Apple A10 Fusion"
+        case a10x = "Apple A10X Fusion"
+        case a11 = "Apple A11 Bionic"
+        case a12 = "Apple A12 Bionic"
+        case a12x = "Apple A12X Bionic"
+        case a12z = "Apple A12Z Bionic"
+        case a13 = "Apple A13 Bionic"
+        case a14 = "Apple A14 Bionic"
+        case a15 = "Apple A15 Bionic"
+        case a16 = "Apple A16 Bionic"
+        case a17 = "Apple A17 Pro"
+        
+        case m1 = "Apple M1"
+        case m1Pro = "Apple M1 Pro"
+        case m1Max = "Apple M1 Max"
+        case m1Ultra = "Apple M1 Ultra"
+        case m2 = "Apple M2"
+        case m2Pro = "Apple M2 Pro"
+        case m2Max = "Apple M2 Max"
+        case m2Ultra = "Apple M2 Ultra"
+        case m3 = "Apple M3"
+        case m3Pro = "Apple M3 Pro"
+        case m3Max = "Apple M3 Max"
+        case m4 = "Apple M4"
+        
+        case s1 = "Apple S1"
+        case s1p = "Apple S1P"
+        case s2 = "Apple S2"
+        case s3 = "Apple S3"
+        case s4 = "Apple S4"
+        case s5 = "Apple S5"
+        case s6 = "Apple S6"
+        case s7 = "Apple S7"
+        case s8 = "Apple S8"
+        case s9 = "Apple S9"
+        
+        case w1 = "Apple W1"
+        case h1 = "Apple H1"
+        case h2 = "Apple H2"
+        
+        case none = "None"
+        case unknown = "Unknown"
+
+        /// The processor's name.
+        public var name: String {
+            return self.rawValue
+        }
         
     }
     
@@ -159,6 +229,11 @@ public class AppleDevice {
             UInt(osVersion.patchVersion)
         )
         
+    }
+    
+    /// The device's processor.
+    public var processor: Processor {
+        return self.type.info.processor
     }
     
     /// The current Apple device.
