@@ -7,8 +7,12 @@
 
 import Foundation
 
-// https://www.theiphonewiki.com/wiki/Models
-// https://gist.github.com/adamawolf/3048717
+// Device types are pulled from the following sources:
+//
+// - https://www.theiphonewiki.com/wiki/Models
+// - https://gist.github.com/adamawolf/3048717
+//
+// Or directly via Xcode's database:
 //
 // Xcode.app/Contents/Developer/Platforms/:platform/usr/standalone/device_traits.db
 
