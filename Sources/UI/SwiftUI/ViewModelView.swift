@@ -8,6 +8,9 @@
 import SwiftUI
 import Espresso
 
+// TODO: Remove this once `Pilot` is released
+// All architecture-level stuff should be in that library.
+
 /// Protocol describing a view that is backed by a view model.
 public protocol ViewModelView: View {
     

@@ -7,17 +7,50 @@
 
 import SwiftUI
 
-public extension View /* Hosting */ {
+public extension View /* Appear */ {
     
-    /// Returns the view as a `UIKit`-hosted view representation.
+    /// Adds an action to perform after this view appears.
+    /// - parameter action: The action to perform.
+    /// - returns: A view that triggers an action after it appears.
     ///
-    /// - returns: A `UIHostingView` instance over the receiver.
-    func asHostingView() -> UIHostingView<Self> {
-        return UIHostingView(content: self)
+    /// The action is not *actually* triggered when the view finishes appearing.
+    /// The system does not provide us a hook for this event. Instead,
+    /// this simply waits a duration approximately the same as the system's
+    /// default appearance transition animation.
+    func onDidAppear(_ action: @escaping ()->Void) -> some View {
+        
+        onAppear {
+            
+            Task {
+                
+                let duration = UInt64(0.5 * 1_000_000_000)
+                
+                try await Task
+                    .sleep(nanoseconds: duration)
+                
+                action()
+                
+            }
+            
+        }
+        
     }
     
+}
+
+public extension View /* Any */ {
+    
+    /// Gets a type-erased representation of this view.
+    /// - returns: A type-erased `AnyView`.
+    func asAnyView() -> AnyView {
+        return AnyView(self)
+    }
+    
+}
+
+public extension View /* Hosting */ {
+    
     /// Returns the view as a `UIKit`-hosted controller representation.
-    ///
     /// - returns: A `UIHostingController` instance over the receiver.
     func asHostingController() -> UIHostingController<Self> {
         return UIHostingController(rootView: self)
@@ -28,7 +61,6 @@ public extension View /* Hosting */ {
 public extension View /* Control Flow */ {
     
     /// Control-flow view-builder that executes actions based on a condition.
-    ///
     /// - parameter condition: The condition.
     /// - parameter onTrue: An optional action executed when the condition succeeds.
     /// - parameter onFalse: An optional action executed when the condition fails.
@@ -51,12 +83,25 @@ public extension View /* Control Flow */ {
         
     }
     
+    /// Shows the view based on a condition.
+    /// - parameter condition: The show condition.
+    /// - returns: The view.
+    func visible(if condition: Bool) -> some View {
+        return opacity(condition ? 1 : 0)
+    }
+    
+    /// Hides the view based on a condition.
+    /// - parameter condition: The hide condition.
+    /// - returns: The view.
+    func hidden(if condition: Bool) -> some View {
+        return opacity(condition ? 0 : 1)
+    }
+    
 }
 
 public extension View /* Notifications */ {
     
     /// View notification observer that executes an action when received.
-    ///
     /// - parameter name: The notification name to observe.
     /// - parameter object: An optional object to pass to the notification center.
     /// - parameter action: The action to execute when received.

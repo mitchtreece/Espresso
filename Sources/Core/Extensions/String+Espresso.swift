@@ -30,6 +30,27 @@ public extension Optional where Wrapped == String {
     
 }
 
+public extension String /* Localization */ {
+    
+    /// Gets a localized string from a given key.
+    /// - parameter key: The localized string key.
+    /// - parameter locale: The target locale.
+    /// - parameter table: The target table name.
+    /// - returns: A localized string, _or_ the value of `key`.
+    static func localized(_ key: String,
+                          locale: Locale = .current,
+                          table: String? = nil) -> Self {
+        
+        return String(
+            localized: .init(key),
+            table: table,
+            locale: locale
+        )
+        
+    }
+    
+}
+
 public extension String /* Tokens */ {
     
     /// Creates a new string by replacing all occurrences of a **\<token\>** with another string.

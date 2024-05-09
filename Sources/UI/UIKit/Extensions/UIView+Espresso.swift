@@ -11,8 +11,8 @@ import Espresso
 private struct AssociatedKeys {
     
     static var nibs: UInt8 = 0
-    static var templateView: UInt8 = 0
-    static var templateSettings: UInt8 = 0
+    static var placeholderView: UInt8 = 0
+    static var placeholderSettings: UInt8 = 0
     
 }
 
@@ -174,51 +174,51 @@ public extension UIView /* Motion */ {
     
 }
 
-public extension UIView /* Template */ {
+public extension UIView /* Placeholder */ {
     
-    private static let templateViewIndex: Int = .max
+    private static let placeholderViewIndex: Int = .max
     
-    /// Container object for the various view template settings.
-    class TemplateSettings {
+    /// Container object for the various placeholder view settings.
+    class PlaceholderSettings {
         
-        /// Representation of the various view template modes.
+        /// Representation of the various placeholder view modes.
         public enum Mode {
             
-            /// A static color template mode.
+            /// A static color placeholder mode.
             case `static`
             
-            /// An animated shimmer template mode.
+            /// An animated shimmer placeholder mode.
             case shimmer
             
         }
         
-        /// The view's template mode.
+        /// The view's placeholder mode.
         public var mode: Mode = .static
         
-        /// The view's template color.
+        /// The view's placeholder color.
         public var color: UIColor = .systemGray5
         
-        /// The view's template shimmer color.
+        /// The view's placeholder shimmer color.
         public var shimmerColor: UIColor = .systemGray6
         
-        /// The view's template corner radius.
+        /// The view's placeholder corner radius.
         public var cornerRadius: CGFloat = 5
         
     }
     
-    /// The view's template settings.
-    var template: TemplateSettings {
+    /// The view's placeholder settings.
+    var placeholder: PlaceholderSettings {
 
-        if let settings = associatedObject(forKey: AssociatedKeys.templateSettings) as? TemplateSettings {
+        if let settings = associatedObject(forKey: AssociatedKeys.placeholderSettings) as? PlaceholderSettings {
             return settings
         }
         else {
             
-            let settings = TemplateSettings()
+            let settings = PlaceholderSettings()
             
             setAssociatedObject(
                 settings,
-                forKey: AssociatedKeys.templateSettings
+                forKey: AssociatedKeys.placeholderSettings
             )
             
             return settings
@@ -227,24 +227,24 @@ public extension UIView /* Template */ {
         
     }
     
-    /// Flag indicating if this view is currently being displayed as a template.
+    /// Flag indicating if this view is currently being displayed as a placeholder.
     ///
-    /// Setting this property to `true` will add a template view to the hierarchy.
-    /// Template display properties can be configured via the `template` settings object.
+    /// Setting this property to `true` will add a placeholder view to the hierarchy.
+    /// Placeholder display properties can be configured via the `placeholder` settings object.
     ///
     /// ```
     /// let view = UIView()
-    /// view.template.mode = .static
-    /// view.template.color = .systemGray
-    /// view.isTemplate = true
+    /// view.placeholder.mode = .static
+    /// view.placeholder.color = .systemGray
+    /// view.isPlaceholder = true
     /// ```
-    var isTemplate: Bool {
+    var isPlaceholder: Bool {
         get {
-            return associatedObject(forKey: AssociatedKeys.templateView) != nil
+            return associatedObject(forKey: AssociatedKeys.placeholderView) != nil
         }
         set {
             
-            let oldView = associatedObject(forKey: AssociatedKeys.templateView) as? UIView
+            let oldView = associatedObject(forKey: AssociatedKeys.placeholderView) as? UIView
 
             if newValue {
                 
@@ -257,7 +257,7 @@ public extension UIView /* Template */ {
                     
                 }
                 
-                let settings = self.template
+                let settings = self.placeholder
                 
                 switch settings.mode {
                 case .static:
@@ -265,14 +265,14 @@ public extension UIView /* Template */ {
                     let view = UIView()
                     view.backgroundColor = settings.color
                     view.roundCorners(radius: settings.cornerRadius, curve: .continuous)
-                    insertSubview(view, at: Self.templateViewIndex)
+                    insertSubview(view, at: Self.placeholderViewIndex)
                     view.snp.makeConstraints { make in
                         make.edges.equalToSuperview()
                     }
                     
                     setAssociatedObject(
                         view,
-                        forKey: AssociatedKeys.templateView
+                        forKey: AssociatedKeys.placeholderView
                     )
                     
                 case .shimmer:
@@ -281,14 +281,14 @@ public extension UIView /* Template */ {
                     shimmerView.backgroundColor = settings.color
                     shimmerView.shimmerColor = settings.shimmerColor
                     shimmerView.roundCorners(radius: settings.cornerRadius, curve: .continuous)
-                    insertSubview(shimmerView, at: Self.templateViewIndex)
+                    insertSubview(shimmerView, at: Self.placeholderViewIndex)
                     shimmerView.snp.makeConstraints { make in
                         make.edges.equalToSuperview()
                     }
                     
                     setAssociatedObject(
                         shimmerView,
-                        forKey: AssociatedKeys.templateView
+                        forKey: AssociatedKeys.placeholderView
                     )
                     
                 }
@@ -301,7 +301,7 @@ public extension UIView /* Template */ {
                 
                 setAssociatedObject(
                     nil,
-                    forKey: AssociatedKeys.templateView
+                    forKey: AssociatedKeys.placeholderView
                 )
                 
             }
@@ -309,14 +309,14 @@ public extension UIView /* Template */ {
         }
     }
     
-    /// Invalidates the current template layout of the receiver
+    /// Invalidates the current placeholder layout of the receiver
     /// and triggers a layout update during the next update cycle.
     func setNeedsTemplateLayout() {
         
-        guard self.isTemplate else { return }
-
-        self.isTemplate = false
-        self.isTemplate = true
+        guard self.isPlaceholder else { return }
+        
+        self.isPlaceholder = false
+        self.isPlaceholder = true
         
     }
     
@@ -379,8 +379,9 @@ public extension UIView /* Nib Loading */ {
         
     }
     
-    /// Load's a view's contents from a nib with a specified name. If no name is provided, the class name will be used.
-    /// 
+    /// Load's a view's contents from a nib with a specified name. 
+    /// If no name is provided, the class name will be used.
+    ///
     /// - parameter name: The nib's name.
     func loadContentsFromNib(name: String? = nil) {
         
@@ -388,33 +389,55 @@ public extension UIView /* Nib Loading */ {
         
         if let nib = type(of: self)._nibLoadingAssociatedNibWithName(_name) {
             
-            let views = nib.instantiate(withOwner: self, options: nil) as NSArray
-            assert(views.count == 1, "There must be exactly one root container view in \(_name)")
+            let views = nib.instantiate(
+                withOwner: self,
+                options: nil
+            ) as NSArray
+            
+            assert(
+                views.count == 1,
+                "There must be exactly one root container view in \(_name)"
+            )
             
             let containerView = views.firstObject as! UIView
             
-            assert(containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)), "UIView - The container view in nib \(_name) should be a UIView instead of \(containerView.className).")
+            assert(
+                containerView.isKind(of: UIView.self) || containerView.isKind(of: type(of: self)),
+                "UIView - The container view in nib \(_name) should be a UIView instead of \(containerView.className)."
+            )
             
-            containerView.translatesAutoresizingMaskIntoConstraints = false
+            containerView
+                .translatesAutoresizingMaskIntoConstraints = false
             
             if self.bounds.equalTo(CGRect.zero) {
-                // `self` has no size : use the containerView's size, from the nib file
+                
+                // `self` has no size : use the containerView's size, 
+                // from the nib file
+                
                 self.bounds = containerView.bounds
+                
             }
             else {
-                // `self` has a specific size : resize the containerView to this size, so that the subviews are autoresized.
+                
+                // `self` has a specific size : resize the containerView to this size, 
+                // so that the subviews are autoresized.
+                
                 containerView.bounds = self.bounds
+                
             }
             
             // Save constraints for later
+            
             let constraints = containerView.constraints
             
             // Reparent the subviews from the nib file
+            
             for view in containerView.subviews {
-                self.addSubview(view)
+                addSubview(view)
             }
             
             // Re-add constraints, replace containerView with self
+            
             for constraint in constraints {
                 
                 var firstItem: Any = constraint.firstItem!
@@ -429,15 +452,16 @@ public extension UIView /* Nib Loading */ {
                 }
                 
                 // Re-add
-                let _constraint = NSLayoutConstraint(item: firstItem,
-                                                     attribute: constraint.firstAttribute,
-                                                     relatedBy: constraint.relation,
-                                                     toItem: secondItem,
-                                                     attribute: constraint.secondAttribute,
-                                                     multiplier: constraint.multiplier,
-                                                     constant: constraint.constant)
-                
-                self.addConstraint(_constraint)
+                                
+                addConstraint(NSLayoutConstraint(
+                    item: firstItem,
+                    attribute: constraint.firstAttribute,
+                    relatedBy: constraint.relation,
+                    toItem: secondItem,
+                    attribute: constraint.secondAttribute,
+                    multiplier: constraint.multiplier,
+                    constant: constraint.constant
+                ))
                 
             }
             

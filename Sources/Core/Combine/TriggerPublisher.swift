@@ -24,8 +24,14 @@ public class TriggerPublisher {
     
     /// Wraps the publisher with a type eraser.
     /// - returns: An ``AnyPublisher`` wrapping this publisher.
-    public func eraseToAnyPublisher() -> AnyPublisher<Void, Never> {
+    public func eraseToAnyPublisher() -> GuaranteeVoidPublisher {
         return self.subject.eraseToAnyPublisher()
+    }
+    
+    /// Wraps the publisher with a type eraser.
+    /// - returns: An ``AnyPublisher`` wrapping this publisher.
+    public func asAny() -> GuaranteeVoidPublisher {
+        return eraseToAnyPublisher()
     }
 
 }

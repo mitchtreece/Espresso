@@ -25,21 +25,17 @@ public extension UIViewController {
     @objc var transition: UIViewControllerTransition? {
         get {
             
-            return objc_getAssociatedObject(
-                self,
-                &AssociatedKey.transition
-            ) as? UIViewControllerTransition
+            return withUnsafePointer(to: AssociatedKey.transition) {
+                objc_getAssociatedObject(self, $0) as? UIViewControllerTransition
+            }
             
         }
         set {
             
-            objc_setAssociatedObject(
-                self,
-                &AssociatedKey.transition,
-                newValue,
-                .OBJC_ASSOCIATION_RETAIN_NONATOMIC
-            )
-            
+            withUnsafePointer(to: AssociatedKey.transition) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+
             self.transitioningDelegate = newValue
             
             if let transition = newValue {

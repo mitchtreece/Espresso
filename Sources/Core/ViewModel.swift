@@ -7,6 +7,9 @@
 
 import Foundation
 
+// TODO: Remove this once `Pilot` is released
+// All architecture-level stuff should be in that library.
+
 /// Abstract protocol representing a view model.
 public protocol ViewModelProtocol: Equatable {
     //

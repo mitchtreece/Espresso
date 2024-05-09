@@ -8,6 +8,9 @@
 import UIKit
 import Espresso
 
+// TODO: Remove this once `Pilot` is released
+// All architecture-level stuff should be in that library.
+
 /// Specialized base view-model class that manages a `UIViewController`.
 ///
 /// This should never be used directly. Instead, create a specialized `UIViewControllerModel` by subclassing it.

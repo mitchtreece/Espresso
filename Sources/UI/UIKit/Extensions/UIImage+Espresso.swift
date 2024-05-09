@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SFSafeSymbols
 
 // MARK: Color
 
@@ -282,6 +283,73 @@ extension UIImage: BlurHashRepresentable /* Blur Hash */ {
             components: components
         )
 
+    }
+    
+}
+
+// MARK: Symbol
+
+@available(iOS 16, *)
+public extension UIImage /* Symbol */ {
+    
+    /// Creates a new image from a given symbol.
+    /// - parameter symbol: The symbol.
+    /// - parameter variableValue: An optional value between 0...1
+    /// that can be used to customize the symbol's appearance.
+    /// - parameter configuration: An optional image configuration.
+    /// - returns: A symbol image.
+    static func symbol(_ symbol: SFSymbol,
+                       variableValue: Double? = nil,
+                       configuration: Configuration? = nil) -> UIImage {
+        
+        if let variableValue {
+            
+            return .init(
+                systemSymbol: symbol,
+                variableValue: variableValue,
+                configuration: configuration
+            )
+            
+        }
+        else {
+            
+            return .init(
+                systemSymbol: symbol,
+                withConfiguration: configuration
+            )
+            
+        }
+        
+    }
+        
+    /// Creates a new image from a given symbol.
+    /// - parameter name: The symbol's name.
+    /// - parameter variableValue: An optional value between 0...1
+    /// that can be used to customize the symbol's appearance.
+    /// - parameter configuration: An optional image configuration.
+    /// - returns: A symbol image.
+    static func symbol(_ name: String,
+                       variableValue: Double? = nil,
+                       configuration: Configuration? = nil) -> UIImage? {
+        
+        if let variableValue {
+                        
+            return .init(
+                systemName: name,
+                variableValue: variableValue,
+                configuration: configuration
+            )
+            
+        }
+        else {
+            
+            return .init(
+                systemName: name,
+                withConfiguration: configuration
+            )
+            
+        }
+        
     }
     
 }

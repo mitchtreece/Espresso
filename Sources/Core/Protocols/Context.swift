@@ -2,10 +2,10 @@
 //  Context.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 4/17/23.
+//  Created by Mitch Treece on 2/19/24.
 //
 
 import Foundation
 
-/// Protocol describing a context object.
+/// Protocol describing the characteristics of a context object.
 public protocol Context {}

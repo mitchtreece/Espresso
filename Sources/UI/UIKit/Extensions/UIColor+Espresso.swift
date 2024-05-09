@@ -85,6 +85,30 @@ public extension UIColor /* Light & Dark */ {
         return !self.isLight
     }
     
+    /// The color's inverse color.
+    var inverse: UIColor {
+        
+        var alpha: CGFloat = 1
+        
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
+        if getRed(&r, green: &g, blue: &b, alpha: &alpha) {
+            return .init(red: (1 - r), green: (1 - g), blue: (1 - b), alpha: alpha)
+        }
+        
+        var h: CGFloat = 0, s: CGFloat = 0, br: CGFloat = 0
+        if getHue(&h, saturation: &s, brightness: &br, alpha: &alpha) {
+            return .init(hue: (1 - h), saturation: (1 - s), brightness: (1 - br), alpha: alpha)
+        }
+        
+        var w: CGFloat = 0
+        if getWhite(&w, alpha: &alpha) {
+            return .init(white: (1 - w), alpha: alpha)
+        }
+        
+        return self
+        
+    }
+    
 }
 
 public extension UIColor /* Interpolation */ {

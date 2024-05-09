@@ -32,8 +32,9 @@ public extension UIApplication /* Windows */ {
     
     /// The application's key windows.
     var keyWindows: [UIWindow] {
-    
-        return self.windows
+        
+        return self.windowScenes
+            .flatMap { $0.windows }
             .filter { $0.isKeyWindow }
         
     }
@@ -53,7 +54,8 @@ public extension UIApplication /* Windows */ {
     /// The application's active keyboard window.
     var keyboardWindow: UIWindow? {
         
-        return self.windows
+        return self.windowScenes
+            .flatMap { $0.windows }
             .first(where: { NSStringFromClass($0.classForCoder) == "UIRemoteKeyboardWindow" })
         
     }

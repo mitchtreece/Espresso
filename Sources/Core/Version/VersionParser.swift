@@ -52,7 +52,8 @@ internal struct VersionParser {
                 return "0"
             }
 
-            scanner.scanString(Version.dotDelimiter, into: nil)
+            _ = scanner
+                .scanString(Version.dotDelimiter)
 
             guard let digits = scanner.scanCharacters(from: CharacterSet.decimalDigits) else {
                 throw VersionError.digitsNotFound(scanner.string)
@@ -65,7 +66,14 @@ internal struct VersionParser {
         minor = try scanNextVersion(versionScanner)
         patch = try scanNextVersion(versionScanner)
 
-        let scanIndex = String.Index(utf16Offset: scanner.scanLocation, in: input)
+        let scanIndex = String.Index(
+            utf16Offset: input.distance(
+                from: input.startIndex,
+                to: scanner.currentIndex
+            ),
+            in: input
+        )
+                
         var remainder = String(input[scanIndex...])
 
         do {
