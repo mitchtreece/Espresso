@@ -135,6 +135,23 @@ open class UIBaseViewController: UIViewController,
         set { self.isModalInPresentation = !newValue }
     }
     
+    /// The view controller's parent window safe-area insets.
+    ///
+    /// The value of this property is pulled directly from
+    /// the view controller's parent `UIWindow`, which is
+    /// constant and always accessible. This is useful when
+    /// you need to access the inset values early in the
+    /// view lifecycle. The view's property `safeAreaInsets`
+    /// doesn't have valid values until later on in the view lifecycle.
+    public var safeAreaWindowInsets: UIEdgeInsets {
+        
+        return self
+            .view
+            .window?
+            .safeAreaInsets ?? self.view.safeAreaInsets
+        
+    }
+    
     private var _viewDidLoad = TriggerPublisher()
     private var _viewWillAppear = GuaranteePassthroughSubject<Bool>()
     private var _viewIsAppearing = GuaranteePassthroughSubject<Bool>()
