@@ -5,7 +5,8 @@
 //  Created by Mitch Treece on 1/10/23.
 //
 
-import Foundation
+#if canImport(UIKit)
+
 import UIKit
 
 private struct AssociatedKeys {
@@ -40,3 +41,5 @@ public extension UIButton /* Extended Edges */ {
     }
 
 }
+
+#endif

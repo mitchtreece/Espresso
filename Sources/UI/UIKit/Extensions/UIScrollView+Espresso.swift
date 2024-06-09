@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 7/26/22.
 //
 
-import Foundation
+#if canImport(UIKit)
 
 import UIKit
 
@@ -30,3 +30,5 @@ public extension UIScrollView {
     }
     
 }
+
+#endif

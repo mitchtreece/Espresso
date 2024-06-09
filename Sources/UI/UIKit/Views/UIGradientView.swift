@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/12/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIView` subclass that draws a gradient as its content.
@@ -105,3 +107,5 @@ open class UIGradientView: UIBaseView {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/5/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIView` subclass that loads it's contents from a nib.
@@ -26,3 +28,5 @@ open class UINibView: UIBaseView {
     }
     
 }
+
+#endif

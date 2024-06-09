@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/12/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -16,3 +18,5 @@ public extension UIDevice {
     }
     
 }
+
+#endif

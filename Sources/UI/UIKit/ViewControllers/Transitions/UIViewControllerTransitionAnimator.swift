@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/21/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 internal class UIViewControllerTransitionAnimator: NSObject,
@@ -59,3 +61,5 @@ internal class UIViewControllerTransitionAnimator: NSObject,
     }
     
 }
+
+#endif

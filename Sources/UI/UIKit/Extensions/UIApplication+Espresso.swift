@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 12/15/17.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 private struct AssociatedKeys {
@@ -143,3 +145,5 @@ public extension UIApplication /* Version & Build */ {
     }
     
 }
+
+#endif

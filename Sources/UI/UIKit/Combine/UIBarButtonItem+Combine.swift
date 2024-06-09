@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/13/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Combine
 import Espresso
@@ -33,3 +35,5 @@ public extension UIBarButtonItem {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/5/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Wrapper class over `UIFeedbackGenerator`.
@@ -61,3 +63,5 @@ public class UITaptic {
     }
     
 }
+
+#endif

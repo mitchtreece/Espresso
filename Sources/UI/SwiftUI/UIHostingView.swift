@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 10/17/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import SwiftUI
 import SnapKit
@@ -67,3 +69,5 @@ public class UIHostingView<Content: View>: UIView {
     }
     
 }
+
+#endif

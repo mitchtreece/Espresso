@@ -48,6 +48,8 @@ public extension View /* Any */ {
     
 }
 
+#if canImport(UIKit)
+
 public extension View /* Hosting */ {
     
     /// Returns the view as a `UIKit`-hosted controller representation.
@@ -57,6 +59,8 @@ public extension View /* Hosting */ {
     }
     
 }
+
+#endif
 
 public extension View /* Control Flow */ {
     

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 1/10/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension NSMutableAttributedString /* Style */ {
@@ -198,3 +200,5 @@ public extension NSMutableAttributedString /* Append */ {
     }
     
 }
+
+#endif

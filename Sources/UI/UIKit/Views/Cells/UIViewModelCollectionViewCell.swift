@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 11/4/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -28,3 +30,5 @@ open class UIViewModelCollectionViewCell<V: ViewModel>: UIBaseCollectionViewCell
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/13/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension String /* Size */ {
@@ -85,3 +87,5 @@ public extension String /* Size */ {
     }
     
 }
+
+#endif

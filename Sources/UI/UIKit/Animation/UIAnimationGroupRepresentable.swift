@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 6/14/21.
 //
 
-import Foundation
+#if canImport(UIKit)
 
 /// Protocol describing something that can be
 /// represented as an animation group.
@@ -16,3 +16,5 @@ public protocol UIAnimationGroupRepresentable {
     func asAnimationGroup() -> UIAnimationGroup
     
 }
+
+#endif

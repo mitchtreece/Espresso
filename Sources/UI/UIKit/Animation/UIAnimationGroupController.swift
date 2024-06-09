@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/28/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Wrapper class over an animation group that makes it
@@ -64,3 +66,5 @@ public class UIAnimationGroupController {
     }
     
 }
+
+#endif

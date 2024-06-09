@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/16/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIView` subclass that provides common helper functions & properties.
@@ -103,3 +105,5 @@ open class UIBaseView: UIView, UIUserInterfaceStyleAdaptable {
     }
     
 }
+
+#endif

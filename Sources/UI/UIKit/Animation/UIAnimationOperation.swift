@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/28/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -36,3 +38,5 @@ internal class UIAnimationOperation: AsyncOperation {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/29/18.
 //
 
+#if canImport(UIKit)
+
 import Foundation
 
 public extension Array where Element: UIAnimation {
@@ -44,3 +46,5 @@ extension Array: UIAnimationGroupRepresentable where Element: UIAnimation {
     }
     
 }
+
+#endif

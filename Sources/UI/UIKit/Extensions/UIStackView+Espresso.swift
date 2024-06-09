@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 1/10/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIStackView /* Subviews */ {
@@ -110,3 +112,5 @@ public extension UIStackView /* Subviews */ {
     }
     
 }
+
+#endif

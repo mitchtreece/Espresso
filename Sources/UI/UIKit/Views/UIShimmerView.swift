@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 5/26/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -160,3 +162,5 @@ open class UIShimmerView: UIBaseView {
     }
     
 }
+
+#endif

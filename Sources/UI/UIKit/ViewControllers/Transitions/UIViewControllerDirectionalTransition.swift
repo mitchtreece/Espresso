@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/14/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -18,3 +20,5 @@ public class UIViewControllerDirectionalTransition: UIViewControllerTransition  
     public var dismissalDirection: Direction = .right
     
 }
+
+#endif

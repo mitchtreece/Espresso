@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 12/15/17.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import SFSafeSymbols
 
@@ -353,3 +355,5 @@ public extension UIImage /* Symbol */ {
     }
     
 }
+
+#endif

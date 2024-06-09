@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 8/2/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension VerticalEdgeInsets {
@@ -22,3 +24,5 @@ public extension VerticalEdgeInsets {
     }
     
 }
+
+#endif

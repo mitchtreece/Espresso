@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/12/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Combine
 import Espresso
@@ -53,3 +55,5 @@ open class UICombineTableViewCell<V: ViewModel>: UIViewModelTableViewCell<V> {
     }
     
 }
+
+#endif

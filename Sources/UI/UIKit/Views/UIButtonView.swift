@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/27/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public class UIButtonView: UIBaseView {
@@ -230,3 +232,5 @@ public class UIButtonView: UIBaseView {
     }
 
 }
+
+#endif

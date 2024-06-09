@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 10/28/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UICollectionView {
@@ -27,3 +29,5 @@ public extension UICollectionView {
     }
     
 }
+
+#endif

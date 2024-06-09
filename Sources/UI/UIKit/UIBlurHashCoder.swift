@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/28/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 // NOTE: This class uses `UIKit stuff`. It shouldn't really be
@@ -427,3 +429,5 @@ private extension String {
     }
     
 }
+
+#endif

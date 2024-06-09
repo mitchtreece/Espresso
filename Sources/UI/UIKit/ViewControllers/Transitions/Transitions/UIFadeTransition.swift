@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A fading view controller transition.
@@ -59,3 +61,5 @@ public class UIFadeTransition: UIViewControllerTransition {
     }
     
 }
+
+#endif

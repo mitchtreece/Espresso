@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/11/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -272,3 +274,5 @@ open class UIBaseNavigationController: UINavigationController,
     }
     
 }
+
+#endif

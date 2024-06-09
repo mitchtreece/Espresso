@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 1/5/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIColor /* Random */ {
@@ -158,3 +160,5 @@ public extension UIColor /* Interpolation */ {
     }
     
 }
+
+#endif

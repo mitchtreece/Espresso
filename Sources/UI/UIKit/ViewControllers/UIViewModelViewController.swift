@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 11/3/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -66,3 +68,5 @@ open class UIViewModelViewController<V: ViewModel>: UIBaseViewController {
     }
     
 }
+
+#endif
