@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A covering view controller transition.
@@ -110,3 +112,5 @@ public class UICoverTransition: UIViewControllerDirectionalTransition {
     }
     
 }
+
+#endif

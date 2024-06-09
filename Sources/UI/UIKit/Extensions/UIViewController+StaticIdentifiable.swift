@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 2/19/24.
 //
 
+#if canImport(UIKit)
+
 import Espresso
 
 extension UIViewController: StaticIdentifiable {}
@@ -26,3 +28,5 @@ public extension StaticIdentifiable where Self: UIViewController /* Storyboard *
     }
     
 }
+
+#endif

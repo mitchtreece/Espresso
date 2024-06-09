@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A push-back view controller transition.
@@ -140,3 +142,5 @@ public class UIPushBackTransition: UIViewControllerDirectionalTransition {
     }
     
 }
+
+#endif

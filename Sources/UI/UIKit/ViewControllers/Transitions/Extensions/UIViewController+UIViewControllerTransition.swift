@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIViewController {
@@ -91,3 +93,5 @@ public extension UIViewController {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A sliding view controller transition.
@@ -55,3 +57,5 @@ public class UISlideTransition: UIViewControllerDirectionalTransition {
     }
     
 }
+
+#endif

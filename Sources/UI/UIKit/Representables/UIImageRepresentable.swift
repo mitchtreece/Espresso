@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 5/3/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Protocol describing something that can be represented as a `UIImage`.
@@ -45,3 +47,5 @@ extension Data: UIImageRepresentable {
     }
     
 }
+
+#endif

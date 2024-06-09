@@ -5,7 +5,8 @@
 //  Created by Mitch Treece on 4/13/22.
 //
 
-import Foundation
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIBarButtonItem {
@@ -22,3 +23,5 @@ public extension UIBarButtonItem {
     }
     
 }
+
+#endif

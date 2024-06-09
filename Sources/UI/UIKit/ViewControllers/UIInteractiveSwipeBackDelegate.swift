@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/11/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 internal final class UIInteractiveSwipeBackDelegate: NSObject,
@@ -100,3 +102,5 @@ internal final class UIInteractiveSwipeBackDelegate: NSObject,
     }
 
 }
+
+#endif

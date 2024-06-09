@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 5/2/23.
 //
 
-import UIKit
+import CoreFoundation
 
 // MARK: Range (0..<100)
 

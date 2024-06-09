@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 11/3/20.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -39,3 +41,5 @@ open class UIViewModel: ViewModel {
     }
     
 }
+
+#endif

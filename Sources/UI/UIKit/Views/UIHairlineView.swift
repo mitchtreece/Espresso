@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/27/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import SnapKit
 
@@ -67,3 +69,5 @@ public class UIHairlineView: UIBaseView {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -219,3 +221,5 @@ public extension UIViewControllerTransition /* Helpers */ {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 12/18/17.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIView` subclass that delegates it's touch events to other receivers.
@@ -20,3 +22,5 @@ open class UIContainerView: UIView {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 5/10/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A zooming view controller transition.
@@ -84,3 +86,5 @@ public class UIZoomTransition: UIViewControllerTransition {
     }
     
 }
+
+#endif

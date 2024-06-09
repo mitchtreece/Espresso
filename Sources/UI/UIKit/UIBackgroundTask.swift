@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/26/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Wrapper class over `UIApplication` background task execution.
@@ -108,3 +110,5 @@ public class UIBackgroundTask {
     }
 
 }
+
+#endif

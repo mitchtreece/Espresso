@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/16/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UICollectionViewCell` subclass that provides
@@ -105,3 +107,5 @@ open class UIBaseCollectionViewCell: UICollectionViewCell,
     }
     
 }
+
+#endif

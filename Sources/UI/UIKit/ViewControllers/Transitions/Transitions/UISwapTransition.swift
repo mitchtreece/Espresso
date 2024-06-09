@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/27/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A swapping view controller transition.
@@ -119,3 +121,5 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
     }
     
 }
+
+#endif

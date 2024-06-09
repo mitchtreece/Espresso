@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/27/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Protocol describing something that adapts to user interface style changes.
@@ -29,3 +31,5 @@ public extension UIUserInterfaceStyleAdaptable {
     }
     
 }
+
+#endif

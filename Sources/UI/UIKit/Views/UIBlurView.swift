@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/2/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import SnapKit
 
@@ -333,3 +335,5 @@ open class UIBlurView: UIBaseView {
     """
     
 }
+
+#endif

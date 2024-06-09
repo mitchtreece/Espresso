@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/20/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 open class UIParallaxView: UIBaseView {
@@ -152,3 +154,5 @@ open class UIParallaxView: UIBaseView {
     }
         
 }
+
+#endif

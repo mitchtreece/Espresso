@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/11/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Object containing the various properties of a keyboard animation.
@@ -79,3 +81,5 @@ public struct UIKeyboardAnimation {
     }
     
 }
+
+#endif

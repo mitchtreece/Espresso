@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 3/18/20.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIRectCorner {
@@ -46,3 +48,5 @@ public extension UIRectCorner {
     }
     
 }
+
+#endif

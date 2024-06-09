@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/28/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIAnimation` is a wrapper over `UIView` property animation.
@@ -319,3 +321,5 @@ extension UIAnimation: CustomStringConvertible,
     }
     
 }
+
+#endif

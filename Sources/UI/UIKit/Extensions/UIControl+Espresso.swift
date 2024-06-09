@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/13/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIControl.Event {
@@ -19,3 +21,5 @@ public extension UIControl.Event {
     }
     
 }
+
+#endif

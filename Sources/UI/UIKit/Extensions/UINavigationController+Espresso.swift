@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/9/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UINavigationController /* Push */ {
@@ -203,3 +205,5 @@ public extension UINavigationController /* Push */ {
     }
     
 }
+
+#endif

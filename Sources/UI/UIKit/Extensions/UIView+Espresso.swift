@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 12/15/17.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -473,3 +475,5 @@ public extension UIView /* Nib Loading */ {
     }
     
 }
+
+#endif

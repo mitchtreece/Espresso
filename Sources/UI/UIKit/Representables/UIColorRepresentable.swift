@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 12/10/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Protocol describing something that 
@@ -56,3 +58,5 @@ extension String: UIColorRepresentable {
     }
     
 }
+
+#endif

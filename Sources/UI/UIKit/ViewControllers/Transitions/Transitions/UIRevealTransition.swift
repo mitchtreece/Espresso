@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 11/26/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// A revealing view controller transition.
@@ -108,3 +110,5 @@ public class UIRevealTransition: UIViewControllerDirectionalTransition {
     }
     
 }
+
+#endif

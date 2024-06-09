@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/30/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// `UIAnimationGroup` is a container over a set of animations.
@@ -74,3 +76,5 @@ extension UIAnimationGroup: UIAnimationGroupRepresentable {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 2/16/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIViewController /* Modal */ {
@@ -181,3 +183,5 @@ public extension UIViewController /* Navigation */ {
     }
     
 }
+
+#endif

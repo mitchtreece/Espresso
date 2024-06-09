@@ -5,9 +5,11 @@
 //  Created by Mitch Treece on 10/23/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
-// Updated for iOS 16:
+// Updated for iOS 17:
 // UIModalPresentationFullScreen = 0,
 // UIModalPresentationPageSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
 // UIModalPresentationFormSheet API_AVAILABLE(ios(3.2)) API_UNAVAILABLE(tvos),
@@ -159,3 +161,5 @@ public enum UIModalStyle {
     }
     
 }
+
+#endif

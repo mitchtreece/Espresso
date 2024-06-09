@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 1/28/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public extension UIGestureRecognizer /* Actions */ {
@@ -60,3 +62,5 @@ public extension UIGestureRecognizer /* Cancel */ {
     }
     
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 4/24/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -108,3 +110,5 @@ public extension UITableViewCell /* Register */ {
     }
     
 }
+
+#endif

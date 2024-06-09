@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 7/28/22.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 public class UIBackgroundView: UIBaseView {
@@ -83,3 +85,5 @@ public class UIBackgroundView: UIBaseView {
     }
     
 }
+
+#endif

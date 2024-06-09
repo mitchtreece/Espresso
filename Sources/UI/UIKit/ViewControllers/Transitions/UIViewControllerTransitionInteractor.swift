@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 6/26/18.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 internal class UIViewControllerTransitionInteractor: UIPercentDrivenInteractiveTransition {
@@ -88,3 +90,5 @@ internal class UIViewControllerTransitionInteractor: UIPercentDrivenInteractiveT
     }
     
 }
+
+#endif

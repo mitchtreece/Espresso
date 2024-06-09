@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 1/12/23.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import SwiftUI
 
@@ -20,3 +22,5 @@ public extension UIImageRepresentable {
     }
     
 }
+
+#endif

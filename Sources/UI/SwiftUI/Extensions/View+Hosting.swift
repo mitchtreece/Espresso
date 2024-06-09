@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 2/19/24.
 //
 
+#if canImport(UIKit)
+
 import SwiftUI
 
 public extension View /* Hosting View */ {
@@ -16,3 +18,5 @@ public extension View /* Hosting View */ {
     }
     
 }
+
+#endif

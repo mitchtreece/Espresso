@@ -5,6 +5,8 @@
 //  Created by Mitch Treece on 9/18/19.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 import Espresso
 
@@ -149,3 +151,5 @@ public class UIApplicationPublishers {
     }
     
 }
+
+#endif
