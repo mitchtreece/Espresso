@@ -9,7 +9,7 @@ import Foundation
 
 // Device types are pulled from the following sources:
 //
-// - https://www.theiphonewiki.com/wiki/Models
+// - https://theapplewiki.com/wiki/Models
 // - https://gist.github.com/adamawolf/3048717
 //
 // Or directly via Xcode's database:
@@ -73,7 +73,11 @@ public extension AppleDevice /* Device Type */ {
         case iPhone15Plus
         case iPhone15Pro
         case iPhone15ProMax
-                
+        case iPhone16
+        case iPhone16Plus
+        case iPhone16Pro
+        case iPhone16ProMax
+        
         case iPad
         case iPad2
         case iPad_3
@@ -126,6 +130,7 @@ public extension AppleDevice /* Device Type */ {
         case appleWatchUltra
         case appleWatchS9
         case appleWatchUltra_2
+        case appleWatchS10
         
         case appleTV
         case appleTV_2
@@ -147,6 +152,7 @@ public extension AppleDevice /* Device Type */ {
         case airpodsPro
         case airpodsMax
         case airpodsPro_2
+        case airpods_4
         
         case homepod
         case homepodMini
@@ -578,6 +584,38 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "iPhone 15 Pro Max"
                 identifiers = ["iPhone16,2"]
                 processor = .a17
+                
+            case .iPhone16:
+                
+                releaseYear = 2024
+                family = .iPhone
+                marketingName = "iPhone 16"
+                identifiers = ["iPhone17,3"]
+                processor = .a18
+                
+            case .iPhone16Plus:
+                
+                releaseYear = 2024
+                family = .iPhone
+                marketingName = "iPhone 16 Plus"
+                identifiers = ["iPhone17,4"]
+                processor = .a18
+                
+            case .iPhone16Pro:
+                
+                releaseYear = 2024
+                family = .iPhone
+                marketingName = "iPhone 16 Pro"
+                identifiers = ["iPhone17,1"]
+                processor = .a18Pro
+                
+            case .iPhone16ProMax:
+                
+                releaseYear = 2024
+                family = .iPhone
+                marketingName = "iPhone 16 Pro Max"
+                identifiers = ["iPhone17,2"]
+                processor = .a18Pro
 
             // MARK: iPad
                 
@@ -1057,6 +1095,14 @@ public extension AppleDevice /* Device Type */ {
                 identifiers = ["Watch7,5"]
                 processor = .s9
                 
+            case .appleWatchS10:
+                
+                releaseYear = 2024
+                family = .appleWatch
+                marketingName = "Apple Watch Series 10"
+                identifiers = ["Watch7,8", "Watch7,9", "Watch7,10", "Watch7,11"]
+                processor = .s10
+                
             // MARK: Apple TV
                  
             case .appleTV:
@@ -1172,7 +1218,7 @@ public extension AppleDevice /* Device Type */ {
                 releaseYear = 2019
                 family = .airPods
                 marketingName = "AirPods Pro"
-                identifiers = ["iProd8,1", "AirPods2,2", "AirPodsPro1,1"]
+                identifiers = ["AirPods2,2", "AirPodsPro1,1", "iProd8,1"]
                 processor = .h1
                 
             case .airpodsMax:
@@ -1180,8 +1226,13 @@ public extension AppleDevice /* Device Type */ {
                 releaseYear = 2020
                 family = .airPods
                 marketingName = "AirPods Max"
-                identifiers = ["iProd8,6", "AirPodsMax1,1"]
                 processor = .h1
+                
+                identifiers = [
+                    "iProd8,6",      // Lightning (2020)
+                    "AirPodsMax1,1", // Lightning (2020)
+                    "AirPodsMax1,2"  // USB-C (2024)
+                ]
 
             case .airpodsPro_2:
                 
@@ -1189,7 +1240,16 @@ public extension AppleDevice /* Device Type */ {
                 family = .airPods
                 marketingName = "AirPods Pro"
                 generationalName = "AirPods Pro (2nd Gen)"
-                identifiers = ["AirPodsPro1,2"]
+                identifiers = ["AirPodsPro1,2", "AirPodsPro2,1", "AirPods3,1"]
+                processor = .h2
+                
+            case .airpods_4:
+                
+                releaseYear = 2024
+                family = .airPods
+                marketingName = "AirPods"
+                generationalName = "AirPods (4th Gen)"
+                identifiers = ["AirPods1,4"]
                 processor = .h2
                 
             // MARK: HomePod
