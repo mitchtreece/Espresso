@@ -125,6 +125,8 @@ public class AppleDevice {
         case a15 = "Apple A15 Bionic"
         case a16 = "Apple A16 Bionic"
         case a17 = "Apple A17 Pro"
+        case a18 = "Apple A18"
+        case a18Pro = "Apple A18 Pro"
         
         case m1 = "Apple M1"
         case m1Pro = "Apple M1 Pro"
@@ -149,6 +151,7 @@ public class AppleDevice {
         case s7 = "Apple S7"
         case s8 = "Apple S8"
         case s9 = "Apple S9"
+        case s10 = "Apple S10"
         
         case w1 = "Apple W1"
         case h1 = "Apple H1"
