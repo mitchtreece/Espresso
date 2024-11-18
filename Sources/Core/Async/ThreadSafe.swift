@@ -10,7 +10,7 @@ import Foundation
 /// Class that wraps a value, and ensures thread-safe reads & writes.
 public final class ThreadSafe<T>: @unchecked Sendable {
     
-    private let queue = DispatchQueue(label: "espresso.thread-safe")
+    private let queue = DispatchQueue(label: "espresso.queue.thread-safe")
     private var _value: T
     
     /// The thread-safe value.
