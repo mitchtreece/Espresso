@@ -5,6 +5,7 @@
 //  Created by Mitch Treece on 4/14/23.
 //
 
+import Espresso
 import EspressoUI
 import SnapKit
 
@@ -27,7 +28,7 @@ class RootViewController: UIBaseViewController {
     
     private var tableView: UITableView!
     private weak var delegate: RootViewControllerDelegate?
-        
+
     init(delegate: RootViewControllerDelegate) {
         
         super.init(
