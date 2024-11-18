@@ -13,7 +13,7 @@ public extension Task where Success == Never, Failure == Never {
     ///
     /// - parameter duration: The sleep duration.
     ///
-    /// If the task is canceled before the time ends, this function throws CancellationError.
+    /// If the task is cancelled before the time ends, this function throws CancellationError.
     /// This function doesn’t block the underlying thread.
     static func sleep(duration: TimeDuration) async throws {
 
