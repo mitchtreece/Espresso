@@ -7,6 +7,36 @@
 
 import SwiftUI
 
+public extension View /* Shimmer */ {
+    
+    /// Sets the view as shimmering.
+    ///
+    /// - parameter condition: Flag indicating if the view is shimmering.
+    /// - parameter animation: The shimmer animation.
+    /// - parameter gradient: The shimmer gradient.
+    /// - parameter size: The shimmer band size.
+    /// - returns: This view.
+    @ViewBuilder
+    func shimmer(_ condition: Bool = true,
+                 animation: Animation = Shimmer.defaultAnimation,
+                 gradient: Gradient = Shimmer.defaultGradient,
+                 size: CGFloat = 0.3) -> some View {
+        
+        if condition {
+            
+            modifier(Shimmer(
+                animation: animation,
+                gradient: gradient,
+                size: size
+            ))
+            
+        }
+        else { self }
+        
+    }
+    
+}
+
 public struct Shimmer: ViewModifier {
     
     @SwiftUI.Environment(\.layoutDirection) private var layoutDirection
@@ -97,36 +127,6 @@ public struct Shimmer: ViewModifier {
             .onAppear {
                 self.isInitialState = false
             }
-        
-    }
-    
-}
-
-public extension View /* Shimmer */ {
-    
-    /// Sets the view as shimmering.
-    ///
-    /// - parameter condition: Flag indicating if the view is shimmering.
-    /// - parameter animation: The shimmer animation.
-    /// - parameter gradient: The shimmer gradient.
-    /// - parameter size: The shimmer band size.
-    /// - returns: This view.
-    @ViewBuilder
-    func shimmer(_ condition: Bool = true,
-                 animation: Animation = Shimmer.defaultAnimation,
-                 gradient: Gradient = Shimmer.defaultGradient,
-                 size: CGFloat = 0.3) -> some View {
-        
-        if condition {
-            
-            modifier(Shimmer(
-                animation: animation,
-                gradient: gradient,
-                size: size
-            ))
-            
-        }
-        else { self }
         
     }
     

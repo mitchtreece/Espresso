@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+public extension View {
+    
+    func conditionalPadding(_ edges: SwiftUI.Edge.Set = .all,
+                            length: CGFloat? = nil,
+                            condition: Bool) -> some View {
+        
+        modifier(ConditionalPaddingModifier(
+            edges: edges,
+            length: length,
+            condition: condition
+        ))
+        
+    }
+    
+}
+
 public struct ConditionalPaddingModifier: ViewModifier {
     
     private let edges: SwiftUI.Edge.Set
@@ -40,22 +56,6 @@ public struct ConditionalPaddingModifier: ViewModifier {
                 .asAnyView()
             
         }
-        
-    }
-    
-}
-
-public extension View {
-    
-    func conditionalPadding(_ edges: SwiftUI.Edge.Set = .all,
-                            length: CGFloat? = nil,
-                            condition: Bool) -> some View {
-        
-        modifier(ConditionalPaddingModifier(
-            edges: edges,
-            length: length,
-            condition: condition
-        ))
         
     }
     

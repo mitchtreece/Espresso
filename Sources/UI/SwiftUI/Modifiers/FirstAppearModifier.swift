@@ -8,6 +8,18 @@
 import SwiftUI
 import Espresso
 
+public extension View /* First Appear */ {
+    
+    /// Adds an action to perform before this view first appears.
+    ///
+    /// - parameter action: The action to perform when the view first appears.
+    /// - returns: This view.
+    func onFirstAppear(_ action: @escaping VoidAction) -> some View {
+        modifier(FirstAppearModifier(action))
+    }
+    
+}
+
 public struct FirstAppearModifier: ViewModifier {
     
     @State private var didAppear: Bool = false
@@ -29,18 +41,6 @@ public struct FirstAppearModifier: ViewModifier {
             
         }
         
-    }
-    
-}
-
-public extension View /* First Appear */ {
-    
-    /// Adds an action to perform before this view first appears.
-    ///
-    /// - parameter action: The action to perform when the view first appears.
-    /// - returns: This view.
-    func onFirstAppear(_ action: @escaping VoidAction) -> some View {
-        modifier(FirstAppearModifier(action))
     }
     
 }
