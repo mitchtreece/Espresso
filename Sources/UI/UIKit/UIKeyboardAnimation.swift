@@ -34,10 +34,10 @@ public struct UIKeyboardAnimation {
         
     }
     
-    internal init(beginFrame: CGRect,
-                  endFrame: CGRect,
-                  duration: TimeInterval,
-                  options: UIView.AnimationOptions) {
+    public init(beginFrame: CGRect,
+                endFrame: CGRect,
+                duration: TimeInterval,
+                options: UIView.AnimationOptions) {
         
         self.beginFrame = beginFrame
         self.endFrame = endFrame
@@ -46,7 +46,7 @@ public struct UIKeyboardAnimation {
         
     }
     
-    internal init?(notification: Notification) {
+    public init?(notification: Notification) {
         
         guard let info = notification.userInfo,
               let beginFrame = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
