@@ -58,6 +58,17 @@ public extension View /* Hosting */ {
         return UIHostingController(rootView: self)
     }
     
+    /// Returns the view as a `Espresso`-hosted controller representation.
+    /// - returns: A `UIBaseHostingController` instance over the receiver.
+    func asBaseHostingController(_ builder: UIBaseHostingControllerBuilder? = nil) -> UIBaseHostingController<Self> {
+        
+        return UIBaseHostingController(
+            rootView: self,
+            builder: builder
+        )
+        
+    }
+    
 }
 
 #endif

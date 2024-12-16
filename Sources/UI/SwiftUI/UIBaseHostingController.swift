@@ -22,7 +22,7 @@ public struct UIBaseHostingControllerConfiguration: UIBaseHostingControllerConfi
     
 }
 
-public typealias UIBaseHostingControllerBuilder = (inout UIBaseHostingControllerConfiguration)->()
+public typealias UIBaseHostingControllerBuilder = (inout UIBaseHostingControllerConfigurable)->()
 
 open class UIBaseHostingController<Content: View>: UIHostingController<Content>,
                                                    UIUserInterfaceStyleAdaptable {
@@ -158,7 +158,7 @@ open class UIBaseHostingController<Content: View>: UIHostingController<Content>,
     public init(rootView: Content,
                 builder: UIBaseHostingControllerBuilder?) {
         
-        var config = UIBaseHostingControllerConfiguration()
+        var config: UIBaseHostingControllerConfigurable = UIBaseHostingControllerConfiguration()
         builder?(&config)
         
         self.prefersNavigationBarHidden = config.prefersNavigationBarHidden
