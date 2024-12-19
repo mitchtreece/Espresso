@@ -12,16 +12,32 @@ import SwiftUI
 import SnapKit
 
 /// A `UIView` subclass that manages a SwiftUI view.
+///
+/// @note
+/// It's recommended to use `view.asHostingView()` as opposed to directly initializing via `UIHostingView(content:)`.
+/// Using the helper `as` function has additional benefits like host-proxy injection.
+///
+/// @note
+/// You can also manually provide a host-proxy to an initialized hosting view.
+///
+/// ```
+/// let view: HostedView = ...
+/// let proxy = UIHostProxy<HostedView>()
+/// let hostingView = UIHostingView(content: view)
+///
+/// proxy.view = hostingView
+///
+/// return hostingView
+/// ```
 public class UIHostingView<Content: View>: UIView {
  
-    private var viewController: UIHostingController<Content>?
-    
+    private var hostingController: UIHostingController<Content>?
+
     /// Initializes a hosting view with content.
     /// - parameter content: The content to host.
     public init(content: Content) {
         
         super.init(frame: .zero)
-        
         setupSubviews()
         layout(for: content)
         
@@ -30,7 +46,6 @@ public class UIHostingView<Content: View>: UIView {
     public required init?(coder: NSCoder) {
         
         super.init(coder: coder)
-        
         setupSubviews()
         
     }
@@ -40,7 +55,6 @@ public class UIHostingView<Content: View>: UIView {
     public func setup(content: Content) -> Self {
         
         layout(for: content)
-        
         return self
         
     }
@@ -48,21 +62,20 @@ public class UIHostingView<Content: View>: UIView {
     // MARK: Private
     
     private func setupSubviews() {
-        
         self.backgroundColor = .clear
-        
     }
     
     private func layout(for content: Content) {
-        
-        self.viewController?.view
+                
+        self.hostingController?
+            .view
             .removeFromSuperview()
         
-        self.viewController = UIHostingController(rootView: content)
-        self.viewController!.view.backgroundColor = .clear
-        self.viewController!.view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(self.viewController!.view)
-        self.viewController!.view!.snp.makeConstraints { make in
+        self.hostingController = UIHostingController(rootView: content)
+        self.hostingController!.view.backgroundColor = .clear
+        self.hostingController!.view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(self.hostingController!.view)
+        self.hostingController!.view!.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         

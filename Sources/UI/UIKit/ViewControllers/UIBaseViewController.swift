@@ -84,10 +84,28 @@ open class UIBaseViewController: UIViewController,
         return self._didReceiveMemoryWarning.eraseToAnyPublisher()
     }
     
+    /// The view controller's parent navigation controller
+    /// as an Espresso `UIBaseNavigationController`.
+    public var baseNavigationController: UIBaseNavigationController? {
+        return self.navigationController as? UIBaseNavigationController
+    }
+    
     /// Flag indicating if the view controller should hide its
     /// navigation bar on appearance; _defaults to false_.
     open var prefersNavigationBarHidden: Bool {
         return false
+    }
+    
+    /// Flag indicating if the view controller's parent navigation controller
+    /// should allow swipe-back interactions.
+    ///
+    /// @note
+    /// This property only applies to view controllers embedded in
+    /// Espresso's `UIBaseNavigationController`.
+    public var isSwipeBackGestureEnabled: Bool = true {
+        didSet {
+            self.baseNavigationController?.isSwipeBackGestureEnabled = self.isSwipeBackGestureEnabled
+        }
     }
     
     /// Flag indicating if this is the view controller's first appearance.

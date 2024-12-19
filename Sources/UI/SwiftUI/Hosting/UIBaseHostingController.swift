@@ -8,13 +8,19 @@
 import UIKit
 import SwiftUI
 
+/// Protocol describing configurable properties of a `UIBaseHostingControllerConfiguration`.
 public protocol UIBaseHostingControllerConfigurable {
     
+    /// Flag indicating if the view controller should hide its
+    /// navigation bar on appearance; _defaults to false_.
     var prefersNavigationBarHidden: Bool { get set }
+    
+    
     var isSwipeBackGestureEnabled: Bool { get set }
     
 }
 
+/// `UIBaseHostingController` configuration container.
 public struct UIBaseHostingControllerConfiguration: UIBaseHostingControllerConfigurable {
     
     public var prefersNavigationBarHidden: Bool = false
@@ -22,8 +28,28 @@ public struct UIBaseHostingControllerConfiguration: UIBaseHostingControllerConfi
     
 }
 
+/// `UIBaseHostingController` configuration builder.
 public typealias UIBaseHostingControllerBuilder = (inout UIBaseHostingControllerConfigurable)->()
 
+/// `UIHostingController` subclass that provides common helper functions & properties.
+///
+/// @note
+/// It's recommended to use `view.asHostingController()` or `view.asBaseHostingController()`
+/// as opposed to directly initializing via `UIHostingController(rootView:)` or `UIBaseHostingController(rootView:builder:)`. Using the helper `as` functions have additional benefits like host-proxy injection.
+///
+/// @note
+/// You can also manually provide a host-proxy to an initialized hosting controller.
+///
+/// ```
+/// let view: HostedView = ...
+/// let proxy = UIHostProxy<HostedView>()
+/// let hostingController = UIHostingController(rootView: view)
+///
+/// proxy.controller = hostingController
+/// proxy.view = hostingController.view
+///
+/// return hostingController
+/// ```
 open class UIBaseHostingController<Content: View>: UIHostingController<Content>,
                                                    UIUserInterfaceStyleAdaptable {
 
@@ -163,7 +189,7 @@ open class UIBaseHostingController<Content: View>: UIHostingController<Content>,
         
         self.prefersNavigationBarHidden = config.prefersNavigationBarHidden
         self.isSwipeBackGestureEnabled = config.isSwipeBackGestureEnabled
-        
+                
         super.init(rootView: rootView)
         
     }

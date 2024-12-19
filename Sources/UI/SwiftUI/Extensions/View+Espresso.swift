@@ -48,31 +48,6 @@ public extension View /* Any */ {
     
 }
 
-#if canImport(UIKit)
-
-public extension View /* Hosting */ {
-    
-    /// Returns the view as a `UIKit`-hosted controller representation.
-    /// - returns: A `UIHostingController` instance over the receiver.
-    func asHostingController() -> UIHostingController<Self> {
-        return UIHostingController(rootView: self)
-    }
-    
-    /// Returns the view as a `Espresso`-hosted controller representation.
-    /// - returns: A `UIBaseHostingController` instance over the receiver.
-    func asBaseHostingController(_ builder: UIBaseHostingControllerBuilder? = nil) -> UIBaseHostingController<Self> {
-        
-        return UIBaseHostingController(
-            rootView: self,
-            builder: builder
-        )
-        
-    }
-    
-}
-
-#endif
-
 public extension View /* Control Flow */ {
     
     /// Control-flow view-builder that executes actions based on a condition.
