@@ -17,7 +17,7 @@ public protocol UIBaseHostingControllerConfigurable {
 
 public struct UIBaseHostingControllerConfiguration: UIBaseHostingControllerConfigurable {
     
-    public var prefersNavigationBarHidden: Bool = true
+    public var prefersNavigationBarHidden: Bool = false
     public var isSwipeBackGestureEnabled: Bool = true
     
 }
