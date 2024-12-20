@@ -13,10 +13,10 @@ import SwiftUI
 public final class UIHostProxy<Content: View>: ObservableObject {
     
     /// The hosting view.
-    public internal(set) weak var view: UIView?
+    public weak var view: UIView?
     
     /// The hosting controller.
-    public internal(set) weak var controller: UIViewController?
+    public weak var controller: UIViewController?
     
     /// Initializes a host proxy.
     public init() {}
