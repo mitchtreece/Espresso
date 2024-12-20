@@ -18,4 +18,7 @@ public final class UIHostProxy<Content: View>: ObservableObject {
     /// The hosting controller.
     public internal(set) weak var controller: UIViewController?
     
+    /// Initializes a host proxy.
+    public init() {}
+    
 }
