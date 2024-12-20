@@ -10,7 +10,7 @@
 import UIKit
 import Espresso
 
-open class UIShimmerView: UIBaseView {
+open class UIShimmerView: UIViewEx {
     
     private var gradientLayer: CAGradientLayer!
     

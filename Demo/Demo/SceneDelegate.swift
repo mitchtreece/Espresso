@@ -98,6 +98,7 @@ extension SceneDelegate: RootViewControllerDelegate {
         
         switch row {
         case .views: vc = UIKitViewsViewController()
+        case .modelViewController: vc = ModelViewController(model: ModelViewModel())
         }
                         
         self.navController.pushViewController(
@@ -113,11 +114,6 @@ extension SceneDelegate: RootViewControllerDelegate {
         var vc: UIViewController!
         
         switch row {
-//        case .views:
-//
-//            vc = SwiftUIViewsContentView().asHostingController()
-//            vc.title = "SwiftUI Views"
-//
         case .hostingView:
             
             vc = SwiftUIHostingViewController()
@@ -146,15 +142,6 @@ extension SceneDelegate: RootViewControllerDelegate {
             nav,
             animated: true,
             completion: nil
-        )
-        
-    }
-
-    func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController) {
-             
-        self.navController.pushViewController(
-            CombineViewController(viewModel: CombineViewModel()),
-            animated: true
         )
         
     }

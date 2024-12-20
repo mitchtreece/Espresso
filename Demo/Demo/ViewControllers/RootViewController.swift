@@ -20,11 +20,9 @@ protocol RootViewControllerDelegate: AnyObject {
     func rootViewController(_ vc: RootViewController,
                             didSelectTransitionRow row: RootViewController.VCTransitionRow)
     
-    func rootViewControllerWantsToPresentCombineViewController(_ vc: RootViewController)
-
 }
 
-class RootViewController: UIBaseViewController {
+class RootViewController: UIViewControllerEx {
     
     private var tableView: UITableView!
     private weak var delegate: RootViewControllerDelegate?
@@ -82,7 +80,6 @@ extension RootViewController: UITableViewDelegate,
         case uikit
         case swiftui
         case vcTransitions
-        case combine
         case taptics
         case helpers
         
@@ -91,11 +88,13 @@ extension RootViewController: UITableViewDelegate,
     enum UIKitRow: Int, CaseIterable {
         
         case views
+        case modelViewController
         
         var title: String {
             
             switch self {
-            case .views: return "Views"
+            case .views: return "UIViews"
+            case .modelViewController: return "UIModelViewController"
             }
             
         }
@@ -104,6 +103,7 @@ extension RootViewController: UITableViewDelegate,
             
             switch self {
             case .views: return UIImage(systemSymbol: .viewfinder)
+            case .modelViewController: return UIImage(systemSymbol: .dotViewfinder)
             }
             
         }
@@ -192,28 +192,6 @@ extension RootViewController: UITableViewDelegate,
         }
         
     }
-
-    private enum CombineRow: Int, CaseIterable {
-        
-        case viewController
-        
-        var title: String {
-            
-            switch self {
-            case .viewController: return "UICombineViewModelViewController"
-            }
-            
-        }
-        
-        var image: UIImage {
-            
-            switch self {
-            case .viewController: return UIImage(systemSymbol: .docPlaintext)
-            }
-            
-        }
-        
-    }
     
     private enum TapticRow: Int, CaseIterable {
         
@@ -296,8 +274,7 @@ extension RootViewController: UITableViewDelegate,
         switch _section {
         case .uikit: return "UIKit"
         case .swiftui: return "SwiftUI"
-        case .vcTransitions: return "VC Transitions"
-        case .combine: return "Combine"
+        case .vcTransitions: return "ViewController Transitions"
         case .taptics: return "Taptics"
         case .helpers: return "Helpers"
         }
@@ -313,7 +290,6 @@ extension RootViewController: UITableViewDelegate,
         case .uikit: return UIKitRow.allCases.count
         case .swiftui: return SwiftUIRow.allCases.count
         case .vcTransitions: return VCTransitionRow.allCases.count
-        case .combine: return CombineRow.allCases.count
         case .taptics: return TapticRow.allCases.count
         case .helpers: return HelpersRow.allCases.count
         }
@@ -344,12 +320,6 @@ extension RootViewController: UITableViewDelegate,
         case .vcTransitions:
             
             guard let row = VCTransitionRow(rawValue: indexPath.row) else { return UITableViewCell() }
-            cell.textLabel?.text = row.title
-            cell.imageView?.image = row.image
-
-        case .combine:
-            
-            guard let row = CombineRow(rawValue: indexPath.row) else { return UITableViewCell() }
             cell.textLabel?.text = row.title
             cell.imageView?.image = row.image
 
@@ -402,18 +372,6 @@ extension RootViewController: UITableViewDelegate,
             
             self.delegate?
                 .rootViewController(self, didSelectTransitionRow: row)
-
-        case .combine:
-            
-            guard let row = CombineRow(rawValue: indexPath.row) else { return }
-
-            switch row {
-            case .viewController:
-                
-                self.delegate?
-                    .rootViewControllerWantsToPresentCombineViewController(self)
-                
-            }
             
         case .taptics:
             

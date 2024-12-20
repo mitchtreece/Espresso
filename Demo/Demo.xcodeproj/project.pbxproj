@@ -19,9 +19,8 @@
 		263405B529E9DC9B00D109B3 /* UIKitViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405B429E9DC9B00D109B3 /* UIKitViewsViewController.swift */; };
 		263405B829E9DCD900D109B3 /* SwiftUIHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405B729E9DCD900D109B3 /* SwiftUIHostingViewController.swift */; };
 		263405BA29E9DCEA00D109B3 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405B929E9DCEA00D109B3 /* ColorView.swift */; };
-		263405BC29E9DD1200D109B3 /* SwiftUIViewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405BB29E9DD1200D109B3 /* SwiftUIViewsContentView.swift */; };
-		263405BE29E9DD3300D109B3 /* CombineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405BD29E9DD3300D109B3 /* CombineViewModel.swift */; };
-		263405C029E9DD5800D109B3 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405BF29E9DD5800D109B3 /* CombineViewController.swift */; };
+		263405BE29E9DD3300D109B3 /* ModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405BD29E9DD3300D109B3 /* ModelViewModel.swift */; };
+		263405C029E9DD5800D109B3 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405BF29E9DD5800D109B3 /* ModelViewController.swift */; };
 		263405C229E9DD8A00D109B3 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263405C129E9DD8A00D109B3 /* CustomTransition.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,9 +37,8 @@
 		263405B429E9DC9B00D109B3 /* UIKitViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewsViewController.swift; sourceTree = "<group>"; };
 		263405B729E9DCD900D109B3 /* SwiftUIHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostingViewController.swift; sourceTree = "<group>"; };
 		263405B929E9DCEA00D109B3 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
-		263405BB29E9DD1200D109B3 /* SwiftUIViewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewsContentView.swift; sourceTree = "<group>"; };
-		263405BD29E9DD3300D109B3 /* CombineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewModel.swift; sourceTree = "<group>"; };
-		263405BF29E9DD5800D109B3 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
+		263405BD29E9DD3300D109B3 /* ModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewModel.swift; sourceTree = "<group>"; };
+		263405BF29E9DD5800D109B3 /* ModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewController.swift; sourceTree = "<group>"; };
 		263405C129E9DD8A00D109B3 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +118,6 @@
 				263405AE29E9DC1A00D109B3 /* DetailViewController.swift */,
 				263405B129E9DC7700D109B3 /* UIKit */,
 				263405B229E9DC8000D109B3 /* SwiftUI */,
-				263405B329E9DC8A00D109B3 /* Combine */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -137,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				263405B429E9DC9B00D109B3 /* UIKitViewsViewController.swift */,
+				266BECF32D15588200C30B69 /* ModelViewController */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -150,22 +148,21 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		263405B329E9DC8A00D109B3 /* Combine */ = {
-			isa = PBXGroup;
-			children = (
-				263405BD29E9DD3300D109B3 /* CombineViewModel.swift */,
-				263405BF29E9DD5800D109B3 /* CombineViewController.swift */,
-			);
-			path = Combine;
-			sourceTree = "<group>";
-		};
 		263405B629E9DCC300D109B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				263405BB29E9DD1200D109B3 /* SwiftUIViewsContentView.swift */,
 				263405B929E9DCEA00D109B3 /* ColorView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		266BECF32D15588200C30B69 /* ModelViewController */ = {
+			isa = PBXGroup;
+			children = (
+				263405BD29E9DD3300D109B3 /* ModelViewModel.swift */,
+				263405BF29E9DD5800D109B3 /* ModelViewController.swift */,
+			);
+			path = ModelViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,13 +245,12 @@
 				2634058429E9D78F00D109B3 /* AppDelegate.swift in Sources */,
 				263405AF29E9DC1A00D109B3 /* DetailViewController.swift in Sources */,
 				263405AD29E9DC1200D109B3 /* RootViewController.swift in Sources */,
-				263405BE29E9DD3300D109B3 /* CombineViewModel.swift in Sources */,
-				263405BC29E9DD1200D109B3 /* SwiftUIViewsContentView.swift in Sources */,
+				263405BE29E9DD3300D109B3 /* ModelViewModel.swift in Sources */,
 				263405BA29E9DCEA00D109B3 /* ColorView.swift in Sources */,
 				263405C229E9DD8A00D109B3 /* CustomTransition.swift in Sources */,
 				263405B529E9DC9B00D109B3 /* UIKitViewsViewController.swift in Sources */,
 				2634058629E9D78F00D109B3 /* SceneDelegate.swift in Sources */,
-				263405C029E9DD5800D109B3 /* CombineViewController.swift in Sources */,
+				263405C029E9DD5800D109B3 /* ModelViewController.swift in Sources */,
 				263405B829E9DCD900D109B3 /* SwiftUIHostingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

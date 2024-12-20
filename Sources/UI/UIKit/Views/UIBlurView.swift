@@ -14,7 +14,7 @@ import SnapKit
 // https://github.com/aheze/VariableBlurView
 
 /// Blurred `UIView` subclass that responds to tint color changes.
-open class UIBlurView: UIBaseView {
+open class UIBlurView: UIViewEx {
     
     public enum Style {
         

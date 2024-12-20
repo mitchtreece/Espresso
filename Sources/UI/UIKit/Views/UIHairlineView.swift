@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 
-public class UIHairlineView: UIBaseView {
+public class UIHairlineView: UIViewEx {
     
     public enum Height {
         

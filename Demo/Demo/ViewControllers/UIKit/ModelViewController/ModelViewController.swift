@@ -1,5 +1,5 @@
 //
-//  CombineViewController.swift
+//  ModelViewController.swift
 //  Demo
 //
 //  Created by Mitch Treece on 4/14/23.
@@ -9,7 +9,7 @@ import UIKit
 import EspressoUI
 import SnapKit
 
-class CombineViewController: UICombineViewModelViewController<CombineViewModel> {
+class ModelViewController: UIModelViewController<ModelViewModel> {
     
     private var barItem: UIBarButtonItem!
     private var label: UILabel!
@@ -18,7 +18,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
         super.viewDidLoad()
         
-        self.title = self.viewModel.title
+        self.title = self.model.title
         
         setupSubviews()
 
@@ -29,7 +29,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         self.view.backgroundColor = .systemGroupedBackground
                 
         self.barItem = UIBarButtonItem()
-        self.barItem.title = self.viewModel.barButtonTitle
+        self.barItem.title = self.model.barButtonTitle
         self.navigationItem.rightBarButtonItem = self.barItem
         
         self.label = UILabel()
@@ -54,14 +54,14 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
     
     func didTapButton() {
         
-        self.viewModel
+        self.model
             .updateText()
         
-        let numberString = self.viewModel
+        let numberString = self.model
             .numberStringPublisher
             .value
         
-        let number = self.viewModel
+        let number = self.model
             .numberPublisher
             .value
         
@@ -73,7 +73,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
         super.bind()
         
-        self.viewDidAppearPublisher
+        self.onViewDidAppear
             .sink { animated in print("☕️ CombineViewController did appear, animated: \(animated)") }
             .store(in: &self.bag)
  
@@ -83,7 +83,7 @@ class CombineViewController: UICombineViewModelViewController<CombineViewModel> 
         
         super.bindModel()
 
-        self.viewModel.$text
+        self.model.$text
             .receiveOnMain()
             .map { $0 as String? }
             .assign(to: \.text, on: self.label)

@@ -45,7 +45,7 @@ public extension View /* Hosting */ {
         
     }
     
-    /// Returns the view as a UIKit-hosted controller representation.
+    /// Returns the view wrapped in a hosting controller.
     ///
     /// - returns: A `UIHostingController` instance over the receiver.
     ///
@@ -86,9 +86,9 @@ public extension View /* Hosting */ {
         
     }
     
-    /// Returns the view as an Espresso base-hosted controller representation.
+    /// Returns the view wrapped in an extended hosting controller.
     ///
-    /// - returns: A `UIBaseHostingController` instance over the receiver.
+    /// - returns: A `UIHostingControllerEx` instance over the receiver.
     ///
     /// @note
     /// This also injects a proxy into the view's environment for
@@ -115,11 +115,11 @@ public extension View /* Hosting */ {
     ///
     /// }
     /// ```
-    func asBaseHostingController(_ builder: UIBaseHostingControllerBuilder? = nil) -> UIBaseHostingController<Self> {
+    func asHostingControllerEx(_ builder: UIHostingControllerExBuilder? = nil) -> UIHostingControllerEx<Self> {
         
         let proxy = UIHostProxy<Self>()
         
-        let hostingController = UIBaseHostingController(
+        let hostingController = UIHostingControllerEx(
             rootView: self,
             builder: builder
         )

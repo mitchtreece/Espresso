@@ -9,7 +9,7 @@
 
 import UIKit
 
-public class UIButtonView: UIBaseView {
+public class UIButtonView: UIViewEx {
 
     public enum Style {
 

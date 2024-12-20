@@ -9,7 +9,7 @@
 
 import UIKit
 
-public class UIBackgroundView: UIBaseView {
+public class UIBackgroundView: UIViewEx {
     
     public enum Style {
         

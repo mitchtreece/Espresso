@@ -16,7 +16,7 @@ class UIKitViewsViewController: DetailViewController {
         
         super.viewDidLoad()
         
-        self.title = "UIKit Views"
+        self.title = "UIViews"
         
         setupSubviews()
                 

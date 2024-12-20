@@ -24,10 +24,7 @@ public extension UIUserInterfaceStyleAdaptable {
     
     /// The trait environment's user interface style.
     var userInterfaceStyle: UIUserInterfaceStyle {
-        
-        return self.traitCollection
-            .userInterfaceStyle
-        
+        return self.traitCollection.userInterfaceStyle
     }
     
 }

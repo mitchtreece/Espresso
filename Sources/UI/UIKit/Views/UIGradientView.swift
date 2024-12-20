@@ -10,7 +10,7 @@
 import UIKit
 
 /// `UIView` subclass that draws a gradient as its content.
-open class UIGradientView: UIBaseView {
+open class UIGradientView: UIViewEx {
         
     /// Representation of the various gradient color stop modes.
     public enum StopMode: Hashable {

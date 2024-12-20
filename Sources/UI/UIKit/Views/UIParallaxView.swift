@@ -9,7 +9,7 @@
 
 import UIKit
 
-open class UIParallaxView: UIBaseView {
+open class UIParallaxView: UIViewEx {
     
     public struct ParallaxLayer {
         
