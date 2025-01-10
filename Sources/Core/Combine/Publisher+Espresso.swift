@@ -22,9 +22,29 @@ public extension Publisher where Failure == Never /* Value */ {
     
     /// Latest value of the publisher's output sequence.
     ///
-    /// **Note**: This assumes the publisher has values
-    /// in it's stream. If it doesn't, calling this
-    /// will throw an exception.
+    /// - Warning: This assumes the publisher has values in its stream.
+    ///   If it doesn't, calling this will throw an exception. For example,
+    ///   when using a `PassthroughSubject` and erasing to an `AnyPublisher`,
+    ///   calling this will throw a `nil` excpetion as `PassthroughSubject`
+    ///   does not hold onto any stream values.
+    ///
+    /// - Tip: Consider using ``value(or:)`` or ``valueThrowing`` when
+    ///   unsure of semantics around an underlying subject.
+    ///
+    /// - Tip: When implementing a subject and exposing it through a
+    ///   type-erased `AnyPublisher`, it's a good idea to follow a consistent
+    ///   naming convention. Consider using an `on` prefix _or_ `Passthrough`
+    ///   suffix for publishers backed by a `PassthroughSubject` to convey
+    ///   that a given publisher simply emits values without holding onto them.
+    ///
+    /// ```swift
+    /// private let valueSubject = CurrentValueSubject<Int, Never>(0)
+    /// var value: AnyPublisher<Int, Never> { ... }
+    ///
+    /// private let passthroughSubject = PassthroughSubject<Int, Never>()
+    /// var onValue: AnyPublisher<Int, Never> { ... }
+    /// var valuePassthrough: AnyPublisher<Int, Never> { ... }
+    /// ```
     var value: Self.Output {
         
         var value: Self.Output!
@@ -36,10 +56,31 @@ public extension Publisher where Failure == Never /* Value */ {
         return value
         
     }
+    
+    /// Latest value of the publisher's output sequence.
+    /// This throws an error if the publisher has no values
+    /// in its stream.
+    var valueThrowing: Self.Output {
+        get throws {
+            
+            var value: Self.Output?
+            var bag = CancellableBag()
+            
+            sink { value = $0 }
+                .store(in: &bag)
+            
+            if let value {
+                return value
+            }
+            else {
+                throw PublisherError.emptyStream
+            }
+            
+        }
+    }
         
-    /// Latest value of the publisher's output sequence
-    /// _or_ a default value if the publisher has no
-    /// values in it's stream.
+    /// Latest value of the publisher's output sequence _or_ a default
+    /// value if the publisher has no values in its stream.
     func value(or default: Self.Output) -> Self.Output {
         
         var value: Self.Output?

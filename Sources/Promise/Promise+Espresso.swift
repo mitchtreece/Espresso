@@ -34,9 +34,9 @@ public extension Promise /* Combine */ {
     
     /// Creates a publisher over this promise.
     /// - returns: A new publisher.
-    func asPublisher() -> FailablePublisher<T> {
+    func asPublisher() -> AnyPublisher<T, Error> {
         
-        return FailableFuture<T>{ promise in
+        return Future<T, Error>{ promise in
             
             self.done { value in
                 promise(.success(value))

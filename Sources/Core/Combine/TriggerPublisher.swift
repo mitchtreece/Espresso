@@ -13,9 +13,7 @@ public class TriggerPublisher {
     private let subject = GuaranteePassthroughSubject<Void>()
     
     /// Initializes a new `TriggerPublisher`.
-    public init() {
-        //
-    }
+    public init() {}
     
     /// Sends an event to subscribers.
     public func send() {
