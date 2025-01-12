@@ -7,7 +7,10 @@
 
 import Combine
 
-/// A wrapped publisher that only outputs `Void` values.
+/// A type-erased publisher that sends events to subscribers.
+public typealias AnyTriggerPublisher = GuaranteeVoidPublisher
+
+/// A publisher that sends events to subscribers.
 public class TriggerPublisher {
     
     private let subject = GuaranteePassthroughSubject<Void>()
