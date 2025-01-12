@@ -25,6 +25,14 @@ public final class PublishedValue<T, E: Error> {
     
     private let subject: CurrentValueSubject<T, E>
     
+    /// The wrapped subject's value.
+    ///
+    /// - Note: Assigning a value through this property is the same as calling `send`.
+    public var value: T {
+        get { self.subject.value }
+        set { send(newValue) }
+    }
+    
     /// The wrapped read-only publisher.
     public var wrappedValue: AnyPublisher<T, E> {
         return self.subject.eraseToAnyPublisher()

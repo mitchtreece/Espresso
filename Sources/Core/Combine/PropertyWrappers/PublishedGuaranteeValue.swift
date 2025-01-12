@@ -25,6 +25,14 @@ public final class PublishedGuaranteeValue<T> {
     
     private let subject: GuaranteeValueSubject<T>
 
+    /// The wrapped subject's value.
+    ///
+    /// - Note: Assigning a value through this property is the same as calling `send`.
+    public var value: T {
+        get { self.subject.value }
+        set { send(newValue) }
+    }
+    
     /// The wrapped read-only publisher.
     public var wrappedValue: AnyPublisher<T, Never> {
         return self.subject.eraseToAnyPublisher()
