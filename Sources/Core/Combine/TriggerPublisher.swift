@@ -7,9 +7,6 @@
 
 import Combine
 
-/// A type-erased publisher that sends events to subscribers.
-public typealias AnyTriggerPublisher = GuaranteeVoidPublisher
-
 /// A publisher that sends events to subscribers.
 public class TriggerPublisher {
     

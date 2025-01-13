@@ -57,11 +57,11 @@ class ModelViewController: UIModelViewController<ModelViewModel> {
         self.model
             .updateText()
         
-        let numberString = self.model
+        let numberString = try? self.model
             .numberStringPublisher
             .value
         
-        let number = self.model
+        let number = try? self.model
             .numberPublisher
             .value
         
