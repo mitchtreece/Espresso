@@ -1,18 +1,18 @@
 //
-//  PublishedGuaranteeReadOnlyUnique.swift
+//  PublishedAny.swift
 //  Espresso
 //
 //  Created by Mitch on 1/12/25.
 //
 
-import Foundation
+import Combine
 
-/// Property wrapper that internally publishes unique values using
-/// a guarantee subject, and externally exposes a read-only ``AnyPublisher``.
+/// Property wrapper that internally publishes values using a
+/// subject, and externally exposes a read-only ``AnyPublisher``.
 ///
 /// ```swift
-/// @PublishedGuaranteeReadOnlyUnique<Int>(0) var value
-/// @PublishedGuaranteeReadOnlyUnique<Int> var onValue
+/// @PublishedAny<Int, Never>(0) var value
+/// @PublishedAny<Int, Never> var onValue
 ///
 /// value.sink {
 ///     print("CurrentValueSubject: \($0)")
@@ -22,7 +22,6 @@ import Foundation
 ///     print("PassthroughSubject: \($0)")
 /// }
 ///
-/// _value.send(1)
 /// _value.send(1)
 /// _value.send(2)
 /// _value.send(3)
@@ -34,7 +33,6 @@ import Foundation
 ///
 /// _onValue.send(0)
 /// _onValue.send(1)
-/// _onValue.send(1)
 /// _onValue.send(2)
 /// _onValue.send(3)
 ///
@@ -44,16 +42,16 @@ import Foundation
 /// // → "PassthroughSubject: 3"
 /// ```
 @propertyWrapper
-public final class PublishedGuaranteeReadOnlyUnique<T: Equatable> {
+public final class PublishedAny<T, E: Error> {
     
     /// The wrapped subject type.
     public let subjectType: PublishedSubjectType
     
-    private let valueSubject: GuaranteeValueSubject<T>?
-    private let passthroughSubject: GuaranteePassthroughSubject<T>?
+    private let valueSubject: CurrentValueSubject<T, E>?
+    private let passthroughSubject: PassthroughSubject<T, E>?
     
     /// The wrapped subject's value.
-    /// This throws an error if the internal subject-type is `passthrough`.
+    /// This throws an error if the internal subject-type isn't `value`.
     public var value: T {
         get throws {
             
@@ -67,31 +65,11 @@ public final class PublishedGuaranteeReadOnlyUnique<T: Equatable> {
     }
     
     /// The wrapped read-only publisher.
-    public var wrappedValue: GuaranteePublisher<T> {
-                
-        // Manually switching here instead of just
-        // using `self.subject...` because the compiler
-        // was getting confused with the `Equatable`
-        // conformance.
-        
-        switch self.subjectType {
-        case .value:
-            
-            return self.valueSubject!
-                .removeDuplicates()
-                .eraseToAnyPublisher()
-            
-        case .passthrough:
-            
-            return self.passthroughSubject!
-                .removeDuplicates()
-                .eraseToAnyPublisher()
-            
-        }
-        
+    public var wrappedValue: AnyPublisher<T, E> {
+        return self.subject.eraseToAnyPublisher()
     }
     
-    private var subject: any Subject<T, Never> {
+    private var subject: any Subject<T, E> {
         
         switch self.subjectType {
         case .value: return self.valueSubject!
@@ -100,10 +78,10 @@ public final class PublishedGuaranteeReadOnlyUnique<T: Equatable> {
         
     }
     
-    /// Initializes a published guarantee read-only unique value.
+    /// Initializes a published read-only value.
     /// - property value: The initial value to give the underlying subject.
     ///
-    /// - Note: Initialization via this function creates a ``GuaranteeValueSubject``,
+    /// - Note: Initialization via this function creates a ``CurrentValueSubject``,
     ///   and sets the ``subjectType`` to ``value``.
     public init(_ value: T) {
         
@@ -113,9 +91,9 @@ public final class PublishedGuaranteeReadOnlyUnique<T: Equatable> {
         
     }
     
-    /// Initializes a published guarantee read-only unique passthrough.
+    /// Initializes a published read-only passthrough.
     ///
-    /// - Note: Initialization via this function creates a ``GuaranteePassthroughSubject``,
+    /// - Note: Initialization via this function creates a ``PassthroughSubject``,
     ///   and sets the ``subjectType`` to ``passthrough``.
     public init() {
         

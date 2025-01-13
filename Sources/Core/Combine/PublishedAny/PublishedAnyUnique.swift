@@ -1,5 +1,5 @@
 //
-//  PublishedReadOnlyUnique.swift
+//  PublishedAnyUnique.swift
 //  Espresso
 //
 //  Created by Mitch on 1/12/25.
@@ -11,8 +11,8 @@ import Combine
 /// a subject, and externally exposes a read-only ``AnyPublisher``.
 ///
 /// ```swift
-/// @PublishedReadOnlyUnique<Int, Never>(0) var value
-/// @PublishedReadOnlyUnique<Int, Never> var onValue
+/// @PublishedAnyUnique<Int, Never>(0) var value
+/// @PublishedAnyUnique<Int, Never> var onValue
 ///
 /// value.sink {
 ///     print("CurrentValueSubject: \($0)")
@@ -44,7 +44,7 @@ import Combine
 /// // → "PassthroughSubject: 3"
 /// ```
 @propertyWrapper
-public final class PublishedReadOnlyUnique<T: Equatable, E: Error> {
+public final class PublishedAnyUnique<T: Equatable, E: Error> {
     
     /// The wrapped subject type.
     public let subjectType: PublishedSubjectType

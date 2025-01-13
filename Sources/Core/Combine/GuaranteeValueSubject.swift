@@ -7,5 +7,5 @@
 
 import Combine
 
-/// A subject that outputs an initial value, and all future values to downstream subscribers, and cannot fail.
+/// A subject that outputs an initial and all future values to downstream subscribers, and can never fail.
 public typealias GuaranteeValueSubject<Output> = CurrentValueSubject<Output, Never>

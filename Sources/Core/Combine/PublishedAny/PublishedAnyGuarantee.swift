@@ -1,5 +1,5 @@
 //
-//  PublishedReadOnly.swift
+//  PublishedAnyGuarantee.swift
 //  Espresso
 //
 //  Created by Mitch on 1/12/25.
@@ -8,11 +8,11 @@
 import Combine
 
 /// Property wrapper that internally publishes values using a
-/// subject, and externally exposes a read-only ``AnyPublisher``.
+/// guarantee subject, and externally exposes a read-only ``AnyPublisher``.
 ///
 /// ```swift
-/// @PublishedReadOnly<Int, Never>(0) var value
-/// @PublishedReadOnly<Int, Never> var onValue
+/// @PublishedAnyGuarantee<Int>(0) var value
+/// @PublishedAnyGuarantee<Int> var onValue
 ///
 /// value.sink {
 ///     print("CurrentValueSubject: \($0)")
@@ -42,16 +42,16 @@ import Combine
 /// // → "PassthroughSubject: 3"
 /// ```
 @propertyWrapper
-public final class PublishedReadOnly<T, E: Error> {
+public final class PublishedAnyGuarantee<T> {
     
     /// The wrapped subject type.
     public let subjectType: PublishedSubjectType
     
-    private let valueSubject: CurrentValueSubject<T, E>?
-    private let passthroughSubject: PassthroughSubject<T, E>?
+    private let valueSubject: GuaranteeValueSubject<T>?
+    private let passthroughSubject: GuaranteePassthroughSubject<T>?
     
     /// The wrapped subject's value.
-    /// This throws an error if the internal subject-type isn't `value`.
+    /// This throws an error if the internal subject-type is `passthrough`.
     public var value: T {
         get throws {
             
@@ -65,11 +65,11 @@ public final class PublishedReadOnly<T, E: Error> {
     }
     
     /// The wrapped read-only publisher.
-    public var wrappedValue: AnyPublisher<T, E> {
+    public var wrappedValue: GuaranteePublisher<T> {
         return self.subject.eraseToAnyPublisher()
     }
     
-    private var subject: any Subject<T, E> {
+    private var subject: any Subject<T, Never> {
         
         switch self.subjectType {
         case .value: return self.valueSubject!
@@ -78,10 +78,10 @@ public final class PublishedReadOnly<T, E: Error> {
         
     }
     
-    /// Initializes a published read-only value.
+    /// Initializes a published guarantee read-only value.
     /// - property value: The initial value to give the underlying subject.
     ///
-    /// - Note: Initialization via this function creates a ``CurrentValueSubject``,
+    /// - Note: Initialization via this function creates a ``GuaranteeValueSubject``,
     ///   and sets the ``subjectType`` to ``value``.
     public init(_ value: T) {
         
@@ -91,9 +91,9 @@ public final class PublishedReadOnly<T, E: Error> {
         
     }
     
-    /// Initializes a published read-only passthrough.
+    /// Initializes a published guarantee read-only passthrough.
     ///
-    /// - Note: Initialization via this function creates a ``PassthroughSubject``,
+    /// - Note: Initialization via this function creates a ``GuaranteePassthroughSubject``,
     ///   and sets the ``subjectType`` to ``passthrough``.
     public init() {
         

@@ -1,18 +1,18 @@
 //
-//  PublishedGuaranteeReadOnly.swift
+//  PublishedAnyGuaranteeUnique.swift
 //  Espresso
 //
 //  Created by Mitch on 1/12/25.
 //
 
-import Combine
+import Foundation
 
-/// Property wrapper that internally publishes values using a
-/// guarantee subject, and externally exposes a read-only ``AnyPublisher``.
+/// Property wrapper that internally publishes unique values using
+/// a guarantee subject, and externally exposes a read-only ``AnyPublisher``.
 ///
 /// ```swift
-/// @PublishedGuaranteeReadOnly<Int>(0) var value
-/// @PublishedGuaranteeReadOnly<Int> var onValue
+/// @PublishedAnyGuaranteeUnique<Int>(0) var value
+/// @PublishedAnyGuaranteeUnique<Int> var onValue
 ///
 /// value.sink {
 ///     print("CurrentValueSubject: \($0)")
@@ -22,6 +22,7 @@ import Combine
 ///     print("PassthroughSubject: \($0)")
 /// }
 ///
+/// _value.send(1)
 /// _value.send(1)
 /// _value.send(2)
 /// _value.send(3)
@@ -33,6 +34,7 @@ import Combine
 ///
 /// _onValue.send(0)
 /// _onValue.send(1)
+/// _onValue.send(1)
 /// _onValue.send(2)
 /// _onValue.send(3)
 ///
@@ -42,7 +44,7 @@ import Combine
 /// // → "PassthroughSubject: 3"
 /// ```
 @propertyWrapper
-public final class PublishedGuaranteeReadOnly<T> {
+public final class PublishedAnyGuaranteeUnique<T: Equatable> {
     
     /// The wrapped subject type.
     public let subjectType: PublishedSubjectType
@@ -66,7 +68,27 @@ public final class PublishedGuaranteeReadOnly<T> {
     
     /// The wrapped read-only publisher.
     public var wrappedValue: GuaranteePublisher<T> {
-        return self.subject.eraseToAnyPublisher()
+                
+        // Manually switching here instead of just
+        // using `self.subject...` because the compiler
+        // was getting confused with the `Equatable`
+        // conformance.
+        
+        switch self.subjectType {
+        case .value:
+            
+            return self.valueSubject!
+                .removeDuplicates()
+                .eraseToAnyPublisher()
+            
+        case .passthrough:
+            
+            return self.passthroughSubject!
+                .removeDuplicates()
+                .eraseToAnyPublisher()
+            
+        }
+        
     }
     
     private var subject: any Subject<T, Never> {
@@ -78,7 +100,7 @@ public final class PublishedGuaranteeReadOnly<T> {
         
     }
     
-    /// Initializes a published guarantee read-only value.
+    /// Initializes a published guarantee read-only unique value.
     /// - property value: The initial value to give the underlying subject.
     ///
     /// - Note: Initialization via this function creates a ``GuaranteeValueSubject``,
@@ -91,7 +113,7 @@ public final class PublishedGuaranteeReadOnly<T> {
         
     }
     
-    /// Initializes a published guarantee read-only passthrough.
+    /// Initializes a published guarantee read-only unique passthrough.
     ///
     /// - Note: Initialization via this function creates a ``GuaranteePassthroughSubject``,
     ///   and sets the ``subjectType`` to ``passthrough``.

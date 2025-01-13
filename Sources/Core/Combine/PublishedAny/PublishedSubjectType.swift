@@ -7,6 +7,12 @@
 
 import Foundation
 
+// @PublishedReadOnly                -> @PublishedAny
+// @PublishedReadOnlyUnique          -> @PublishedAnyUnique
+// @PublishedReadOnlyTrigger         -> @PublishedAnyTrigger
+// @PublishedGuaranteeReadOnly       -> @PublishedAnyGuarantee
+// @PublishedGuaranteeReadOnlyUnique -> @PublishedAnyGuaranteeUnique
+
 /// Representation of the various published
 /// property wrapper subject-types.
 public enum PublishedSubjectType {

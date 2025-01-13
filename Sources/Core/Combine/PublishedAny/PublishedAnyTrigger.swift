@@ -1,5 +1,5 @@
 //
-//  PublishedReadOnlyTrigger.swift
+//  PublishedAnyTrigger.swift
 //  Espresso
 //
 //  Created by Mitch on 1/12/25.
@@ -12,18 +12,18 @@ import Combine
 /// a read-only ``AnyPublisher``.
 ///
 /// ```swift
-/// @PublishedReadOnlyTrigger var trigger
+/// @PublishedAnyTrigger var onTrigger
 ///
-/// trigger.sink { _ in
+/// onTrigger.sink { _ in
 ///     print("Received event")
 /// }
 ///
-/// _trigger.send()
+/// _onTrigger.send()
 ///
 /// // → "Received event"
 /// ```
 @propertyWrapper
-public final class PublishedReadOnlyTrigger {
+public final class PublishedAnyTrigger {
 
     private let subject = TriggerPublisher()
 
