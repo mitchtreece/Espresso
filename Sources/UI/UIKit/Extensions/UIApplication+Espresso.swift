@@ -134,6 +134,14 @@ public extension UIApplication /* Info */ {
         return Bundle.main.bundleIdentifier
     }
     
+    /// The application's bundle display name.
+    var bundleName: String? {
+        
+        return (Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String) ??
+            (Bundle.main.infoDictionary?["CFBundleName"] as? String)
+        
+    }
+    
     /// The application's version string _(CFBundleShortVersionString)_.
     var version: String? {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
