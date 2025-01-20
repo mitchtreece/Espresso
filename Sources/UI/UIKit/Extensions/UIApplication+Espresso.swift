@@ -127,7 +127,7 @@ public extension UIApplication /* Publishers */ {
     
 }
 
-public extension UIApplication /* Version & Build */ {
+public extension UIApplication /* Info */ {
     
     /// The application's bundle identifier _(CFBundleIdentifier)_.
     var bundleId: String? {
@@ -142,6 +142,18 @@ public extension UIApplication /* Version & Build */ {
     /// The application's build number string _(CFBundleVersion)_.
     var build: String? {
         return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    }
+
+    /// The application's primary icon image.
+    var icon: UIImage? {
+
+        guard let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+              let primary = icons["CFBundlePrimaryIcon"] as? [String: Any],
+              let files = primary["CFBundleIconFiles"] as? [String],
+              let filename = files.last else { return nil }
+        
+        return UIImage(named: filename)
+        
     }
     
 }
