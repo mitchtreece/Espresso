@@ -141,7 +141,7 @@ public enum Environment: String {
     /// Setting this will lock the environment to a specific value.
     public static var override: Environment?
         
-    /// The current environment.
+    /// The natural (non-override) environment.
     ///
     /// The environment is determined using the current process's
     /// bundled info plist, launch arguments, environment variables, & compiler flags.
@@ -186,12 +186,8 @@ public enum Environment: String {
     ///
     /// **Adding an info plist entry is the preferred method of specifying an environment.**
     /// This method works when building from Xcode, or when running via a packaged build.
-    public static var current: Environment {
+    public static var natural: Environment {
         
-        if let override {
-            return override
-        }
-                
         // Info plist
         
         if let string = Bundle.main.infoDictionary?["Environment"] as? String,
@@ -262,6 +258,13 @@ public enum Environment: String {
         #endif
         
     }
+    
+    /// The current (override _or_ natural) environment.
+    public static var current: Environment {
+        return self.override ?? self.natural
+    }
+    
+    // MARK: Private
     
     private static func environment(from string: String) -> Environment? {
         
