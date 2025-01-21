@@ -1,32 +1,42 @@
 //
-//  UIEdgeInsets+Espresso.swift
+//  EdgeInsets+Espresso.swift
 //  Espresso
 //
-//  Created by Mitch Treece on 1/10/23.
+//  Created by Mitch on 1/21/25.
 //
 
 #if canImport(UIKit)
 
+import SwiftUI
 import UIKit
 
-public extension UIEdgeInsets /* Initializers */ {
+public extension EdgeInsets /* Zero */ {
     
-    /// Initializes `UIEdgeInsets` with a value.
-    ///
+    static var zero: EdgeInsets = .init(
+        top: 0,
+        leading: 0,
+        bottom: 0,
+        trailing: 0
+    )
+    
+}
+
+public extension EdgeInsets /* Initializers */ {
+    
+    /// Initializes `EdgeInsets` with a value.
     /// - parameter value: The value.
     init(_ value: CGFloat) {
         
         self.init(
             top: value,
-            left: value,
+            leading: value,
             bottom: value,
-            right: value
+            trailing: value
         )
         
     }
     
-    /// Initializes `UIEdgeInsets` with horizontal & vertical values.
-    ///
+    /// Initializes `EdgeInsets` with horizontal & vertical values.
     /// - parameter horizontal: The horizontal value.
     /// - parameter vertical: The vertical value.
     init(horizontal: CGFloat,
@@ -34,75 +44,70 @@ public extension UIEdgeInsets /* Initializers */ {
         
         self.init(
             top: vertical,
-            left: horizontal,
+            leading: horizontal,
             bottom: vertical,
-            right: horizontal
+            trailing: horizontal
         )
         
     }
     
-    /// Initializes `UIEdgeInsets` with a top value.
-    ///
+    /// Initializes `EdgeInsets` with a top value.
     /// - parameter top: The top value.
     init(top: CGFloat) {
         
         self.init(
             top: top,
-            left: 0,
+            leading: 0,
             bottom: 0,
-            right: 0
+            trailing: 0
         )
         
     }
     
-    /// Initializes `UIEdgeInsets` with a left value.
-    ///
-    /// - parameter left: The left value.
-    init(left: CGFloat) {
+    /// Initializes `EdgeInsets` with a leading value.
+    /// - parameter leading: The leading value.
+    init(leading: CGFloat) {
         
         self.init(
             top: 0,
-            left: left,
+            leading: leading,
             bottom: 0,
-            right: 0
+            trailing: 0
         )
         
     }
     
-    /// Initializes `UIEdgeInsets` with a bottom value.
-    ///
+    /// Initializes `EdgeInsets` with a bottom value.
     /// - parameter bottom: The bottom value.
     init(bottom: CGFloat) {
         
         self.init(
             top: 0,
-            left: 0,
+            leading: 0,
             bottom: bottom,
-            right: 0
+            trailing: 0
         )
         
     }
     
-    /// Initializes `UIEdgeInsets` with a right value.
-    ///
-    /// - parameter right: The right value.
-    init(right: CGFloat) {
+    /// Initializes `EdgeInsets` with a trailing value.
+    /// - parameter trailing: The trailing value.
+    init(trailing: CGFloat) {
         
         self.init(
             top: 0,
-            left: 0,
+            leading: 0,
             bottom: 0,
-            right: right
+            trailing: trailing
         )
         
     }
     
 }
 
-public extension UIEdgeInsets /* Builders */ {
+public extension EdgeInsets /* Builders */ {
     
     /// Sets the edge-inset's top value.
-    ///
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
@@ -113,20 +118,18 @@ public extension UIEdgeInsets /* Builders */ {
         
     }
     
-    /// Sets the edge-inset's left value.
-    ///
+    /// Sets the edge-inset's leading value.
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
-    mutating func left(_ value: CGFloat) -> Self {
+    mutating func leading(_ value: CGFloat) -> Self {
         
-        self.left = value
+        self.leading = value
         return self
         
     }
     
     /// Sets the edge-inset's bottom value.
-    ///
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
@@ -137,34 +140,30 @@ public extension UIEdgeInsets /* Builders */ {
         
     }
     
-    /// Sets the edge-inset's right value.
-    ///
+    /// Sets the edge-inset's trailing value.
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
-    mutating func right(_ value: CGFloat) -> Self {
+    mutating func trailing(_ value: CGFloat) -> Self {
         
-        self.right = value
+        self.trailing = value
         return self
         
     }
     
-    /// Sets the edge-inset's left & right values.
-    ///
+    /// Sets the edge-inset's leading & trailing values.
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
     mutating func horizontal(_ value: CGFloat) -> Self {
         
-        self.left = value
-        self.right = value
-        
+        self.leading = value
+        self.trailing = value
         return self
         
     }
     
     /// Sets the edge-inset's top & bottom values.
-    ///
     /// - parameter value: The new value.
     /// - returns: This edge-insets object.
     @discardableResult
@@ -172,21 +171,32 @@ public extension UIEdgeInsets /* Builders */ {
         
         self.top = value
         self.bottom = value
-        
         return self
         
     }
     
 }
 
-public extension UIEdgeInsets /* Representation */ {
+public extension EdgeInsets /* Representation */ {
+    
+    /// A UIKit `UIEdgeInsets` representation.
+    func asUIEdgeInsets() -> UIEdgeInsets {
+        
+        return .init(
+            top: self.top,
+            left: self.leading,
+            bottom: self.bottom,
+            right: self.trailing
+        )
+        
+    }
     
     /// A `HorizontalEdgeInsets` representation.
     func asHorizontalEdgeInsets() -> HorizontalEdgeInsets {
         
-        return HorizontalEdgeInsets(
-            left: self.left,
-            right: self.right
+        return .init(
+            left: self.leading,
+            right: self.trailing
         )
         
     }
@@ -194,7 +204,7 @@ public extension UIEdgeInsets /* Representation */ {
     /// A `VerticalEdgeInsets` representation.
     func asVerticalEdgeInsets() -> VerticalEdgeInsets {
         
-        return VerticalEdgeInsets(
+        return .init(
             top: self.top,
             bottom: self.bottom
         )
