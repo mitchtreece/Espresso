@@ -84,8 +84,8 @@ public extension UIApplication /* Status Bar */ {
 
 public extension UIApplication /* View Controllers */ {
     
-    /// Gets the top-most (key) `UIViewController` in a given root view controller.
-    /// - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keyWindow?.rootViewController_.
+    /// Gets the top-most (key) `UIViewController` in a given hierarchy.
+    /// - Parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keySceneWindow?.rootViewController_.
     /// - Returns: The top-most (key) view controller in the root view controller.
     func keyViewController(in root: UIViewController? = UIApplication.shared.keySceneWindow?.rootViewController) -> UIViewController? {
         
@@ -101,6 +101,25 @@ public extension UIApplication /* View Controllers */ {
         }
         
         return root
+        
+    }
+    
+    /// Gets a flag indicating if the top-most (key) `UIViewController` in a given hierarchy.
+    /// - parameter root: The root `UIViewController`. _defaults to UIApplication.shared.keySceneWindow?.rootViewController_.
+    /// - returns: A flag indicating if the top-most (key) view controller is in a modal-sheet presentation.
+    func keyViewControllerIsModalSheet(in root: UIViewController? = UIApplication.shared.keySceneWindow?.rootViewController) -> Bool {
+        
+        guard let viewController = keyViewController(in: root) else {
+            return false
+        }
+        
+        if let viewControllerEx = viewController as? UIViewControllerEx {
+            return viewControllerEx.isInModalSheetPresentation
+        }
+        
+        return UIModalStyle(
+            modalPresentationStyle: viewController.modalPresentationStyle
+        ).isModalSheet
         
     }
     
