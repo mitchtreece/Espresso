@@ -358,7 +358,7 @@ extension RootViewController: UITableViewDelegate,
             
             self.delegate?
                 .rootViewController(self, didSelectUIKitRow: row)
-            
+                        
         case .swiftui:
             
             guard let row = SwiftUIRow(rawValue: indexPath.row) else { return }

@@ -10,7 +10,10 @@
 import UIKit
 
 private struct AssociatedKeys {
+    
     static var publishers: UInt8 = 0
+    static var suspendAndExitBackgroundTask: UInt8 = 0
+    
 }
 
 public extension UIApplication /* Scenes */ {
@@ -162,6 +165,53 @@ public extension UIApplication /* Info */ {
         
         return UIImage(named: filename)
         
+    }
+    
+}
+
+public extension UIApplication /* Suspend */ {
+
+    /// Suspends the application.
+    func suspend() {
+        
+        // We use the `URLSessionTask.suspend` selector here
+        // because it has the same signature as the private
+        // `UIApplication.suspend` selector. This way, we
+        // aren't technically calling any private API's.
+        
+        sendAction(
+            #selector(URLSessionTask.suspend),
+            to: self,
+            from: nil,
+            for: nil
+        )
+        
+    }
+    
+    /// Suspends & terminates the application.
+    func suspendAndExit() {
+                
+        let suspendAndExitTask = UIBackgroundTask { _ in
+            
+            self.suspend()
+            
+            Task {
+                
+                try? await Task.sleep(duration: .seconds(1))
+                exit(EXIT_SUCCESS)
+                
+            }
+            
+        }
+        
+        setAssociatedObject(
+            suspendAndExitTask,
+            forKey: AssociatedKeys.suspendAndExitBackgroundTask
+        )
+        
+        suspendAndExitTask
+            .start()
+
     }
     
 }
