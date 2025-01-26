@@ -50,7 +50,7 @@ let package = Package(
         
         .package(
             url: "https://github.com/kean/Pulse",
-            .upToNextMajor(from: .init(4, 0, 0))
+            .upToNextMajor(from: .init(5, 0, 0))
         ),
         
         .package(
