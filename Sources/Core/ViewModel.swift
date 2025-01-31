@@ -11,13 +11,13 @@ import Foundation
 // All architecture-level stuff should be in that library.
 
 /// Abstract protocol representing a view model.
-public protocol ViewModel: Equatable, ObservableObject {}
+public protocol ViewModel: ObservableObject {}
 
 /// Base view-model class.
 ///
 /// - Note: This should never be used directly.
 ///   Instead, create a specialized `ESViewModel` by subclassing it.
-open class ViewModelBase: ViewModel {
+open class ViewModelBase: ViewModel, Equatable {
      
     public static func == (lhs: ViewModelBase, rhs: ViewModelBase) -> Bool {
         return lhs === rhs
