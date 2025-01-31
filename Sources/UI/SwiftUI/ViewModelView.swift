@@ -12,15 +12,15 @@ import Espresso
 // All architecture-level stuff should be in that library.
 
 /// Protocol describing a view that is backed by a view model.
-public protocol ViewModelView: View {
+public protocol ViewModelView<Model>: View {
     
-    associatedtype V: ViewModel
+    associatedtype Model: ViewModel
     
     /// The view's backing view model.
-    var viewModel: V { get }
+    var viewModel: Model { get }
     
     /// Initializes a view with a view model.
     /// - parameter viewModel: The view model.
-    init(viewModel: V)
+    init(viewModel: Model)
     
 }

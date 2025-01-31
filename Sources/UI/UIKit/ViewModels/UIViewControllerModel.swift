@@ -7,8 +7,8 @@
 
 #if canImport(UIKit)
 
-import UIKit
 import Espresso
+import UIKit
 
 // TODO: Remove this once `Pilot` is released
 // All architecture-level stuff should be in that library.
@@ -16,7 +16,7 @@ import Espresso
 /// Specialized base view-model class that manages a `UIViewController`.
 ///
 /// This should never be used directly. Instead, create a specialized `UIViewControllerModel` by subclassing it.
-open class UIViewControllerModel: ViewModel {
+open class UIViewControllerModel: ViewModelBase {
     
     /// The view model's managed view controller.
     public private(set) weak var viewController: UIViewController?
