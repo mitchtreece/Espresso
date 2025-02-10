@@ -141,7 +141,8 @@ extension RootViewController: UITableViewDelegate,
         case slide
         case cover
         case reveal
-        case swap
+        case shuffle
+        case turn
         case pushBack
         case zoom
         case custom
@@ -153,7 +154,8 @@ extension RootViewController: UITableViewDelegate,
             case .slide: return UISlideTransition()
             case .cover: return UICoverTransition()
             case .reveal: return UIRevealTransition()
-            case .swap: return UISwapTransition()
+            case .shuffle: return UIShuffleTransition()
+            case .turn: return UITurnTransition()
             case .pushBack: return UIPushBackTransition()
             case .zoom: return UIZoomTransition()
             case .custom: return CustomTransition()
@@ -168,7 +170,8 @@ extension RootViewController: UITableViewDelegate,
             case .slide: return "Slide"
             case .cover: return "Cover"
             case .reveal: return "Reveal"
-            case .swap: return "Swap"
+            case .shuffle: return "Shuffle"
+            case .turn: return "Turn"
             case .pushBack: return "Push Back"
             case .zoom: return "Zoom"
             case .custom: return "Custom"
@@ -183,9 +186,10 @@ extension RootViewController: UITableViewDelegate,
             case .slide: return UIImage(systemSymbol: .arrowLeft)
             case .cover: return UIImage(systemSymbol: .arrowLeftCircle)
             case .reveal: return UIImage(systemSymbol: .squareRighthalfFilled)
-            case .swap: return UIImage(systemSymbol: .arrowLeftArrowRight)
+            case .shuffle: return UIImage(systemSymbol: .arrowLeftArrowRight)
+            case .turn: return UIImage(systemSymbol: .arrowUturnForward)
             case .pushBack: return UIImage(systemSymbol: .handRaised)
-            case .zoom: return UIImage(systemSymbol: .arrowLeftAndRight)
+            case .zoom: return UIImage(systemSymbol: .arrowUpAndDown)
             case .custom: return UIImage(systemSymbol: .person)
             }
             

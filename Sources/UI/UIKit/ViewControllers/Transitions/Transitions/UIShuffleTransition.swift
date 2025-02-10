@@ -1,5 +1,5 @@
 //
-//  UISwapTransition.swift
+//  UIShuffleTransition.swift
 //  Espresso
 //
 //  Created by Mitch Treece on 6/27/18.
@@ -8,15 +8,19 @@
 #if canImport(UIKit)
 
 import UIKit
+import SwiftUI
 
-/// A swapping view controller transition.
-public class UISwapTransition: UIViewControllerDirectionalTransition {
+/// A shuffling view controller transition.
+public class UIShuffleTransition: UIViewControllerTransition {
     
-    /// The scale to apply to swapped views while transitioning; _defaults to 0.95_.
-    public var swappedViewScale: CGFloat = 0.95
+    /// The scale to apply to shuffled views while transitioning; _defaults to 0.95_.
+    public var shuffleScale: CGFloat = 0.95
     
-    /// The corner radius to apply to swapped views while transitioning; _defaults to 20_.
-    public var swappedViewCornerRadius: CGFloat = 20
+    /// The rotation angle to apply to shuffled views while transitioning; _defaults to degrees(6)_.
+    public var shuffleAngle: Angle = .degrees(6)
+    
+    /// The corner radius to apply to shuffled views while transitioning; _defaults to 20_.
+    public var shuffleCornerRadius: CGFloat = 20
     
     /// The alpha to apply to the covered view while transitioning; _defaults to 0.7_.
     public var coveredViewAlpha: CGFloat = 0.7
@@ -34,10 +38,6 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
         let destinationVC = ctx.destinationViewController
         let container = ctx.containerView
         let context = ctx.context
-        
-        let direction = ctx.operation == .presentation ?
-            self.presentationDirection :
-            self.dismissalDirection
         
         let previousSourceClipsToBound = sourceVC.view.clipsToBounds
         let previousSourceCornerRadius = sourceVC.view.layer.cornerRadius
@@ -62,33 +62,37 @@ public class UISwapTransition: UIViewControllerDirectionalTransition {
             UIAnimation(duration: (self.duration * 0.4)) {
                 
                 // Source
-                
-                let sourceTransform = self.halfBoundsTransform(
+
+                sourceVC.view.transform = self.halfBoundsTransform(
                     in: container,
-                    direction: direction
+                    direction: .left
+                )
+                .scaledBy(
+                    x: self.shuffleScale,
+                    y: self.shuffleScale
+                )
+                .rotated(
+                    by: -self.shuffleAngle.radians
                 )
                 
-                sourceVC.view.transform = sourceTransform.scaledBy(
-                    x: self.swappedViewScale,
-                    y: self.swappedViewScale
-                )
-                
-                sourceVC.view.layer.cornerRadius = self.swappedViewCornerRadius
+                sourceVC.view.layer.cornerRadius = self.shuffleCornerRadius
                 
                 // Destination
                 
-                let destinationTransform = self.halfBoundsTransform(
+                destinationVC.view.transform = self.halfBoundsTransform(
                     in: container,
-                    direction: direction.inverted()
+                    direction: .right
                 )
-                
-                destinationVC.view.transform = destinationTransform.scaledBy(
-                    x: self.swappedViewScale,
-                    y: self.swappedViewScale
+                .scaledBy(
+                    x: self.shuffleScale,
+                    y: self.shuffleScale
+                )
+                .rotated(
+                    by: self.shuffleAngle.radians
                 )
                 
                 destinationVC.view.alpha = 1
-                destinationVC.view.layer.cornerRadius = self.swappedViewCornerRadius
+                destinationVC.view.layer.cornerRadius = self.shuffleCornerRadius
                 
             }
             .then(.defaultSpring, duration: (self.duration * 0.6)) {

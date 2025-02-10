@@ -81,6 +81,9 @@ public class UIAnimation {
         /// A Material Design timing curve.
         case material(MaterialCurve)
         
+        /// A core animation timing curve.
+        case coreAnimation(CAMediaTimingFunction)
+        
         /// A custom timing curve using a given `UITimingCurveProvider`.
         case custom(UITimingCurveProvider)
         
@@ -146,7 +149,7 @@ public class UIAnimation {
         ])
         
     }
-
+    
     /// Starts or resumes the animation.
     /// - Parameter completion: An optional completion closure; _defaults to nil_.
     public func start(completion: Completion? = nil) {
@@ -199,6 +202,19 @@ public class UIAnimation {
             provider = UICubicTimingParameters(
                 controlPoint1: easing.controlPoints.cp1,
                 controlPoint2: easing.controlPoints.cp2
+            )
+            
+        case .coreAnimation(let function):
+            
+            var cp1: [Float] = [0, 0]
+            var cp2: [Float] = [0, 0]
+            
+            function.getControlPoint(at: 1, values: &cp1)
+            function.getControlPoint(at: 2, values: &cp2)
+
+            provider = UICubicTimingParameters(
+                controlPoint1: .init(x: CGFloat(cp1[0]), y: CGFloat(cp1[1])),
+                controlPoint2: .init(x: CGFloat(cp2[0]), y: CGFloat(cp2[1]))
             )
 
         case .custom(let _provider):
@@ -309,6 +325,7 @@ extension UIAnimation: CustomStringConvertible,
         case .spring(let damping, let velocity): curveString = "spring(damping: \(damping), velocity: \(velocity))"
         case .defaultSpring: curveString = "defaultSpring"
         case .material(let easing): curveString = "material(\(easing.name))"
+        case .coreAnimation: curveString = "coreAnimation"
         case .custom: curveString = "custom"
         }
 

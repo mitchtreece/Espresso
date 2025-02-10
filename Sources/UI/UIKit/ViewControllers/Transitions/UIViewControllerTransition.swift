@@ -7,8 +7,9 @@
 
 #if canImport(UIKit)
 
-import UIKit
 import Espresso
+import SwiftUI
+import UIKit
 
 /// View controller transition base class.
 @objc open class UIViewControllerTransition: NSObject,
@@ -217,6 +218,39 @@ public extension UIViewControllerTransition /* Helpers */ {
         case .left: return CGAffineTransform(translationX: -amount, y: 0)
         case .right: return CGAffineTransform(translationX: amount, y: 0)
         }
+        
+    }
+        
+    /// Creates a 2d rotation transform using an angle.
+    /// - parameter angle: The rotation angle.
+    /// - returns: A rotation `CGAffineTransform`.
+    func rotatationTransform2D(_ angle: Angle) -> CGAffineTransform {
+        return CGAffineTransform(rotationAngle: angle.radians)
+    }
+    
+    /// Creates a 3d rotation transform using an angle & attitude.
+    /// - parameter angle: The rotation angle.
+    /// - parameter attitude: The rotation attitude.
+    /// - returns: A rotation `CATransform3D`.
+    func rotationTransform3D(_ angle: Angle,
+                             attitude: RotationAttitude) -> CATransform3D {
+        
+        var pitch: CGFloat  = 0 // up-down (x)
+        var yaw: CGFloat = 0    // left-right (y)
+        var roll: CGFloat = 0   // side-side (z)
+        
+        switch attitude {
+        case .pitch: pitch = 1
+        case .yaw: yaw = 1
+        case .roll: roll = 1
+        }
+        
+        return CATransform3DMakeRotation(
+            angle.radians,
+            pitch,
+            yaw,
+            roll
+        )
         
     }
     
