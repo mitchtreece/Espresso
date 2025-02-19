@@ -77,6 +77,7 @@ public extension AppleDevice /* Device Type */ {
         case iPhone16Plus
         case iPhone16Pro
         case iPhone16ProMax
+        case iPhone16e
         
         case iPad
         case iPad2
@@ -616,6 +617,14 @@ public extension AppleDevice /* Device Type */ {
                 marketingName = "iPhone 16 Pro Max"
                 identifiers = ["iPhone17,2"]
                 processor = .a18Pro
+                
+            case .iPhone16e:
+                
+                releaseYear = 2025
+                family = .iPhone
+                marketingName = "iPhone 16e"
+                identifiers = ["iPhone17,5"]
+                processor = .a18
 
             // MARK: iPad
                 
