@@ -44,22 +44,26 @@ public extension AppleDevice /* Helpers */ {
         return self.family == .appleTV
     }
 
-    /// Flag indicating whether this device is modern (edge-to-edge screen without a home button).
+    /// Flag indicating whether this device is modern
+    /// (edge-to-edge screen without a home button).
     var isModern: Bool {
         return (self.isModernPhone || self.isModernPad)
     }
 
-    /// Flag indicating whether this device is legacy (non-edge-to-edge screen with a home button).
+    /// Flag indicating whether this device is legacy
+    /// (non-edge-to-edge screen with a home button).
     var isLegacy: Bool {
         return (self.isLegacyPhone || self.isLegacyPad || self.isPod)
     }
 
-    /// Flag indicating whether this device is a modern iPhone (edge-to-edge screen without a home button).
+    /// Flag indicating whether this device is a modern
+    /// iPhone (edge-to-edge screen without a home button).
     var isModernPhone: Bool {
         return (self.family == .iPhone && !self.isLegacyPhone)
     }
 
-    /// Flag indicating whether this device is a legacy iPhone (non-edge-to-edge screen with a home button).
+    /// Flag indicating whether this device is a legacy
+    /// iPhone (non-edge-to-edge screen with a home button).
     var isLegacyPhone: Bool {
 
         return self.family == .iPhone && (
@@ -75,12 +79,14 @@ public extension AppleDevice /* Helpers */ {
                 
     }
 
-    /// Flag indicating whether this device is a modern iPad (edge-to-edge screen without a home button).
+    /// Flag indicating whether this device is a modern
+    /// iPad (edge-to-edge screen without a home button).
     var isModernPad: Bool {
         return (self.family == .iPad && !self.isLegacyPad)
     }
 
-    /// Flag indicating whether this device is a legacy iPad (non-edge-to-edge screen with a home button).
+    /// Flag indicating whether this device is a legacy
+    /// iPad (non-edge-to-edge screen with a home button).
     var isLegacyPad: Bool {
 
         return self.family == .iPad && (
@@ -91,6 +97,17 @@ public extension AppleDevice /* Helpers */ {
             self.type == .iPadMini_5 ||
             self.type == .iPadAir || self.type == .iPadAir2 || self.type == .iPadAir_3 ||
             self.type == .iPadPro9 || self.type == .iPadPro12 || self.type == .iPadPro12_2 || self.type == .iPadPro10
+        )
+        
+    }
+    
+    /// Flag indicating whether this device has a dynamic island.
+    var hasDynamicIsland: Bool {
+        
+        return self.family == .iPhone && (
+            self.type == .iPhone14Pro || self.type == .iPhone14ProMax ||
+            self.type == .iPhone15 || self.type == .iPhone15Plus || self.type == .iPhone15Pro || self.type == .iPhone15ProMax ||
+            self.type == .iPhone16 || self.type == .iPhone16Plus || self.type == .iPhone16Pro || self.type == .iPhone16ProMax
         )
         
     }
