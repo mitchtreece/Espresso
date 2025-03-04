@@ -108,15 +108,18 @@ public extension AppleDevice /* Device Type */ {
         case iPadPro12_5
         case iPad_9
         case iPadMini_6
-        case iPadAir_5
+        
+        case iPadAir_5 //////////////
         case iPad_10
         case iPadPro11_4
         case iPadPro12_6
-        case iPadAir_6
+        case iPadAir11
         case iPadAir13
         case iPadPro11_5
         case iPadPro13
-                
+        case iPadAir11_2
+        case iPadAir13_2
+        
         case appleWatch
         case appleWatchS1
         case appleWatchS2
@@ -887,7 +890,7 @@ public extension AppleDevice /* Device Type */ {
                 family = .iPad
                 marketingName = "iPad Air"
                 generationalName = "iPad Air (5th Gen)"
-                identifiers = ["iPad13,6", "iPad13,7"]
+                identifiers = ["iPad13,16", "iPad13,17"]
                 processor = .m1
                 
             case .iPad_10:
@@ -935,12 +938,12 @@ public extension AppleDevice /* Device Type */ {
                 
                 processor = .m2
                 
-            case .iPadAir_6:
+            case .iPadAir11:
                 
                 releaseYear = 2024
                 family = .iPad
                 marketingName = "iPad Air"
-                generationalName = "iPad Air (6th Gen)"
+                generationalName = "iPad Air (11-inch)"
                 identifiers = ["iPad14,8", "iPad14,9"]
                 processor = .m2
 
@@ -988,6 +991,24 @@ public extension AppleDevice /* Device Type */ {
                 ]
                 
                 processor = .m4
+                
+            case .iPadAir11_2:
+                
+                releaseYear = 2025
+                family = .iPad
+                marketingName = "iPad Air"
+                generationalName = "iPad Air (11-inch) (2nd Gen)"
+                identifiers = ["TODO"]
+                processor = .m3
+                
+            case .iPadAir13_2:
+                
+                releaseYear = 2025
+                family = .iPad
+                marketingName = "iPad Air"
+                generationalName = "iPad Air (13-inch) (2nd Gen)"
+                identifiers = ["TODO"]
+                processor = .m3
                 
             // MARK: Apple Watch
                 
