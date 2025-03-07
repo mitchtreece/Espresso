@@ -108,8 +108,7 @@ public extension AppleDevice /* Device Type */ {
         case iPadPro12_5
         case iPad_9
         case iPadMini_6
-        
-        case iPadAir_5 //////////////
+        case iPadAir_5
         case iPad_10
         case iPadPro11_4
         case iPadPro12_6
@@ -119,6 +118,7 @@ public extension AppleDevice /* Device Type */ {
         case iPadPro13
         case iPadAir11_2
         case iPadAir13_2
+        case iPad_11
         
         case appleWatch
         case appleWatchS1
@@ -998,7 +998,7 @@ public extension AppleDevice /* Device Type */ {
                 family = .iPad
                 marketingName = "iPad Air"
                 generationalName = "iPad Air (11-inch) (2nd Gen)"
-                identifiers = ["TODO"]
+                identifiers = ["iPad15,3", "iPad15,4"]
                 processor = .m3
                 
             case .iPadAir13_2:
@@ -1007,8 +1007,17 @@ public extension AppleDevice /* Device Type */ {
                 family = .iPad
                 marketingName = "iPad Air"
                 generationalName = "iPad Air (13-inch) (2nd Gen)"
-                identifiers = ["TODO"]
+                identifiers = ["iPad15,5", "iPad15,6"]
                 processor = .m3
+                
+            case .iPad_11:
+                
+                releaseYear = 2025
+                family = .iPad
+                marketingName = "iPad"
+                generationalName = "iPad (11th Gen)"
+                identifiers = ["iPad15,7", "iPad15,8"]
+                processor = .a16
                 
             // MARK: Apple Watch
                 
