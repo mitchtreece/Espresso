@@ -49,6 +49,11 @@ let package = Package(
         ),
         
         .package(
+            url: "https://github.com/superepicstudios/apple-devices",
+            branch: "main"
+        ),
+        
+        .package(
             url: "https://github.com/kean/Pulse",
             .upToNextMajor(from: .init(5, 0, 0))
         ),
@@ -78,6 +83,11 @@ let package = Package(
                 .product(
                     name: "Pulse",
                     package: "Pulse"
+                ),
+                
+                .product(
+                    name: "AppleDevices",
+                    package: "apple-devices"
                 )
 
             ],

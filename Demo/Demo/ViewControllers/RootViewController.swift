@@ -389,9 +389,13 @@ extension RootViewController: UITableViewDelegate,
             switch row {
             case .appleDevice:
                 
-                let device = AppleDevice.current
-                let title = device.isSimulator ? "\(device.generationalName) (Simulator)" : device.generationalName
-                let message = "\(device.softwareName): \(device.softwareVersion)\nJailbroken: \(device.isJailbroken)"
+                let device = AppleDevice()
+                let title = device.descriptiveName
+                var message: String = "Simulator: \(device.isSimulated)"
+                
+                if let software = device.software.current {
+                    message += "\n\(software.name) \(software.version)"
+                }
                 
                 let alert = UIAlertController(
                     title: title,

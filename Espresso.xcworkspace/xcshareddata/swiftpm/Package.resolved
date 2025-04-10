@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "apple-devices",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/superepicstudios/apple-devices",
+      "state" : {
+        "branch" : "main",
+        "revision" : "280a95c685940fd3c6a8bfc90f1937b501c3ed84"
+      }
+    },
+    {
       "identity" : "combineext",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CombineCommunity/CombineExt",
@@ -37,6 +46,15 @@
       }
     },
     {
+      "identity" : "semver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sersoft-gmbh/semver",
+      "state" : {
+        "revision" : "e6bb7b7b4df6065dfd99d3d6cf16dc1b2d99f087",
+        "version" : "5.2.0"
+      }
+    },
+    {
       "identity" : "sfsafesymbols",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SFSafeSymbols/SFSafeSymbols",
@@ -52,6 +70,15 @@
       "state" : {
         "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
         "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     }
   ],
